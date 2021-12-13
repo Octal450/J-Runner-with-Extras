@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JRunner", "J-Runner\JRunner.csproj", "{1CD353F7-6D5F-4FC8-8C51-9B2AC836035E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Debug-JF|x86 = Debug-JF|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CD353F7-6D5F-4FC8-8C51-9B2AC836035E}.Debug|x86.ActiveCfg = Debug|x86
+		{1CD353F7-6D5F-4FC8-8C51-9B2AC836035E}.Debug|x86.Build.0 = Debug|x86
+		{1CD353F7-6D5F-4FC8-8C51-9B2AC836035E}.Debug-JF|x86.ActiveCfg = Debug|x86
+		{1CD353F7-6D5F-4FC8-8C51-9B2AC836035E}.Debug-JF|x86.Build.0 = Debug|x86
+		{1CD353F7-6D5F-4FC8-8C51-9B2AC836035E}.Release|x86.ActiveCfg = Release|x86
+		{1CD353F7-6D5F-4FC8-8C51-9B2AC836035E}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

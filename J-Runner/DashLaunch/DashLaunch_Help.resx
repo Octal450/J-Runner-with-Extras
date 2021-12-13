@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="txtHelp.Text" xml:space="preserve">
+    <value>; launch.xex V3.0 config file
+; parsed by simpleIni http://code.jellycan.com/simpleini/
+; currently supported devices and paths:
+; internal hard disk    Hdd:\
+; usb memory stick      Usb:\
+; memory unit           Mu:\
+; USB memory unit       UsbMu:\
+; big block NAND mu     FlashMu:\
+; internal slim 4G mu	IntMu:\
+; internal corona 4g mu MmcMu:\
+; CD/DVD                Dvd:\     (not recommended to use this one)
+; buttons can point to any xex, or any CON with default.xex in it on any of the above devices
+; note that Right Bumper is ALWAYS default to return NXE
+; if you want to assign an additional one, use the path Sfc:\dash.xex ie:
+; BUT_A = Sfc:\dash.xex
+
+; all comments and fields in this file are optional, you can remove anything you don't need
+; sorry for any double negatives :p
+; njoy, cOz
+
+; example entry
+; Default = Hdd:\FreeStyle\default.xex
+[Paths]
+BUT_A = 
+BUT_B = 
+BUT_X = 
+BUT_Y = 
+Start = 
+Back  = 
+LBump = 
+RThumb=
+LThumb=
+; Default is what loads when you hold no buttons
+; leave this blank if you want NXE as default
+Default = 
+
+; at boot time, default can be overridden based on how the console is turned on
+; if you start with wired/wireless/IR guide button, this item if existing will be used instead of default
+; note that the Guide item is ALWAYS overridden by option: remotenxe = true
+Guide = 
+; if you power on with the button on the front of the console (or the power button on a remote if remotenxe is not set to true)
+; this item will be used instead of default
+Power = 
+
+; if set, going to system settings from HUD will run this app, override with Right Bumper
+Configapp =
+
+; if set, this will be run as a title before any other option occurs, does not get circumvented by held buttons or default
+; guide/power opts are processed after this; intended for a short video player to allow replacing bootanim
+Fakeanim = 
+
+; by default this only dumps to UART, setting a file here will cause unhandled exception info to be dumped
+; as text to a file. Same path restraints as the quick launch buttons.
+; if exchandler is set to false, this option does nothing.
+; note that this uses the first drive of the class found, so if you use usb: and have more than one usb device
+; it may wind up on any of the usb devices depending on which was enumerated first. The path for the file is only
+; checked on boot, so the device must be present at power on and at crash time for this to be effective
+; ie: dumpfile = Usb:\crashlog.txt
+Dumpfile = 
+
+; example plugin entry
+; plugin1 = Usb:\plugin\aplugin.xex
+[Plugins]
+plugin1 = 
+plugin2 = 
+plugin3 = 
+plugin4 = 
+plugin5 = 
+
+
+; these options are never used directly by dash launch but serve to give the configuration program
+; a place to keep these values; note that things like ftp and udp servers are only running while installer is running
+[Externals]
+; if true, the configuration application will start a FTP server (user/pass: xbox)
+; if not present default is FALSE
+ftpserv = false
+
+; if ftpserv is true, this is the port that will be used by the FTP server
+; if not present default is 21
+ftpport = 21
+
+; if true, the configuration application will start the xebuild update server
+; if not present default is FALSE
+updserv = false
+
+; if true, the configuration application will start in launch mode instead of options mode
+; if not present default is FALSE
+calaunch = false
+
+; if true, temps in installer and in guide (shuttemps option) will be shown in fahrenheit instead of celsius
+; if not present default is FALSE
+fahrenheit = false
+
+
+[Settings]
+; if true, brining up miniblade in NXE and then pressing Y will cause launch.xex to relaunch for you
+; note you must release Y button then press desired QuickLaunchButtons after or use default item
+; if not present default is TRUE
+nxemini = true
+
+; if true ping limit will be removed for system link play (thanks FBDev!)
+; if not present default is FALSE
+pingpatch = false
+
+; if true header license bits will be patched for addon content (00000002 type content)
+; if not present default is FALSE
+contpatch = false
+
+; if true header license bits will be patched for xbla content (000D0000 type content)
+; if not present default is FALSE
+xblapatch = false
+
+; usually used in combination with contpatch/xblapatch or when XBLA is run extracted instead of from a container, spoofs replies from XamContentGetLicenseMask
+; if not present default is FALSE
+licpatch = false
+
+; Normally when a fatal error occurs the xbox will just freeze, setting this to false will cause a reboot or powerdown
+; setting to TRUE will also disable the unhandled exception filter which tries to intercept recoverable unhandled exceptions with exit to dash
+; if not present default is FALSE
+fatalfreeze = false
+
+; when fatalfreeze is set to false, setting this to true will cause the box to reboot, setting it to false will instead have the box shut down
+; note that this option does NOTHING when fatalfreeze is set to true
+; if not present default is FALSE
+fatalreboot = false
+
+; setting this to true will cause the box to reboot (soft reboot) the way it was intended to
+; on jtag ONLY set this to true if using blackaddr's reboot fix for SMC, else on reboot you will get E71 and corrupted dash/video/etc settings
+; if not present default is TRUE
+safereboot = true
+
+; when set to true, it is possible to hold RB when launching a game to have the region that the game gets from xam spoofed
+; if not present this is set to FALSE
+regionspoof = false
+
+; when regionspoof is true, you set your region here in hex preceding the value with 0x, for example devkit would be region = 0x7fff
+; if not present but regionspoof is set to true, this is set to 0x7FFF
+region = 0x7FFF
+
+; when set to false, ejecting a dvd video or game returns you to your default item, set to true to auto exit to NXE
+; if not present this is set to FALSE
+dvdexitdash = false
+
+; when set to false, using the exit item in an XBLA game returns you to your default item, set to true to exit to NXE arcade menu
+; if not present this is set to FALSE
+xblaexitdash = false
+
+; when set to true, using miniblades system setting options will not exit to NXE
+; if not present this is set to FALSE
+nosysexit = false
+
+; when set to true, miniblades will not appear... ever (requested as child saftey measure)
+; note that using this option overrides everything in dash launch that relies on miniblade exits to function
+; if not present this is set to FALSE
+nohud = false
+
+; when set to false, xbox will be capable of finding system updaters
+; if not present this is set to TRUE
+noupdater = true
+
+; when set to true,  dash launch will put all debug strings out to uart
+; if not present this is set to FALSE
+debugout = false
+
+; when set to false, dash launch will not attempt to handle last chance unhandled exceptions
+; if set to false, exceptions will also not be dumped to the dumpfile
+; if not present this is set to TRUE
+exchandler = true
+
+; if set to true, this will block the console from resolving LIVE related dns
+; if not set this value will be TRUE
+liveblock = true
+
+; if liveblock is set to true, this will block the console from resolving all MS related dns
+; setting this to TRUE will also block apps like freestyle from accessing things like cover images
+; *** note that if NO INI is present for launch.xex, this is set to TRUE
+; if not set this value will be FALSE
+livestrong = true
+
+; when set to TRUE the X (guide) and power button on IR remotes will cause the xbox to boot to NXE instead of default item
+; note that powering on with the windows/start button automatically goes to NXE's media center now regardless of how this is set
+; if not set this value will be FALSE
+remotenxe = false
+
+; when set to TRUE all USB drives will be polled at hddtimer intervals for the file "alive.txt" in their root
+; if the file exists, it will be recreated and 16 random bytes written to it on each poll which should keep drives from spinning down
+; if not set this value will be FALSE
+hddalive = false
+
+; in seconds, the interval between when USB devices will be polled for "alive.txt" file
+; if not set and hddalive is set to TRUE this value will be 210
+hddtimer = 210
+
+; attempts to disable popups related to signing in, like "live is blocked" and similar
+; !! WARNING OTHER THINGS DO USE THIS DIALOG AND DETECTING THAT IT'S A LOGIN DIALOG MAY NOT BE PERFECT !!
+; !! to sign into live profiles other than auto signing on boot you MUST accept the 'check live for updates' dialog BEFORE enabling this option !!
+; if not set this value will be FALSE
+signnotice = false
+
+; when you hold guide button to shut down xbox, normally the 'cancel' option is selected
+; setting this to TRUE will cause the shutdown option to be auto selected instead
+; !! WARNING OTHER THINGS DO USE THIS DIALOG AND DETECTING THAT IT'S SHUTDOWN DIALOG MAY NOT BE PERFECT !!
+; if not set this value will be FALSE
+autoshut = false
+
+; when you hold guide button to shut down xbox, normally a dialog comes up
+; setting this to TRUE will cause the console to shutdown instead of show a dialog
+; !! WARNING OTHER THINGS DO USE THIS DIALOG AND DETECTING THAT IT'S SHUTDOWN DIALOG MAY NOT BE PERFECT !!
+; if not set this value will be FALSE
+autooff = false
+
+; 14699+ has native http functions, but you are forced to be logged into use them
+; this patch removes that restriction, set to false to disable it if you have any problems
+; if not set this value will be TRUE
+xhttp = true
+
+; when tempbcast is set to TRUE the raw temp data from smc will be broadcast over UDP at temptime second
+; intervals on port tempport
+; if not set this value will be FALSE
+tempbcast = false
+; if not set this value will be 10
+temptime = 10
+; if not set this value will be 7030
+tempport = 7030
+
+; when set to TRUE all titles will have the insecure socket privilege
+; if not set this value will be FALSE
+sockpatch = false
+
+; when set to TRUE dash launch will not erase launchdata before launching a quick launch item
+; if not set this value will be FALSE
+passlaunch = false
+
+; when set to TRUE various functions will be spoofed to make firmware think it's connected to LIVE
+; this does not compensate for the fact that it cannot contact LIVE servers
+; setting this to TRUE forces liveblock to TRUE
+; if not set this value will be FALSE
+fakelive = false
+
+; when set to TRUE network/cloud storage options should not show up in disk dialogs
+; if not set this value will be TRUE
+nonetstore = true
+
+; when set to TRUE a snapshot of the console temperature data will be displayed in the console shutdown dialog (displayed when guide button is held)
+; !! WARNING OTHER THINGS DO USE THIS DIALOG AND DETECTING THAT IT'S SHUTDOWN DIALOG MAY NOT BE PERFECT !!
+; enabling this option disables autooff
+; if not set this value will be FALSE
+shuttemps = false
+
+; when true, any devkit profiles on the console will not appear as corrupt and can be used
+; any changes such as saving games or getting achievements will resign the profile with the current/retail keyvault
+; this seems not to affect glitch/jtag dev crossflash, but could affect these profiles on true devkits
+; if not set this value will be FALSE
+devprof = false
+
+; when true, system link data will be encrypted for communication with devkits
+; if not set this value will be FALSE
+devlink = false
+
+; when true dash launch will perform automatic disk swapping
+; WARNING!! do not enable if you use FSD or swap.xex for this !!
+; if not set this value will be FALSE
+autoswap = false
+
+; when true, disables kinect health pseudo video at game launch
+; if not set this value will be TRUE
+nohealth = true
+
+; when true, disables dash locale setup screens when settings already exist
+; if not set this value will be TRUE
+nooobe = true
+
+; when true dash launch will automatically enable fakelive functionality only during official dash and indie play sessions
+; if not set this value will be FALSE
+autofake = false
+; if some titles benefit from fakelive, add them here - only 10 may be listed
+autofake0 = 0x00000000
+autofake1 = 0x00000000
+autofake2 = 0x00000000
+autofake3 = 0x00000000
+autofake4 = 0x00000000
+autofake5 = 0x00000000
+autofake6 = 0x00000000
+autofake7 = 0x00000000
+autofake8 = 0x00000000
+autofake9 = 0x00000000
+
+; when true and autofake is enabled, contpatch will be enabled for community games only
+; this option will be ignored if autofake is not enabled
+; if not set this value will be FALSE
+autocont = false</value>
+  </data>
+</root>

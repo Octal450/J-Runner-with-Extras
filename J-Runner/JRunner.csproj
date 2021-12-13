@@ -1,0 +1,1101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1CD353F7-6D5F-4FC8-8C51-9B2AC836035E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JRunner</RootNamespace>
+    <AssemblyName>JRunner</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>C:\Users\Nick\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <WebPage>publish.htm</WebPage>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>Dev , JF</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <NoStdLib>false</NoStdLib>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Project3.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject>JRunner.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-JF|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug-JF\</OutputPath>
+    <DefineConstants>Dev;JF</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\JRunner.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AeroWizard, Version=2.2.9.0, Culture=neutral, PublicKeyToken=915e74f5d64b8f37, processorArchitecture=MSIL">
+      <HintPath>..\packages\AeroWizard.2.2.9\lib\net40\AeroWizard.dll</HintPath>
+    </Reference>
+    <Reference Include="BootloaderInterface">
+      <HintPath>.\BootloaderInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>.\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PICUSB">
+      <HintPath>.\PICUSB.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\NativeMethods.cs" />
+    <Compile Include="Classes\RC4.cs" />
+    <Compile Include="Classes\RGH2to3.cs" />
+    <Compile Include="Classes\rgh3build.cs" />
+    <Compile Include="Classes\xdkbuild.cs" />
+    <Compile Include="Classes\xFlasher.cs" />
+    <Compile Include="Classes\IP.cs" />
+    <Compile Include="Classes\xebuild.cs" />
+    <Compile Include="Classes\xml.cs" />
+    <Compile Include="CPUkeydb\EditMobo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CPUkeydb\EditMobo.Designer.cs">
+      <DependentUpon>EditMobo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashes\addDash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashes\addDash.Designer.cs">
+      <DependentUpon>addDash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashes\delDash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashes\delDash.Designer.cs">
+      <DependentUpon>delDash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateDonorNand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateDonorNand.Designer.cs">
+      <DependentUpon>CreateDonorNand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\customCB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\customCB.Designer.cs">
+      <DependentUpon>customCB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomXebuild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomXebuild.Designer.cs">
+      <DependentUpon>CustomXebuild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustForm.Designer.cs">
+      <DependentUpon>CustForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DemonCom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DemonCom.Designer.cs">
+      <DependentUpon>DemonCom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\demon_uart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\demon_uart.Designer.cs">
+      <DependentUpon>demon_uart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CPUKeyGen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CPUKeyGen.Designer.cs">
+      <DependentUpon>CPUKeyGen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FunKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FunKeys.Designer.cs">
+      <DependentUpon>FunKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KeyvaultDecrypter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KeyvaultDecrypter.Designer.cs">
+      <DependentUpon>KeyvaultDecrypter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ShowPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ShowPanel.Designer.cs">
+      <DependentUpon>ShowPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TextViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TextViewer.Designer.cs">
+      <DependentUpon>TextViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Timing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Timing.Designer.cs">
+      <DependentUpon>Timing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdateCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateCheck.Designer.cs">
+      <DependentUpon>UpdateCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdateFailed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateFailed.Designer.cs">
+      <DependentUpon>UpdateFailed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\XB1HDD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\XB1HDD.Designer.cs">
+      <DependentUpon>XB1HDD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\xFlasherNandSel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\xFlasherNandSel.Designer.cs">
+      <DependentUpon>xFlasherNandSel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\XValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\XValue.Designer.cs">
+      <DependentUpon>XValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Functions\Copy.Designer.cs">
+      <DependentUpon>Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\CtrlTr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Functions\CtrlTr.Designer.cs">
+      <DependentUpon>CtrlTr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\LPT_XSVF.cs" />
+    <Compile Include="Classes\Oper.cs" />
+    <Compile Include="DemoN\DemoN.cs" />
+    <Compile Include="Classes\HID.cs" />
+    <Compile Include="Functions\ZIP\ComHelper.cs" />
+    <Compile Include="Functions\ZIP\CRC32.cs" />
+    <Compile Include="Functions\ZIP\Deflate.cs" />
+    <Compile Include="Functions\ZIP\DeflateStream.cs" />
+    <Compile Include="Functions\ZIP\EncryptionAlgorithm.cs" />
+    <Compile Include="Functions\ZIP\Events.cs" />
+    <Compile Include="Functions\ZIP\Exceptions.cs" />
+    <Compile Include="Functions\ZIP\ExtractExistingFileAction.cs" />
+    <Compile Include="Functions\ZIP\FileSelector.cs" />
+    <Compile Include="Functions\ZIP\GZipStream.cs" />
+    <Compile Include="Functions\ZIP\Inflate.cs" />
+    <Compile Include="Functions\ZIP\InfTree.cs" />
+    <Compile Include="Functions\ZIP\OffsetStream.cs" />
+    <Compile Include="Functions\ZIP\ParallelDeflateOutputStream.cs" />
+    <Compile Include="Functions\ZIP\Shared.cs" />
+    <Compile Include="Functions\ZIP\Tree.cs" />
+    <Compile Include="Functions\ZIP\WinZipAes.cs" />
+    <Compile Include="Functions\ZIP\ZipConstants.cs" />
+    <Compile Include="Functions\ZIP\ZipCrypto.cs" />
+    <Compile Include="Functions\ZIP\ZipDirEntry.cs" />
+    <Compile Include="Functions\ZIP\ZipEntry.cs" />
+    <Compile Include="Functions\ZIP\ZipEntry.Extract.cs" />
+    <Compile Include="Functions\ZIP\ZipEntry.Read.cs" />
+    <Compile Include="Functions\ZIP\ZipEntry.Write.cs" />
+    <Compile Include="Functions\ZIP\ZipEntrySource.cs" />
+    <Compile Include="Functions\ZIP\ZipErrorAction.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.AddUpdate.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.Check.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.Events.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.Extract.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.Read.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.Save.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.SaveSelfExtractor.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.Selector.cs" />
+    <Compile Include="Functions\ZIP\ZipFile.x-IEnumerable.cs" />
+    <Compile Include="Functions\ZIP\ZipInputStream.cs" />
+    <Compile Include="Functions\ZIP\ZipOutputStream.cs" />
+    <Compile Include="Functions\ZIP\ZipSegmentedStream.cs" />
+    <Compile Include="Functions\ZIP\Zlib.cs" />
+    <Compile Include="Functions\ZIP\ZlibBaseStream.cs" />
+    <Compile Include="Functions\ZIP\ZlibCodec.cs" />
+    <Compile Include="Functions\ZIP\ZlibConstants.cs" />
+    <Compile Include="Functions\ZIP\ZlibStream.cs" />
+    <Compile Include="HexEdit\KVViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HexEdit\KVViewer.Designer.cs">
+      <DependentUpon>KVViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HexEdit\Find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HexEdit\Find.Designer.cs">
+      <DependentUpon>Find.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HexEdit\HexViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HexEdit\HexViewer.Designer.cs">
+      <DependentUpon>HexViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HexEdit\BuiltInContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HexEdit\ByteCharConverters.cs" />
+    <Compile Include="HexEdit\ByteCollection.cs" />
+    <Compile Include="HexEdit\BytePositionInfo.cs" />
+    <Compile Include="HexEdit\DataBlock.cs" />
+    <Compile Include="HexEdit\DataMap.cs" />
+    <Compile Include="HexEdit\DynamicByteProvider.cs" />
+    <Compile Include="HexEdit\DynamicFileByteProvider.cs" />
+    <Compile Include="HexEdit\FileByteProvider.cs" />
+    <Compile Include="HexEdit\FileDataBlock.cs" />
+    <Compile Include="HexEdit\FindOptions.cs" />
+    <Compile Include="HexEdit\FormGoTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HexEdit\FormGoTo.Designer.cs">
+      <DependentUpon>FormGoTo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HexEdit\HexBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HexEdit\HexCasing.cs" />
+    <Compile Include="HexEdit\IByteProvider.cs" />
+    <Compile Include="HexEdit\MemoryDataBlock.cs" />
+    <Compile Include="HexEdit\NativeMethods.cs" />
+    <Compile Include="HexEdit\Util.cs" />
+    <Compile Include="ISD\AudioWriters.cs" />
+    <Compile Include="ISD\WaveNative.cs" />
+    <Compile Include="ISD\WaveStream.cs" />
+    <Compile Include="ISD\WaveWriter.cs" />
+    <Compile Include="ISD\WAVFile.cs" />
+    <Compile Include="ISD\WAVFileExceptions.cs" />
+    <Compile Include="ISD\WAVFormat.cs" />
+    <Compile Include="ISD\WriterConfig.cs" />
+    <Compile Include="Nand\CB_Fuse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nand\CB_Fuse.Designer.cs">
+      <DependentUpon>CB_Fuse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nand\ECC.cs" />
+    <Compile Include="DemoN\Nands.cs" />
+    <Compile Include="CPUkeydb\AddCpuKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CPUkeydb\AddCpuKey.Designer.cs">
+      <DependentUpon>AddCpuKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Comport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Comport.Designer.cs">
+      <DependentUpon>Comport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LDrives.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LDrives.Designer.cs">
+      <DependentUpon>LDrives.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LDV.Designer.cs">
+      <DependentUpon>LDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SMCConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SMCConfig.Designer.cs">
+      <DependentUpon>SMCConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ISD\SoundEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ISD\SoundEditor.Designer.cs">
+      <DependentUpon>SoundEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\xsvf_types.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\xsvf_types.Designer.cs">
+      <DependentUpon>xsvf_types.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\XBOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\XBOptions.Designer.cs">
+      <DependentUpon>XBOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\CommunicationManager.cs" />
+    <Compile Include="Functions\Consoleredir.cs" />
+    <Compile Include="CPUkeydb\CpuKeyDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CPUkeydb\CpuKeyDB.Designer.cs">
+      <DependentUpon>CpuKeyDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\CRC32.cs" />
+    <Compile Include="Forms\NandArg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NandArg.Designer.cs">
+      <DependentUpon>NandArg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DashLaunch\DashLaunch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DashLaunch\DashLaunch.Designer.cs">
+      <DependentUpon>DashLaunch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DashLaunch\DashLaunch_Help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DashLaunch\DashLaunch_Help.Designer.cs">
+      <DependentUpon>DashLaunch_Help.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\PortInterop.cs" />
+    <Compile Include="HID\HidAsyncState.cs" />
+    <Compile Include="HID\HidDevice.cs" />
+    <Compile Include="HID\HidDeviceAttributes.cs" />
+    <Compile Include="HID\HidDeviceCapabilities.cs" />
+    <Compile Include="HID\HidDeviceData.cs" />
+    <Compile Include="HID\HidDeviceEventMonitor.cs" />
+    <Compile Include="HID\HidDevices.cs" />
+    <Compile Include="HID\HidReport.cs" />
+    <Compile Include="HID\NativeMethods.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\ClassCodeType.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\DescriptorType.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\LangStringDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\StringDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\UsbConfigDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\UsbDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\UsbDeviceDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\UsbEndpointDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\Descriptors\UsbInterfaceDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\DeviceNotifier.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\DeviceNotifyEventArgs.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\DeviceType.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\EventType.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\IDeviceNotifier.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Info\IPortNotifyInfo.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Info\IUsbDeviceNotifyInfo.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Info\IVolumeNotifyInfo.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Info\PortNotifyInfo.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Info\UsbDeviceNotifyInfo.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Info\VolumeNotifyInfo.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Internal\DevBroadcastDeviceinterface.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Internal\DevBroadcastHdr.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Internal\DevBroadcastPort.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Internal\DevBroadcastVolume.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Internal\DevNotifyNativeWindow.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Internal\SafeNotifyHandle.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Linux\LinuxDeviceNotifier.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Linux\LinuxDeviceNotifier.DeviceListPolling.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Linux\LinuxDeviceNotifier.DevMonitor.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Linux\LinuxDeviceNotifierMode.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Linux\LinuxDeviceNotifyEventArgs.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Linux\LinuxDevItem.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Linux\LinuxDevItemList.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\Linux\LinuxUsbDeviceNotifyInfo.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\WindowsDeviceNotifier.cs" />
+    <Compile Include="LibUsbDotNet\DeviceNotify\WindowsDeviceNotifyEventArgs.cs" />
+    <Compile Include="LibUsbDotNet\Info\UsbBaseInfo.cs" />
+    <Compile Include="LibUsbDotNet\Info\UsbConfigInfo.cs" />
+    <Compile Include="LibUsbDotNet\Info\UsbDeviceInfo.cs" />
+    <Compile Include="LibUsbDotNet\Info\UsbEndpointInfo.cs" />
+    <Compile Include="LibUsbDotNet\Info\UsbInterfaceInfo.cs" />
+    <Compile Include="LibUsbDotNet\Internal\Kernel32.cs" />
+    <Compile Include="LibUsbDotNet\Internal\OverlappedTransferContext.cs" />
+    <Compile Include="LibUsbDotNet\Internal\SafeOverlapped.cs" />
+    <Compile Include="LibUsbDotNet\Internal\SetupApi.cs" />
+    <Compile Include="LibUsbDotNet\Internal\TransferContextBase.cs" />
+    <Compile Include="LibUsbDotNet\Internal\UsbApiBase.cs" />
+    <Compile Include="LibUsbDotNet\Internal\UsbRegex\BaseRegSymbolicName.cs" />
+    <Compile Include="LibUsbDotNet\Internal\UsbRegex\NamedGroup.cs" />
+    <Compile Include="LibUsbDotNet\Internal\UsbRegex\RegHardwareID.cs" />
+    <Compile Include="LibUsbDotNet\Internal\UsbRegex\RegSymbolicName.cs" />
+    <Compile Include="LibUsbDotNet\IUsbDevice.cs" />
+    <Compile Include="LibUsbDotNet\IUsbInterface.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\Internal\LibUsbAPI.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\Internal\LibUsbDriverIO.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\Internal\LibUsbDriverIO_IOControlMessage.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\Internal\LibUsbIoCtl.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\Internal\LibUsbRequest.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\LibUsbDevice.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\LibUsbDeviceRegistryKeyRequest.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\LibUsbKernelType.cs" />
+    <Compile Include="LibUsbDotNet\LibUsb\LibUsbRegistry.cs" />
+    <Compile Include="LibUsbDotNet\Main\DataReceivedEnabledChangedEventArgs.cs" />
+    <Compile Include="LibUsbDotNet\Main\DevicePropertyType.cs" />
+    <Compile Include="LibUsbDotNet\Main\EndpointDataEventArgs.cs" />
+    <Compile Include="LibUsbDotNet\Main\EndpointType.cs" />
+    <Compile Include="LibUsbDotNet\Main\ErrorCode.cs" />
+    <Compile Include="LibUsbDotNet\Main\Helper.cs" />
+    <Compile Include="LibUsbDotNet\Main\LegacyUsbRegistry.cs" />
+    <Compile Include="LibUsbDotNet\Main\ReadEndpointID.cs" />
+    <Compile Include="LibUsbDotNet\Main\SafeContextHandle.cs" />
+    <Compile Include="LibUsbDotNet\Main\SPDRP.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbConstants.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbCtrlFlags.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbDeviceFinder.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbEndpointBase.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbEndpointDirection.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbEndpointList.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbException.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbKernelVersion.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbRegDeviceList.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbRegistry.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbRequestRecipient.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbRequestType.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbSetupPacket.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbStandardRequest.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbStatusClodes.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbSymbolicName.cs" />
+    <Compile Include="LibUsbDotNet\Main\UsbTransfer.cs" />
+    <Compile Include="LibUsbDotNet\Main\WriteEndpointID.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\CallbackDelegates.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Descriptors\MonoUsbAltInterfaceDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Descriptors\MonoUsbConfigDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Descriptors\MonoUsbDeviceDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Descriptors\MonoUsbEndpointDescriptor.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Descriptors\MonoUsbInterface.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\MonoLibUsbApi.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\MonoUsbDevice.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\MonoUsbDeviceHandle.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\MonoUsbEndpointReader.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\MonoUsbEndpointWriter.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\MonoUsbError.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\MonoUsbEventHandler.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\MonoUsbSessionHandle.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\AddRemoveEventArgs.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\AddRemoveType.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\MonoUsbConfigHandle.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\MonoUsbProfile.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\MonoUsbProfileHandle.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\MonoUsbProfileHandleEnumerator.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\MonoUsbProfileList.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\MonoUsbProfileListHandle.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Profile\PollfdItem.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\Internal\libusb_control_setup.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\Internal\libusb_iso_packet_descriptor.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\Internal\libusb_transfer.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\MonoUsbControlSetup.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\MonoUsbControlSetupHandle.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\MonoUsbIsoPacket.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\MonoUsbTansferStatus.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\MonoUsbTransfer.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\MonoUsbTransferContext.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\Transfer\MonoUsbTransferFlags.cs" />
+    <Compile Include="LibUsbDotNet\MonoLibUsb\UnixNativeTimeval.cs" />
+    <Compile Include="LibUsbDotNet\UsbDevice.Common.cs" />
+    <Compile Include="LibUsbDotNet\UsbDevice.cs" />
+    <Compile Include="LibUsbDotNet\UsbDevice.Error.cs" />
+    <Compile Include="LibUsbDotNet\UsbDevice.OS.Specific.cs" />
+    <Compile Include="LibUsbDotNet\UsbEndpointReader.cs" />
+    <Compile Include="LibUsbDotNet\UsbEndpointWriter.cs" />
+    <Compile Include="LibUsbDotNet\UsbGlobals.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\DeviceInformationTypes.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\DeviceSpeedTypes.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\Internal\SafeWinUsbInterfaceHandle.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\Internal\WinUsbAPI.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\PipeInformation.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\PipePolicies.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\PipePolicyType.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\PowerPolicies.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\PowerPolicyType.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\WinUsbDevice.cs" />
+    <Compile Include="LibUsbDotNet\WinUsb\WinUsbRegistry.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConsoleTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConsoleTypes.Designer.cs">
+      <DependentUpon>ConsoleTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\patch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\patch.Designer.cs">
+      <DependentUpon>patch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Images\PictureViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Images\PictureViewer.Designer.cs">
+      <DependentUpon>PictureViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nand\BadBlock.cs" />
+    <Compile Include="Nand\Nand.cs" />
+    <Compile Include="Functions\parse_ini.cs" />
+    <Compile Include="Functions\Program.cs" />
+    <Compile Include="Forms\POST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\POST.Designer.cs">
+      <DependentUpon>POST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nand\table.cs" />
+    <Compile Include="Nand\VNand.cs" />
+    <Compile Include="Nand\VNandForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nand\VNandForm.Designer.cs">
+      <DependentUpon>VNandForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\DiskManagement.cs" />
+    <Compile Include="Panels\LDrivesInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\LDrivesInfo.designer.cs">
+      <DependentUpon>LDrivesInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\NandInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\NandInfo.Designer.cs">
+      <DependentUpon>NandInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\NandTools.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\NandTools.designer.cs">
+      <DependentUpon>NandTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\XeBuildPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\XeBuildPanel.designer.cs">
+      <DependentUpon>XeBuildPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\XSVFChoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\XSVFChoice.designer.cs">
+      <DependentUpon>XSVFChoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pirs\Pirs.cs" />
+    <Compile Include="Pirs\STFS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pirs\STFS.Designer.cs">
+      <DependentUpon>STFS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Functions\RegistryUtilities.cs" />
+    <Compile Include="Classes\Nand-X.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StaticVersion.cs" />
+    <Compile Include="Classes\variables.cs" />
+    <Compile Include="Forms\UpdateSuccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateSuccess.Designer.cs">
+      <DependentUpon>UpdateSuccess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdateDownload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateDownload.Designer.cs">
+      <DependentUpon>UpdateDownload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinUSB\DeviceManagement.cs" />
+    <Compile Include="WinUSB\DeviceManagementApi.cs" />
+    <Compile Include="WinUSB\FileIOApi.cs" />
+    <Compile Include="WinUSB\WinUsbDevice.cs" />
+    <Compile Include="WinUSB\WinUsbDeviceApi.cs" />
+    <Compile Include="XB1\NandOne.cs" />
+    <EmbeddedResource Include="CPUkeydb\EditMobo.resx">
+      <DependentUpon>EditMobo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CPUkeydb\AddCpuKey.resx">
+      <DependentUpon>AddCpuKey.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CPUkeydb\CpuKeyDB.resx">
+      <DependentUpon>CpuKeyDB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Comport.resx">
+      <DependentUpon>Comport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateDonorNand.resx">
+      <DependentUpon>CreateDonorNand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\customCB.resx">
+      <DependentUpon>customCB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomXebuild.resx">
+      <DependentUpon>CustomXebuild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustForm.resx">
+      <DependentUpon>CustForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DemonCom.resx">
+      <DependentUpon>DemonCom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\demon_uart.resx">
+      <DependentUpon>demon_uart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CPUKeyGen.resx">
+      <DependentUpon>CPUKeyGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FunKeys.resx">
+      <DependentUpon>FunKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KeyvaultDecrypter.resx">
+      <DependentUpon>KeyvaultDecrypter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShowPanel.resx">
+      <DependentUpon>ShowPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TextViewer.resx">
+      <DependentUpon>TextViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Timing.resx">
+      <DependentUpon>Timing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateCheck.resx">
+      <DependentUpon>UpdateCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateFailed.resx">
+      <DependentUpon>UpdateFailed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XB1HDD.resx">
+      <DependentUpon>XB1HDD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\xFlasherNandSel.resx">
+      <DependentUpon>xFlasherNandSel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XValue.resx">
+      <DependentUpon>XValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Functions\Copy.resx">
+      <DependentUpon>Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Functions\CtrlTr.resx">
+      <DependentUpon>CtrlTr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HexEdit\KVViewer.resx">
+      <DependentUpon>KVViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HexEdit\Find.resx">
+      <DependentUpon>Find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HexEdit\HexViewer.resx">
+      <DependentUpon>HexViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LDrives.resx">
+      <DependentUpon>LDrives.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LDV.resx">
+      <DependentUpon>LDV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\POST.resx">
+      <DependentUpon>POST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SMCConfig.resx">
+      <DependentUpon>SMCConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ISD\SoundEditor.resx">
+      <DependentUpon>SoundEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\xsvf_types.resx">
+      <DependentUpon>xsvf_types.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NandArg.resx">
+      <DependentUpon>NandArg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DashLaunch\DashLaunch.resx">
+      <DependentUpon>DashLaunch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DashLaunch\DashLaunch_Help.resx">
+      <DependentUpon>DashLaunch_Help.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XBOptions.resx">
+      <DependentUpon>XBOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HexEdit\FormGoTo.resx">
+      <DependentUpon>FormGoTo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HexEdit\HexBox.resx" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConsoleTypes.resx">
+      <DependentUpon>ConsoleTypes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\patch.resx">
+      <DependentUpon>patch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\PictureViewer.resx">
+      <DependentUpon>PictureViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nand\CB_Fuse.resx">
+      <DependentUpon>CB_Fuse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nand\VNandForm.resx">
+      <DependentUpon>VNandForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\LDrivesInfo.resx">
+      <DependentUpon>LDrivesInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\NandInfo.resx">
+      <DependentUpon>NandInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\NandTools.resx">
+      <DependentUpon>NandTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\XeBuildPanel.resx">
+      <DependentUpon>XeBuildPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\XSVFChoice.resx">
+      <DependentUpon>XSVFChoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pirs\STFS.resx">
+      <DependentUpon>STFS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateSuccess.resx">
+      <DependentUpon>UpdateSuccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateDownload.resx">
+      <DependentUpon>UpdateDownload.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Resources\app.config" />
+    <None Include="Resources\ClassDiagram1.cd" />
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\inpout32.dll" />
+    <None Include="Resources\Error.wav" />
+    <None Include="Resources\chime.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Sql.Server.Express.10.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2008 Express</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_donate_LG.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\demon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Project3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Project4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Project3.ico" />
+    <None Include="Resources\key_U.png" />
+    <None Include="Resources\key_R.png" />
+    <None Include="Resources\key_L.png" />
+    <None Include="Resources\key_D.png" />
+    <None Include="Resources\key_Y.png" />
+    <None Include="Resources\key_X.png" />
+    <None Include="Resources\key_RT.png" />
+    <None Include="Resources\key_RB.png" />
+    <None Include="Resources\key_LT.png" />
+    <None Include="Resources\key_LB.png" />
+    <None Include="Resources\key_DU.png" />
+    <None Include="Resources\key_DR.png" />
+    <None Include="Resources\key_DL.png" />
+    <None Include="Resources\key_DD.png" />
+    <None Include="Resources\key_B.png" />
+    <None Include="Resources\key_A.png" />
+    <None Include="Resources\JR.png" />
+    <None Include="Resources\tune.xm" />
+    <None Include="Resources\usbtool.png" />
+    <None Include="Resources\spinner.gif" />
+    <None Include="Resources\xflash_spi.png" />
+    <None Include="Resources\xflash_emmc.png" />
+    <None Include="Resources\mtx.png" />
+    <None Include="Resources\paypal-icon.gif" />
+    <None Include="Resources\ppal_icon.bmp" />
+    <None Include="Resources\Paypal-Button-v2-Black.jpg" />
+    <None Include="Resources\usboff.png" />
+    <None Include="Resources\usb-3d-logo_0CT.png" />
+    <None Include="Resources\save_icon.gif" />
+    <None Include="Resources\9_av_play.png" />
+    <None Include="Resources\cam.png" />
+    <None Include="Resources\bitcoin-button.png" />
+    <None Include="Resources\flattr.PNG" />
+    <None Include="Resources\flattr_icon.png" />
+    <None Include="Resources\bitcoin.jpg" />
+    <None Include="Resources\goodbye.wav" />
+    <None Include="Resources\BASSMOD.dll" />
+    <None Include="Resources\Build.txt" />
+    <Content Include="Resources\hourglass_clock.png" />
+    <None Include="Resources\sonuslogo.png" />
+    <EmbeddedResource Include="Resources\LPT_XSVF_Player.exe" />
+    <None Include="Resources\clipboard.png" />
+    <None Include="Resources\legend.png" />
+    <None Include="Resources\perfecto.png" />
+    <None Include="Resources\great.png" />
+    <None Include="Resources\good.png" />
+    <None Include="Resources\bad.png" />
+    <None Include="Resources\average.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.6.6.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.6.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets'))" />
+  </Target>
+  <Import Project="..\packages\Fody.6.6.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.6.0\build\Fody.targets')" />
+  <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>echo %25date%25 %25time%25 &gt; "$(ProjectDir)\Resources\Build.txt"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
