@@ -90,7 +90,7 @@ namespace JRunner
                         xml.MoveToContent();
                         string name = "";
 
-                        if ((xml.NodeType == XmlNodeType.Element) && (xml.Name == "jrunner"))
+                        if (xml.NodeType == XmlNodeType.Element && xml.Name == "jrunner")
                         {
                             while (xml.Read())
                             {
