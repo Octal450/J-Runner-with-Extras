@@ -38,9 +38,7 @@ namespace JRunner
 
             Classes.RGH2to3.ConvertRgh2ToRgh3(Path.Combine(variables.pathforit, "common", "ECC", ecc + ".ecc"), filename, cpuKey, filename);
 
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.WriteLine("    RGH3 Finished. Have a nice day.");
-            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine("RGH3: Conversion Successful");
 
             variables.xefinished = true;
             MainForm.mainForm.xPanel.xeExitActual();
