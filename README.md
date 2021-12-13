@@ -1,4 +1,4 @@
-# J-Runner with Extras Source Code
+# J-Runner with Extras
 The Ultimate RGH/JTAG App
 
 - We are now open source!
