@@ -1950,8 +1950,15 @@ namespace JRunner
                 nand = new Nand.PrivateN();
                 nandInfo.clear();
             }
-            if (!partial) xPanel.clear();
+
+            if (!partial)
+            {
+                xPanel.clear();
+                txtIP.Text = txtIP.Text.Remove(txtIP.Text.LastIndexOf('.'));
+            }
+
             progressBar.Value = progressBar.Minimum;
+
             if (!partial)
             {
                 saveToLog();
@@ -3953,7 +3960,7 @@ namespace JRunner
                             else
                             {
                                 string localIP = GetIP();
-                                txtIP.Text = (localIP.Remove(localIP.LastIndexOf('.')));
+                                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.'));
                             }
                             break;
                         case "NoReads":
