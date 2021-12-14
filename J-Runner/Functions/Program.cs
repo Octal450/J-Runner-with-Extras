@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Threading;
+﻿using Ionic.Zip;
+using Microsoft.Win32;
+using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Threading;
+using System.Windows.Forms;
 using System.Xml;
-using Ionic.Zip;
-using Microsoft.Win32;
-using System.ComponentModel;
 
 namespace JRunner
 {
@@ -21,6 +19,9 @@ namespace JRunner
         static string deltaUrl, fullUrl;
         static int serverRevision = 0;
         static int minDeltaRevision = 0;
+        static string expectedDeltaMd5 = "";
+        static string expectedFullMd5 = "";
+        public static string failedReason = "Unknown";
         static string changelog = "Could not retrieve changelog for some reason!"; // Overwritten if successful
         static Mutex mutex = new Mutex(true, "J-Runner", out createdNew);
         static bool needVcredistx86 = false;
@@ -130,6 +131,14 @@ namespace JRunner
                                         else if (key == "full")
                                         {
                                             fullUrl = xml.Value;
+                                        }
+                                        else if (key == "md5-delta")
+                                        {
+                                            expectedDeltaMd5 = xml.Value;
+                                        }
+                                        else if (key == "md5-full")
+                                        {
+                                            expectedFullMd5 = xml.Value;
                                         }
                                     }
                                 }
@@ -247,32 +256,12 @@ namespace JRunner
             {
                 if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
                 updateDownload.Dispose();
+                failedReason = "Failed to download the package";
                 Application.Run(new UpdateFailed());
             }
             else
             {
-                try
-                {
-                    updateDownload.installMode();
-
-                    File.Move(@"JRunner.exe", @"JRunner.exe.old");
-
-                    // Unzip
-                    using (ZipFile zip = ZipFile.Read(@"delta.zip"))
-                    {
-                        zip.ExtractAll(Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
-                    }
-                    File.Delete(@"delta.zip");
-                }
-                catch
-                {
-                    if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
-                    updateDownload.Dispose();
-                    Application.Run(new UpdateFailed());
-                }
-
-                updateDownload.Dispose();
-                Application.Run(new UpdateSuccess());
+                doUpdate(true);
             }
         }
 
@@ -288,32 +277,75 @@ namespace JRunner
             {
                 if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
                 updateDownload.Dispose();
+                failedReason = "Failed to download the package";
                 Application.Run(new UpdateFailed());
             }
             else
             {
-                try
-                {
-                    updateDownload.installMode();
+                doUpdate();
+            }
+        }
 
-                    File.Move(@"JRunner.exe", @"JRunner.exe.old");
+        private static void doUpdate(bool delta = false)
+        {
+            string filename;
+            if (delta) filename = @"delta.zip";
+            else filename = @"full.zip";
 
-                    // Unzip
-                    using (ZipFile zip = ZipFile.Read(@"full.zip"))
-                    {
-                        zip.ExtractAll(Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
-                    }
-                    File.Delete(@"full.zip");
-                }
-                catch
+            string expectedMd5;
+            if (delta) expectedMd5 = expectedDeltaMd5;
+            else expectedMd5 = expectedFullMd5;
+
+            try
+            {
+                updateDownload.installMode();
+
+                if (simpleCheckMD5(filename) != expectedMd5)
                 {
-                    if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
+                    if (File.Exists(filename)) File.Delete(filename);
                     updateDownload.Dispose();
+                    failedReason = "Package checksum is invalid";
                     Application.Run(new UpdateFailed());
+                    return;
                 }
 
+                File.Move(@"JRunner.exe", @"JRunner.exe.old");
+
+                // Unzip
+                using (ZipFile zip = ZipFile.Read(filename))
+                {
+                    zip.ExtractAll(Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
+                }
+                File.Delete(filename);
+            }
+            catch
+            {
+                if (File.Exists(filename)) File.Delete(filename);
                 updateDownload.Dispose();
-                Application.Run(new UpdateSuccess());
+                failedReason = "Failed to extract and install the package";
+                Application.Run(new UpdateFailed());
+            }
+
+            updateDownload.Dispose();
+            Application.Run(new UpdateSuccess());
+        }
+
+        public static string simpleByteArrayToString(byte[] ba)
+        {
+            return BitConverter.ToString(ba).Replace("-", "");
+        }
+
+        public static string simpleCheckMD5(string filename)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(filename))
+                {
+                    string md5str;
+                    md5str = simpleByteArrayToString(md5.ComputeHash(stream));
+                    stream.Dispose();
+                    return md5str;
+                }
             }
         }
 

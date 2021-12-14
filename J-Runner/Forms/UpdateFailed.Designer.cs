@@ -32,6 +32,7 @@ namespace JRunner
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateFailed));
             this.FailedWizard = new AeroWizard.WizardControl();
             this.FailedPage = new AeroWizard.WizardPage();
+            this.FailedReason = new System.Windows.Forms.Label();
             this.DownloadButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FailedWizard)).BeginInit();
@@ -56,6 +57,7 @@ namespace JRunner
             // 
             this.FailedPage.AllowBack = false;
             this.FailedPage.AllowCancel = false;
+            this.FailedPage.Controls.Add(this.FailedReason);
             this.FailedPage.Controls.Add(this.DownloadButton);
             this.FailedPage.Controls.Add(this.label1);
             this.FailedPage.Name = "FailedPage";
@@ -63,9 +65,18 @@ namespace JRunner
             this.FailedPage.TabIndex = 0;
             this.FailedPage.Text = "Update Failed";
             // 
+            // FailedReason
+            // 
+            this.FailedReason.AutoSize = true;
+            this.FailedReason.Location = new System.Drawing.Point(4, 34);
+            this.FailedReason.Name = "FailedReason";
+            this.FailedReason.Size = new System.Drawing.Size(76, 15);
+            this.FailedReason.TabIndex = 2;
+            this.FailedReason.Text = "FailedReason";
+            // 
             // DownloadButton
             // 
-            this.DownloadButton.Location = new System.Drawing.Point(6, 66);
+            this.DownloadButton.Location = new System.Drawing.Point(6, 99);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(232, 23);
             this.DownloadButton.TabIndex = 1;
@@ -78,10 +89,10 @@ namespace JRunner
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(361, 45);
+            this.label1.Size = new System.Drawing.Size(361, 75);
             this.label1.TabIndex = 1;
-            this.label1.Text = "J-Runner with Extras update failed for some reason\r\n\r\nCheck your network connecti" +
-    "on, or download the update manually";
+            this.label1.Text = "J-Runner with Extras could not be updated\r\n\r\n\r\n\r\nCheck your network connection, o" +
+    "r download the update manually";
             // 
             // UpdateFailed
             // 
@@ -97,6 +108,7 @@ namespace JRunner
             this.Name = "UpdateFailed";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "J-Runner with Extras";
+            this.Load += new System.EventHandler(this.UpdateFailed_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FailedWizard)).EndInit();
             this.FailedPage.ResumeLayout(false);
             this.FailedPage.PerformLayout();
@@ -110,5 +122,6 @@ namespace JRunner
         private AeroWizard.WizardPage FailedPage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button DownloadButton;
+        private System.Windows.Forms.Label FailedReason;
     }
 }

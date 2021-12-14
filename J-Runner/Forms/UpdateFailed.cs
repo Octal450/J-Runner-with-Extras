@@ -18,6 +18,11 @@ namespace JRunner
             FailedWizard.Finished += WizardFinished;
         }
 
+        private void UpdateFailed_Load(object sender, EventArgs e)
+        {
+            FailedReason.Text = Program.failedReason;
+        }
+
         private void WizardCancelled(object sender, EventArgs e)
         {
             Application.ExitThread();
