@@ -34,6 +34,8 @@ namespace JRunner.Forms
             txtIPStart.Text = variables.IPstart;
             txtfolder.Text = variables.outfolder;
             txtIP.Text = variables.ip;
+            if (variables.ip.Length == 0) chkIpDefault.Checked = txtIP.Enabled = false;
+            else chkIpDefault.Checked = txtIP.Enabled = true;
             txtsuccom.Text = variables.soundcompare;
             txtsuccess.Text = variables.soundsuccess;
             txterror.Text = variables.sounderror;
@@ -260,6 +262,12 @@ namespace JRunner.Forms
         private void SlimPreferSrgh_CheckedChanged(object sender, EventArgs e)
         {
             variables.slimprefersrgh = SlimPreferSrgh.Checked;
+        }
+
+        private void chkIpDefault_CheckedChanged(object sender, EventArgs e)
+        {
+            txtIP.Enabled = chkIpDefault.Checked;
+            if (!chkIpDefault.Checked) txtIP.Text = "";
         }
     }
 }

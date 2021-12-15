@@ -90,6 +90,20 @@ namespace JRunner
         //public const String BOOTLOADER_GUID_STRING = "{4d1e55b2-f16f-11cf-88cb-001111000030}";
 
         /// <summary>
+        /// Paths
+        /// </summary>
+        public static string cpukeypath = "cpukey.txt";
+        public static string nanddump = "nanddump.bin";
+        public static string nandflash = "updflash.bin";
+        public static string pathforit = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static string currentdir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static string outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
+        public static string AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "J-Runner with Extras");
+        public static string tempfile = "";
+        public static string cpkey = "";
+        public static bool gotvalues = false;
+
+        /// <summary>
         /// App settings
         /// </summary>
         public static bool logtofile = true;
@@ -102,8 +116,7 @@ namespace JRunner
         public static System.Drawing.Point location = new System.Drawing.Point(0, 0);
         public static string xebuild = "", dashlaunch = "", LPTport = "";
         public static decimal NoReads = 0;
-        public static string settingsfile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ((AssemblyCompanyAttribute)Attribute.GetCustomAttribute(
-            Assembly.GetExecutingAssembly(), typeof(AssemblyCompanyAttribute), false)).Company.Replace(" ", "_"), "settings.xml");
+        public static string settingsfile = Path.Combine(AppData, "settings.xml");
         public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Errorsound", "Comparesound", "Successsound", "Delay",
                                           "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "XebuildName", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
                                           "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "DiscordRPC", "TimingOnKeypress", "LogBackground", "LogText", "DeviceGroup",
@@ -277,20 +290,6 @@ namespace JRunner
         public static int iterations = 0;
         public static Nandsize nandsizex = Nandsize.S0;
         public static byte[] conf = { };
-
-        /// <summary>
-        /// Paths
-        /// </summary>
-        public static string cpukeypath = "cpukey.txt";
-        public static string nanddump = "nanddump.bin";
-        public static string nandflash = "updflash.bin";
-        public static string pathforit = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        public static string currentdir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        public static string outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
-        public static string AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Octal450");
-        public static string tempfile = "";
-        public static string cpkey = "";
-        public static bool gotvalues = false;
         #region xor
 
         internal static byte[] xor = {

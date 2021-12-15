@@ -81,6 +81,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SlimPreferSrgh = new System.Windows.Forms.RadioButton();
             this.SlimPreferRgh12 = new System.Windows.Forms.RadioButton();
+            this.chkIpDefault = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -157,6 +158,7 @@
             // 
             // txtIP
             // 
+            this.txtIP.Enabled = false;
             this.txtIP.Location = new System.Drawing.Point(91, 24);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(100, 20);
@@ -360,6 +362,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkIpDefault);
             this.groupBox2.Controls.Add(this.txtIPStart);
             this.groupBox2.Controls.Add(this.txtIP);
             this.groupBox2.Controls.Add(this.txtIPEnd);
@@ -576,6 +579,16 @@
             this.SlimPreferRgh12.Text = "RGH1.2 (Best)";
             this.SlimPreferRgh12.UseVisualStyleBackColor = true;
             // 
+            // chkIpDefault
+            // 
+            this.chkIpDefault.AutoSize = true;
+            this.chkIpDefault.Location = new System.Drawing.Point(73, 27);
+            this.chkIpDefault.Name = "chkIpDefault";
+            this.chkIpDefault.Size = new System.Drawing.Size(15, 14);
+            this.chkIpDefault.TabIndex = 30;
+            this.chkIpDefault.UseVisualStyleBackColor = true;
+            this.chkIpDefault.CheckedChanged += new System.EventHandler(this.chkIpDefault_CheckedChanged);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -683,5 +696,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton SlimPreferSrgh;
         private System.Windows.Forms.RadioButton SlimPreferRgh12;
+        private System.Windows.Forms.CheckBox chkIpDefault;
     }
 }

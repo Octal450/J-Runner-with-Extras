@@ -1930,7 +1930,7 @@ namespace JRunner
             if (!partial)
             {
                 xPanel.clear();
-                txtIP.Text = txtIP.Text.Remove(txtIP.Text.LastIndexOf('.'));
+                txtIP.Text = txtIP.Text.Remove(txtIP.Text.LastIndexOf('.')) + ".";
             }
 
             progressBar.Value = progressBar.Minimum;
@@ -3931,12 +3931,12 @@ namespace JRunner
                             if (!string.IsNullOrWhiteSpace(val))
                             {
                                 variables.ip = val;
-                                txtIP.Text = val;
+                                txtIP.Text = val + ".";
                             }
                             else
                             {
                                 string localIP = IP.getGatewayIp();
-                                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.'));
+                                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.')) + ".";
                             }
                             break;
                         case "NoReads":
@@ -4070,7 +4070,7 @@ namespace JRunner
             else
             {
                 string localIP = IP.getGatewayIp();
-                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.'));
+                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.')) + ".";
             }
             IP.initaddresses();
         }
