@@ -6,6 +6,8 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Threading;
@@ -25,12 +27,13 @@ namespace JRunner.Forms
 
         private void Settings_Load(object sender, EventArgs e)
         {
+           
             if (variables.deletefiles) chkfiles.Checked = true;
             if (String.IsNullOrEmpty(variables.IPend) || String.IsNullOrEmpty(variables.IPstart)) IP.initaddresses();
-            txtIPEnd.Text = variables.IPend;
-            txtIPStart.Text = variables.IPstart;
+            txtIPEnd.Text = variables.getgatewayip() + "255";
+            txtIPStart.Text = variables.getgatewayip() + "1";
             txtfolder.Text = variables.outfolder;
-            txtIP.Text = variables.ip;
+            txtIP.Text = variables.getgatewayip();
             txtsuccom.Text = variables.soundcompare;
             txtsuccess.Text = variables.soundsuccess;
             txterror.Text = variables.sounderror;

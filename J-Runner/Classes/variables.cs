@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
 
 namespace JRunner
 {
@@ -63,8 +65,10 @@ namespace JRunner
         /// </summary>
         S512 = 0x8000
     }
+
     class variables
     {
+
         public enum JR_MODE
         {
             MODEJR,
@@ -117,7 +121,12 @@ namespace JRunner
         public static bool slimprefersrgh = false;
         public static Color logbackground = Color.Black;
         public static Color logtext = Color.White;
+
+        #region
+
+        #endregion
         public static string soundsuccess = "", sounderror = "", soundcompare = "", ip = "",custname = "";
+        
         public static string COMPort = "";
 
         /// <summary>
@@ -895,5 +904,22 @@ namespace JRunner
 
 
         #endregion
+
+        public static string getgatewayip()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            string address;
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                   
+                    address = ip.ToString();
+                    return  address.Substring(0, address.LastIndexOf('.') + 1);
+                 
+                }
+            }
+            return "";
+        }
     }
 }
