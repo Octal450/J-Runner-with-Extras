@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -17,11 +18,11 @@ namespace JRunner
         private static int ldvvalue = 0;
         static List<string> ip = new List<string>();
         static bool found = false;
-        static string localIP = "?";
+        static string localGatewayIp = "?";
 
         string getarptable()
         {
-            sendAsyncPingPacket(changelastquad(localIP, "255"));
+            sendAsyncPingPacket(changelastquad(localGatewayIp, "255"));
             string sResults = "";
             System.Diagnostics.ProcessStartInfo ps = new System.Diagnostics.ProcessStartInfo("arp", "-a");
             ps.CreateNoWindow = true;
@@ -279,30 +280,37 @@ namespace JRunner
             quads[3] = lastquad;
             return String.Join(".", quads);
         }
-        public static void initaddresses()
+
+        public static string getGatewayIp()
         {
-            localIP = "?";
-            IPHostEntry host;
-            host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (IPAddress ips in host.AddressList)
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            string address;
+            foreach (var ip in host.AddressList)
             {
-                if (ips.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    localIP = ips.ToString();
+                    address = ip.ToString();
+                    return address.Substring(0, address.LastIndexOf('.') + 1);
                 }
             }
+            return "?";
+        }
+
+        public static void initaddresses()
+        {
+            localGatewayIp = getGatewayIp();
             if (!IsIPv4(variables.IPstart))
             {
-                if (localIP != "?")
+                if (localGatewayIp != "?")
                 {
-                    variables.IPstart = changelastquad(localIP, "0");
+                    variables.IPstart = changelastquad(localGatewayIp, "0");
                 }
             }
             if (!IsIPv4(variables.IPend))
             {
-                if (localIP != "?")
+                if (localGatewayIp != "?")
                 {
-                    variables.IPend = changelastquad(localIP, "255");
+                    variables.IPend = changelastquad(localGatewayIp, "255");
                 }
             }
         }
@@ -455,7 +463,7 @@ namespace JRunner
                     Console.WriteLine(myScanHost.HostName.ToString() + "\t");
                 }
                 pb.Value = pb.Value + (100 / (ip.Count + 1));
-                if (o != localIP) IP_GetCpuKey(o, false);
+                if (o != localGatewayIp) IP_GetCpuKey(o, false);
                 if (found) break;
             }
             Console.WriteLine("");

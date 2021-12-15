@@ -904,22 +904,5 @@ namespace JRunner
 
 
         #endregion
-
-        public static string getgatewayip()
-        {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            string address;
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                   
-                    address = ip.ToString();
-                    return  address.Substring(0, address.LastIndexOf('.') + 1);
-                 
-                }
-            }
-            return "";
-        }
     }
 }

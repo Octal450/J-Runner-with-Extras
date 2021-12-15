@@ -47,10 +47,10 @@ namespace JRunner
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.btnScanner = new System.Windows.Forms.Button();
             this.labelIP = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.btnIPGetCPU = new System.Windows.Forms.Button();
+            this.btnScanner = new System.Windows.Forms.Button();
             this.btnInit = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnNewSession = new System.Windows.Forms.Button();
@@ -289,35 +289,22 @@ namespace JRunner
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupBox8.Controls.Add(this.btnScanner);
             this.groupBox8.Controls.Add(this.labelIP);
             this.groupBox8.Controls.Add(this.txtIP);
             this.groupBox8.Controls.Add(this.btnIPGetCPU);
-            this.groupBox8.Location = new System.Drawing.Point(656, 477);
+            this.groupBox8.Location = new System.Drawing.Point(656, 480);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(165, 96);
+            this.groupBox8.Size = new System.Drawing.Size(165, 66);
             this.groupBox8.TabIndex = 73;
             this.groupBox8.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox8, "If you connect your Xbox 360 to your PC using a network cable, \r\nOnce booted with" +
         " Xellous or Xell-Reloaded place the displayed IP address in\r\nthe box and retriev" +
         "e your CPU Key by pressing the button.");
             // 
-            // btnScanner
-            // 
-            this.btnScanner.Location = new System.Drawing.Point(6, 70);
-            this.btnScanner.Name = "btnScanner";
-            this.btnScanner.Size = new System.Drawing.Size(153, 26);
-            this.btnScanner.TabIndex = 6;
-            this.btnScanner.TabStop = false;
-            this.btnScanner.Text = "Scan IP";
-            this.toolTip1.SetToolTip(this.btnScanner, "Scans the IP range looking for XeLL to retrieve the CPU Key and Fuses");
-            this.btnScanner.UseVisualStyleBackColor = true;
-            this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
-            // 
             // labelIP
             // 
             this.labelIP.AutoSize = true;
-            this.labelIP.Location = new System.Drawing.Point(8, 17);
+            this.labelIP.Location = new System.Drawing.Point(8, 14);
             this.labelIP.Name = "labelIP";
             this.labelIP.Size = new System.Drawing.Size(20, 13);
             this.labelIP.TabIndex = 5;
@@ -325,16 +312,15 @@ namespace JRunner
             // 
             // txtIP
             // 
-            this.txtIP.Location = new System.Drawing.Point(37, 14);
+            this.txtIP.Location = new System.Drawing.Point(34, 11);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(114, 20);
+            this.txtIP.Size = new System.Drawing.Size(124, 20);
             this.txtIP.TabIndex = 5;
-            this.txtIP.Text = "192.168.1.";
             this.txtIP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtIP_KeyUp);
             // 
             // btnIPGetCPU
             // 
-            this.btnIPGetCPU.Location = new System.Drawing.Point(6, 39);
+            this.btnIPGetCPU.Location = new System.Drawing.Point(6, 36);
             this.btnIPGetCPU.Name = "btnIPGetCPU";
             this.btnIPGetCPU.Size = new System.Drawing.Size(153, 26);
             this.btnIPGetCPU.TabIndex = 3;
@@ -343,6 +329,18 @@ namespace JRunner
             this.toolTip1.SetToolTip(this.btnIPGetCPU, "Tries to retrieve the CPU Key and Fuses from XeLL using the IP above");
             this.btnIPGetCPU.UseVisualStyleBackColor = true;
             this.btnIPGetCPU.Click += new System.EventHandler(this.btnIPGetCPU_Click);
+            // 
+            // btnScanner
+            // 
+            this.btnScanner.Location = new System.Drawing.Point(662, 547);
+            this.btnScanner.Name = "btnScanner";
+            this.btnScanner.Size = new System.Drawing.Size(153, 26);
+            this.btnScanner.TabIndex = 6;
+            this.btnScanner.TabStop = false;
+            this.btnScanner.Text = "Scan IP";
+            this.toolTip1.SetToolTip(this.btnScanner, "Scans the IP range looking for XeLL to retrieve the CPU Key and Fuses");
+            this.btnScanner.UseVisualStyleBackColor = true;
+            this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
             // btnInit
             // 
@@ -1160,6 +1158,7 @@ namespace JRunner
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.ClientSize = new System.Drawing.Size(832, 600);
+            this.Controls.Add(this.btnScanner);
             this.Controls.Add(this.btnNewSession);
             this.Controls.Add(this.btnRestart);
             this.Controls.Add(this.button3);

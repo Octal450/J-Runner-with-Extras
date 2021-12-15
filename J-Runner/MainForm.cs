@@ -3952,8 +3952,8 @@ namespace JRunner
                             }
                             else
                             {
-                                string localIP = GetIP();
-                                txtIP.Text = (localIP.Remove(localIP.LastIndexOf('.')));
+                                string localIP = IP.getGatewayIp();
+                                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.'));
                             }
                             break;
                         case "NoReads":
@@ -4084,6 +4084,12 @@ namespace JRunner
                     }
                 }
             }
+            else
+            {
+                string localIP = IP.getGatewayIp();
+                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.'));
+            }
+            IP.initaddresses();
         }
         void settings()
         {
