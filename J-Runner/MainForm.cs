@@ -16,7 +16,6 @@ using System.Media;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -374,29 +373,6 @@ namespace JRunner
             if (!Directory.Exists(variables.AppData))
             {
                 Directory.CreateDirectory(variables.AppData);
-            }
-        }
-        public byte[] GetFileViaHttp(string url)
-        {
-            using (WebClient client = new WebClient())
-            {
-                return client.DownloadData(url);
-            }
-        }
-
-        public static string ByteArrayToString(byte[] ba)
-        {
-            return BitConverter.ToString(ba).Replace("-", "");
-        }
-
-        public static string checkMD5(string filename)
-        {
-            using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(filename))
-                {
-                    return ByteArrayToString(md5.ComputeHash(stream));
-                }
             }
         }
 
@@ -1950,8 +1926,15 @@ namespace JRunner
                 nand = new Nand.PrivateN();
                 nandInfo.clear();
             }
-            if (!partial) xPanel.clear();
+
+            if (!partial)
+            {
+                xPanel.clear();
+                txtIP.Text = txtIP.Text.Remove(txtIP.Text.LastIndexOf('.'));
+            }
+
             progressBar.Value = progressBar.Minimum;
+
             if (!partial)
             {
                 saveToLog();

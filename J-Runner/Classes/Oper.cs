@@ -535,7 +535,6 @@ namespace JRunner
             catch (Exception) { }
             return "";
         }
-
     }
 
     public static partial class Extensions
