@@ -183,7 +183,7 @@ namespace JRunner.Panels
 
         public void clear()
         {
-            txtMBname.Text = "Nand Type";
+            txtMBname.Text = "None Selected";
             if (rbtnRetail.Enabled == true) rbtnRetail.Checked = true;
             else if (rbtnGlitch.Checked) rbtnGlitch.Checked = false;
             else if (rbtnGlitch2.Checked) rbtnGlitch2.Checked = false;
@@ -759,6 +759,10 @@ namespace JRunner.Panels
                 Rgh3Label2.Text = "25";
                 Rgh3Label.Visible = Rgh3Label2.Visible = chkRgh3.Checked;
                 Rgh3Mhz.Visible = false;
+            }
+            else
+            {
+                Rgh3Label.Visible = Rgh3Label2.Visible = Rgh3Mhz.Visible = false;
             }
         }
 
