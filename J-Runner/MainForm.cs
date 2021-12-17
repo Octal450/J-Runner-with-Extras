@@ -2,7 +2,6 @@
 using JRunner.Forms;
 using LibUsbDotNet.DeviceNotify;
 using Microsoft.Win32;
-using PICUSB;
 using RenameRegistryKey;
 using System;
 using System.Collections.Generic;
@@ -66,8 +65,6 @@ namespace JRunner
         private bool rpcReady = false;
         private string rpcDevice = "No Device";
         private string rpcStatus = "No Device";
-        Bootloader_Interface bli = new Bootloader_Interface();
-        usb_interface usbi;
         #endregion
 
         #region Initialization
@@ -90,6 +87,7 @@ namespace JRunner
         private void MainForm_Load(object sender, EventArgs e)
         {
             mainForm = this;
+            versionToolStripMenuItem.Text = "v" + variables.version;
 
             // Make sure we're on top
             bool top = TopMost;
@@ -97,9 +95,6 @@ namespace JRunner
             TopMost = top; // Set it back
             Activate();
 
-            versionToolStripMenuItem.Text = "v" + variables.version;
-            this.bli = new Bootloader_Interface();
-            this.bli.DataChanged += new Bootloader_Interface.DataChangedEventHandler(this.onBLIDataChanged);
             _writer = new TextBoxStreamWriter(txtConsole);
             Console.SetOut(_writer);
 
@@ -178,12 +173,6 @@ namespace JRunner
             {
                 ShowInTaskbar = false;
             }
-        }
-
-        private void onBLIDataChanged(object sender, string comment)
-        {
-            this.txtConsole.AppendText(comment);
-            this.txtConsole.AppendText(this.bli.DisplayData());
         }
 
         void setUp()
@@ -2740,22 +2729,6 @@ namespace JRunner
             xbo.ShowDialog();
         }
 
-        private void createAnImageWithoutNanddumpbinToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            newSession(true);
-            nand = new Nand.PrivateN();
-            nand._cpukey = txtCPUKey.Text;
-            string kvfile = Path.Combine(variables.pathforit, @"xebuild\data\kv.bin");
-            if (File.Exists(kvfile))
-            {
-                nand._rawkv = File.ReadAllBytes(kvfile);
-                nand.updatekvval();
-
-            }
-            ThreadStart starter = delegate { xPanel.createxebuild_v2(true, nand, false); };
-            new Thread(starter).Start();
-        }
-
         #endregion
 
         #region Dev
@@ -3021,12 +2994,14 @@ namespace JRunner
         void btnLoadFile1_Click(object sender, System.EventArgs e)
         {
             loadfile(ref variables.filename1, ref this.txtFilePath1, true);
+            Thread.Sleep(100);
             nand_init();
         }
 
         void btnLoadFile2_Click(object sender, System.EventArgs e)
         {
             loadfile(ref variables.filename2, ref this.txtFilePath2);
+            Thread.Sleep(100);
             if (variables.debugme) Console.WriteLine("filename2/currentdir = {0}", variables.filename2);
         }
 
@@ -4434,65 +4409,17 @@ namespace JRunner
             return false;
         }
 
-        private void backupCurrenthexToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mTXUSBFirmwareUtilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            usbi = new usb_interface();
-            if (usbi.GetDeviceCount(usbi.vid_pid_boot) > 0U)
-            {
-                bli.ReadPIC();
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "HEX files (*.hex)|*.hex|All files (*.*)|*.*";
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    bli.SaveHEX(saveFileDialog.FileName);
-                }
-
-            }
-            Console.WriteLine("Please Wait...");
-        }
-
-        private void writeOriginalMTXhexToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            usbi = new usb_interface();
-            if (usbi.GetDeviceCount(usbi.vid_pid_boot) > 0U)
-            {
-                bli.LoadHEX("common/XsvfAce/matrix_backup.hex");
-                bli.WritePIC(false, false, false);
-            }
-            Console.WriteLine("Please Wait...");
-        }
-
-        private void writeCRMTXhexToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            usbi = new usb_interface();
-            if (usbi.GetDeviceCount(usbi.vid_pid_boot) > 0U)
-            {
-                bli.LoadHEX("common/XsvfAce/PICFLASH_XSVF.HEX");
-                bli.WritePIC(false, false, false);
-            }
-            Console.WriteLine("Please Wait...");
-        }
-
-        private void writeACEhexToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            usbi = new usb_interface();
-            if (usbi.GetDeviceCount(usbi.vid_pid_boot) > 0U)
-            {
-                bli.LoadHEX("common/XsvfAce/PICFLASH_ACEv3.hex");
-                bli.WritePIC(false, false, false);
-            }
-            Console.WriteLine("Please Wait...");
-        }
-        
-        private void writePostSnifferHExToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            usbi = new usb_interface();
-            if (usbi.GetDeviceCount(usbi.vid_pid_boot) > 0U)
-            {
-                bli.LoadHEX("common/XsvfAce/Post_Sniffer.hex");
-                bli.WritePIC(false, false, false);
-            }
-            Console.WriteLine("Please Wait...");
+            //try
+            //{
+            //    ProcessStartInfo mtxUtility = new ProcessStartInfo("common\\mtx-utility\\mtx-utility.exe");
+            //    mtxUtility.WorkingDirectory = Environment.CurrentDirectory;
+            //    mtxUtility.UseShellExecute = true;
+            //    Process vcredistx86p = Process.Start(mtxUtility);
+            //    vcredistx86p.WaitForExit();
+            //}
+            //catch { }
         }
 
         Forms.CPUKeyGen cpu;
@@ -4689,9 +4616,9 @@ namespace JRunner
 
         private void sonus360EditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Application.OpenForms.OfType<Forms.SoundEditor>().Any())
+            if (!Application.OpenForms.OfType<SoundEditor>().Any())
             {
-                Forms.SoundEditor se = new Forms.SoundEditor();
+                SoundEditor se = new SoundEditor();
                 se.ShowDialog();
             }
         }
@@ -4742,6 +4669,12 @@ namespace JRunner
         CreateDonorNand cdonor;
         private void createDonorNandToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                createDonorAdvanced();
+                return;
+            }
+
             if (variables.ctyp.ID == -1) variables.ctyp = callconsoletypes(ConsoleTypes.Selected.All);
             if (variables.ctyp.ID == -1) return;
             if (Application.OpenForms.OfType<CreateDonorNand>().Any())
@@ -4796,7 +4729,7 @@ namespace JRunner
             return txtCPUKey.Text;
         }
 
-        public void CreateDonor(string con, string hack, string smc, string cpuk, string kvPath, string fcrtPath, int ldv, bool nofcrt)
+        public void createDonor(string con, string hack, string smc, string cpuk, string kvPath, string fcrtPath, int ldv, bool nofcrt)
         {
             newSession(true);
 
@@ -4873,6 +4806,22 @@ namespace JRunner
                 }
             });
             donorThread.Start();
+        }
+
+        private void createDonorAdvanced()
+        {
+            newSession(true);
+            nand = new Nand.PrivateN();
+            nand._cpukey = txtCPUKey.Text;
+            string kvfile = Path.Combine(variables.pathforit, @"xebuild\data\kv.bin");
+            if (File.Exists(kvfile))
+            {
+                nand._rawkv = File.ReadAllBytes(kvfile);
+                nand.updatekvval();
+
+            }
+            ThreadStart starter = delegate { xPanel.createxebuild_v2(true, nand, false); };
+            new Thread(starter).Start();
         }
     }
 }

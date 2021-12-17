@@ -77,7 +77,7 @@ namespace JRunner.Forms
             if (DonorKv.Checked) kvPath = "donor";
 
             forceFocus(false); // Must be before CreateDonor()
-            MainForm.mainForm.CreateDonor(console, hack, smc, CpuKeyBox.Text, kvPath, fcrtPath, ldv, NoFcrt.Checked);
+            MainForm.mainForm.createDonor(console, hack, smc, CpuKeyBox.Text, kvPath, fcrtPath, ldv, NoFcrt.Checked);
             this.Close();
         }
 
