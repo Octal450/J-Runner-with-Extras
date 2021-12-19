@@ -69,7 +69,6 @@ namespace JRunner
 
     class variables
     {
-
         public enum JR_MODE
         {
             MODEJR,
@@ -78,14 +77,13 @@ namespace JRunner
         public static string version = "3.1.0 Beta";
         public static string build = "3100." + DateTime.Parse(Properties.Resources.Build, new CultureInfo("en-US")).ToString("yyMMdd.HHmm");
         public static int revision = 12;
-        public static bool isupdating = false;
         public static bool updatechecksuccess = true; // Default true
         public static bool uptodate = true; // Default true
         public static bool iswriting;
         public static bool isscanningip = false;
         public static JR_MODE current_mode = JR_MODE.MODEJR;
-        public const String DEMON_GUID_STRING = "{667FDEE3-5049-5F51-E600-B9240B372D25}";
-        public const String BOOTLOADER_GUID_STRING = "{a5dcbf10-6530-11d2-901f-00c04fb951ed}";
+        public const string DEMON_GUID_STRING = "{667FDEE3-5049-5F51-E600-B9240B372D25}";
+        public const string BOOTLOADER_GUID_STRING = "{a5dcbf10-6530-11d2-901f-00c04fb951ed}";
         public static string boardtype;
         public static int latest_dashboard = 17559;
         //public const String BOOTLOADER_GUID_STRING = "{4d1e55b2-f16f-11cf-88cb-001111000030}";

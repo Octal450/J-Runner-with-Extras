@@ -298,7 +298,7 @@
             this.MaximizeBox = false;
             this.Name = "NandProArg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Custom Nand/Timing File Functions";
+            this.Text = "Nand/Timing File Functions";
             this.Commandgrp.ResumeLayout(false);
             this.Commandgrp.PerformLayout();
             this.sizebox.ResumeLayout(false);

@@ -2339,9 +2339,8 @@ namespace JRunner
 
         void loadfile(ref string filename, ref TextBox tx, bool erase = false)
         {
-
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "(*.bin;*.ecc)|*.bin;*.ecc|(*.hex)|*.hex|All files (*.*)|*.*";
+            openFileDialog1.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc|HEX files (*.hex)|*.hex|All files (*.*)|*.*";
             openFileDialog1.Title = "Select a File";
             if (variables.FindFolder != "")
             {
@@ -2490,9 +2489,10 @@ namespace JRunner
         {
             if (!nand.ok)
             {
-                MessageBox.Show("You need to load a Nand Dump first!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No Nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             Console.WriteLine("Extracting Files...");
             string tmpout = "";
             if (variables.modder && variables.custname != "")
@@ -2633,7 +2633,7 @@ namespace JRunner
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "(*.hex)|*.hex|All files (*.*)|*.*";
+            openFileDialog1.Filter = "HEX files (*.hex)|*.hex|All files (*.*)|*.*";
             openFileDialog1.Title = "Select a File";
             //openFileDialog1.InitialDirectory = variables.currentdir;
             openFileDialog1.RestoreDirectory = false;
@@ -2709,17 +2709,16 @@ namespace JRunner
 
         private void patchNandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(variables.filename1))
+            if (!nand.ok)
             {
-                variables.cpkey = txtCPUKey.Text;
-                patch patchform = new patch();
-                patchform.frm1 = this;
-                patchform.Show();
+                MessageBox.Show("No Nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                MessageBox.Show("You need to load a Nand Dump first!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            variables.cpkey = txtCPUKey.Text;
+            patch patchform = new patch();
+            patchform.frm1 = this;
+            patchform.Show();
         }
 
         private void changeLDVToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4411,15 +4410,22 @@ namespace JRunner
 
         private void mTXUSBFirmwareUtilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    ProcessStartInfo mtxUtility = new ProcessStartInfo("common\\mtx-utility\\mtx-utility.exe");
-            //    mtxUtility.WorkingDirectory = Environment.CurrentDirectory;
-            //    mtxUtility.UseShellExecute = true;
-            //    Process vcredistx86p = Process.Start(mtxUtility);
-            //    vcredistx86p.WaitForExit();
-            //}
-            //catch { }
+            Process[] processes = Process.GetProcessesByName("mtx-utility");
+            if (processes.Length == 0)
+            {
+                try
+                {
+                    ProcessStartInfo mtxUtility = new ProcessStartInfo("common\\mtx-utility\\mtx-utility.exe");
+                    mtxUtility.WorkingDirectory = Environment.CurrentDirectory;
+                    mtxUtility.UseShellExecute = true;
+                    Process.Start(mtxUtility);
+                }
+                catch { }
+            }
+            else
+            {
+                MessageBox.Show("The utility is already running", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         Forms.CPUKeyGen cpu;

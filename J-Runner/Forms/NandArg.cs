@@ -136,7 +136,7 @@ namespace JRunner
             {
                 string filename1 = "";
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = ".bin|*.bin";
+                saveFileDialog1.Filter = "Nand files (*.bin)|*.bin";
                 saveFileDialog1.Title = "Save to File";
                 //saveFileDialog1.InitialDirectory = variables.currentdir;
                 saveFileDialog1.RestoreDirectory = false;
@@ -153,15 +153,15 @@ namespace JRunner
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
                 if ((MainForm.mainForm.device == 3 || MainForm.mainForm.device == 4) && xsvfbtn.Checked)
                 {
-                    openFileDialog1.Filter = "(*.svf)|*.svf";
+                    openFileDialog1.Filter = "SVF files (*.svf)|*.svf";
                 }
                 else if (xsvfbtn.Checked)
                 {
-                    openFileDialog1.Filter = "(*.xsvf)|*.xsvf";
+                    openFileDialog1.Filter = "XSVF files (*.xsvf)|*.xsvf";
                 }
                 else
                 {
-                    openFileDialog1.Filter = "(*.bin;*.ecc)|*.bin;*.ecc";
+                    openFileDialog1.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc";
                 }
                 openFileDialog1.Title = "Select a File";
                 //openFileDialog1.InitialDirectory = variables.currentdir;

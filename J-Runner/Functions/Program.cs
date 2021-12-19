@@ -176,7 +176,7 @@ namespace JRunner
                         {
                             variables.uptodate = false;
 
-                            if (MessageBox.Show("Update for J-Runner with Extras is available.\n\n" + changelog + "\n\nWould you like to download the latest update?", "J-Runner with Extras Updater", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
+                            if (MessageBox.Show("Updates are available for J-Runner with Extras\n\n" + changelog + "\n\nWould you like to download and install the update?", "J-Runner with Extras", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
                             {
                                 // Do nothing and launch as normal
                                 Application.Run(new MainForm());

@@ -12,8 +12,6 @@ namespace JRunner.Forms
 {
     public partial class CreateDonorNand : Form
     {
-        private readonly Button eccXellBtn;
-
         public CreateDonorNand()
         {
             InitializeComponent();
@@ -25,12 +23,6 @@ namespace JRunner.Forms
             CpuKvPage.Commit += CpuKvNext;
             FcrtPage.Commit += FcrtNext;
             LdvPage.Commit += LdvNext;
-
-            // Custom controls - make sure you handle them!
-            eccXellBtn = new Button { Text = "Create ECC/XeLL", AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, Anchor = AnchorStyles.Top | AnchorStyles.Right, Margin = Padding.Empty };
-            //DonorWizard.AddCommandControl(eccXellBtn);
-            eccXellBtn.Click += eccXellBtn_Click;
-            toolTip1.SetToolTip(eccXellBtn, "Create and load an donor ECC or XeLL");
         }
 
         private byte[] kv;
@@ -84,8 +76,6 @@ namespace JRunner.Forms
         // Prerequisites Page
         private void PrereqNext(object sender, AeroWizard.WizardPageConfirmEventArgs e)
         {
-            eccXellBtn.Visible = false;
-
             pullXeBuildVal();
 
             if (console.Length == 0 || hack.Length == 0 || kernelStr.Length == 0)
@@ -156,7 +146,6 @@ namespace JRunner.Forms
         // CPU Key and KV Page
         private void CpuKvBack(object sender, AeroWizard.WizardPageConfirmEventArgs e)
         {
-            eccXellBtn.Visible = true;
             forceFocus(false);
         }
 

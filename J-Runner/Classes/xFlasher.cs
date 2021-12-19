@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Media;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -591,8 +591,9 @@ namespace JRunner
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
-            if (Path.GetExtension(variables.filename1) == ".bin")
+            if (Path.GetExtension(variables.filename1) != ".ecc")
             {
+                Console.WriteLine("xFlasher: You need an .ecc image");
                 return;
             }
 
@@ -635,6 +636,11 @@ namespace JRunner
             {
                 variables.nandsizex = Nandsize.S16;
                 writeNand(16, variables.filename1);
+            }
+            else if (len == 1351680)
+            {
+                variables.nandsizex = Nandsize.S16;
+                writeNand(16, variables.filename1, 3);
             }
             else
             {
@@ -685,7 +691,7 @@ namespace JRunner
                         {
                             if (size != 16)
                             {
-                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 16MB Flash Config.\n\nAre you sure that you want to do that?", "Wrong", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 16MB Flash Config.\n\nAre you sure that you want to do that?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                                 {
                                     Console.WriteLine("xFlasher: Cancelled");
                                     Console.WriteLine("");
@@ -697,7 +703,7 @@ namespace JRunner
                         {
                             if (size != 64)
                             {
-                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64MB Flash Config.\n\nAre you sure that you want to do that?", "Wrong", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64MB Flash Config.\n\nAre you sure that you want to do that?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                                 {
                                     Console.WriteLine("xFlasher: Cancelled");
                                     Console.WriteLine("");
@@ -709,7 +715,7 @@ namespace JRunner
                         {
                             if (size == 16)
                             {
-                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64/256/512MB Flash Config.\n\nAre you sure that you want to do the things?", "Wrong", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64/256/512MB Flash Config.\n\nAre you sure that you want to do the things?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                                 {
                                     Console.WriteLine("xFlasher: Cancelled");
                                     Console.WriteLine("");
@@ -756,7 +762,7 @@ namespace JRunner
                     }
                     else if (mode == 1)
                     {
-                        result = spi(4, 16, filename);
+                        result = spi(4, size, filename);
                     }
                     else
                     {
@@ -856,7 +862,7 @@ namespace JRunner
 
         private void getBlocks(int size)
         {
-            int blocks = 0;
+            int blocks;
             while (inUse)
             {
                 blocks = spiGetBlocks();
@@ -933,7 +939,7 @@ namespace JRunner
 
                     Console.WriteLine("xFlasher: Flashing {0} via JTAG", Path.GetFileName(filename));
 
-                    System.Diagnostics.Process psi = new System.Diagnostics.Process();
+                    Process psi = new Process();
                     psi.StartInfo.FileName = @"common/xflasher/jtag.exe";
                     psi.StartInfo.CreateNoWindow = true;
                     psi.StartInfo.UseShellExecute = false;
@@ -944,8 +950,8 @@ namespace JRunner
                     inUse = true;
                     psi.Start();
 
-                    System.IO.StreamWriter wr = psi.StandardInput;
-                    System.IO.StreamReader rr = psi.StandardOutput;
+                    StreamWriter wr = psi.StandardInput;
+                    StreamReader rr = psi.StandardOutput;
 
                     wr.WriteLine("cable ft2232");
                     wr.WriteLine("detect");
