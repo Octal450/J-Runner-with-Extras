@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Reflection;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
+using System.Text;
 
 namespace JRunner
 {
@@ -75,7 +76,7 @@ namespace JRunner
             MODEFW
         }
         public static string version = "3.1.0 Beta";
-        public static string build = "3100." + DateTime.Parse(Properties.Resources.Build).ToString("yyMMdd.HHmm");
+        public static string build = "3100." + DateTime.Parse(Properties.Resources.Build, new CultureInfo("en-US")).ToString("yyMMdd.HHmm");
         public static int revision = 12;
         public static bool isupdating = false;
         public static bool updatechecksuccess = true; // Default true
