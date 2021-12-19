@@ -4415,8 +4415,8 @@ namespace JRunner
             {
                 try
                 {
-                    ProcessStartInfo mtxUtility = new ProcessStartInfo("common\\mtx-utility\\mtx-utility.exe");
-                    mtxUtility.WorkingDirectory = Environment.CurrentDirectory;
+                    ProcessStartInfo mtxUtility = new ProcessStartInfo("mtx-utility.exe");
+                    mtxUtility.WorkingDirectory = Path.Combine(Environment.CurrentDirectory, "common\\mtx-utility");
                     mtxUtility.UseShellExecute = true;
                     Process.Start(mtxUtility);
                 }
