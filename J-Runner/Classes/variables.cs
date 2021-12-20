@@ -116,14 +116,6 @@ namespace JRunner
         public static string xebuild = "", dashlaunch = "", LPTport = "";
         public static decimal NoReads = 0;
         public static string settingsfile = Path.Combine(AppData, "settings.xml");
-        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Errorsound", "Comparesound", "Successsound", "Delay",
-                                          "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "XebuildName", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
-                                          "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "DiscordRPC", "TimingOnKeypress", "LogBackground", "LogText", "DeviceGroup",
-                                          "MinimizeToTray", "SlimPreferSrgh"};
-
-        /// <summary>
-        /// App settings 2
-        /// </summary>
         public static bool escapeloop = false, exitedxe = true, autoExtract = false, allmove = false, modder = false;
         public static bool reading = false, writing;
         public static bool discordrpc = true;
@@ -133,6 +125,10 @@ namespace JRunner
         public static bool slimprefersrgh = false;
         public static Color logbackground = Color.Black;
         public static Color logtext = Color.White;
+        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Errorsound", "Comparesound", "Successsound", "Delay",
+                                          "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "XebuildName", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
+                                          "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "DiscordRPC", "TimingOnKeypress", "LogBackground", "LogText", "DeviceGroup",
+                                          "MinimizeToTray", "SlimPreferSrgh"};
 
         #region
 
@@ -163,19 +159,19 @@ namespace JRunner
         /// console types
         /// </summary>
         public static consoles[] cunts = { 
-                                             new consoles(-1, "", "", "", -1, Nandsize.S0, -1),
-                                             new consoles(1, "trinity", "trinity", "Trinity", 16, Nandsize.S16, 1),
-                                             new consoles(2, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0),
-                                             new consoles(3, "zephyr", "zephyr", "Zephyr", 16, Nandsize.S16, 0),
-                                             new consoles(4, "jasper", "jasper", "Jasper 16MB", 16, Nandsize.S16, 1),
-                                             new consoles(5, "jaspersb", "jasper", "Jasper SB", 16, Nandsize.S16, 0),
-                                             new consoles(6, "jasper256", "jasper", "Jasper 256MB", 256, Nandsize.S256, 2),
-                                             new consoles(7, "jasper512", "jasper", "Jasper 512MB", 512, Nandsize.S512, 2),
-                                             new consoles(8, "xenon", "xenon", "Xenon", 16, Nandsize.S16, 0),
-                                             new consoles(9, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0), // Previously Opus but that is stupid because Opus is Falcon
-                                             new consoles(10, "corona", "corona", "Corona 16MB", 16, Nandsize.S16, 0),
-                                             new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
-                                         };
+            new consoles(-1, "", "", "", -1, Nandsize.S0, -1),
+            new consoles(1, "trinity", "trinity", "Trinity", 16, Nandsize.S16, 1),
+            new consoles(2, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0),
+            new consoles(3, "zephyr", "zephyr", "Zephyr", 16, Nandsize.S16, 0),
+            new consoles(4, "jasper", "jasper", "Jasper 16MB", 16, Nandsize.S16, 1),
+            new consoles(5, "jaspersb", "jasper", "Jasper SB 16MB", 16, Nandsize.S16, 0),
+            new consoles(6, "jasper256", "jasper", "Jasper 256MB", 256, Nandsize.S256, 2),
+            new consoles(7, "jasper512", "jasper", "Jasper 512MB", 512, Nandsize.S512, 2),
+            new consoles(8, "xenon", "xenon", "Xenon", 16, Nandsize.S16, 0),
+            new consoles(9, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0), // Previously Opus but that is stupid because Opus is Falcon
+            new consoles(10, "corona", "corona", "Corona 16MB", 16, Nandsize.S16, 0),
+            new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
+        };
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
 	    {
 	        {"6FB5C6A45999A4BBB037827659991BFE", "1.05"},

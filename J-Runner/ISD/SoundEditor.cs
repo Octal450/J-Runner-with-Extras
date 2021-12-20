@@ -603,8 +603,7 @@ namespace JRunner.Forms
                 }
 
                 stopwatch.Stop();
-                txtOutput.AppendText("Done\n");
-                txtOutput.AppendText("in " +  stopwatch.Elapsed.Minutes + ":" + stopwatch.Elapsed.Seconds + "  min:sec\n");
+                txtOutput.AppendText("Done! Time Elapsed: " +  stopwatch.Elapsed.Minutes + ":" + stopwatch.Elapsed.Seconds + "\n");
                 //Console.WriteLine("");
                 Outro();
                 Normal();

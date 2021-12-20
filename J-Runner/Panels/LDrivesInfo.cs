@@ -292,8 +292,7 @@ namespace JRunner.Panels
                 UpdateBloc("");
                 UpdateProgres(100);
                 stopwatch.Stop();
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                Console.WriteLine("Read Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
 
                 SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);
@@ -467,8 +466,7 @@ namespace JRunner.Panels
                 }
             }
             stopwatch.Stop();
-            Console.WriteLine("Done");
-            Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+            Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
             Console.WriteLine("");
             fs.Close();
 
@@ -572,8 +570,7 @@ namespace JRunner.Panels
                 fw.Close();
                 UpdateProgres(100);
                 stopwatch.Stop();
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2}:{2} min:sec:ms", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
+                Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}:{2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
                 Console.WriteLine("");
 
                 SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);
@@ -735,8 +732,7 @@ namespace JRunner.Panels
                 }
             }
             stopwatch.Stop();
-            Console.WriteLine("Done");
-            Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+            Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
             Console.WriteLine("");
 
             SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);
@@ -834,8 +830,7 @@ namespace JRunner.Panels
                 fs.Close();
                 UpdateProgres(100);
                 stopwatch.Stop();
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2}:{2} min:sec:ms", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
+                Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}:{2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
                 Console.WriteLine("");
 
                 SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);

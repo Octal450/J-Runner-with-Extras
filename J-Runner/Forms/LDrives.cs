@@ -259,8 +259,7 @@ namespace JRunner.Forms
                 fw.Close();
                 progressBar1.Value = progressBar1.Maximum;
                 stopwatch.Stop();
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                Console.WriteLine("Read Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
             }
             catch (Exception ex)
@@ -417,8 +416,7 @@ namespace JRunner.Forms
                 }
             }
             stopwatch.Stop();
-            Console.WriteLine("Done");
-            Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+            Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
             Console.WriteLine("");
             fs.Close();
 
@@ -526,8 +524,7 @@ namespace JRunner.Forms
                 fw.Close();
                 progressBar1.Value = progressBar1.Maximum;
                 stopwatch.Stop();
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2}:{2} min:sec:ms", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
+                Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}:{2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
                 Console.WriteLine("");
             }
             catch (Exception ex)
@@ -679,8 +676,7 @@ namespace JRunner.Forms
                 }
             }
             stopwatch.Stop();
-            Console.WriteLine("Done");
-            Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+            Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
             Console.WriteLine("");
 
             i = 0;
@@ -783,8 +779,7 @@ namespace JRunner.Forms
                 fs.Close();
                 progressBar1.Value = progressBar1.Maximum;
                 stopwatch.Stop();
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2}:{2} min:sec:ms", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
+                Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}:{2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
                 Console.WriteLine("");
             }
             catch (Exception ex)

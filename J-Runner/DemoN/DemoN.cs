@@ -265,7 +265,7 @@ namespace JRunner
                     Console.WriteLine("Flash Size : 0x{0:X} blocks of 0x{1:X} bytes", getNumBlocks(), getBlockSize());
                     if (Invalid_Blocks.Count > 0)
                     {
-                        Console.Write("Invalid Blocks : ");
+                        Console.Write("Invalid Blocks: ");
                         foreach (int n in Invalid_Blocks)
                         {
                             Console.Write("0x{0:X} ", n);
@@ -285,13 +285,12 @@ namespace JRunner
                 DeInitDemoN();
                 stopwatch.Stop();
                 UpdateProgres(100);
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                Console.WriteLine("Read Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
             MainForm._waitmb.Reset();
             MainForm._waitmb.Set();
@@ -426,13 +425,12 @@ namespace JRunner
                 DeInitDemoN();
                 stopwatch.Stop();
                 UpdateProgres(100);
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
             MainForm._waitmb.Reset();
             MainForm._waitmb.Set();
@@ -582,13 +580,12 @@ namespace JRunner
                 DeInitDemoN();
                 stopwatch.Stop();
                 UpdateProgres(100);
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
             MainForm._waitmb.Reset();
             MainForm._waitmb.Set();
@@ -1011,13 +1008,12 @@ namespace JRunner
                 release_flash();
                 DeInitDemoN();
                 stopwatch.Stop();
-                Console.WriteLine("Done");
-                Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
             MainForm._waitmb.Reset();
             MainForm._waitmb.Set();
