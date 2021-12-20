@@ -128,6 +128,8 @@ namespace JRunner
 
             settings();
 
+            printstartuptext(true);
+
             new Thread(on_load).Start();
 
             deviceinit();
@@ -137,8 +139,6 @@ namespace JRunner
                 rpcInit();
                 new Thread(new ThreadStart(this.rpcCheck)).Start();
             }
-
-            printstartuptext(true);
 
             try
             {
@@ -355,8 +355,8 @@ namespace JRunner
             }
             if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
             {
-                Console.WriteLine("WARNING! - Your selected working directory already contains files!");
-                Console.WriteLine("Click Show Working Folder to view these files");
+                Console.WriteLine("WARNING - Working Folder!");
+                Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
                 Console.WriteLine("");
             }
             if (!Directory.Exists(variables.AppData))
@@ -405,6 +405,16 @@ namespace JRunner
 
                 Console.WriteLine("Support for Windows XP is limited, some features may not function correctly or at all");
                 Console.WriteLine("");
+            }
+
+            if (!firsttime)
+            {
+                if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
+                {
+                    Console.WriteLine("WARNING - Working Folder!");
+                    Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
+                    Console.WriteLine("");
+                }
             }
         }
 
