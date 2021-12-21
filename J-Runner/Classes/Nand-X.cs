@@ -24,8 +24,8 @@ namespace JRunner
 	    };
 
         //private static UsbDevice MyUsbDevice;
-        private static UsbDeviceFinder Arm = new UsbDeviceFinder(0xFFFF, 0x0004);
-        private static UsbDeviceFinder JRunner = new UsbDeviceFinder(0x11d4, 0x8338);
+        private static UsbDeviceFinder NANDX = new UsbDeviceFinder(0xFFFF, 0x0004);
+        private static UsbDeviceFinder JRP = new UsbDeviceFinder(0x11d4, 0x8338);
         private int timeout = 1000;
         private bool jrp = false;
         public static bool InUse = false;
@@ -133,11 +133,11 @@ namespace JRunner
             UsbDevice MyUsbDevice = null;
             try
             {
-                MyUsbDevice = UsbDevice.OpenUsbDevice(JRunner);
+                MyUsbDevice = UsbDevice.OpenUsbDevice(JRP);
                 jrp = true;
                 if (MyUsbDevice == null)
                 {
-                    if (!jrponly) MyUsbDevice = UsbDevice.OpenUsbDevice(Arm);
+                    if (!jrponly) MyUsbDevice = UsbDevice.OpenUsbDevice(NANDX);
                     jrp = false;
                 }
                 if (MyUsbDevice == null)
@@ -320,10 +320,7 @@ namespace JRunner
                     }
                     if (!found)
                     {
-                        if (variables.debugme) Console.WriteLine("Unknown Flash Config");
-                        if (variables.debugme) Console.WriteLine("This may due to a new console type, bad soldering, or hardware failure");
-                        if (variables.debugme) Console.WriteLine("If it isn't the first check your soldering and reset your device");
-                        if (variables.debugme) Console.WriteLine("You can always press ESC to cancel the read");
+                        Console.WriteLine("Unrecongized Flash Config");
                     }
 
                     try
@@ -337,7 +334,7 @@ namespace JRunner
                     {
                         length = nsize.GetHashCode();
                     }
-                    Console.WriteLine("Reading Nand");
+                    Console.WriteLine("Reading Nand to {0}", filename);
                     BinaryWriter sw = new BinaryWriter(File.Open(filename, FileMode.Append, FileAccess.Write));
                     int i = startblock;
                     while (i < (length + startblock) && !variables.escapeloop)
@@ -366,8 +363,7 @@ namespace JRunner
 
                     stopwatch.Stop();
                     UpdateBloc("");
-                    Console.WriteLine("Done");
-                    Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                    Console.WriteLine("Read Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                     Console.WriteLine("");
                     return Errors.None;
                 }
@@ -440,10 +436,7 @@ namespace JRunner
                     }
                     if (!found)
                     {
-                        if (variables.debugme) Console.WriteLine("Unknown Flash Config found.");
-                        if (variables.debugme) Console.WriteLine("This may due to a new console type, bad soldering or hardware failure.");
-                        if (variables.debugme) Console.WriteLine("If it isnt the first check your soldering and reset your device.");
-                        if (variables.debugme) Console.WriteLine("You can always press ESC to cancel the erase.");
+                        Console.WriteLine("Unrecongized Flash Config");
                     }
 
                     if (length == 0)
@@ -468,8 +461,7 @@ namespace JRunner
 
                     stopwatch.Stop();
                     UpdateBloc("");
-                    Console.WriteLine("Done");
-                    Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                    Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                     Console.WriteLine("");
                     return Errors.None;
                 }
@@ -538,10 +530,7 @@ namespace JRunner
                     }
                     if (!found)
                     {
-                        if (variables.debugme) Console.WriteLine("Unknown Flash Config found.");
-                        if (variables.debugme) Console.WriteLine("This may due to a new console type, bad soldering or hardware failure.");
-                        if (variables.debugme) Console.WriteLine("If it isnt the first, check your soldering and reset your device.");
-                        if (variables.debugme) Console.WriteLine("You can always press ESC to cancel the write.");
+                        Console.WriteLine("Unrecongized Flash Config");
                     }
                     string flashconfig = BitConverter.ToString(readBuffer, 0, 0x4).Replace("-", "");
 
@@ -569,9 +558,8 @@ namespace JRunner
                     if (length <= 0) length = 0;
 
                     List<int> badblocks = new List<int>();
-                    Console.WriteLine("Writing Nand");
+                    Console.WriteLine("Writing {0} to Nand", Path.GetFileName(filename));
                     variables.writing = true;
-                    Console.WriteLine(Path.GetFileName(filename));
                     int i = startblock;
                     if (variables.debugme) Console.WriteLine("Start: {0:X} - Length: {1:X}", startblock, length);
                     while (i < (length + startblock) && !variables.escapeloop)
@@ -639,9 +627,8 @@ namespace JRunner
 
                     stopwatch.Stop();
                     UpdateBloc("");
-                    Console.WriteLine("Done");
                     variables.writing = false;
-                    Console.WriteLine("in {0}:{1:D2} min:sec", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
+                    Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                     Console.WriteLine("");
                     return Errors.None;
                 }
@@ -961,7 +948,7 @@ namespace JRunner
         {
             Errors result = Errors.None;
             result = read_v2(filename, nsize, print, startblock, length);
-            if (result == Errors.DeviceNotFound) { Console.WriteLine(("Device Not Found.")); return Errors.DeviceNotFound; }
+            if (result == Errors.DeviceNotFound) { Console.WriteLine(("Device Not Found")); return Errors.DeviceNotFound; }
 
             if (variables.iterations == 1)
             {
@@ -1045,10 +1032,7 @@ namespace JRunner
                 }
                 if (!found)
                 {
-                    if (variables.debugme) Console.WriteLine("Unknown Flash Config found.");
-                    if (variables.debugme) Console.WriteLine("This may due to a new console type, bad soldering or hardware failure.");
-                    if (variables.debugme) Console.WriteLine("If it isnt the first check your soldering and reset your device.");
-                    if (variables.debugme) Console.WriteLine("You can always press ESC to cancel the read.");
+                    Console.WriteLine("Unrecongized Flash Config");
                 }
 
                 variables.conf = null;
@@ -1088,7 +1072,7 @@ namespace JRunner
         {
             Errors result = 0;
             result = erase_v2(nsize, true, startblock, length);
-            if (result == Errors.DeviceNotFound) { Console.WriteLine(("Device Not Found.")); return result; }
+            if (result == Errors.DeviceNotFound) { Console.WriteLine(("Device Not Found")); return result; }
 
             try
             {
@@ -1109,7 +1093,7 @@ namespace JRunner
             variables.writing = true;
             Errors result = Errors.None;
             result = write_v2(filename, nsize, true, startblock, length, remap, fixecc);
-            if (result == Errors.DeviceNotFound) { Console.WriteLine(("Device Not Found.")); return Errors.DeviceNotFound; }
+            if (result == Errors.DeviceNotFound) { Console.WriteLine(("Device Not Found")); return Errors.DeviceNotFound; }
 
             try
             {
@@ -1189,7 +1173,7 @@ namespace JRunner
                     Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
                     if (readBuffer[0] != 0x03)
                     {
-                        Console.WriteLine("Wrong Arm Version.");
+                        Console.WriteLine("Wrong Arm Version");
                         return Errors.WrongVersion;
                     }
 

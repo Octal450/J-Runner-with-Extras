@@ -358,7 +358,7 @@ namespace JRunner
                         }
                         else if (result == 0)
                         {
-                            Console.WriteLine("xFlasher: Nand Read Successful! Time Elapsed: {0}", xFlasherTimeString);
+                            Console.WriteLine("xFlasher: Read Successful! Time Elapsed: {0}", xFlasherTimeString);
                             Console.WriteLine("");
 
                             SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
@@ -502,7 +502,7 @@ namespace JRunner
                     }
                     else if (result == 0)
                     {
-                        Console.WriteLine("xFlasher: Nand Read Successful! Time Elapsed: {0}", xFlasherTimeString);
+                        Console.WriteLine("xFlasher: Read Successful! Time Elapsed: {0}", xFlasherTimeString);
                         Console.WriteLine("");
 
                         SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
@@ -783,10 +783,8 @@ namespace JRunner
                     }
                     else if (result == 0)
                     {
-                        if (filename == "erase") Console.WriteLine("xFlasher: Nand Erase Successful! Time Elapsed: {0}", xFlasherTimeString);
-                        else if (mode == 1) Console.WriteLine("xFlasher: ECC Write Successful! Time Elapsed: {0}", xFlasherTimeString);
-                        else if (mode == 2) Console.WriteLine("xFlasher: XeLL Write Successful! Time Elapsed: {0}", xFlasherTimeString);
-                        else Console.WriteLine("xFlasher: Nand Write Successful! Time Elapsed: {0}", xFlasherTimeString);
+                        if (filename == "erase") Console.WriteLine("xFlasher: Erase Successful! Time Elapsed: {0}", xFlasherTimeString);
+                        else Console.WriteLine("xFlasher: Write Successful! Time Elapsed: {0}", xFlasherTimeString);
                         Console.WriteLine("");
 
                         SoundPlayer success = new SoundPlayer(Properties.Resources.chime);

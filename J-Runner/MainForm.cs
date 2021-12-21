@@ -128,6 +128,8 @@ namespace JRunner
 
             settings();
 
+            printstartuptext(true);
+
             new Thread(on_load).Start();
 
             deviceinit();
@@ -137,8 +139,6 @@ namespace JRunner
                 rpcInit();
                 new Thread(new ThreadStart(this.rpcCheck)).Start();
             }
-
-            printstartuptext(true);
 
             try
             {
@@ -355,8 +355,8 @@ namespace JRunner
             }
             if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
             {
-                Console.WriteLine("WARNING! - Your selected working directory already contains files!");
-                Console.WriteLine("Click Show Working Folder to view these files");
+                Console.WriteLine("WARNING - Working Folder!");
+                Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
                 Console.WriteLine("");
             }
             if (!Directory.Exists(variables.AppData))
@@ -405,6 +405,16 @@ namespace JRunner
 
                 Console.WriteLine("Support for Windows XP is limited, some features may not function correctly or at all");
                 Console.WriteLine("");
+            }
+
+            if (!firsttime)
+            {
+                if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
+                {
+                    Console.WriteLine("WARNING - Working Folder!");
+                    Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
+                    Console.WriteLine("");
+                }
             }
         }
 
@@ -730,6 +740,14 @@ namespace JRunner
 
         #region Basic Functions
 
+        private void abort()
+        {
+            variables.escapeloop = true;
+            ThreadStart starter = delegate { escapedloop(); };
+            new Thread(starter).Start();
+            if (xflasher.inUse) xflasher.abort();
+        }
+
         #region Nand
         //////////////////////////////////////////////
 
@@ -869,7 +887,8 @@ namespace JRunner
                 }
                 else if (function == "Xsvf") 
                 {
-                    starter = delegate { demon.xsvf(filename); 
+                    starter = delegate {
+                        demon.xsvf(filename); 
                     };
                 }
             }
@@ -915,21 +934,9 @@ namespace JRunner
         void programcr(string filex)
         {
             string file = "";
-            /* if (comboRGH.SelectedIndex == 0)
-             {
-                 if (variables.ctypeselected == -1) variables.ctypeselected = callconsoletypes();
-                 if (variables.ctypeselected == -1) return;
-                 if (variables.ctypeselected > 4 && variables.ctypeselected != 9 && variables.ctypeselected != 8) variables.nanduser = 4;
-                 else variables.nanduser = variables.ctypeselected;
-                 file = variables.pathforit + @"\common\xsvf\" + variables.crtype[variables.nanduser - 1] + ".xsvf";
-             }
-             else*/
-            {
-                //filex = callxsvf();
-                if (filex == "") return;
-                if (device == 3) file = variables.pathforit + @"\common\svf\" + filex + ".svf";
-                else file = variables.pathforit + @"\common\xsvf\" + filex + ".xsvf";
-            }
+            if (filex == "") return;
+            if (device == 3) file = variables.pathforit + @"\common\svf\" + filex + ".svf";
+            else file = variables.pathforit + @"\common\xsvf\" + filex + ".xsvf";
 
             Console.WriteLine("Programming Glitch Chip");
 
@@ -980,7 +987,7 @@ namespace JRunner
                 Console.WriteLine("");
                 return error;
             }
-            Console.WriteLine(variables.flashconfig);
+            if (variables.debugme) Console.WriteLine(variables.flashconfig);
             if (flashconfig == ("008A3020"))
             {
                 variables.ctyp = variables.cunts[6];
@@ -997,14 +1004,7 @@ namespace JRunner
             {
                 error = NandX.Errors.WrongConfig;
 
-                if (device == 3)
-                {
-                    Console.WriteLine("xFlasher: Please switch the xFlasher into eMMC mode and connect the eMMC cable!");
-                }
-                else
-                {
-                    Console.WriteLine("This flash config belongs to Corona 4GB.\n As of now you can't read it via SPI.\n Please use an SD card reader/USB tool.");
-                }
+                Console.WriteLine("This flash config belongs to Corona 4GB.\n As of now you can't read it via SPI.\n Please use an SD card reader/USB tool.");
                 return error;
             }
             else if (flashconfig == ("01198010"))
@@ -1043,18 +1043,18 @@ namespace JRunner
                 if (variables.conf != null)
                 {
                     int temp = Nand.Nand.getcb_build(variables.conf);
-                    Console.WriteLine("CB Version: {0}", temp);
+                    string console = "Unknown";
                     if (temp >= 9188 && temp <= 9250)
                     {
                         variables.ctyp = variables.cunts[1];
                         xPanel.setMBname(variables.ctyp.Text);
-                        Console.WriteLine(variables.ctyp.Text);
+                        console = variables.ctyp.Text;
                     }
                     else if (temp >= 4558 && temp <= 4580)
                     {
                         variables.ctyp = variables.cunts[3];
                         xPanel.setMBname(variables.ctyp.Text);
-                        Console.WriteLine(variables.ctyp.Text);
+                        console = variables.ctyp.Text;
                     }
                     else if (temp >= 6712 && temp <= 6780)
                     {
@@ -1062,42 +1062,41 @@ namespace JRunner
                         {
                             variables.ctyp = variables.cunts[5];
                             xPanel.setMBname(variables.ctyp.Text);
-                            Console.WriteLine("Jasper 16MB Small Block Controller");
+                            Console.WriteLine("Jasper 16MB");
                         }
                         else if (flashconfig == "00023010")
                         {
                             variables.ctyp = variables.cunts[4];
                             xPanel.setMBname(variables.ctyp.Text);
-                            Console.WriteLine(variables.ctyp.Text);
+                            console = variables.ctyp.Text;
                         }
                     }
                     else if (temp >= 13121 && temp <= 13200)
                     {
                         variables.ctyp = variables.cunts[10];
                         xPanel.setMBname(variables.ctyp.Text);
-                        Console.WriteLine(variables.ctyp.Text);
+                        console = variables.ctyp.Text;
                     }
                     else if ((temp >= 1888 && temp <= 1960) || (temp >= 7373 && temp <= 7378) || temp == 8192)
                     {
                         variables.ctyp = variables.cunts[8];
                         xPanel.setMBname(variables.ctyp.Text);
-                        Console.WriteLine(variables.ctyp.Text);
+                        console = variables.ctyp.Text;
                     }
                     else if (temp >= 5761 && temp <= 5780)
                     {
                         variables.ctyp = variables.cunts[2];
-                        Console.WriteLine("Falcon");
+                        console = variables.ctyp.Text;
                     }
-                    else
-                    {
-                        //if (variables.smcmbtype < variables.console_types.Length && variables.smcmbtype >= 0) consolebox.Text = variables.console_types[variables.smcmbtype];
-                    }
-
-
+                    //else
+                    //{
+                    //    if (variables.smcmbtype < variables.console_types.Length && variables.smcmbtype >= 0) consolebox.Text = variables.console_types[variables.smcmbtype];
+                    //}
+                    Console.WriteLine("CB Version: {0} {1}", console, temp);
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("No conf file");
+                    if (variables.debugme) Console.WriteLine("No config file");
                 }
             }
             catch (Exception) { }
@@ -1240,7 +1239,6 @@ namespace JRunner
                     }
 
                     variables.filename = variables.outfolder + "\\nanddump" + j + ".bin";
-                    Console.WriteLine("Reading Nand to {0}", variables.filename);
                     variables.iterations = j;
                     if (File.Exists(variables.filename))
                     {
@@ -2085,8 +2083,7 @@ namespace JRunner
                 else variables.gotvalues = true;
                 Console.WriteLine("Nand Initialization Finished");
                 Console.WriteLine("");
-
-
+                
                 progressBar.Value = progressBar.Maximum;
                 if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
                 if (variables.debugme) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
@@ -2103,8 +2100,11 @@ namespace JRunner
             }
             catch (SystemException ex)
             {
-                Console.WriteLine(ex.GetType().ToString());
+                Console.WriteLine("Nand Initialization Failed: {0}", ex.GetType().ToString());
+                Console.WriteLine("The dump may be incomplete or corrupt");
                 if (variables.debugme) Console.WriteLine(ex.ToString());
+                Console.WriteLine("");
+                progressBar.Value = progressBar.Minimum;
                 return;
             }
         }
@@ -3233,10 +3233,7 @@ namespace JRunner
         {
             if (e.KeyCode == Keys.Escape)
             {
-                variables.escapeloop = true;
-                ThreadStart starter = delegate { escapedloop(); };
-                new Thread(starter).Start();
-                if (xflasher.inUse) xflasher.abort();
+                abort();
             }
             //else if (e.KeyCode == Keys.F1) // Handled from WinForms Menubar
             //{

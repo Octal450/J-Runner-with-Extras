@@ -218,16 +218,6 @@ namespace JRunner.Panels
                 chkAudClamp.Enabled = true;
             }
 
-            if (txt.Contains("Xenon") || txt.Contains("Zephyr"))
-            {
-                chkRgh3.Checked = false;
-                chkRgh3.Enabled = false;
-            }
-            else
-            {
-                chkRgh3.Enabled = true;
-            }
-
             checkRgh3(txt);
         }
         #endregion
@@ -764,6 +754,13 @@ namespace JRunner.Panels
             {
                 Rgh3Label.Visible = Rgh3Label2.Visible = Rgh3Mhz.Visible = false;
             }
+
+            if (board.Contains("Xenon") || board.Contains("Zephyr") || chkXdkBuild.Checked)
+            {
+                chkRgh3.Checked = false;
+                chkRgh3.Enabled = false;
+            }
+            else chkRgh3.Enabled = true;
         }
 
         private void chkWB_CheckedChanged(object sender, EventArgs e)
@@ -834,6 +831,7 @@ namespace JRunner.Panels
             checkBigffs(variables.boardtype);
             if (chkXdkBuild.Checked) Console.WriteLine("XDKbuild Selected");
             else Console.WriteLine("XDKbuild Deselected");
+            checkRgh3(variables.boardtype);
         }
 
         private void chkAudClamp_CheckedChanged(object sender, EventArgs e)
