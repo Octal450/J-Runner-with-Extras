@@ -2385,7 +2385,7 @@ namespace JRunner.Nand
         }
         
         // DaCukiMonsta 09 Nov 2021
-        public static string ConsoleID_KV_to_friendly(string KVencoded){
+        public static string consoleID_KV_to_friendly(string KVencoded){
             // take KV encoded console ID, and convert to friendly console ID
             // KVencoded must be 10 characters hex string
         

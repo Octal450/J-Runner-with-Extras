@@ -213,9 +213,26 @@ namespace JRunner
             ldInfo.UpdateAdditional += ldInfo_UpdateAdditional;
         }
 
-
         public delegate void UpdatedDevice();
         public event UpdatedDevice updateDevice;
+
+        public bool IsUsbDeviceConnected(string pid, string vid)
+        {
+            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBControllerDevice"))
+            {
+                using (var collection = searcher.Get())
+                {
+                    foreach (var device in collection)
+                    {
+                        var usbDevice = Convert.ToString(device);
+
+                        if (usbDevice.Contains(pid) && usbDevice.Contains(vid))
+                            return true;
+                    }
+                }
+            }
+            return false;
+        }
 
         private void deviceinit()
         {
@@ -4385,24 +4402,6 @@ namespace JRunner
         private void updateAvailableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Restart();
-        }
-
-        public bool IsUsbDeviceConnected(string pid, string vid)
-        {
-            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBControllerDevice"))
-            {
-                using (var collection = searcher.Get())
-                {
-                    foreach (var device in collection)
-                    {
-                        var usbDevice = Convert.ToString(device);
-
-                        if (usbDevice.Contains(pid) && usbDevice.Contains(vid))
-                            return true;
-                    }
-                }
-            }
-            return false;
         }
 
         private void mTXUSBFirmwareUtilityToolStripMenuItem_Click(object sender, EventArgs e)

@@ -55,9 +55,9 @@ namespace JRunner.Panels
             label2bl.Visible = false;
 
             // KV Info
+            btnConsoleId.Text = "View: Native";
             txtconsole.Text = "";
             textBoxconsoleid.Text = "";
-            textBoxFriendlyconsoleid.Text = "";
             txtdvdkey.Text = "";
             txtosig.Text = "";
             txtSerial.Text = "";
@@ -140,8 +140,8 @@ namespace JRunner.Panels
                     {
                         textMFRdate.Text = mfrraw;
                     }
-                    textBoxconsoleid.Text = nand.ki.consoleid;
-                    textBoxFriendlyconsoleid.Text = JRunner.Nand.Nand.ConsoleID_KV_to_friendly(nand.ki.consoleid);
+                    if (btnConsoleId.Text == "View: Native") textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
+                    else textBoxconsoleid.Text = nand.ki.consoleid;
                     txtdvdkey.Text = nand.ki.dvdkey;
                     txtosig.Text = nand.ki.osig;
                     txtSerial.Text = nand.ki.serial;
@@ -160,7 +160,6 @@ namespace JRunner.Panels
                 else
                 {
                     textBoxconsoleid.Text = "";
-                    textBoxFriendlyconsoleid.Text = "";
                     txtdvdkey.Text = "";
                     txtosig.Text = "";
                     txtSerial.Text = "";
@@ -274,10 +273,18 @@ namespace JRunner.Panels
             }
         }
 
-        private void btnWtfDoesFriendlyIDMean_Click(object sender, EventArgs e)
+        private void btnConsoleId_Click(object sender, EventArgs e)
         {
-            // open 360homebrew wiki page explaining what this is
-            System.Diagnostics.Process.Start("https://360homebrew.miraheze.org/wiki/Console_ID#%22Friendly%22_Format");
+            if (btnConsoleId.Text != "View: Native")
+            {
+                btnConsoleId.Text = "View: Native";
+                textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
+            }
+            else
+            {
+                btnConsoleId.Text = "View: Raw";
+                textBoxconsoleid.Text = nand.ki.consoleid;
+            }
         }
     }
 }

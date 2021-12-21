@@ -22,8 +22,8 @@
 
         #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -66,9 +66,7 @@
             this.label2bl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnWtfDoesFriendlyIDMean = new System.Windows.Forms.Button();
-            this.textBoxFriendlyconsoleid = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.btnConsoleId = new System.Windows.Forms.Button();
             this.txtconsole = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -493,9 +491,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupBox2.Controls.Add(this.btnWtfDoesFriendlyIDMean);
-            this.groupBox2.Controls.Add(this.textBoxFriendlyconsoleid);
-            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.btnConsoleId);
             this.groupBox2.Controls.Add(this.txtconsole);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
@@ -520,33 +516,15 @@
             this.groupBox2.TabIndex = 51;
             this.groupBox2.TabStop = false;
             // 
-            // btnWtfDoesFriendlyIDMean
+            // btnConsoleId
             // 
-            this.btnWtfDoesFriendlyIDMean.Location = new System.Drawing.Point(218, 98);
-            this.btnWtfDoesFriendlyIDMean.Name = "btnWtfDoesFriendlyIDMean";
-            this.btnWtfDoesFriendlyIDMean.Size = new System.Drawing.Size(20, 20);
-            this.btnWtfDoesFriendlyIDMean.TabIndex = 74;
-            this.btnWtfDoesFriendlyIDMean.Text = "?";
-            this.btnWtfDoesFriendlyIDMean.UseVisualStyleBackColor = true;
-            this.btnWtfDoesFriendlyIDMean.Click += new System.EventHandler(this.btnWtfDoesFriendlyIDMean_Click);
-            // 
-            // textBoxFriendlyconsoleid
-            // 
-            this.textBoxFriendlyconsoleid.Location = new System.Drawing.Point(83, 98);
-            this.textBoxFriendlyconsoleid.Name = "textBoxFriendlyconsoleid";
-            this.textBoxFriendlyconsoleid.ReadOnly = true;
-            this.textBoxFriendlyconsoleid.Size = new System.Drawing.Size(129, 20);
-            this.textBoxFriendlyconsoleid.TabIndex = 73;
-            this.textBoxFriendlyconsoleid.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 101);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
-            this.label4.TabIndex = 72;
-            this.label4.Text = "Friendly ID";
+            this.btnConsoleId.Location = new System.Drawing.Point(218, 77);
+            this.btnConsoleId.Name = "btnConsoleId";
+            this.btnConsoleId.Size = new System.Drawing.Size(85, 22);
+            this.btnConsoleId.TabIndex = 73;
+            this.btnConsoleId.Text = "View: Native";
+            this.btnConsoleId.UseVisualStyleBackColor = true;
+            this.btnConsoleId.Click += new System.EventHandler(this.btnConsoleId_Click);
             // 
             // txtconsole
             // 
@@ -561,7 +539,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 17);
+            this.label2.Location = new System.Drawing.Point(35, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 70;
@@ -598,7 +576,7 @@
             // lblfcrt
             // 
             this.lblfcrt.AutoSize = true;
-            this.lblfcrt.Location = new System.Drawing.Point(131, 45);
+            this.lblfcrt.Location = new System.Drawing.Point(129, 49);
             this.lblfcrt.Name = "lblfcrt";
             this.lblfcrt.Size = new System.Drawing.Size(81, 13);
             this.lblfcrt.TabIndex = 66;
@@ -606,7 +584,7 @@
             // 
             // txtkvtype
             // 
-            this.txtkvtype.Location = new System.Drawing.Point(83, 42);
+            this.txtkvtype.Location = new System.Drawing.Point(83, 46);
             this.txtkvtype.Name = "txtkvtype";
             this.txtkvtype.ReadOnly = true;
             this.txtkvtype.Size = new System.Drawing.Size(36, 20);
@@ -617,7 +595,7 @@
             // labelkv
             // 
             this.labelkv.AutoSize = true;
-            this.labelkv.Location = new System.Drawing.Point(29, 45);
+            this.labelkv.Location = new System.Drawing.Point(29, 49);
             this.labelkv.Name = "labelkv";
             this.labelkv.Size = new System.Drawing.Size(48, 13);
             this.labelkv.TabIndex = 41;
@@ -625,7 +603,7 @@
             // 
             // txtregion
             // 
-            this.txtregion.Location = new System.Drawing.Point(83, 154);
+            this.txtregion.Location = new System.Drawing.Point(83, 142);
             this.txtregion.Name = "txtregion";
             this.txtregion.ReadOnly = true;
             this.txtregion.Size = new System.Drawing.Size(129, 20);
@@ -635,7 +613,7 @@
             // labelregion
             // 
             this.labelregion.AutoSize = true;
-            this.labelregion.Location = new System.Drawing.Point(36, 157);
+            this.labelregion.Location = new System.Drawing.Point(36, 145);
             this.labelregion.Name = "labelregion";
             this.labelregion.Size = new System.Drawing.Size(41, 13);
             this.labelregion.TabIndex = 39;
@@ -643,7 +621,7 @@
             // 
             // textBoxconsoleid
             // 
-            this.textBoxconsoleid.Location = new System.Drawing.Point(83, 70);
+            this.textBoxconsoleid.Location = new System.Drawing.Point(83, 78);
             this.textBoxconsoleid.Name = "textBoxconsoleid";
             this.textBoxconsoleid.ReadOnly = true;
             this.textBoxconsoleid.Size = new System.Drawing.Size(129, 20);
@@ -653,7 +631,7 @@
             // labelconsole
             // 
             this.labelconsole.AutoSize = true;
-            this.labelconsole.Location = new System.Drawing.Point(18, 73);
+            this.labelconsole.Location = new System.Drawing.Point(18, 81);
             this.labelconsole.Name = "labelconsole";
             this.labelconsole.Size = new System.Drawing.Size(59, 13);
             this.labelconsole.TabIndex = 37;
@@ -661,7 +639,7 @@
             // 
             // txtdvdkey
             // 
-            this.txtdvdkey.Location = new System.Drawing.Point(83, 210);
+            this.txtdvdkey.Location = new System.Drawing.Point(83, 206);
             this.txtdvdkey.Name = "txtdvdkey";
             this.txtdvdkey.ReadOnly = true;
             this.txtdvdkey.Size = new System.Drawing.Size(220, 20);
@@ -670,7 +648,7 @@
             // 
             // txtosig
             // 
-            this.txtosig.Location = new System.Drawing.Point(83, 182);
+            this.txtosig.Location = new System.Drawing.Point(83, 174);
             this.txtosig.Name = "txtosig";
             this.txtosig.ReadOnly = true;
             this.txtosig.Size = new System.Drawing.Size(199, 20);
@@ -680,7 +658,7 @@
             // labelserial
             // 
             this.labelserial.AutoSize = true;
-            this.labelserial.Location = new System.Drawing.Point(44, 129);
+            this.labelserial.Location = new System.Drawing.Point(44, 113);
             this.labelserial.Name = "labelserial";
             this.labelserial.Size = new System.Drawing.Size(33, 13);
             this.labelserial.TabIndex = 30;
@@ -688,7 +666,7 @@
             // 
             // txtSerial
             // 
-            this.txtSerial.Location = new System.Drawing.Point(83, 126);
+            this.txtSerial.Location = new System.Drawing.Point(83, 110);
             this.txtSerial.Name = "txtSerial";
             this.txtSerial.ReadOnly = true;
             this.txtSerial.Size = new System.Drawing.Size(129, 20);
@@ -698,7 +676,7 @@
             // labelosig
             // 
             this.labelosig.AutoSize = true;
-            this.labelosig.Location = new System.Drawing.Point(44, 185);
+            this.labelosig.Location = new System.Drawing.Point(44, 177);
             this.labelosig.Name = "labelosig";
             this.labelosig.Size = new System.Drawing.Size(33, 13);
             this.labelosig.TabIndex = 31;
@@ -707,7 +685,7 @@
             // labeldvdkey
             // 
             this.labeldvdkey.AutoSize = true;
-            this.labeldvdkey.Location = new System.Drawing.Point(26, 213);
+            this.labeldvdkey.Location = new System.Drawing.Point(26, 209);
             this.labeldvdkey.Name = "labeldvdkey";
             this.labeldvdkey.Size = new System.Drawing.Size(51, 13);
             this.labeldvdkey.TabIndex = 32;
@@ -756,11 +734,8 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
-        }
 
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxFriendlyconsoleid;
-        private System.Windows.Forms.Button btnWtfDoesFriendlyIDMean;
+        }
 
         #endregion
 
@@ -822,5 +797,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxCbType;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnConsoleId;
     }
 }
