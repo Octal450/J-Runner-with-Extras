@@ -2383,6 +2383,38 @@ namespace JRunner.Nand
             }
             else return false;
         }
+        
+        // DaCukiMonsta 09 Nov 2021
+        public static string ConsoleID_KV_to_friendly(string KVencoded){
+            // take KV encoded console ID, and convert to friendly console ID
+            // KVencoded must be 10 characters hex string
+        
+            // contains no validation that this is true, proceed at your own risk
+            // or add validation and exceptions
+        
+            // convert the first 9 characters from hex to decimal
+            UInt64 first_part = Convert.ToUInt64(KVencoded.Substring(0, 9), 16); // uint64 because more than 4 bytes
+        
+            // add last digit from original encoding, and left pad with zeros
+            string friendly_encoding = (first_part.ToString() + KVencoded.Substring(9)).PadLeft(12, '0');
+            return friendly_encoding;
+        }
+    
+        // DaCukiMonsta 09 Nov 2021
+        public static string ConsoleID_friendly_to_KV(string friendly_encoded){
+            // take friendly encoded console ID, and convert to friendly KV console ID
+            // friendly_encoded must be 12 characters, first 11 decimal, last one can be hex
+        
+            // contains no validation that this is true, proceed at your own risk
+            // or add validation and exceptions
+        
+            // convert the first 11 characters from decimal to hex
+            UInt64 first_part = Convert.ToUInt64(friendly_encoded.Substring(0, 11)); // uint64 because more than 4 bytes
+        
+            // add last digit from original encoding, and left pad with zeros
+            string KVencoded = (first_part.ToString("X") + friendly_encoded.Substring(11)).PadLeft(10, '0');
+            return KVencoded;
+        }
 
         public static void patch_kv(ref byte[] keyvault, KVInfo k)
         {

@@ -21,6 +21,7 @@ namespace JRunner.Forms
                                     "Xvistaman2005: XDKbuild",
                                     "SGCSam: 6717/9199 XeBuild Patches",
                                     "Orpheus: Updates to KV Info/Bugfixes",
+                                    "DaCukiMonsta: Friendly Console ID viewer/Bugfixes",            
                                     "And all who tested the software!",};
         static int contribloc = 0;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
