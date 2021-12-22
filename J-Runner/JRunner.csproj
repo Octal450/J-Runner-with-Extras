@@ -151,6 +151,7 @@
     <Compile Include="Classes\RC4.cs" />
     <Compile Include="Classes\RGH2to3.cs" />
     <Compile Include="Classes\rgh3build.cs" />
+    <Compile Include="Classes\Upd.cs" />
     <Compile Include="Classes\xdkbuild.cs" />
     <Compile Include="Classes\xFlasher.cs" />
     <Compile Include="Classes\IP.cs" />

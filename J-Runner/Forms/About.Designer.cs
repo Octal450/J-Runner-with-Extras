@@ -48,7 +48,7 @@ namespace JRunner.Forms
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(8, 150);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 24);
+            this.label1.Size = new System.Drawing.Size(247, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "J-Runner with Extras";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -71,7 +71,7 @@ namespace JRunner.Forms
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(8, 176);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(249, 18);
+            this.label2.Size = new System.Drawing.Size(247, 18);
             this.label2.TabIndex = 4;
             this.label2.Text = "The Ultimate RGH/JTAG App\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

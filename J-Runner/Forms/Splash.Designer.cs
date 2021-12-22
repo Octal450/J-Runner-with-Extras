@@ -32,7 +32,7 @@ namespace JRunner
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Splash));
             this.logo = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ver = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
@@ -48,35 +48,33 @@ namespace JRunner
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(41, 150);
+            this.label1.Location = new System.Drawing.Point(8, 150);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(183, 24);
+            this.label1.Size = new System.Drawing.Size(247, 24);
             this.label1.TabIndex = 5;
             this.label1.Text = "J-Runner with Extras";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ver
+            // label3
             // 
-            this.ver.AutoSize = true;
-            this.ver.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ver.ForeColor = System.Drawing.Color.White;
-            this.ver.Location = new System.Drawing.Point(8, 176);
-            this.ver.Name = "ver";
-            this.ver.Size = new System.Drawing.Size(249, 18);
-            this.ver.TabIndex = 7;
-            this.ver.Text = "The Ultimate RGH/JTAG App vX.X.X";
-            this.ver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(8, 176);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(247, 18);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "The Ultimate RGH/JTAG App";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(53, 216);
+            this.label2.Location = new System.Drawing.Point(8, 214);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 18);
+            this.label2.Size = new System.Drawing.Size(247, 18);
             this.label2.TabIndex = 8;
             this.label2.Text = "Checking for updates...";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -89,7 +87,7 @@ namespace JRunner
             this.ClientSize = new System.Drawing.Size(263, 259);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.ver);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.logo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -102,7 +100,6 @@ namespace JRunner
             this.Text = "J-Runner with Extras";
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -110,7 +107,7 @@ namespace JRunner
 
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label ver;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
     }
 }

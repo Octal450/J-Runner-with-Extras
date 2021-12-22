@@ -40,7 +40,7 @@ namespace JRunner.Forms
         public About()
         {
             InitializeComponent();
-            Region = System.Drawing.Region.FromHrgn(RoundCorner(0, 0, Width, Height, 21, 21));
+            Region = Region.FromHrgn(RoundCorner(0, 0, Width, Height, 21, 21));
         }
 
         private void About_Load(object sender, EventArgs e)
