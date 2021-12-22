@@ -11,7 +11,7 @@
 WMIC.EXE Alias /? >NUL 2>&1 || GOTO s_error
 
 :: Use WMIC to retrieve date and time
-FOR /F "skip=1 tokens=1-6" %%G IN ('WMIC Path Win32_LocalTime Get Day^,Hour^,Minute^,Month^,Second^,Year /Format:table') DO (
+FOR /F "skip=1 tokens=1-6" %%G IN ('WMIC Path Win32_UTCTime Get Day^,Hour^,Minute^,Month^,Second^,Year /Format:table') DO (
    IF "%%~L"=="" goto s_done
       Set _yyyy=%%L
       Set _mm=00%%J
@@ -30,5 +30,5 @@ FOR /F "skip=1 tokens=1-6" %%G IN ('WMIC Path Win32_LocalTime Get Day^,Hour^,Min
       Set _second=%_second:~-2%
 
 :: Get the datetime in our format:
-Set _datetime=%_mm%-%_dd%-%_yyyy% %_hour%:%_minute%.%_second%
+Set _datetime=%_mm%-%_dd%-%_yyyy% %_hour%:%_minute%:%_second%
 Echo %_datetime% > %1
