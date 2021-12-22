@@ -452,12 +452,6 @@
     <Compile Include="ISD\SoundEditor.Designer.cs">
       <DependentUpon>SoundEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\xsvf_types.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\xsvf_types.Designer.cs">
-      <DependentUpon>xsvf_types.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\XBOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -865,10 +859,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ISD\SoundEditor.resx">
       <DependentUpon>SoundEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\xsvf_types.resx">
-      <DependentUpon>xsvf_types.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NandArg.resx">
       <DependentUpon>NandArg.cs</DependentUpon>
