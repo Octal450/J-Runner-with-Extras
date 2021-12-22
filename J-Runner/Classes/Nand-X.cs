@@ -292,7 +292,7 @@ namespace JRunner
                     if (print) Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
                     if (!versions.Contains(Oper.ByteArrayToString(readBuffer)))
                     {
-                        Console.WriteLine("Wrong Version.");
+                        Console.WriteLine("Wrong Version");
                         return Errors.WrongVersion;// 2;
                     }
 
@@ -403,7 +403,7 @@ namespace JRunner
                     if (print) Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
                     if (!versions.Contains(Oper.ByteArrayToString(readBuffer)))
                     {
-                        Console.WriteLine("Wrong Version.");
+                        Console.WriteLine("Wrong Version");
                         return Errors.WrongVersion;// 2;
                     }
 
@@ -502,7 +502,7 @@ namespace JRunner
                     if (print) Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
                     if (!versions.Contains(Oper.ByteArrayToString(readBuffer)))
                     {
-                        Console.WriteLine("Wrong Version.");
+                        Console.WriteLine("Wrong Version");
                         return Errors.WrongVersion;// 2;
                     }
 
@@ -1003,7 +1003,7 @@ namespace JRunner
                 Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
                 if (!versions.Contains(Oper.ByteArrayToString(readBuffer)))
                 {
-                    Console.WriteLine("Wrong Version.");
+                    Console.WriteLine("Wrong Version");
                     return Errors.WrongVersion;// 2;
                 }
 
