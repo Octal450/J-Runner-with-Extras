@@ -55,6 +55,7 @@ namespace JRunner.Panels
             label2bl.Visible = false;
 
             // KV Info
+            btnConsoleId.Text = "View: Native";
             txtconsole.Text = "";
             textBoxconsoleid.Text = "";
             txtdvdkey.Text = "";
@@ -139,7 +140,8 @@ namespace JRunner.Panels
                     {
                         textMFRdate.Text = mfrraw;
                     }
-                    textBoxconsoleid.Text = nand.ki.consoleid;
+                    if (btnConsoleId.Text == "View: Native") textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
+                    else textBoxconsoleid.Text = nand.ki.consoleid;
                     txtdvdkey.Text = nand.ki.dvdkey;
                     txtosig.Text = nand.ki.osig;
                     txtSerial.Text = nand.ki.serial;
@@ -268,6 +270,20 @@ namespace JRunner.Panels
             {
                 HexEdit.KVViewer k = new HexEdit.KVViewer(Nand.Nand.decryptkv(nand._rawkv, Oper.StringToByteArray(nand._cpukey)));
                 k.ShowDialog();
+            }
+        }
+
+        private void btnConsoleId_Click(object sender, EventArgs e)
+        {
+            if (btnConsoleId.Text != "View: Native")
+            {
+                btnConsoleId.Text = "View: Native";
+                textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
+            }
+            else
+            {
+                btnConsoleId.Text = "View: Raw";
+                textBoxconsoleid.Text = nand.ki.consoleid;
             }
         }
     }

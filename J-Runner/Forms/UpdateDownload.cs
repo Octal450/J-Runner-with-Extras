@@ -22,7 +22,7 @@ namespace JRunner
 
         private void WizardCancelled(object sender, EventArgs e)
         {
-            Program.cancelUpdate();
+            Upd.cancel();
         }
 
         private void WizardFinished(object sender, EventArgs e)

@@ -66,6 +66,7 @@
             this.label2bl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnConsoleId = new System.Windows.Forms.Button();
             this.txtconsole = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -490,6 +491,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupBox2.Controls.Add(this.btnConsoleId);
             this.groupBox2.Controls.Add(this.txtconsole);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
@@ -513,6 +515,16 @@
             this.groupBox2.Size = new System.Drawing.Size(326, 266);
             this.groupBox2.TabIndex = 51;
             this.groupBox2.TabStop = false;
+            // 
+            // btnConsoleId
+            // 
+            this.btnConsoleId.Location = new System.Drawing.Point(218, 77);
+            this.btnConsoleId.Name = "btnConsoleId";
+            this.btnConsoleId.Size = new System.Drawing.Size(85, 22);
+            this.btnConsoleId.TabIndex = 73;
+            this.btnConsoleId.Text = "View: Native";
+            this.btnConsoleId.UseVisualStyleBackColor = true;
+            this.btnConsoleId.Click += new System.EventHandler(this.btnConsoleId_Click);
             // 
             // txtconsole
             // 
@@ -785,5 +797,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxCbType;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnConsoleId;
     }
 }

@@ -213,9 +213,26 @@ namespace JRunner
             ldInfo.UpdateAdditional += ldInfo_UpdateAdditional;
         }
 
-
         public delegate void UpdatedDevice();
         public event UpdatedDevice updateDevice;
+
+        public bool IsUsbDeviceConnected(string pid, string vid)
+        {
+            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBControllerDevice"))
+            {
+                using (var collection = searcher.Get())
+                {
+                    foreach (var device in collection)
+                    {
+                        var usbDevice = Convert.ToString(device);
+
+                        if (usbDevice.Contains(pid) && usbDevice.Contains(vid))
+                            return true;
+                    }
+                }
+            }
+            return false;
+        }
 
         private void deviceinit()
         {
@@ -341,16 +358,16 @@ namespace JRunner
         }
         private void createdirectories()
         {
-            if (!System.IO.Directory.Exists(System.IO.Path.Combine(variables.pathforit, "output")))
+            if (!Directory.Exists(Path.Combine(variables.pathforit, "output")))
             {
                 try
                 {
-                    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(variables.pathforit, "output"));
+                    Directory.CreateDirectory(Path.Combine(variables.pathforit, "output"));
                 }
-                catch (System.IO.DirectoryNotFoundException)
+                catch (DirectoryNotFoundException)
                 {
                     variables.pathforit = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(variables.pathforit, "output"));
+                    Directory.CreateDirectory(Path.Combine(variables.pathforit, "output"));
                 }
             }
             if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
@@ -372,9 +389,9 @@ namespace JRunner
             Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("ddd MM/dd/yyyy H:mm:ss"));
             if (variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
             else Console.WriteLine("Version: {0}", variables.version);
-            if (variables.updatechecksuccess)
+            if (Upd.checkSuccess)
             {
-                if (variables.uptodate == true)
+                if (Upd.upToDate == true)
                 {
                     updateAvailableToolStripMenuItem.Visible = false;
                     Console.WriteLine("Status: Up to date");
@@ -4385,24 +4402,6 @@ namespace JRunner
         private void updateAvailableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Restart();
-        }
-
-        public bool IsUsbDeviceConnected(string pid, string vid)
-        {
-            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBControllerDevice"))
-            {
-                using (var collection = searcher.Get())
-                {
-                    foreach (var device in collection)
-                    {
-                        var usbDevice = Convert.ToString(device);
-
-                        if (usbDevice.Contains(pid) && usbDevice.Contains(vid))
-                            return true;
-                    }
-                }
-            }
-            return false;
         }
 
         private void mTXUSBFirmwareUtilityToolStripMenuItem_Click(object sender, EventArgs e)

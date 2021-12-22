@@ -77,8 +77,6 @@ namespace JRunner
         public static string version = "3.1.0 Beta";
         public static string build = "3100." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
         public static int revision = 12;
-        public static bool updatechecksuccess = true; // Default true
-        public static bool uptodate = true; // Default true
         public static bool iswriting;
         public static bool isscanningip = false;
         public static JR_MODE current_mode = JR_MODE.MODEJR;

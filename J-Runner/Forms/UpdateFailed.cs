@@ -20,7 +20,7 @@ namespace JRunner
 
         private void UpdateFailed_Load(object sender, EventArgs e)
         {
-            FailedReason.Text = Program.failedReason;
+            FailedReason.Text = Upd.failedReason;
         }
 
         private void WizardCancelled(object sender, EventArgs e)
