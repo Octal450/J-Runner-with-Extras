@@ -65,6 +65,8 @@ namespace JRunner
         private bool rpcReady = false;
         private string rpcDevice = "No Device";
         private string rpcStatus = "No Device";
+        // Splash screen
+        Splash splashobj = new Splash(); 
         #endregion
 
         #region Initialization
@@ -72,6 +74,7 @@ namespace JRunner
         public MainForm()
         {
             InitializeComponent();
+            splashobj.Show();
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             pnlInfo.Controls.Add(nandInfo);
             listInfo.Add(nandInfo);
@@ -88,7 +91,6 @@ namespace JRunner
         {
             mainForm = this;
             versionToolStripMenuItem.Text = "v" + variables.version;
-
             // Make sure we're on top
             bool top = TopMost;
             TopMost = true; // Bring to front
@@ -133,6 +135,8 @@ namespace JRunner
             new Thread(on_load).Start();
 
             deviceinit();
+
+            splashobj.Hide();
 
             if (variables.discordrpc)
             {
