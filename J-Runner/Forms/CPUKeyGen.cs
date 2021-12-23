@@ -128,29 +128,6 @@ namespace JRunner.Forms
             return ecd;
         }
 
-        private void txtGenKey_TextChanged(object sender, EventArgs e)
-        {
-            if(txtGenKey.Text == "Fun Keys")
-            {
-                btnFun.Show();
-            } else
-            {
-                btnFun.Hide();
-            }
-        }
-        Forms.FunKeys fun;
-        private void btnFun_Click(object sender, EventArgs e)
-        {
-            if (checkOpenedForms("FunKeys"))
-            {
-                fun.Activate();
-            }
-            else
-            {
-                fun = new Forms.FunKeys();
-                fun.Show();
-            }
-        }
         public bool checkOpenedForms(string formName)
         {
             FormCollection openedForms = Application.OpenForms;

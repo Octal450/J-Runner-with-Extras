@@ -36,7 +36,6 @@ namespace JRunner
         public static MainForm mainForm;
         private IDeviceNotifier devNotifier;
         public int device = 0;
-        public int devicegroup = 0;
         IP myIP = new IP();
         public static Nand.PrivateN nand = new Nand.PrivateN();
         public xFlasher xflasher = new xFlasher();
@@ -250,6 +249,13 @@ namespace JRunner
                     device = 3;
                     xflasher.ready = true; // Skip init
                 }
+                else if (IsUsbDeviceConnected("8334", "11D4")) // JR-Programmer Bootloader
+                {
+                    nTools.setImage(global::JRunner.Properties.Resources.usb);
+                    jRPToolStripMenuItem.Visible = false;
+                    jRPBLToolStripMenuItem.Visible = true;
+                    device = -1;
+                }
                 else
                 {
                     LibUsbDotNet.Main.UsbRegDeviceList mDevList = LibUsbDotNet.UsbDevice.AllDevices;
@@ -267,16 +273,12 @@ namespace JRunner
                             }
                             device = 2;
                         }
-                        else if (devic.Pid == 0x8338 && devic.Vid == 0x11d4) // JR-Programmer
+                        else if (devic.Pid == 0x8338 && devic.Vid == 0x11D4) // JR-Programmer
                         {
                             nTools.setImage(global::JRunner.Properties.Resources.JRP);
+                            jRPBLToolStripMenuItem.Visible = false;
                             jRPToolStripMenuItem.Visible = true;
                             device = 1;
-                        }
-                        else if (devic.Pid == 0x8334 && devic.Vid == 0x11d4) // JR-Programmer Bootloader
-                        {
-                            nTools.setImage(global::JRunner.Properties.Resources.usb);
-                            device = -1;
                         }
                     }
                 }
@@ -288,20 +290,7 @@ namespace JRunner
                         nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = 4;
-                        devicegroup = 1;
                     }
-                    //else if (IsUsbDeviceConnected("05E3", "0751")) // xFlasher eMMC/USB Tool
-                    //{
-                    //    if (variables.devicegroup)
-                    //    {
-                    //        nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
-                    //        xFlasherToolStripMenuItem.Visible = true;
-                    //    }
-                    //    else nTools.setImage(global::JRunner.Properties.Resources.usbtool);
-                    //    device = 4;
-                    //    devicegroup = 2;
-                    //}
-                    // Detect JRP/NAND-X/X360USB Pro
                 }
                 
                 //if (device == 2) // Must check this after everything else
@@ -2655,7 +2644,7 @@ namespace JRunner
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "HEX files (*.hex)|*.hex|All files (*.*)|*.*";
-            openFileDialog1.Title = "Select Nand File";
+            openFileDialog1.Title = "Select HEX File";
             //openFileDialog1.InitialDirectory = variables.currentdir;
             openFileDialog1.RestoreDirectory = false;
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -3427,9 +3416,7 @@ namespace JRunner
                 }
                 else if (device == 4)
                 {
-                    if (devicegroup == 1) nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
-                    else if (variables.devicegroup) nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
-                    else nTools.setImage(global::JRunner.Properties.Resources.usbtool);
+                    nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
                 }
                 else
                 {
@@ -3456,7 +3443,7 @@ namespace JRunner
                 {
                     if (e.mDevice.IdVendor == 0x0403 && e.mDevice.IdProduct == 0x6010) // xFlasher SPI
                     {
-                        nTools.setImage(global::JRunner.Properties.Resources.xflash_spi);
+                        if (!DemoN.DemonDetected) nTools.setImage(global::JRunner.Properties.Resources.xflash_spi);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = 3;
                         xflasher.initDevice();
@@ -3476,44 +3463,25 @@ namespace JRunner
                         }
                         device = 2;
                     }
-                    else if (e.mDevice.IdVendor == 0x11d4 && e.mDevice.IdProduct == 0x8338) // JR-Programmer
+                    else if (e.mDevice.IdVendor == 0x11D4 && e.mDevice.IdProduct == 0x8338) // JR-Programmer
                     {
-                        if (!DemoN.DemonDetected)
-                        {
-                            nTools.setImage(global::JRunner.Properties.Resources.JRP);
-                        }
+                        if (!DemoN.DemonDetected) nTools.setImage(global::JRunner.Properties.Resources.JRP);
+                        jRPBLToolStripMenuItem.Visible = false;
                         jRPToolStripMenuItem.Visible = true;
                         device = 1;
                     }
+                    else if (e.mDevice.IdVendor == 0x11D4 && e.mDevice.IdProduct == 0x8334) // JR-Programmer Bootloader
+                    {
+                        if (!DemoN.DemonDetected) nTools.setImage(global::JRunner.Properties.Resources.usb);
+                        jRPToolStripMenuItem.Visible = false;
+                        jRPBLToolStripMenuItem.Visible = true;
+                        device = -1;
+                    }
                     else if ((e.mDevice.IdVendor == 0xAAAA && e.mDevice.IdProduct == 0x8816) || (e.mDevice.IdVendor == 0x05E3 && e.mDevice.IdProduct == 0x0751)) // xFlasher eMMC
                     {
-                        nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
+                        if (!DemoN.DemonDetected) nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = 4;
-                        devicegroup = 1;
-                    }
-                    else if (e.mDevice.IdVendor == 0x05E3 && e.mDevice.IdProduct == 0x0751) // xFlasher eMMC/USB Tool
-                    {
-                        if (variables.devicegroup)
-                        {
-                            nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
-                            xFlasherToolStripMenuItem.Visible = true;
-                        }
-                        else
-                        {
-                            nTools.setImage(global::JRunner.Properties.Resources.usbtool);
-                            xFlasherToolStripMenuItem.Visible = false;
-                        }
-                        device = 4;
-                        devicegroup = 2;
-                    }
-                    else if (e.mDevice.IdVendor == 0x11d4 && e.mDevice.IdProduct == 0x8334) // JR-Programmer Bootloader
-                    {
-                        if (!DemoN.DemonDetected)
-                        {
-                            nTools.setImage(global::JRunner.Properties.Resources.usb);
-                        }
-                        device = -1;
                     }
                 }
                 else if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceRemoveComplete)
@@ -3522,6 +3490,7 @@ namespace JRunner
                     {
                         HID.BootloaderDetected = false;
                         if (!DemoN.DemonDetected) nTools.setImage(null);
+                        jRPBLToolStripMenuItem.Visible = false;
                         device = 0;
                     }
                     else if (e.mDevice.IdVendor == 0xFFFF && e.mDevice.IdProduct == 0x004)
@@ -3592,7 +3561,7 @@ namespace JRunner
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "(*.bin)|*.bin|All files (*.*)|*.*";
-            openFileDialog1.Title = "Select HEX File";
+            openFileDialog1.Title = "Select Firmware File";
             openFileDialog1.RestoreDirectory = false;
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -3819,9 +3788,6 @@ namespace JRunner
                         case "LogText":
                             x.write(name, ColorTranslator.ToHtml(variables.logtext));
                             break;
-                        case "DeviceGroup":
-                            x.write(name, variables.devicegroup.ToString());
-                            break;
                         case "MinimizeToTray":
                             x.write(name, variables.minimizetotray.ToString());
                             break;
@@ -4024,11 +3990,6 @@ namespace JRunner
                                 }
                                 catch { }
                             }
-                            break;
-                        case "DeviceGroup":
-                            bvalue = false;
-                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
-                            variables.devicegroup = bvalue;
                             break;
                         case "MinimizeToTray":
                             bvalue = false;
@@ -4516,12 +4477,6 @@ namespace JRunner
                 if (progress >= 0) progressBar.BeginInvoke((Action)(() => progressBar.Value = progress)); // Just in case
                 else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
             }
-        }
-
-        private void xboxOneHDDToolToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.XB1HDD x = new Forms.XB1HDD();
-            x.ShowDialog();
         }
 
         private void flashOpenXeniumToolStripMenuItem_Click(object sender, EventArgs e)

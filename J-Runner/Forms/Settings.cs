@@ -48,7 +48,6 @@ namespace JRunner.Forms
             timingOnKeypressEnable.Checked = variables.timingonkeypress;
             minimizeToSystemTray.Checked = variables.minimizetotray;
             almovebut.Checked = !variables.allmove;
-            if (variables.devicegroup) buttonDeviceGroup.Text = "Device Group 2";
             //if (MainForm.mainForm.device == 4 && variables.boardtype == null) buttonDeviceGroup.Visible = true;
             if (variables.soundcompare != "") chksuccom.Checked = true;
             if (variables.sounderror != "") chkerror.Checked = true;
@@ -245,13 +244,6 @@ namespace JRunner.Forms
                 variables.logtext = textDlg.Color;
                 MainForm.mainForm.updateLogColor();
             }
-        }
-
-        private void buttonDeviceGroup_Click(object sender, EventArgs e)
-        {
-            variables.devicegroup = !variables.devicegroup;
-            if (variables.devicegroup) buttonDeviceGroup.Text = "Device Group 2";
-            else buttonDeviceGroup.Text = "Device Group 1";
         }
 
         private void minimizeToSystemTray_CheckedChanged(object sender, EventArgs e)

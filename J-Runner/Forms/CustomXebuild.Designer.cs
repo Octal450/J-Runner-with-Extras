@@ -66,7 +66,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Custom Command";
+            this.Text = "XeBuild Command";
             this.ResumeLayout(false);
             this.PerformLayout();
 

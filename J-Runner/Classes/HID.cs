@@ -173,12 +173,12 @@ namespace JRunner
             command[4] = 0x08;
             command[6] = 0xE0;
             HidReport re = new HidReport(8, new HidDeviceData(command, HidDeviceData.ReadStatus.Success));
-            if (!_selectedDevice.WriteReport(re, 5000)) Console.WriteLine("Failed_1");
+            if (!_selectedDevice.WriteReport(re, 5000)) Console.WriteLine("Erase Failed");
             Thread.Sleep(0x250);
             command[4] = 0x40;
             command[6] = 0x80;
             re = new HidReport(8, new HidDeviceData(command, HidDeviceData.ReadStatus.Success));
-            if (!_selectedDevice.WriteReport(re, 5000)) Console.WriteLine("Failed_1");
+            if (!_selectedDevice.WriteReport(re, 5000)) Console.WriteLine("Erase Failed");
         }
         private static bool write(ref ProgressBar pb)
         {
@@ -219,7 +219,7 @@ namespace JRunner
                         re = new HidReport(0x3F, new HidDeviceData(send, HidDeviceData.ReadStatus.Success));
                         if (!_selectedDevice.WriteReport(re, 5000))
                         {
-                            Console.Write("x");
+                            Console.Write(".");
                             reTRY++;
                             if (variables.debugme) Console.WriteLine(" Retry: " + reTRY);
 

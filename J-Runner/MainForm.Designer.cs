@@ -85,7 +85,6 @@ namespace JRunner
             this.sonus360EditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.rescanDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTXUSBFirmwareUtilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.timingAssistantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,7 +96,6 @@ namespace JRunner
             this.CustomXeBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeFusionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.xboxOneHDDToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripHexEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.dEVGLCPUKeyToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
@@ -139,6 +137,8 @@ namespace JRunner
             this.xFlasherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installDriversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOpenXeniumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -601,7 +601,6 @@ namespace JRunner
             this.sonus360EditorToolStripMenuItem,
             this.toolStripMenuItem3,
             this.rescanDevicesToolStripMenuItem,
-            this.updateToolStripMenuItem,
             this.mTXUSBFirmwareUtilityToolStripMenuItem,
             this.toolStripMenuItem8,
             this.timingAssistantToolStripMenuItem,
@@ -643,13 +642,6 @@ namespace JRunner
             this.rescanDevicesToolStripMenuItem.Text = "Re-Scan Devices";
             this.rescanDevicesToolStripMenuItem.Click += new System.EventHandler(this.rescanDevicesToolStripMenuItem_Click);
             // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.updateToolStripMenuItem.Text = "Update JR-P Firmware…";
-            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
-            // 
             // mTXUSBFirmwareUtilityToolStripMenuItem
             // 
             this.mTXUSBFirmwareUtilityToolStripMenuItem.Name = "mTXUSBFirmwareUtilityToolStripMenuItem";
@@ -690,7 +682,6 @@ namespace JRunner
             this.CustomXeBuildMenuItem,
             this.writeFusionToolStripMenuItem,
             this.toolStripMenuItem5,
-            this.xboxOneHDDToolToolStripMenuItem,
             this.toolStripHexEditor,
             this.dEVGLCPUKeyToolsToolStripMenuItem,
             this.toolStripSeparator15,
@@ -721,27 +712,20 @@ namespace JRunner
             // 
             this.CustomXeBuildMenuItem.Name = "CustomXeBuildMenuItem";
             this.CustomXeBuildMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.CustomXeBuildMenuItem.Text = "Custom XeBuild Command…";
+            this.CustomXeBuildMenuItem.Text = "XeBuild Command…";
             this.CustomXeBuildMenuItem.Click += new System.EventHandler(this.CustomXeBuildMenuItem_Click);
             // 
             // writeFusionToolStripMenuItem
             // 
             this.writeFusionToolStripMenuItem.Name = "writeFusionToolStripMenuItem";
             this.writeFusionToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.writeFusionToolStripMenuItem.Text = "DemoN/Fusion Write";
+            this.writeFusionToolStripMenuItem.Text = "Special/Fusion Write";
             this.writeFusionToolStripMenuItem.Click += new System.EventHandler(this.writeFusionToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(237, 6);
-            // 
-            // xboxOneHDDToolToolStripMenuItem
-            // 
-            this.xboxOneHDDToolToolStripMenuItem.Name = "xboxOneHDDToolToolStripMenuItem";
-            this.xboxOneHDDToolToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.xboxOneHDDToolToolStripMenuItem.Text = "Xbox One HDD Tool";
-            this.xboxOneHDDToolToolStripMenuItem.Click += new System.EventHandler(this.xboxOneHDDToolToolStripMenuItem_Click);
             // 
             // toolStripHexEditor
             // 
@@ -786,40 +770,40 @@ namespace JRunner
             this.toolStripMenuItem2,
             this.logPostToolStripMenuItem});
             this.jRPToolStripMenuItem.Name = "jRPToolStripMenuItem";
-            this.jRPToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.jRPToolStripMenuItem.Text = "JRP";
+            this.jRPToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.jRPToolStripMenuItem.Text = "JR-P";
             this.jRPToolStripMenuItem.Visible = false;
             // 
             // powerOnToolStripMenuItem
             // 
             this.powerOnToolStripMenuItem.Name = "powerOnToolStripMenuItem";
-            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.powerOnToolStripMenuItem.Text = "Power On";
             this.powerOnToolStripMenuItem.Click += new System.EventHandler(this.powerOnToolStripMenuItem_Click);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.shutdownToolStripMenuItem.Text = "Shut Down";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // bootloaderModeToolStripMenuItem
             // 
             this.bootloaderModeToolStripMenuItem.Name = "bootloaderModeToolStripMenuItem";
-            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.bootloaderModeToolStripMenuItem.Text = "Bootloader Mode";
             this.bootloaderModeToolStripMenuItem.Click += new System.EventHandler(this.bootloaderModeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(163, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // logPostToolStripMenuItem
             // 
             this.logPostToolStripMenuItem.Name = "logPostToolStripMenuItem";
-            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logPostToolStripMenuItem.Text = "Monitor POST";
             this.logPostToolStripMenuItem.Click += new System.EventHandler(this.logPostToolStripMenuItem_Click);
             // 
@@ -915,6 +899,7 @@ namespace JRunner
             this.advancedToolStripMenuItem,
             this.xFlasherToolStripMenuItem,
             this.jRPToolStripMenuItem,
+            this.jRPBLToolStripMenuItem,
             this.demoNToolStripMenuItem,
             this.versionToolStripMenuItem,
             this.updateAvailableToolStripMenuItem});
@@ -1078,6 +1063,22 @@ namespace JRunner
             this.flashOpenXeniumToolStripMenuItem.Text = "Program OpenXenium";
             this.flashOpenXeniumToolStripMenuItem.Click += new System.EventHandler(this.flashOpenXeniumToolStripMenuItem_Click);
             // 
+            // jRPBLToolStripMenuItem
+            // 
+            this.jRPBLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateToolStripMenuItem});
+            this.jRPBLToolStripMenuItem.Name = "jRPBLToolStripMenuItem";
+            this.jRPBLToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.jRPBLToolStripMenuItem.Text = "JR-P";
+            this.jRPBLToolStripMenuItem.Visible = false;
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.updateToolStripMenuItem.Text = "Update JR-P Firmware…";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
+            // 
             // versionToolStripMenuItem
             // 
             this.versionToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -1190,7 +1191,6 @@ namespace JRunner
         private ToolStripMenuItem advancedToolStripMenuItem;
         private ToolStripMenuItem customNandProCommandToolStripMenuItem;
         private ToolStripMenuItem CustomXeBuildMenuItem;
-        private ToolStripMenuItem corona4GBToolStripMenuItem;
         private ToolStripMenuItem writeFusionToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator15;
         private ToolStripMenuItem jRPToolStripMenuItem;
@@ -1233,10 +1233,8 @@ namespace JRunner
         private ToolStripMenuItem timingAssistantToolStripMenuItem;
         private ToolStripMenuItem installDriversToolStripMenuItem;
         private ToolStripMenuItem rescanDevicesToolStripMenuItem;
-        private ToolStripMenuItem updateToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem8;
         private ToolStripSeparator toolStripMenuItem5;
-        private ToolStripMenuItem xboxOneHDDToolToolStripMenuItem;
         private ToolStripMenuItem toolStripHexEditor;
         private ToolStripMenuItem nandToolStripMenuItem;
         private ToolStripMenuItem extractFilesToolStripMenuItem;
@@ -1247,5 +1245,8 @@ namespace JRunner
         private ToolStripMenuItem patchNandToolStripMenuItem;
         private ToolStripMenuItem changeLDVToolStripMenuItem;
         private ToolStripMenuItem mTXUSBFirmwareUtilityToolStripMenuItem;
+        private ToolStripMenuItem corona4GBToolStripMenuItem;
+        private ToolStripMenuItem jRPBLToolStripMenuItem;
+        private ToolStripMenuItem updateToolStripMenuItem;
     }
 }

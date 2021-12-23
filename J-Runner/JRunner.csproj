@@ -223,12 +223,6 @@
     <Compile Include="Forms\CPUKeyGen.Designer.cs">
       <DependentUpon>CPUKeyGen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FunKeys.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FunKeys.Designer.cs">
-      <DependentUpon>FunKeys.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\KeyvaultDecrypter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,12 +264,6 @@
     </Compile>
     <Compile Include="Forms\UpdateFailed.Designer.cs">
       <DependentUpon>UpdateFailed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\XB1HDD.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\XB1HDD.Designer.cs">
-      <DependentUpon>XB1HDD.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\xFlasherNandSel.cs">
       <SubType>Form</SubType>
@@ -752,7 +740,6 @@
     <Compile Include="WinUSB\FileIOApi.cs" />
     <Compile Include="WinUSB\WinUsbDevice.cs" />
     <Compile Include="WinUSB\WinUsbDeviceApi.cs" />
-    <Compile Include="XB1\NandOne.cs" />
     <EmbeddedResource Include="CPUkeydb\EditMobo.resx">
       <DependentUpon>EditMobo.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -793,9 +780,6 @@
     <EmbeddedResource Include="Forms\CPUKeyGen.resx">
       <DependentUpon>CPUKeyGen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FunKeys.resx">
-      <DependentUpon>FunKeys.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\KeyvaultDecrypter.resx">
       <DependentUpon>KeyvaultDecrypter.cs</DependentUpon>
     </EmbeddedResource>
@@ -816,9 +800,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UpdateFailed.resx">
       <DependentUpon>UpdateFailed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\XB1HDD.resx">
-      <DependentUpon>XB1HDD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\xFlasherNandSel.resx">
       <DependentUpon>xFlasherNandSel.cs</DependentUpon>

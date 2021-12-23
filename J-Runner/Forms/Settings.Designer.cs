@@ -62,6 +62,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkIpDefault = new System.Windows.Forms.CheckBox();
             this.AutoExtractcheckBox = new System.Windows.Forms.CheckBox();
             this.almovebut = new System.Windows.Forms.CheckBox();
             this.modderbut = new System.Windows.Forms.CheckBox();
@@ -76,12 +77,10 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.logDefault = new System.Windows.Forms.Button();
-            this.buttonDeviceGroup = new System.Windows.Forms.Button();
             this.minimizeToSystemTray = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SlimPreferSrgh = new System.Windows.Forms.RadioButton();
             this.SlimPreferRgh12 = new System.Windows.Forms.RadioButton();
-            this.chkIpDefault = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -376,6 +375,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "IP Settings";
             // 
+            // chkIpDefault
+            // 
+            this.chkIpDefault.AutoSize = true;
+            this.chkIpDefault.Location = new System.Drawing.Point(73, 27);
+            this.chkIpDefault.Name = "chkIpDefault";
+            this.chkIpDefault.Size = new System.Drawing.Size(15, 14);
+            this.chkIpDefault.TabIndex = 30;
+            this.chkIpDefault.UseVisualStyleBackColor = true;
+            this.chkIpDefault.CheckedChanged += new System.EventHandler(this.chkIpDefault_CheckedChanged);
+            // 
             // AutoExtractcheckBox
             // 
             this.AutoExtractcheckBox.AutoSize = true;
@@ -523,17 +532,6 @@
             this.logDefault.UseVisualStyleBackColor = true;
             this.logDefault.Click += new System.EventHandler(this.logDefault_Click);
             // 
-            // buttonDeviceGroup
-            // 
-            this.buttonDeviceGroup.Location = new System.Drawing.Point(489, 415);
-            this.buttonDeviceGroup.Name = "buttonDeviceGroup";
-            this.buttonDeviceGroup.Size = new System.Drawing.Size(103, 23);
-            this.buttonDeviceGroup.TabIndex = 47;
-            this.buttonDeviceGroup.Text = "Device Group 1";
-            this.buttonDeviceGroup.UseVisualStyleBackColor = true;
-            this.buttonDeviceGroup.Visible = false;
-            this.buttonDeviceGroup.Click += new System.EventHandler(this.buttonDeviceGroup_Click);
-            // 
             // minimizeToSystemTray
             // 
             this.minimizeToSystemTray.AutoSize = true;
@@ -579,16 +577,6 @@
             this.SlimPreferRgh12.Text = "RGH1.2 (Best)";
             this.SlimPreferRgh12.UseVisualStyleBackColor = true;
             // 
-            // chkIpDefault
-            // 
-            this.chkIpDefault.AutoSize = true;
-            this.chkIpDefault.Location = new System.Drawing.Point(73, 27);
-            this.chkIpDefault.Name = "chkIpDefault";
-            this.chkIpDefault.Size = new System.Drawing.Size(15, 14);
-            this.chkIpDefault.TabIndex = 30;
-            this.chkIpDefault.UseVisualStyleBackColor = true;
-            this.chkIpDefault.CheckedChanged += new System.EventHandler(this.chkIpDefault_CheckedChanged);
-            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -597,7 +585,6 @@
             this.ControlBox = false;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.minimizeToSystemTray);
-            this.Controls.Add(this.buttonDeviceGroup);
             this.Controls.Add(this.logDefault);
             this.Controls.Add(this.logTextCustom);
             this.Controls.Add(this.logTextBlack);
@@ -688,7 +675,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button logDefault;
-        private System.Windows.Forms.Button buttonDeviceGroup;
         private System.Windows.Forms.CheckBox chksuccom;
         private System.Windows.Forms.CheckBox chksuccess;
         private System.Windows.Forms.CheckBox chkerror;
