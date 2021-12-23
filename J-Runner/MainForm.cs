@@ -770,6 +770,10 @@ namespace JRunner
 
         void nandcustom(string function, string filename, int size, int startblock, int length)
         {
+            if (String.IsNullOrWhiteSpace(filename) && function != "Erase") return;
+            if (startblock < 0) startblock = 0;
+            if (length < 0) length = 0;
+
             Nandsize sizex = Nandsize.S0;
             if (size == 16) sizex = Nandsize.S16;
             else if (size == 64) sizex = Nandsize.S64;
@@ -783,7 +787,7 @@ namespace JRunner
                 {
                     if (device == 3)
                     {
-                        xflasher.readNand(size, filename);
+                        xflasher.readNand(size, filename, startblock, length);
                     }
                     else if (!usingVNand)
                     {
@@ -804,7 +808,7 @@ namespace JRunner
                 {
                     if (device == 3)
                     {
-                        xflasher.writeNand(size, "erase");
+                        xflasher.writeNand(size, "erase", 0, startblock, length);
                     }
                     else if (!usingVNand)
                     {
@@ -831,7 +835,7 @@ namespace JRunner
                         }
                         else
                         {
-                            xflasher.writeNand(size, filename, 0, true);
+                            xflasher.writeNand(size, filename, 0, startblock, length, true);
                         }
                     }
                     else if (!usingVNand)
@@ -924,7 +928,7 @@ namespace JRunner
             NandProArg cnaform = new NandProArg();
             cnaform.RunClick += cnaform_RunClick;
             cnaform.Show();
-            cnaform.Location = new Point(Location.X + (Width - cnaform.Width) / 2, Location.Y + 70);
+            cnaform.Location = new Point(Location.X + (Width - cnaform.Width) / 2, Location.Y + 105);
         }
         public string FindTextBetween(string text, string left, string right)
         {
@@ -2358,7 +2362,7 @@ namespace JRunner
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc|HEX files (*.hex)|*.hex|All files (*.*)|*.*";
-            openFileDialog1.Title = "Select a File";
+            openFileDialog1.Title = "Select Nand File";
             if (variables.FindFolder != "")
             {
                 openFileDialog1.InitialDirectory = variables.FindFolder;
@@ -2651,7 +2655,7 @@ namespace JRunner
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "HEX files (*.hex)|*.hex|All files (*.*)|*.*";
-            openFileDialog1.Title = "Select a File";
+            openFileDialog1.Title = "Select Nand File";
             //openFileDialog1.InitialDirectory = variables.currentdir;
             openFileDialog1.RestoreDirectory = false;
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -2789,20 +2793,6 @@ namespace JRunner
             }
         }
 
-        private void debugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (variables.debugme)
-            {
-                Console.WriteLine("Debug Mode off");
-                variables.debugme = false;
-            }
-            else
-            {
-                Console.WriteLine("Debug Mode on");
-                variables.debugme = true;
-            }
-        }
-
         private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             nandx.PowerDown();
@@ -2862,9 +2852,9 @@ namespace JRunner
             {
                 if (variables.modder)
                 {
-                    JRunner.Forms.custform CFrom = new JRunner.Forms.custform();
+                    custform CFrom = new JRunner.Forms.custform();
 
-                    var diaresult = CFrom.ShowDialog();
+                    CFrom.ShowDialog();
                 }
                 getconsoletype(1);
             }
@@ -3602,7 +3592,7 @@ namespace JRunner
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "(*.bin)|*.bin|All files (*.*)|*.*";
-            openFileDialog1.Title = "Select a File";
+            openFileDialog1.Title = "Select HEX File";
             openFileDialog1.RestoreDirectory = false;
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -4523,7 +4513,8 @@ namespace JRunner
             if (xflasher.inUse)
             {
                 txtBlocks.Text = str;
-                progressBar.BeginInvoke((Action)(() => progressBar.Value = progress));
+                if (progress >= 0) progressBar.BeginInvoke((Action)(() => progressBar.Value = progress)); // Just in case
+                else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
             }
         }
 

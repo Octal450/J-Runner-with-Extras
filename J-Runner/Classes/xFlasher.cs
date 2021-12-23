@@ -15,7 +15,7 @@ namespace JRunner
     public class xFlasher
     {
         [DllImport(@"common\\xflasher\\FTDI2SPI.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        public static extern int spi(int mode, int size, string file);
+        public static extern int spi(int mode, int size, string file, int startblock = 0, int length = 0);
 
         [DllImport(@"common\\xflasher\\FTDI2SPI.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern int spiGetBlocks();
@@ -106,7 +106,7 @@ namespace JRunner
             inUseCount++;
 
             if (inUseCount > 59) xFlasherTimeString = TimeSpan.FromSeconds(inUseCount).ToString(@"m\:ss") + " min(s)";
-            else if (inUseCount > 0) xFlasherTimeString = inUseCount + " sec(s)";
+            else if (inUseCount >= 0) xFlasherTimeString = inUseCount + " sec(s)";
         }
 
         public void abort()
@@ -178,10 +178,6 @@ namespace JRunner
                     Console.WriteLine("xFlasher: Console Not Found");
                     if (auto) Console.WriteLine("xFlasher: Can Not Continue");
                     Console.WriteLine("");
-
-                    SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                    if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                    error.Play();
                     return 1;
                 }
 
@@ -210,38 +206,24 @@ namespace JRunner
                 else Console.WriteLine("Unrecongized Flash Config");
 
                 Console.WriteLine("");
-                if (!auto)
-                {
-                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                    success.Play();
-                }
                 return 0;
             }
             else if (result == -2)
             {
                 Console.WriteLine("xFlasher: Device Not Initialized");
                 Console.WriteLine("");
-
-                SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                error.Play();
                 return 1;
             }
             else
             {
                 Console.WriteLine("xFlasher: Unknown Error");
                 Console.WriteLine("");
-
-                SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                error.Play();
                 return 1;
             }
         }
 
         // Read Nand
-        public void readNandAuto(int size, int iterations, bool skipboardcheck = false)
+        public void readNandAuto(int size, int iterations, bool skipboardcheck = false) // Automated read, do not use for any special/custom read
         {
             if (!osCheck()) return;
 
@@ -335,7 +317,7 @@ namespace JRunner
 
                         Thread blocksThread = new Thread(() =>
                         {
-                            getBlocks(size * 64);
+                            getBlocks(0, size * 64);
                         });
 
                         inUse = true;
@@ -369,50 +351,30 @@ namespace JRunner
                         {
                             Console.WriteLine("xFlasher: Device Not Initialized");
                             Console.WriteLine("");
-                    
-                            SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                            if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                            error.Play();
                             return;
                         }
                         else if (result == -3)
                         {
                             Console.WriteLine("xFlasher: Console Not Found");
                             Console.WriteLine("");
-                    
-                            SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                            if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                            error.Play();
                             return;
                         }
                         else if (result == -4)
                         {
                             Console.WriteLine("xFlasher: Unknown Nand");
                             Console.WriteLine("");
-
-                            SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                            if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                            error.Play();
                             return;
                         }
                         else if (result == -11)
                         {
                             Console.WriteLine("xFlasher: Couldn't Open File");
                             Console.WriteLine("");
-
-                            SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                            if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                            error.Play();
                             return;
                         }
                         else
                         {
                             Console.WriteLine("xFlasher: Unknown Error");
                             Console.WriteLine("");
-
-                            SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                            if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                            error.Play();
                             return;
                         }
 
@@ -434,17 +396,19 @@ namespace JRunner
             }
         }
 
-        public void readNand(int size, string filename)
+        public void readNand(int size, string filename, int startblock = 0, int length = 0)
         {
             if (!osCheck()) return;
 
             if (waiting) return;
 
+            if (String.IsNullOrWhiteSpace(filename)) return;
+
             if (inUse)
             {
                 return;
             }
-
+            
             try
             {
                 Thread ftdiThread = new Thread(() => {
@@ -480,13 +444,15 @@ namespace JRunner
 
                     Thread blocksThread = new Thread(() =>
                     {
-                        getBlocks(size * 64);
+                        int len = size * 64;
+                        if (length > 0) len = length;
+                        getBlocks(startblock, len);
                     });
 
                     inUse = true;
                     blocksThread.Start();
 
-                    int result = spi(1, size, filename);
+                    int result = spi(1, size, filename, startblock, length);
 
                     inUseTimer.Enabled = false;
                     inUseCount = 0;
@@ -513,50 +479,30 @@ namespace JRunner
                     {
                         Console.WriteLine("xFlasher: Device Not Initialized");
                         Console.WriteLine("");
-                    
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                     else if (result == -3)
                     {
                         Console.WriteLine("xFlasher: Console Not Found");
                         Console.WriteLine("");
-                    
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                     else if (result == -4)
                     {
                         Console.WriteLine("xFlasher: Unknown Nand");
                         Console.WriteLine("");
-
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                     else if (result == -11)
                     {
                         Console.WriteLine("xFlasher: Couldn't Open File");
                         Console.WriteLine("");
-
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                     else
                     {
                         Console.WriteLine("xFlasher: Unknown Error");
                         Console.WriteLine("");
-
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                 });
@@ -648,7 +594,7 @@ namespace JRunner
             }
         }
 
-        public void writeNand(int size, string filename, int mode = 0, bool skipboardcheck = false)
+        public void writeNand(int size, string filename, int mode = 0, int startblock = 0, int length = 0, bool skipboardcheck = false)
         {
             if (!osCheck()) return;
 
@@ -748,8 +694,13 @@ namespace JRunner
 
                     Thread blocksThread = new Thread(() =>
                     {
-                        if (mode >= 1) getBlocks(80);
-                        else getBlocks(size * 64);
+                        if (mode >= 1) getBlocks(0, 80);
+                        else
+                        {
+                            int len = size * 64;
+                            if (length > 0) len = length;
+                            getBlocks(startblock, len);
+                        }
                     });
 
                     inUse = true;
@@ -758,7 +709,7 @@ namespace JRunner
                     int result;
                     if (filename == "erase")
                     {
-                        result = spi(5, size, "erase");
+                        result = spi(5, size, "erase", startblock, length);
                     }
                     else if (mode == 1)
                     {
@@ -766,7 +717,7 @@ namespace JRunner
                     }
                     else
                     {
-                        result = spi(3, size, filename);
+                        result = spi(3, size, filename, startblock, length);
                     }
 
                     inUseTimer.Enabled = false;
@@ -801,50 +752,30 @@ namespace JRunner
                     {
                         Console.WriteLine("xFlasher: Device Not Initialized");
                         Console.WriteLine("");
-
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                     else if (result == -3)
                     {
                         Console.WriteLine("xFlasher: Console Not Found");
                         Console.WriteLine("");
-
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                     else if (result == -4)
                     {
                         Console.WriteLine("xFlasher: Unknown Nand");
                         Console.WriteLine("");
-
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                     else if (result == -11)
                     {
                         Console.WriteLine("xFlasher: Couldn't Open File");
                         Console.WriteLine("");
-
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                     else
                     {
                         Console.WriteLine("xFlasher: Unknown Error");
                         Console.WriteLine("");
-
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                         return;
                     }
                 });
@@ -858,7 +789,7 @@ namespace JRunner
             }
         }
 
-        private void getBlocks(int size)
+        private void getBlocks(int start, int length)
         {
             int blocks;
             while (inUse)
@@ -866,11 +797,15 @@ namespace JRunner
                 blocks = spiGetBlocks();
                 if (blocks >= 0)
                 {
-                    if (!inUseTimer.Enabled) inUseTimer.Enabled = true;
-                    MainForm.mainForm.xFlasherBlocksUpdate(blocks.ToString("X"), (blocks * 100) / size);
+                    if (!inUseTimer.Enabled)
+                    {
+                        xFlasherTimeString = "< 1 sec(s)"; // If it doesn't update at least once, time was less than 1 second
+                        inUseTimer.Enabled = true;
+                    }
+                    MainForm.mainForm.xFlasherBlocksUpdate(blocks.ToString("X"), ((blocks - start) * 100) / length);
                 }
                 else MainForm.mainForm.xFlasherBlocksUpdate("Initializing", 0);
-                Thread.Sleep(45);
+                Thread.Sleep(40);
             }
         }
 
@@ -995,17 +930,11 @@ namespace JRunner
                     {
                         Console.WriteLine("xFlasher: Could not connect to CPLD");
                         Console.WriteLine("");
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                     }
                     else
                     {
                         Console.WriteLine("xFlasher: SVF Flash Failed");
                         Console.WriteLine("");
-                        SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                        if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                        error.Play();
                     }
 
                     if (File.Exists(svfPath))

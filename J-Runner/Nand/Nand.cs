@@ -2581,18 +2581,18 @@ namespace JRunner.Nand
             byte[] decrypted_data = Oper.returnportion(decrypted, 0x28, 8);
 
             Console.WriteLine("Security Activated: {0}", decrypted[0x18]);
-            Console.WriteLine("CF LDV: {0}", decrypted[0x19]);
-            Console.WriteLine("FILETIME: {0}", Oper.ByteArrayToString(Oper.returnportion(decrypted, 0x20, 8)));
-            Console.WriteLine("SECURITY DETECTED: {0}", Oper.ByteArrayToString(decrypted_data));
+            Console.WriteLine("CF/CG LDV: {0}", decrypted[0x19]);
+            Console.WriteLine("Filetime: {0}", Oper.ByteArrayToString(Oper.returnportion(decrypted, 0x20, 8)));
+            Console.WriteLine("Security Detected: {0}", Oper.ByteArrayToString(decrypted_data));
             byte[] array = Oper.returnportion(decrypted, 0x40, 8);
             if (BitConverter.IsLittleEndian) Array.Reverse(array);
-            Console.WriteLine("LOCK SYSTEM UPDATE COUNTER: {0}", BitConverter.ToInt64(array, 0));
+            Console.WriteLine("Lock System Update Counter: {0}", BitConverter.ToInt64(array, 0));
             array = Oper.returnportion(decrypted, 0x30, 8);
             if (BitConverter.IsLittleEndian) Array.Reverse(array);
-            Console.WriteLine("SECURITY ACTIVATED: {0}", BitConverter.ToInt64(array, 0));
+            Console.WriteLine("Security Activated: {0}", BitConverter.ToInt64(array, 0));
             array = Oper.returnportion(decrypted, 0x38, 8);
             if (BitConverter.IsLittleEndian) Array.Reverse(array);
-            Console.WriteLine("NO DVD CONNECTED COUNTER: {0}", BitConverter.ToInt64(array, 0)); 
+            Console.WriteLine("No DVD Connected Counter: {0}", BitConverter.ToInt64(array, 0)); 
             DisplayResults(decrypted_data);
         }
 
@@ -2681,6 +2681,7 @@ namespace JRunner.Nand
                 if ((xval_l & 0xFFFFF000) != 0)
                     Console.WriteLine("Unknown Violation(s)");
             }
+            Console.WriteLine("");
             return;
         }
 

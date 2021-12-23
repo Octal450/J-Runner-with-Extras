@@ -15,8 +15,8 @@ namespace JRunner
         public delegate void ClickedRun(string function, string filename, int size, int startblock, int length);
         public event ClickedRun RunClick;
 
-        public string ComFunc = "";
-        public string SizeFunc = "";
+        public string ComFunc = "Read";
+        public string SizeFunc = "16";
         
         public NandProArg()
         {
@@ -27,27 +27,6 @@ namespace JRunner
             txtFilename.Select(txtFilename.Text.Length, 0);
             MainForm.mainForm.updateDevice += UpdateDevice;
             UpdateDevice();
-        }
-
-        public NandProArg(string filename, string length, string start, string size, string function)
-        {
-            InitializeComponent();
-            this.AcceptButton = btnRun;
-            btnRun.DialogResult = System.Windows.Forms.DialogResult.OK;
-            txtFilename.Text = filename;
-            txtFilename.Select(txtFilename.Text.Length, 0);
-            txtLength.Text = length;
-            txtStart.Text = start;
-            if (size == "16") btn16.Checked = true;
-            else if (size == "64") btn64.Checked = true;
-            else if (size == "256") btn256.Checked = true;
-            else if (size == "512") btn512.Checked = true;
-
-            if (function == "Read") ReadBtn.Checked = true;
-            else if (function == "Write") writebtn.Checked = true;
-            else if (function == "Erase") erasebtn.Checked = true;
-            else if (function == "Xsvf") xsvfbtn.Checked = true;
-            MainForm.mainForm.updateDevice += UpdateDevice;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -98,41 +77,9 @@ namespace JRunner
             return 0;
         }
 
-        //private void cboxCommand_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (cboxCommand.Text == "Read")
-        //    {
-        //        txtFilename.Enabled = true;
-        //        txtStart.Enabled = true;
-        //        txtLength.Enabled = true;
-        //        cBoxSize.Enabled = true;
-        //    }
-        //    else if (cboxCommand.Text == "Write")
-        //    {
-        //        txtFilename.Enabled = true;
-        //        txtStart.Enabled = true;
-        //        txtLength.Enabled = true;
-        //        cBoxSize.Enabled = true;
-        //    }
-        //    if (cboxCommand.Text == "Erase")
-        //    {
-        //        txtFilename.Enabled = false;
-        //        txtStart.Enabled = true;
-        //        txtLength.Enabled = true;
-        //        cBoxSize.Enabled = true;
-        //    }
-        //    if (cboxCommand.Text == "Xsvf")
-        //    {
-        //        txtFilename.Enabled = true;
-        //        txtStart.Enabled = false;
-        //        txtLength.Enabled = false;
-        //        cBoxSize.Enabled = false;
-        //    }
-        //}
-
         private void btnfile_Click(object sender, EventArgs e)
         {
-            if (ReadBtn.Checked)
+            if (readbtn.Checked)
             {
                 string filename1 = "";
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -151,18 +98,7 @@ namespace JRunner
             {
                 string filename1 = "";
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                if ((MainForm.mainForm.device == 3 || MainForm.mainForm.device == 4) && xsvfbtn.Checked)
-                {
-                    openFileDialog1.Filter = "SVF files (*.svf)|*.svf";
-                }
-                else if (xsvfbtn.Checked)
-                {
-                    openFileDialog1.Filter = "XSVF files (*.xsvf)|*.xsvf";
-                }
-                else
-                {
-                    openFileDialog1.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc";
-                }
+                openFileDialog1.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc";
                 openFileDialog1.Title = "Select a File";
                 //openFileDialog1.InitialDirectory = variables.currentdir;
                 openFileDialog1.RestoreDirectory = false;
@@ -189,48 +125,53 @@ namespace JRunner
                 e.Effect = DragDropEffects.None;
         }
 
-        private void ReadBtn_CheckedChanged(object sender, EventArgs e)
+        private void rbtn_CheckedChanged(object sender, EventArgs e)
         {
-            txtFilename.Enabled = true;
-            txtStart.Enabled = true;
-            txtLength.Enabled = true;
-            sizebox.Enabled = true;
-            btnfile.Enabled = true;
-            ComFunc = "Read";
-        }
+            if (readbtn.Checked)
+            {
+                ComFunc = "Read";
+            }
+            else if (writebtn.Checked)
+            {
+                ComFunc = "Write";
+            }
+            else if (erasebtn.Checked)
+            {
+                ComFunc = "Erase";
+            }
+            else if (xsvfbtn.Checked)
+            {
+                ComFunc = "Xsvf";
+            }
 
-        private void writebtn_CheckedChanged(object sender, EventArgs e)
-        {
-            txtFilename.Enabled = true;
-            txtStart.Enabled = true;
-            txtLength.Enabled = true;
-            sizebox.Enabled = true;
-            btnfile.Enabled = true;
-            ComFunc = "Write";
-        }
+            if (erasebtn.Checked)
+            {
+                txtFilename.Enabled = false;
+                btnfile.Enabled = false;
+                txtFilename.Text = "";
+            }
+            else
+            {
+                txtFilename.Enabled = true;
+                btnfile.Enabled = true;
+            }
 
-        private void erasebtn_CheckedChanged(object sender, EventArgs e)
-        {
-            txtFilename.Enabled = false;
-            txtStart.Enabled = true;
-            txtLength.Enabled = true;
-            sizebox.Enabled = true;
-            btnfile.Enabled = false;
-            ComFunc = "Erase";
-        }
-
-        private void xsvfbtn_CheckedChanged(object sender, EventArgs e)
-        {
-            txtFilename.Enabled = true;
-            txtStart.Enabled = false;
-            txtLength.Enabled = false;
-            btnfile.Enabled = true;
-            ComFunc = "Xsvf";
-            btn16.Checked = false;
-            btn64.Checked = false;
-            btn256.Checked = false;
-            btn512.Checked = false;
-            sizebox.Enabled = false;
+            if (xsvfbtn.Checked)
+            {
+                btn16.Checked = false;
+                btn64.Checked = false;
+                btn256.Checked = false;
+                btn512.Checked = false;
+                optionalbox.Enabled = false;
+                sizebox.Enabled = false;
+                txtLength.Text = "";
+                txtStart.Text = "";
+            }
+            else
+            {
+                optionalbox.Enabled = true;
+                sizebox.Enabled = true;
+            }
         }
 
         private void btn16_CheckedChanged(object sender, EventArgs e)
@@ -259,17 +200,30 @@ namespace JRunner
             NandProArg.ActiveForm.Hide();
         }
 
-        void UpdateDevice()
+        public void UpdateDevice()
         {
-            if (MainForm.mainForm.device == 3 || MainForm.mainForm.device == 4)
+            if (MainForm.mainForm.device == 3 || MainForm.mainForm.device == 4) xsvfbtn.Text = "SVF";
+            else xsvfbtn.Text = "XSVF";
+        }
+
+        private void txtStartLength_TextChanged(object sender, EventArgs e)
+        {
+            if (txtStart.TextLength > 0 || txtLength.TextLength > 0)
             {
-                Optionalbox.Enabled = false;
-                xsvfbtn.Text = "SVF";
+                if (!chkOptional.Checked) chkOptional.Checked = true;
             }
             else
             {
-                Optionalbox.Enabled = true;
-                xsvfbtn.Text = "XSVF";
+                if (chkOptional.Checked) chkOptional.Checked = false;
+            }
+        }
+
+        private void chkOptional_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkOptional.Checked)
+            {
+                if (txtLength.TextLength > 0) txtLength.Text = "";
+                if (txtStart.TextLength > 0) txtStart.Text = "";
             }
         }
     }

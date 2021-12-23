@@ -98,11 +98,9 @@ namespace JRunner
             this.writeFusionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.xboxOneHDDToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripHexEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.dEVGLCPUKeyToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripHexEditor = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemVNand = new System.Windows.Forms.ToolStripMenuItem();
-            this.pirsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkSecdataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jRPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -693,11 +691,9 @@ namespace JRunner
             this.writeFusionToolStripMenuItem,
             this.toolStripMenuItem5,
             this.xboxOneHDDToolToolStripMenuItem,
+            this.toolStripHexEditor,
             this.dEVGLCPUKeyToolsToolStripMenuItem,
             this.toolStripSeparator15,
-            this.toolStripHexEditor,
-            this.toolStripMenuItemVNand,
-            this.pirsToolStripMenuItem,
             this.checkSecdataToolStripMenuItem,
             this.xValueToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
@@ -747,6 +743,13 @@ namespace JRunner
             this.xboxOneHDDToolToolStripMenuItem.Text = "Xbox One HDD Tool";
             this.xboxOneHDDToolToolStripMenuItem.Click += new System.EventHandler(this.xboxOneHDDToolToolStripMenuItem_Click);
             // 
+            // toolStripHexEditor
+            // 
+            this.toolStripHexEditor.Name = "toolStripHexEditor";
+            this.toolStripHexEditor.Size = new System.Drawing.Size(240, 22);
+            this.toolStripHexEditor.Text = "Hex Viewer";
+            this.toolStripHexEditor.Click += new System.EventHandler(this.toolStripHexEditor_Click);
+            // 
             // dEVGLCPUKeyToolsToolStripMenuItem
             // 
             this.dEVGLCPUKeyToolsToolStripMenuItem.Name = "dEVGLCPUKeyToolsToolStripMenuItem";
@@ -759,28 +762,6 @@ namespace JRunner
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
             this.toolStripSeparator15.Size = new System.Drawing.Size(237, 6);
-            // 
-            // toolStripHexEditor
-            // 
-            this.toolStripHexEditor.Name = "toolStripHexEditor";
-            this.toolStripHexEditor.Size = new System.Drawing.Size(240, 22);
-            this.toolStripHexEditor.Text = "Hex Viewer";
-            this.toolStripHexEditor.Click += new System.EventHandler(this.toolStripHexEditor_Click);
-            // 
-            // toolStripMenuItemVNand
-            // 
-            this.toolStripMenuItemVNand.Name = "toolStripMenuItemVNand";
-            this.toolStripMenuItemVNand.Size = new System.Drawing.Size(240, 22);
-            this.toolStripMenuItemVNand.Text = "VNand";
-            this.toolStripMenuItemVNand.Visible = false;
-            this.toolStripMenuItemVNand.Click += new System.EventHandler(this.toolStripMenuItemVNand_Click);
-            // 
-            // pirsToolStripMenuItem
-            // 
-            this.pirsToolStripMenuItem.Name = "pirsToolStripMenuItem";
-            this.pirsToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.pirsToolStripMenuItem.Text = "Pirs STFS";
-            this.pirsToolStripMenuItem.Click += new System.EventHandler(this.pirsToolStripMenuItem_Click);
             // 
             // checkSecdataToolStripMenuItem
             // 
@@ -964,14 +945,14 @@ namespace JRunner
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // changelogToolStripMenuItem
             // 
             this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.changelogToolStripMenuItem.Text = "Changelog";
             this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click_1);
             // 
@@ -979,20 +960,20 @@ namespace JRunner
             // 
             this.shortcutsToolStripMenuItem.Name = "shortcutsToolStripMenuItem";
             this.shortcutsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.shortcutsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shortcutsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.shortcutsToolStripMenuItem.Text = "Shortcuts";
             this.shortcutsToolStripMenuItem.Click += new System.EventHandler(this.shortcutsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(164, 6);
             // 
             // newSessionToolStripMenuItem
             // 
             this.newSessionToolStripMenuItem.Name = "newSessionToolStripMenuItem";
             this.newSessionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.newSessionToolStripMenuItem.Text = "New Session";
             this.newSessionToolStripMenuItem.Click += new System.EventHandler(this.btnNewSession_Click);
             // 
@@ -1000,7 +981,7 @@ namespace JRunner
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             this.restartToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.btnRestart_Click);
             // 
@@ -1008,7 +989,7 @@ namespace JRunner
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -1247,8 +1228,6 @@ namespace JRunner
         private ToolStripMenuItem versionToolStripMenuItem;
         private ToolStripMenuItem checkSecdataToolStripMenuItem;
         private ToolStripMenuItem xValueToolStripMenuItem;
-        private ToolStripMenuItem pirsToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItemVNand;
         private ToolStripSeparator toolStripMenuItem7;
         private ToolStripSeparator toolStripMenuItem6;
         private ToolStripMenuItem timingAssistantToolStripMenuItem;
