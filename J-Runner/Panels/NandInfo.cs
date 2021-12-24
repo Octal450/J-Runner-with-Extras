@@ -140,8 +140,14 @@ namespace JRunner.Panels
                     {
                         textMFRdate.Text = mfrraw;
                     }
-                    if (btnConsoleId.Text == "View: Native") textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
-                    else textBoxconsoleid.Text = nand.ki.consoleid;
+                    try
+                    {
+                        if (btnConsoleId.Text == "View: Native") textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
+                        else textBoxconsoleid.Text = nand.ki.consoleid;
+                    }
+                    catch {
+                        textBoxconsoleid.Text = "";
+                    }
                     txtdvdkey.Text = nand.ki.dvdkey;
                     txtosig.Text = nand.ki.osig;
                     txtSerial.Text = nand.ki.serial;
