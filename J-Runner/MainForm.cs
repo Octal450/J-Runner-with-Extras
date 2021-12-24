@@ -3423,18 +3423,18 @@ namespace JRunner
         {
             try
             {
-                if (variables.debugme) Console.WriteLine("DevNotify - {0}", e.mDevice.Name);
+                if (variables.debugme) Console.WriteLine("DevNotify - {0}", e.Device.Name);
                 if (variables.debugme) Console.WriteLine("EventType - {0}", e.EventType);
                 if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival)
                 {
-                    if (e.mDevice.IdVendor == 0x0403 && e.mDevice.IdProduct == 0x6010) // xFlasher SPI
+                    if (e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010) // xFlasher SPI
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.xflash_spi);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = 3;
                         xflasher.initDevice();
                     }
-                    else if (e.mDevice.IdVendor == 0xFFFF && e.mDevice.IdProduct == 0x004) // NAND-X
+                    else if (e.Device.IdVendor == 0xFFFF && e.Device.IdProduct == 0x004) // NAND-X
                     {
                         if (!DemoN.DemonDetected)
                         {
@@ -3450,21 +3450,21 @@ namespace JRunner
                         nANDXToolStripMenuItem.Visible = true;
                         device = 2;
                     }
-                    else if (e.mDevice.IdVendor == 0x11D4 && e.mDevice.IdProduct == 0x8338) // JR-Programmer
+                    else if (e.Device.IdVendor == 0x11D4 && e.Device.IdProduct == 0x8338) // JR-Programmer
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.JRP);
                         jRPBLToolStripMenuItem.Visible = false;
                         jRPToolStripMenuItem.Visible = true;
                         device = 1;
                     }
-                    else if (e.mDevice.IdVendor == 0x11D4 && e.mDevice.IdProduct == 0x8334) // JR-Programmer Bootloader
+                    else if (e.Device.IdVendor == 0x11D4 && e.Device.IdProduct == 0x8334) // JR-Programmer Bootloader
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.usb);
                         jRPToolStripMenuItem.Visible = false;
                         jRPBLToolStripMenuItem.Visible = true;
                         device = -1;
                     }
-                    else if ((e.mDevice.IdVendor == 0xAAAA && e.mDevice.IdProduct == 0x8816) || (e.mDevice.IdVendor == 0x05E3 && e.mDevice.IdProduct == 0x0751)) // xFlasher eMMC
+                    else if ((e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816) || (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751)) // xFlasher eMMC
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
@@ -3473,38 +3473,38 @@ namespace JRunner
                 }
                 else if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceRemoveComplete)
                 {
-                    if (e.mDevice.IdVendor == 0x11d4 && e.mDevice.IdProduct == 0x8334)
+                    if (e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8334)
                     {
                         HID.BootloaderDetected = false;
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         jRPBLToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0xFFFF && e.mDevice.IdProduct == 0x004)
+                    else if (e.Device.IdVendor == 0xFFFF && e.Device.IdProduct == 0x004)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         nANDXToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0x11d4 && e.mDevice.IdProduct == 0x8338)
+                    else if (e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8338)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         jRPToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0x0403 && e.mDevice.IdProduct == 0x6010)
+                    else if (e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         xFlasherToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0x05E3 && e.mDevice.IdProduct == 0x0751)
+                    else if (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         xFlasherToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0xAAAA && e.mDevice.IdProduct == 0x8816)
+                    else if (e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         xFlasherToolStripMenuItem.Visible = false;
