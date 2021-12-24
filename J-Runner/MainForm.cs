@@ -87,11 +87,14 @@ namespace JRunner
             mainForm = this;
             versionToolStripMenuItem.Text = "v" + variables.version;
 
-            // Make sure we're on top
-            bool top = TopMost;
-            TopMost = true; // Bring to front
-            TopMost = top; // Set it back
-            Activate();
+
+            //REDUNDANT CODE! Desiner Has This Option...
+            //// Make sure we're on top
+            //bool top = TopMost;
+            //TopMost = true; // Bring to front
+            //TopMost = top; // Set it back
+            //Activate();
+            //REDUNDANT CODE! Desiner Has This Option...
 
             _writer = new TextBoxStreamWriter(txtConsole);
             Console.SetOut(_writer);

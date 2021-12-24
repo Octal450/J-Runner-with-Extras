@@ -1077,7 +1077,7 @@ namespace JRunner
             // mtxUsbModeToolStripMenuItem
             // 
             this.mtxUsbModeToolStripMenuItem.Name = "mtxUsbModeToolStripMenuItem";
-            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.mtxUsbModeToolStripMenuItem.Text = "MTX USB Mode";
             this.mtxUsbModeToolStripMenuItem.Click += new System.EventHandler(this.mtxUsbModeToolStripMenuItem_Click);
             // 
@@ -1140,6 +1140,7 @@ namespace JRunner
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "J-Runner with Extras";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
