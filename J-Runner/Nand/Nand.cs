@@ -214,8 +214,8 @@ namespace JRunner.Nand
             if (!ascii.GetString(temp).Contains("Microsoft"))
             {
                 if (variables.debugme) Console.WriteLine(ascii.GetString(temp));
-                if (temp[0] == 0x46 && temp[1] == 0x57 && temp[2] == 0x41 && temp[3] == 0x00) Console.WriteLine("DemoN fw");
-                else if (s1 != 0x40000) Console.WriteLine("Header is wrong..");
+                if (temp[0] == 0x46 && temp[1] == 0x57 && temp[2] == 0x41 && temp[3] == 0x00) Console.WriteLine("DemoN FW");
+                else if (s1 != 0x40000) Console.WriteLine("Header is wrong");
             }
             //
 

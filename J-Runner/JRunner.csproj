@@ -289,7 +289,7 @@
     <Compile Include="Functions\CtrlTr.Designer.cs">
       <DependentUpon>CtrlTr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\LPT_XSVF.cs" />
+    <Compile Include="Classes\LPT-XSVF.cs" />
     <Compile Include="Classes\Oper.cs" />
     <Compile Include="DemoN\DemoN.cs" />
     <Compile Include="Classes\HID.cs" />

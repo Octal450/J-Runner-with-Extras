@@ -120,12 +120,13 @@ namespace JRunner
         public static bool timingonkeypress = false;
         public static bool minimizetotray = false;
         public static bool slimprefersrgh = false;
+        public static bool mtxUsbMode = false;
         public static Color logbackground = Color.Black;
         public static Color logtext = Color.White;
         public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Errorsound", "Comparesound", "Successsound", "Delay",
                                           "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "XebuildName", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
                                           "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "DiscordRPC", "TimingOnKeypress", "LogBackground", "LogText",
-                                          "MinimizeToTray", "SlimPreferSrgh"};
+                                          "MinimizeToTray", "SlimPreferSrgh", "MtxUsbMode"};
 
         #region
 

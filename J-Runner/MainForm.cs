@@ -58,7 +58,6 @@ namespace JRunner
         public static bool usingVNand = false;
         Regex objAlphaPattern = new Regex("[a-fA-F0-9]{32}$");
         public NotifyIcon trayIcon = null;
-        public bool mtxMode = false;
         // RPC
         private static DiscordRpcClient rpcClient;
         private bool rpcReady = false;
@@ -244,15 +243,14 @@ namespace JRunner
             {
                 if (IsUsbDeviceConnected("6010", "0403")) // xFlasher SPI
                 {
-                    nTools.setImage(global::JRunner.Properties.Resources.xflash_spi);
+                    nTools.setImage(Properties.Resources.xflash_spi);
                     xFlasherToolStripMenuItem.Visible = true;
                     device = 3;
                     xflasher.ready = true; // Skip init
                 }
                 else if (IsUsbDeviceConnected("8334", "11D4")) // JR-Programmer Bootloader
                 {
-                    nTools.setImage(global::JRunner.Properties.Resources.usb);
-                    jRPToolStripMenuItem.Visible = false;
+                    nTools.setImage(Properties.Resources.usb);
                     jRPBLToolStripMenuItem.Visible = true;
                     device = -1;
                 }
@@ -263,20 +261,20 @@ namespace JRunner
                     {
                         if (devic.Pid == 0x0004 && devic.Vid == 0xFFFF) // NAND-X
                         {
-                            if (mtxMode)
+                            if (variables.mtxUsbMode)
                             {
-                                nTools.setImage(global::JRunner.Properties.Resources.mtx);
+                                nTools.setImage(Properties.Resources.mtx);
                             }
                             else
                             {
-                                nTools.setImage(global::JRunner.Properties.Resources.NANDX);
+                                nTools.setImage(Properties.Resources.NANDX);
                             }
+                            nANDXToolStripMenuItem.Visible = true;
                             device = 2;
                         }
                         else if (devic.Pid == 0x8338 && devic.Vid == 0x11D4) // JR-Programmer
                         {
-                            nTools.setImage(global::JRunner.Properties.Resources.JRP);
-                            jRPBLToolStripMenuItem.Visible = false;
+                            nTools.setImage(Properties.Resources.JRP);
                             jRPToolStripMenuItem.Visible = true;
                             device = 1;
                         }
@@ -287,25 +285,13 @@ namespace JRunner
                 {
                     if (IsUsbDeviceConnected("AAAA", "8816") || IsUsbDeviceConnected("05E3", "0751")) // xFlasher eMMC
                     {
-                        nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
+                        nTools.setImage(Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = 4;
                     }
                 }
-                
-                //if (device == 2) // Must check this after everything else
-                //{
-                //    nTools.MatrixCheckBox.Show();
-                //}
-                //else
-                //{
-                //    nTools.MatrixCheckBox.Hide();
-                //}
             }
-            else
-            {
-                //nTools.MatrixCheckBox.Hide();
-            }
+
             try // It'll fail if the thing doesn't exist
             {
                 updateDevice();
@@ -774,16 +760,16 @@ namespace JRunner
             {
                 if (function == "Read")
                 {
-                    if (device == 3)
-                    {
-                        xflasher.readNand(size, filename, startblock, length);
-                    }
-                    else if (!usingVNand)
+                    if (!usingVNand)
                     {
                         starter = delegate 
                         { 
                             nandx.read(filename, sizex, true, startblock, length); 
                         };
+                    }
+                    else if (device == 3)
+                    {
+                        xflasher.readNand(size, filename, startblock, length);
                     }
                     else
                     {
@@ -795,16 +781,16 @@ namespace JRunner
                 }
                 else if (function == "Erase")
                 {
-                    if (device == 3)
-                    {
-                        xflasher.writeNand(size, "erase", 0, startblock, length);
-                    }
-                    else if (!usingVNand)
+                    if (!usingVNand)
                     {
                         starter = delegate
                         {
                             nandx.erase(sizex, startblock, length);
                         };
+                    }
+                    else if (device == 3)
+                    {
+                        xflasher.writeNand(size, "erase", 0, startblock, length);
                     }
                     else 
                     { 
@@ -816,7 +802,14 @@ namespace JRunner
                 }
                 else if (function == "Write")
                 {
-                    if (device == 3)
+                    if (!usingVNand)
+                    {
+                        starter = delegate
+                        {
+                            nandx.write(filename, sizex, startblock, length);
+                        };
+                    }
+                    else if (device == 3)
                     {
                         if (Path.GetExtension(filename) == ".ecc")
                         {
@@ -826,13 +819,6 @@ namespace JRunner
                         {
                             xflasher.writeNand(size, filename, 0, startblock, length, true);
                         }
-                    }
-                    else if (!usingVNand)
-                    {
-                        starter = delegate
-                        {
-                            nandx.write(filename, sizex, startblock, length);
-                        };
                     }
                     else 
                     { 
@@ -1966,7 +1952,7 @@ namespace JRunner
                 if ((variables.cpkey.Length != 32 || !objAlphaPattern.IsMatch(variables.cpkey))) variables.cpkey = "";
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 nandInfo.change_tab();
-                progressBar.Value = progressBar.Maximum / 3;
+                progressBar.Value = progressBar.Maximum / 2;
                 nand = new Nand.PrivateN(variables.filename1, variables.cpkey);
                 if (!nand.ok) return;
 
@@ -2051,7 +2037,7 @@ namespace JRunner
 
                 nandInfo.setNand(nand);
 
-                progressBar.Value = (progressBar.Maximum / 3) * 2;
+                progressBar.Value = (progressBar.Maximum / 4) * 3;
 
                 if (variables.debugme) Console.WriteLine("----------------------");
                 variables.ctyp = variables.cunts[0];
@@ -3382,7 +3368,7 @@ namespace JRunner
                     demon.get_external_flash(false);
                 }
 
-                nTools.setImage(global::JRunner.Properties.Resources.demon);
+                nTools.setImage(Properties.Resources.demon);
                 demoNToolStripMenuItem.Visible = true;
                 ModeStatus.Visible = true;
                 ModeVersion.Visible = true;
@@ -3393,30 +3379,30 @@ namespace JRunner
             {
                 if (device == -1)
                 {
-                    nTools.setImage(global::JRunner.Properties.Resources.usb);
+                    nTools.setImage(Properties.Resources.usb);
                 }
                 else if (device == 1)
                 {
-                    nTools.setImage(global::JRunner.Properties.Resources.JRP);
+                    nTools.setImage(Properties.Resources.JRP);
                 }
                 else if (device == 2)
                 {
-                    if (mtxMode)
+                    if (variables.mtxUsbMode)
                     {
-                        nTools.setImage(global::JRunner.Properties.Resources.mtx);
+                        nTools.setImage(Properties.Resources.mtx);
                     }
                     else
                     {
-                        nTools.setImage(global::JRunner.Properties.Resources.NANDX);
+                        nTools.setImage(Properties.Resources.NANDX);
                     }
                 }
                 else if (device == 3)
                 {
-                    nTools.setImage(global::JRunner.Properties.Resources.xflash_spi);
+                    nTools.setImage(Properties.Resources.xflash_spi);
                 }
                 else if (device == 4)
                 {
-                    nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
+                    nTools.setImage(Properties.Resources.xflash_emmc);
                 }
                 else
                 {
@@ -3443,7 +3429,7 @@ namespace JRunner
                 {
                     if (e.mDevice.IdVendor == 0x0403 && e.mDevice.IdProduct == 0x6010) // xFlasher SPI
                     {
-                        if (!DemoN.DemonDetected) nTools.setImage(global::JRunner.Properties.Resources.xflash_spi);
+                        if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.xflash_spi);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = 3;
                         xflasher.initDevice();
@@ -3452,34 +3438,35 @@ namespace JRunner
                     {
                         if (!DemoN.DemonDetected)
                         {
-                            if (mtxMode)
+                            if (variables.mtxUsbMode)
                             {
-                                nTools.setImage(global::JRunner.Properties.Resources.mtx);
+                                nTools.setImage(Properties.Resources.mtx);
                             }
                             else
                             {
-                                nTools.setImage(global::JRunner.Properties.Resources.NANDX);
+                                nTools.setImage(Properties.Resources.NANDX);
                             }
                         }
+                        nANDXToolStripMenuItem.Visible = true;
                         device = 2;
                     }
                     else if (e.mDevice.IdVendor == 0x11D4 && e.mDevice.IdProduct == 0x8338) // JR-Programmer
                     {
-                        if (!DemoN.DemonDetected) nTools.setImage(global::JRunner.Properties.Resources.JRP);
+                        if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.JRP);
                         jRPBLToolStripMenuItem.Visible = false;
                         jRPToolStripMenuItem.Visible = true;
                         device = 1;
                     }
                     else if (e.mDevice.IdVendor == 0x11D4 && e.mDevice.IdProduct == 0x8334) // JR-Programmer Bootloader
                     {
-                        if (!DemoN.DemonDetected) nTools.setImage(global::JRunner.Properties.Resources.usb);
+                        if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.usb);
                         jRPToolStripMenuItem.Visible = false;
                         jRPBLToolStripMenuItem.Visible = true;
                         device = -1;
                     }
                     else if ((e.mDevice.IdVendor == 0xAAAA && e.mDevice.IdProduct == 0x8816) || (e.mDevice.IdVendor == 0x05E3 && e.mDevice.IdProduct == 0x0751)) // xFlasher eMMC
                     {
-                        if (!DemoN.DemonDetected) nTools.setImage(global::JRunner.Properties.Resources.xflash_emmc);
+                        if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = 4;
                     }
@@ -3496,6 +3483,7 @@ namespace JRunner
                     else if (e.mDevice.IdVendor == 0xFFFF && e.mDevice.IdProduct == 0x004)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
+                        nANDXToolStripMenuItem.Visible = false;
                         device = 0;
                     }
                     else if (e.mDevice.IdVendor == 0x11d4 && e.mDevice.IdProduct == 0x8338)
@@ -3523,14 +3511,6 @@ namespace JRunner
                         device = 0;
                     }
                 }
-                //if (device == 2)
-                //{
-                //    nTools.MatrixCheckBox.Show();
-                //}
-                //else
-                //{
-                //    nTools.MatrixCheckBox.Hide();
-                //}
 
                 if (listInfo.Contains(ldInfo)) ldInfo.refreshDrives(true);
             }
@@ -3794,6 +3774,9 @@ namespace JRunner
                         case "SlimPreferSrgh":
                             x.write(name, variables.slimprefersrgh.ToString());
                             break;
+                        case "MtxUsbMode":
+                            x.write(name, variables.mtxUsbMode.ToString());
+                            break;
                         default:
                             break;
                     }
@@ -4001,6 +3984,11 @@ namespace JRunner
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             variables.slimprefersrgh = bvalue;
                             break;
+                        case "MtxUsbMode":
+                            bvalue = false;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
+                            mtxUsbModeToolStripMenuItem.Checked = variables.mtxUsbMode = bvalue;
+                            break;
                         default:
                             break;
                     }
@@ -4118,6 +4106,96 @@ namespace JRunner
             if (check) check_dash();
         }
 
+        #endregion
+
+        #region xFlasher interactions with UI
+        public void xFlasherInitNand(int i = 2)
+        {
+            if (i == 2 && File.Exists(variables.filename))
+            {
+                this.txtFilePath1.Text = Path.Combine(variables.filename);
+                variables.filename1 = variables.filename;
+                nand_init();
+            }
+            if (i == 3 && File.Exists(variables.filename))
+            {
+                this.txtFilePath2.Text = Path.Combine(variables.filename);
+                variables.filename2 = variables.filename;
+                new Thread(comparenands).Start();
+            }
+        }
+
+        public void xFlasherEccCleanup()
+        {
+            if (variables.tempfile != "")
+            {
+                variables.filename1 = variables.tempfile;
+                txtFilePath1.Text = variables.tempfile;
+            }
+        }
+
+        public void xFlasherNandSelShow(int xfseltype, bool bigblock = false)
+        {
+            variables.xfSelType = xfseltype;
+            xFlasherNandSel xfselform = new xFlasherNandSel();
+            xfselform.TopMost = true;
+            xfselform.SizeClick += xFlasherSizeClick;
+            xfselform.BigBlock(bigblock);
+            xfselform.Show();
+        }
+
+        void xFlasherSizeClick(int size)
+        {
+            if (variables.xfSelType == 1)
+            {
+                xflasher.readNandAuto(size, nTools.getNumericIterations(), true);
+                variables.xfSelType = 0;
+            }
+            else if (variables.xfSelType == 2)
+            {
+                xflasher.writeNand(size, variables.filename1);
+                variables.xfSelType = 0;
+            }
+        }
+
+        public void xFlasherBusy(int mode)
+        {
+            if (mode > 0)
+            {
+                if (mode == 3) ProgressLabel.Text = "Erasing";
+                else if (mode == 2) ProgressLabel.Text = "Writing";
+                else if (mode == 1) ProgressLabel.Text = "Reading";
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
+            }
+            else if (mode == -2)
+            {
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Marquee));
+            }
+            else if (mode == -1)
+            {
+                ProgressLabel.Text = "Progress";
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
+                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Minimum));
+                txtBlocks.Text = "";
+            }
+            else
+            {
+                ProgressLabel.Text = "Progress";
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
+                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Maximum));
+                txtBlocks.Text = "";
+            }
+        }
+
+        public void xFlasherBlocksUpdate(string str, int progress)
+        {
+            if (xflasher.inUse)
+            {
+                txtBlocks.Text = str;
+                if (progress >= 0) progressBar.BeginInvoke((Action)(() => progressBar.Value = progress)); // Just in case
+                else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
+            }
+        }
         #endregion
 
         private void toolStripMenuItemVNand_Click(object sender, EventArgs e)
@@ -4240,11 +4318,6 @@ namespace JRunner
             Process.Start(getCurrentWorkingFolder());
         }
 
-        private void txtConsole_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         // Maybe there's a better way to do it - but this should do
         private void rpcInit()
         {
@@ -4289,7 +4362,7 @@ namespace JRunner
             }
             else if (device == 2)
             {
-                if (mtxMode) rpcDevice = "MTX USB";
+                if (variables.mtxUsbMode) rpcDevice = "MTX USB";
                 else rpcDevice = "NAND-X";
             }
             else if (device == 1)
@@ -4387,95 +4460,6 @@ namespace JRunner
                 cpu = new Forms.CPUKeyGen();
                 cpu.Show();
                 cpu.Location = new Point(Location.X + (Width - cpu.Width) / 2, Location.Y + 125);
-            }
-        }
-
-        // xFlasher interactions with UI
-        public void xFlasherInitNand(int i = 2)
-        {
-            if (i == 2 && File.Exists(variables.filename))
-            {
-                this.txtFilePath1.Text = Path.Combine(variables.filename);
-                variables.filename1 = variables.filename;
-                nand_init();
-            }
-            if (i == 3 && File.Exists(variables.filename))
-            {
-                this.txtFilePath2.Text = Path.Combine(variables.filename);
-                variables.filename2 = variables.filename;
-                new Thread(comparenands).Start();
-            }
-        }
-
-        public void xFlasherEccCleanup()
-        {
-            if (variables.tempfile != "")
-            {
-                variables.filename1 = variables.tempfile;
-                txtFilePath1.Text = variables.tempfile;
-            }
-        }
-        
-        public void xFlasherNandSelShow(int xfseltype, bool bigblock = false)
-        {
-            variables.xfSelType = xfseltype;
-            xFlasherNandSel xfselform = new xFlasherNandSel();
-            xfselform.TopMost = true;
-            xfselform.SizeClick += xFlasherSizeClick;
-            xfselform.BigBlock(bigblock);
-            xfselform.Show();
-        }
-
-        void xFlasherSizeClick(int size)
-        {
-            if (variables.xfSelType == 1)
-            {
-                xflasher.readNandAuto(size, nTools.getNumericIterations(), true);
-                variables.xfSelType = 0;
-            }
-            else if (variables.xfSelType == 2)
-            {
-                xflasher.writeNand(size, variables.filename1);
-                variables.xfSelType = 0;
-            }
-        }
-
-        public void xFlasherBusy(int mode)
-        {
-            if (mode > 0)
-            {
-                if (mode == 3) ProgressLabel.Text = "Erasing";
-                else if (mode == 2) ProgressLabel.Text = "Writing";
-                else if (mode == 1) ProgressLabel.Text = "Reading";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
-            }
-            else if (mode == -2)
-            {
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Marquee));
-            }
-            else if (mode == -1)
-            {
-                ProgressLabel.Text = "Progress";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
-                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Minimum));
-                txtBlocks.Text = "";
-            }
-            else
-            {
-                ProgressLabel.Text = "Progress";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
-                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Maximum));
-                txtBlocks.Text = "";
-            }
-        }
-
-        public void xFlasherBlocksUpdate(string str, int progress)
-        {
-            if (xflasher.inUse)
-            {
-                txtBlocks.Text = str;
-                if (progress >= 0) progressBar.BeginInvoke((Action)(() => progressBar.Value = progress)); // Just in case
-                else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
             }
         }
 
@@ -4770,6 +4754,20 @@ namespace JRunner
             }
             ThreadStart starter = delegate { xPanel.createxebuild_v2(true, nand, false); };
             new Thread(starter).Start();
+        }
+
+        private void mtxUsbModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            variables.mtxUsbMode = mtxUsbModeToolStripMenuItem.Checked = !mtxUsbModeToolStripMenuItem.Checked;
+
+            if (variables.mtxUsbMode)
+            {
+                nTools.setImage(Properties.Resources.mtx);
+            }
+            else
+            {
+                nTools.setImage(Properties.Resources.NANDX);
+            }
         }
     }
 }

@@ -137,6 +137,8 @@ namespace JRunner
             this.xFlasherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installDriversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOpenXeniumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nANDXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mtxUsbModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -240,7 +242,6 @@ namespace JRunner
             this.txtConsole.TabStop = false;
             this.toolTip1.SetToolTip(this.txtConsole, "The log window: This displays everything that is going on in JRunner!\r\nDouble cli" +
         "ck to save the log file to text file.");
-            this.txtConsole.TextChanged += new System.EventHandler(this.txtConsole_TextChanged);
             this.txtConsole.DoubleClick += new System.EventHandler(this.txtConsole_DoubleClick);
             // 
             // txtCPUKey
@@ -777,33 +778,33 @@ namespace JRunner
             // powerOnToolStripMenuItem
             // 
             this.powerOnToolStripMenuItem.Name = "powerOnToolStripMenuItem";
-            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.powerOnToolStripMenuItem.Text = "Power On";
             this.powerOnToolStripMenuItem.Click += new System.EventHandler(this.powerOnToolStripMenuItem_Click);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.shutdownToolStripMenuItem.Text = "Shut Down";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // bootloaderModeToolStripMenuItem
             // 
             this.bootloaderModeToolStripMenuItem.Name = "bootloaderModeToolStripMenuItem";
-            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.bootloaderModeToolStripMenuItem.Text = "Bootloader Mode";
             this.bootloaderModeToolStripMenuItem.Click += new System.EventHandler(this.bootloaderModeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(163, 6);
             // 
             // logPostToolStripMenuItem
             // 
             this.logPostToolStripMenuItem.Name = "logPostToolStripMenuItem";
-            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.logPostToolStripMenuItem.Text = "Monitor POST";
             this.logPostToolStripMenuItem.Click += new System.EventHandler(this.logPostToolStripMenuItem_Click);
             // 
@@ -898,6 +899,7 @@ namespace JRunner
             this.nandToolStripMenuItem,
             this.advancedToolStripMenuItem,
             this.xFlasherToolStripMenuItem,
+            this.nANDXToolStripMenuItem,
             this.jRPToolStripMenuItem,
             this.jRPBLToolStripMenuItem,
             this.demoNToolStripMenuItem,
@@ -1062,6 +1064,22 @@ namespace JRunner
             this.flashOpenXeniumToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.flashOpenXeniumToolStripMenuItem.Text = "Program OpenXenium";
             this.flashOpenXeniumToolStripMenuItem.Click += new System.EventHandler(this.flashOpenXeniumToolStripMenuItem_Click);
+            // 
+            // nANDXToolStripMenuItem
+            // 
+            this.nANDXToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mtxUsbModeToolStripMenuItem});
+            this.nANDXToolStripMenuItem.Name = "nANDXToolStripMenuItem";
+            this.nANDXToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.nANDXToolStripMenuItem.Text = "NAND-X";
+            this.nANDXToolStripMenuItem.Visible = false;
+            // 
+            // mtxUsbModeToolStripMenuItem
+            // 
+            this.mtxUsbModeToolStripMenuItem.Name = "mtxUsbModeToolStripMenuItem";
+            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mtxUsbModeToolStripMenuItem.Text = "MTX USB Mode";
+            this.mtxUsbModeToolStripMenuItem.Click += new System.EventHandler(this.mtxUsbModeToolStripMenuItem_Click);
             // 
             // jRPBLToolStripMenuItem
             // 
@@ -1248,5 +1266,7 @@ namespace JRunner
         private ToolStripMenuItem corona4GBToolStripMenuItem;
         private ToolStripMenuItem jRPBLToolStripMenuItem;
         private ToolStripMenuItem updateToolStripMenuItem;
+        private ToolStripMenuItem nANDXToolStripMenuItem;
+        private ToolStripMenuItem mtxUsbModeToolStripMenuItem;
     }
 }
