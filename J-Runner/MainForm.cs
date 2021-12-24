@@ -150,13 +150,13 @@ namespace JRunner
 
         private void showApplication()
         {
-            ShowInTaskbar = true;
+            ShowInTaskbar = true;//move this to designer there is an option for this...
             WindowState = FormWindowState.Normal;
-            
-            bool top = TopMost;
-            TopMost = true; // Bring to front
-            TopMost = top; // Set it back
-
+            //Not Needed Since Focus Turns this Redundant...
+            //bool top = TopMost;
+            //TopMost = true; // Bring to front
+            //TopMost = top; // Set it back
+            //Not Needed Since Focus Turns this Redundant...
             Activate();
         }
 
@@ -176,7 +176,7 @@ namespace JRunner
             }
         }
 
-        void setUp()
+        void setUp()//why....
         {
             demon.UpdateBloc += updateBlocks;
             demon.UpdateProgres += updateProgress;
@@ -351,8 +351,7 @@ namespace JRunner
             if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
             {
                 Console.WriteLine("WARNING - Working Folder!");
-                Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
-                Console.WriteLine("");
+                Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents" + "\n");
             }
             if (!Directory.Exists(variables.AppData))
             {
@@ -362,8 +361,7 @@ namespace JRunner
 
         private void printstartuptext(bool firsttime = false)
         {
-            Console.WriteLine("=========================================================================");
-            Console.WriteLine("J-Runner with Extras");
+            Console.WriteLine("=========================================================================" +"\n" + "J-Runner with Extras");
             Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("ddd MM/dd/yyyy H:mm:ss"));
             if (variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
             else Console.WriteLine("Version: {0}", variables.version);
@@ -398,8 +396,7 @@ namespace JRunner
                 xflasher.svfPath = Path.Combine(Path.GetPathRoot(Environment.SystemDirectory), "TimingSvfTemp.svf"); // Required for Windows XP, will not work in Windows Vista and later
                 xflasher.svfRoot = Path.GetPathRoot(Environment.SystemDirectory);                                    // Even though it doesn't work on XP, lets keep this just in case we figure out how to make it work
 
-                Console.WriteLine("Support for Windows XP is limited, some features may not function correctly or at all");
-                Console.WriteLine("");
+                Console.WriteLine("Support for Windows XP is limited, some features may not function correctly or at all" + "\n");
             }
 
             if (!firsttime)
@@ -407,8 +404,7 @@ namespace JRunner
                 if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
                 {
                     Console.WriteLine("WARNING - Working Folder!");
-                    Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
-                    Console.WriteLine("");
+                    Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents" + "\n");
                 }
             }
         }
@@ -1243,8 +1239,7 @@ namespace JRunner
                     {
                         if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
                         {
-                            Console.WriteLine("Cancelled");
-                            Console.WriteLine("");
+                            Console.WriteLine("Cancelled" + "\n");
                             return;
                         };
                         if (!DemoN.DemonDetected)
@@ -1253,8 +1248,7 @@ namespace JRunner
                             {
                                 if (DialogResult.Cancel == MessageBox.Show("Header seems to be wrong! This shouldnt happen for stock image! Are you really sure you want to overwrite your previously dumped image???", "Wrong Header", MessageBoxButtons.OKCancel, MessageBoxIcon.Error))
                                 {
-                                    Console.WriteLine("Cancelled");
-                                    Console.WriteLine("");
+                                    Console.WriteLine("Cancelled" + "\n");
                                     return;
                                 };
                             }
@@ -1465,8 +1459,7 @@ namespace JRunner
             variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
 
             //updateS((variables.filename1.Replace(variables.outfolder, variables.xefolder)));
-            Console.WriteLine("Moving all files from output folder to {0}", variables.xefolder);
-            Console.Write("");
+            Console.WriteLine("Moving all files from output folder to {0}", variables.xefolder + "\n");
             String l_sDirectoryName = variables.xefolder;
             DirectoryInfo l_dDirInfo = new DirectoryInfo(l_sDirectoryName);
             if (l_dDirInfo.Exists == false)
@@ -1660,8 +1653,7 @@ namespace JRunner
                     //filecompareresult = FileEquals(filename1, filename2);
                     if (temp1_hash == temp2_hash)
                     {
-                        Console.WriteLine("Nands are the same");
-                        Console.WriteLine("");
+                        Console.WriteLine("Nands are the same" + "\n");
                         try
                         {
                             SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
@@ -2081,8 +2073,7 @@ namespace JRunner
 
                 if (String.IsNullOrEmpty(variables.cpkey)) variables.gotvalues = false;
                 else variables.gotvalues = true;
-                Console.WriteLine("Nand Initialization Finished");
-                Console.WriteLine("");
+                Console.WriteLine("Nand Initialization Finished" + "\n");
                 
                 progressBar.Value = progressBar.Maximum;
                 if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
@@ -2246,8 +2237,7 @@ namespace JRunner
                     }
                     else
                     {
-                        Console.WriteLine("Failed to create ecc image");
-                        Console.WriteLine("");
+                        Console.WriteLine("Failed to create ecc image" + "\n");
                     }
                 }
             }
@@ -2327,8 +2317,7 @@ namespace JRunner
                     Oper.savefile(xellous, variables.filename1);
                     if (variables.debugme) Console.WriteLine("Saved Successfully");
                     txtFilePath1.Text = variables.filename1;
-                    Console.WriteLine("XeLL file created successfully {0}", xellfile);
-                    Console.WriteLine("");
+                    Console.WriteLine("XeLL file created successfully {0}", xellfile + "\n");
                 }
             }
         }
@@ -2555,8 +2544,7 @@ namespace JRunner
                 else Console.WriteLine("Failed to find fcrt.bin");
             }
             Console.WriteLine("Location: {0}", tmpout);
-            Console.WriteLine("Done");
-            Console.WriteLine("");
+            Console.WriteLine("Done" + "\n");
         }
         public static byte[] responses(byte[] fcrt, byte[] cpukey, string dvdkey = "")
         {
@@ -2884,8 +2872,7 @@ namespace JRunner
                 variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
                 txtFilePath1.Text = variables.filename1;
                 Nand.Nand.injectRawKV(variables.filename1, kv);
-                Console.WriteLine("ECC created");
-                Console.WriteLine("");
+                Console.WriteLine("ECC created" + "\n");
             }
             else
             {
@@ -4736,8 +4723,7 @@ namespace JRunner
                 }
                 catch
                 {
-                    Console.WriteLine("Donor Nand Creation Failed");
-                    Console.WriteLine("");
+                    Console.WriteLine("Donor Nand Creation Failed" + "\n");
                     return;
                 }
             });
