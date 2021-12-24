@@ -1950,49 +1950,51 @@ namespace JRunner
                 }
 
                 if ((variables.cpkey.Length != 32 || !objAlphaPattern.IsMatch(variables.cpkey))) variables.cpkey = "";
+
+                bool foundKey = !string.IsNullOrEmpty(variables.cpkey);
+                bool gotKeyFromCrc = false;
+
+                if (!foundKey)
+                {
+                    long filenameKvCrc = Nand.Nand.kvcrc(variables.filename1);
+
+                    if (variables.debugme) Console.WriteLine("KV CRC: {0:X}", filenameKvCrc);
+                    if (variables.debugme) Console.WriteLine("Searching Registry Entrys");
+                    try
+                    {
+                        variables.cpkey = CpuKeyDB.getkey_s(filenameKvCrc, xPanel.getDataSet());
+                        txtCPUKey.Text = variables.cpkey;
+                        if (!string.IsNullOrEmpty(variables.cpkey)) gotKeyFromCrc = true;
+                    }
+                    catch (NullReferenceException ex) { Console.WriteLine(ex.ToString()); }
+                }
+
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 nandInfo.change_tab();
                 progressBar.Value = progressBar.Maximum / 2;
                 nand = new Nand.PrivateN(variables.filename1, variables.cpkey);
                 if (!nand.ok) return;
 
-                if (!String.IsNullOrEmpty(nand._cpukey))
-                {
-                    variables.cpkey = nand._cpukey;
-                    txtCPUKey.Text = variables.cpkey;
+                if (variables.debugme) Console.WriteLine("N Key: {0}, V Key: {1}", nand._cpukey, variables.cpkey);
 
-                }
-
-                if (string.IsNullOrEmpty(variables.cpkey))
+                if (!foundKey && gotKeyFromCrc)
                 {
-                    if (variables.debugme) Console.WriteLine("KV CRC: {0:X}", nand.kvcrc());
-                    if (variables.debugme) Console.WriteLine("Searching Registry Entrys");
-                    try
+                    if (variables.debugme) Console.WriteLine("Found key in registry");
+                    nand.cpukeyverification(variables.cpkey);
+                    if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
+                    if (variables.debugme) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
+                    if (variables.debugme) Console.WriteLine(variables.filename1.Contains(variables.outfolder));
+                    if ((variables.allmove) && (!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
                     {
-                        variables.cpkey = CpuKeyDB.getkey_s(nand.kvcrc(), xPanel.getDataSet());
-                        txtCPUKey.Text = variables.cpkey;
-                    }
-                    catch (NullReferenceException ex) { Console.WriteLine(ex.ToString()); }
-                    if (!String.IsNullOrEmpty(variables.cpkey))
-                    {
-                        if (variables.debugme) Console.WriteLine("Found key in registry");
-                        nand.cpukeyverification(variables.cpkey);
-                        if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
-                        if (variables.debugme) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
-                        if (variables.debugme) Console.WriteLine(variables.filename1.Contains(variables.outfolder));
-                        if ((variables.allmove) && (!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
+                        if (!movedalready)
                         {
-                            if (!movedalready)
-                            {
-                                Thread Go = new Thread(movework);
-                                Go.Start();
-                                movedalready = true;
-                            }
+                            Thread Go = new Thread(movework);
+                            Go.Start();
+                            movedalready = true;
                         }
                     }
-
                 }
-                else
+                else if (foundKey)
                 {
                     if (!CpuKeyDB.getkey_s(variables.cpkey, xPanel.getDataSet()))
                     {
@@ -2030,14 +2032,13 @@ namespace JRunner
                                 }
                             }
                         }
-
                         else Console.WriteLine("Wrong CPU Key");
                     }
                 }
 
                 nandInfo.setNand(nand);
 
-                progressBar.Value = (progressBar.Maximum / 4) * 3;
+                progressBar.Value = (progressBar.Maximum / 4) * 3; // 75%
 
                 if (variables.debugme) Console.WriteLine("----------------------");
                 variables.ctyp = variables.cunts[0];

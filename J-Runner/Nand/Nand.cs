@@ -204,7 +204,7 @@ namespace JRunner.Nand
             FileInfo f = new FileInfo(filename);
             long s1 = f.Length;
             if (s1 == 0x40000) return;
-            byte[] data = (BadBlock.find_bad_blocks_X(filename, 0x50));
+            byte[] data = BadBlock.find_bad_blocks_X(filename, 0x50);
             //
             if (s1 >= 0x4200000 && s1 <= 0x21000000) bigblock = true;
             else bigblock = false;
@@ -320,7 +320,8 @@ namespace JRunner.Nand
                         if (semi == 0)
                         {
                             if (variables.extractfiles) Oper.savefile(data, "output\\CB_B.bin");
-                            cb_dec = Nand.decrypt_CB_cpukey(CB_B, Nand.decrypt_CB(CB_A), Oper.StringToByteArray(variables.cpkey));
+                            if (string.IsNullOrEmpty(variables.cpkey)) cb_dec = Nand.decrypt_CB_cpukey(CB_B, Nand.decrypt_CB(CB_A), Oper.StringToByteArray("00000000000000000000000000000000")); // It just needs something, doesn't matter that its not valid
+                            else cb_dec = Nand.decrypt_CB_cpukey(CB_B, Nand.decrypt_CB(CB_A), Oper.StringToByteArray(variables.cpkey));
                             if (variables.extractfiles) Oper.savefile(cb_dec, "output\\CB_B_dec.bin");
                             uf.ldv_cb = cb_dec[0x192]; // needs fixing
                             if (variables.debugme) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
@@ -1071,12 +1072,10 @@ namespace JRunner.Nand
                 //Console.WriteLine("* unknown image found !");
                 return 0;
             }
-
         }
 
         public static byte[] getrawkv(string filename)
         {
-
             long size = 0;
             byte[] data = BadBlock.find_bad_blocks_X(Oper.openfile(filename, ref size, 0), 5);
             if (variables.debugme) Console.WriteLine("data: {0:X}", data.Length);
@@ -1085,7 +1084,6 @@ namespace JRunner.Nand
             if (variables.extractfiles) Oper.savefile(Keyraw, "output\\KV_raw.bin");
             if (variables.debugme) Console.WriteLine("Keyraw: {0:X}", Keyraw.Length);
             return Keyraw;
-
         }
 
         public static bool cpukeyverification(string filename, string key_s, bool fast = false)
