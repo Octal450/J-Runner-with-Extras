@@ -223,6 +223,12 @@
     <Compile Include="Forms\CPUKeyGen.Designer.cs">
       <DependentUpon>CPUKeyGen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Issues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Issues.Designer.cs">
+      <DependentUpon>Issues.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\KeyvaultDecrypter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -779,6 +785,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CPUKeyGen.resx">
       <DependentUpon>CPUKeyGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Issues.resx">
+      <DependentUpon>Issues.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KeyvaultDecrypter.resx">
       <DependentUpon>KeyvaultDecrypter.cs</DependentUpon>

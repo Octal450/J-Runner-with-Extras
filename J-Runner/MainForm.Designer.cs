@@ -142,6 +142,7 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -918,6 +919,7 @@ namespace JRunner
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem,
             this.changelogToolStripMenuItem,
+            this.reportIssueToolStripMenuItem,
             this.shortcutsToolStripMenuItem,
             this.toolStripMenuItem4,
             this.newSessionToolStripMenuItem,
@@ -1106,6 +1108,13 @@ namespace JRunner
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // reportIssueToolStripMenuItem
+            // 
+            this.reportIssueToolStripMenuItem.Name = "reportIssueToolStripMenuItem";
+            this.reportIssueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reportIssueToolStripMenuItem.Text = "Report Issue…";
+            this.reportIssueToolStripMenuItem.Click += new System.EventHandler(this.reportIssueToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1268,5 +1277,6 @@ namespace JRunner
         private ToolStripMenuItem updateToolStripMenuItem;
         private ToolStripMenuItem nANDXToolStripMenuItem;
         private ToolStripMenuItem mtxUsbModeToolStripMenuItem;
+        private ToolStripMenuItem reportIssueToolStripMenuItem;
     }
 }

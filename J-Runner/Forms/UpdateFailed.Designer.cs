@@ -76,7 +76,7 @@ namespace JRunner
             // 
             // DownloadButton
             // 
-            this.DownloadButton.Location = new System.Drawing.Point(6, 99);
+            this.DownloadButton.Location = new System.Drawing.Point(4, 97);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(232, 23);
             this.DownloadButton.TabIndex = 1;
@@ -87,7 +87,7 @@ namespace JRunner
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Location = new System.Drawing.Point(2, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(361, 75);
             this.label1.TabIndex = 1;

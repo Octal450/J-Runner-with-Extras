@@ -65,7 +65,7 @@ namespace JRunner
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Location = new System.Drawing.Point(2, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(280, 15);
             this.label1.TabIndex = 0;

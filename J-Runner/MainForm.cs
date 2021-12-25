@@ -4770,5 +4770,11 @@ namespace JRunner
                 nTools.setImage(Properties.Resources.NANDX);
             }
         }
+
+        private void reportIssueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Issues issues = new Issues();
+            issues.ShowDialog();
+        }
     }
 }

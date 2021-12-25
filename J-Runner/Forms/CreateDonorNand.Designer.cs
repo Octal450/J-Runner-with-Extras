@@ -119,7 +119,7 @@ namespace JRunner.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 228);
+            this.label1.Location = new System.Drawing.Point(2, 226);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(232, 15);
             this.label1.TabIndex = 6;
@@ -127,10 +127,9 @@ namespace JRunner.Forms
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(0, 4);
+            this.label8.Location = new System.Drawing.Point(2, 2);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(414, 150);
+            this.label8.Size = new System.Drawing.Size(478, 150);
             this.label8.TabIndex = 0;
             this.label8.Text = resources.GetString("label8.Text");
             // 
@@ -271,7 +270,7 @@ namespace JRunner.Forms
             // 
             // NoFcrtText
             // 
-            this.NoFcrtText.Location = new System.Drawing.Point(0, 118);
+            this.NoFcrtText.Location = new System.Drawing.Point(2, 118);
             this.NoFcrtText.Name = "NoFcrtText";
             this.NoFcrtText.Size = new System.Drawing.Size(478, 65);
             this.NoFcrtText.TabIndex = 9;
@@ -301,7 +300,7 @@ namespace JRunner.Forms
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(0, 73);
+            this.label7.Location = new System.Drawing.Point(2, 73);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(478, 33);
             this.label7.TabIndex = 6;
@@ -360,7 +359,7 @@ namespace JRunner.Forms
             // DonorFcrtText
             // 
             this.DonorFcrtText.AutoSize = true;
-            this.DonorFcrtText.Location = new System.Drawing.Point(0, 228);
+            this.DonorFcrtText.Location = new System.Drawing.Point(2, 228);
             this.DonorFcrtText.Name = "DonorFcrtText";
             this.DonorFcrtText.Size = new System.Drawing.Size(278, 15);
             this.DonorFcrtText.TabIndex = 5;
@@ -377,7 +376,7 @@ namespace JRunner.Forms
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(0, 4);
+            this.label14.Location = new System.Drawing.Point(2, 2);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(478, 137);
             this.label14.TabIndex = 5;
@@ -387,7 +386,7 @@ namespace JRunner.Forms
             // 
             this.LdvGroup.Controls.Add(this.LdvBox);
             this.LdvGroup.Controls.Add(this.label5);
-            this.LdvGroup.Location = new System.Drawing.Point(4, 134);
+            this.LdvGroup.Location = new System.Drawing.Point(4, 132);
             this.LdvGroup.Name = "LdvGroup";
             this.LdvGroup.Size = new System.Drawing.Size(90, 46);
             this.LdvGroup.TabIndex = 4;
@@ -441,7 +440,7 @@ namespace JRunner.Forms
             // 
             // RevLdv
             // 
-            this.RevLdv.Location = new System.Drawing.Point(68, 185);
+            this.RevLdv.Location = new System.Drawing.Point(70, 183);
             this.RevLdv.Name = "RevLdv";
             this.RevLdv.ReadOnly = true;
             this.RevLdv.Size = new System.Drawing.Size(80, 23);
@@ -450,7 +449,7 @@ namespace JRunner.Forms
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(0, 188);
+            this.label15.Location = new System.Drawing.Point(2, 186);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(34, 15);
             this.label15.TabIndex = 9;
@@ -458,7 +457,7 @@ namespace JRunner.Forms
             // 
             // RevKernel
             // 
-            this.RevKernel.Location = new System.Drawing.Point(68, 156);
+            this.RevKernel.Location = new System.Drawing.Point(70, 154);
             this.RevKernel.Name = "RevKernel";
             this.RevKernel.ReadOnly = true;
             this.RevKernel.Size = new System.Drawing.Size(80, 23);
@@ -467,7 +466,7 @@ namespace JRunner.Forms
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(0, 159);
+            this.label12.Location = new System.Drawing.Point(2, 157);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(46, 15);
             this.label12.TabIndex = 7;
@@ -475,7 +474,7 @@ namespace JRunner.Forms
             // 
             // RevSmc
             // 
-            this.RevSmc.Location = new System.Drawing.Point(68, 127);
+            this.RevSmc.Location = new System.Drawing.Point(70, 125);
             this.RevSmc.Name = "RevSmc";
             this.RevSmc.ReadOnly = true;
             this.RevSmc.Size = new System.Drawing.Size(80, 23);
@@ -484,7 +483,7 @@ namespace JRunner.Forms
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(0, 130);
+            this.label11.Location = new System.Drawing.Point(2, 128);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 15);
             this.label11.TabIndex = 5;
@@ -492,7 +491,7 @@ namespace JRunner.Forms
             // 
             // RevHack
             // 
-            this.RevHack.Location = new System.Drawing.Point(68, 98);
+            this.RevHack.Location = new System.Drawing.Point(70, 96);
             this.RevHack.Name = "RevHack";
             this.RevHack.ReadOnly = true;
             this.RevHack.Size = new System.Drawing.Size(80, 23);
@@ -501,7 +500,7 @@ namespace JRunner.Forms
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(0, 101);
+            this.label10.Location = new System.Drawing.Point(2, 99);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 15);
             this.label10.TabIndex = 3;
@@ -509,7 +508,7 @@ namespace JRunner.Forms
             // 
             // RevConsole
             // 
-            this.RevConsole.Location = new System.Drawing.Point(68, 69);
+            this.RevConsole.Location = new System.Drawing.Point(70, 67);
             this.RevConsole.Name = "RevConsole";
             this.RevConsole.ReadOnly = true;
             this.RevConsole.Size = new System.Drawing.Size(80, 23);
@@ -518,7 +517,7 @@ namespace JRunner.Forms
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(0, 72);
+            this.label9.Location = new System.Drawing.Point(2, 70);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 15);
             this.label9.TabIndex = 1;
@@ -526,9 +525,9 @@ namespace JRunner.Forms
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(0, 4);
+            this.label6.Location = new System.Drawing.Point(2, 2);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(472, 33);
+            this.label6.Size = new System.Drawing.Size(478, 33);
             this.label6.TabIndex = 0;
             this.label6.Text = "The wizard is ready to create your Donor Nand. Please review the information belo" +
     "w to ensure everything is correct, then click Finish to build the image";
