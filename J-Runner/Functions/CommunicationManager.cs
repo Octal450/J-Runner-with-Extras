@@ -1,10 +1,10 @@
+using Microsoft.Win32;
 using System;
-using System.Text;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO.Ports;
+using System.Text;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using Microsoft.Win32;
 namespace CommPort
 {
     class CommunicationManager : IDisposable
@@ -216,7 +216,7 @@ namespace CommPort
             for (int i = 0; i < msg.Length; i += 2)
                 //convert each set of 2 characters to a byte
                 //and add to the array
-                comBuffer[i / 2] = (byte)Convert.ToByte(msg.Substring(i, 2), 16);
+                comBuffer[i / 2] = Convert.ToByte(msg.Substring(i, 2), 16);
             //return the array
             return comBuffer;
         }
@@ -260,7 +260,7 @@ namespace CommPort
                 _displayWindow.SelectedText = string.Empty;
                 //_displayWindow.SelectionFont = new Font(_displayWindow.SelectionFont, FontStyle.Bold);
                 //_displayWindow.SelectionColor = MessageColor[(int)type];
-                 _displayWindow.AppendText(msg);
+                _displayWindow.AppendText(msg);
                 _displayWindow.ScrollToCaret();
             }));
             }
@@ -428,7 +428,7 @@ namespace CommPort
 
         public void SetPortNameValues(ref List<string> obj)
         {
-            
+
             foreach (string str in SerialPort.GetPortNames())
             {
                 obj.Add(str);

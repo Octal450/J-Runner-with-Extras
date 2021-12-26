@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JRunner
@@ -19,7 +15,7 @@ namespace JRunner
 
         [DllImport(@"common\\xflasher\\FTDI2SPI.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern int spiGetBlocks();
-        
+
         [DllImport(@"common\\xflasher\\FTDI2SPI.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern int spiGetConfig();
 
@@ -28,7 +24,7 @@ namespace JRunner
 
         public string svfPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Octal450\\TimingSvfTemp.svf");
         public string svfRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Octal450");
-        
+
         public bool ready = false;
         public bool inUse = false;
         public bool waiting = false;
@@ -53,10 +49,10 @@ namespace JRunner
                 if (Environment.OSVersion.Version.Minor > 0) return true; // Win 7/8/8.1
                 else if (Environment.OSVersion.ServicePack == "Service Pack 2") return true; // Vista SP2
                 else // Vista RTM/SP1
-				{
-					MessageBox.Show("This version of Windows is not supported\n\nxFlasher requires Microsoft Windows Vista Service Pack 2 or later", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return false;
-				}
+                {
+                    MessageBox.Show("This version of Windows is not supported\n\nxFlasher requires Microsoft Windows Vista Service Pack 2 or later", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             else // XP and older
             {
@@ -129,7 +125,8 @@ namespace JRunner
 
             try
             {
-                Thread ftdiThread = new Thread(() => {
+                Thread ftdiThread = new Thread(() =>
+                {
                     if (!ready)
                     {
                         waiting = true;
@@ -195,7 +192,7 @@ namespace JRunner
                 else if (result == -4)
                 {
                     Console.WriteLine("xFlasher: Unknown Nand");
-                    
+
                     return 1;
                 }
                 else if (flashconf == "00023010") Console.WriteLine("Jasper 16MB, Trinity");
@@ -236,7 +233,8 @@ namespace JRunner
 
             try
             {
-                Thread ftdiThread = new Thread(() => {
+                Thread ftdiThread = new Thread(() =>
+                {
                     if (!ready)
                     {
                         waiting = true;
@@ -408,10 +406,11 @@ namespace JRunner
             {
                 return;
             }
-            
+
             try
             {
-                Thread ftdiThread = new Thread(() => {
+                Thread ftdiThread = new Thread(() =>
+                {
                     if (!ready)
                     {
                         waiting = true;
@@ -611,10 +610,11 @@ namespace JRunner
                 Console.WriteLine("xFlasher: Device Is Busy");
                 return;
             }
-            
+
             try
             {
-                Thread ftdiThread = new Thread(() => {
+                Thread ftdiThread = new Thread(() =>
+                {
                     if (!ready)
                     {
                         waiting = true;

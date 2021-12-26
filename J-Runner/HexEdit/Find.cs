@@ -1,11 +1,5 @@
 ﻿using Be.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.HexEdit
@@ -115,7 +109,7 @@ namespace JRunner.HexEdit
 
             if (res == -1) // -1 = no match
             {
-                MessageBox.Show("Find reached end of file!", "EOF", 
+                MessageBox.Show("Find reached end of file!", "EOF",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (res == -2) // -2 = find was aborted
@@ -186,7 +180,7 @@ namespace JRunner.HexEdit
         {
             long pos = this.HexBox.CurrentFindingPosition;
             long length = HexBox.ByteProvider.Length;
-            double percent = (double)pos / (double)length * (double)100;
+            double percent = pos / (double)length * 100;
 
             System.Globalization.NumberFormatInfo nfi =
                 new System.Globalization.CultureInfo("en-US").NumberFormat;

@@ -1,12 +1,8 @@
 ﻿using LibUsbDotNet;
 using LibUsbDotNet.Main;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -38,9 +34,9 @@ namespace JRunner.Forms
 
         private void MonitorOnNewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
-           var tmp = Encoding.UTF8.GetString(e.Data);
+            var tmp = Encoding.UTF8.GetString(e.Data);
             Console.Write(tmp);
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -188,7 +184,8 @@ namespace JRunner.Forms
                 return false;
             }
             var bw = new BackgroundWorker();
-            bw.DoWork += (sender, args) => {
+            bw.DoWork += (sender, args) =>
+            {
                 while (true)
                 {
                     SendCommand(DemonCommands.READ_SERIAL_PORT);

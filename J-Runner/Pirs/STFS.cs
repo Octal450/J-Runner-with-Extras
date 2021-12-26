@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.Pirs
@@ -92,7 +88,7 @@ namespace JRunner.Pirs
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             if (listView.SelectedItems.Count >= 1)
-            {         
+            {
             }
             else e.Cancel = true;
         }
@@ -169,8 +165,8 @@ namespace JRunner.Pirs
         {
             string[] lines = File.ReadAllLines(filename);
 
-            string old_version="", new_version="";
-            string cf_checksum="", cg_checksum="";
+            string old_version = "", new_version = "";
+            string cf_checksum = "", cg_checksum = "";
 
             foreach (string s in lines) if (s.Contains("cf_"))
                 {

@@ -1,32 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
-using System.Threading;
-using System.Security;
-using System.Security.Cryptography;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Runtime;
-using System.Runtime.InteropServices;
-using System.Timers;
-using System.Reflection;
-using System.Management;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Windows.Forms;
 
 namespace JRunner.Nand
 {
     public struct Bootloaders
     {
-        public int CB_A; 
+        public int CB_A;
         public int CB_B;
         public int CD;
         public int CE;
@@ -832,7 +817,7 @@ namespace JRunner.Nand
                 fullsize = 0x3ff;
                 block_type = 0x30;
             }
-            
+
 
 
             int newfilesystem = 0;
@@ -858,7 +843,7 @@ namespace JRunner.Nand
                         fsSequence[3] = image[position + 6];
                         fsseq = (fsSequence[2] << 16) + (fsSequence[1] << 8) + fsSequence[0];
                     }
-                    
+
                     if (fsseq != 0 && (blocktype & 0x3F) == block_type)
                     {
                         if (variables.debugme) Console.WriteLine(fsseq);
@@ -934,7 +919,7 @@ namespace JRunner.Nand
                         length = Oper.ByteArrayToInt(len);
                         block = Oper.ByteArrayToInt(blok);
 
-                        if (bigblock) 
+                        if (bigblock)
                         {
                             byte[] sparedata = new byte[0x10];
                             Buffer.BlockCopy(image, ((page * pagesize) + 0x200), sparedata, 0, 0x10);
@@ -956,11 +941,11 @@ namespace JRunner.Nand
             int sizeOfFlashFileSystem = sparedata[8];
             int blocksReservedConfigInfo = sparedata[9];
 
-            int totalSize = blocksInNand*(smallblocksInBigBlocks);
-            int endOfConfigArea = totalSize-(remapReserveSize*smallblocksInBigBlocks);
+            int totalSize = blocksInNand * (smallblocksInBigBlocks);
+            int endOfConfigArea = totalSize - (remapReserveSize * smallblocksInBigBlocks);
             int endOfFileSystem = endOfConfigArea - (blocksReservedConfigInfo * smallblocksInBigBlocks);
             int startOfFileSystem = endOfFileSystem - (sizeOfFlashFileSystem << 5);
-            
+
 
             return ((startOfFileSystem * 0x4200) + (blockoffset * 0x4200));
         }
@@ -1910,7 +1895,7 @@ namespace JRunner.Nand
                 data = addecc_v2(data, true, smc_config_offset, layout);
             }
             fileb.Write(data);
-            
+
 
             infile.Close();
             return;
@@ -2039,7 +2024,8 @@ namespace JRunner.Nand
                 if (nand.noecc) cons[11] += 3;
                 else cons[10] += 3;
             }
-            else if (nand.bl.CB_A >= 6712 && nand.bl.CB_A <= 6780) {
+            else if (nand.bl.CB_A >= 6712 && nand.bl.CB_A <= 6780)
+            {
                 cons[4] += 3;
                 cons[5] += 3;
                 cons[6] += 3;
@@ -2052,7 +2038,7 @@ namespace JRunner.Nand
                 cons[2] += 3;
                 cons[9] += 3;
             }
-            
+
             // smc check
             //console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona", "Winchester" };
             int smctype = nand._smc[0x100] >> 4 & 15;
@@ -2083,9 +2069,9 @@ namespace JRunner.Nand
             if (!String.IsNullOrWhiteSpace(flashconfig))
             {
                 if (flashconfig == ("008A3020")) cons[6]++;
-                else if (flashconfig == ("00AA3020"))  cons[7]++;
-                else if (flashconfig == "C0462002")  cons[11]++;
-                else if (flashconfig == ("01198010")) 
+                else if (flashconfig == ("00AA3020")) cons[7]++;
+                else if (flashconfig == "C0462002") cons[11]++;
+                else if (flashconfig == ("01198010"))
                 {
                     cons[2]++;
                     cons[3]++;
@@ -2381,34 +2367,36 @@ namespace JRunner.Nand
             }
             else return false;
         }
-        
+
         // DaCukiMonsta 09 Nov 2021
-        public static string consoleID_KV_to_friendly(string KVencoded){
+        public static string consoleID_KV_to_friendly(string KVencoded)
+        {
             // take KV encoded console ID, and convert to friendly console ID
             // KVencoded must be 10 characters hex string
-        
+
             // contains no validation that this is true, proceed at your own risk
             // or add validation and exceptions
-        
+
             // convert the first 9 characters from hex to decimal
             UInt64 first_part = Convert.ToUInt64(KVencoded.Substring(0, 9), 16); // uint64 because more than 4 bytes
-        
+
             // add last digit from original encoding, and left pad with zeros
             string friendly_encoding = (first_part.ToString() + KVencoded.Substring(9)).PadLeft(12, '0');
             return friendly_encoding;
         }
-    
+
         // DaCukiMonsta 09 Nov 2021
-        public static string ConsoleID_friendly_to_KV(string friendly_encoded){
+        public static string ConsoleID_friendly_to_KV(string friendly_encoded)
+        {
             // take friendly encoded console ID, and convert to friendly KV console ID
             // friendly_encoded must be 12 characters, first 11 decimal, last one can be hex
-        
+
             // contains no validation that this is true, proceed at your own risk
             // or add validation and exceptions
-        
+
             // convert the first 11 characters from decimal to hex
             UInt64 first_part = Convert.ToUInt64(friendly_encoded.Substring(0, 11)); // uint64 because more than 4 bytes
-        
+
             // add last digit from original encoding, and left pad with zeros
             string KVencoded = (first_part.ToString("X") + friendly_encoded.Substring(11)).PadLeft(10, '0');
             return KVencoded;
@@ -2503,8 +2491,8 @@ namespace JRunner.Nand
 								0x95060, // FreeBOOT Single-NAND main xell-2f
 								0x100000, // XeLL-Only Image
 								0xC0000,
-								0xE0000,
-								0xB80000};
+                                0xE0000,
+                                0xB80000};
 
             byte[] doublexell = new byte[xell.Length * 2];
             Buffer.BlockCopy(xell, 0, doublexell, 0, xell.Length);
@@ -2517,7 +2505,7 @@ namespace JRunner.Nand
                 doublexell = addecc_v2(doublexell, true, startblock * blocksize, 1);
             }
             BinaryWriter bw = new BinaryWriter(new FileStream(filename, FileMode.Open, FileAccess.ReadWrite));
-            
+
             bw.Seek(startblock * blocksize, SeekOrigin.Begin);
             bw.Write(doublexell);
             bw.Close();
@@ -2590,7 +2578,7 @@ namespace JRunner.Nand
             Console.WriteLine("Security Activated: {0}", BitConverter.ToInt64(array, 0));
             array = Oper.returnportion(decrypted, 0x38, 8);
             if (BitConverter.IsLittleEndian) Array.Reverse(array);
-            Console.WriteLine("No DVD Connected Counter: {0}", BitConverter.ToInt64(array, 0)); 
+            Console.WriteLine("No DVD Connected Counter: {0}", BitConverter.ToInt64(array, 0));
             DisplayResults(decrypted_data);
         }
 
@@ -2602,7 +2590,7 @@ namespace JRunner.Nand
             if (console_serial.Length != 0xC) return;
 
             HMACSHA1 hmac = new HMACSHA1(Encoding.ASCII.GetBytes(console_serial));
-            hmac.Initialize();            
+            hmac.Initialize();
             byte[] des_key = Oper.returnportion(hmac.ComputeHash(Encoding.ASCII.GetBytes("XBOX360SSB")), 0, 8);
             Console.WriteLine("{0}", Oper.ByteArrayToString(des_key));
 
@@ -2699,8 +2687,8 @@ namespace JRunner.Nand
                 if (variables.debugme) Console.WriteLine("decrypting smc");
                 SMC = Nand.decrypt_SMC(SMC);
             }
-            if (Oper.allsame(Oper.returnportion(SMC, 0x2db0, 0x10), 0x00)) return false; 
-            else return true; 
+            if (Oper.allsame(Oper.returnportion(SMC, 0x2db0, 0x10), 0x00)) return false;
+            else return true;
         }
         public static bool IndexOfSequence(byte[] buffer, byte[] pattern, int startIndex, int endIndex = 0)
         {
@@ -3743,19 +3731,19 @@ IMAGE_LAYOUT_2: jasper 256/512
 //        u32 dwSmcBootSize; // 0x3000
 //        u32 dwSmcBootAddr; // 0x1000
 //} BLDR_FLASH, *PBLDR_FLASH;
- 
+
 //typedef struct _FS_ENT{
 //        char fileName[22];
 //        u16 startCluster; //u8 startCluster[2];
 //        u32 clusterSz; //u8 clusterSz[4];
 //        u32 typeTime;
 //} FS_ENT, *PFS_ENT;
- 
+
 //typedef struct _FS_SORTED{
 //        u16 indirections[0x100*0x10];
 //        FS_ENT fsent[0x10*0x10];
 //} FS_SORTED, *PFS_SORTED;
- 
+
 //typedef struct _METADATA_SMALLBLOCK{
 //        unsigned char BlockID1; // lba/id = (((BlockID0<<8)&0xF)+(BlockID1&0xFF))
 //        unsigned char BlockID0 : 4;
@@ -3775,7 +3763,7 @@ IMAGE_LAYOUT_2: jasper 256/512
 //        unsigned char ECC1;
 //        unsigned char ECC0;
 //} SMALLBLOCK;
- 
+
 //typedef struct _METADATA_BIGONSMALL{
 //        unsigned char FsSequence0;
 //        unsigned char BlockID1; // lba/id = (((BlockID0<<8)&0xF)+(BlockID1&0xFF))
@@ -3795,7 +3783,7 @@ IMAGE_LAYOUT_2: jasper 256/512
 //        unsigned char ECC1;
 //        unsigned char ECC0;
 //} BIGONSMALL;
- 
+
 //typedef struct _METADATA_BIGBLOCK{
 //        unsigned char BadBlock;
 //        unsigned char BlockID1; // lba/id = (((BlockID0<<8)&0xF)+(BlockID1&0xFF))
@@ -3815,7 +3803,7 @@ IMAGE_LAYOUT_2: jasper 256/512
 //        unsigned char ECC1;
 //        unsigned char ECC0;
 //} BIGBLOCK;
- 
+
 //typedef struct _METADATA{
 //        union{
 //                SMALLBLOCK sm;
@@ -3823,7 +3811,7 @@ IMAGE_LAYOUT_2: jasper 256/512
 //                BIGONSMALL bos;
 //        };
 //} METADATA, *PMETADATA;
- 
+
 //typedef struct _PAGEDATA{
 //        unsigned char user[512];
 //        METADATA meta;

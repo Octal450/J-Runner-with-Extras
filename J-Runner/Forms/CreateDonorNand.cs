@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.Forms
@@ -97,7 +91,7 @@ namespace JRunner.Forms
 
         private void eccXellBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void pullXeBuildVal()

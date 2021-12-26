@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.Nand
@@ -50,7 +49,7 @@ namespace JRunner.Nand
             bool flag = false;
             for (counter = 0; counter + 496 <= blocksize; counter += 0x210)
             {
-                
+
                 if (Oper.allsame(Oper.returnportion(block, counter + 0x200, 0x10), 0x00) || (block[counter + markeroffset] != 0xFF && ((!flag && bigblock) || !bigblock)))
                 {
                     //if ((stealth && variables.debugme) || !stealth) Console.WriteLine("Bad Block ID @ 0x{0:X4} [Offset: 0x{1:X}]", blocknumber, blocknumber * blocksize);
@@ -112,7 +111,7 @@ namespace JRunner.Nand
                         if (reserved.Length > ((blocksize * (block + 1)) - (0x210 - markeroffset)))
                         {
                             //if (variables.debugme) Console.WriteLine("{0:X} - {1:X}", (blocksize * (block + 1)) - (0x210 - markeroffset), (blocksize * block) + markeroffset);
-                            if ((reserved[(blocksize * (block + 1)) - (0x210 - markeroffset)] != 0xFF) && 
+                            if ((reserved[(blocksize * (block + 1)) - (0x210 - markeroffset)] != 0xFF) &&
                             (reserved[(blocksize * block) + markeroffset] != 0xFF)) continue;
                         }
 
@@ -210,7 +209,7 @@ namespace JRunner.Nand
                     byte[] block = new byte[blocksize];
                     //if (variables.debugme) Console.WriteLine("roffset: {0:X}", blocksize * (remappedblocks[left]));
                     Buffer.BlockCopy(reserved, blocksize * (remappedblocks[left]), block, 0, blocksize);
-                   // if (variables.debugme) Console.WriteLine("Block {0:X} is performing operations", badblocks[left]);
+                    // if (variables.debugme) Console.WriteLine("Block {0:X} is performing operations", badblocks[left]);
                     //if (variables.debugme) Console.WriteLine("{0:X}", remappedblocks[left] + reservestartpos + 1);
                     for (int i = 0; i < blocksize; i++)
                     {
@@ -494,7 +493,7 @@ namespace JRunner.Nand
                 }
                 i++;
             }
-    
+
             if (!found)
             {
                 text += ("Remapped Blocks don't exist.");

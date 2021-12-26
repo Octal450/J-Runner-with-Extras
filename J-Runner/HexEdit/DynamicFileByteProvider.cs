@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using System.IO;
 
 namespace Be.Windows.Forms
@@ -167,7 +166,7 @@ namespace Be.Windows.Forms
                         fileBlock.Length - (index - blockOffset + 1));
                 }
 
-				block = _dataMap.Replace(block, new MemoryDataBlock(value));
+                block = _dataMap.Replace(block, new MemoryDataBlock(value));
 
                 if (prefixBlock != null)
                 {
@@ -232,7 +231,7 @@ namespace Be.Windows.Forms
                         fileBlock.Length - (index - blockOffset));
                 }
 
-				block = _dataMap.Replace(block, new MemoryDataBlock(bs));
+                block = _dataMap.Replace(block, new MemoryDataBlock(bs));
 
                 if (prefixBlock != null)
                 {
@@ -283,7 +282,7 @@ namespace Be.Windows.Forms
                             _dataMap.AddFirst(new MemoryDataBlock(new byte[0]));
                         }
                     }
-                    
+
                     bytesToDelete -= count;
                     blockOffset += block.Length;
                     block = (bytesToDelete > 0) ? nextBlock : null;
@@ -514,7 +513,7 @@ namespace Be.Windows.Forms
         {
             // First, determine whether the next file block needs to move before this one.
             long nextDataOffset;
-			FileDataBlock nextFileBlock = GetNextFileDataBlock(fileBlock, dataOffset, out nextDataOffset);
+            FileDataBlock nextFileBlock = GetNextFileDataBlock(fileBlock, dataOffset, out nextDataOffset);
             if (nextFileBlock != null && dataOffset + fileBlock.Length > nextFileBlock.FileOffset)
             {
                 // The next block needs to move first, so do that now.
@@ -555,8 +554,8 @@ namespace Be.Windows.Forms
                 }
             }
 
-			// This block now points to a different position in the file.
-			fileBlock.SetFileOffset(dataOffset);
+            // This block now points to a different position in the file.
+            fileBlock.SetFileOffset(dataOffset);
         }
 
         void ReInitialize()

@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace JRunner.Panels
 {
@@ -334,11 +328,11 @@ namespace JRunner.Panels
             else if (comboDash.SelectedIndex >= 0)
             {
                 variables.preferredDash = comboDash.Text;
-              
+
                 variables.dashversion = Convert.ToInt32(comboDash.Text);
                 lblDash.Text = comboDash.Text;
-               
-            } 
+
+            }
 
             if (comboDash.SelectedIndex < comboDash.Items.Count - 3)
             {

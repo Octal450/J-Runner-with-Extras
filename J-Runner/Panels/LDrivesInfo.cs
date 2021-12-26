@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Windows.Forms;
-using System.Threading;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Management;
-using System.Diagnostics;
+﻿using DiskManagement;
 using Microsoft.Win32.SafeHandles;
-using DiskManagement;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Management;
+using System.Media;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace JRunner.Panels
 {
@@ -207,7 +204,7 @@ namespace JRunner.Panels
         {
             buttons(false);
             variables.reading = true;
-            if (variables.NoReads != 1) 
+            if (variables.NoReads != 1)
             {
                 for (int i = 1; i <= variables.NoReads; i++)
                 {
@@ -823,7 +820,7 @@ namespace JRunner.Panels
                 byte[] temp = new byte[track];
                 while (i < tracks && !variables.escapeloop)
                 {
-                   UpdateProgres((int)((i * 100) / tracks));
+                    UpdateProgres((int)((i * 100) / tracks));
                     i++;
                     fs.Write(temp, 0, (int)track);
                 }
@@ -879,7 +876,7 @@ namespace JRunner.Panels
                         // The response buffer is too small, reallocate it exponentially and retry
                         else if (Marshal.GetLastWin32Error() == ERROR_INSUFFICIENT_BUFFER)
                         {
-                            maxResponseSize = (int)(maxResponseSize * 5);
+                            maxResponseSize = maxResponseSize * 5;
                         }
                         // Fatal error has occured, throw exception
                         else
@@ -1004,7 +1001,7 @@ namespace JRunner.Panels
         private static extern uint QueryDosDevice(string lpDeviceName, IntPtr lpTargetPath, int ucchMax);
 
         [DllImport("Kernel32.dll")]
-        static extern SafeFileHandle CreateFile(string filename, [MarshalAs(UnmanagedType.U4)]FileAccess fileaccess, [MarshalAs(UnmanagedType.U4)]FileShare fileshare, int securityattributes, [MarshalAs(UnmanagedType.U4)]FileMode creationdisposition, int flags, IntPtr template);
+        static extern SafeFileHandle CreateFile(string filename, [MarshalAs(UnmanagedType.U4)] FileAccess fileaccess, [MarshalAs(UnmanagedType.U4)] FileShare fileshare, int securityattributes, [MarshalAs(UnmanagedType.U4)] FileMode creationdisposition, int flags, IntPtr template);
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         static extern bool GetDiskFreeSpace(string lpRootPathName,
@@ -1041,6 +1038,6 @@ namespace JRunner.Panels
         private static extern bool CloseHandle(SafeFileHandle handle);
 
         #endregion
-        
+
     }
 }

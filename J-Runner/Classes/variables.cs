@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
 using System.Reflection;
-using System.Text;
 
 namespace JRunner
 {
@@ -131,8 +126,8 @@ namespace JRunner
         #region
 
         #endregion
-        public static string soundsuccess = "", sounderror = "", soundcompare = "", ip = "",custname = "";
-        
+        public static string soundsuccess = "", sounderror = "", soundcompare = "", ip = "", custname = "";
+
         public static string COMPort = "";
 
         /// <summary>
@@ -156,7 +151,7 @@ namespace JRunner
         /// <summary>
         /// console types
         /// </summary>
-        public static consoles[] cunts = { 
+        public static consoles[] cunts = {
             new consoles(-1, "", "", "", -1, Nandsize.S0, -1),
             new consoles(1, "trinity", "trinity", "Trinity", 16, Nandsize.S16, 1),
             new consoles(2, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0),
@@ -171,8 +166,8 @@ namespace JRunner
             new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
         };
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
-	    {
-	        {"6FB5C6A45999A4BBB037827659991BFE", "1.05"},
+        {
+            {"6FB5C6A45999A4BBB037827659991BFE", "1.05"},
             {"27A9668D57B1E99332755DBCB31FED1A", "1.06"},
             {"D27ED0E6B79DCA362118C949227A37DD", "1.07"},
             {"7085B2D00140087769838BFFE13EBE70", "1.08"},
@@ -189,8 +184,8 @@ namespace JRunner
         };
 
         public static Dictionary<string, string> dls = new Dictionary<string, string>()
-	    {
-	        {"1758FDF437DC51EB8B11AB601D0C3BA0", "3.03"},
+        {
+            {"1758FDF437DC51EB8B11AB601D0C3BA0", "3.03"},
             {"0E8B9F50868E9BB6860C944DA43F4AAD", "3.04"},
             {"F370DCEB94EA65FE0DCF7F96F0843505", "3.05"},
             {"9D57D32E5124E065BA3F95759B6E2D9D", "3.06"},
@@ -228,7 +223,7 @@ namespace JRunner
             // Corona Winbond RGH1.2: 93-109
             "rgh12_wb_60_v2", "rgh12_wb_65_v2","rgh12_wb_70_v2","rgh12_wb_75_v2", "rgh12_wb_80_v2", "rgh12_wb_85_v2","rgh12_wb_90_v2","rgh12_wb_95_v2", "rgh12_wb_100_v2", "rgh12_wb_105_v2","rgh12_wb_110_v2","rgh12_wb_115_v2", "rgh12_wb_120_v2", "rgh12_wb_125_v2","rgh12_wb_130_v2","rgh12_wb_135_v2"
         };
-        public static string[] demon_xsvf = new string[] {};
+        public static string[] demon_xsvf = new string[] { };
         public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona", "Winchester" };
         public static string[] flashconfigs = new string[] { "00023010", "01198010", "008A3020", "00AA3020", "00043000", "C0462002" };
         public static bool fulldump = false, twombread = false;
@@ -887,12 +882,12 @@ namespace JRunner
         #endregion
         #region Pictures
 
- 
+
         public static List<string> xmodel = new List<string>()
-	{
-	    @"\common\Pics\Xbox360_Model_Guide.jpg",
+    {
+        @"\common\Pics\Xbox360_Model_Guide.jpg",
         @"\common\Pics\coronaguide.jpg"
-	};
+    };
 
 
         #endregion

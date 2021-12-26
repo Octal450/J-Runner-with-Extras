@@ -1451,7 +1451,7 @@ namespace Ionic.Zip
             {
                 if (_CompressionMethod != (short)CompressionMethod.Deflate &&
                     _CompressionMethod != (short)CompressionMethod.None)
-                    return ; // no effect
+                    return; // no effect
 
                 if (value == Ionic.Zlib.CompressionLevel.Default &&
                     _CompressionMethod == (short)CompressionMethod.Deflate) return; // nothing to do
@@ -1462,9 +1462,9 @@ namespace Ionic.Zip
                     return; // nothing more to do
 
                 if (_CompressionLevel == Ionic.Zlib.CompressionLevel.None)
-                    _CompressionMethod = (short) Ionic.Zip.CompressionMethod.None;
+                    _CompressionMethod = (short)Ionic.Zip.CompressionMethod.None;
                 else
-                    _CompressionMethod = (short) Ionic.Zip.CompressionMethod.Deflate;
+                    _CompressionMethod = (short)Ionic.Zip.CompressionMethod.Deflate;
 
                 if (_container.ZipFile != null) _container.ZipFile.NotifyEntryChanged();
                 _restreamRequiredOnSave = true;
@@ -1770,7 +1770,7 @@ namespace Ionic.Zip
 
                 _Encryption = value;
                 _restreamRequiredOnSave = true;
-                if (_container.ZipFile!=null)
+                if (_container.ZipFile != null)
                     _container.ZipFile.NotifyEntryChanged();
             }
         }

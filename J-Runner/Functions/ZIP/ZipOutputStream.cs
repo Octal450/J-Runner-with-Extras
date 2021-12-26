@@ -43,10 +43,9 @@
 //
 
 using System;
-using System.Threading;
 using System.Collections.Generic;
 using System.IO;
-using Ionic.Zip;
+using System.Threading;
 
 namespace Ionic.Zip
 {
@@ -368,7 +367,7 @@ namespace Ionic.Zip
         /// <returns>a string representation of the instance.</returns>
         public override String ToString()
         {
-            return String.Format ("ZipOutputStream::{0}(leaveOpen({1})))", _name, _leaveUnderlyingStreamOpen);
+            return String.Format("ZipOutputStream::{0}(leaveOpen({1})))", _name, _leaveUnderlyingStreamOpen);
         }
 
 
@@ -722,15 +721,15 @@ namespace Ionic.Zip
         /// </remarks>
         public bool IgnoreCase
         {
-          get
-          {
-              return !_DontIgnoreCase;
-          }
+            get
+            {
+                return !_DontIgnoreCase;
+            }
 
-          set
-          {
-              _DontIgnoreCase = !value;
-          }
+            set
+            {
+                _DontIgnoreCase = !value;
+            }
 
         }
 
@@ -1260,7 +1259,7 @@ namespace Ionic.Zip
                 throw new System.InvalidOperationException("The stream has been closed.");
             }
 
-            if (buffer==null)
+            if (buffer == null)
             {
                 _exceptionPending = true;
                 throw new System.ArgumentNullException("buffer");
@@ -1391,7 +1390,7 @@ namespace Ionic.Zip
             _currentEntry.AlternateEncoding = this.AlternateEncoding;
             _currentEntry.AlternateEncodingUsage = this.AlternateEncodingUsage;
 
-            if (entryName.EndsWith("/"))  _currentEntry.MarkAsDirectory();
+            if (entryName.EndsWith("/")) _currentEntry.MarkAsDirectory();
 
             _currentEntry.EmitTimesInWindowsFormatWhenSaving = ((_timestamp & ZipEntryTimestamp.Windows) != 0);
             _currentEntry.EmitTimesInUnixFormatWhenSaving = ((_timestamp & ZipEntryTimestamp.Unix) != 0);
@@ -1411,7 +1410,7 @@ namespace Ionic.Zip
             // _InitiateCurrentEntry(bool) from within Write().)  If finishing==true,
             // the entry could be either a zero-byte file or a directory.
 
-            _entriesWritten.Add(_currentEntry.FileName,_currentEntry);
+            _entriesWritten.Add(_currentEntry.FileName, _currentEntry);
             _entryCount++; // could use _entriesWritten.Count, but I don't want to incur
             // the cost.
 
@@ -1460,7 +1459,7 @@ namespace Ionic.Zip
                 _currentEntry.FinishOutputStream(_outputStream, _outputCounter, _encryptor, _deflater, _entryOutputStream);
                 _currentEntry.PostProcessOutput(_outputStream);
                 // workitem 12964
-                if (_currentEntry.OutputUsedZip64!=null)
+                if (_currentEntry.OutputUsedZip64 != null)
                     _anyEntriesUsedZip64 |= _currentEntry.OutputUsedZip64.Value;
 
                 // reset all the streams
@@ -1781,7 +1780,7 @@ namespace Ionic.Zip
             get
             {
                 if (_zf != null) return _zf.AlternateEncoding;
-                if (_zos!=null) return _zos.AlternateEncoding;
+                if (_zos != null) return _zos.AlternateEncoding;
                 return null;
             }
         }
@@ -1790,7 +1789,7 @@ namespace Ionic.Zip
             get
             {
                 if (_zf != null) return ZipFile.DefaultEncoding;
-                if (_zos!=null) return ZipOutputStream.DefaultEncoding;
+                if (_zos != null) return ZipOutputStream.DefaultEncoding;
                 return null;
             }
         }
@@ -1799,7 +1798,7 @@ namespace Ionic.Zip
             get
             {
                 if (_zf != null) return _zf.AlternateEncodingUsage;
-                if (_zos!=null) return _zos.AlternateEncodingUsage;
+                if (_zos != null) return _zos.AlternateEncodingUsage;
                 return ZipOption.Never; // n/a
             }
         }

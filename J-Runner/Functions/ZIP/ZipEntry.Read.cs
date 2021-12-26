@@ -119,7 +119,7 @@ namespace Ionic.Zip
             // But, regardless of the status of bit 3 in the bitfield, the slots for
             // the three amigos may contain marker values for ZIP64.  So we must read them.
             {
-                ze._Crc32 = (Int32)(block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256);
+                ze._Crc32 = block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256;
                 ze._CompressedSize = (uint)(block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256);
                 ze._UncompressedSize = (uint)(block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256);
 
@@ -211,7 +211,7 @@ namespace Ionic.Zip
                         //bytesRead += n;
 
                         i = 0;
-                        ze._Crc32 = (Int32)(block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256);
+                        ze._Crc32 = block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256;
                         ze._CompressedSize = BitConverter.ToInt64(block, i);
                         i += 8;
                         ze._UncompressedSize = BitConverter.ToInt64(block, i);
@@ -231,7 +231,7 @@ namespace Ionic.Zip
                         //bytesRead += n;
 
                         i = 0;
-                        ze._Crc32 = (Int32)(block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256);
+                        ze._Crc32 = block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256;
                         ze._CompressedSize = (uint)(block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256);
                         ze._UncompressedSize = (uint)(block[i++] + block[i++] * 256 + block[i++] * 256 * 256 + block[i++] * 256 * 256 * 256);
 
@@ -471,11 +471,11 @@ namespace Ionic.Zip
             while (j + 3 < extra.Length)
             {
                 UInt16 headerId = (UInt16)(extra[j++] + extra[j++] * 256);
-                if (headerId == targetHeaderId) return j-2;
+                if (headerId == targetHeaderId) return j - 2;
 
                 // else advance to next segment
                 Int16 dataSize = (short)(extra[j++] + extra[j++] * 256);
-                j+= dataSize;
+                j += dataSize;
             }
 
             return -1;
@@ -644,14 +644,15 @@ namespace Ionic.Zip
                                                          dataSize, posn));
             int remainingData = dataSize;
 
-            var slurp = new Func<Int64>( () => {
-                    if (remainingData < 8)
-                        throw new BadReadException(String.Format("  Missing data for ZIP64 extra field, position 0x{0:X16}", posn));
-                    var x = BitConverter.ToInt64(buffer, j);
-                    j+= 8;
-                    remainingData -= 8;
-                    return x;
-                });
+            var slurp = new Func<Int64>(() =>
+            {
+                if (remainingData < 8)
+                    throw new BadReadException(String.Format("  Missing data for ZIP64 extra field, position 0x{0:X16}", posn));
+                var x = BitConverter.ToInt64(buffer, j);
+                j += 8;
+                remainingData -= 8;
+                return x;
+            });
 
             if (this._UncompressedSize == 0xFFFFFFFF)
                 this._UncompressedSize = slurp();
@@ -700,12 +701,13 @@ namespace Ionic.Zip
 
             int remainingData = dataSize;
 
-            var slurp = new Func<DateTime>( () => {
-                    Int32 timet = BitConverter.ToInt32(buffer, j);
-                    j += 4;
-                    remainingData -= 4;
-                    return _unixEpoch.AddSeconds(timet);
-                });
+            var slurp = new Func<DateTime>(() =>
+            {
+                Int32 timet = BitConverter.ToInt32(buffer, j);
+                j += 4;
+                remainingData -= 4;
+                return _unixEpoch.AddSeconds(timet);
+            });
 
             if (dataSize == 13 || _readExtraDepth > 0)
             {
@@ -715,13 +717,13 @@ namespace Ionic.Zip
                 if ((flag & 0x0001) != 0 && remainingData >= 4)
                     this._Mtime = slurp();
 
-                 this._Atime = ((flag & 0x0002) != 0 && remainingData >= 4)
-                     ? slurp()
-                     : DateTime.UtcNow;
+                this._Atime = ((flag & 0x0002) != 0 && remainingData >= 4)
+                    ? slurp()
+                    : DateTime.UtcNow;
 
-                 this._Ctime =  ((flag & 0x0004) != 0 && remainingData >= 4)
-                     ? slurp()
-                     :DateTime.UtcNow;
+                this._Ctime = ((flag & 0x0004) != 0 && remainingData >= 4)
+                    ? slurp()
+                    : DateTime.UtcNow;
 
                 _timestamp |= ZipEntryTimestamp.Unix;
                 _ntfsTimesAreSet = true;

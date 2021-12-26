@@ -1,11 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.CPUkeydb
@@ -14,7 +9,7 @@ namespace JRunner.CPUkeydb
     {
         DataSet1 hi;
 
-        public Editmobo(string ID,string Serial,string CPU,string Mobo, DataSet1 his)
+        public Editmobo(string ID, string Serial, string CPU, string Mobo, DataSet1 his)
         {
             InitializeComponent();
             this.IdentTB.Text = ID;
@@ -37,7 +32,7 @@ namespace JRunner.CPUkeydb
             {
                 RegistryKey cpukeydb = Registry.CurrentUser.OpenSubKey("CPUKey_DB");
                 RegistryKey cpukeys = cpukeydb.OpenSubKey(IdentTB.Text, true);
-                cpukeys.SetValue("Mobo", (object)ConsTypeTB.Text);
+                cpukeys.SetValue("Mobo", ConsTypeTB.Text);
             }
             catch (Exception)
             {
@@ -55,7 +50,7 @@ namespace JRunner.CPUkeydb
                 {
                     RegistryKey cpukeydb = Registry.CurrentUser.OpenSubKey("CPUKey_DB");
                     RegistryKey cpukeys = cpukeydb.OpenSubKey(IdentTB.Text, true);
-                    cpukeys.SetValue("Mobo", (object)ConsTypeTB.Text);
+                    cpukeys.SetValue("Mobo", ConsTypeTB.Text);
                 }
                 catch (Exception)
                 {

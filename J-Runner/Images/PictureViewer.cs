@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace JRunner
 {
@@ -150,11 +146,11 @@ namespace JRunner
         private void button2_Click(object sender, EventArgs e)
         {
             i--;
-            if (i < 0) i = list.Count-1;
+            if (i < 0) i = list.Count - 1;
             try
             {
                 pictureBox1.Load(pathforit + list[i]);
-                this.Text = "Picture Viewer - " + (i + 1) + "  out of " +  list.Count;
+                this.Text = "Picture Viewer - " + (i + 1) + "  out of " + list.Count;
             }
             catch (System.IO.FileNotFoundException) { return; }
         }

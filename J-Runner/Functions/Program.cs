@@ -58,7 +58,8 @@ namespace JRunner
                             if (!needVcredistx86) Process.Start(Application.ExecutablePath); // Only start if success
                             Environment.Exit(0);
                         }
-                        catch {
+                        catch
+                        {
                             MessageBox.Show("Dependency installer failed to launch for some reason", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             Environment.Exit(0);
                         }

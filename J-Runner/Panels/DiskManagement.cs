@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DiskManagement
 {
     using Microsoft.Win32.SafeHandles;
-
-    using LPSECURITY_ATTRIBUTES = IntPtr;
-    using LPOVERLAPPED = IntPtr;
-    using LPVOID = IntPtr;
-    using HANDLE = IntPtr;
-
-    using LARGE_INTEGER = Int64;
-    using DWORD = UInt32;
-    using LPCTSTR = String;
-    using System.Runtime.InteropServices;
     using System.ComponentModel;
+    using System.Runtime.InteropServices;
+    using DWORD = UInt32;
+    using HANDLE = IntPtr;
+    using LARGE_INTEGER = Int64;
+    using LPCTSTR = String;
+    using LPOVERLAPPED = IntPtr;
+    using LPSECURITY_ATTRIBUTES = IntPtr;
+    using LPVOID = IntPtr;
 
-    public static partial class IoCtl /* methods */ {
+    public static partial class IoCtl /* methods */
+    {
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern SafeFileHandle CreateFile(
             LPCTSTR lpFileName,
@@ -52,7 +48,7 @@ namespace DiskManagement
             DWORD dwIoControlCode,
             LPCTSTR lpFileName,
             DWORD dwDesiredAccess = GENERIC_READ,
-            DWORD dwShareMode = FILE_SHARE_WRITE|FILE_SHARE_READ,
+            DWORD dwShareMode = FILE_SHARE_WRITE | FILE_SHARE_READ,
             LPSECURITY_ATTRIBUTES lpSecurityAttributes = default(LPSECURITY_ATTRIBUTES),
             DWORD dwCreationDisposition = OPEN_EXISTING,
             DWORD dwFlagsAndAttributes = 0,
@@ -125,7 +121,8 @@ namespace DiskManagement
         F3_32M_512 = 25
     }
 
-    partial class DiskGeometry /* structures */ {
+    partial class DiskGeometry /* structures */
+    {
         [StructLayout(LayoutKind.Sequential)]
         struct DISK_GEOMETRY
         {
@@ -147,7 +144,8 @@ namespace DiskManagement
         }
     }
 
-    partial class DiskGeometry /* properties and fields */ {
+    partial class DiskGeometry /* properties and fields */
+    {
         public MEDIA_TYPE MediaType
         {
             get
@@ -235,7 +233,8 @@ namespace DiskManagement
         DISK_GEOMETRY m_Geometry;
     }
 
-    partial class IoCtl /* constants */ {
+    partial class IoCtl /* constants */
+    {
         public const DWORD
             DISK_BASE = 0x00000007,
             METHOD_BUFFERED = 0,

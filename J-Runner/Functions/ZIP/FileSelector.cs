@@ -48,12 +48,12 @@
 
 
 using System;
-using System.IO;
-using System.Text;
-using System.Reflection;
-using System.ComponentModel;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
 #if SILVERLIGHT
 using System.Linq;
 #endif
@@ -102,7 +102,7 @@ namespace Ionic
     {
         internal virtual bool Verbose
         {
-            get;set;
+            get; set;
         }
         internal abstract bool Evaluate(string filename);
 
@@ -321,7 +321,7 @@ namespace Ionic
             set
             {
                 if (value.Length != 1 ||
-                    (value[0]!='D' && value[0]!='F'))
+                    (value[0] != 'D' && value[0] != 'F'))
                     throw new ArgumentException("Specify a single character: either D or F");
                 ObjectType = value[0];
             }
@@ -959,7 +959,7 @@ namespace Ionic
 
             string interim = source;
 
-            for (int i=0; i < prPairs.Length; i++)
+            for (int i = 0; i < prPairs.Length; i++)
             {
                 //char caseIdx = (char)('A' + i);
                 string pattern = RegexAssertions.PrecededByEvenNumberOfSingleQuotes +
@@ -1096,7 +1096,7 @@ namespace Ionic
                                 }
                             }
                         }
-                        t= DateTime.SpecifyKind(t, DateTimeKind.Local).ToUniversalTime();
+                        t = DateTime.SpecifyKind(t, DateTimeKind.Local).ToUniversalTime();
                         current = new TimeCriterion
                         {
                             Which = (WhichTime)Enum.Parse(typeof(WhichTime), tokens[i], true),
@@ -1198,16 +1198,16 @@ namespace Ionic
                                     };
 #else
                             current = (tok1 == "type")
-                                ? (SelectionCriterion) new TypeCriterion
-                                    {
-                                        AttributeString = tokens[i + 2],
-                                        Operator = c
-                                    }
-                                : (SelectionCriterion) new AttributesCriterion
-                                    {
-                                        AttributeString = tokens[i + 2],
-                                        Operator = c
-                                    };
+                                ? new TypeCriterion
+                                {
+                                    AttributeString = tokens[i + 2],
+                                    Operator = c
+                                }
+                                : (SelectionCriterion)new AttributesCriterion
+                                {
+                                    AttributeString = tokens[i + 2],
+                                    Operator = c
+                                };
 #endif
                             i += 2;
                             stateStack.Push(ParseState.CriterionDone);
@@ -1259,7 +1259,7 @@ namespace Ionic
         /// selection criteria for this instance. </returns>
         public override String ToString()
         {
-            return "FileSelector("+_Criterion.ToString()+")";
+            return "FileSelector(" + _Criterion.ToString() + ")";
         }
 
 

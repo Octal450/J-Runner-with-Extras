@@ -26,7 +26,7 @@ namespace HidLibrary
         private DeviceMode _deviceWriteMode = DeviceMode.NonOverlapped;
 
         private readonly HidDeviceEventMonitor _deviceEventMonitor;
-        
+
         private bool _monitorDeviceEvents;
         private delegate HidDeviceData ReadDelegate();
         private delegate HidReport ReadReportDelegate();
@@ -82,7 +82,7 @@ namespace HidLibrary
 
         public override string ToString()
         {
-            return string.Format("VendorID={0}, ProductID={1}, Version={2}, DevicePath={3}", 
+            return string.Format("VendorID={0}, ProductID={1}, Version={2}, DevicePath={3}",
                                 _deviceAttributes.VendorHexId,
                                 _deviceAttributes.ProductHexId,
                                 _deviceAttributes.Version,
@@ -424,9 +424,9 @@ namespace HidLibrary
                         switch (result)
                         {
                             case NativeMethods.WAIT_OBJECT_0: status = HidDeviceData.ReadStatus.Success; break;
-                            case NativeMethods.WAIT_TIMEOUT: 
+                            case NativeMethods.WAIT_TIMEOUT:
                                 status = HidDeviceData.ReadStatus.WaitTimedOut;
-                                buffer = new byte[] {};
+                                buffer = new byte[] { };
                                 break;
                             case NativeMethods.WAIT_FAILED:
                                 status = HidDeviceData.ReadStatus.WaitFail;
@@ -445,7 +445,7 @@ namespace HidLibrary
                     try
                     {
                         var overlapped = new NativeOverlapped();
-                        
+
                         NativeMethods.ReadFile(ReadHandle, buffer, (uint)buffer.Length, out bytesRead, ref overlapped);
                         status = HidDeviceData.ReadStatus.Success;
                     }

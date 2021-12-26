@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Threading;
-using System.Reflection;
 
 namespace JRunner.Forms
 {

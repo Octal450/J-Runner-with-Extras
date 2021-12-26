@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner
@@ -14,12 +8,12 @@ namespace JRunner
         consoles hresult = variables.cunts[0];
         public enum Selected
         {
-            All, 
+            All,
             AllX,
             JTAG,
             BigBlock,
             Slim,
-            None 
+            None
         }
         public Selected sel = Selected.All;
         public bool sfulldump = false, twombread = false;
@@ -215,7 +209,7 @@ namespace JRunner
             if (checkBox2MB.Checked) checkBox2MB.Checked = false;
         }
 
-      
+
     }
 
 }

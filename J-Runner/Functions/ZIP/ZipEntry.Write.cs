@@ -28,7 +28,6 @@
 
 using System;
 using System.IO;
-using RE = System.Text.RegularExpressions;
 
 namespace Ionic.Zip
 {
@@ -39,9 +38,9 @@ namespace Ionic.Zip
             byte[] bytes = new byte[4096];
             int i = 0;
             // signature
-            bytes[i++] = (byte)(ZipConstants.ZipDirEntrySignature & 0x000000FF);
-            bytes[i++] = (byte)((ZipConstants.ZipDirEntrySignature & 0x0000FF00) >> 8);
-            bytes[i++] = (byte)((ZipConstants.ZipDirEntrySignature & 0x00FF0000) >> 16);
+            bytes[i++] = ZipConstants.ZipDirEntrySignature & 0x000000FF;
+            bytes[i++] = (ZipConstants.ZipDirEntrySignature & 0x0000FF00) >> 8;
+            bytes[i++] = (ZipConstants.ZipDirEntrySignature & 0x00FF0000) >> 16;
             bytes[i++] = (byte)((ZipConstants.ZipDirEntrySignature & 0xFF000000) >> 24);
 
             // Version Made By
@@ -75,7 +74,7 @@ namespace Ionic.Zip
             // the same as the local entry or MS .NET System.IO.Zip fails read.
             Int16 vNeeded = (Int16)(VersionNeeded != 0 ? VersionNeeded : 20);
             // workitem 12964
-            if (_OutputUsesZip64==null)
+            if (_OutputUsesZip64 == null)
             {
                 // a zipentry in a zipoutputstream, with zero bytes written
                 _OutputUsesZip64 = new Nullable<bool>(_container.Zip64 == Zip64Option.Always);
@@ -608,7 +607,7 @@ namespace Ionic.Zip
             // workitem 6513
             var s1 = NormalizeFileName();
 
-            switch(AlternateEncodingUsage)
+            switch (AlternateEncodingUsage)
             {
                 case ZipOption.Always:
                     if (!(_Comment == null || _Comment.Length == 0))
@@ -657,7 +656,7 @@ namespace Ionic.Zip
 
             // there is a comment. Get the encoded form.
             byte[] cbytes = ibm437.GetBytes(_Comment);
-            string c2 = ibm437.GetString(cbytes,0,cbytes.Length);
+            string c2 = ibm437.GetString(cbytes, 0, cbytes.Length);
 
             // Check for round-trip.
             if (c2 != Comment)
@@ -819,9 +818,9 @@ namespace Ionic.Zip
             byte[] block = new byte[30];
 
             // signature
-            block[i++] = (byte)(ZipConstants.ZipEntrySignature & 0x000000FF);
-            block[i++] = (byte)((ZipConstants.ZipEntrySignature & 0x0000FF00) >> 8);
-            block[i++] = (byte)((ZipConstants.ZipEntrySignature & 0x00FF0000) >> 16);
+            block[i++] = ZipConstants.ZipEntrySignature & 0x000000FF;
+            block[i++] = (ZipConstants.ZipEntrySignature & 0x0000FF00) >> 8;
+            block[i++] = (ZipConstants.ZipEntrySignature & 0x00FF0000) >> 16;
             block[i++] = (byte)((ZipConstants.ZipEntrySignature & 0xFF000000) >> 24);
 
             // Design notes for ZIP64:
@@ -1664,7 +1663,7 @@ namespace Ionic.Zip
             if (_OutputUsesZip64.Value)
             {
                 // VersionNeededToExtract - set to 45 to indicate zip64
-                _EntryHeader[4] = (byte)(45 & 0x00FF);
+                _EntryHeader[4] = 45 & 0x00FF;
                 _EntryHeader[5] = 0x00;
 
                 // workitem 7924 - don't need bit 3
@@ -1695,7 +1694,7 @@ namespace Ionic.Zip
             else
             {
                 // VersionNeededToExtract - reset to 20 since no zip64
-                _EntryHeader[4] = (byte)(20 & 0x00FF);
+                _EntryHeader[4] = 20 & 0x00FF;
                 _EntryHeader[5] = 0x00;
 
                 // CompressedSize - the correct value now

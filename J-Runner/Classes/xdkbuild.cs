@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace JRunner
@@ -66,7 +63,7 @@ namespace JRunner
                 pProcess.BeginOutputReadLine();
                 pProcess.StandardInput.WriteLine("enter");
                 pProcess.WaitForExit();
-            
+
                 if (pProcess.HasExited)
                 {
                     pProcess.CancelOutputRead();
