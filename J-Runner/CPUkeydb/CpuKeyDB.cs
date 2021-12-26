@@ -1,26 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
-using System.Threading;
-using System.Security;
-using System.Security.Cryptography;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Runtime;
-using System.Runtime.InteropServices;
-using System.Timers;
-using Microsoft.Win32;
-using System.Reflection;
+﻿using Microsoft.Win32;
 using RenameRegistryKey;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
@@ -72,8 +59,8 @@ namespace JRunner
                             {
                                 RegistryUtilities.RenameSubKey(cpukeydb, index.ToString(), i.ToString());
                                 index = index - 1;
-                                cpukeys.SetValue("Index", (object)i); ;
-                                cpukeydb.SetValue("Index", (object)index);
+                                cpukeys.SetValue("Index", i); ;
+                                cpukeydb.SetValue("Index", index);
                                 lblNumber.Text = index.ToString();
                                 cpukeys.DeleteValue("Deleted");
                                 //continue;
@@ -125,18 +112,18 @@ namespace JRunner
             if (!String.IsNullOrEmpty(variables.custname)) entry.extra = variables.custname;
 
             int index = Convert.ToInt32(cpukeydb.GetValue("Index")) + 1;
-            cpukeydb.SetValue("Index", (object)index);
+            cpukeydb.SetValue("Index", index);
             RegistryKey cpukeys = cpukeydb.CreateSubKey(index.ToString());
-            cpukeys.SetValue("Index", (object)index);
-            cpukeys.SetValue("Serial", (object)entry.serial);
-            cpukeys.SetValue("cpukey", (object)entry.cpukey);
-            cpukeys.SetValue("CRC_KV", (object)entry.kvcrc);
-            cpukeys.SetValue("DVDKey", (object)entry.dvdkey);
-            cpukeys.SetValue("Region", (object)entry.region);
-            cpukeys.SetValue("OSIG", (object)entry.osig);
-            cpukeys.SetValue("Mobo", (object)entry.extra);
+            cpukeys.SetValue("Index", index);
+            cpukeys.SetValue("Serial", entry.serial);
+            cpukeys.SetValue("cpukey", entry.cpukey);
+            cpukeys.SetValue("CRC_KV", entry.kvcrc);
+            cpukeys.SetValue("DVDKey", entry.dvdkey);
+            cpukeys.SetValue("Region", entry.region);
+            cpukeys.SetValue("OSIG", entry.osig);
+            cpukeys.SetValue("Mobo", entry.extra);
 
-            
+
             DataRow cpurow = cputable.NewRow();
             cpurow[0] = index;
             cpurow[1] = entry.serial;
@@ -150,7 +137,7 @@ namespace JRunner
             try
             {
                 cputable.Rows.Add(cpurow);
-                
+
             }
             catch (System.Data.ConstraintException) { }
             Console.WriteLine("Added Key to Database");
@@ -204,7 +191,7 @@ namespace JRunner
             if (indexrow == index)
             {
                 if (variables.debugme) Console.WriteLine("Last one");
-                cpukeydb.SetValue("Index", (object)index);
+                cpukeydb.SetValue("Index", index);
                 cpukeydb.DeleteSubKeyTree(cputable.Rows[indexrow][0].ToString());
                 if (variables.debugme) Console.WriteLine("Done");
             }
@@ -219,7 +206,7 @@ namespace JRunner
                         cpukeys.DeleteValue(valueN);
                     }
                 }
-                cpukeys.SetValue("Deleted", (object)1);
+                cpukeys.SetValue("Deleted", 1);
                 if (variables.debugme) Console.WriteLine("Done");
             }
             cputable.Rows.Remove(cputable.Rows[indexrow]);
@@ -456,7 +443,7 @@ namespace JRunner
             string Edcomment = dataGridView1.CurrentRow.Cells[4].Value.ToString();
             CPUkeydb.Editmobo YetMoreForms = new CPUkeydb.Editmobo(EdID, Edserial, Edcpukey, Edcomment, dataSet1);
             YetMoreForms.ShowDialog();
-            
+
             // YetMoreForms.// dataGridView1.CurrentRow.Cells[0].Value.ToString()
         }
 
@@ -493,7 +480,7 @@ namespace JRunner
             {
                 try
                 {
-                  
+
                     // Add the selection to the clipboard.
                     Clipboard.SetDataObject(this.dataGridView1.GetClipboardContent());
                 }
@@ -513,7 +500,7 @@ namespace JRunner
                 variables.cpkey = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 //Console.WriteLine(Path.Combine(Directory.GetParent(variables.outfolder).FullName, dataGridView1.CurrentRow.Cells[1].Value.ToString()));
                 variables.FindFolder = Path.Combine(Path.Combine(Directory.GetParent(variables.outfolder).FullName, dataGridView1.CurrentRow.Cells[1].Value.ToString()));
-                if (variables.debugme) Console.WriteLine(( variables.FindFolder));
+                if (variables.debugme) Console.WriteLine((variables.FindFolder));
                 if (Directory.Exists(variables.FindFolder))
                 {
                     Console.WriteLine("Select Load Source to open the folder: {0}", (variables.FindFolder));
@@ -552,7 +539,7 @@ namespace JRunner
                         foreach (string nand in nandPaths)
                         {
                             if (variables.debugme) Console.WriteLine(nand);
-                            
+
                             #region percent
                             if (variables.debugme)
                             {
@@ -600,7 +587,7 @@ namespace JRunner
 
                                 bool sts = objAlphaPattern.IsMatch(cpukey);
                                 bool check = false;
-                                
+
                                 if (sts)
                                     try
                                     {
@@ -632,10 +619,10 @@ namespace JRunner
                                                         RegistryKey cpukeys = cpukeydb.CreateSubKey(cputable.Rows[c]["ID"].ToString());
                                                         //RegistryKey cpukeys = cpukeydb.OpenSubKey(Nand.Nand.getConsoleName(nan, variables.flashconfig), true);
                                                         string moboname = Nand.Nand.getConsoleName(nan, variables.flashconfig);
-                                                        cpukeys.SetValue("Mobo", (object)moboname);
-                                                        cpukeys.SetValue("DVDKey", (object) nan.ki.dvdkey);
-                                                        cpukeys.SetValue("Region", (object)nan.ki.region);
-                                                        cpukeys.SetValue("OSIG", (object)nan.ki.osig);
+                                                        cpukeys.SetValue("Mobo", moboname);
+                                                        cpukeys.SetValue("DVDKey", nan.ki.dvdkey);
+                                                        cpukeys.SetValue("Region", nan.ki.region);
+                                                        cpukeys.SetValue("OSIG", nan.ki.osig);
                                                         //Console.WriteLine("Adding {0}", Nand.Nand.getConsoleName(nan, variables.flashconfig) + " to entry found blank in CPUKey db");
                                                         cputable.Rows[c]["Comment"] = moboname;
                                                         cputable.Rows[c]["DVDKey"] = nan.ki.dvdkey;
@@ -681,12 +668,12 @@ namespace JRunner
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme)Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
             this.Refresh();
             Console.WriteLine("\rCompletion 100%");
             Console.WriteLine("Done");
             Console.WriteLine("");
-            
+
         }
 
         private void scan_cpukey(string folder, string cpukey)
@@ -725,7 +712,7 @@ namespace JRunner
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme)Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
             this.Refresh();
             Console.WriteLine("\rCompletion 100%");
             Console.WriteLine("Done");
@@ -765,7 +752,7 @@ namespace JRunner
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme)Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
             this.Refresh();
             Console.WriteLine("\rCompletion 100%");
             Console.WriteLine("Done");
@@ -852,6 +839,6 @@ namespace JRunner
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
         }
-       
+
     }
 }

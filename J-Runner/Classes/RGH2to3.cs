@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using RC4Cryptography;
+using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
-
-using RC4Cryptography;
 
 namespace JRunner.Classes
 {
@@ -351,7 +350,7 @@ namespace JRunner.Classes
                 .Concat(rgh3Cba)
                 .Concat(newCbb)
                 .Concat(patchFlashData.Skip((int)(flashCbbOffs + flashCbb.Length)))
-                .Take((int)origSize)
+                .Take(origSize)
                 .ToArray();
 
             if (flashHasEcc)

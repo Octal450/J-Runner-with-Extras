@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace JRunner.Nand
 {
@@ -19,7 +16,7 @@ namespace JRunner.Nand
         {
         }
 
-        public VNand(string filename, consoles c, string flashconfig): this(filename, c, "", new List<int>())
+        public VNand(string filename, consoles c, string flashconfig) : this(filename, c, "", new List<int>())
         {
         }
 
@@ -36,7 +33,7 @@ namespace JRunner.Nand
             FileStream fs = (File.Open(_filename, FileMode.Create, FileAccess.ReadWrite));
             byte[] buffer = new byte[0x4200];
 
-            for (int i = 0; i <= _console.Nsize.GetHashCode(); i++) fs.Write(buffer, 0, 0x4200);            
+            for (int i = 0; i <= _console.Nsize.GetHashCode(); i++) fs.Write(buffer, 0, 0x4200);
         }
 
         public void read_v2(string filename, int startblock = 0, int length = 0)

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace JRunner.Pirs
 {
@@ -148,7 +146,7 @@ namespace JRunner.Pirs
         {
             int num = 0;
             if (!stealth) Console.WriteLine("Getting Files..");
-            
+
             while (true)
             {
                 br.BaseStream.Seek(pirs_start + (num * 0x40), SeekOrigin.Begin);
@@ -349,7 +347,7 @@ namespace JRunner.Pirs
                 }
                 else if ((entry.Cluster != 0) && (entry.Parent == tag))
                 {
-                    extractFile((long)entry.Cluster, (long)entry.Size, pathname + @"\" + foldername + @"\" + entry.Filename);
+                    extractFile(entry.Cluster, entry.Size, pathname + @"\" + foldername + @"\" + entry.Filename);
                 }
                 num = (ushort)(num + 1);
             }

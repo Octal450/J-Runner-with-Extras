@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace JRunner
 {
@@ -91,7 +85,7 @@ namespace JRunner
             {
                 if (variables.filename1 == null || variables.cpkey == "") this.Close();
                 byte[] data = Nand.BadBlock.find_bad_blocks_b(variables.filename1, true);
-                
+
                 if (data.Length > 0x4500)
                 {
                     int layout;
@@ -130,12 +124,12 @@ namespace JRunner
         }
 
         private byte[] KV_Stuff(ref byte[] image, int layout)
-        {  
+        {
             Console.WriteLine("Processing KV...");
             bool ecc;
             if (image[0x205] == 0xFF || image[0x415] == 0xFF || image[0x200] == 0xFF) ecc = true;
             else ecc = false;
-            
+
             byte[] blockarray = new byte[4];
             Buffer.BlockCopy(image, 0x4400, blockarray, 0, 4);
 
@@ -155,7 +149,7 @@ namespace JRunner
                 keyvault = Nand.Nand.addecc_v2(keyvault, true, 0x4200, layout);
                 if (variables.debugme) Console.WriteLine("Completed");
                 if (variables.debugme) Console.WriteLine("{0:X} - {1:X}", image.Length, keyvault.Length);
-                
+
                 image.Replace(keyvault, 0x4200, keyvault.Length);
             }
             else
@@ -252,7 +246,7 @@ namespace JRunner
                "058000325B000000484C2D44542D53544456442D524F4D20474452333132304C3030353830424D42",
                "058000325B000000484C2D44542D53544456442D524F4D20474452333132304C3030353930424D42",
                "058000325B000000484C2D44542D53544456442D524F4D20474452333132304C3030373830424D42",
-               "058000325B000000484C2D44542D53544456442D524F4D20474452333132304C3030373930424D42", 
+               "058000325B000000484C2D44542D53544456442D524F4D20474452333132304C3030373930424D42",
                "058000326F000000484C2D44542D53544456442D524F4D20444C31304E2020203035303000000000",
                "058000326F000000484C2D44542D53544456442D524F4D20444C31304E2020203035303200000000",
                "00000000000000000000000000000000000000000000000000000000000000000000000000000000"
@@ -264,10 +258,10 @@ namespace JRunner
         {
             string[] regionbytes = { "02FE",
                     "00FF",
-                     "01FE", 
-                     "01FF", 
-                     "01FC", 
-                     "0101", 
+                     "01FE",
+                     "01FF",
+                     "01FC",
+                     "0101",
                     "0201",
                      "7FFF"
                                              };

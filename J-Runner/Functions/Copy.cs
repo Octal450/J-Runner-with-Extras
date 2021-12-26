@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -53,7 +47,7 @@ namespace JRunner.Functions
                         while ((currentBlockSize = source.Read(buffer, 0, buffer.Length)) > 0)
                         {
                             totalBytes += currentBlockSize;
-                            double persentage = (double)totalBytes * 100.0 / fileLength;
+                            double persentage = totalBytes * 100.0 / fileLength;
 
                             dest.Write(buffer, 0, currentBlockSize);
 

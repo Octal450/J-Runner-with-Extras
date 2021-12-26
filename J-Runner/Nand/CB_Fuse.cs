@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.Nand
@@ -53,7 +48,7 @@ namespace JRunner.Nand
                 string group = n.Cunt.Text;
                 string[] text = new string[4];
                 if (group == "Jasper 16MB") group = "Jasper";
-                
+
                 text[0] = n.CB.ToString();
                 text[1] = n.minDashVersion.ToString();
                 text[2] = n.maxDashVersion.ToString();

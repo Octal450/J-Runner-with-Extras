@@ -25,8 +25,6 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 #if !NETCF
 using System.Runtime.Serialization;
 #endif
@@ -83,7 +81,7 @@ namespace Ionic.Zip
         /// <param name="context">The streaming context from which to deserialize.</param>
         protected BadPasswordException(SerializationInfo info, StreamingContext context)
             : base(info, context)
-          {  }
+        { }
 #endif
 
     }
@@ -129,7 +127,7 @@ namespace Ionic.Zip
         /// <param name="context">The streaming context from which to deserialize.</param>
         protected BadReadException(SerializationInfo info, StreamingContext context)
             : base(info, context)
-          {  }
+        { }
 #endif
 
     }
@@ -167,7 +165,7 @@ namespace Ionic.Zip
         /// <param name="context">The streaming context from which to deserialize.</param>
         protected BadCrcException(SerializationInfo info, StreamingContext context)
             : base(info, context)
-          {  }
+        { }
 #endif
 
     }
@@ -203,7 +201,7 @@ namespace Ionic.Zip
         /// <param name="context">The streaming context from which to deserialize.</param>
         protected SfxGenerationException(SerializationInfo info, StreamingContext context)
             : base(info, context)
-          {  }
+        { }
 #endif
 
     }
@@ -240,7 +238,7 @@ namespace Ionic.Zip
         /// <param name="innerException">The innerException for this exception.</param>
         public BadStateException(String message, Exception innerException)
             : base(message, innerException)
-        {}
+        { }
 
 #if ! (NETCF || SILVERLIGHT)
         /// <summary>
@@ -250,7 +248,7 @@ namespace Ionic.Zip
         /// <param name="context">The streaming context from which to deserialize.</param>
         protected BadStateException(SerializationInfo info, StreamingContext context)
             : base(info, context)
-          {  }
+        { }
 #endif
 
     }

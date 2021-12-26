@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 
 namespace JRunner
 {
@@ -332,7 +329,7 @@ namespace JRunner
                 /* Perform TAP state transitions to get to the target state */
                 while (ucTargetState != pucTapState)
                 {
-                    switch ((XSVFTAPSTATE)pucTapState)
+                    switch (pucTapState)
                     {
                         case XSVFTAPSTATE.RESET:
                             xsvfTmsTransition(0);
@@ -1511,7 +1508,7 @@ namespace JRunner
         *****************************************************************************/
         static long value(byte[] val)
         {
-            return (long)Convert.ToInt32(ByteArrayToString(val), 16);
+            return Convert.ToInt32(ByteArrayToString(val), 16);
             //byte[] ar = new byte[8];
             //Buffer.BlockCopy(val, 0, ar, 8 - 8, val.Length);
             //return BitConverter.ToInt64(ar, 0);
@@ -1665,7 +1662,7 @@ namespace JRunner
 
                     filesize = fs.Length;
 
-                   // MainForm.mainForm.progressbar = 0;
+                    // MainForm.mainForm.progressbar = 0;
 
                     stopwatch.Start();
                     xsvfExecute();
@@ -1676,7 +1673,7 @@ namespace JRunner
                     string elapsedTime = String.Format("{0:00}.{1:000}",
                         ts.Seconds, ts.Milliseconds);
                     Console.WriteLine("Execution Time = {0} seconds\n", elapsedTime);
-                    
+
 
                     //MainForm.mainForm.progressbar = 100;
                 }

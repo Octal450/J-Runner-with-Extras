@@ -241,12 +241,12 @@ namespace JRunner
                 }
             }
             catch (System.Net.WebException) { if (print) Console.WriteLine("Connection TimeOut"); return cpukey; }
-            catch (Exception ex) { if (print)Console.WriteLine(ex.ToString()); return cpukey; }
+            catch (Exception ex) { if (print) Console.WriteLine(ex.ToString()); return cpukey; }
             if (variables.debugme) Console.WriteLine("Finished");
             return cpukey;
         }
 
-        
+
 
         static bool IsIPv4(string value)
         {
@@ -388,7 +388,7 @@ namespace JRunner
         private long ToInt(string addr)
         {
 
-            return (long)(uint)System.Net.IPAddress.NetworkToHostOrder(
+            return (uint)System.Net.IPAddress.NetworkToHostOrder(
                 BitConverter.ToInt32(IPAddress.Parse(addr).GetAddressBytes(), 0));
         }
         private string ToAddr(long address)

@@ -1,16 +1,7 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
 using System.Reflection;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
@@ -27,7 +18,7 @@ namespace JRunner.Forms
 
         private void Settings_Load(object sender, EventArgs e)
         {
-           
+
             if (variables.deletefiles) chkfiles.Checked = true;
             if (String.IsNullOrEmpty(variables.IPend) || String.IsNullOrEmpty(variables.IPstart)) IP.initaddresses();
             txtIPEnd.Text = variables.IPend;
@@ -192,7 +183,7 @@ namespace JRunner.Forms
         {
             variables.timingonkeypress = timingOnKeypressEnable.Checked;
         }
-        
+
         private void logDefault_Click(object sender, EventArgs e)
         {
             variables.logbackground = Color.Black;

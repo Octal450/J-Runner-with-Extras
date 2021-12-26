@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace JRunner.Forms
 {
@@ -26,7 +20,7 @@ namespace JRunner.Forms
                 variables.changeldv = 2;
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
-            if(objAlphaPattern.IsMatch(textBox1.Text)) this.Close();
+            if (objAlphaPattern.IsMatch(textBox1.Text)) this.Close();
         }
         public void disableAdv()
         {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Be.Windows.Forms
+﻿namespace Be.Windows.Forms
 {
     static class Util
     {

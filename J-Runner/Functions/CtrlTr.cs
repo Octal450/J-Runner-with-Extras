@@ -1,14 +1,8 @@
 ﻿using LibUsbDotNet;
 using LibUsbDotNet.Main;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace JRunner.Functions
@@ -224,7 +218,7 @@ namespace JRunner.Functions
                 Console.WriteLine(Oper.ByteArrayToString(readBuffer));
 
                 readBuffer = new byte[4];
-                writeBuffer = new byte[] { 0x22};
+                writeBuffer = new byte[] { 0x22 };
                 ec = writer.Write(writeBuffer, timeout, out bytesRead);
                 Console.WriteLine("Write {0} - Status: {1} - Length: {2}", Oper.ByteArrayToString(writeBuffer), ec, bytesRead);
                 ec = reader.Read(readBuffer, timeout, out bytesRead);
@@ -264,7 +258,7 @@ namespace JRunner.Functions
                 Console.WriteLine(Oper.ByteArrayToString(readBuffer));
 
                 readBuffer = new byte[4];
-                writeBuffer = new byte[] { 0x15, 0x02, 0x00};
+                writeBuffer = new byte[] { 0x15, 0x02, 0x00 };
                 ec = writer.Write(writeBuffer, timeout, out bytesRead);
                 Console.WriteLine("Write {0} - Status: {1} - Length: {2}", Oper.ByteArrayToString(writeBuffer), ec, bytesRead);
                 ec = reader.Read(readBuffer, timeout, out bytesRead);
@@ -272,7 +266,7 @@ namespace JRunner.Functions
                 Console.WriteLine(Oper.ByteArrayToString(readBuffer));
 
                 readBuffer = new byte[4];
-                writeBuffer = new byte[] { 0x26};
+                writeBuffer = new byte[] { 0x26 };
                 ec = writer.Write(writeBuffer, timeout, out bytesRead);
                 Console.WriteLine("Write {0} - Status: {1} - Length: {2}", Oper.ByteArrayToString(writeBuffer), ec, bytesRead);
                 ec = reader.Read(readBuffer, timeout, out bytesRead);

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Timers;
-using System.Media;
-using System.Windows.Forms;
+﻿using CommPort;
 using LibUsbDotNet;
 using LibUsbDotNet.Main;
-using System.Threading;
-using System.IO;
-using System.Diagnostics;
-using CommPort;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Media;
+using System.Threading;
+using System.Windows.Forms;
 
 
 namespace JRunner
@@ -24,12 +19,12 @@ namespace JRunner
 
         public TextWriter _writer = null;
         public Dictionary<int, string> POSTd = new Dictionary<int, string>();
-        
+
         List<int> values;
         int nudges = 0;
         enum crash : int // BH - Listing crash values
         {
-            x08= 0,
+            x08 = 0,
             x09,
             x0B,
             x0C,
@@ -37,7 +32,7 @@ namespace JRunner
             x0E,
             x0F,
             x1C,
-            x20, 
+            x20,
             x21,
             x22,
             x58,
@@ -61,15 +56,15 @@ namespace JRunner
         // 0xF3 crashVAL[6]
 
         private bool stop = false, nudge = false, timeoutflag = false;
-        private int counterg = 0, globalcounter = 0; 
+        private int counterg = 0, globalcounter = 0;
         private int timeout = 500;
         private string ConTypeSel = "";
         #region devices
 
         public List<string> versions = new List<string>(){
-	    "03000000",
-	    "01000000",
-	    "10000000"
+        "03000000",
+        "01000000",
+        "10000000"
         };
 
         private DateTime LastDataEventDate = DateTime.Now;
@@ -96,7 +91,7 @@ namespace JRunner
             // Wake up every 10 milli-seconds too check if we need
             // to stop or not
             txtShow.Visible = true;
-            
+
             while (!_bStop && sleptTime < totalTime)
             {
                 if (Cooling)
@@ -114,27 +109,27 @@ namespace JRunner
             }
             txtShow.Text = "";
             txtShow.Visible = false;
-            
 
-        } 
+
+        }
 
         public POST()
         {
             InitializeComponent();
-//#if Dev 
-//            PhatBut.Enabled = true;
-//            CorBut.Visible = true;
-//            CorBut.Enabled = true;
-//            PhatFBut.Enabled = true;
-//            PhatFBut.Visible = true;
-//#endif
+            //#if Dev 
+            //            PhatBut.Enabled = true;
+            //            CorBut.Visible = true;
+            //            CorBut.Enabled = true;
+            //            PhatFBut.Enabled = true;
+            //            PhatFBut.Visible = true;
+            //#endif
             _writer = new TextBoxStreamWriter(txtOutput);
             Console.SetOut(_writer);
             comm.SetParityValues(ref parity);
             comm.SetStopBitValues(ref stopbits);
             comm.SetPortNameValues(ref comports);
             comm.CurrentTransmissionType = CommPort.CommunicationManager.TransmissionType.Text;
-            
+
 
             if (comports.Contains(variables.COMPort)) comm.PortName = variables.COMPort;
             else if (comports.Count >= 1) comm.PortName = comports[0];
@@ -163,7 +158,7 @@ namespace JRunner
         {
             DisplayData(Environment.NewLine, 0); // BH - action upon Timeout 
             Console.WriteLine("TIMEOUT or SMC CORRUPTED - Shutting Down");
-            
+
             if (!stop)
             {
                 btnNudge.Enabled = false;
@@ -301,7 +296,7 @@ namespace JRunner
                 int length = 0x10;
                 byte[] buffer = { 0x01, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00 };
 
-                
+
                 Console.WriteLine("Waiting for POST to change");
 
                 packet.Request = 0xA;
@@ -349,7 +344,7 @@ namespace JRunner
             List<int> crashes = new List<int>(); // BH added for crashes list
 
             dl.Add(0xFF); dl.Add(0x00); dl.Add(0x02);
-            
+
             if (SlimBut.Checked == true)
             {
                 crashes.Add(0xF0); crashes.Add(0xF1); crashes.Add(0xF2); crashes.Add(0xF3); crashes.Add(0x20); crashes.Add(0x21); crashes.Add(0xDA); crashes.Add(0x2E); crashes.Add(0x22); crashes.Add(0xA0); // possible crash
@@ -380,7 +375,7 @@ namespace JRunner
                 crashes.Add(0x0F); crashes.Add(0x10); crashes.Add(0x11); // possible crash
                 reset.Add(0x29); reset.Add(0x2A); reset.Add(0x2B); reset.Add(0x2C); reset.Add(0x2E); reset.Add(0x27); reset.Add(0x28); reset.Add(0x79);
             }
-            
+
             if (counterg % 5 == 0 && counterg != 0) DisplayData(Environment.NewLine, 0);
             DisplayData("0", 0);
             CurrBootVal = 0x00;
@@ -400,24 +395,24 @@ namespace JRunner
                     try
                     {
                         psot = Oper.ByteArrayToString(readBuffer).Substring(0, 2);
-                        
-                        
-                            if (POSTd.ContainsKey(readBuffer[0]))
-                            {
-                                if (variables.debugme) Console.WriteLine("Post {0} - {1}  > {2} ", psot, POSTd[readBuffer[0]],DateTime.Now.ToString("mm:ss:fff"));
-                                else Console.WriteLine("Post {0} - {1} ", psot, POSTd[readBuffer[0]]);
-                            }
-                            else
-                            {
-                                if (variables.debugme) Console.WriteLine("Post {0}  > {1} ", psot, DateTime.Now.ToString("mm:ss:fff"));
-                                else Console.WriteLine("Post {0} ", psot);
-                            }
-                        
-                        
-                        
+
+
+                        if (POSTd.ContainsKey(readBuffer[0]))
+                        {
+                            if (variables.debugme) Console.WriteLine("Post {0} - {1}  > {2} ", psot, POSTd[readBuffer[0]], DateTime.Now.ToString("mm:ss:fff"));
+                            else Console.WriteLine("Post {0} - {1} ", psot, POSTd[readBuffer[0]]);
+                        }
+                        else
+                        {
+                            if (variables.debugme) Console.WriteLine("Post {0}  > {1} ", psot, DateTime.Now.ToString("mm:ss:fff"));
+                            else Console.WriteLine("Post {0} ", psot);
+                        }
+
+
+
                         currtime = DateTime.Now; // BH - Updates variable with current system time after a POST(knowN) value is displayed
                         if ((crashes.Contains(LastValue)) && ((readBuffer[0]) < LastValue))
-                       
+
                         {
                             if (SlimBut.Checked == true)
                             {
@@ -445,7 +440,7 @@ namespace JRunner
                                 if ((LastValue == 0xDA) && PowUp) crashVAL[(int)crash.xDA]++;
                                 if ((LastValue == 0xF0) && PowUp)
                                 {
-                                    crashVAL[(int)crash.xF0]++; 
+                                    crashVAL[(int)crash.xF0]++;
                                 }
                                 if ((LastValue == 0xF1) && PowUp)
                                 {
@@ -492,7 +487,7 @@ namespace JRunner
                                 }
                                 if ((LastValue == 0x09))
                                 {
-                                    crashVAL[(int)crash.x09]++;  
+                                    crashVAL[(int)crash.x09]++;
                                 }
                                 if ((LastValue == 0x1C))
                                 {
@@ -511,7 +506,7 @@ namespace JRunner
                                 }
                                 if ((LastValue == 0x0D))
                                 {
-                                    crashVAL[(int)crash.x0D]++;       
+                                    crashVAL[(int)crash.x0D]++;
                                 }
                             }
                             else if (cr4but.Checked == true)
@@ -533,7 +528,7 @@ namespace JRunner
                         LastValue = (readBuffer[0]);
                         if (reset.Contains((readBuffer)[0]))
                         {
-                            if ((readBuffer[0]) > CurrBootVal) 
+                            if ((readBuffer[0]) > CurrBootVal)
                             {
                                 if ((readBuffer[0]) != 0x3B) CurrBootVal = (readBuffer[0]);
                                 if (variables.debugme) Console.WriteLine(CurrBootVal.ToString());
@@ -542,7 +537,7 @@ namespace JRunner
                                 {
                                     Reset = true;
 
-                                    if (SlimBut.Checked == true) {crashVAL[(int)crash.x2E]--;}
+                                    if (SlimBut.Checked == true) { crashVAL[(int)crash.x2E]--; }
                                     else if (PhatFBut.Checked == true) { crashVAL[(int)crash.x2E]--; }
                                     else if (PhatBut.Checked == true) { crashVAL[(int)crash.x1C]--; }
                                     else if (CorBut.Checked == true) { crashVAL[(int)crash.x0D]--; }
@@ -551,17 +546,17 @@ namespace JRunner
 
                                     if ((counter == 0))
                                     {
-                                        if (variables.debugme) Console.WriteLine("Counter: {0}",counter.ToString());
+                                        if (variables.debugme) Console.WriteLine("Counter: {0}", counter.ToString());
                                         counter++;
                                         globalcounter++;
                                         DisplayData(counter.ToString(), (counter - 1).ToString().Length);
                                         countCycleValues = 0; // BH - resets counter after a registered glitch cycle
                                         CurrBootVal = 0x2E;
                                     }
-                                    if (once) 
+                                    if (once)
                                     {
                                         DisplayData(", ", 0);
-                                       
+
                                     }
                                     once = false;
 
@@ -575,7 +570,7 @@ namespace JRunner
                         }
                         else if ((cycles.Contains(readBuffer[0]) && (SlimBut.Checked == true) && (!Reset)))
                         {
-                            if ((readBuffer[0]) < CurrCycleVal) { countCycleValues  = 0; CurrCycleVal = (readBuffer[0]); }
+                            if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
                             countCycleValues++; // BH - added additional counter to check for multiple D values prior to 0xD8 to count as a glitch
                             if (variables.debugme) Console.WriteLine("Cycles {0}", countCycleValues);
                             if ((countCycleValues >= 3) && (readBuffer[0] == 0xD8)) // BH - prevents out of sequence 0XD8 registering a glitch
@@ -595,10 +590,10 @@ namespace JRunner
                         }
                         else if ((cycles.Contains(readBuffer[0]) && (PhatBut.Checked == true) && (!Reset)))
                         {
-                            if ((readBuffer[0]) < CurrCycleVal) { countCycleValues  = 0; CurrCycleVal = (readBuffer[0]); }
-                            countCycleValues++; 
+                            if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
+                            countCycleValues++;
                             if (variables.debugme) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
-                            if ((countCycleValues >=5) ) 
+                            if ((countCycleValues >= 5))
                             {
 
                                 if (variables.debugme) Console.WriteLine("Cycle values started sequence");
@@ -616,10 +611,10 @@ namespace JRunner
                         else if ((cycles.Contains(readBuffer[0]) && (PhatFBut.Checked == true) && (!Reset)))
                         {
                             if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
-                            
+
                             countCycleValues++; // BH - added additional counter to check for multiple D values prior to 0xD8 to count as a glitch
                             if (variables.debugme) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
-                            if ((countCycleValues >= 5)) 
+                            if ((countCycleValues >= 5))
                             {
 
                                 if (variables.debugme) Console.WriteLine("Cycle values started sequence");
@@ -639,7 +634,7 @@ namespace JRunner
                             if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
                             countCycleValues++; // BH - added additional counter to check for multiple D values prior to 0xD8 to count as a glitch
                             if (variables.debugme) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
-                            if ((countCycleValues >= 5)) 
+                            if ((countCycleValues >= 5))
                             {
 
                                 if (variables.debugme) Console.WriteLine("Cycle values started sequence");
@@ -716,25 +711,25 @@ namespace JRunner
         }
         void enumerate_post()
         {
-             POSTd.Clear();
+            POSTd.Clear();
             if (PhatBut.Checked == true) // fake post
             {
-               
+
                 POSTd.Add(0x01, "BOOT SEQUENCE STARTING");
-                
+
                 POSTd.Add(0x02, "FETCH_HEADER");
-               
+
                 POSTd.Add(0x03, "RJTAG MAGIC STARTING");
                 POSTd.Add(0x04, ".");
-                
+
                 POSTd.Add(0x05, "..");
-               
+
                 POSTd.Add(0x06, "...");
-                
-                
+
+
                 POSTd.Add(0x07, "CB entry point reached");
                 POSTd.Add(0x08, "GLITCH CHECK COMMENCE");
-                
+
                 POSTd.Add(0x09, "HWINIT");
                 POSTd.Add(0x0A, ".");
                 POSTd.Add(0x0B, "GLITCH SUCCESSFUL");
@@ -760,8 +755,8 @@ namespace JRunner
                 POSTd.Add(0x1F, "..");
                 POSTd.Add(0x20, "...");
                 POSTd.Add(0x21, "....");
-                
-               
+
+
                 POSTd.Add(0x22, "Entrypoint reached");
                 POSTd.Add(0x23, ".");
                 POSTd.Add(0x24, "..");
@@ -782,8 +777,8 @@ namespace JRunner
                 POSTd.Add(0x33, "....");
                 POSTd.Add(0x34, ".....");
                 POSTd.Add(0x35, "Check Video Cable");
-                
-                
+
+
                 POSTd.Add(0x36, "INIT_KEY_EX_VAULT");
                 POSTd.Add(0x37, ".");
                 POSTd.Add(0x38, "..");
@@ -791,10 +786,10 @@ namespace JRunner
                 POSTd.Add(0x3A, "....");
                 POSTd.Add(0x3B, ".....");
                 POSTd.Add(0x3C, "LOAD XAM");
-                
+
                 POSTd.Add(0x3D, "BOOTED");
 
-                
+
             }
             else if (SlimBut.Checked == true)
             {
@@ -1196,7 +1191,7 @@ namespace JRunner
                 POSTd.Add(0x05, "...");
                 //POSTd.Add(0x1D, "SIG_VERIFY");
                 POSTd.Add(0x06, "....");
-                
+
                 //CB 0x20-3B
                 POSTd.Add(0x07, ".....");
                 POSTd.Add(0x08, "......");
@@ -1226,7 +1221,7 @@ namespace JRunner
                 POSTd.Add(0x1F, "..");
                 POSTd.Add(0x20, "...");
                 POSTd.Add(0x21, "....");
-                
+
                 //4BL 0x40-0x53
                 POSTd.Add(0x22, "Entrypoint reached");
                 POSTd.Add(0x23, ".");
@@ -1242,7 +1237,7 @@ namespace JRunner
                 POSTd.Add(0x2D, "...........");
                 POSTd.Add(0x2E, "............");
                 POSTd.Add(0x2F, "INIT KERNEL");
-                
+
             }
             else if (cr4but.Checked == true)
             {
@@ -1351,7 +1346,7 @@ namespace JRunner
                 }
 
                 buttons(false);
-                
+
                 UsbEndpointReader reader = MyUsbDevice.OpenEndpointReader(ReadEndpointID.Ep02);
                 int error = 0;
 
@@ -1470,7 +1465,7 @@ namespace JRunner
             btnClearRater.Enabled = value;
             btnClearOutput.Enabled = value;
         }
-        
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             this.SystemTxtbox.Visible = false;
@@ -1531,7 +1526,7 @@ namespace JRunner
             nudge = false;
         }
         void escapedexit(int time)
-        {       
+        {
             Thread.Sleep(time);
             variables.escapeloop = false;
         }
@@ -1544,9 +1539,9 @@ namespace JRunner
                 return;
             }
             stop = true;
-            
+
             _bStop = true;
-            
+
             variables.escapeloop = true;
             ThreadStart starter = delegate { escapedexit(5000); };
             new Thread(starter).Start();
@@ -1559,7 +1554,7 @@ namespace JRunner
             btnNudge.Enabled = false;
             nudge = true;
             nudges++;
-            
+
         }
         private void btnClearOutput_Click(object sender, EventArgs e)
         {
@@ -1598,14 +1593,14 @@ namespace JRunner
                     else wth = (1 / (float)val);
                     if (val != 0) score += wth;
                 }
-                score = (score / (float)(values.Count)) * 10;
+                score = (score / values.Count) * 10;
                 text += String.Format("Score: {0:F}{1}{1}", score, Environment.NewLine);
 
                 var g = values.GroupBy(i => i);
                 foreach (var grp in g) //BH - display %'s and group %'s to give a rating!
                 {
-                    float divide = ((numericIter.Value != 0) && (stop == false)) ? (float)numericIter.Value : (float)values.Count;
-                    float val = ((float)grp.Count()) * 100F / divide;
+                    float divide = ((numericIter.Value != 0) && (stop == false)) ? (float)numericIter.Value : values.Count;
+                    float val = grp.Count() * 100F / divide;
                     text += String.Format("Cycle {0} - {1:F2}%{2}", grp.Key, val, Environment.NewLine);
                 }
 
@@ -1613,7 +1608,7 @@ namespace JRunner
                 float sum = 0;
                 foreach (var grp in g) //BH - display %'s and group %'s to give a rating!
                 {
-                    float val = ((float)grp.Count()) * 100F / (float)values.Count;
+                    float val = grp.Count() * 100F / values.Count;
 
                     sum += val;
                     if ((grp.Key % 2 != 0 && grp.Key + 1 != values.Max()) || grp.Key == values.Max())
@@ -1694,13 +1689,14 @@ namespace JRunner
                 if (CappeD == true) text += "* Capped *" + Environment.NewLine;
                 foreach (int lo in pos)
                 {
-                    if ((values.Count >= 20) )
+                    if ((values.Count >= 20))
                     {
                         text += "Fails most on: " + "0" + (crash)lo + Environment.NewLine;
                     }
-                    else  { 
+                    else
+                    {
                         Console.WriteLine("Most Fails(cumulative): 0{0}", (crash)lo);
-                       // if (variables.debugme) Console.WriteLine("Number of fails on 0x09: 0{0}", crashVAL[(int)crash.x09]);
+                        // if (variables.debugme) Console.WriteLine("Number of fails on 0x09: 0{0}", crashVAL[(int)crash.x09]);
                     }
                 }
                 DisplayData2(text);
@@ -1719,17 +1715,17 @@ namespace JRunner
 
         private void numericCap_ValueChanged(object sender, EventArgs e)
         {
-            CappeD = true;  
+            CappeD = true;
         }
 
         private void CycleClipBtn_Click(object sender, EventArgs e)
         {
-            if ((txtRate.Text.Length >= 1) ) Clipboard.SetText(txtRate.Text);
+            if ((txtRate.Text.Length >= 1)) Clipboard.SetText(txtRate.Text);
             //
         }
         private void ResultsClipBtn_Click(object sender, EventArgs e)
         {
-            if ((txtProgress.Text.Length >= 1) )
+            if ((txtProgress.Text.Length >= 1))
             {
                 Clipboard.SetText(txtProgress.Text);
             }
@@ -1741,7 +1737,7 @@ namespace JRunner
                 CycleClipBtn.Visible = true;
                 txtRate.Cursor = Cursors.No;
                 ActiveControl = CycleClipBtn;
-            }     
+            }
         }
         private void txtOutput_Enter(object sender, EventArgs e)
         {
@@ -1765,12 +1761,12 @@ namespace JRunner
 
         private void SlimBut_CheckedChanged(object sender, EventArgs e)
         {
-           // if (SlimBut.Checked) ConTypeSel = "Slim";
+            // if (SlimBut.Checked) ConTypeSel = "Slim";
         }
 
         private void PhatFBut_CheckedChanged(object sender, EventArgs e)
         {
-           // if (PhatFBut.Checked) ConTypeSel = "Phat";
+            // if (PhatFBut.Checked) ConTypeSel = "Phat";
         }
 
         private void ScreenshotBTN_Click(object sender, EventArgs e)
@@ -1785,28 +1781,28 @@ namespace JRunner
                 {
                     g.CopyFromScreen(new Point(bounds.Left - 5, bounds.Top - 5), Point.Empty, block);
                 }
-                
-            
 
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
-            saveFileDialog1.FileName = "My Rater Screenshot";
-            saveFileDialog1.Filter = "(*.png)|*.png|All Files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 1;
 
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                if (variables.debugme) Console.WriteLine(saveFileDialog1.FileName);//Do what you want here
-            }
-            bitmap.Save(saveFileDialog1.FileName, ImageFormat.Png );
+
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
+                saveFileDialog1.FileName = "My Rater Screenshot";
+                saveFileDialog1.Filter = "(*.png)|*.png|All Files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    if (variables.debugme) Console.WriteLine(saveFileDialog1.FileName);//Do what you want here
+                }
+                bitmap.Save(saveFileDialog1.FileName, ImageFormat.Png);
             }
             if (this.SystemTxtbox.Visible == true) { (this.SystemTxtbox.Visible) = !(this.SystemTxtbox.Visible); }
         }
 
         private void SetupDetailBtn_Click(object sender, EventArgs e)
         {
-             (this.SystemTxtbox.Visible) = !(this.SystemTxtbox.Visible);
-                
+            (this.SystemTxtbox.Visible) = !(this.SystemTxtbox.Visible);
+
         }
 
         private void PostOutButton_Click(object sender, EventArgs e)
@@ -1830,7 +1826,7 @@ namespace JRunner
 
         private void CorBut_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void RaterSettings_Enter(object sender, EventArgs e)

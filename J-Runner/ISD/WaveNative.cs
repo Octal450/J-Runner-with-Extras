@@ -18,10 +18,10 @@ namespace WaveLib
     public enum WaveFormats
     {
         Pcm = 1,
-		Float = 3
-	}
+        Float = 3
+    }
 
-    [StructLayout(LayoutKind.Sequential)] 
+    [StructLayout(LayoutKind.Sequential)]
     public class WaveFormat
     {
         public short wFormatTag;
@@ -39,7 +39,7 @@ namespace WaveLib
             nSamplesPerSec = rate;
             wBitsPerSample = (short)bits;
             cbSize = 0;
-               
+
             nBlockAlign = (short)(channels * (bits / 8));
             nAvgBytesPerSec = nSamplesPerSec * nBlockAlign;
         }
@@ -65,7 +65,8 @@ namespace WaveLib
 
         // structs 
 
-        [StructLayout(LayoutKind.Sequential)] public struct WaveHdr
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WaveHdr
         {
             public IntPtr lpData; // pointer to locked data buffer
             public int dwBufferLength; // length of data buffer

@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Net;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace JRunner
 {
@@ -45,7 +39,7 @@ namespace JRunner
             {
                 for (int i = 0; i < checkedDashes.Items.Count; i++)
                 {
-                    if (valueName == (string) checkedDashes.Items[i])
+                    if (valueName == (string)checkedDashes.Items[i])
                     {
                         checkedDashes.SetItemChecked(i, true);
                     }

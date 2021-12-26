@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.Win32;
 
 // RenameRegistryKey © Copyright 2006 Active Computing

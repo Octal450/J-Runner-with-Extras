@@ -149,7 +149,7 @@ namespace JRunner
         {
             ShowInTaskbar = true;
             WindowState = FormWindowState.Normal;
-            
+
             bool top = TopMost;
             TopMost = true; // Bring to front
             TopMost = top; // Set it back
@@ -197,7 +197,7 @@ namespace JRunner
             xPanel.loadFil += xPanel_loadFil;
             xPanel.updateSourc += xPanel_updateSourc;
             xPanel.UpdateProgres += updateProgress;
-         
+
             xPanel.Getmb += xPanel_getmb;
             nandInfo.DragDropChanged += nandInfo_DragDropChanged;
             nandx.UpdateProgres += updateProgress;
@@ -236,9 +236,9 @@ namespace JRunner
         {
             devNotifier = DeviceNotifier.OpenDeviceNotifier();
             devNotifier.OnDeviceNotify += onDevNotify;
-            
+
             showDemon(DemoN.FindDemon());
-            
+
             if (!DemoN.DemonDetected)
             {
                 if (IsUsbDeviceConnected("6010", "0403")) // xFlasher SPI
@@ -280,7 +280,7 @@ namespace JRunner
                         }
                     }
                 }
-                
+
                 if (device == 0) // Must check this after everything else
                 {
                     if (IsUsbDeviceConnected("AAAA", "8816") || IsUsbDeviceConnected("05E3", "0751")) // xFlasher eMMC
@@ -620,7 +620,7 @@ namespace JRunner
             }
         }
 
-  
+
 
         #endregion
 
@@ -762,9 +762,9 @@ namespace JRunner
                 {
                     if (!usingVNand)
                     {
-                        starter = delegate 
-                        { 
-                            nandx.read(filename, sizex, true, startblock, length); 
+                        starter = delegate
+                        {
+                            nandx.read(filename, sizex, true, startblock, length);
                         };
                     }
                     else if (device == 3)
@@ -773,9 +773,9 @@ namespace JRunner
                     }
                     else
                     {
-                        starter = delegate 
-                        { 
-                            vnand.read_v2(filename, startblock, length); 
+                        starter = delegate
+                        {
+                            vnand.read_v2(filename, startblock, length);
                         };
                     }
                 }
@@ -792,12 +792,12 @@ namespace JRunner
                     {
                         xflasher.writeNand(size, "erase", 0, startblock, length);
                     }
-                    else 
-                    { 
-                        starter = delegate 
-                        { 
-                            vnand.erase_v2(startblock, length); 
-                        }; 
+                    else
+                    {
+                        starter = delegate
+                        {
+                            vnand.erase_v2(startblock, length);
+                        };
                     }
                 }
                 else if (function == "Write")
@@ -820,12 +820,12 @@ namespace JRunner
                             xflasher.writeNand(size, filename, 0, startblock, length, true);
                         }
                     }
-                    else 
-                    { 
-                        starter = delegate 
-                        { 
-                            vnand.write_v2(filename, startblock, length); 
-                        }; 
+                    else
+                    {
+                        starter = delegate
+                        {
+                            vnand.write_v2(filename, startblock, length);
+                        };
                     }
                 }
                 else if (function == "Xsvf")
@@ -843,9 +843,9 @@ namespace JRunner
                         }
                         else
                         {
-                            starter = delegate 
-                            { 
-                                nandx.xsvf(filename); 
+                            starter = delegate
+                            {
+                                nandx.xsvf(filename);
                             };
                         }
                     }
@@ -867,24 +867,25 @@ namespace JRunner
                     };
                 }
 
-                else if (function == "Erase") 
-                { 
-                    starter = delegate 
-                    { 
-                        demon.erase(startblock, length); 
-                    }; 
+                else if (function == "Erase")
+                {
+                    starter = delegate
+                    {
+                        demon.erase(startblock, length);
+                    };
                 }
                 else if (function == "Write")
                 {
-                    starter = delegate 
-                    { 
-                        demon.write(filename, startblock, length); 
+                    starter = delegate
+                    {
+                        demon.write(filename, startblock, length);
                     };
                 }
-                else if (function == "Xsvf") 
+                else if (function == "Xsvf")
                 {
-                    starter = delegate {
-                        demon.xsvf(filename); 
+                    starter = delegate
+                    {
+                        demon.xsvf(filename);
                     };
                 }
             }
@@ -1346,7 +1347,7 @@ namespace JRunner
                         return;
                     }
                     NandX.Errors result = NandX.Errors.None;
-                    
+
                     if (!usingVNand) result = nandx.write(variables.filename1, variables.nandsizex, 0, 0x50, true, true);
                     else vnand.write_v2(variables.filename1, 0, 0x50, true, true);
 
@@ -1364,10 +1365,10 @@ namespace JRunner
                         Console.WriteLine("You need an .ecc image");
                         return;
                     }
-                    
+
                     if (!usingVNand) nandx.write(variables.filename1, variables.nandsizex, 0, writelength);
                     else vnand.write_v2(variables.filename1, 0, writelength);
-                    
+
                     //NandX.write(ref txtBlocks, ref progressBar1, variables.filename1, variables.nandsizex, 0, 0);
                 }
             }
@@ -2080,7 +2081,7 @@ namespace JRunner
                 else variables.gotvalues = true;
                 Console.WriteLine("Nand Initialization Finished");
                 Console.WriteLine("");
-                
+
                 progressBar.Value = progressBar.Maximum;
                 if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
                 if (variables.debugme) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
@@ -2481,7 +2482,7 @@ namespace JRunner
         #region Menu Bar
 
         #region Tools
-        
+
         public void extractFilesFromNand()
         {
             if (!nand.ok)
@@ -3610,8 +3611,8 @@ namespace JRunner
                         {
                             streamLocal.Write(byteBuffer, 0, iByteSize);
                             iRunningByteTotal += iByteSize;
-                            double dIndex = (double)(iRunningByteTotal);
-                            double dTotal = (double)byteBuffer.Length;
+                            double dIndex = iRunningByteTotal;
+                            double dTotal = byteBuffer.Length;
                             double dProgressPercentage = (dIndex / dTotal);
                             int iProgressPercentage = (int)(dProgressPercentage * 100);
                             updateBlocks(String.Format("{0}%", iProgressPercentage));
@@ -3650,8 +3651,8 @@ namespace JRunner
                             {
                                 RegistryUtilities.RenameSubKey(cpukeydb, index.ToString(), i.ToString());
                                 index = index - 1;
-                                cpukeys.SetValue("Index", (object)i); ;
-                                cpukeydb.SetValue("Index", (object)index);
+                                cpukeys.SetValue("Index", i); ;
+                                cpukeydb.SetValue("Index", index);
                                 cpukeys.DeleteValue("Deleted");
                                 //continue;
                             }
@@ -4631,7 +4632,8 @@ namespace JRunner
 
         public void startKvDecrypt(string path, string key)
         {
-            Thread decryptThread = new Thread(() => {
+            Thread decryptThread = new Thread(() =>
+            {
                 try
                 {
                     if (File.Exists(path))
@@ -4680,7 +4682,8 @@ namespace JRunner
             variables.highldv = ldv; // Copy LDV
             variables.changeldv = 2; // Enable Custom LDV
 
-            Thread donorThread = new Thread(() => {
+            Thread donorThread = new Thread(() =>
+            {
                 try
                 {
                     Console.WriteLine("Copying Files Into Place...");

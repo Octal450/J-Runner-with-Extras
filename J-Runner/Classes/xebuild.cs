@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -513,7 +512,7 @@ namespace JRunner.Classes
             {
                 if (boardtype == "jasper256" || boardtype == "jasper512")
                 {
-                    arguments += " -c " + boardtype.Substring(0,6) + "bigffs";
+                    arguments += " -c " + boardtype.Substring(0, 6) + "bigffs";
                 }
                 else
                 {
@@ -529,7 +528,7 @@ namespace JRunner.Classes
             {
                 arguments += " -a hvfixkeys";
             }
-            
+
             foreach (String patch in _patches)
             {
                 arguments += " " + patch;
@@ -722,7 +721,7 @@ namespace JRunner.Classes
             //File.Copy(Path.Combine(variables.pathforit, @"common\xell\xell-2f.bin"), Path.Combine(variables.pathforit, @"xeBuild\xell-2f.bin"), true);
             //File.Copy(Path.Combine(variables.pathforit, @"common\xell\xell-gggggg.bin"), Path.Combine(variables.pathforit, @"xeBuild\xell-gggggg.bin"), true);
             moveOptions();
-           
+
             Console.WriteLine("Load Files Initiliazation Finished");
             checkDashLaunch();
 

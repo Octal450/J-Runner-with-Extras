@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.Nand
@@ -53,7 +48,7 @@ namespace JRunner.Nand
         private void btnRemoveBadBlock_Click(object sender, EventArgs e)
         {
             int result = 0;
-            if (int.TryParse(listBoxBadBlocks.Items[blockselected].ToString(),System.Globalization.NumberStyles.HexNumber, new CultureInfo("en-US"), out result)) if (BadBlocks.Contains(result)) BadBlocks.Remove(result);
+            if (int.TryParse(listBoxBadBlocks.Items[blockselected].ToString(), System.Globalization.NumberStyles.HexNumber, new CultureInfo("en-US"), out result)) if (BadBlocks.Contains(result)) BadBlocks.Remove(result);
             listBoxBadBlocks.Items.RemoveAt(blockselected);
         }
 
@@ -72,7 +67,7 @@ namespace JRunner.Nand
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
-        
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.Forms
@@ -21,7 +16,7 @@ namespace JRunner.Forms
                                     "Xvistaman2005: XDKbuild",
                                     "SGCSam: 6717/9199 XeBuild Patches",
                                     "Orpheus: Updates to KV Info/Bugfixes",
-                                    "DaCukiMonsta: Nand Info Improvements/Bugfixes",            
+                                    "DaCukiMonsta: Nand Info Improvements/Bugfixes",
                                     "And all who tested the software!",};
         static int contribloc = 0;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]

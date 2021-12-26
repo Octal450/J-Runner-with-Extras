@@ -950,7 +950,7 @@ namespace EricOulashin
                         // 1.0, then it would be good to avoid any binary roundoff error).
                         sample = srcFile.GetNextSample_8bit();
                         if (pMultiplier != 1.0)
-                            sample = (byte)((double)sample * pMultiplier);
+                            sample = (byte)(sample * pMultiplier);
                         destFile.AddSample_8bit(sample);
                     }
                 }
@@ -963,7 +963,7 @@ namespace EricOulashin
                         // 1.0, then it would be good to avoid any binary roundoff error).
                         sample = srcFile.GetNextSample_16bit();
                         if (pMultiplier != 1.0)
-                            sample = (short)((double)sample * pMultiplier);
+                            sample = (short)(sample * pMultiplier);
                         destFile.AddSample_16bit(sample);
                     }
                 }
@@ -1016,7 +1016,7 @@ namespace EricOulashin
                     byte sample = 0;
                     for (int sampleNum = 0; sampleNum < audioFile.NumSamples; ++sampleNum)
                     {
-                        sample = (byte)((double)audioFile.GetNextSample_8bit() * pMultiplier);
+                        sample = (byte)(audioFile.GetNextSample_8bit() * pMultiplier);
                         audioFile.SeekToAudioSample(sampleNum);
                         audioFile.AddSample_8bit(sample);
                     }
@@ -1026,7 +1026,7 @@ namespace EricOulashin
                     short sample = 0;
                     for (int sampleNum = 0; sampleNum < audioFile.NumSamples; ++sampleNum)
                     {
-                        sample = (short)((double)audioFile.GetNextSample_16bit() * pMultiplier);
+                        sample = (short)(audioFile.GetNextSample_16bit() * pMultiplier);
                         audioFile.SeekToAudioSample(sampleNum);
                         audioFile.AddSample_16bit(sample);
                     }
@@ -1083,7 +1083,7 @@ namespace EricOulashin
 
                     // Now, apply pMultiplier if it is not 1.0
                     if (pMultiplier != 1.0)
-                        sample_16bit = (short)((double)sample_16bit * pMultiplier);
+                        sample_16bit = (short)(sample_16bit * pMultiplier);
 
                     // Save the sample to the destination file
                     destFile.AddSample_16bit(sample_16bit);
@@ -1143,9 +1143,9 @@ namespace EricOulashin
                     // 8-bit to 8-bit, stereo to mono: Average each 2 samples
                     while (srcFile.NumSamplesRemaining > 0)
                     {
-                        sample = (byte)((short)((short)srcFile.GetNextSample_8bit() + (short)srcFile.GetNextSample_8bit()) / 2);
+                        sample = (byte)((short)(srcFile.GetNextSample_8bit() + srcFile.GetNextSample_8bit()) / 2);
                         if (pVolumeMultiplier != 1.0)
-                            sample = (byte)((double)sample * pVolumeMultiplier);
+                            sample = (byte)(sample * pVolumeMultiplier);
                         destFile.AddSample_8bit(sample);
                     }
                 }
@@ -1156,7 +1156,7 @@ namespace EricOulashin
                     {
                         sample = srcFile.GetNextSample_8bit();
                         if (pVolumeMultiplier != 1.0)
-                            sample = (byte)((double)sample * pVolumeMultiplier);
+                            sample = (byte)(sample * pVolumeMultiplier);
                         destFile.AddSample_8bit(sample);
                     }
                 }
@@ -1167,7 +1167,7 @@ namespace EricOulashin
                     {
                         sample = srcFile.GetNextSample_8bit();
                         if (pVolumeMultiplier != 1.0)
-                            sample = (byte)((double)sample * pVolumeMultiplier);
+                            sample = (byte)(sample * pVolumeMultiplier);
                         destFile.AddSample_8bit(sample);
                         destFile.AddSample_8bit(sample);
                     }
@@ -1181,9 +1181,9 @@ namespace EricOulashin
                     // 8-bit to 16 bit, stereo to mono: Average each 2 samples
                     while (srcFile.NumSamplesRemaining > 0)
                     {
-                        sample = (short)((int)((int)srcFile.GetNextSampleAs16Bit() + (int)srcFile.GetNextSampleAs16Bit()) / 2);
+                        sample = (short)((srcFile.GetNextSampleAs16Bit() + srcFile.GetNextSampleAs16Bit()) / 2);
                         if (pVolumeMultiplier != 1.0)
-                            sample = (short)((double)sample * pVolumeMultiplier);
+                            sample = (short)(sample * pVolumeMultiplier);
                         destFile.AddSample_16bit(sample);
                     }
                 }
@@ -1194,7 +1194,7 @@ namespace EricOulashin
                     {
                         sample = srcFile.GetNextSampleAs16Bit();
                         if (pVolumeMultiplier != 1.0)
-                            sample = (short)((double)sample * pVolumeMultiplier);
+                            sample = (short)(sample * pVolumeMultiplier);
                         destFile.AddSample_16bit(sample);
                     }
                 }
@@ -1205,7 +1205,7 @@ namespace EricOulashin
                     {
                         sample = srcFile.GetNextSampleAs16Bit();
                         if (pVolumeMultiplier != 1.0)
-                            sample = (short)((double)sample * pVolumeMultiplier);
+                            sample = (short)(sample * pVolumeMultiplier);
                         destFile.AddSample_16bit(sample);
                         destFile.AddSample_16bit(sample);
                     }
@@ -1220,9 +1220,9 @@ namespace EricOulashin
                     short sample_16bit = 0;
                     while (srcFile.NumSamplesRemaining > 0)
                     {
-                        sample_16bit = (short)((int)srcFile.GetNextSample_16bit() + (int)srcFile.GetNextSample_16bit() / 2);
+                        sample_16bit = (short)(srcFile.GetNextSample_16bit() + srcFile.GetNextSample_16bit() / 2);
                         if (pVolumeMultiplier != 1.0)
-                            sample_16bit = (short)((double)sample_16bit * pVolumeMultiplier);
+                            sample_16bit = (short)(sample_16bit * pVolumeMultiplier);
                         sample = ScaleShortToByte(sample_16bit);
                         destFile.AddSample_8bit(sample);
                     }
@@ -1234,7 +1234,7 @@ namespace EricOulashin
                     {
                         sample = ScaleShortToByte(srcFile.GetNextSample_16bit());
                         if (pVolumeMultiplier != 1.0)
-                            sample = (byte)((double)sample * pVolumeMultiplier);
+                            sample = (byte)(sample * pVolumeMultiplier);
                         destFile.AddSample_8bit(sample);
                     }
                 }
@@ -1245,7 +1245,7 @@ namespace EricOulashin
                     {
                         sample = ScaleShortToByte(srcFile.GetNextSample_16bit());
                         if (pVolumeMultiplier != 1.0)
-                            sample = (byte)((double)sample * pVolumeMultiplier);
+                            sample = (byte)(sample * pVolumeMultiplier);
                         destFile.AddSample_8bit(sample);
                         destFile.AddSample_8bit(sample);
                     }
@@ -1259,9 +1259,9 @@ namespace EricOulashin
                     // 16-bit to 16-bit, stereo to mono: Average each 2 samples
                     while (srcFile.NumSamplesRemaining > 0)
                     {
-                        sample = (short)((int)((int)srcFile.GetNextSample_16bit() + (int)srcFile.GetNextSample_16bit()) / 2);
+                        sample = (short)((srcFile.GetNextSample_16bit() + srcFile.GetNextSample_16bit()) / 2);
                         if (pVolumeMultiplier != 1.0)
-                            sample = (short)((double)sample * pVolumeMultiplier);
+                            sample = (short)(sample * pVolumeMultiplier);
                         destFile.AddSample_16bit(sample);
                     }
                 }
@@ -1272,7 +1272,7 @@ namespace EricOulashin
                     {
                         sample = srcFile.GetNextSample_16bit();
                         if (pVolumeMultiplier != 1.0)
-                            sample = (short)((double)sample * pVolumeMultiplier);
+                            sample = (short)(sample * pVolumeMultiplier);
                         destFile.AddSample_16bit(sample);
                     }
                 }
@@ -1283,7 +1283,7 @@ namespace EricOulashin
                     {
                         sample = srcFile.GetNextSample_16bit();
                         if (pVolumeMultiplier != 1.0)
-                            sample = (short)((double)sample * pVolumeMultiplier);
+                            sample = (short)(sample * pVolumeMultiplier);
                         destFile.AddSample_16bit(sample);
                         destFile.AddSample_16bit(sample);
                     }
@@ -1377,10 +1377,10 @@ namespace EricOulashin
             {
                 // Get the highest sample value of all of the WAV files
                 byte highestSample = HighestSampleValue_8bit(pFileList);
-                highestSampleValue = (short)highestSample;
+                highestSampleValue = highestSample;
 
                 byte difference = (byte)(highestSample - (byte.MaxValue / (byte)numTracks));
-                multiplier = 1.0 - ((double)difference / (double)highestSample);
+                multiplier = 1.0 - (difference / (double)highestSample);
             }
             else if (highestBitsPerSample == 16)
             {
@@ -1388,7 +1388,7 @@ namespace EricOulashin
                 highestSampleValue = HighestSampleValueAs16Bit(pFileList);
 
                 short difference = (short)(highestSampleValue - (short.MaxValue / (short)numTracks));
-                multiplier = 1.0 - ((double)difference / (double)highestSampleValue);
+                multiplier = 1.0 - (difference / (double)highestSampleValue);
             }
             if (double.IsInfinity(multiplier) || (multiplier == 0.0))
             {
@@ -1498,7 +1498,7 @@ namespace EricOulashin
             {
                 byte highestSampleVal = WAVFile.HighestSampleValue_8bit(pOutputFilename);
                 byte maxValue = byte.MaxValue / 4 * 3;
-                multiplier = (double)maxValue / (double)highestSampleVal;
+                multiplier = maxValue / (double)highestSampleVal;
             }
             else if (highestBitsPerSample == 16)
             {
@@ -1508,7 +1508,7 @@ namespace EricOulashin
                 //multiplier = 1.0 - ((double)difference / (double)finalMixFileHighestSample);
                 // This calculates the multiplier based on the highest sample value in the audio
                 // file and the highest possible 16-bit sample value.
-                multiplier = (double)short.MaxValue / (double)finalMixFileHighestSample;
+                multiplier = short.MaxValue / (double)finalMixFileHighestSample;
             }
             if (multiplier < 0.0)
                 multiplier = -multiplier;
@@ -1720,7 +1720,7 @@ namespace EricOulashin
         /// </summary>
         public int NumSamples
         {
-            get { return (mDataSizeBytes / (int)(mBitsPerSample / 8)); }
+            get { return (mDataSizeBytes / (mBitsPerSample / 8)); }
         }
 
         /// <summary>
@@ -1748,7 +1748,7 @@ namespace EricOulashin
         {
             get
             {
-                return(new WAVFormat(mNumChannels, mSampleRateHz, mBitsPerSample));
+                return (new WAVFormat(mNumChannels, mSampleRateHz, mBitsPerSample));
             }
         }
 
@@ -1898,13 +1898,13 @@ namespace EricOulashin
             double scaleMultiplier = 0.0;
             if (pByteVal > 0)
             {
-                scaleMultiplier = (double)pByteVal / (double)byte.MaxValue;
-                val_16bit = (short)((double)short.MaxValue * scaleMultiplier);
+                scaleMultiplier = pByteVal / (double)byte.MaxValue;
+                val_16bit = (short)(short.MaxValue * scaleMultiplier);
             }
             else if (pByteVal < 0)
             {
-                scaleMultiplier = (double)pByteVal / (double)byte.MinValue;
-                val_16bit = (short)((double)short.MinValue * scaleMultiplier);
+                scaleMultiplier = pByteVal / (double)byte.MinValue;
+                val_16bit = (short)(short.MinValue * scaleMultiplier);
             }
 
             return val_16bit;
@@ -1923,13 +1923,13 @@ namespace EricOulashin
             double scaleMultiplier = 0.0;
             if (pShortVal > 0)
             {
-                scaleMultiplier = (double)pShortVal / (double)short.MaxValue;
-                val_8bit = (byte)((double)byte.MaxValue * scaleMultiplier);
+                scaleMultiplier = pShortVal / (double)short.MaxValue;
+                val_8bit = (byte)(byte.MaxValue * scaleMultiplier);
             }
             else if (pShortVal < 0)
             {
-                scaleMultiplier = (double)pShortVal / (double)short.MinValue;
-                val_8bit = (byte)((double)byte.MinValue * scaleMultiplier);
+                scaleMultiplier = pShortVal / (double)short.MinValue;
+                val_8bit = (byte)(byte.MinValue * scaleMultiplier);
             }
 
             return val_8bit;
@@ -1951,7 +1951,7 @@ namespace EricOulashin
         private WAVFileMode mFileMode;  // Specifies the file mode (read, write)
 
         //private int mDataBytesWritten;  // Used in write mode for keeping track of
-                                        // the number of bytes written
+        // the number of bytes written
         private int mNumSamplesRemaining; // When in read mode, this is used for keeping track of how many audio
                                           // samples remain.  This is updated in GetNextSample_ByteArray().
 

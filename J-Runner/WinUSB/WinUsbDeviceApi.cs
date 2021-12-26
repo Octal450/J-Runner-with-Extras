@@ -1,58 +1,58 @@
-using System;
 using Microsoft.Win32.SafeHandles;
+using System;
 using System.Runtime.InteropServices;
 
 namespace WinUsb
 {
-	/// <summary>
-	///  These declarations are translated from the C declarations in various files
-	///  in the Windows DDK. The files are:
-	///  
-	///  winddk\6001\inc\api\usb.h
-	///  winddk\6001\inc\api\usb100.h
-	///  winddk\6001\inc\api\winusbio.h
-	///  
-	///  (your home directory and release number may vary)
-	/// <summary>
+    /// <summary>
+    ///  These declarations are translated from the C declarations in various files
+    ///  in the Windows DDK. The files are:
+    ///  
+    ///  winddk\6001\inc\api\usb.h
+    ///  winddk\6001\inc\api\usb100.h
+    ///  winddk\6001\inc\api\winusbio.h
+    ///  
+    ///  (your home directory and release number may vary)
+    /// <summary>
 
-	sealed internal partial class WinUsbDevice
-	{
-		internal const UInt32 DEVICE_SPEED = ((UInt32)(1));
-		internal const Byte USB_ENDPOINT_DIRECTION_MASK = ((Byte)(0X80));
+    sealed internal partial class WinUsbDevice
+    {
+        internal const UInt32 DEVICE_SPEED = 1;
+        internal const Byte USB_ENDPOINT_DIRECTION_MASK = 0X80;
 
-		internal enum POLICY_TYPE
-		{
-			SHORT_PACKET_TERMINATE = 1,
-			AUTO_CLEAR_STALL,
-			PIPE_TRANSFER_TIMEOUT,
-			IGNORE_SHORT_PACKETS,
-			ALLOW_PARTIAL_READS,
-			AUTO_FLUSH,
-			RAW_IO,
-		}
+        internal enum POLICY_TYPE
+        {
+            SHORT_PACKET_TERMINATE = 1,
+            AUTO_CLEAR_STALL,
+            PIPE_TRANSFER_TIMEOUT,
+            IGNORE_SHORT_PACKETS,
+            ALLOW_PARTIAL_READS,
+            AUTO_FLUSH,
+            RAW_IO,
+        }
 
 
 
-		internal enum USB_DEVICE_SPEED
-		{
-			UsbLowSpeed = 1,
-			UsbFullSpeed,
-			UsbHighSpeed,
-		}
+        internal enum USB_DEVICE_SPEED
+        {
+            UsbLowSpeed = 1,
+            UsbFullSpeed,
+            UsbHighSpeed,
+        }
 
-		[StructLayout(LayoutKind.Sequential)]
-		internal struct USB_CONFIGURATION_DESCRIPTOR
-		{
-			internal Byte bLength;
-			internal Byte bDescriptorType;
-			internal ushort wTotalLength;
-			internal Byte bNumInterfaces;
-			internal Byte bConfigurationValue;
-			internal Byte iConfiguration;
-			internal Byte bmAttributes;
-			internal Byte MaxPower;
-		}	
-	}
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct USB_CONFIGURATION_DESCRIPTOR
+        {
+            internal Byte bLength;
+            internal Byte bDescriptorType;
+            internal ushort wTotalLength;
+            internal Byte bNumInterfaces;
+            internal Byte bConfigurationValue;
+            internal Byte iConfiguration;
+            internal Byte bmAttributes;
+            internal Byte MaxPower;
+        }
+    }
 
     sealed internal class NativeMethods
     {

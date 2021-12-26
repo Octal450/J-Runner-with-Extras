@@ -39,8 +39,8 @@
 
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using Interop = System.Runtime.InteropServices;
 
 
@@ -3550,7 +3550,7 @@ namespace Ionic.Zip
             {
                 if (_readstream == null)
                 {
-                    if (_readName != null || _name !=null)
+                    if (_readName != null || _name != null)
                     {
                         _readstream = File.Open(_readName ?? _name,
                                                 FileMode.Open,

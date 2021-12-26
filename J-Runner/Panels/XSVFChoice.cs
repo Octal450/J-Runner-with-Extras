@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.Panels
@@ -412,7 +409,7 @@ namespace JRunner.Panels
             if (demon) return true;
             else return false;
         }
-        
+
         // This controls the radio buttons to ensure only 1 is selected at a time across groups, and hide/show/enable/disable elements
         private void enterRgh12Fj(object sender, EventArgs e)
         {

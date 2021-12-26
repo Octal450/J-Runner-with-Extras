@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.Panels
@@ -145,7 +139,8 @@ namespace JRunner.Panels
                         if (btnConsoleId.Text == "View: Native") textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
                         else textBoxconsoleid.Text = nand.ki.consoleid;
                     }
-                    catch {
+                    catch
+                    {
                         textBoxconsoleid.Text = "";
                     }
                     txtdvdkey.Text = nand.ki.dvdkey;
@@ -246,8 +241,8 @@ namespace JRunner.Panels
 
         public void change_tab()
         {
-            this.tabControl1.BeginInvoke((Action) (() => tabControl1.SelectedTab = tabPage1));
-            this.tabControl1.BeginInvoke((Action) (() => tabControl1.Refresh()));
+            this.tabControl1.BeginInvoke((Action)(() => tabControl1.SelectedTab = tabPage1));
+            this.tabControl1.BeginInvoke((Action)(() => tabControl1.Refresh()));
         }
 
         private void NandInfo_Load(object sender, EventArgs e)

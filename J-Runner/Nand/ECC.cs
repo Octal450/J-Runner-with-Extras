@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Reflection;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace JRunner
 {
@@ -493,7 +492,7 @@ namespace JRunner
             {
                 hasecc = false;
                 Console.WriteLine("Spare data NOT found");
-            }         
+            }
 
             try
             {
@@ -643,7 +642,7 @@ namespace JRunner
             string[][] CB_patches_4577 = { new string[] { "7beb0620", "48000168" }, new string[] { "409a0010", "60000000" }, new string[] { "480018c5", "60000000" }, new string[] { "480000a1", "60000000" } };
             int[] CB_patches_offsets_13121 = { 0x5240, 0x5938, 0x59B8, 0x5048, 0x58AC };
             string[][] CB_patches_13121 = { new string[] { "409A0010", "60000000" }, new string[] { "48001859", "60000000" }, new string[] { "480000b9", "60000000" }, new string[] { "7BEB0620", "48000168" }, new string[] { "48000195", "60000000" } };
-             //[13121,[[0x5240,0x409A0010,0x60000000],[0x5938,0x48001859,0x60000000],[0x59B8,0x480000b9,0x60000000], [0x5048, 0x7BEB0620, 0x48000168], [0x58AC, 0x48000195, 0x60000000]]]
+            //[13121,[[0x5240,0x409A0010,0x60000000],[0x5938,0x48001859,0x60000000],[0x59B8,0x480000b9,0x60000000], [0x5048, 0x7BEB0620, 0x48000168], [0x58AC, 0x48000195, 0x60000000]]]
             int[] CB_patches_offsets = { };
             string[][] CB_patches = { new string[] { } };
             /*

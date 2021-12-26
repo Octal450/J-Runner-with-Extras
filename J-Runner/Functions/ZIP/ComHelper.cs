@@ -24,8 +24,6 @@
 // Created: Tue, 08 Sep 2009  22:03
 //
 
-using Interop=System.Runtime.InteropServices;
-
 namespace Ionic.Zip
 {
     /// <summary>

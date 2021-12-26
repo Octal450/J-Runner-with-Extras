@@ -5,7 +5,7 @@ namespace HidLibrary
     public class HidReport
     {
         private byte _reportId;
-        private byte[] _data = new byte[] {};
+        private byte[] _data = new byte[] { };
 
         private readonly HidDeviceData.ReadStatus _status;
 

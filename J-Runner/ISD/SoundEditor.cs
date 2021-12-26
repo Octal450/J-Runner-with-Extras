@@ -1,28 +1,21 @@
-﻿using LibUsbDotNet;
+﻿using EricOulashin;
+using LibUsbDotNet;
 using LibUsbDotNet.Main;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
+using System.Media;
 using System.Threading;
 using System.Windows.Forms;
-using System.Threading.Tasks;
-using EricOulashin;
 using WaveLib;
 using Yeti.MMedia;
-using System.Media;
 
 
 namespace JRunner.Forms
 {
     public partial class SoundEditor : Form
     {
-        
+
         private UsbDevice MyUsbDevice;
         private UsbDeviceFinder JRunner = new UsbDeviceFinder(0x11d4, 0x8338);
 
@@ -82,7 +75,7 @@ namespace JRunner.Forms
 
             MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
             if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-            txtOutput.AppendText("Status: 0x" +  readBuffer[0] + "\n");
+            txtOutput.AppendText("Status: 0x" + readBuffer[0] + "\n");
 
             if (readBuffer[0] == 0x80 || readBuffer[0] == 0x60) return 1;
             else return 0;
@@ -603,7 +596,7 @@ namespace JRunner.Forms
                 }
 
                 stopwatch.Stop();
-                txtOutput.AppendText("Done! Time Elapsed: " +  stopwatch.Elapsed.Minutes + ":" + stopwatch.Elapsed.Seconds + "\n");
+                txtOutput.AppendText("Done! Time Elapsed: " + stopwatch.Elapsed.Minutes + ":" + stopwatch.Elapsed.Seconds + "\n");
                 //Console.WriteLine("");
                 Outro();
                 Normal();
@@ -836,7 +829,7 @@ namespace JRunner.Forms
             {
                 txtEject.Text = openFileDialog1.FileName;
             }
-            
+
         }
         private void btnPowerOpen_Click(object sender, EventArgs e)
         {
@@ -849,12 +842,12 @@ namespace JRunner.Forms
             {
                 txtPower.Text = openFileDialog1.FileName;
             }
-            
+
         }
 
         private void convert(string infolderstart, string infoldereject, string infolderpower, string outfolder)
         {
-            
+
             string outname = Path.Combine(variables.outfolder, txtFinalbin.Text + ".bin");
             if (txtFinalbin.Text == null)
             {
@@ -881,9 +874,9 @@ namespace JRunner.Forms
             {
                 File.WriteAllBytes(outname, generate(start, eject, power));
                 txtOutput.AppendText(txtFinalbin.Text + ".bin Created successfully\n");
-                txtFile.Text = outname; 
-                
-                
+                txtFile.Text = outname;
+
+
             }
             else txtOutput.AppendText("Failed to create " + txtFinalbin.Text + ".bin\n");
 
@@ -895,7 +888,7 @@ namespace JRunner.Forms
         {
             ISD_NAND ISN = new ISD_NAND();
 
-            
+
             txtOutput.AppendText("Checking file..\n");
 
             if (radioButton1.Checked)
@@ -951,7 +944,7 @@ namespace JRunner.Forms
         {
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             txtStart.Text = s[0];
-            
+
         }
         private void txtStart_DragEnter(object sender, DragEventArgs e)
         {
@@ -959,7 +952,7 @@ namespace JRunner.Forms
                 e.Effect = DragDropEffects.All;
             else
                 e.Effect = DragDropEffects.None;
-           
+
         }
         private void txtEject_DragEnter(object sender, DragEventArgs e)
         {
@@ -967,19 +960,19 @@ namespace JRunner.Forms
                 e.Effect = DragDropEffects.All;
             else
                 e.Effect = DragDropEffects.None;
-           
+
         }
         private void txtEject_DragDrop(object sender, DragEventArgs e)
         {
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             txtEject.Text = s[0];
-            
+
         }
         private void txtPower_DragDrop(object sender, DragEventArgs e)
         {
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             txtPower.Text = s[0];
-            
+
         }
         private void txtPower_DragEnter(object sender, DragEventArgs e)
         {
@@ -987,7 +980,7 @@ namespace JRunner.Forms
                 e.Effect = DragDropEffects.All;
             else
                 e.Effect = DragDropEffects.None;
-           
+
         }
         private void checkTexts()
         {
@@ -999,20 +992,20 @@ namespace JRunner.Forms
             if ((File.Exists(txtStart.Text) && Path.GetExtension(txtStart.Text) == ".bin") && (File.Exists(txtEject.Text) && Path.GetExtension(txtEject.Text) == ".bin"))
             {
 
-                if (txtPower.Enabled == true) 
+                if (txtPower.Enabled == true)
                 {
-                   if (File.Exists(txtPower.Text) && Path.GetExtension(txtPower.Text) == ".bin")
-                   {
+                    if (File.Exists(txtPower.Text) && Path.GetExtension(txtPower.Text) == ".bin")
+                    {
                         btnStart.Enabled = true;
-                   }
-                   else {btnStart.Enabled = false;}
+                    }
+                    else { btnStart.Enabled = false; }
                 }
                 else
                 {
-                  btnStart.Enabled = true;  
+                    btnStart.Enabled = true;
 
                 }
-                
+
             }
             else { btnStart.Enabled = false; }
         }
@@ -1020,13 +1013,13 @@ namespace JRunner.Forms
         {
             checkTexts();
             if (File.Exists(txtStart.Text) && Path.GetExtension(txtStart.Text) == ".wav")
-            { 
+            {
                 btnStartupPlay.Visible = true;
-                
+
             }
-            else 
-            { 
-                btnStartupPlay.Visible = false; 
+            else
+            {
+                btnStartupPlay.Visible = false;
             }
         }
 
@@ -1103,94 +1096,94 @@ namespace JRunner.Forms
                 return bytes;
             }
 
-            
-        public byte[] wav_to_raw(byte[] wav)
-        {
-            byte[] raw = new byte[wav.Length];
-            byte[] magic = { 0x64, 0x61, 0x74, 0x61 };
-            byte[] length = new byte[4];
-            int i = 0;
-            int got = 0;
-            int offset = 0;
-            bool data = false;
-            for (int counter = 0; counter < wav.Length; counter++)
+
+            public byte[] wav_to_raw(byte[] wav)
             {
-                if (!data)
+                byte[] raw = new byte[wav.Length];
+                byte[] magic = { 0x64, 0x61, 0x74, 0x61 };
+                byte[] length = new byte[4];
+                int i = 0;
+                int got = 0;
+                int offset = 0;
+                bool data = false;
+                for (int counter = 0; counter < wav.Length; counter++)
                 {
-                    if (got >= 3)
+                    if (!data)
                     {
-                        data = true;
-                        length[0] = wav[counter + 4];
-                        length[1] = wav[counter + 3];
-                        length[2] = wav[counter + 2];
-                        length[3] = wav[counter + 1];
-                        counter += 4;
-                        offset = counter;
+                        if (got >= 3)
+                        {
+                            data = true;
+                            length[0] = wav[counter + 4];
+                            length[1] = wav[counter + 3];
+                            length[2] = wav[counter + 2];
+                            length[3] = wav[counter + 1];
+                            counter += 4;
+                            offset = counter;
+                        }
+                        else
+                        {
+                            if (wav[counter] == magic[got]) got++;
+                            else got = 0;
+                        }
                     }
                     else
                     {
-                        if (wav[counter] == magic[got]) got++;
-                        else got = 0;
-                    }
-                }
-                else
-                {
-                    if (counter >= bytearray_to_int(length) + offset)
-                    {
-                        break;
-                    }
-                    if ((i % 0xFFB) == 0)
-                    {
-                        Debug.WriteLine("{0:X}", i);
-                        raw[i] = 0x78;
+                        if (counter >= bytearray_to_int(length) + offset)
+                        {
+                            break;
+                        }
+                        if ((i % 0xFFB) == 0)
+                        {
+                            Debug.WriteLine("{0:X}", i);
+                            raw[i] = 0x78;
+                            i++;
+                        }
+                        counter++;
+                        raw[i] = wav[counter];
                         i++;
                     }
-                    counter++;
-                    raw[i] = wav[counter];
-                    i++;
                 }
+                byte[] temp = new byte[i];
+                Buffer.BlockCopy(raw, 0, temp, 0, i);
+                raw = temp;
+
+                return raw;
             }
-            byte[] temp = new byte[i];
-            Buffer.BlockCopy(raw, 0, temp, 0, i);
-            raw = temp;
-
-            return raw;
-        }
-        public static int bytearray_to_int(byte[] value)
-        {
-            return Convert.ToInt32(ByteArrayToString(value), 16);
-        }
-        public static string ByteArrayToString(byte[] ba, int startindex = 0, int length = 0)
-        {
-            if (ba == null) return "";
-            string hex = BitConverter.ToString(ba);
-            if (startindex == 0 && length == 0) hex = BitConverter.ToString(ba);
-            else if (length == 0 && startindex != 0) hex = BitConverter.ToString(ba, startindex);
-            else if (length != 0 && startindex != 0) hex = BitConverter.ToString(ba, startindex, length);
-            return hex.Replace("-", "");
-        }
-        public byte[] wav_to_wav(Stream S)
-        {
-            WaveStream ws = new WaveStream(S);
-            WaveFormat wf = new WaveFormat(8000, 16, 1);
-            MemoryStream mS = new MemoryStream();
-            WaveWriter ww = new WaveWriter(mS, wf);
-            byte[] buffer = new byte[ww.OptimalBufferSize];
-
-            int read = 0;
-            int actual = 0;
-            long total = ws.Length;
-
-            while ((read = ws.Read(buffer, 0, buffer.Length)) > 0)
+            public static int bytearray_to_int(byte[] value)
             {
-                ww.Write(buffer, 0, read);
-                actual += read;
+                return Convert.ToInt32(ByteArrayToString(value), 16);
             }
+            public static string ByteArrayToString(byte[] ba, int startindex = 0, int length = 0)
+            {
+                if (ba == null) return "";
+                string hex = BitConverter.ToString(ba);
+                if (startindex == 0 && length == 0) hex = BitConverter.ToString(ba);
+                else if (length == 0 && startindex != 0) hex = BitConverter.ToString(ba, startindex);
+                else if (length != 0 && startindex != 0) hex = BitConverter.ToString(ba, startindex, length);
+                return hex.Replace("-", "");
+            }
+            public byte[] wav_to_wav(Stream S)
+            {
+                WaveStream ws = new WaveStream(S);
+                WaveFormat wf = new WaveFormat(8000, 16, 1);
+                MemoryStream mS = new MemoryStream();
+                WaveWriter ww = new WaveWriter(mS, wf);
+                byte[] buffer = new byte[ww.OptimalBufferSize];
 
-            ww.Close();
-            ws.Close();
-            return mS.ToArray();
-        }
+                int read = 0;
+                int actual = 0;
+                long total = ws.Length;
+
+                while ((read = ws.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ww.Write(buffer, 0, read);
+                    actual += read;
+                }
+
+                ww.Close();
+                ws.Close();
+                return mS.ToArray();
+            }
 
             public byte[] generate_isd_bin(byte[] startup, byte[] eject)
             {

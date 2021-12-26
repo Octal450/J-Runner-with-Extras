@@ -1,13 +1,8 @@
 ﻿using Be.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.HexEdit
@@ -132,7 +127,7 @@ namespace JRunner.HexEdit
         }
         static string ConvertToOneDigit(long size, long quan)
         {
-            double quotient = (double)size / (double)quan;
+            double quotient = size / (double)quan;
             string result = quotient.ToString("0.#", CultureInfo.CurrentCulture);
             return result;
         }

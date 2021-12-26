@@ -1,13 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JRunner.Forms
@@ -74,7 +67,7 @@ namespace JRunner.Forms
 
 
             byte[] key2 = CalculateCPUKeyECD(key);
-            
+
             txtGenKey.Text = BitConverter.ToString(key2).Replace("-", string.Empty);
             Array.Copy(key2, key, 16);
             if (!ByteArrayCompare(key, key2)) return false;

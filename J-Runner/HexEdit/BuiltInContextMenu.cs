@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Be.Windows.Forms
@@ -131,7 +129,8 @@ namespace Be.Windows.Forms
         {
             get { return _copyMenuItemText; }
             set { _copyMenuItemText = value; }
-        } string _copyMenuItemText;
+        }
+        string _copyMenuItemText;
 
         /// <summary>
         /// Gets or sets the custom text of the "Cut" ContextMenuStrip item.
@@ -141,7 +140,8 @@ namespace Be.Windows.Forms
         {
             get { return _cutMenuItemText; }
             set { _cutMenuItemText = value; }
-        } string _cutMenuItemText;
+        }
+        string _cutMenuItemText;
 
         /// <summary>
         /// Gets or sets the custom text of the "Paste" ContextMenuStrip item.
@@ -151,7 +151,8 @@ namespace Be.Windows.Forms
         {
             get { return _pasteMenuItemText; }
             set { _pasteMenuItemText = value; }
-        } string _pasteMenuItemText;
+        }
+        string _pasteMenuItemText;
 
         /// <summary>
         /// Gets or sets the custom text of the "Select All" ContextMenuStrip item.
@@ -161,7 +162,8 @@ namespace Be.Windows.Forms
         {
             get { return _selectAllMenuItemText; }
             set { _selectAllMenuItemText = value; }
-        } string _selectAllMenuItemText = null;
+        }
+        string _selectAllMenuItemText = null;
 
         /// <summary>
         /// Gets the text of the "Cut" ContextMenuStrip item.
@@ -188,7 +190,8 @@ namespace Be.Windows.Forms
         {
             get { return _cutMenuItemImage; }
             set { _cutMenuItemImage = value; }
-        } Image _cutMenuItemImage = null;
+        }
+        Image _cutMenuItemImage = null;
         /// <summary>
         /// Gets or sets the image of the "Copy" ContextMenuStrip item.
         /// </summary>
@@ -197,7 +200,8 @@ namespace Be.Windows.Forms
         {
             get { return _copyMenuItemImage; }
             set { _copyMenuItemImage = value; }
-        } Image _copyMenuItemImage = null;
+        }
+        Image _copyMenuItemImage = null;
         /// <summary>
         /// Gets or sets the image of the "Paste" ContextMenuStrip item.
         /// </summary>
@@ -206,7 +210,8 @@ namespace Be.Windows.Forms
         {
             get { return _pasteMenuItemImage; }
             set { _pasteMenuItemImage = value; }
-        } Image _pasteMenuItemImage = null;
+        }
+        Image _pasteMenuItemImage = null;
         /// <summary>
         /// Gets or sets the image of the "Select All" ContextMenuStrip item.
         /// </summary>
@@ -215,6 +220,7 @@ namespace Be.Windows.Forms
         {
             get { return _selectAllMenuItemImage; }
             set { _selectAllMenuItemImage = value; }
-        } Image _selectAllMenuItemImage = null;
+        }
+        Image _selectAllMenuItemImage = null;
     }
 }

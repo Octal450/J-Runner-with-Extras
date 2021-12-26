@@ -547,7 +547,8 @@ namespace Ionic.Zlib
         virtual public FlushType FlushMode
         {
             get { return (this._baseStream._flushMode); }
-            set {
+            set
+            {
                 if (_disposed) throw new ObjectDisposedException("GZipStream");
                 this._baseStream._flushMode = value;
             }
@@ -971,7 +972,7 @@ namespace Ionic.Zlib
             using (var ms = new MemoryStream())
             {
                 System.IO.Stream compressor =
-                    new GZipStream( ms, CompressionMode.Compress, CompressionLevel.BestCompression );
+                    new GZipStream(ms, CompressionMode.Compress, CompressionLevel.BestCompression);
 
                 ZlibBaseStream.CompressBuffer(b, compressor);
                 return ms.ToArray();
@@ -1018,7 +1019,7 @@ namespace Ionic.Zlib
             using (var input = new System.IO.MemoryStream(compressed))
             {
                 System.IO.Stream decompressor =
-                    new GZipStream( input, CompressionMode.Decompress );
+                    new GZipStream(input, CompressionMode.Decompress);
 
                 return ZlibBaseStream.UncompressBuffer(compressed, decompressor);
             }

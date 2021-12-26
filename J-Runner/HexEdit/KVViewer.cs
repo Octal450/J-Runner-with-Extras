@@ -1,13 +1,7 @@
 ﻿using Be.Windows.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace JRunner.HexEdit
@@ -103,7 +97,7 @@ namespace JRunner.HexEdit
         }
         static string ConvertToOneDigit(long size, long quan)
         {
-            double quotient = (double)size / (double)quan;
+            double quotient = size / (double)quan;
             string result = quotient.ToString("0.#", CultureInfo.CurrentCulture);
             return result;
         }
@@ -191,7 +185,7 @@ namespace JRunner.HexEdit
 
             public override bool Equals(object obj)
             {
-                return (name == ((leaf)obj).name && 
+                return (name == ((leaf)obj).name &&
                     fatherName == ((leaf)obj).fatherName);
             }
         }
@@ -310,7 +304,7 @@ namespace JRunner.HexEdit
             list.Add(new leaf("Xeika.Certificate.DRIVE_INQUIRY", false, false, 0xC8A, 0x28, "KEY 0x37 - XEKEY_XEIKA_CERTIFICATE"));
             list.Add(new leaf("Xeika.Certificate.RESERVED", false, false, 0xCB2, 0x1146, "KEY 0x37 - XEKEY_XEIKA_CERTIFICATE", true));
             list.Add(new leaf("KEY 0x44 - XEKEY_SPECIAL_KEYVAULT_SIGNATURE", false, false, 0x1DF8, 0x100));
-            list.Add(new leaf("KEY 0x38 - XEKEY_CARDAE_CERTIFICATE", false, false, 0x1ef8, 0x2108, "Key Vault", true));        
+            list.Add(new leaf("KEY 0x38 - XEKEY_CARDAE_CERTIFICATE", false, false, 0x1ef8, 0x2108, "Key Vault", true));
         }
 
         enum STATES

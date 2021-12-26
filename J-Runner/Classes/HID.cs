@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HidLibrary;
+using System;
+using System.IO;
 using System.Linq;
 using System.Text;
-using HidLibrary;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using WinUsb;
@@ -317,7 +316,7 @@ namespace JRunner
         {
             if (String.IsNullOrEmpty(variables.filename1)) { MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (_deviceList.Count() != 0) _selectedDevice = _deviceList[0];
-            else { Console.WriteLine("Device Not Found");return; }
+            else { Console.WriteLine("Device Not Found"); return; }
             if (_selectedDevice.IsConnected)
             {
                 if (!_selectedDevice.IsOpen) _selectedDevice.OpenDevice();
@@ -325,7 +324,8 @@ namespace JRunner
                 erase();
                 Thread.Sleep(175);
                 Console.WriteLine("Writing Flash...");
-                if (!write(ref pb)) {
+                if (!write(ref pb))
+                {
                     Console.WriteLine("Write Failed");
                     Console.WriteLine("");
                     return;
@@ -376,6 +376,6 @@ namespace JRunner
                 Console.WriteLine("Done");
                 Console.WriteLine("");
             }
-        }        
+        }
     }
 }

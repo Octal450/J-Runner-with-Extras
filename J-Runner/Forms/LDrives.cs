@@ -1,16 +1,12 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -168,7 +164,7 @@ namespace JRunner.Forms
                 txtFile.Text = filename;
             }
         }
-       
+
 
         private void buttons(bool what)
         {
@@ -198,10 +194,10 @@ namespace JRunner.Forms
         }
         private int read()
         {
-            if (String.IsNullOrEmpty(filename)) 
+            if (String.IsNullOrEmpty(filename))
             {
                 MessageBox.Show("No Filename Selected");
-                return 0; 
+                return 0;
             }
             if (listView1.SelectedItems.Count == 0) return 0;
 
@@ -263,13 +259,13 @@ namespace JRunner.Forms
                 Console.WriteLine("");
             }
             catch (Exception ex)
-            { 
+            {
                 Console.WriteLine(ex.ToString() + i);
                 Console.WriteLine("");
             }
             return 1;
         }
-      
+
         private void Write_b()
         {
             if (listView1.SelectedItems.Count == 0) return;
@@ -369,7 +365,7 @@ namespace JRunner.Forms
             //uint numTotalSectors = 0x795FFF;//DiskSize / 512;
             //uint numTotalSectors = 0x702000;
             int totaltracks = 0x1C080;
-            uint track = ((SectorsPerTrack + 1 )* BytesPerSector);
+            uint track = ((SectorsPerTrack + 1) * BytesPerSector);
 
             byte[] junkBytes = new byte[(int)track];
 
@@ -533,7 +529,7 @@ namespace JRunner.Forms
                 if (variables.debugme) Console.WriteLine(ex.ToString());
                 Console.WriteLine("");
             }
-        }      
+        }
 
         private void erase()
         {
@@ -824,7 +820,7 @@ namespace JRunner.Forms
                         // The response buffer is too small, reallocate it exponentially and retry
                         else if (Marshal.GetLastWin32Error() == ERROR_INSUFFICIENT_BUFFER)
                         {
-                            maxResponseSize = (int)(maxResponseSize * 5);
+                            maxResponseSize = maxResponseSize * 5;
                         }
                         // Fatal error has occured, throw exception
                         else
@@ -931,14 +927,14 @@ namespace JRunner.Forms
             Thread.Sleep(time);
             variables.escapeloop = false;
         }
-    
+
         #region DLLImports
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern uint QueryDosDevice(string lpDeviceName, IntPtr lpTargetPath, int ucchMax);
 
         [DllImport("Kernel32.dll")]
-        static extern SafeFileHandle CreateFile(string filename, [MarshalAs(UnmanagedType.U4)]FileAccess fileaccess, [MarshalAs(UnmanagedType.U4)]FileShare fileshare, int securityattributes, [MarshalAs(UnmanagedType.U4)]FileMode creationdisposition, int flags, IntPtr template);
+        static extern SafeFileHandle CreateFile(string filename, [MarshalAs(UnmanagedType.U4)] FileAccess fileaccess, [MarshalAs(UnmanagedType.U4)] FileShare fileshare, int securityattributes, [MarshalAs(UnmanagedType.U4)] FileMode creationdisposition, int flags, IntPtr template);
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         static extern bool GetDiskFreeSpace(string lpRootPathName,
@@ -975,6 +971,6 @@ namespace JRunner.Forms
         private static extern bool CloseHandle(SafeFileHandle handle);
 
         #endregion
-        
+
     }
 }
