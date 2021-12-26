@@ -294,7 +294,9 @@ namespace JRunner
 
             try // It'll fail if the thing doesn't exist
             {
+#if DEBUG //ignore UpdateDevice While In Debug Mode.
                 updateDevice();
+#endif
             }
             catch
             {
@@ -422,9 +424,9 @@ namespace JRunner
             File.AppendAllText(file, "\n" + txtConsole.Text);
         }
 
-        #endregion
+#endregion
 
-        #region Panels
+#region Panels
 
         void demon_UpdateVer(string version)
         {
@@ -452,7 +454,7 @@ namespace JRunner
             FlashVersion.Text = flash.ToString();
         }
 
-        #region LDrivesPanel
+#region LDrivesPanel
 
         void ldInfo_CloseLDClick()
         {
@@ -472,9 +474,9 @@ namespace JRunner
             comparenands();
         }
 
-        #endregion
+#endregion
 
-        #region xebuild Panel
+#region xebuild Panel
 
         void xPanel_CallMB()
         {
@@ -545,9 +547,9 @@ namespace JRunner
             loadfile(ref filename, ref txtFilePath1, erase);
         }
 
-        #endregion
+#endregion
 
-        #region XSVF Panel
+#region XSVF Panel
 
         void xsvfInfo_ProgramCRClick()
         {
@@ -578,7 +580,7 @@ namespace JRunner
             pnlTools.Enabled = true;
         }
 
-        #endregion
+#endregion
 
         delegate void SaveFileCallback(byte[] temp, string name, string filter);
         void saveFile(byte[] temp, string name, string filter)
@@ -622,10 +624,10 @@ namespace JRunner
 
   
 
-        #endregion
+#endregion
 
-        #region EXEs
-        #region LPT
+#region EXEs
+#region LPT
 
         public void unpack_lpt()
         {
@@ -711,7 +713,7 @@ namespace JRunner
             }
         }
 
-        #endregion
+#endregion
 
         private void lpt_Exited(object sender, System.EventArgs e)
         {
@@ -728,9 +730,9 @@ namespace JRunner
             Console.WriteLine(e.Data);
         }
 
-        #endregion
+#endregion
 
-        #region Basic Functions
+#region Basic Functions
 
         private void abort()
         {
@@ -740,7 +742,7 @@ namespace JRunner
             if (xflasher.inUse) xflasher.abort();
         }
 
-        #region Nand
+#region Nand
         //////////////////////////////////////////////
 
         void nandcustom(string function, string filename, int size, int startblock, int length)
@@ -1186,7 +1188,7 @@ namespace JRunner
                 if (error != NandX.Errors.None && error != NandX.Errors.WrongHeader) return;
                 if (variables.debugme) Console.WriteLine("Read Nand");
 
-                #region nandsize
+#region nandsize
                 if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 7) && !variables.fulldump)
                 {
                     variables.nandsizex = Nandsize.S64;
@@ -1200,7 +1202,7 @@ namespace JRunner
                     if (variables.debugme) Console.WriteLine(variables.ctyp.ID);
                     variables.nandsizex = variables.ctyp.Nsize;
                 }
-                #endregion
+#endregion
 
                 //if (getmbtype() != 0) return;
                 if (variables.twombread) twomb = 0x7C;
@@ -1452,9 +1454,9 @@ namespace JRunner
                 }
             }
         }
-        #endregion
+#endregion
 
-        #region Small Stuff
+#region Small Stuff
         void movework()
         {
             if (variables.reading) return;
@@ -1887,9 +1889,9 @@ namespace JRunner
             }
         }
 
-        #endregion
+#endregion
 
-        #region Nand Manipulation
+#region Nand Manipulation
 
         public void newSession(bool partial = false)
         {
@@ -2330,9 +2332,9 @@ namespace JRunner
             }
         }
 
-        #endregion
+#endregion
 
-        #region Forms
+#region Forms
 
         void loadfile(ref string filename, ref TextBox tx, bool erase = false)
         {
@@ -2462,11 +2464,11 @@ namespace JRunner
             txtCPUKey.Text = variables.cpkey;
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
 
-        #region User Input
+#region User Input
 
         void updateProgress(int progress)
         {
@@ -2478,9 +2480,9 @@ namespace JRunner
             txtBlocks.BeginInvoke((Action)(() => txtBlocks.Text = progress));
         }
 
-        #region Menu Bar
+#region Menu Bar
 
-        #region Tools
+#region Tools
         
         public void extractFilesFromNand()
         {
@@ -2668,9 +2670,9 @@ namespace JRunner
             }
         }
 
-        #endregion
+#endregion
 
-        #region Advanced
+#region Advanced
 
         private void CustomXeBuildMenuItem_Click(object sender, EventArgs e)
         {
@@ -2725,9 +2727,9 @@ namespace JRunner
             xbo.ShowDialog();
         }
 
-        #endregion
+#endregion
 
-        #region Dev
+#region Dev
 
         private void xValueToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -2784,9 +2786,9 @@ namespace JRunner
             nandx.PowerUp();
         }
 
-        #endregion
+#endregion
 
-        #region Menu Buttons
+#region Menu Buttons
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
@@ -2794,13 +2796,13 @@ namespace JRunner
             mForm.ShowDialog();
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
 
-        #region Buttons
+#region Buttons
 
-        #region Basic Buttons
+#region Basic Buttons
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
@@ -2969,9 +2971,9 @@ namespace JRunner
             new Thread(starter).Start();
         }
 
-        #endregion
+#endregion
 
-        #region File Buttons
+#region File Buttons
 
         void btnLoadFile1_Click(object sender, System.EventArgs e)
         {
@@ -2992,9 +2994,9 @@ namespace JRunner
             new Thread(comparenands).Start();
         }
 
-        #endregion
+#endregion
 
-        #region Function Buttons
+#region Function Buttons
 
         private void btnWorkingFolder_Click(object sender, EventArgs e)
         {
@@ -3027,9 +3029,9 @@ namespace JRunner
             nand_init();
         }
 
-        #endregion
+#endregion
 
-        #region IP stuff
+#region IP stuff
 
         private void btnIPGetCPU_Click(object sender, EventArgs e)
         {
@@ -3070,11 +3072,11 @@ namespace JRunner
             }
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
 
-        #region Keyboard Events
+#region Keyboard Events
 
         void txtCPUKey_TextChanged(object sender, System.EventArgs e)
         {
@@ -3111,9 +3113,9 @@ namespace JRunner
             }
         }
 
-        #endregion
+#endregion
 
-        #region Clicks
+#region Clicks
 
         private void txtConsole_DoubleClick(object sender, EventArgs e)
         {
@@ -3123,9 +3125,9 @@ namespace JRunner
             File.Delete(Path.Combine(variables.pathforit, "tempLog.txt"));
         }
 
-        #endregion
+#endregion
 
-        #region Drag & Drops
+#region Drag & Drops
 
         void txtFilePath1_DragDrop(object sender, DragEventArgs e)
         {
@@ -3208,9 +3210,9 @@ namespace JRunner
                 e.Effect = DragDropEffects.None;
         }
 
-        #endregion
+#endregion
 
-        #region KeyUp
+#region KeyUp
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
@@ -3308,11 +3310,11 @@ namespace JRunner
             variables.escapeloop = false;
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
 
-        #region Demon
+#region Demon
         bool showingdemon = false;
         protected override void WndProc(ref Message m)
         {
@@ -3424,18 +3426,18 @@ namespace JRunner
         {
             try
             {
-                if (variables.debugme) Console.WriteLine("DevNotify - {0}", e.mDevice.Name);
+                if (variables.debugme) Console.WriteLine("DevNotify - {0}", e.Device.Name);
                 if (variables.debugme) Console.WriteLine("EventType - {0}", e.EventType);
                 if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival)
                 {
-                    if (e.mDevice.IdVendor == 0x0403 && e.mDevice.IdProduct == 0x6010) // xFlasher SPI
+                    if (e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010) // xFlasher SPI
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.xflash_spi);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = 3;
                         xflasher.initDevice();
                     }
-                    else if (e.mDevice.IdVendor == 0xFFFF && e.mDevice.IdProduct == 0x004) // NAND-X
+                    else if (e.Device.IdVendor == 0xFFFF && e.Device.IdProduct == 0x004) // NAND-X
                     {
                         if (!DemoN.DemonDetected)
                         {
@@ -3451,21 +3453,21 @@ namespace JRunner
                         nANDXToolStripMenuItem.Visible = true;
                         device = 2;
                     }
-                    else if (e.mDevice.IdVendor == 0x11D4 && e.mDevice.IdProduct == 0x8338) // JR-Programmer
+                    else if (e.Device.IdVendor == 0x11D4 && e.Device.IdProduct == 0x8338) // JR-Programmer
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.JRP);
                         jRPBLToolStripMenuItem.Visible = false;
                         jRPToolStripMenuItem.Visible = true;
                         device = 1;
                     }
-                    else if (e.mDevice.IdVendor == 0x11D4 && e.mDevice.IdProduct == 0x8334) // JR-Programmer Bootloader
+                    else if (e.Device.IdVendor == 0x11D4 && e.Device.IdProduct == 0x8334) // JR-Programmer Bootloader
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.usb);
                         jRPToolStripMenuItem.Visible = false;
                         jRPBLToolStripMenuItem.Visible = true;
                         device = -1;
                     }
-                    else if ((e.mDevice.IdVendor == 0xAAAA && e.mDevice.IdProduct == 0x8816) || (e.mDevice.IdVendor == 0x05E3 && e.mDevice.IdProduct == 0x0751)) // xFlasher eMMC
+                    else if ((e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816) || (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751)) // xFlasher eMMC
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
@@ -3474,38 +3476,38 @@ namespace JRunner
                 }
                 else if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceRemoveComplete)
                 {
-                    if (e.mDevice.IdVendor == 0x11d4 && e.mDevice.IdProduct == 0x8334)
+                    if (e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8334)
                     {
                         HID.BootloaderDetected = false;
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         jRPBLToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0xFFFF && e.mDevice.IdProduct == 0x004)
+                    else if (e.Device.IdVendor == 0xFFFF && e.Device.IdProduct == 0x004)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         nANDXToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0x11d4 && e.mDevice.IdProduct == 0x8338)
+                    else if (e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8338)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         jRPToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0x0403 && e.mDevice.IdProduct == 0x6010)
+                    else if (e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         xFlasherToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0x05E3 && e.mDevice.IdProduct == 0x0751)
+                    else if (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         xFlasherToolStripMenuItem.Visible = false;
                         device = 0;
                     }
-                    else if (e.mDevice.IdVendor == 0xAAAA && e.mDevice.IdProduct == 0x8816)
+                    else if (e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         xFlasherToolStripMenuItem.Visible = false;
@@ -3563,7 +3565,7 @@ namespace JRunner
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
         }
-        #endregion
+#endregion
 
         private string GetIP()
         {
@@ -3626,7 +3628,7 @@ namespace JRunner
             return filename;
         }
 
-        #region Settings & Dashes
+#region Settings & Dashes
 
         public void trykeys()
         {
@@ -4107,9 +4109,9 @@ namespace JRunner
             if (check) check_dash();
         }
 
-        #endregion
+#endregion
 
-        #region xFlasher interactions with UI
+#region xFlasher interactions with UI
         public void xFlasherInitNand(int i = 2)
         {
             if (i == 2 && File.Exists(variables.filename))
@@ -4197,7 +4199,7 @@ namespace JRunner
                 else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
             }
         }
-        #endregion
+#endregion
 
         private void toolStripMenuItemVNand_Click(object sender, EventArgs e)
         {
