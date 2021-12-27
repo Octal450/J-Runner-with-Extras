@@ -847,6 +847,10 @@ namespace JRunner
                             MessageBox.Show("Unable to write timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
+                        else if (device == 2 && variables.mtxUsbMode)
+                        {
+                            mtx_usb.flashXsvf(filename);
+                        }
                         else
                         {
                             starter = delegate
@@ -959,6 +963,10 @@ namespace JRunner
                     {
                         MessageBox.Show("Unable to write timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                    }
+                    else if (device == 2 && variables.mtxUsbMode)
+                    {
+                        mtx_usb.flashXsvf(file);
                     }
                     else
                     {

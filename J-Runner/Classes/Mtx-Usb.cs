@@ -38,7 +38,7 @@ namespace JRunner
                 return;
             }
 
-            writeNand(16, variables.filename1, 2);
+            writeNand(16, variables.filename1, 2, 0, 80); // startblock + length (hex) for display purposes only, not required
         }
 
         public void writeEccAuto()
@@ -52,7 +52,7 @@ namespace JRunner
                 return;
             }
 
-            writeNand(16, variables.filename1, 1);
+            writeNand(16, variables.filename1, 1, 0, 80); // startblock + length (hex) for display purposes only, not required
         }
 
         public void writeNandAuto()
@@ -105,7 +105,11 @@ namespace JRunner
 
         public void writeNand(int size, string filename, int mode = 0, int startblock = 0, int length = 0)
         {
-            if (NandX.InUse) return;
+            if (NandX.InUse)
+            {
+                Console.WriteLine("MTX USB: Device Is Busy");
+                return;
+            }
 
             Thread nandThread = new Thread(() =>
             {
@@ -115,7 +119,6 @@ namespace JRunner
                     MainForm.mainForm.mtxBusy(1);
 
                     Console.WriteLine("Writing {0} to Nand via NandPro", Path.GetFileName(filename));
-                    NandX.InUse = true;
                     inUseTimer.Enabled = true;
 
                     string slArg = "";
@@ -131,7 +134,7 @@ namespace JRunner
                     process.StartInfo.WorkingDirectory = Path.Combine(variables.pathforit, "common/mtx-tools");
                     process.StartInfo.CreateNoWindow = false;
 
-
+                    NandX.InUse = true;
                     process.Start();
                     process.WaitForExit();
 
@@ -151,6 +154,42 @@ namespace JRunner
                 }
             });
             nandThread.Start();
+        }
+
+        public void flashXsvf(string filename)
+        {
+            if (NandX.InUse)
+            {
+                Console.WriteLine("MTX USB: Device Is Busy");
+                return;
+            }
+
+            Thread xsvfThread = new Thread(() =>
+            {
+                try
+                {
+                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+                    process.StartInfo.FileName = "common/mtx-tools/xsvf/xsvf.exe";
+                    process.StartInfo.Arguments = "\"" + filename + "\"";
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.WorkingDirectory = variables.pathforit;
+                    process.StartInfo.CreateNoWindow = false;
+
+                    NandX.InUse = true;
+                    process.Start();
+                    process.WaitForExit();
+
+                    NandX.InUse = false;
+                    Console.WriteLine("Xsvf: Completed!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    Console.WriteLine("");
+                }
+            });
+            xsvfThread.Start();
         }
     }
 }
