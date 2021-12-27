@@ -1,12 +1,32 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace JRunner
 {
     public class Mtx_Usb
     {
-        // Based on xFlasher system, added due to IoTimedOut issue
+        // Based on xFlasher system, added due to IoTimedOut issuea
+        private static int inUseCount = 0;
+        public static string mtxTimeString = "";
+        System.Timers.Timer inUseTimer;
+
+        // Libraries
+        public void inUseTimerSetup()
+        {
+            inUseTimer = new System.Timers.Timer(1000);
+            inUseTimer.Elapsed += inUseTimerUpd;
+        }
+
+        private void inUseTimerUpd(object source, EventArgs e)
+        {
+            inUseCount++;
+
+            if (inUseCount > 59) mtxTimeString = TimeSpan.FromSeconds(inUseCount).ToString(@"m\:ss") + " min(s)";
+            else if (inUseCount >= 0) mtxTimeString = inUseCount + " sec(s)";
+        }
+
         public void writeXeLLAuto()
         {
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
@@ -49,7 +69,7 @@ namespace JRunner
             double len = new FileInfo(variables.filename1).Length;
             if (len == 50331648)
             {
-                MessageBox.Show("Unable to write eMMC type image with SPI tool\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to write eMMC type image with an SPI tool\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (len == 553648128)
@@ -85,7 +105,52 @@ namespace JRunner
 
         public void writeNand(int size, string filename, int mode = 0, int startblock = 0, int length = 0)
         {
+            if (NandX.InUse) return;
 
+            Thread nandThread = new Thread(() =>
+            {
+                try
+                {
+                    variables.writing = true;
+                    MainForm.mainForm.mtxBusy(1);
+
+                    Console.WriteLine("Writing {0} to Nand via NandPro", Path.GetFileName(filename));
+                    NandX.InUse = true;
+                    inUseTimer.Enabled = true;
+
+                    string slArg = "";
+                    if (startblock > 0 || length > 0) {
+                        slArg = " " + startblock.ToString("X") + " " + length.ToString("X");
+                    }
+
+                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+                    process.StartInfo.FileName = "common/mtx-tools/NandPro2e.exe";
+                    if (mode == 1) process.StartInfo.Arguments = "usb: +w" + size + " \"" + filename + "\"" + slArg;
+                    else process.StartInfo.Arguments = "usb: -w" + size + " \"" + filename + "\"" + slArg;
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.WorkingDirectory = Path.Combine(variables.pathforit, "common/mtx-tools");
+                    process.StartInfo.CreateNoWindow = false;
+
+
+                    process.Start();
+                    process.WaitForExit();
+
+                    inUseTimer.Enabled = false;
+                    inUseCount = 0;
+                    NandX.InUse = false;
+                    variables.writing = false;
+                    MainForm.mainForm.mtxBusy(0);
+                    Console.WriteLine("NandPro: Completed! Time Elapsed: {0}", mtxTimeString);
+                    Console.WriteLine("");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    Console.WriteLine("");
+                }
+            });
+            nandThread.Start();
         }
     }
 }

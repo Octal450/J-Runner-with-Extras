@@ -714,7 +714,7 @@ namespace JRunner
                     }
                     else if (mode == 1)
                     {
-                        result = spi(4, size, filename);
+                        result = spi(4, size, filename, startblock, length);
                     }
                     else
                     {

@@ -80,6 +80,7 @@ namespace JRunner
             listExtra.Add(xPanel);
             xflasher.initTimerSetup();
             xflasher.inUseTimerSetup();
+            mtx_usb.inUseTimerSetup();
             setUp();
         }
 
@@ -761,11 +762,11 @@ namespace JRunner
             {
                 if (function == "Read")
                 {
-                    if (!usingVNand)
+                    if (usingVNand)
                     {
                         starter = delegate
                         {
-                            nandx.read(filename, sizex, true, startblock, length);
+                            vnand.read_v2(filename, startblock, length);
                         };
                     }
                     else if (device == 3)
@@ -776,17 +777,17 @@ namespace JRunner
                     {
                         starter = delegate
                         {
-                            vnand.read_v2(filename, startblock, length);
+                            nandx.read(filename, sizex, true, startblock, length);
                         };
                     }
                 }
                 else if (function == "Erase")
                 {
-                    if (!usingVNand)
+                    if (usingVNand)
                     {
                         starter = delegate
                         {
-                            nandx.erase(sizex, startblock, length);
+                            vnand.erase_v2(startblock, length);
                         };
                     }
                     else if (device == 3)
@@ -797,36 +798,40 @@ namespace JRunner
                     {
                         starter = delegate
                         {
-                            vnand.erase_v2(startblock, length);
+                            nandx.erase(sizex, startblock, length);
                         };
                     }
                 }
                 else if (function == "Write")
                 {
-                    if (!usingVNand)
+                    if (usingVNand)
                     {
                         starter = delegate
                         {
-                            nandx.write(filename, sizex, startblock, length);
+                            if (Path.GetExtension(filename) == ".ecc") vnand.write_v2(filename, startblock, length, true, true);
+                            else vnand.write_v2(filename, startblock, length);
                         };
                     }
                     else if (device == 3)
                     {
-                        if (Path.GetExtension(filename) == ".ecc")
-                        {
-                            xflasher.writeNand(16, filename, 1);
-                        }
-                        else
-                        {
-                            xflasher.writeNand(size, filename, 0, startblock, length, true);
-                        }
+                        if (Path.GetExtension(filename) == ".ecc") xflasher.writeNand(16, filename, 1, startblock, length, true);
+                        else xflasher.writeNand(size, filename, 0, startblock, length, true);
                     }
                     else
                     {
-                        starter = delegate
+                        if (device == 2 && variables.mtxUsbMode)
                         {
-                            vnand.write_v2(filename, startblock, length);
-                        };
+                            if (Path.GetExtension(filename) == ".ecc") mtx_usb.writeNand(16, filename, 1, startblock, length);
+                            else mtx_usb.writeNand(size, filename, 0, startblock, length);
+                        }
+                        else
+                        {
+                            starter = delegate
+                            {
+                                if (Path.GetExtension(filename) == ".ecc") nandx.write(filename, sizex, startblock, length, true, true);
+                                else nandx.write(filename, sizex, startblock, length);
+                            };
+                        }
                     }
                 }
                 else if (function == "Xsvf")
@@ -890,7 +895,7 @@ namespace JRunner
                     };
                 }
             }
-            if (device != 3)
+            if (starter != null)
             {
                 try
                 {
@@ -1003,7 +1008,7 @@ namespace JRunner
                 error = NandX.Errors.WrongConfig;
 
                 Console.WriteLine("");
-                MessageBox.Show("Unable to read/write eMMC type console with SPI tool\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to read/write eMMC type console with an SPI tool\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return error;
             }
             else if (flashconfig == ("01198010"))
@@ -4214,6 +4219,23 @@ namespace JRunner
             }
         }
         #endregion
+
+        public void mtxBusy(int mode)
+        {
+            if (mode > 0)
+            {
+                ProgressLabel.Text = "Writing";
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Marquee));
+                txtBlocks.Text = "";
+            }
+            else
+            {
+                ProgressLabel.Text = "Progress";
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
+                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Maximum));
+                txtBlocks.Text = "";
+            }
+        }
 
         private void toolStripMenuItemVNand_Click(object sender, EventArgs e)
         {
