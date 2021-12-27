@@ -163,15 +163,15 @@ namespace JRunner.Panels
             }
             else if (eeCount == 8)
             {
-                MessageBox.Show("Cut that shit out!!!!!", "You're Annoying!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("#%&@ Stop doing that!!!!!", "#%&@", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (eeCount == 10)
             {
-                MessageBox.Show("#%&@ Stop doing that!!!!!", "#%&@", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cut that shit out!!!!!", "You're Annoying!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (eeCount == 12)
             {
-                MessageBox.Show("#%&@ Stop doing that!!!!!\n\nCLICK ME AGAIN\nI DARE YOU", "#%&@", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("CLICK ME AGAIN!\nI DARE YOU!", "You Gon Get It", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (eeCount == 13)
             {

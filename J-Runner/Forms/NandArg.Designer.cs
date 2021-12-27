@@ -50,7 +50,6 @@
             this.btn16 = new System.Windows.Forms.RadioButton();
             this.optionalbox = new System.Windows.Forms.GroupBox();
             this.chkOptional = new System.Windows.Forms.CheckBox();
-            this.ProgramCRButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.Commandgrp.SuspendLayout();
             this.sizebox.SuspendLayout();
@@ -59,9 +58,9 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(293, 100);
+            this.btnRun.Location = new System.Drawing.Point(299, 110);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(115, 34);
+            this.btnRun.Size = new System.Drawing.Size(109, 24);
             this.btnRun.TabIndex = 0;
             this.btnRun.Text = "Run";
             this.btnRun.UseVisualStyleBackColor = true;
@@ -271,23 +270,11 @@
             this.chkOptional.UseVisualStyleBackColor = true;
             this.chkOptional.CheckedChanged += new System.EventHandler(this.chkOptional_CheckedChanged);
             // 
-            // ProgramCRButton
-            // 
-            this.ProgramCRButton.Location = new System.Drawing.Point(293, 60);
-            this.ProgramCRButton.Name = "ProgramCRButton";
-            this.ProgramCRButton.Size = new System.Drawing.Size(116, 34);
-            this.ProgramCRButton.TabIndex = 10;
-            this.ProgramCRButton.Text = "Program Timing File";
-            this.toolTip1.SetToolTip(this.ProgramCRButton, "J-Runner with Extras includes timings for RGH1.2, S-RGH, and others");
-            this.ProgramCRButton.UseVisualStyleBackColor = true;
-            this.ProgramCRButton.Click += new System.EventHandler(this.ProgramCRButton_Click);
-            // 
             // NandProArg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 146);
-            this.Controls.Add(this.ProgramCRButton);
             this.Controls.Add(this.optionalbox);
             this.Controls.Add(this.sizebox);
             this.Controls.Add(this.Commandgrp);
@@ -333,7 +320,6 @@
         private System.Windows.Forms.RadioButton btn64;
         private System.Windows.Forms.RadioButton btn16;
         private System.Windows.Forms.GroupBox optionalbox;
-        private System.Windows.Forms.Button ProgramCRButton;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox chkOptional;
     }

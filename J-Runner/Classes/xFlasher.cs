@@ -123,9 +123,9 @@ namespace JRunner
                 return;
             }
 
-            try
+            Thread ftdiThread = new Thread(() =>
             {
-                Thread ftdiThread = new Thread(() =>
+                try
                 {
                     if (!ready)
                     {
@@ -139,15 +139,15 @@ namespace JRunner
                     }
 
                     getFlashConfigActual();
-                });
-                ftdiThread.Start();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine();
-                Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
-            }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    Console.WriteLine("");
+                }
+            });
+            ftdiThread.Start();
         }
 
         public int getFlashConfigActual(bool auto = false)
@@ -231,9 +231,9 @@ namespace JRunner
                 return;
             }
 
-            try
+            Thread ftdiThread = new Thread(() =>
             {
-                Thread ftdiThread = new Thread(() =>
+                try
                 {
                     if (!ready)
                     {
@@ -383,15 +383,15 @@ namespace JRunner
                         Thread.Sleep(1000);
                         MainForm.mainForm.xFlasherInitNand(i);
                     }
-                });
-                ftdiThread.Start();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine();
-                Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
-            }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    Console.WriteLine("");
+                }
+            });
+            ftdiThread.Start();
         }
 
         public void readNand(int size, string filename, int startblock = 0, int length = 0)
@@ -407,10 +407,11 @@ namespace JRunner
                 return;
             }
 
-            try
+            Thread ftdiThread = new Thread(() =>
             {
-                Thread ftdiThread = new Thread(() =>
+                try
                 {
+
                     if (!ready)
                     {
                         waiting = true;
@@ -504,16 +505,15 @@ namespace JRunner
                         Console.WriteLine("");
                         return;
                     }
-                });
-
-                ftdiThread.Start();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine();
-                Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
-            }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    Console.WriteLine("");
+                }
+            });
+            ftdiThread.Start();
         }
 
         // Write XeLL/ECC/Nand
@@ -611,10 +611,11 @@ namespace JRunner
                 return;
             }
 
-            try
+            Thread ftdiThread = new Thread(() =>
             {
-                Thread ftdiThread = new Thread(() =>
+                try
                 {
+
                     if (!ready)
                     {
                         waiting = true;
@@ -778,15 +779,15 @@ namespace JRunner
                         Console.WriteLine("");
                         return;
                     }
-                });
-                ftdiThread.Start();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine();
-                Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
-            }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    Console.WriteLine("");
+                }
+            });
+            ftdiThread.Start();
         }
 
         private void getBlocks(int start, int length)
@@ -828,10 +829,11 @@ namespace JRunner
                 return;
             }
 
-            try
+            Thread urJtagThread = new Thread(() =>
             {
-                Thread urJtagThread = new Thread(() =>
+                try
                 {
+
                     if (!ready)
                     {
                         waiting = true;
@@ -941,15 +943,15 @@ namespace JRunner
                     {
                         File.Delete(svfPath);
                     }
-                });
-                urJtagThread.Start();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine();
-                Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
-            }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    Console.WriteLine("");
+                }
+            });
+            urJtagThread.Start();
         }
     }
 }
