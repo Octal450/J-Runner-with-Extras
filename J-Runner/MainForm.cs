@@ -1001,7 +1001,8 @@ namespace JRunner
             {
                 error = NandX.Errors.WrongConfig;
 
-                Console.WriteLine("This flash config belongs to Corona 4GB.\n As of now you can't read it via SPI.\n Please use an SD card reader/USB tool.");
+                Console.WriteLine("");
+                MessageBox.Show("Impossible to read/write eMMC type console in SPI mode\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return error;
             }
             else if (flashconfig == ("01198010"))
@@ -1040,18 +1041,15 @@ namespace JRunner
                 if (variables.conf != null)
                 {
                     int temp = Nand.Nand.getcb_build(variables.conf);
-                    string console = "Unknown";
                     if (temp >= 9188 && temp <= 9250)
                     {
                         variables.ctyp = variables.cunts[1];
                         xPanel.setMBname(variables.ctyp.Text);
-                        console = variables.ctyp.Text;
                     }
                     else if (temp >= 4558 && temp <= 4580)
                     {
                         variables.ctyp = variables.cunts[3];
                         xPanel.setMBname(variables.ctyp.Text);
-                        console = variables.ctyp.Text;
                     }
                     else if (temp >= 6712 && temp <= 6780)
                     {
@@ -1059,37 +1057,43 @@ namespace JRunner
                         {
                             variables.ctyp = variables.cunts[5];
                             xPanel.setMBname(variables.ctyp.Text);
-                            Console.WriteLine("Jasper 16MB");
                         }
                         else if (flashconfig == "00023010")
                         {
                             variables.ctyp = variables.cunts[4];
                             xPanel.setMBname(variables.ctyp.Text);
-                            console = variables.ctyp.Text;
+                        }
+                        else if (flashconfig == "008A3020")
+                        {
+                            variables.ctyp = variables.cunts[6];
+                            xPanel.setMBname(variables.ctyp.Text);
+                        }
+                        else if (flashconfig == "00AA3020")
+                        {
+                            variables.ctyp = variables.cunts[7];
+                            xPanel.setMBname(variables.ctyp.Text);
                         }
                     }
                     else if (temp >= 13121 && temp <= 13200)
                     {
                         variables.ctyp = variables.cunts[10];
                         xPanel.setMBname(variables.ctyp.Text);
-                        console = variables.ctyp.Text;
                     }
                     else if ((temp >= 1888 && temp <= 1960) || (temp >= 7373 && temp <= 7378) || temp == 8192)
                     {
                         variables.ctyp = variables.cunts[8];
                         xPanel.setMBname(variables.ctyp.Text);
-                        console = variables.ctyp.Text;
                     }
                     else if (temp >= 5761 && temp <= 5780)
                     {
                         variables.ctyp = variables.cunts[2];
-                        console = variables.ctyp.Text;
+                        xPanel.setMBname(variables.ctyp.Text);
                     }
                     //else
                     //{
                     //    if (variables.smcmbtype < variables.console_types.Length && variables.smcmbtype >= 0) consolebox.Text = variables.console_types[variables.smcmbtype];
                     //}
-                    Console.WriteLine("CB Version: {0} {1}", console, temp);
+                    Console.WriteLine("CB Version: {0}", temp);
                 }
                 else
                 {
