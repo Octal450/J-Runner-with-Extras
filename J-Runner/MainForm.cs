@@ -39,6 +39,7 @@ namespace JRunner
         IP myIP = new IP();
         public static Nand.PrivateN nand = new Nand.PrivateN();
         public xFlasher xflasher = new xFlasher();
+        public Mtx_Usb mtx_usb = new Mtx_Usb();
         public xdkbuild XDKbuild = new xdkbuild();
         public rgh3build rgh3Build = new rgh3build();
         private NandX nandx = new NandX();
@@ -1002,7 +1003,7 @@ namespace JRunner
                 error = NandX.Errors.WrongConfig;
 
                 Console.WriteLine("");
-                MessageBox.Show("Impossible to read/write eMMC type console in SPI mode\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to read/write eMMC type console with SPI tool\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return error;
             }
             else if (flashconfig == ("01198010"))
@@ -1903,6 +1904,7 @@ namespace JRunner
                 if (!partial) txtCPUKey.Text = "";
                 txtFilePath1.Text = "";
                 txtFilePath2.Text = "";
+                variables.filename = "";
                 variables.filename1 = "";
                 variables.filename2 = "";
                 variables.cpkey = "";
@@ -1918,6 +1920,7 @@ namespace JRunner
             if (!partial)
             {
                 xPanel.clear();
+                variables.ctyp = variables.cunts[0];
                 txtIP.Text = txtIP.Text.Remove(txtIP.Text.LastIndexOf('.')) + ".";
             }
 
@@ -2941,7 +2944,18 @@ namespace JRunner
             }
             else
             {
-                getconsoletype(3);
+                if (device == 2 && variables.mtxUsbMode)
+                {
+                    if (nTools.getbtnWriteECC().Contains("XeLL"))
+                    {
+                        mtx_usb.writeXeLLAuto();
+                    }
+                    else
+                    {
+                        mtx_usb.writeEccAuto();
+                    }
+                }
+                else getconsoletype(3);
             }
         }
 
@@ -2957,13 +2971,10 @@ namespace JRunner
                 xPanel.setMBname(variables.cunts[11].Text);
                 getconsoletype(2);
             }
-            else if ((ModifierKeys & Keys.Control) == Keys.Control)
-            {
-                getconsoletype(2, 0x50);
-            }
             else
             {
-                getconsoletype(2);
+                if (device == 2 && variables.mtxUsbMode) mtx_usb.writeNandAuto();
+                else getconsoletype(2);
             }
         }
 
@@ -4768,13 +4779,16 @@ namespace JRunner
         {
             variables.mtxUsbMode = mtxUsbModeToolStripMenuItem.Checked = !mtxUsbModeToolStripMenuItem.Checked;
 
-            if (variables.mtxUsbMode)
+            if (device == 2)
             {
-                nTools.setImage(Properties.Resources.mtx);
-            }
-            else
-            {
-                nTools.setImage(Properties.Resources.NANDX);
+                if (variables.mtxUsbMode)
+                {
+                    nTools.setImage(Properties.Resources.mtx);
+                }
+                else
+                {
+                    nTools.setImage(Properties.Resources.NANDX);
+                }
             }
         }
 

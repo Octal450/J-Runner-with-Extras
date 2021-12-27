@@ -185,7 +185,7 @@ namespace JRunner
                     if (auto)
                     {
                         Console.WriteLine("");
-                        MessageBox.Show("Impossible to read/write eMMC type console in SPI mode\n\nPlease switch to eMMC mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Unable to read/write eMMC type console in SPI mode\n\nPlease switch to eMMC mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return 1;
                     }
                 }

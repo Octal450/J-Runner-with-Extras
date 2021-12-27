@@ -150,6 +150,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Mtx-Usb.cs" />
     <Compile Include="Classes\NativeMethods.cs" />
     <Compile Include="Classes\RC4.cs" />
     <Compile Include="Classes\RGH2to3.cs" />
