@@ -87,7 +87,7 @@ namespace JRunner
         private void MainForm_Load(object sender, EventArgs e)
         {
             mainForm = this;
-            versionToolStripMenuItem.Text = "v" + variables.version;
+            versionToolStripMenuItem.Text = "V" + variables.version;
 
             // Make sure we're on top
             bool top = TopMost;
