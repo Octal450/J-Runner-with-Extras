@@ -20,7 +20,6 @@ namespace JRunner.Panels
         public XSVFChoice()
         {
             InitializeComponent();
-            Console.WriteLine("hi");
             btnProgram.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
             var d = GetAll(this, typeof(RadioButton));

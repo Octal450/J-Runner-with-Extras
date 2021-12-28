@@ -4292,7 +4292,7 @@ namespace JRunner
             {
                 timing = new Forms.Timing();
                 timing.Show();
-                timing.Location = new Point(Location.X + (Width - timing.Width) / 2 - 175, Location.Y + 50);
+                timing.Location = new Point(Location.X + (Width - timing.Width) / 2 - 175, Location.Y + 60);
             }
         }
 

@@ -130,6 +130,7 @@
             this.Zephyr687_03 = new System.Windows.Forms.RadioButton();
             this.Zephyr687_02 = new System.Windows.Forms.RadioButton();
             this.btnAss = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.TimingTabs.SuspendLayout();
             this.Rgh12Timings.SuspendLayout();
             this.Rgh12TcSelectGroup.SuspendLayout();
@@ -179,6 +180,7 @@
             // Rgh12Timings
             // 
             this.Rgh12Timings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Rgh12Timings.Controls.Add(this.label5);
             this.Rgh12Timings.Controls.Add(this.label1);
             this.Rgh12Timings.Controls.Add(this.Rgh12TcSelectGroup);
             this.Rgh12Timings.Controls.Add(this.label8);
@@ -196,10 +198,9 @@
             // 
             this.label1.Location = new System.Drawing.Point(213, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 142);
+            this.label1.Size = new System.Drawing.Size(100, 91);
             this.label1.TabIndex = 22;
-            this.label1.Text = "Timings for Rev-C\r\nor Matrix Glitcher\r\n\r\nStandby Clock\r\ngives best reliability\r\na" +
-    "nd performance\r\n\r\nCorona 4GB may\r\nneed higher timings\r\nthan Corona 16MB";
+            this.label1.Text = "Timings are for\r\nRev-C or Matrix\r\nglitch chips";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Rgh12TcSelectGroup
@@ -1335,6 +1336,15 @@
             this.btnAss.UseVisualStyleBackColor = true;
             this.btnAss.Click += new System.EventHandler(this.btnAss_Click);
             // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(213, 180);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 51);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Corona 4GB may\r\nneed higher timings\r\nthan suggested";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // XSVFChoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1474,5 +1484,6 @@
         private System.Windows.Forms.RadioButton Corona545_02;
         private System.Windows.Forms.GroupBox Rgh1Group;
         private System.Windows.Forms.Button btnAss;
+        private System.Windows.Forms.Label label5;
     }
 }
