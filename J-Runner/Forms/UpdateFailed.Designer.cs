@@ -61,14 +61,15 @@ namespace JRunner
             this.FailedPage.Controls.Add(this.DownloadButton);
             this.FailedPage.Controls.Add(this.label1);
             this.FailedPage.Name = "FailedPage";
-            this.FailedPage.Size = new System.Drawing.Size(507, 247);
+            this.FailedPage.ShowCancel = false;
+            this.FailedPage.Size = new System.Drawing.Size(507, 250);
             this.FailedPage.TabIndex = 0;
             this.FailedPage.Text = "Update Failed";
             // 
             // FailedReason
             // 
             this.FailedReason.AutoSize = true;
-            this.FailedReason.Location = new System.Drawing.Point(4, 34);
+            this.FailedReason.Location = new System.Drawing.Point(2, 34);
             this.FailedReason.Name = "FailedReason";
             this.FailedReason.Size = new System.Drawing.Size(76, 15);
             this.FailedReason.TabIndex = 2;
@@ -80,7 +81,7 @@ namespace JRunner
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(232, 23);
             this.DownloadButton.TabIndex = 1;
-            this.DownloadButton.Text = "Download";
+            this.DownloadButton.Text = "Download Manually";
             this.DownloadButton.UseVisualStyleBackColor = true;
             this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             // 

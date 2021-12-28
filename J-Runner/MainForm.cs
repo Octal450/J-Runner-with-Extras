@@ -117,14 +117,15 @@ namespace JRunner
             }
 
             ContextMenuStrip trayContext = new ContextMenuStrip();
+            trayContext.Items.Add("Restore", null, restoreTrayClick);
             trayContext.Items.Add("Exit", null, btnExit_Click);
 
             trayIcon = new NotifyIcon();
             trayIcon.ContextMenuStrip = trayContext;
-            trayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(activateWindow);
+            trayIcon.MouseClick += new MouseEventHandler(activateWindow);
             trayIcon.Icon = Properties.Resources.Project3;
             trayIcon.Text = "J-Runner with Extras";
-            trayIcon.Visible = true;
+            trayIcon.Visible = false;
 
             settings();
 
@@ -150,6 +151,7 @@ namespace JRunner
         private void showApplication()
         {
             ShowInTaskbar = true;
+            trayIcon.Visible = false;
             WindowState = FormWindowState.Normal;
 
             bool top = TopMost;
@@ -157,6 +159,11 @@ namespace JRunner
             TopMost = top; // Set it back
 
             Activate();
+        }
+
+        private void restoreTrayClick(object sender, EventArgs e)
+        {
+            showApplication();
         }
 
         private void activateWindow(object sender, MouseEventArgs e)
@@ -172,6 +179,7 @@ namespace JRunner
             if (WindowState == FormWindowState.Minimized && variables.minimizetotray)
             {
                 ShowInTaskbar = false;
+                trayIcon.Visible = true;
             }
         }
 
@@ -2828,7 +2836,7 @@ namespace JRunner
             Application.Restart();
         }
 
-        void btnExit_Click(object sender, System.EventArgs e)
+        void btnExit_Click(object sender, EventArgs e)
         {
             Program.exit();
         }
@@ -4290,7 +4298,7 @@ namespace JRunner
             }
             else
             {
-                timing = new Forms.Timing();
+                timing = new Timing();
                 timing.Show();
                 timing.Location = new Point(Location.X + (Width - timing.Width) / 2 - 175, Location.Y + 60);
             }

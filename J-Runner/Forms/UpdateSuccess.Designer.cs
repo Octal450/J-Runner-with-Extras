@@ -32,9 +32,12 @@ namespace JRunner
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateSuccess));
             this.SuccessWizard = new AeroWizard.WizardControl();
             this.SuccessPage = new AeroWizard.WizardPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SuccessWizard)).BeginInit();
             this.SuccessPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // SuccessWizard
@@ -55,19 +58,41 @@ namespace JRunner
             // 
             this.SuccessPage.AllowBack = false;
             this.SuccessPage.AllowCancel = false;
+            this.SuccessPage.Controls.Add(this.label2);
+            this.SuccessPage.Controls.Add(this.pictureBox1);
             this.SuccessPage.Controls.Add(this.label1);
             this.SuccessPage.IsFinishPage = true;
             this.SuccessPage.Name = "SuccessPage";
-            this.SuccessPage.Size = new System.Drawing.Size(507, 247);
+            this.SuccessPage.ShowCancel = false;
+            this.SuccessPage.Size = new System.Drawing.Size(507, 250);
             this.SuccessPage.TabIndex = 0;
             this.SuccessPage.Text = "Update Successful";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(2, 226);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(265, 15);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Click Finish to restart and launch the new version";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::JRunner.Properties.Resources.greencheck;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(501, 203);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(2, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(280, 15);
+            this.label1.Size = new System.Drawing.Size(279, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "J-Runner with Extras has been updated successfully!";
             // 
@@ -88,6 +113,7 @@ namespace JRunner
             ((System.ComponentModel.ISupportInitialize)(this.SuccessWizard)).EndInit();
             this.SuccessPage.ResumeLayout(false);
             this.SuccessPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -97,5 +123,7 @@ namespace JRunner
         private AeroWizard.WizardControl SuccessWizard;
         private AeroWizard.WizardPage SuccessPage;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
     }
 }
