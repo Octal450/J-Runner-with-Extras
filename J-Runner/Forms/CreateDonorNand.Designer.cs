@@ -272,7 +272,7 @@ namespace JRunner.Forms
             // 
             this.NoFcrtText.Location = new System.Drawing.Point(2, 118);
             this.NoFcrtText.Name = "NoFcrtText";
-            this.NoFcrtText.Size = new System.Drawing.Size(478, 65);
+            this.NoFcrtText.Size = new System.Drawing.Size(476, 65);
             this.NoFcrtText.TabIndex = 9;
             this.NoFcrtText.Text = resources.GetString("NoFcrtText.Text");
             // 
@@ -302,7 +302,7 @@ namespace JRunner.Forms
             // 
             this.label7.Location = new System.Drawing.Point(2, 73);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(478, 33);
+            this.label7.Size = new System.Drawing.Size(476, 33);
             this.label7.TabIndex = 6;
             this.label7.Text = "It is not possible for this tool to check your supplied fcrt for validity, please" +
     " ensure you provide a valid decrypted FCRT";
@@ -378,7 +378,7 @@ namespace JRunner.Forms
             // 
             this.label14.Location = new System.Drawing.Point(2, 2);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(478, 137);
+            this.label14.Size = new System.Drawing.Size(476, 137);
             this.label14.TabIndex = 5;
             this.label14.Text = resources.GetString("label14.Text");
             // 
@@ -527,7 +527,7 @@ namespace JRunner.Forms
             // 
             this.label6.Location = new System.Drawing.Point(2, 2);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(478, 33);
+            this.label6.Size = new System.Drawing.Size(476, 33);
             this.label6.TabIndex = 0;
             this.label6.Text = "The wizard is ready to create your Donor Nand. Please review the information belo" +
     "w to ensure everything is correct, then click Finish to build the image";

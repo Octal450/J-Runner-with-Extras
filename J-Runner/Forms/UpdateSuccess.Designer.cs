@@ -80,9 +80,9 @@ namespace JRunner
             // pictureBox1
             // 
             this.pictureBox1.Image = global::JRunner.Properties.Resources.greencheck;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 20);
+            this.pictureBox1.Location = new System.Drawing.Point(2, 20);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(501, 203);
+            this.pictureBox1.Size = new System.Drawing.Size(475, 203);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
