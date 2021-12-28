@@ -371,7 +371,7 @@ namespace JRunner
         {
             Console.WriteLine("=========================================================================");
             Console.WriteLine("J-Runner with Extras");
-            Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("ddd MM/dd/yyyy H:mm:ss"));
+            Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("MM/dd/yyyy H:mm:ss"));
             if (variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
             else Console.WriteLine("Version: {0}", variables.version);
             if (Upd.checkSuccess)
@@ -1997,6 +1997,7 @@ namespace JRunner
                     }
                     catch (NullReferenceException ex) { Console.WriteLine(ex.ToString()); }
                 }
+                else txtCPUKey.Text = variables.cpkey;
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 nandInfo.change_tab();

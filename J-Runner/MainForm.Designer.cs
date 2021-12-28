@@ -241,8 +241,6 @@ namespace JRunner
             this.txtConsole.Size = new System.Drawing.Size(462, 253);
             this.txtConsole.TabIndex = 11;
             this.txtConsole.TabStop = false;
-            this.toolTip1.SetToolTip(this.txtConsole, "The log window: This displays everything that is going on in JRunner!\r\nDouble cli" +
-        "ck to save the log file to text file.");
             this.txtConsole.DoubleClick += new System.EventHandler(this.txtConsole_DoubleClick);
             // 
             // txtCPUKey
@@ -779,33 +777,33 @@ namespace JRunner
             // powerOnToolStripMenuItem
             // 
             this.powerOnToolStripMenuItem.Name = "powerOnToolStripMenuItem";
-            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.powerOnToolStripMenuItem.Text = "Power On";
             this.powerOnToolStripMenuItem.Click += new System.EventHandler(this.powerOnToolStripMenuItem_Click);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.shutdownToolStripMenuItem.Text = "Shut Down";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // bootloaderModeToolStripMenuItem
             // 
             this.bootloaderModeToolStripMenuItem.Name = "bootloaderModeToolStripMenuItem";
-            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.bootloaderModeToolStripMenuItem.Text = "Bootloader Mode";
             this.bootloaderModeToolStripMenuItem.Click += new System.EventHandler(this.bootloaderModeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(163, 6);
             // 
             // logPostToolStripMenuItem
             // 
             this.logPostToolStripMenuItem.Name = "logPostToolStripMenuItem";
-            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.logPostToolStripMenuItem.Text = "Monitor POST";
             this.logPostToolStripMenuItem.Click += new System.EventHandler(this.logPostToolStripMenuItem_Click);
             // 
@@ -828,52 +826,52 @@ namespace JRunner
             // powerOnToolStripMenuItem1
             // 
             this.powerOnToolStripMenuItem1.Name = "powerOnToolStripMenuItem1";
-            this.powerOnToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.powerOnToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
             this.powerOnToolStripMenuItem1.Text = "Power On";
             this.powerOnToolStripMenuItem1.Click += new System.EventHandler(this.powerOnToolStripMenuItem1_Click);
             // 
             // powerOffToolStripMenuItem
             // 
             this.powerOffToolStripMenuItem.Name = "powerOffToolStripMenuItem";
-            this.powerOffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powerOffToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.powerOffToolStripMenuItem.Text = "Shut Down";
             this.powerOffToolStripMenuItem.Click += new System.EventHandler(this.powerOffToolStripMenuItem_Click);
             // 
             // toggleNANDToolStripMenuItem
             // 
             this.toggleNANDToolStripMenuItem.Name = "toggleNANDToolStripMenuItem";
-            this.toggleNANDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toggleNANDToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.toggleNANDToolStripMenuItem.Text = "Toggle NAND";
             this.toggleNANDToolStripMenuItem.Click += new System.EventHandler(this.toggleNANDToolStripMenuItem_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(166, 6);
             // 
             // connectToUARTToolStripMenuItem
             // 
             this.connectToUARTToolStripMenuItem.Name = "connectToUARTToolStripMenuItem";
-            this.connectToUARTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectToUARTToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.connectToUARTToolStripMenuItem.Text = "Connect To UART";
             this.connectToUARTToolStripMenuItem.Click += new System.EventHandler(this.connectToUARTToolStripMenuItem_Click);
             // 
             // getInvalidBlocksToolStripMenuItem
             // 
             this.getInvalidBlocksToolStripMenuItem.Name = "getInvalidBlocksToolStripMenuItem";
-            this.getInvalidBlocksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.getInvalidBlocksToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.getInvalidBlocksToolStripMenuItem.Text = "Get Invalid Blocks";
             this.getInvalidBlocksToolStripMenuItem.Click += new System.EventHandler(this.getInvalidBlocksToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(166, 6);
             // 
             // updateFwToolStripMenuItem
             // 
             this.updateFwToolStripMenuItem.Name = "updateFwToolStripMenuItem";
-            this.updateFwToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateFwToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.updateFwToolStripMenuItem.Text = "Update DemoN…";
             this.updateFwToolStripMenuItem.Click += new System.EventHandler(this.updateFwToolStripMenuItem_Click);
             // 
@@ -1086,7 +1084,7 @@ namespace JRunner
             // mtxUsbModeToolStripMenuItem
             // 
             this.mtxUsbModeToolStripMenuItem.Name = "mtxUsbModeToolStripMenuItem";
-            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.mtxUsbModeToolStripMenuItem.Text = "MTX USB Mode";
             this.mtxUsbModeToolStripMenuItem.Click += new System.EventHandler(this.mtxUsbModeToolStripMenuItem_Click);
             // 
