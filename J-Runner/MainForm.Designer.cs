@@ -121,6 +121,7 @@ namespace JRunner
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.newSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,7 +143,6 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -439,7 +439,7 @@ namespace JRunner
             this.FWVersion,
             this.FlashStatus,
             this.FlashVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 578);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 581);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(832, 22);
             this.statusStrip1.SizingGrip = false;
@@ -540,7 +540,7 @@ namespace JRunner
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter1.Enabled = false;
-            this.splitter1.Location = new System.Drawing.Point(0, 575);
+            this.splitter1.Location = new System.Drawing.Point(0, 578);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(832, 3);
             this.splitter1.TabIndex = 78;
@@ -585,7 +585,7 @@ namespace JRunner
             // 
             this.pnlTools.Location = new System.Drawing.Point(9, 24);
             this.pnlTools.Name = "pnlTools";
-            this.pnlTools.Size = new System.Drawing.Size(463, 175);
+            this.pnlTools.Size = new System.Drawing.Size(463, 174);
             this.pnlTools.TabIndex = 84;
             // 
             // pnlExtra
@@ -608,66 +608,66 @@ namespace JRunner
             this.timingAssistantToolStripMenuItem,
             this.cBFuseToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // pOSTMonitorRATERToolStripMenuItem
             // 
             this.pOSTMonitorRATERToolStripMenuItem.Name = "pOSTMonitorRATERToolStripMenuItem";
-            this.pOSTMonitorRATERToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.pOSTMonitorRATERToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.pOSTMonitorRATERToolStripMenuItem.Text = "POST Monitor/RATER";
             this.pOSTMonitorRATERToolStripMenuItem.Click += new System.EventHandler(this.pOSTMonitorRATERToolStripMenuItem_Click);
             // 
             // cOMMonitorAdvancedToolStripMenuItem
             // 
             this.cOMMonitorAdvancedToolStripMenuItem.Name = "cOMMonitorAdvancedToolStripMenuItem";
-            this.cOMMonitorAdvancedToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.cOMMonitorAdvancedToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.cOMMonitorAdvancedToolStripMenuItem.Text = "COM Monitor";
             this.cOMMonitorAdvancedToolStripMenuItem.Click += new System.EventHandler(this.btnCOM_Click);
             // 
             // sonus360EditorToolStripMenuItem
             // 
             this.sonus360EditorToolStripMenuItem.Name = "sonus360EditorToolStripMenuItem";
-            this.sonus360EditorToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.sonus360EditorToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.sonus360EditorToolStripMenuItem.Text = "Sonus360";
             this.sonus360EditorToolStripMenuItem.Click += new System.EventHandler(this.sonus360EditorToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(205, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(206, 6);
             // 
             // rescanDevicesToolStripMenuItem
             // 
             this.rescanDevicesToolStripMenuItem.Name = "rescanDevicesToolStripMenuItem";
-            this.rescanDevicesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.rescanDevicesToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.rescanDevicesToolStripMenuItem.Text = "Re-Scan Devices";
             this.rescanDevicesToolStripMenuItem.Click += new System.EventHandler(this.rescanDevicesToolStripMenuItem_Click);
             // 
             // mTXUSBFirmwareUtilityToolStripMenuItem
             // 
             this.mTXUSBFirmwareUtilityToolStripMenuItem.Name = "mTXUSBFirmwareUtilityToolStripMenuItem";
-            this.mTXUSBFirmwareUtilityToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.mTXUSBFirmwareUtilityToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.mTXUSBFirmwareUtilityToolStripMenuItem.Text = "MTX USB Firmware Utility";
             this.mTXUSBFirmwareUtilityToolStripMenuItem.Click += new System.EventHandler(this.mTXUSBFirmwareUtilityToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(205, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(206, 6);
             // 
             // timingAssistantToolStripMenuItem
             // 
             this.timingAssistantToolStripMenuItem.Name = "timingAssistantToolStripMenuItem";
             this.timingAssistantToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.timingAssistantToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.timingAssistantToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.timingAssistantToolStripMenuItem.Text = "Timing Assistant";
             this.timingAssistantToolStripMenuItem.Click += new System.EventHandler(this.timingAssistantToolStripMenuItem_Click);
             // 
             // cBFuseToolStripMenuItem
             // 
             this.cBFuseToolStripMenuItem.Name = "cBFuseToolStripMenuItem";
-            this.cBFuseToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.cBFuseToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.cBFuseToolStripMenuItem.Text = "CB Fuse Table";
             this.cBFuseToolStripMenuItem.Click += new System.EventHandler(this.cBFuseToolStripMenuItem_Click);
             // 
@@ -698,7 +698,7 @@ namespace JRunner
             this.customNandProCommandToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.customNandProCommandToolStripMenuItem.Name = "customNandProCommandToolStripMenuItem";
             this.customNandProCommandToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.customNandProCommandToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.customNandProCommandToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.customNandProCommandToolStripMenuItem.Text = "Nand/Timing File Functions";
             this.customNandProCommandToolStripMenuItem.Click += new System.EventHandler(this.customNandProCommandToolStripMenuItem_Click);
             // 
@@ -706,40 +706,40 @@ namespace JRunner
             // 
             this.corona4GBToolStripMenuItem.Name = "corona4GBToolStripMenuItem";
             this.corona4GBToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.corona4GBToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.corona4GBToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.corona4GBToolStripMenuItem.Text = "Corona 4GB Read/Write…";
             this.corona4GBToolStripMenuItem.Click += new System.EventHandler(this.corona4GBToolStripMenuItem_Click);
             // 
             // CustomXeBuildMenuItem
             // 
             this.CustomXeBuildMenuItem.Name = "CustomXeBuildMenuItem";
-            this.CustomXeBuildMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.CustomXeBuildMenuItem.Size = new System.Drawing.Size(241, 22);
             this.CustomXeBuildMenuItem.Text = "XeBuild Command…";
             this.CustomXeBuildMenuItem.Click += new System.EventHandler(this.CustomXeBuildMenuItem_Click);
             // 
             // writeFusionToolStripMenuItem
             // 
             this.writeFusionToolStripMenuItem.Name = "writeFusionToolStripMenuItem";
-            this.writeFusionToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.writeFusionToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.writeFusionToolStripMenuItem.Text = "Special/Fusion Write";
             this.writeFusionToolStripMenuItem.Click += new System.EventHandler(this.writeFusionToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(237, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(238, 6);
             // 
             // toolStripHexEditor
             // 
             this.toolStripHexEditor.Name = "toolStripHexEditor";
-            this.toolStripHexEditor.Size = new System.Drawing.Size(240, 22);
+            this.toolStripHexEditor.Size = new System.Drawing.Size(241, 22);
             this.toolStripHexEditor.Text = "Hex Viewer";
             this.toolStripHexEditor.Click += new System.EventHandler(this.toolStripHexEditor_Click);
             // 
             // dEVGLCPUKeyToolsToolStripMenuItem
             // 
             this.dEVGLCPUKeyToolsToolStripMenuItem.Name = "dEVGLCPUKeyToolsToolStripMenuItem";
-            this.dEVGLCPUKeyToolsToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.dEVGLCPUKeyToolsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.dEVGLCPUKeyToolsToolStripMenuItem.Text = "DEVGL CPU Key Tools";
             this.dEVGLCPUKeyToolsToolStripMenuItem.Visible = false;
             this.dEVGLCPUKeyToolsToolStripMenuItem.Click += new System.EventHandler(this.dEVGLCPUKeyToolsToolStripMenuItem_Click);
@@ -747,19 +747,19 @@ namespace JRunner
             // toolStripSeparator15
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(237, 6);
+            this.toolStripSeparator15.Size = new System.Drawing.Size(238, 6);
             // 
             // checkSecdataToolStripMenuItem
             // 
             this.checkSecdataToolStripMenuItem.Name = "checkSecdataToolStripMenuItem";
-            this.checkSecdataToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.checkSecdataToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.checkSecdataToolStripMenuItem.Text = "Check SECDATA";
             this.checkSecdataToolStripMenuItem.Click += new System.EventHandler(this.checkSecdataToolStripMenuItem_Click);
             // 
             // xValueToolStripMenuItem
             // 
             this.xValueToolStripMenuItem.Name = "xValueToolStripMenuItem";
-            this.xValueToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.xValueToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.xValueToolStripMenuItem.Text = "Decrypt X Value…";
             this.xValueToolStripMenuItem.Click += new System.EventHandler(this.xValueToolStripMenuItem_Click);
             // 
@@ -828,52 +828,52 @@ namespace JRunner
             // powerOnToolStripMenuItem1
             // 
             this.powerOnToolStripMenuItem1.Name = "powerOnToolStripMenuItem1";
-            this.powerOnToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.powerOnToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
             this.powerOnToolStripMenuItem1.Text = "Power On";
             this.powerOnToolStripMenuItem1.Click += new System.EventHandler(this.powerOnToolStripMenuItem1_Click);
             // 
             // powerOffToolStripMenuItem
             // 
             this.powerOffToolStripMenuItem.Name = "powerOffToolStripMenuItem";
-            this.powerOffToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.powerOffToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.powerOffToolStripMenuItem.Text = "Shut Down";
             this.powerOffToolStripMenuItem.Click += new System.EventHandler(this.powerOffToolStripMenuItem_Click);
             // 
             // toggleNANDToolStripMenuItem
             // 
             this.toggleNANDToolStripMenuItem.Name = "toggleNANDToolStripMenuItem";
-            this.toggleNANDToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.toggleNANDToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.toggleNANDToolStripMenuItem.Text = "Toggle NAND";
             this.toggleNANDToolStripMenuItem.Click += new System.EventHandler(this.toggleNANDToolStripMenuItem_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(164, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(166, 6);
             // 
             // connectToUARTToolStripMenuItem
             // 
             this.connectToUARTToolStripMenuItem.Name = "connectToUARTToolStripMenuItem";
-            this.connectToUARTToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.connectToUARTToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.connectToUARTToolStripMenuItem.Text = "Connect To UART";
             this.connectToUARTToolStripMenuItem.Click += new System.EventHandler(this.connectToUARTToolStripMenuItem_Click);
             // 
             // getInvalidBlocksToolStripMenuItem
             // 
             this.getInvalidBlocksToolStripMenuItem.Name = "getInvalidBlocksToolStripMenuItem";
-            this.getInvalidBlocksToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.getInvalidBlocksToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.getInvalidBlocksToolStripMenuItem.Text = "Get Invalid Blocks";
             this.getInvalidBlocksToolStripMenuItem.Click += new System.EventHandler(this.getInvalidBlocksToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(164, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(166, 6);
             // 
             // updateFwToolStripMenuItem
             // 
             this.updateFwToolStripMenuItem.Name = "updateFwToolStripMenuItem";
-            this.updateFwToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.updateFwToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.updateFwToolStripMenuItem.Text = "Update DemoN…";
             this.updateFwToolStripMenuItem.Click += new System.EventHandler(this.updateFwToolStripMenuItem_Click);
             // 
@@ -934,35 +934,42 @@ namespace JRunner
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // changelogToolStripMenuItem
             // 
             this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.changelogToolStripMenuItem.Text = "Changelog";
             this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click_1);
+            // 
+            // reportIssueToolStripMenuItem
+            // 
+            this.reportIssueToolStripMenuItem.Name = "reportIssueToolStripMenuItem";
+            this.reportIssueToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.reportIssueToolStripMenuItem.Text = "Report Issue…";
+            this.reportIssueToolStripMenuItem.Click += new System.EventHandler(this.reportIssueToolStripMenuItem_Click);
             // 
             // shortcutsToolStripMenuItem
             // 
             this.shortcutsToolStripMenuItem.Name = "shortcutsToolStripMenuItem";
             this.shortcutsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.shortcutsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shortcutsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.shortcutsToolStripMenuItem.Text = "Shortcuts";
             this.shortcutsToolStripMenuItem.Click += new System.EventHandler(this.shortcutsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(164, 6);
             // 
             // newSessionToolStripMenuItem
             // 
             this.newSessionToolStripMenuItem.Name = "newSessionToolStripMenuItem";
             this.newSessionToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.newSessionToolStripMenuItem.Text = "New Session";
             this.newSessionToolStripMenuItem.Click += new System.EventHandler(this.btnNewSession_Click);
             // 
@@ -970,7 +977,7 @@ namespace JRunner
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             this.restartToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.btnRestart_Click);
             // 
@@ -978,7 +985,7 @@ namespace JRunner
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -999,47 +1006,47 @@ namespace JRunner
             // extractFilesToolStripMenuItem
             // 
             this.extractFilesToolStripMenuItem.Name = "extractFilesToolStripMenuItem";
-            this.extractFilesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.extractFilesToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.extractFilesToolStripMenuItem.Text = "Extract Nand Files";
             this.extractFilesToolStripMenuItem.Click += new System.EventHandler(this.extractFilesToolStripMenuItem_Click);
             // 
             // createDonorNandToolStripMenuItem
             // 
             this.createDonorNandToolStripMenuItem.Name = "createDonorNandToolStripMenuItem";
-            this.createDonorNandToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.createDonorNandToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.createDonorNandToolStripMenuItem.Text = "Create Donor Nand…";
             this.createDonorNandToolStripMenuItem.Click += new System.EventHandler(this.createDonorNandToolStripMenuItem_Click);
             // 
             // decryptKeyvaultToolStripMenuItem
             // 
             this.decryptKeyvaultToolStripMenuItem.Name = "decryptKeyvaultToolStripMenuItem";
-            this.decryptKeyvaultToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.decryptKeyvaultToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.decryptKeyvaultToolStripMenuItem.Text = "Decrypt Keyvault...";
             this.decryptKeyvaultToolStripMenuItem.Click += new System.EventHandler(this.decryptKeyvaultToolStripMenuItem_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(214, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(215, 6);
             // 
             // sMCConfigViewerToolStripMenuItem1
             // 
             this.sMCConfigViewerToolStripMenuItem1.Name = "sMCConfigViewerToolStripMenuItem1";
-            this.sMCConfigViewerToolStripMenuItem1.Size = new System.Drawing.Size(217, 22);
+            this.sMCConfigViewerToolStripMenuItem1.Size = new System.Drawing.Size(218, 22);
             this.sMCConfigViewerToolStripMenuItem1.Text = "SMC Config Editor";
             this.sMCConfigViewerToolStripMenuItem1.Click += new System.EventHandler(this.sMCConfigViewerToolStripMenuItem1_Click);
             // 
             // patchNandToolStripMenuItem
             // 
             this.patchNandToolStripMenuItem.Name = "patchNandToolStripMenuItem";
-            this.patchNandToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.patchNandToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.patchNandToolStripMenuItem.Text = "Patch KV/Nand…";
             this.patchNandToolStripMenuItem.Click += new System.EventHandler(this.patchNandToolStripMenuItem_Click);
             // 
             // changeLDVToolStripMenuItem
             // 
             this.changeLDVToolStripMenuItem.Name = "changeLDVToolStripMenuItem";
-            this.changeLDVToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.changeLDVToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.changeLDVToolStripMenuItem.Text = "Change Lock Down Value…";
             this.changeLDVToolStripMenuItem.Click += new System.EventHandler(this.changeLDVToolStripMenuItem_Click);
             // 
@@ -1049,7 +1056,7 @@ namespace JRunner
             this.installDriversToolStripMenuItem,
             this.flashOpenXeniumToolStripMenuItem});
             this.xFlasherToolStripMenuItem.Name = "xFlasherToolStripMenuItem";
-            this.xFlasherToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.xFlasherToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.xFlasherToolStripMenuItem.Text = "xFlasher";
             this.xFlasherToolStripMenuItem.Visible = false;
             // 
@@ -1079,7 +1086,7 @@ namespace JRunner
             // mtxUsbModeToolStripMenuItem
             // 
             this.mtxUsbModeToolStripMenuItem.Name = "mtxUsbModeToolStripMenuItem";
-            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.mtxUsbModeToolStripMenuItem.Text = "MTX USB Mode";
             this.mtxUsbModeToolStripMenuItem.Click += new System.EventHandler(this.mtxUsbModeToolStripMenuItem_Click);
             // 
@@ -1104,16 +1111,9 @@ namespace JRunner
             this.versionToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.versionToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // reportIssueToolStripMenuItem
-            // 
-            this.reportIssueToolStripMenuItem.Name = "reportIssueToolStripMenuItem";
-            this.reportIssueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.reportIssueToolStripMenuItem.Text = "Report Issue…";
-            this.reportIssueToolStripMenuItem.Click += new System.EventHandler(this.reportIssueToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1121,7 +1121,7 @@ namespace JRunner
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(832, 600);
+            this.ClientSize = new System.Drawing.Size(832, 603);
             this.Controls.Add(this.btnScanner);
             this.Controls.Add(this.btnNewSession);
             this.Controls.Add(this.btnRestart);
