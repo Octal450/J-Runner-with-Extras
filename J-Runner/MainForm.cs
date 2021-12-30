@@ -1570,27 +1570,6 @@ namespace JRunner
             new Thread(starter).Start();
         }
 
-        void erasevariables()
-        {
-            variables.fulldump = false; variables.twombread = false;
-            variables.ctyp = variables.cunts[0]; variables.gotvalues = false;
-            variables.cpkey = "";
-            //variables.outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
-            xPanel.setMBname("");
-            txtCPUKey.Text = "";
-            variables.flashconfig = "";
-            /*if (variables.changeldv != 0)
-            {
-                string cfldv = "cfldv=";
-                string[] edit = { cfldv };
-                string[] delete = { };
-                parse_ini.edit_ini(Path.Combine(variables.pathforit, @"xeBuild\data\options.ini"), edit, delete);
-             * */
-            variables.changeldv = 0;
-            //}
-            //btnCheckBadBlocks.Visible = true;
-        }
-
         private void updatecptextbox()
         {
             if (variables.debugme) Console.WriteLine("Event wait");
@@ -1930,7 +1909,11 @@ namespace JRunner
                 variables.filename2 = "";
                 variables.cpkey = "";
                 variables.gotvalues = false;
+                variables.twombread = false;
+                variables.fulldump = false;
                 variables.boardtype = null;
+                variables.flashconfig = "";
+                variables.changeldv = 0;
                 variables.rghable = true;
                 variables.rgh1able = true;
                 variables.jtagable = false;
@@ -1953,6 +1936,27 @@ namespace JRunner
                 txtConsole.Text = "";
                 printstartuptext();
             }
+        }
+
+        void erasevariables()
+        {
+            variables.fulldump = false; variables.twombread = false;
+            variables.ctyp = variables.cunts[0]; variables.gotvalues = false;
+            variables.cpkey = "";
+            //variables.outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
+            xPanel.setMBname("");
+            txtCPUKey.Text = "";
+            variables.flashconfig = "";
+            /*if (variables.changeldv != 0)
+            {
+                string cfldv = "cfldv=";
+                string[] edit = { cfldv };
+                string[] delete = { };
+                parse_ini.edit_ini(Path.Combine(variables.pathforit, @"xeBuild\data\options.ini"), edit, delete);
+             * */
+            variables.changeldv = 0;
+            //}
+            //btnCheckBadBlocks.Visible = true;
         }
 
         void nandinit()
@@ -3224,19 +3228,18 @@ namespace JRunner
                     {
                         if (line.ToUpper().Contains("CPU"))
                         {
-                            cpukey = (objAlphaPattern.Match(line).Value);
+                            cpukey = objAlphaPattern.Match(line).Value;
                         }
                     }
                     else
                     {
-                        cpukey = (objAlphaPattern.Match(line).Value);
+                        cpukey = objAlphaPattern.Match(line).Value;
                         break;
                     }
-                    //Console.WriteLine(objAlphaPattern.Match(line).Value);
+                    if (variables.debugme) Console.WriteLine(objAlphaPattern.Match(line).Value);
                 }
                 txtCPUKey.Text = cpukey;
             }
-
         }
         void txtCPUKey_DragEnter(object sender, DragEventArgs e)
         {

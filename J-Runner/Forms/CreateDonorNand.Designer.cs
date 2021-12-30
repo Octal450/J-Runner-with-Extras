@@ -188,12 +188,15 @@ namespace JRunner.Forms
             // 
             // CpuKeyBox
             // 
+            this.CpuKeyBox.AllowDrop = true;
             this.CpuKeyBox.Location = new System.Drawing.Point(67, 15);
             this.CpuKeyBox.MaxLength = 32;
             this.CpuKeyBox.Name = "CpuKeyBox";
             this.CpuKeyBox.Size = new System.Drawing.Size(397, 23);
             this.CpuKeyBox.TabIndex = 0;
             this.CpuKeyBox.TextChanged += new System.EventHandler(this.CpuKeyBox_TextChanged);
+            this.CpuKeyBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.CpuKeyBox_DragDrop);
+            this.CpuKeyBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.CpuKeyBox_DragEnter);
             // 
             // label3
             // 
@@ -236,11 +239,14 @@ namespace JRunner.Forms
             // 
             // KvBox
             // 
+            this.KvBox.AllowDrop = true;
             this.KvBox.Location = new System.Drawing.Point(67, 15);
             this.KvBox.Name = "KvBox";
             this.KvBox.Size = new System.Drawing.Size(358, 23);
             this.KvBox.TabIndex = 0;
             this.KvBox.TextChanged += new System.EventHandler(this.KvBox_TextChanged);
+            this.KvBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.KvBox_DragDrop);
+            this.KvBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.KvBox_DragEnter);
             // 
             // DonorKv
             // 
@@ -350,11 +356,14 @@ namespace JRunner.Forms
             // 
             // FcrtBox
             // 
+            this.FcrtBox.AllowDrop = true;
             this.FcrtBox.Location = new System.Drawing.Point(48, 15);
             this.FcrtBox.Name = "FcrtBox";
             this.FcrtBox.Size = new System.Drawing.Size(377, 23);
             this.FcrtBox.TabIndex = 0;
             this.FcrtBox.TextChanged += new System.EventHandler(this.FcrtBox_TextChanged);
+            this.FcrtBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.FcrtBox_DragDrop);
+            this.FcrtBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.FcrtBox_DragEnter);
             // 
             // DonorFcrtText
             // 

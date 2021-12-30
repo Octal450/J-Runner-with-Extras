@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace JRunner.Forms
@@ -89,11 +90,6 @@ namespace JRunner.Forms
             }
         }
 
-        private void eccXellBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void pullXeBuildVal()
         {
             if (variables.boardtype != null)
@@ -176,6 +172,53 @@ namespace JRunner.Forms
             CpuKvCheckNext();
         }
 
+        private void CpuKeyBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (File.Exists(s[0]))
+            {
+                FileInfo f = new FileInfo(s[0]);
+                if (f.Length == 16) CpuKeyBox.Text = Oper.ByteArrayToString(File.ReadAllBytes(s[0]));
+            }
+            if (Path.GetExtension(s[0]) == ".txt")
+            {
+                Regex objAlphaPattern = new Regex("[a-fA-F0-9]{32}$");
+                string[] cpu = File.ReadAllLines(s[0]);
+                string cpukey = "";
+                bool check = false;
+                int i = 0;
+                foreach (string line in cpu)
+                {
+                    if (objAlphaPattern.Match(line).Success) i++;
+                    if (i > 1) check = true;
+                }
+                foreach (string line in cpu)
+                {
+                    if (check)
+                    {
+                        if (line.ToUpper().Contains("CPU"))
+                        {
+                            cpukey = objAlphaPattern.Match(line).Value;
+                        }
+                    }
+                    else
+                    {
+                        cpukey = objAlphaPattern.Match(line).Value;
+                        break;
+                    }
+                    if (variables.debugme) Console.WriteLine(objAlphaPattern.Match(line).Value);
+                }
+                CpuKeyBox.Text = cpukey;
+            }
+        }
+        private void CpuKeyBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
         private void DonorKv_CheckedChanged(object sender, EventArgs e)
         {
             if (DonorKv.Checked)
@@ -192,6 +235,19 @@ namespace JRunner.Forms
         private void KvBox_TextChanged(object sender, EventArgs e)
         {
             CpuKvCheckNext();
+        }
+
+        private void KvBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            KvBox.Text = s[0];
+        }
+        private void KvBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
         }
 
         private void KvEllipse_Click(object sender, EventArgs e)
@@ -303,6 +359,19 @@ namespace JRunner.Forms
         private void FcrtBox_TextChanged(object sender, EventArgs e)
         {
             FcrtCheckNext();
+        }
+
+        private void FcrtBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            FcrtBox.Text = s[0];
+        }
+        private void FcrtBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
         }
 
         private void FcrtEllipse_Click(object sender, EventArgs e)
