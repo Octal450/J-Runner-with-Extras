@@ -1901,7 +1901,12 @@ namespace JRunner
         {
             if (!String.IsNullOrEmpty(variables.filename1))
             {
-                if (!partial) txtCPUKey.Text = "";
+                if (!partial)
+                {
+                    txtCPUKey.Text = "";
+                    variables.boardtype = null;
+                }
+
                 txtFilePath1.Text = "";
                 txtFilePath2.Text = "";
                 variables.filename = "";
@@ -1911,7 +1916,6 @@ namespace JRunner
                 variables.gotvalues = false;
                 variables.twombread = false;
                 variables.fulldump = false;
-                variables.boardtype = null;
                 variables.flashconfig = "";
                 variables.changeldv = 0;
                 variables.rghable = true;
