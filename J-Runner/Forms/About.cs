@@ -83,7 +83,7 @@ namespace JRunner.Forms
             }
             else
             {
-                if (contribloc >= 8)
+                if (contribloc >= contrib.Length - 1)
                 {
                     contribloc = 0;
                     txt = contrib[contribloc];
