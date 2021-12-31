@@ -2,7 +2,7 @@
 {
     public static class StaticVersion
     {
-        public const string Ver = "3.1.0.0";
+        public const string Ver = variables.staticversion;
 
         public static string[] versions = Ver.Split('.');
         public static int Betaversion = int.Parse(versions[0]);
