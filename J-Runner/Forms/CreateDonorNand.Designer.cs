@@ -58,7 +58,12 @@ namespace JRunner.Forms
             this.FcrtEllipse = new System.Windows.Forms.Button();
             this.FcrtBox = new System.Windows.Forms.TextBox();
             this.DonorFcrtText = new System.Windows.Forms.Label();
-            this.LdvPage = new AeroWizard.WizardPage();
+            this.LdvSmcConfPage = new AeroWizard.WizardPage();
+            this.SmcConfigGroup = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.SmcConfigEllipse = new System.Windows.Forms.Button();
+            this.SmcConfigBox = new System.Windows.Forms.TextBox();
+            this.DonorSmcConfig = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.LdvGroup = new System.Windows.Forms.GroupBox();
             this.LdvBox = new System.Windows.Forms.NumericUpDown();
@@ -83,7 +88,8 @@ namespace JRunner.Forms
             this.KvGroup.SuspendLayout();
             this.FcrtPage.SuspendLayout();
             this.FcrtGroup.SuspendLayout();
-            this.LdvPage.SuspendLayout();
+            this.LdvSmcConfPage.SuspendLayout();
+            this.SmcConfigGroup.SuspendLayout();
             this.LdvGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LdvBox)).BeginInit();
             this.FinishPage.SuspendLayout();
@@ -99,7 +105,7 @@ namespace JRunner.Forms
             this.DonorWizard.Pages.Add(this.PrereqPage);
             this.DonorWizard.Pages.Add(this.CpuKvPage);
             this.DonorWizard.Pages.Add(this.FcrtPage);
-            this.DonorWizard.Pages.Add(this.LdvPage);
+            this.DonorWizard.Pages.Add(this.LdvSmcConfPage);
             this.DonorWizard.Pages.Add(this.FinishPage);
             this.DonorWizard.Size = new System.Drawing.Size(554, 401);
             this.DonorWizard.TabIndex = 0;
@@ -374,14 +380,71 @@ namespace JRunner.Forms
             this.DonorFcrtText.TabIndex = 5;
             this.DonorFcrtText.Text = "If you don\'t have an FCRT to use, check Donor FCRT";
             // 
-            // LdvPage
+            // LdvSmcConfPage
             // 
-            this.LdvPage.Controls.Add(this.label14);
-            this.LdvPage.Controls.Add(this.LdvGroup);
-            this.LdvPage.Name = "LdvPage";
-            this.LdvPage.Size = new System.Drawing.Size(507, 250);
-            this.LdvPage.TabIndex = 5;
-            this.LdvPage.Text = "Lock Down Value";
+            this.LdvSmcConfPage.Controls.Add(this.SmcConfigGroup);
+            this.LdvSmcConfPage.Controls.Add(this.DonorSmcConfig);
+            this.LdvSmcConfPage.Controls.Add(this.label14);
+            this.LdvSmcConfPage.Controls.Add(this.LdvGroup);
+            this.LdvSmcConfPage.Name = "LdvSmcConfPage";
+            this.LdvSmcConfPage.Size = new System.Drawing.Size(507, 250);
+            this.LdvSmcConfPage.TabIndex = 5;
+            this.LdvSmcConfPage.Text = "Lock Down Value and SMC Config";
+            // 
+            // SmcConfigGroup
+            // 
+            this.SmcConfigGroup.Controls.Add(this.label16);
+            this.SmcConfigGroup.Controls.Add(this.SmcConfigEllipse);
+            this.SmcConfigGroup.Controls.Add(this.SmcConfigBox);
+            this.SmcConfigGroup.Enabled = false;
+            this.SmcConfigGroup.Location = new System.Drawing.Point(4, 202);
+            this.SmcConfigGroup.Name = "SmcConfigGroup";
+            this.SmcConfigGroup.Size = new System.Drawing.Size(470, 45);
+            this.SmcConfigGroup.TabIndex = 7;
+            this.SmcConfigGroup.TabStop = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(74, 15);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "SMC Config:";
+            // 
+            // SmcConfigEllipse
+            // 
+            this.SmcConfigEllipse.Location = new System.Drawing.Point(431, 14);
+            this.SmcConfigEllipse.Name = "SmcConfigEllipse";
+            this.SmcConfigEllipse.Size = new System.Drawing.Size(33, 25);
+            this.SmcConfigEllipse.TabIndex = 1;
+            this.SmcConfigEllipse.Text = "...";
+            this.SmcConfigEllipse.UseVisualStyleBackColor = true;
+            this.SmcConfigEllipse.Click += new System.EventHandler(this.SmcConfigEllipse_Click);
+            // 
+            // SmcConfigBox
+            // 
+            this.SmcConfigBox.AllowDrop = true;
+            this.SmcConfigBox.Location = new System.Drawing.Point(86, 15);
+            this.SmcConfigBox.Name = "SmcConfigBox";
+            this.SmcConfigBox.Size = new System.Drawing.Size(339, 23);
+            this.SmcConfigBox.TabIndex = 0;
+            this.SmcConfigBox.TextChanged += new System.EventHandler(this.SmcConfigBox_TextChanged);
+            this.SmcConfigBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.SmcConfigBox_DragDrop);
+            this.SmcConfigBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.SmcConfigBox_DragEnter);
+            // 
+            // DonorSmcConfig
+            // 
+            this.DonorSmcConfig.AutoSize = true;
+            this.DonorSmcConfig.Checked = true;
+            this.DonorSmcConfig.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.DonorSmcConfig.Location = new System.Drawing.Point(4, 185);
+            this.DonorSmcConfig.Name = "DonorSmcConfig";
+            this.DonorSmcConfig.Size = new System.Drawing.Size(126, 19);
+            this.DonorSmcConfig.TabIndex = 6;
+            this.DonorSmcConfig.Text = "Donor SMC Config";
+            this.DonorSmcConfig.UseVisualStyleBackColor = true;
+            this.DonorSmcConfig.CheckedChanged += new System.EventHandler(this.DonorSmcConfig_CheckedChanged);
             // 
             // label14
             // 
@@ -568,7 +631,10 @@ namespace JRunner.Forms
             this.FcrtPage.PerformLayout();
             this.FcrtGroup.ResumeLayout(false);
             this.FcrtGroup.PerformLayout();
-            this.LdvPage.ResumeLayout(false);
+            this.LdvSmcConfPage.ResumeLayout(false);
+            this.LdvSmcConfPage.PerformLayout();
+            this.SmcConfigGroup.ResumeLayout(false);
+            this.SmcConfigGroup.PerformLayout();
             this.LdvGroup.ResumeLayout(false);
             this.LdvGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LdvBox)).EndInit();
@@ -617,7 +683,7 @@ namespace JRunner.Forms
         private System.Windows.Forms.Label RetailFcrtWarn;
         private System.Windows.Forms.Label NoFcrtText;
         private System.Windows.Forms.Label DonorKvText;
-        private AeroWizard.WizardPage LdvPage;
+        private AeroWizard.WizardPage LdvSmcConfPage;
         private System.Windows.Forms.GroupBox LdvGroup;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown LdvBox;
@@ -625,5 +691,10 @@ namespace JRunner.Forms
         private System.Windows.Forms.TextBox RevLdv;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox SmcConfigGroup;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button SmcConfigEllipse;
+        private System.Windows.Forms.TextBox SmcConfigBox;
+        private System.Windows.Forms.CheckBox DonorSmcConfig;
     }
 }

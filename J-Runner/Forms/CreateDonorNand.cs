@@ -17,7 +17,7 @@ namespace JRunner.Forms
             CpuKvPage.Rollback += CpuKvBack;
             CpuKvPage.Commit += CpuKvNext;
             FcrtPage.Commit += FcrtNext;
-            LdvPage.Commit += LdvNext;
+            LdvSmcConfPage.Commit += LdvSmcConfNext;
         }
 
         private byte[] kv;
@@ -26,6 +26,8 @@ namespace JRunner.Forms
         private string fcrtPath;
         private bool fcrtValid = false;
         private bool fcrtNeeded = false;
+        private string smcConfPath;
+        private bool smcConfValid = false;
         private string console = "";
         private string hack = "";
         private string kernelStr = "";
@@ -62,9 +64,10 @@ namespace JRunner.Forms
             if (!fcrtNeeded) fcrtPath = "unneeded";
             else if (DonorFcrt.Checked || DonorKv.Checked) fcrtPath = "donor";
             if (DonorKv.Checked) kvPath = "donor";
+            if (DonorSmcConfig.Checked) smcConfPath = "donor";
 
             forceFocus(false); // Must be before CreateDonor()
-            MainForm.mainForm.createDonor(console, hack, smc, CpuKeyBox.Text, kvPath, fcrtPath, ldv, NoFcrt.Checked);
+            MainForm.mainForm.createDonor(console, hack, smc, CpuKeyBox.Text, kvPath, fcrtPath, smcConfPath, ldv, NoFcrt.Checked);
             this.Close();
         }
 
@@ -158,7 +161,7 @@ namespace JRunner.Forms
             }
 
             if (fcrtNeeded) CpuKvPage.NextPage = FcrtPage;
-            else CpuKvPage.NextPage = LdvPage;
+            else CpuKvPage.NextPage = LdvSmcConfPage;
         }
 
         private void CpuKvCheckNext()
@@ -419,11 +422,98 @@ namespace JRunner.Forms
             }
         }
 
-        // LDV Page
-        private void LdvNext(object sender, AeroWizard.WizardPageConfirmEventArgs e)
+        // LDV and SMC Config Page
+        private void LdvSmcConfNext(object sender, AeroWizard.WizardPageConfirmEventArgs e)
         {
             ldv = Convert.ToInt32(Math.Round(LdvBox.Value, 0));
+
+            if (!DonorSmcConfig.Checked)
+            {
+                checkSmcConfig();
+                if (!smcConfValid)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
             PopulateFinish();
+        }
+
+        private void LdvSmcConfCheckNext()
+        {
+            if (DonorSmcConfig.Checked || (SmcConfigBox.TextLength > 0 && SmcConfigBox.Text.Contains(".bin"))) LdvSmcConfPage.AllowNext = true;
+            else LdvSmcConfPage.AllowNext = false;
+        }
+
+        private void DonorSmcConfig_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DonorSmcConfig.Checked) SmcConfigBox.Text = "";
+            SmcConfigGroup.Enabled = !DonorSmcConfig.Checked;
+            LdvSmcConfCheckNext();
+        }
+
+        private void SmcConfigBox_TextChanged(object sender, EventArgs e)
+        {
+            LdvSmcConfCheckNext();
+        }
+
+        private void SmcConfigBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            SmcConfigBox.Text = s[0];
+        }
+        private void SmcConfigBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
+        private void SmcConfigEllipse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Filter = "SMC Config (*.bin)|*.bin|All Files (*.*)|*.*";
+            openDialog.Title = "Select SMC Config";
+            openDialog.InitialDirectory = Oper.FilePickerInitialPath(SmcConfigBox.Text);
+            openDialog.RestoreDirectory = false;
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                SmcConfigBox.Text = openDialog.FileName;
+            }
+        }
+
+        private void checkSmcConfig()
+        {
+            try
+            {
+                smcConfPath = Path.GetFullPath(SmcConfigBox.Text);
+            }
+            catch
+            {
+                smcConfValid = false;
+                MessageBox.Show("Illegal path to SMC Config\n\nYou need to supply a valid SMC Config", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (File.Exists(smcConfPath))
+            {
+                if (new FileInfo(smcConfPath).Length == 65536)
+                {
+                    smcConfValid = true;
+                }
+                else
+                {
+                    smcConfValid = false;
+                    MessageBox.Show("SMC Config is invalid or corrupt\n\nYou need to supply a valid SMC Config", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                smcConfValid = false;
+                MessageBox.Show("SMC Config is missing\n\nYou need to supply a valid SMC Config", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Finish Page

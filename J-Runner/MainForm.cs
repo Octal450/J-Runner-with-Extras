@@ -4681,7 +4681,7 @@ namespace JRunner
             {
                 cdonor = new CreateDonorNand();
                 cdonor.Show();
-                cdonor.Location = new Point(Location.X + (Width - cdonor.Width) / 2, Location.Y + (Height - cdonor.Height) / 2);
+                cdonor.Location = new Point(Location.X + 14, Location.Y + (Height - cdonor.Height) - 14);
             }
         }
 
@@ -4725,7 +4725,7 @@ namespace JRunner
             return txtCPUKey.Text;
         }
 
-        public void createDonor(string con, string hack, string smc, string cpuk, string kvPath, string fcrtPath, int ldv, bool nofcrt)
+        public void createDonor(string con, string hack, string smc, string cpuk, string kvPath, string fcrtPath, string smcConfPath, int ldv, bool nofcrt)
         {
             newSession(true);
 
@@ -4776,11 +4776,15 @@ namespace JRunner
                     }
 
                     // Copy SMC Config
-                    string smcConfig;
-                    if (con.Contains("Corona")) smcConfig = "Corona";
-                    else if (con.Contains("Jasper")) smcConfig = "Jasper";
-                    else smcConfig = con;
-                    File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xePath + "smc_config.bin", true);
+                    if (smcConfPath == "donor")
+                    {
+                        string smcConfig;
+                        if (con.Contains("Corona")) smcConfig = "Corona";
+                        else if (con.Contains("Jasper")) smcConfig = "Jasper";
+                        else smcConfig = con;
+                        File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xePath + "smc_config.bin", true);
+                    }
+                    else File.Copy(smcConfPath, variables.xePath + "smc_config.bin", true);
                     Console.WriteLine("Copied smc_config.bin");
 
                     // Launch XeBuild
