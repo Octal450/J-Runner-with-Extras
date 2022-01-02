@@ -276,19 +276,15 @@ namespace JRunner.Panels
 
         private void btnConsoleId_Click(object sender, EventArgs e)
         {
-            if (textBoxconsoleid.Text != "")
+            if (btnConsoleId.Text != "View: Native")
             {
-                // if textBoxconsoleid.Text is not empty, assume it is valid
-                if (btnConsoleId.Text != "View: Native")
-                {
-                    btnConsoleId.Text = "View: Native";
-                    textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
-                }
-                else
-                {
-                    btnConsoleId.Text = "View: Raw";
-                    textBoxconsoleid.Text = nand.ki.consoleid;
-                }
+                btnConsoleId.Text = "View: Native";
+                if (textBoxconsoleid.Text != "") textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
+            }
+            else
+            {
+                btnConsoleId.Text = "View: Raw";
+                if (textBoxconsoleid.Text != "") textBoxconsoleid.Text = nand.ki.consoleid;
             }
         }
     }
