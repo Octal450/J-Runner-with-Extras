@@ -1415,7 +1415,7 @@ namespace JRunner.Panels
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-            if (File.Exists(Path.Combine(variables.xePath, "SMC.bin")) && variables.copiedSMC) // Only Delete SMCs it puts there
+            if (File.Exists(Path.Combine(variables.xePath, "SMC.bin")) && (variables.copiedSMC || variables.fullDataClean)) // Only Delete SMCs it puts there
             {
                 try
                 {

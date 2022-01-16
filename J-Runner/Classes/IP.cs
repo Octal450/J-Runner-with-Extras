@@ -68,11 +68,14 @@ namespace JRunner
             return mac;
         }
 
-        public string IP_GetCpuKey(string ip)
+        public string IP_GetCpuKey(string ip, int saveDir = 0)
         {
             ldvvalue = 0;
             cpukey = "";
-            if (File.Exists(Path.Combine(variables.outfolder, "Fuses.txt"))) File.Delete(Path.Combine(variables.outfolder, "Fuses.txt"));
+            string folder = variables.outfolder;
+            if (saveDir == 2) folder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            else if (saveDir == 1) folder = MainForm.mainForm.getCurrentWorkingFolder();
+            if (File.Exists(Path.Combine(folder, "Fuses.txt"))) File.Delete(Path.Combine(folder, "Fuses.txt"));
             string fuses = ("http://" + ip + @"/FUSE");
             WebClient Client = new WebClient();
             try
@@ -95,7 +98,7 @@ namespace JRunner
                         if (c == 'f') ldvvalue++;
                     }
                     Console.WriteLine("LockDownValue is {0}", ldvvalue);
-                    StreamWriter SW = File.AppendText(Path.Combine(variables.outfolder, "Fuses.txt"));
+                    StreamWriter SW = File.AppendText(Path.Combine(folder, "Fuses.txt"));
                     foreach (string oi in fuck)
                     {
                         SW.WriteLine(oi);
@@ -139,7 +142,7 @@ namespace JRunner
                         if (c == 'f') ldvvalue++;
                     }
                     if (variables.debugme) Console.WriteLine(ldvvalue);
-                    StreamWriter SW = File.AppendText(Path.Combine(variables.outfolder, "Fuses.txt"));
+                    StreamWriter SW = File.AppendText(Path.Combine(folder, "Fuses.txt"));
                     for (int i = 1; i < fuck.Count(); i++)
                     {
                         SW.WriteLine(fuck[i]);
@@ -153,12 +156,15 @@ namespace JRunner
             if (variables.debugme) Console.WriteLine("Finished");
             return cpukey;
         }
-        public string IP_GetCpuKey(string ip, bool print)
+        public string IP_GetCpuKey(string ip, bool print, int saveDir = 0)
         {
             ldvvalue = 0;
             cpukey = "";
             if (variables.debugme) Console.WriteLine(ip);
-            if (File.Exists(Path.Combine(variables.outfolder, "Fuses.txt"))) File.Delete(Path.Combine(variables.outfolder, "Fuses.txt"));
+            string folder = variables.outfolder;
+            if (saveDir == 2) folder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            else if (saveDir == 1) folder = MainForm.mainForm.getCurrentWorkingFolder();
+            if (File.Exists(Path.Combine(folder, "Fuses.txt"))) File.Delete(Path.Combine(folder, "Fuses.txt"));
             string fuses = ("http://" + ip + @"/FUSE");
             WebClient Client = new WebClient();
             try
@@ -183,7 +189,7 @@ namespace JRunner
                         if (c == 'f') ldvvalue++;
                     }
                     Console.WriteLine("Lock Down Value: {0}", ldvvalue);
-                    StreamWriter SW = File.AppendText(Path.Combine(variables.outfolder, "Fuses.txt"));
+                    StreamWriter SW = File.AppendText(Path.Combine(folder, "Fuses.txt"));
                     foreach (string oi in fuck)
                     {
                         SW.WriteLine(oi);
@@ -231,7 +237,7 @@ namespace JRunner
                     }
                     Console.WriteLine("LockDownValue is {0}", ldvvalue);
                     Console.WriteLine("CPU Key is {0}", cpukey);
-                    StreamWriter SW = File.AppendText(Path.Combine(variables.outfolder, "Fuses.txt"));
+                    StreamWriter SW = File.AppendText(Path.Combine(folder, "Fuses.txt"));
                     for (int i = 1; i < fuck.Count(); i++)
                     {
                         SW.WriteLine(fuck[i]);

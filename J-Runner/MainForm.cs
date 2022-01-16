@@ -2050,7 +2050,6 @@ namespace JRunner
                             entry.osig = nand.ki.osig;
                             entry.region = nand.ki.region;
 
-
                             bool reg = CpuKeyDB.addkey_s(entry, xPanel.getDataSet());
                             if (variables.autoExtract && reg)
                             {
@@ -3080,6 +3079,22 @@ namespace JRunner
         private void btnIPGetCPU_Click(object sender, EventArgs e)
         {
             ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text); };
+            new Thread(starter).Start();
+            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+            new Thread(updatecptextbox).Start();
+        }
+
+        private void getAndSaveToWorkingFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text, 1); };
+            new Thread(starter).Start();
+            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+            new Thread(updatecptextbox).Start();
+        }
+
+        private void saveToDesktopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text, 2); };
             new Thread(starter).Start();
             if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
             new Thread(updatecptextbox).Start();
@@ -4773,6 +4788,18 @@ namespace JRunner
                     {
                         if (File.Exists(variables.xePath + "fcrt.bin")) File.Delete(variables.xePath + "fcrt.bin");
                         xPanel.setNoFcrt(false);
+                    }
+
+                    // Copy SMC - only needed for RGH3
+                    if ((hack == "Glitch2" || hack == "Glitch2m") && smc == "RGH3")
+                    {
+                        if (con.Contains("Corona")) File.Copy(variables.xePath + "CORONA_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Trinity")) File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Jasper")) File.Copy(variables.xePath + "JASPER_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Falcon")) File.Copy(variables.xePath + "FALCON_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Zephyr")) File.Copy(variables.xePath + "ZEPHYR_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        else if (con.Contains("Xenon")) File.Copy(variables.xePath + "XENON_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        Console.WriteLine("Copied SMC.bin");
                     }
 
                     // Copy SMC Config

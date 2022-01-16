@@ -235,11 +235,26 @@ namespace JRunner
 
 
         /// <summary>
-        /// Search by Serial
+        /// Search by Serial or CPU Key
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            updateSearch();
+        }
+
+        private void rbtnSerial_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSearch();
+        }
+
+        private void rbtnCPU_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSearch();
+        }
+
+        private void updateSearch()
         {
             DataTable cputable = dataSet1.DataTable1;
             dataGridView1.CurrentCell = null;
@@ -839,6 +854,5 @@ namespace JRunner
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
         }
-
     }
 }

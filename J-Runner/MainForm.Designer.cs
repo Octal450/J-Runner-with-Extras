@@ -47,9 +47,12 @@ namespace JRunner
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnIPGetCPU = new wyDay.Controls.SplitButton();
+            this.getCpuKeyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.getAndSaveToWorkingFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelIP = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.btnIPGetCPU = new System.Windows.Forms.Button();
             this.btnScanner = new System.Windows.Forms.Button();
             this.btnInit = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
@@ -144,6 +147,7 @@ namespace JRunner
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
+            this.getCpuKeyContextMenu.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -282,9 +286,9 @@ namespace JRunner
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupBox8.Controls.Add(this.btnIPGetCPU);
             this.groupBox8.Controls.Add(this.labelIP);
             this.groupBox8.Controls.Add(this.txtIP);
-            this.groupBox8.Controls.Add(this.btnIPGetCPU);
             this.groupBox8.Location = new System.Drawing.Point(656, 480);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(165, 66);
@@ -293,6 +297,45 @@ namespace JRunner
             this.toolTip1.SetToolTip(this.groupBox8, "If you connect your Xbox 360 to your PC using a network cable, \r\nOnce booted with" +
         " Xellous or Xell-Reloaded place the displayed IP address in\r\nthe box and retriev" +
         "e your CPU Key by pressing the button.");
+            // 
+            // btnIPGetCPU
+            // 
+            this.btnIPGetCPU.AutoSize = true;
+            this.btnIPGetCPU.ContextMenuStrip = this.getCpuKeyContextMenu;
+            this.btnIPGetCPU.Location = new System.Drawing.Point(6, 36);
+            this.btnIPGetCPU.Name = "btnIPGetCPU";
+            this.btnIPGetCPU.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnIPGetCPU.Size = new System.Drawing.Size(153, 26);
+            this.btnIPGetCPU.SplitMenuStrip = this.getCpuKeyContextMenu;
+            this.btnIPGetCPU.TabIndex = 6;
+            this.btnIPGetCPU.Text = "    Get CPU Key";
+            this.toolTip1.SetToolTip(this.btnIPGetCPU, "Tries to retrieve the CPU Key and Fuses from XeLL using the IP above");
+            this.btnIPGetCPU.UseVisualStyleBackColor = true;
+            this.btnIPGetCPU.Click += new System.EventHandler(this.btnIPGetCPU_Click);
+            // 
+            // getCpuKeyContextMenu
+            // 
+            this.getCpuKeyContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getAndSaveToWorkingFolderToolStripMenuItem,
+            this.saveToDesktopToolStripMenuItem});
+            this.getCpuKeyContextMenu.Name = "contextMenuStrip1";
+            this.getCpuKeyContextMenu.Size = new System.Drawing.Size(200, 70);
+            // 
+            // getAndSaveToWorkingFolderToolStripMenuItem
+            // 
+            this.getAndSaveToWorkingFolderToolStripMenuItem.Name = "getAndSaveToWorkingFolderToolStripMenuItem";
+            this.getAndSaveToWorkingFolderToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.getAndSaveToWorkingFolderToolStripMenuItem.Text = "Save To Working Folder";
+            this.getAndSaveToWorkingFolderToolStripMenuItem.ToolTipText = "Saves Fuses.txt from XeLL to the current working folder";
+            this.getAndSaveToWorkingFolderToolStripMenuItem.Click += new System.EventHandler(this.getAndSaveToWorkingFolderToolStripMenuItem_Click);
+            // 
+            // saveToDesktopToolStripMenuItem
+            // 
+            this.saveToDesktopToolStripMenuItem.Name = "saveToDesktopToolStripMenuItem";
+            this.saveToDesktopToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.saveToDesktopToolStripMenuItem.Text = "Save To Desktop";
+            this.saveToDesktopToolStripMenuItem.ToolTipText = "Saves Fuses.txt from XeLL to the desktop";
+            this.saveToDesktopToolStripMenuItem.Click += new System.EventHandler(this.saveToDesktopToolStripMenuItem_Click);
             // 
             // labelIP
             // 
@@ -310,18 +353,6 @@ namespace JRunner
             this.txtIP.Size = new System.Drawing.Size(124, 20);
             this.txtIP.TabIndex = 5;
             this.txtIP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtIP_KeyUp);
-            // 
-            // btnIPGetCPU
-            // 
-            this.btnIPGetCPU.Location = new System.Drawing.Point(6, 36);
-            this.btnIPGetCPU.Name = "btnIPGetCPU";
-            this.btnIPGetCPU.Size = new System.Drawing.Size(153, 26);
-            this.btnIPGetCPU.TabIndex = 3;
-            this.btnIPGetCPU.TabStop = false;
-            this.btnIPGetCPU.Text = "Get CPU Key";
-            this.toolTip1.SetToolTip(this.btnIPGetCPU, "Tries to retrieve the CPU Key and Fuses from XeLL using the IP above");
-            this.btnIPGetCPU.UseVisualStyleBackColor = true;
-            this.btnIPGetCPU.Click += new System.EventHandler(this.btnIPGetCPU_Click);
             // 
             // btnScanner
             // 
@@ -1153,6 +1184,7 @@ namespace JRunner
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.getCpuKeyContextMenu.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -1182,7 +1214,6 @@ namespace JRunner
         private GroupBox groupBox8;
         private Label labelIP;
         private TextBox txtIP;
-        private Button btnIPGetCPU;
         private GroupBox groupBox4;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel XeBuildVersion;
@@ -1276,5 +1307,9 @@ namespace JRunner
         private ToolStripMenuItem nANDXToolStripMenuItem;
         private ToolStripMenuItem mtxUsbModeToolStripMenuItem;
         private ToolStripMenuItem reportIssueToolStripMenuItem;
+        private wyDay.Controls.SplitButton btnIPGetCPU;
+        private ContextMenuStrip getCpuKeyContextMenu;
+        private ToolStripMenuItem getAndSaveToWorkingFolderToolStripMenuItem;
+        private ToolStripMenuItem saveToDesktopToolStripMenuItem;
     }
 }
