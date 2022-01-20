@@ -2143,7 +2143,7 @@ namespace JRunner
             }
         }
 
-        string load_dgx()
+        string load_ecc()
         {
             if (Path.GetExtension(variables.filename1) == ".bin")
             {
@@ -2198,32 +2198,32 @@ namespace JRunner
                 switch (variables.ctyp.ID)
                 {
                     case 1:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_trinity + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_trinity + cr4 + smcp + ".ecc");
                         break;
                     case 2:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 3:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_falcon + cr4 + smcp + ".ecc"); // Use Falcon
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc"); // Use Falcon
                         Console.WriteLine("Using Falcon type for Zephyr");
                         break;
                     case 4:
                     case 5:
                     case 6:
                     case 7:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_jasper + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_jasper + cr4 + smcp + ".ecc");
                         break;
                     case 8:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_xenon + ".ecc"); // No CR4 or SMC+
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_xenon + ".ecc"); // No CR4 or SMC+
                         break;
                     case 9:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 10:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_corona + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_corona + wb + cr4 + smcp + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_corona4GB + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_corona4GB + wb + cr4 + smcp + ".ecc");
                         break;
                     default:
                         return "";
@@ -2913,7 +2913,7 @@ namespace JRunner
                     file.Read(kv, 0, 0x4200);
                     infile.Close();
                 }
-                if (String.IsNullOrWhiteSpace(load_dgx())) return;
+                if (String.IsNullOrWhiteSpace(load_ecc())) return;
                 File.Copy(variables.filename1, Path.Combine(variables.outfolder, "glitch.ecc"), true);
                 variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
                 txtFilePath1.Text = variables.filename1;
@@ -4391,12 +4391,21 @@ namespace JRunner
             else return variables.outfolder;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnShowWorkingFolder_Click(object sender, EventArgs e)
         {
             Process.Start(getCurrentWorkingFolder());
         }
 
-        // Maybe there's a better way to do it - but this should do
+        private void showRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Process.Start(variables.outfolder);
+        }
+        
         private void rpcInit()
         {
             rpcClient = new DiscordRpcClient("768884149578104883");
@@ -4806,9 +4815,13 @@ namespace JRunner
                     if (smcConfPath == "donor")
                     {
                         string smcConfig;
+
+                        // Catch all types
                         if (con.Contains("Corona")) smcConfig = "Corona";
                         else if (con.Contains("Jasper")) smcConfig = "Jasper";
+                        else if (con.Contains("Trinity")) smcConfig = "Trinity";
                         else smcConfig = con;
+
                         File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xePath + "smc_config.bin", true);
                     }
                     else File.Copy(smcConfPath, variables.xePath + "smc_config.bin", true);

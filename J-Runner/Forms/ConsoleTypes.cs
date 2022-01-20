@@ -31,45 +31,49 @@ namespace JRunner
 
         public consoles heResult()
         {
-            if ((radiobtnTrinity).Checked)
+            if (radiobtnTrinity.Checked)
             {
                 hresult = variables.cunts[1];
             }
-            else if ((radiobtnFalcon).Checked)
+            else if (radiobtnFalcon.Checked)
             {
                 hresult = variables.cunts[2];
             }
-            else if ((radiobtnZephyr).Checked)
+            else if (radiobtnZephyr.Checked)
             {
                 hresult = variables.cunts[3];
             }
-            else if ((radiobtnJasper).Checked)
+            else if (radiobtnJasper.Checked)
             {
                 hresult = variables.cunts[4];
             }
-            else if ((radiobtnJasperSB).Checked)
+            else if (radiobtnJasperSB.Checked)
             {
                 hresult = variables.cunts[5];
             }
-            else if ((radiobtnJasper256).Checked)
+            else if (radiobtnJasper256.Checked)
             {
                 hresult = variables.cunts[6];
             }
-            else if ((radiobtnJasper512).Checked)
+            else if (radiobtnJasper512.Checked)
             {
                 hresult = variables.cunts[7];
             }
-            else if ((radiobtnXenon).Checked)
+            else if (radiobtnXenon.Checked)
             {
                 hresult = variables.cunts[8];
             }
-            else if ((radiobtnCorona).Checked)
+            else if (radiobtnCorona.Checked)
             {
                 hresult = variables.cunts[10];
             }
-            else if ((radioBtnCorona4gb).Checked)
+            else if (radiobtnCorona4gb.Checked)
             {
                 hresult = variables.cunts[11];
+            }
+            else if (radiobtnTrinityBB.Checked)
+            {
+                hresult = variables.cunts[12];
             }
             else hresult = variables.cunts[0];
 
@@ -118,7 +122,7 @@ namespace JRunner
                 {
                     radiobtnTrinity.Enabled = false;
                     radiobtnCorona.Enabled = false;
-                    radioBtnCorona4gb.Enabled = false;
+                    radiobtnCorona4gb.Enabled = false;
                 }
                 else if (sel == Selected.Slim)
                 {
@@ -129,8 +133,9 @@ namespace JRunner
             else if (sel == Selected.JTAG)
             {
                 radiobtnTrinity.Enabled = false;
+                radiobtnTrinityBB.Enabled = false;
                 radiobtnCorona.Enabled = false;
-                radioBtnCorona4gb.Enabled = false;
+                radiobtnCorona4gb.Enabled = false;
             }
             else if (sel == Selected.AllX)
             {
@@ -175,7 +180,10 @@ namespace JRunner
                     radiobtnCorona.Checked = true;
                     break;
                 case 11:
-                    radioBtnCorona4gb.Checked = true;
+                    radiobtnCorona4gb.Checked = true;
+                    break;
+                case 12:
+                    radiobtnTrinityBB.Checked = true;
                     break;
                 default:
                     break;
@@ -192,24 +200,26 @@ namespace JRunner
             if (chkAdv.Checked)
             {
                 checkBox2MB.Visible = true;
-                radiobtnJasperSB.Visible = true;
+                fulldumpbox.Visible = true;
+                radiobtnJasperSB.Visible = radiobtnTrinityBB.Visible = true;
             }
             else
             {
-                checkBox2MB.Visible = false;
-                radiobtnJasperSB.Visible = false;
+                checkBox2MB.Checked = checkBox2MB.Visible = false;
+                fulldumpbox.Checked = fulldumpbox.Visible = false;
+                radiobtnJasperSB.Checked = radiobtnTrinityBB.Checked = false;
+                radiobtnJasperSB.Visible = radiobtnTrinityBB.Visible = false;
             }
         }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBox2MB_CheckedChanged(object sender, EventArgs e)
         {
             if (fulldumpbox.Checked) fulldumpbox.Checked = false;
         }
+
         private void fulldumpbox_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox2MB.Checked) checkBox2MB.Checked = false;
         }
-
-
     }
 
 }

@@ -1970,7 +1970,7 @@ namespace JRunner.Nand
             int max = -1;
             int howmany = 0;
             int consl = 0;
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 13; i++)
             {
                 if (max < cons[i])
                 {
@@ -1994,7 +1994,7 @@ namespace JRunner.Nand
             int max = -1;
             int howmany = 0;
             int consl = 0;
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 13; i++)
             {
                 if (max < cons[i])
                 {
@@ -2003,21 +2003,22 @@ namespace JRunner.Nand
                 }
                 else if (max == cons[i]) howmany++;
             }
-
+            
             if (cons[2] == cons[9] && consl == 2) return variables.cunts[2];
             if (cons[6] == cons[7] && consl == 6) return variables.cunts[6];
             if (cons[4] == cons[5] && cons[4] == cons[6] && cons[4] == cons[7] && consl == 4) return variables.cunts[0];
-
+            
             return variables.cunts[consl];
         }
         public static int[] identifyConsole(PrivateN nand, string flashconfig = "")
         {
-            int[] cons = new int[12];
+            int[] cons = new int[13];
 
             // CB check
             if (nand.bl.CB_A >= 9188 && nand.bl.CB_A <= 9250)
             {
                 cons[1] += 3;
+                cons[12] += 3;
             }
             else if (nand.bl.CB_A >= 13121 && nand.bl.CB_A <= 13200)
             {
@@ -2058,7 +2059,11 @@ namespace JRunner.Nand
                     cons[6] += 2;
                     cons[7] += 2;
                 }
-                else if (smctype == 5) cons[1] += 2;
+                else if (smctype == 5)
+                {
+                    cons[1] += 2;
+                    cons[12] += 2;
+                }
                 else if (smctype == 6)
                 {
                     cons[10] += 2;
@@ -2068,10 +2073,18 @@ namespace JRunner.Nand
             //flashconfig check
             if (!String.IsNullOrWhiteSpace(flashconfig))
             {
-                if (flashconfig == ("008A3020")) cons[6]++;
-                else if (flashconfig == ("00AA3020")) cons[7]++;
+                if (flashconfig == "008A3020")
+                {
+                    cons[6]++;
+                    cons[12]++;
+                }
+                else if (flashconfig == "00AA3020")
+                {
+                    cons[7]++;
+                    cons[12]++;
+                }
                 else if (flashconfig == "C0462002") cons[11]++;
-                else if (flashconfig == ("01198010"))
+                else if (flashconfig == "01198010")
                 {
                     cons[2]++;
                     cons[3]++;
@@ -2079,12 +2092,12 @@ namespace JRunner.Nand
                     cons[8]++;
                     cons[9]++;
                 }
-                else if (flashconfig == ("00023010"))
+                else if (flashconfig == "00023010")
                 {
                     cons[1]++;
                     cons[4]++;
                 }
-                else if (flashconfig == ("00043000"))
+                else if (flashconfig == "00043000")
                 {
                     cons[10]++;
                 }
@@ -2110,9 +2123,18 @@ namespace JRunner.Nand
                 {
                     cons[6] += 2;
                     cons[7] += 2;
+                    cons[12] += 2;
                 }
-                else if (length == 276824064) cons[6] += 2;
-                else if (length == 553648128) cons[7] += 2;
+                else if (length == 276824064)
+                {
+                    cons[6] += 2;
+                    cons[12] += 2;
+                }
+                else if (length == 553648128)
+                {
+                    cons[7] += 2;
+                    cons[12] += 2;
+                }
                 else cons[11]++;
             }
             //spare data check
@@ -2124,7 +2146,7 @@ namespace JRunner.Nand
             {
                 //IMAGE_LAYOUT_0: xenon, zephyr, falcon
                 //IMAGE_LAYOUT_1: jasper 16, slims
-                //IMAGE_LAYOUT_2: jasper 256/512
+                //IMAGE_LAYOUT_2: jasper/trinity 256/512
                 int layout = -1;
                 List<int> layouts = new List<int>();
                 byte[] file = BadBlock.find_bad_blocks_X(nand._filename, 50);
@@ -2153,6 +2175,7 @@ namespace JRunner.Nand
                 {
                     cons[6]++;
                     cons[7]++;
+                    cons[12]++;
                 }
             }
 

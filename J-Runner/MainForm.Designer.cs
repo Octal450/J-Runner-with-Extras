@@ -57,7 +57,7 @@ namespace JRunner
             this.btnInit = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnNewSession = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnShowWorkingFolder = new wyDay.Controls.SplitButton();
             this.btnRestart = new System.Windows.Forms.Button();
             this.XeBuildOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -146,11 +146,15 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showWorkingFolderMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showRootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyContextMenu.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.showWorkingFolderMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnExit
@@ -319,7 +323,7 @@ namespace JRunner
             this.getAndSaveToWorkingFolderToolStripMenuItem,
             this.saveToDesktopToolStripMenuItem});
             this.getCpuKeyContextMenu.Name = "contextMenuStrip1";
-            this.getCpuKeyContextMenu.Size = new System.Drawing.Size(200, 70);
+            this.getCpuKeyContextMenu.Size = new System.Drawing.Size(200, 48);
             // 
             // getAndSaveToWorkingFolderToolStripMenuItem
             // 
@@ -403,18 +407,21 @@ namespace JRunner
             this.btnNewSession.UseVisualStyleBackColor = true;
             this.btnNewSession.Click += new System.EventHandler(this.btnNewSession_Click);
             // 
-            // button3
+            // btnShowWorkingFolder
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(480, 485);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(170, 26);
-            this.button3.TabIndex = 90;
-            this.button3.Text = "Show Working Folder";
-            this.toolTip1.SetToolTip(this.button3, "Opens the current working folder");
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnShowWorkingFolder.AutoSize = true;
+            this.btnShowWorkingFolder.ContextMenuStrip = this.showWorkingFolderMenu;
+            this.btnShowWorkingFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnShowWorkingFolder.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnShowWorkingFolder.Location = new System.Drawing.Point(480, 485);
+            this.btnShowWorkingFolder.Name = "btnShowWorkingFolder";
+            this.btnShowWorkingFolder.Size = new System.Drawing.Size(170, 26);
+            this.btnShowWorkingFolder.SplitMenuStrip = this.showWorkingFolderMenu;
+            this.btnShowWorkingFolder.TabIndex = 90;
+            this.btnShowWorkingFolder.Text = "    Show Working Folder";
+            this.toolTip1.SetToolTip(this.btnShowWorkingFolder, "Opens the working folder");
+            this.btnShowWorkingFolder.UseVisualStyleBackColor = true;
+            this.btnShowWorkingFolder.Click += new System.EventHandler(this.btnShowWorkingFolder_Click);
             // 
             // btnRestart
             // 
@@ -1144,6 +1151,30 @@ namespace JRunner
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // showWorkingFolderMenu
+            // 
+            this.showWorkingFolderMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showRootFolderToolStripMenuItem,
+            this.toolStripMenuItem1});
+            this.showWorkingFolderMenu.Name = "contextMenuStrip1";
+            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 48);
+            // 
+            // showRootFolderToolStripMenuItem
+            // 
+            this.showRootFolderToolStripMenuItem.Name = "showRootFolderToolStripMenuItem";
+            this.showRootFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showRootFolderToolStripMenuItem.Text = "Show Root Folder";
+            this.showRootFolderToolStripMenuItem.ToolTipText = "Opens the root folder";
+            this.showRootFolderToolStripMenuItem.Click += new System.EventHandler(this.showRootFolderToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "Show Output Folder";
+            this.toolStripMenuItem1.ToolTipText = "Opens the output folder";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1154,7 +1185,7 @@ namespace JRunner
             this.Controls.Add(this.btnScanner);
             this.Controls.Add(this.btnNewSession);
             this.Controls.Add(this.btnRestart);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnShowWorkingFolder);
             this.Controls.Add(this.pnlExtra);
             this.Controls.Add(this.pnlTools);
             this.Controls.Add(this.progressBar);
@@ -1191,6 +1222,7 @@ namespace JRunner
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.showWorkingFolderMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1237,7 +1269,6 @@ namespace JRunner
         private Panel pnlTools;
         private Panel pnlExtra;
         private ToolStripStatusLabel ModeStatus;
-        private Button button3;
         private Button btnRestart;
         private ToolStripStatusLabel XeBuildLabel;
         private ToolStripStatusLabel DashlaunchLabel;
@@ -1311,5 +1342,9 @@ namespace JRunner
         private ContextMenuStrip getCpuKeyContextMenu;
         private ToolStripMenuItem getAndSaveToWorkingFolderToolStripMenuItem;
         private ToolStripMenuItem saveToDesktopToolStripMenuItem;
+        private ContextMenuStrip showWorkingFolderMenu;
+        private ToolStripMenuItem showRootFolderToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private wyDay.Controls.SplitButton btnShowWorkingFolder;
     }
 }

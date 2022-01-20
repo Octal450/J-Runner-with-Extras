@@ -480,7 +480,8 @@ namespace JRunner.Panels
             if ((rbtnGlitch.Checked || rbtnGlitch2.Checked || rbtnGlitch2m.Checked || rbtnJtag.Checked || rbtnDevGL.Checked) && !chkXdkBuild.Checked)
             {
                 if (board == null) board = "None";
-                if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Falcon") || board.Contains("Jasper 16MB") || board.Contains("Jasper SB") || board.Contains("Trinity") || board.Contains("Corona"))
+                if (board.Contains("Trinity BB")) chkBigffs.Enabled = true;
+                else if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Falcon") || board.Contains("Jasper 16MB") || board.Contains("Jasper SB") || board.Contains("Trinity") || board.Contains("Corona"))
                 {
                     chkBigffs.Checked = false;
                     chkBigffs.Enabled = false;
@@ -755,7 +756,7 @@ namespace JRunner.Panels
                 Rgh3Label.Visible = Rgh3Label2.Visible = Rgh3Mhz.Visible = false;
             }
 
-            if (board.Contains("Xenon") || board.Contains("Zephyr") || chkXdkBuild.Checked)
+            if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Jasper SB") || board.Contains("Trinity BB") || chkXdkBuild.Checked)
             {
                 chkRgh3.Checked = false;
                 chkRgh3.Enabled = false;

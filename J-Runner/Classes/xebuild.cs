@@ -134,7 +134,7 @@ namespace JRunner.Classes
             }
             else if (_ttype != hacktypes.jtag && _CleanSMC)
             {
-                if (_ctype.ID == 1)
+                if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
                     File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
                 }
@@ -162,7 +162,7 @@ namespace JRunner.Classes
             }
             else if ((_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m) && _CR4)
             {
-                if (_ctype.ID == 1)
+                if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
                     File.Copy(variables.xePath + "TRINITY_CR4.bin", variables.xePath + "SMC.bin", true);
                 }
@@ -182,7 +182,7 @@ namespace JRunner.Classes
             }
             else if ((_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m) && _SMCP)
             {
-                if (_ctype.ID == 1)
+                if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
                     File.Copy(variables.xePath + "TRINITY_SMC+.bin", variables.xePath + "SMC.bin", true);
                 }
@@ -238,7 +238,7 @@ namespace JRunner.Classes
             }
             else if (_ttype != hacktypes.jtag && _CleanSMC)
             {
-                if (_ctype.ID == 1)
+                if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
                     File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
                 }
@@ -266,7 +266,7 @@ namespace JRunner.Classes
             }
             else if ((_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m) && _CR4)
             {
-                if (_ctype.ID == 1)
+                if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
                     File.Copy(variables.xePath + "TRINITY_CR4.bin", variables.xePath + "SMC.bin", true);
                 }
@@ -286,7 +286,7 @@ namespace JRunner.Classes
             }
             else if ((_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m) && _SMCP)
             {
-                if (_ctype.ID == 1)
+                if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
                     File.Copy(variables.xePath + "TRINITY_SMC+.bin", variables.xePath + "SMC.bin", true);
                 }
@@ -495,7 +495,7 @@ namespace JRunner.Classes
 
             if (_xdkbuild)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512") // requires bigffs
+                if (boardtype == "jasper256" || boardtype == "jasper512" || boardtype == "trinitybb") // requires bigffs
                 {
                     arguments += " -c " + boardtype.Substring(0, 6) + "bigffs -i flash";
                 }
@@ -510,7 +510,7 @@ namespace JRunner.Classes
             }
             else if (_bigffs)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512")
+                if (boardtype == "jasper256" || boardtype == "jasper512" || boardtype == "trinitybb")
                 {
                     arguments += " -c " + boardtype.Substring(0, 6) + "bigffs";
                 }
@@ -612,7 +612,7 @@ namespace JRunner.Classes
 
             if (_xdkbuild)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512") // requires bigffs
+                if (boardtype == "jasper256" || boardtype == "jasper512" || boardtype == "trinitybb") // requires bigffs
                 {
                     arguments += " -c " + boardtype.Substring(0, 6) + "bigffs -i flash";
                 }
@@ -627,7 +627,7 @@ namespace JRunner.Classes
             }
             else if (_bigffs)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512")
+                if (boardtype == "jasper256" || boardtype == "jasper512" || boardtype == "trinitybb")
                 {
                     arguments += " -c " + boardtype.Substring(0, 6) + "bigffs";
                 }
