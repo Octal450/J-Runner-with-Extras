@@ -333,7 +333,6 @@ namespace JRunner
             this.getAndSaveToWorkingFolderToolStripMenuItem.Name = "getAndSaveToWorkingFolderToolStripMenuItem";
             this.getAndSaveToWorkingFolderToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.getAndSaveToWorkingFolderToolStripMenuItem.Text = "Save To Working Folder";
-            this.getAndSaveToWorkingFolderToolStripMenuItem.ToolTipText = "Saves Fuses.txt from XeLL to the current working folder";
             this.getAndSaveToWorkingFolderToolStripMenuItem.Click += new System.EventHandler(this.getAndSaveToWorkingFolderToolStripMenuItem_Click);
             // 
             // saveToDesktopToolStripMenuItem
@@ -341,7 +340,6 @@ namespace JRunner
             this.saveToDesktopToolStripMenuItem.Name = "saveToDesktopToolStripMenuItem";
             this.saveToDesktopToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.saveToDesktopToolStripMenuItem.Text = "Save To Desktop";
-            this.saveToDesktopToolStripMenuItem.ToolTipText = "Saves Fuses.txt from XeLL to the desktop";
             this.saveToDesktopToolStripMenuItem.Click += new System.EventHandler(this.saveToDesktopToolStripMenuItem_Click);
             // 
             // labelIP
@@ -423,7 +421,7 @@ namespace JRunner
             this.btnOpenWorkingFolder.Size = new System.Drawing.Size(170, 26);
             this.btnOpenWorkingFolder.TabIndex = 90;
             this.btnOpenWorkingFolder.Text = "Open Working Folder";
-            this.toolTip1.SetToolTip(this.btnOpenWorkingFolder, "Opens the working folder");
+            this.toolTip1.SetToolTip(this.btnOpenWorkingFolder, "Opens the working folder in Windows Explorer");
             this.btnOpenWorkingFolder.UseVisualStyleBackColor = true;
             this.btnOpenWorkingFolder.Click += new System.EventHandler(this.btnOpenWorkingFolder_Click);
             // 
@@ -440,7 +438,6 @@ namespace JRunner
             this.openRootFolderToolStripMenuItem.Name = "openRootFolderToolStripMenuItem";
             this.openRootFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openRootFolderToolStripMenuItem.Text = "Open Root Folder";
-            this.openRootFolderToolStripMenuItem.ToolTipText = "Opens the root folder";
             this.openRootFolderToolStripMenuItem.Click += new System.EventHandler(this.openRootFolderToolStripMenuItem_Click);
             // 
             // openOutputFolderToolStripMenuItem
@@ -448,7 +445,6 @@ namespace JRunner
             this.openOutputFolderToolStripMenuItem.Name = "openOutputFolderToolStripMenuItem";
             this.openOutputFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openOutputFolderToolStripMenuItem.Text = "Open Output Folder";
-            this.openOutputFolderToolStripMenuItem.ToolTipText = "Opens the output folder";
             this.openOutputFolderToolStripMenuItem.Click += new System.EventHandler(this.openOutputFolderToolStripMenuItem_Click);
             // 
             // btnRestart
