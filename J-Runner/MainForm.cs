@@ -4391,17 +4391,17 @@ namespace JRunner
             else return variables.outfolder;
         }
 
-        private void btnShowWorkingFolder_Click(object sender, EventArgs e)
+        private void btnOpenWorkingFolder_Click(object sender, EventArgs e)
         {
             Process.Start(getCurrentWorkingFolder());
         }
 
-        private void showRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void openOutputFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(variables.outfolder);
         }

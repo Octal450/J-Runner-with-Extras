@@ -120,12 +120,49 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnIPGetCPU.BtnImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAAjAAAAIwHV9BZdAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
+        aW5rc2NhcGUub3Jnm+48GgAAAFRJREFUOE9jGAVDD4gCsRIezAnEJAF1IH4JxP+x4J1AzA7EJAMDIH4P
+        xMiGHQVibiAmG1gB8RcgBhl2HogFgJhi4AbEl4BYHMyjEmCB0qNg6AAGBgBmPREDe/D/RgAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
   <metadata name="getCpuKeyContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>472, 19</value>
   </metadata>
+  <data name="btnIPGetCPU.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAAjAAAAIwHV9BZdAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
+        aW5rc2NhcGUub3Jnm+48GgAAAFRJREFUOE9jGAVDD4gCsRIezAnEJAF1IH4JxP+x4J1AzA7EJAMDIH4P
+        xMiGHQVibiAmG1gB8RcgBhl2HogFgJhi4AbEl4BYHMyjEmCB0qNg6AAGBgBmPREDe/D/RgAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
+  <data name="btnOpenWorkingFolder.BtnImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAAjAAAAIwHV9BZdAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
+        aW5rc2NhcGUub3Jnm+48GgAAAFRJREFUOE9jGAVDD4gCsRIezAnEJAF1IH4JxP+x4J1AzA7EJAMDIH4P
+        xMiGHQVibiAmG1gB8RcgBhl2HogFgJhi4AbEl4BYHMyjEmCB0qNg6AAGBgBmPREDe/D/RgAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
   <metadata name="showWorkingFolderMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>627, 19</value>
   </metadata>
+  <data name="btnOpenWorkingFolder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAAjAAAAIwHV9BZdAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
+        aW5rc2NhcGUub3Jnm+48GgAAAFRJREFUOE9jGAVDD4gCsRIezAnEJAF1IH4JxP+x4J1AzA7EJAMDIH4P
+        xMiGHQVibiAmG1gB8RcgBhl2HogFgJhi4AbEl4BYHMyjEmCB0qNg6AAGBgBmPREDe/D/RgAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>206, 15</value>
   </metadata>
@@ -135,7 +172,6 @@
   <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 16</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="updateAvailableToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKM+VkT1I
