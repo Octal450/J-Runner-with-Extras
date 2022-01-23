@@ -155,6 +155,9 @@
     <Compile Include="Classes\RC4.cs" />
     <Compile Include="Classes\RGH2to3.cs" />
     <Compile Include="Classes\rgh3build.cs" />
+    <Compile Include="Classes\UI.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Classes\Upd.cs" />
     <Compile Include="Classes\xdkbuild.cs" />
     <Compile Include="Classes\xFlasher.cs" />
@@ -902,6 +905,8 @@
     <None Include="Resources\goodbye.wav" />
     <None Include="Resources\BASSMOD.dll" />
     <None Include="Resources\greencheck.png" />
+    <None Include="Resources\arrow_dn.png" />
+    <None Include="Resources\arrow_dn_hot.png" />
     <Content Include="Resources\Build.txt" />
     <Content Include="Resources\hourglass_clock.png" />
     <None Include="Resources\sonuslogo.png" />

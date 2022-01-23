@@ -2050,7 +2050,6 @@ namespace JRunner
                             entry.osig = nand.ki.osig;
                             entry.region = nand.ki.region;
 
-
                             bool reg = CpuKeyDB.addkey_s(entry, xPanel.getDataSet());
                             if (variables.autoExtract && reg)
                             {
@@ -2144,7 +2143,7 @@ namespace JRunner
             }
         }
 
-        string load_dgx()
+        string load_ecc()
         {
             if (Path.GetExtension(variables.filename1) == ".bin")
             {
@@ -2199,32 +2198,32 @@ namespace JRunner
                 switch (variables.ctyp.ID)
                 {
                     case 1:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_trinity + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_trinity + cr4 + smcp + ".ecc");
                         break;
                     case 2:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 3:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_falcon + cr4 + smcp + ".ecc"); // Use Falcon
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc"); // Use Falcon
                         Console.WriteLine("Using Falcon type for Zephyr");
                         break;
                     case 4:
                     case 5:
                     case 6:
                     case 7:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_jasper + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_jasper + cr4 + smcp + ".ecc");
                         break;
                     case 8:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_xenon + ".ecc"); // No CR4 or SMC+
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_xenon + ".ecc"); // No CR4 or SMC+
                         break;
                     case 9:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 10:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_corona + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_corona + wb + cr4 + smcp + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.DGX_corona4GB + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_corona4GB + wb + cr4 + smcp + ".ecc");
                         break;
                     default:
                         return "";
@@ -2914,7 +2913,7 @@ namespace JRunner
                     file.Read(kv, 0, 0x4200);
                     infile.Close();
                 }
-                if (String.IsNullOrWhiteSpace(load_dgx())) return;
+                if (String.IsNullOrWhiteSpace(load_ecc())) return;
                 File.Copy(variables.filename1, Path.Combine(variables.outfolder, "glitch.ecc"), true);
                 variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
                 txtFilePath1.Text = variables.filename1;
@@ -3080,6 +3079,22 @@ namespace JRunner
         private void btnIPGetCPU_Click(object sender, EventArgs e)
         {
             ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text); };
+            new Thread(starter).Start();
+            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+            new Thread(updatecptextbox).Start();
+        }
+
+        private void getAndSaveToWorkingFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text, 1); };
+            new Thread(starter).Start();
+            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+            new Thread(updatecptextbox).Start();
+        }
+
+        private void saveToDesktopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text, 2); };
             new Thread(starter).Start();
             if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
             new Thread(updatecptextbox).Start();
@@ -4376,12 +4391,21 @@ namespace JRunner
             else return variables.outfolder;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnOpenWorkingFolder_Click(object sender, EventArgs e)
         {
             Process.Start(getCurrentWorkingFolder());
         }
 
-        // Maybe there's a better way to do it - but this should do
+        private void openRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+        }
+
+        private void openOutputFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(variables.outfolder);
+        }
+        
         private void rpcInit()
         {
             rpcClient = new DiscordRpcClient("768884149578104883");
@@ -4775,13 +4799,29 @@ namespace JRunner
                         xPanel.setNoFcrt(false);
                     }
 
+                    // Copy SMC - only needed for RGH3
+                    if ((hack == "Glitch2" || hack == "Glitch2m") && smc == "RGH3")
+                    {
+                        if (con.Contains("Corona")) File.Copy(variables.xePath + "CORONA_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Trinity")) File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Jasper")) File.Copy(variables.xePath + "JASPER_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Falcon")) File.Copy(variables.xePath + "FALCON_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Zephyr")) File.Copy(variables.xePath + "ZEPHYR_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        else if (con.Contains("Xenon")) File.Copy(variables.xePath + "XENON_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        Console.WriteLine("Copied SMC.bin");
+                    }
+
                     // Copy SMC Config
                     if (smcConfPath == "donor")
                     {
                         string smcConfig;
+
+                        // Catch all types
                         if (con.Contains("Corona")) smcConfig = "Corona";
                         else if (con.Contains("Jasper")) smcConfig = "Jasper";
+                        else if (con.Contains("Trinity")) smcConfig = "Trinity";
                         else smcConfig = con;
+
                         File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xePath + "smc_config.bin", true);
                     }
                     else File.Copy(smcConfPath, variables.xePath + "smc_config.bin", true);

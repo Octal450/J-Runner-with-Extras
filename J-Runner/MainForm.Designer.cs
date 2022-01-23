@@ -47,14 +47,20 @@ namespace JRunner
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnIPGetCPU = new UI.SplitButton();
+            this.getCpuKeyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.getAndSaveToWorkingFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelIP = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.btnIPGetCPU = new System.Windows.Forms.Button();
             this.btnScanner = new System.Windows.Forms.Button();
             this.btnInit = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnNewSession = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnOpenWorkingFolder = new UI.SplitButton();
+            this.showWorkingFolderMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openRootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openOutputFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRestart = new System.Windows.Forms.Button();
             this.XeBuildOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -144,6 +150,8 @@ namespace JRunner
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
+            this.getCpuKeyContextMenu.SuspendLayout();
+            this.showWorkingFolderMenu.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -282,9 +290,9 @@ namespace JRunner
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupBox8.Controls.Add(this.btnIPGetCPU);
             this.groupBox8.Controls.Add(this.labelIP);
             this.groupBox8.Controls.Add(this.txtIP);
-            this.groupBox8.Controls.Add(this.btnIPGetCPU);
             this.groupBox8.Location = new System.Drawing.Point(656, 480);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(165, 66);
@@ -293,6 +301,46 @@ namespace JRunner
             this.toolTip1.SetToolTip(this.groupBox8, "If you connect your Xbox 360 to your PC using a network cable, \r\nOnce booted with" +
         " Xellous or Xell-Reloaded place the displayed IP address in\r\nthe box and retriev" +
         "e your CPU Key by pressing the button.");
+            // 
+            // btnIPGetCPU
+            // 
+            this.btnIPGetCPU.AutoSize = true;
+            this.btnIPGetCPU.BtnImage = ((System.Drawing.Image)(resources.GetObject("btnIPGetCPU.BtnImage")));
+            this.btnIPGetCPU.contextMenuStrip = this.getCpuKeyContextMenu;
+            this.btnIPGetCPU.ContextMenuStrip = this.getCpuKeyContextMenu;
+            this.btnIPGetCPU.Image = ((System.Drawing.Image)(resources.GetObject("btnIPGetCPU.Image")));
+            this.btnIPGetCPU.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnIPGetCPU.Location = new System.Drawing.Point(6, 36);
+            this.btnIPGetCPU.Name = "btnIPGetCPU";
+            this.btnIPGetCPU.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnIPGetCPU.Size = new System.Drawing.Size(153, 26);
+            this.btnIPGetCPU.TabIndex = 6;
+            this.btnIPGetCPU.Text = "Get CPU Key";
+            this.toolTip1.SetToolTip(this.btnIPGetCPU, "Tries to retrieve the CPU Key and Fuses from XeLL using the IP above");
+            this.btnIPGetCPU.UseVisualStyleBackColor = true;
+            this.btnIPGetCPU.Click += new System.EventHandler(this.btnIPGetCPU_Click);
+            // 
+            // getCpuKeyContextMenu
+            // 
+            this.getCpuKeyContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getAndSaveToWorkingFolderToolStripMenuItem,
+            this.saveToDesktopToolStripMenuItem});
+            this.getCpuKeyContextMenu.Name = "contextMenuStrip1";
+            this.getCpuKeyContextMenu.Size = new System.Drawing.Size(200, 48);
+            // 
+            // getAndSaveToWorkingFolderToolStripMenuItem
+            // 
+            this.getAndSaveToWorkingFolderToolStripMenuItem.Name = "getAndSaveToWorkingFolderToolStripMenuItem";
+            this.getAndSaveToWorkingFolderToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.getAndSaveToWorkingFolderToolStripMenuItem.Text = "Save To Working Folder";
+            this.getAndSaveToWorkingFolderToolStripMenuItem.Click += new System.EventHandler(this.getAndSaveToWorkingFolderToolStripMenuItem_Click);
+            // 
+            // saveToDesktopToolStripMenuItem
+            // 
+            this.saveToDesktopToolStripMenuItem.Name = "saveToDesktopToolStripMenuItem";
+            this.saveToDesktopToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.saveToDesktopToolStripMenuItem.Text = "Save To Desktop";
+            this.saveToDesktopToolStripMenuItem.Click += new System.EventHandler(this.saveToDesktopToolStripMenuItem_Click);
             // 
             // labelIP
             // 
@@ -310,18 +358,6 @@ namespace JRunner
             this.txtIP.Size = new System.Drawing.Size(124, 20);
             this.txtIP.TabIndex = 5;
             this.txtIP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtIP_KeyUp);
-            // 
-            // btnIPGetCPU
-            // 
-            this.btnIPGetCPU.Location = new System.Drawing.Point(6, 36);
-            this.btnIPGetCPU.Name = "btnIPGetCPU";
-            this.btnIPGetCPU.Size = new System.Drawing.Size(153, 26);
-            this.btnIPGetCPU.TabIndex = 3;
-            this.btnIPGetCPU.TabStop = false;
-            this.btnIPGetCPU.Text = "Get CPU Key";
-            this.toolTip1.SetToolTip(this.btnIPGetCPU, "Tries to retrieve the CPU Key and Fuses from XeLL using the IP above");
-            this.btnIPGetCPU.UseVisualStyleBackColor = true;
-            this.btnIPGetCPU.Click += new System.EventHandler(this.btnIPGetCPU_Click);
             // 
             // btnScanner
             // 
@@ -372,18 +408,44 @@ namespace JRunner
             this.btnNewSession.UseVisualStyleBackColor = true;
             this.btnNewSession.Click += new System.EventHandler(this.btnNewSession_Click);
             // 
-            // button3
+            // btnOpenWorkingFolder
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(480, 485);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(170, 26);
-            this.button3.TabIndex = 90;
-            this.button3.Text = "Show Working Folder";
-            this.toolTip1.SetToolTip(this.button3, "Opens the current working folder");
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnOpenWorkingFolder.AutoSize = true;
+            this.btnOpenWorkingFolder.BtnImage = ((System.Drawing.Image)(resources.GetObject("btnOpenWorkingFolder.BtnImage")));
+            this.btnOpenWorkingFolder.contextMenuStrip = this.showWorkingFolderMenu;
+            this.btnOpenWorkingFolder.ContextMenuStrip = this.showWorkingFolderMenu;
+            this.btnOpenWorkingFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenWorkingFolder.Image")));
+            this.btnOpenWorkingFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOpenWorkingFolder.Location = new System.Drawing.Point(480, 485);
+            this.btnOpenWorkingFolder.Name = "btnOpenWorkingFolder";
+            this.btnOpenWorkingFolder.Size = new System.Drawing.Size(170, 26);
+            this.btnOpenWorkingFolder.TabIndex = 90;
+            this.btnOpenWorkingFolder.Text = "Open Working Folder";
+            this.toolTip1.SetToolTip(this.btnOpenWorkingFolder, "Opens the working folder in Windows Explorer");
+            this.btnOpenWorkingFolder.UseVisualStyleBackColor = true;
+            this.btnOpenWorkingFolder.Click += new System.EventHandler(this.btnOpenWorkingFolder_Click);
+            // 
+            // showWorkingFolderMenu
+            // 
+            this.showWorkingFolderMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openRootFolderToolStripMenuItem,
+            this.openOutputFolderToolStripMenuItem});
+            this.showWorkingFolderMenu.Name = "contextMenuStrip1";
+            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 48);
+            // 
+            // openRootFolderToolStripMenuItem
+            // 
+            this.openRootFolderToolStripMenuItem.Name = "openRootFolderToolStripMenuItem";
+            this.openRootFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openRootFolderToolStripMenuItem.Text = "Open Root Folder";
+            this.openRootFolderToolStripMenuItem.Click += new System.EventHandler(this.openRootFolderToolStripMenuItem_Click);
+            // 
+            // openOutputFolderToolStripMenuItem
+            // 
+            this.openOutputFolderToolStripMenuItem.Name = "openOutputFolderToolStripMenuItem";
+            this.openOutputFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openOutputFolderToolStripMenuItem.Text = "Open Output Folder";
+            this.openOutputFolderToolStripMenuItem.Click += new System.EventHandler(this.openOutputFolderToolStripMenuItem_Click);
             // 
             // btnRestart
             // 
@@ -1123,7 +1185,7 @@ namespace JRunner
             this.Controls.Add(this.btnScanner);
             this.Controls.Add(this.btnNewSession);
             this.Controls.Add(this.btnRestart);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnOpenWorkingFolder);
             this.Controls.Add(this.pnlExtra);
             this.Controls.Add(this.pnlTools);
             this.Controls.Add(this.progressBar);
@@ -1153,6 +1215,8 @@ namespace JRunner
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.getCpuKeyContextMenu.ResumeLayout(false);
+            this.showWorkingFolderMenu.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -1182,7 +1246,6 @@ namespace JRunner
         private GroupBox groupBox8;
         private Label labelIP;
         private TextBox txtIP;
-        private Button btnIPGetCPU;
         private GroupBox groupBox4;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel XeBuildVersion;
@@ -1206,7 +1269,6 @@ namespace JRunner
         private Panel pnlTools;
         private Panel pnlExtra;
         private ToolStripStatusLabel ModeStatus;
-        private Button button3;
         private Button btnRestart;
         private ToolStripStatusLabel XeBuildLabel;
         private ToolStripStatusLabel DashlaunchLabel;
@@ -1276,5 +1338,13 @@ namespace JRunner
         private ToolStripMenuItem nANDXToolStripMenuItem;
         private ToolStripMenuItem mtxUsbModeToolStripMenuItem;
         private ToolStripMenuItem reportIssueToolStripMenuItem;
+        private UI.SplitButton btnIPGetCPU;
+        private ContextMenuStrip getCpuKeyContextMenu;
+        private ToolStripMenuItem getAndSaveToWorkingFolderToolStripMenuItem;
+        private ToolStripMenuItem saveToDesktopToolStripMenuItem;
+        private ContextMenuStrip showWorkingFolderMenu;
+        private ToolStripMenuItem openRootFolderToolStripMenuItem;
+        private ToolStripMenuItem openOutputFolderToolStripMenuItem;
+        private UI.SplitButton btnOpenWorkingFolder;
     }
 }

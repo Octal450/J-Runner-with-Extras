@@ -158,9 +158,9 @@
             // txtIP
             // 
             this.txtIP.Enabled = false;
-            this.txtIP.Location = new System.Drawing.Point(91, 24);
+            this.txtIP.Location = new System.Drawing.Point(99, 24);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(100, 20);
+            this.txtIP.Size = new System.Drawing.Size(92, 20);
             this.txtIP.TabIndex = 11;
             this.toolTip1.SetToolTip(this.txtIP, "Set a default IP for getting CPUKey\r\nover a network.");
             // 
@@ -169,45 +169,45 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 13);
+            this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Success on Compare";
+            this.label1.Text = "Success on Compare:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Success";
+            this.label2.Text = "Success:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 94);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 14;
-            this.label3.Text = "Error/Failure";
+            this.label3.Text = "Error/Failure:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(15, 168);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Working Folder";
+            this.label4.Text = "Output Folder:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(8, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 16;
-            this.label5.Text = "IP Default";
+            this.label5.Text = "IP Default:";
             // 
             // btnOK
             // 
@@ -306,17 +306,17 @@
             // 
             // txtIPStart
             // 
-            this.txtIPStart.Location = new System.Drawing.Point(91, 55);
+            this.txtIPStart.Location = new System.Drawing.Point(99, 55);
             this.txtIPStart.Name = "txtIPStart";
-            this.txtIPStart.Size = new System.Drawing.Size(100, 20);
+            this.txtIPStart.Size = new System.Drawing.Size(92, 20);
             this.txtIPStart.TabIndex = 28;
             this.toolTip1.SetToolTip(this.txtIPStart, "Set the starting IP range for\r\nScan IP range function");
             // 
             // txtIPEnd
             // 
-            this.txtIPEnd.Location = new System.Drawing.Point(91, 87);
+            this.txtIPEnd.Location = new System.Drawing.Point(99, 87);
             this.txtIPEnd.Name = "txtIPEnd";
-            this.txtIPEnd.Size = new System.Drawing.Size(100, 20);
+            this.txtIPEnd.Size = new System.Drawing.Size(92, 20);
             this.txtIPEnd.TabIndex = 29;
             this.toolTip1.SetToolTip(this.txtIPEnd, "Set the end of IP range for\r\nScan IP range function");
             // 
@@ -346,18 +346,18 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(8, 58);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 13);
+            this.label8.Size = new System.Drawing.Size(80, 13);
             this.label8.TabIndex = 26;
-            this.label8.Text = "IP Range Start";
+            this.label8.Text = "IP Range Start:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(8, 90);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(82, 13);
+            this.label9.Size = new System.Drawing.Size(85, 13);
             this.label9.TabIndex = 27;
-            this.label9.Text = "IP Range Finish";
+            this.label9.Text = "IP Range Finish:";
             // 
             // groupBox2
             // 
@@ -378,7 +378,7 @@
             // chkIpDefault
             // 
             this.chkIpDefault.AutoSize = true;
-            this.chkIpDefault.Location = new System.Drawing.Point(73, 27);
+            this.chkIpDefault.Location = new System.Drawing.Point(78, 26);
             this.chkIpDefault.Name = "chkIpDefault";
             this.chkIpDefault.Size = new System.Drawing.Size(15, 14);
             this.chkIpDefault.TabIndex = 30;
@@ -402,9 +402,9 @@
             this.almovebut.CheckState = System.Windows.Forms.CheckState.Checked;
             this.almovebut.Location = new System.Drawing.Point(18, 261);
             this.almovebut.Name = "almovebut";
-            this.almovebut.Size = new System.Drawing.Size(240, 17);
+            this.almovebut.Size = new System.Drawing.Size(244, 17);
             this.almovebut.TabIndex = 34;
-            this.almovebut.Text = "Only move nand/files upon first CPUkey entry";
+            this.almovebut.Text = "Only move nand/files upon first CPU Key entry";
             this.almovebut.UseVisualStyleBackColor = true;
             this.almovebut.CheckedChanged += new System.EventHandler(this.almovebut_CheckedChanged);
             // 
@@ -413,9 +413,9 @@
             this.modderbut.AutoSize = true;
             this.modderbut.Location = new System.Drawing.Point(18, 284);
             this.modderbut.Name = "modderbut";
-            this.modderbut.Size = new System.Drawing.Size(250, 17);
+            this.modderbut.Size = new System.Drawing.Size(280, 17);
             this.modderbut.TabIndex = 35;
-            this.modderbut.Text = "Use Unique name instead of Console type in db";
+            this.modderbut.Text = "Use unique name instead of Console type in database";
             this.modderbut.UseVisualStyleBackColor = true;
             this.modderbut.CheckedChanged += new System.EventHandler(this.modderbut_CheckedChanged);
             // 
@@ -552,7 +552,7 @@
             this.groupBox3.Size = new System.Drawing.Size(174, 45);
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Preferred Trinity/Corona Method";
+            this.groupBox3.Text = "Preferred Slim Method";
             // 
             // SlimPreferSrgh
             // 

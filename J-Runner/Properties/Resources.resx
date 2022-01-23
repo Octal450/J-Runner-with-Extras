@@ -121,6 +121,18 @@
   <data name="xflash_emmc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\xflash_emmc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Paypal_Button_v2_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paypal-Button-v2-Black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key_X" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_X.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Build" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Build.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="usb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\usb-3d-logo_0CT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bitcoin_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bitcoin-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,8 +142,14 @@
   <data name="perfecto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\perfecto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clipboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clipboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="key_U" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_U.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key_LT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_LT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="legend" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\legend.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,8 +157,11 @@
   <data name="hourglass_clock" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hourglass_clock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="goodbye" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\goodbye.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="clipboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clipboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_9_av_play" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\9_av_play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Error.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -148,17 +169,26 @@
   <data name="mtx" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mtx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="key_Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_Y.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="chime" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chime.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="JR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key_A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="xflash_spi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\xflash_spi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Project3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Project3.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="flattr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\flattr.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Paypal_Button_v2_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Paypal-Button-v2-Black.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="usboff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\usboff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,11 +196,11 @@
   <data name="sonuslogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sonuslogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btn_donate_LG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_donate_LG.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="save_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save_icon.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_9_av_play" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\9_av_play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="good" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\good.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,17 +211,23 @@
   <data name="average" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\average.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flattr_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\flattr_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="key_RB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_RB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="usb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\usb-3d-logo_0CT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="greencheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greencheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_donate_LG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_donate_LG.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="key_LB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_LB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NANDX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Project3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="key_R" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_R.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key_L" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_L.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="goodbye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goodbye.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="bitcoin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bitcoin.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,55 +244,25 @@
   <data name="paypal_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paypal-icon.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="legend" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\legend.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="JR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\JR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Project3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Project3.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Build" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Build.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="key_A" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="key_B" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="key_LB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_LB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="key_LT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_LT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="key_RB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_RB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="NANDX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Project3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="key_RT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\key_RT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="key_X" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_X.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="key_Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_Y.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flattr_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flattr_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="key_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\key_D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="key_L" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_L.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="key_B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="key_R" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_R.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow_dn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_dn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="key_U" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_U.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="greencheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\greencheck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow_dn_hot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_dn_hot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -73,6 +73,26 @@ namespace JRunner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_dn {
+            get {
+                object obj = ResourceManager.GetObject("arrow_dn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_dn_hot {
+            get {
+                object obj = ResourceManager.GetObject("arrow_dn_hot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap average {
             get {
                 object obj = ResourceManager.GetObject("average", resourceCulture);
@@ -121,7 +141,7 @@ namespace JRunner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12-28-2021 21:48:17 
+        ///   Looks up a localized string similar to 01-21-2022 00:21:15 
         ///.
         /// </summary>
         internal static string Build {

@@ -50,7 +50,8 @@
             this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
             this.chkAdv = new System.Windows.Forms.CheckBox();
             this.radiobtnCorona = new System.Windows.Forms.RadioButton();
-            this.radioBtnCorona4gb = new System.Windows.Forms.RadioButton();
+            this.radiobtnCorona4gb = new System.Windows.Forms.RadioButton();
+            this.radiobtnTrinityBB = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -108,9 +109,9 @@
             this.radiobtnJasperSB.AutoSize = true;
             this.radiobtnJasperSB.Location = new System.Drawing.Point(12, 215);
             this.radiobtnJasperSB.Name = "radiobtnJasperSB";
-            this.radiobtnJasperSB.Size = new System.Drawing.Size(268, 17);
+            this.radiobtnJasperSB.Size = new System.Drawing.Size(187, 17);
             this.radiobtnJasperSB.TabIndex = 4;
-            this.radiobtnJasperSB.Text = "Jasper 16MB (Small Block Controller / 0x01198010)";
+            this.radiobtnJasperSB.Text = "Jasper 16MB (XSB / 0x01198010)";
             this.radiobtnJasperSB.UseVisualStyleBackColor = true;
             this.radiobtnJasperSB.Visible = false;
             // 
@@ -137,7 +138,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(12, 242);
+            this.btnOk.Location = new System.Drawing.Point(13, 263);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 9;
@@ -148,7 +149,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(195, 242);
+            this.btnCancel.Location = new System.Drawing.Point(196, 263);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(79, 23);
             this.btnCancel.TabIndex = 10;
@@ -200,7 +201,7 @@
             this.toolTip1.SetToolTip(this.checkBox2MB, resources.GetString("checkBox2MB.ToolTip"));
             this.checkBox2MB.UseVisualStyleBackColor = true;
             this.checkBox2MB.Visible = false;
-            this.checkBox2MB.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox2MB.CheckedChanged += new System.EventHandler(this.checkBox2MB_CheckedChanged);
             // 
             // chkAdv
             // 
@@ -223,15 +224,26 @@
             this.radiobtnCorona.Text = "Corona 16MB";
             this.radiobtnCorona.UseVisualStyleBackColor = true;
             // 
-            // radioBtnCorona4gb
+            // radiobtnCorona4gb
             // 
-            this.radioBtnCorona4gb.AutoSize = true;
-            this.radioBtnCorona4gb.Location = new System.Drawing.Point(12, 192);
-            this.radioBtnCorona4gb.Name = "radioBtnCorona4gb";
-            this.radioBtnCorona4gb.Size = new System.Drawing.Size(83, 17);
-            this.radioBtnCorona4gb.TabIndex = 19;
-            this.radioBtnCorona4gb.Text = "Corona 4GB";
-            this.radioBtnCorona4gb.UseVisualStyleBackColor = true;
+            this.radiobtnCorona4gb.AutoSize = true;
+            this.radiobtnCorona4gb.Location = new System.Drawing.Point(12, 192);
+            this.radiobtnCorona4gb.Name = "radiobtnCorona4gb";
+            this.radiobtnCorona4gb.Size = new System.Drawing.Size(83, 17);
+            this.radiobtnCorona4gb.TabIndex = 19;
+            this.radiobtnCorona4gb.Text = "Corona 4GB";
+            this.radiobtnCorona4gb.UseVisualStyleBackColor = true;
+            // 
+            // radiobtnTrinityBB
+            // 
+            this.radiobtnTrinityBB.AutoSize = true;
+            this.radiobtnTrinityBB.Location = new System.Drawing.Point(12, 238);
+            this.radiobtnTrinityBB.Name = "radiobtnTrinityBB";
+            this.radiobtnTrinityBB.Size = new System.Drawing.Size(70, 17);
+            this.radiobtnTrinityBB.TabIndex = 20;
+            this.radiobtnTrinityBB.Text = "Trinity BB";
+            this.radiobtnTrinityBB.UseVisualStyleBackColor = true;
+            this.radiobtnTrinityBB.Visible = false;
             // 
             // ConsoleTypes
             // 
@@ -240,9 +252,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(287, 277);
+            this.ClientSize = new System.Drawing.Size(287, 296);
             this.ControlBox = false;
-            this.Controls.Add(this.radioBtnCorona4gb);
+            this.Controls.Add(this.radiobtnTrinityBB);
+            this.Controls.Add(this.radiobtnJasperSB);
+            this.Controls.Add(this.radiobtnCorona4gb);
             this.Controls.Add(this.radiobtnCorona);
             this.Controls.Add(this.chkAdv);
             this.Controls.Add(this.checkBox2MB);
@@ -253,7 +267,6 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.radiobtnJasper512);
             this.Controls.Add(this.radiobtnJasper256);
-            this.Controls.Add(this.radiobtnJasperSB);
             this.Controls.Add(this.radiobtnJasper);
             this.Controls.Add(this.radiobtnZephyr);
             this.Controls.Add(this.radiobtnFalcon);
@@ -299,6 +312,7 @@
         private System.Windows.Forms.ToolTip toolTip4;
         private System.Windows.Forms.CheckBox chkAdv;
         private System.Windows.Forms.RadioButton radiobtnCorona;
-        private System.Windows.Forms.RadioButton radioBtnCorona4gb;
+        private System.Windows.Forms.RadioButton radiobtnCorona4gb;
+        private System.Windows.Forms.RadioButton radiobtnTrinityBB;
     }
 }

@@ -158,13 +158,14 @@ namespace JRunner
             new consoles(2, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0),
             new consoles(3, "zephyr", "zephyr", "Zephyr", 16, Nandsize.S16, 0),
             new consoles(4, "jasper", "jasper", "Jasper 16MB", 16, Nandsize.S16, 1),
-            new consoles(5, "jaspersb", "jasper", "Jasper SB 16MB", 16, Nandsize.S16, 0),
+            new consoles(5, "jaspersb", "jasper", "Jasper SB", 16, Nandsize.S16, 0),
             new consoles(6, "jasper256", "jasper", "Jasper 256MB", 256, Nandsize.S256, 2),
             new consoles(7, "jasper512", "jasper", "Jasper 512MB", 512, Nandsize.S512, 2),
             new consoles(8, "xenon", "xenon", "Xenon", 16, Nandsize.S16, 0),
             new consoles(9, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0), // Previously Opus but that is stupid because Opus is Falcon
             new consoles(10, "corona", "corona", "Corona 16MB", 16, Nandsize.S16, 0),
             new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
+            new consoles(12, "trinitybb", "trinity", "Trinity BB", 16, Nandsize.S16, 1),
         };
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
         {
@@ -231,13 +232,13 @@ namespace JRunner
         public static int smcmbtype = 0x0;
         public static string flashconfig = "";
 
-        public static string DGX_trinity = "TRINITY";
-        public static string DGX_falcon = "FALCON";
-        public static string DGX_zephyr = "ZEPHYR";
-        public static string DGX_jasper = "JASPER";
-        public static string DGX_xenon = "XENON_V2";
-        public static string DGX_corona = "CORONA_16MB";
-        public static string DGX_corona4GB = "CORONA_4GB";
+        public static string RGX_trinity = "TRINITY";
+        public static string RGX_falcon = "FALCON";
+        public static string RGX_zephyr = "ZEPHYR";
+        public static string RGX_jasper = "JASPER";
+        public static string RGX_xenon = "XENON_V2";
+        public static string RGX_corona = "CORONA_16MB";
+        public static string RGX_corona4GB = "CORONA_4GB";
 
         public static string RGH3_trinity = "TRINITY_RGH3";
         public static string RGH3_falcon = "FALCON_RGH3";

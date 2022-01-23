@@ -122,7 +122,7 @@ namespace JRunner.Panels
                 // KV Info
                 txtconsole.Text = name;
 
-                if (!String.IsNullOrWhiteSpace(nand._cpukey))
+                if (!String.IsNullOrWhiteSpace(nand._cpukey) && nand.ki.serial.Length > 0)
                 {
                     string mfrraw = nand.ki.mfdate;
                     try

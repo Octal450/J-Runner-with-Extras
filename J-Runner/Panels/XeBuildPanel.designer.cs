@@ -572,6 +572,7 @@
             this.chkBigffs.Text = "bigffs";
             this.toolTip1.SetToolTip(this.chkBigffs, "Only for 64MB and large NAND sizes");
             this.chkBigffs.UseVisualStyleBackColor = true;
+            this.chkBigffs.CheckedChanged += new System.EventHandler(this.chkBigffs_CheckedChanged);
             // 
             // chkWB4G
             // 
