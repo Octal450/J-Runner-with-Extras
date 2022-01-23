@@ -35,7 +35,7 @@ namespace JRunner
 
             sc = board + ".bin";
 
-            Process pProcess = new System.Diagnostics.Process();
+            Process pProcess = new Process();
             pProcess.StartInfo.FileName = variables.pathforit + @"\xeBuild\XDKbuild\XDKbuild.exe";
             pProcess.StartInfo.Arguments = "\"" + filename + "\" " + key1bl_options + " " + sc;
             pProcess.StartInfo.UseShellExecute = false;
@@ -67,10 +67,8 @@ namespace JRunner
                 if (pProcess.HasExited)
                 {
                     pProcess.CancelOutputRead();
+                    Console.WriteLine("XDKbuild Conversion Finished!");
                     Console.WriteLine("Remember to program a compatible timing file!");
-                    Console.WriteLine("---------------------------------------------------------------");
-                    Console.WriteLine("    XDKbuild Finished. Have a nice day.");
-                    Console.WriteLine("---------------------------------------------------------------");
                     MainForm.mainForm.xPanel.xeExitActual();
                 }
             }

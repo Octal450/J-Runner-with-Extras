@@ -480,12 +480,12 @@
             // 
             // btnaccept
             // 
-            this.btnaccept.Location = new System.Drawing.Point(184, 484);
+            this.btnaccept.Location = new System.Drawing.Point(206, 485);
             this.btnaccept.Name = "btnaccept";
             this.btnaccept.Size = new System.Drawing.Size(75, 23);
             this.btnaccept.TabIndex = 37;
             this.btnaccept.Text = "OK";
-            this.btnaccept.UseVisualStyleBackColor = false;
+            this.btnaccept.UseVisualStyleBackColor = true;
             this.btnaccept.Click += new System.EventHandler(this.btnaccept_Click);
             // 
             // label2
@@ -1247,7 +1247,7 @@
             // chksettings
             // 
             this.chksettings.AutoSize = true;
-            this.chksettings.Location = new System.Drawing.Point(292, 488);
+            this.chksettings.Location = new System.Drawing.Point(321, 489);
             this.chksettings.Name = "chksettings";
             this.chksettings.Size = new System.Drawing.Size(95, 17);
             this.chksettings.TabIndex = 41;

@@ -186,6 +186,11 @@ namespace JRunner.Panels
             else if (rbtnDevGL.Checked) rbtnDevGL.Checked = false;
             checkAvailableHackTypes();
             tabControl1.SelectedTab = Xebuild;
+            for (int i = 0; i < chkListBoxPatches.Items.Count; i++)
+            {
+                chkListBoxPatches.SetItemChecked(i, false);
+            }
+            chkxesettings.Checked = false;
         }
 
         public void setMBname(string txt)

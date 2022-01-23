@@ -25,7 +25,7 @@ namespace JRunner
             else if (board == "Falcon") ecc = variables.RGH3_falcon + mhz;
             else
             {
-                Console.WriteLine("RGH3: Unsupported Console Type");
+                Console.WriteLine("RGH3 Failed: Unsupported Console Type");
                 variables.xefinished = true;
                 MainForm.mainForm.xPanel.xeExitActual();
                 return;
@@ -35,7 +35,7 @@ namespace JRunner
 
             Classes.RGH2to3.ConvertRgh2ToRgh3(Path.Combine(variables.pathforit, "common", "ECC", ecc + ".ecc"), filename, cpuKey, filename);
 
-            Console.WriteLine("RGH3: Conversion Successful");
+            Console.WriteLine("RGH3 Conversion Finished!");
 
             variables.xefinished = true;
             MainForm.mainForm.xPanel.xeExitActual();

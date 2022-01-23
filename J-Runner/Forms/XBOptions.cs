@@ -179,9 +179,6 @@ namespace JRunner
                 }
                 File.Copy(file, filename, true);
                 parse_ini.edit_ini(filename, options.ToArray(), delete);
-
-                //ThreadStart starter = delegate { parse_ini.edit_ini(filename, options.ToArray(), delete); };
-                //new Thread(starter).Start(); 
             }
             else
             {
