@@ -78,7 +78,6 @@ namespace JRunner.Panels
         public void setImage(Image m)
         {
             pBoxDevice.Image = m;
-
         }
 
         public delegate void ClickedRead();

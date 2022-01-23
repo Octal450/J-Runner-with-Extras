@@ -304,7 +304,8 @@ namespace JRunner
 
             try // It'll fail if the thing doesn't exist
             {
-                updateDevice();
+                if (updateDevice != null)
+                    updateDevice();
             }
             catch
             {
@@ -950,8 +951,10 @@ namespace JRunner
         {
             string file = "";
             if (filex == "") return;
-            if (device == 3) file = variables.pathforit + @"\common\svf\" + filex + ".svf";
-            else file = variables.pathforit + @"\common\xsvf\" + filex + ".xsvf";
+            if (device == 3)
+                file = variables.pathforit + @"\common\svf\" + filex + ".svf";
+            else
+                file = variables.pathforit + @"\common\xsvf\" + filex + ".xsvf";
 
             Console.WriteLine("Programming Glitch Chip");
 
@@ -2009,7 +2012,7 @@ namespace JRunner
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 nandInfo.change_tab();
-                progressBar.Value = progressBar.Maximum / 2;
+                updateProgress(progressBar.Maximum / 2);
                 nand = new Nand.PrivateN(variables.filename1, variables.cpkey);
                 if (!nand.ok) return;
 
@@ -2075,7 +2078,7 @@ namespace JRunner
 
                 nandInfo.setNand(nand);
 
-                progressBar.Value = (progressBar.Maximum / 4) * 3; // 75%
+                updateProgress((progressBar.Maximum / 4) * 3); // 75%
 
                 if (variables.debugme) Console.WriteLine("----------------------");
                 variables.ctyp = variables.cunts[0];
@@ -2118,7 +2121,7 @@ namespace JRunner
                 Console.WriteLine("Nand Initialization Finished");
                 Console.WriteLine("");
 
-                progressBar.Value = progressBar.Maximum;
+                updateProgress(progressBar.Maximum);
                 if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
                 if (variables.debugme) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
                 if (variables.debugme) Console.WriteLine(variables.filename1.Contains(variables.outfolder));
@@ -2138,7 +2141,7 @@ namespace JRunner
                 Console.WriteLine("The dump may be incomplete or corrupt");
                 if (variables.debugme) Console.WriteLine(ex.ToString());
                 Console.WriteLine("");
-                progressBar.Value = progressBar.Minimum;
+                updateProgress(progressBar.Minimum);
                 return;
             }
         }
@@ -3578,7 +3581,8 @@ namespace JRunner
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
             try // It'll fail if the thing doesn't exist
             {
-                updateDevice();
+                if (updateDevice != null)
+                    updateDevice();
             }
             catch
             {
