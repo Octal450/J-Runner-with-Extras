@@ -901,8 +901,8 @@
     <None Include="Resources\bitcoin.jpg" />
     <None Include="Resources\goodbye.wav" />
     <None Include="Resources\BASSMOD.dll" />
-    <None Include="Resources\Build.txt" />
     <None Include="Resources\greencheck.png" />
+    <Content Include="Resources\Build.txt" />
     <Content Include="Resources\hourglass_clock.png" />
     <None Include="Resources\sonuslogo.png" />
     <EmbeddedResource Include="Resources\LPT_XSVF_Player.exe" />
@@ -927,7 +927,7 @@
   <Import Project="..\packages\Fody.6.6.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.6.0\build\Fody.targets')" />
   <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" />
   <PropertyGroup>
-    <PreBuildEvent>"$(ProjectDir)update_build_datetime.bat" "$(ProjectDir)Resources\Build.txt"</PreBuildEvent>
+    <PreBuildEvent>"$(ProjectDir)UpdateBuildDatetime.exe" "$(ProjectDir)Resources\Build.txt"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
