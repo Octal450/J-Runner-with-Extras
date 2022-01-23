@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace JRunner
 {
-    public class PicoFlasher
+    public class PicoFlasher : IISD
     {
         public bool InUse = false;
 
@@ -424,6 +424,219 @@ namespace JRunner
                 success.Play();
             });
             writerThread.Start();
+        }
+
+        public int Open()
+        {
+            return 1;
+        }
+
+        public int Close()
+        {
+            return 1;
+        }
+
+        public int PowerUp()
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return 0;
+
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.ISD1200_INIT;
+            cmd.lba = 0;
+
+            SendCmd(serial, cmd);
+
+            int ret = RecvUInt8(serial);
+
+            CloseSerial(serial);
+            return ret == 0 ? 1 : 0;
+        }
+
+        public int GetID()
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return 0;
+
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.ISD1200_READ_ID;
+            cmd.lba = 0;
+
+            SendCmd(serial, cmd);
+
+            int id = RecvUInt8(serial);
+
+            CloseSerial(serial);
+
+            if (id == 0x01)
+            {
+                return 1;
+            }
+            else if (id == 0x10)
+            {
+                return 2;
+            }
+            else if (id == 0x11)
+            {
+                return 3;
+            }
+
+            return 0;
+        }
+
+        public void PowerDown()
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return;
+
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.ISD1200_DEINIT;
+            cmd.lba = 0;
+
+            SendCmd(serial, cmd);
+
+            RecvUInt8(serial);
+
+            CloseSerial(serial);
+        }
+
+        public void Reset()
+        {
+
+        }
+
+        public int ISD_Read_Flash(string filename)
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return 0;
+
+            if (File.Exists(filename))
+            {
+                if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                {
+                    Console.WriteLine("Cancelled");
+                    Console.WriteLine("");
+                    return 0;
+                };
+            }
+
+            BinaryWriter bw = new BinaryWriter(File.Open(filename, FileMode.Append, FileAccess.Write));
+
+            for (uint i = 0; i < 0xB000 / 512; i++)
+            {
+                CMD cmd = new CMD();
+                cmd.cmd = COMMANDS.ISD1200_READ_FLASH;
+                cmd.lba = i;
+
+                SendCmd(serial, cmd);
+
+                byte[] rxbuffer = new byte[512];
+                int got = 0;
+                while (got < 4)
+                    got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
+
+                bw.Write(rxbuffer);
+
+                // MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x100).ToString("X"), (int)((i * 100) / (0xB000 / 512)));
+            }
+
+            bw.Close();
+
+            CloseSerial(serial);
+
+            return 1;
+        }
+
+        public int ISD_Erase_Flash()
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return 0;
+
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.ISD1200_ERASE_FLASH;
+            cmd.lba = 0;
+
+            SendCmd(serial, cmd);
+
+            int ret = RecvUInt8(serial);
+
+            CloseSerial(serial);
+            return ret == 0 ? 1 : 0;
+        }
+
+        public void ISD_Write_Flash(string filename)
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return;
+
+            BinaryReader br = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
+
+            for (uint i = 0; i < 0xB000 / 16; i++)
+            {
+                byte[] read = br.ReadBytes(16);
+                if (read == null || read.Length != 16)
+                    break;
+
+                CMD cmd = new CMD();
+                cmd.cmd = COMMANDS.ISD1200_WRITE_FLASH;
+                cmd.lba = i;
+
+                int size = Marshal.SizeOf(cmd) + read.Length;
+                byte[] arr = new byte[size];
+                IntPtr ptr = Marshal.AllocHGlobal(size);
+                Marshal.StructureToPtr(cmd, ptr, true);
+                Marshal.Copy(ptr, arr, 0, size);
+                Marshal.FreeHGlobal(ptr);
+                read.CopyTo(arr, Marshal.SizeOf(cmd));
+                serial.Write(arr, 0, arr.Length);
+
+                UInt32 ret = RecvUInt32(serial);
+                if (ret != 0)
+                {
+                    Console.WriteLine("Error: " + ret.ToString("X"));
+                    Console.WriteLine("");
+                    break;
+                }
+
+                // MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x100).ToString("X"), (int)((i * 100) / (0xB000 / 512)));
+            }
+
+            br.Close();
+
+            CloseSerial(serial);
+        }
+
+        public void ISD_Verify_Flash(string filename)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ISD_Play(ushort index)
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return;
+
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.ISD1200_PLAY_VOICE;
+            cmd.lba = index;
+
+            SendCmd(serial, cmd);
+
+            RecvUInt8(serial);
+
+            CloseSerial(serial);
+        }
+
+        public void ISD_Exec(ushort index)
+        {
+            throw new NotImplementedException();
         }
     }
 }

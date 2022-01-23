@@ -199,6 +199,7 @@
             this.toolTip1.SetToolTip(this.btnRead, "Read the sound file from the console\r\n");
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
+            this.btnRead.Enabled = false;
             // 
             // btnWrite
             // 
@@ -210,6 +211,7 @@
             this.toolTip1.SetToolTip(this.btnWrite, "Writes the file shown in the box below to the console");
             this.btnWrite.UseVisualStyleBackColor = true;
             this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
+            this.btnWrite.Enabled = false;
             // 
             // btnVerify
             // 
@@ -221,6 +223,7 @@
             this.toolTip1.SetToolTip(this.btnVerify, "This checks the file on the console\r\n against the file on your PC");
             this.btnVerify.UseVisualStyleBackColor = true;
             this.btnVerify.Click += new System.EventHandler(this.btnVerify_Click);
+            this.btnVerify.Enabled = false;
             // 
             // btnFile
             // 
@@ -285,11 +288,11 @@
             this.toolTip1.SetToolTip(this.veraftreadchk, "will auto verify after a write");
             this.veraftreadchk.UseVisualStyleBackColor = true;
             this.veraftreadchk.CheckedChanged += new System.EventHandler(this.veraftreadchk_CheckedChanged);
+            this.veraftreadchk.Enabled = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Enabled = false;
-            this.pictureBox1.Image = global::JRunner.Properties.Resources.sonuslogo;
             this.pictureBox1.Location = new System.Drawing.Point(29, 8);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(355, 63);
@@ -652,7 +655,7 @@
             this.Name = "SoundEditor";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Xecuter Sonus 360 Editor";
+            this.Text = "Sound Editor";
             this.Load += new System.EventHandler(this.SoundEditor_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SoundEditor_KeyUp);
             this.groupBox1.ResumeLayout(false);

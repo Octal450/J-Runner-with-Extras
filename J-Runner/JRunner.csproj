@@ -397,6 +397,8 @@
     <Compile Include="HexEdit\NativeMethods.cs" />
     <Compile Include="HexEdit\Util.cs" />
     <Compile Include="ISD\AudioWriters.cs" />
+    <Compile Include="ISD\IISD.cs" />
+    <Compile Include="ISD\Sonus360.cs" />
     <Compile Include="ISD\WaveNative.cs" />
     <Compile Include="ISD\WaveStream.cs" />
     <Compile Include="ISD\WaveWriter.cs" />

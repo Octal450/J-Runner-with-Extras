@@ -88,7 +88,7 @@ namespace JRunner
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSTMonitorRATERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMMonitorAdvancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sonus360EditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SoundEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.rescanDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTXUSBFirmwareUtilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -661,7 +661,7 @@ namespace JRunner
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pOSTMonitorRATERToolStripMenuItem,
             this.cOMMonitorAdvancedToolStripMenuItem,
-            this.sonus360EditorToolStripMenuItem,
+            this.SoundEditorToolStripMenuItem,
             this.toolStripMenuItem3,
             this.rescanDevicesToolStripMenuItem,
             this.mTXUSBFirmwareUtilityToolStripMenuItem,
@@ -686,12 +686,12 @@ namespace JRunner
             this.cOMMonitorAdvancedToolStripMenuItem.Text = "COM Monitor";
             this.cOMMonitorAdvancedToolStripMenuItem.Click += new System.EventHandler(this.btnCOM_Click);
             // 
-            // sonus360EditorToolStripMenuItem
+            // SoundEditorToolStripMenuItem
             // 
-            this.sonus360EditorToolStripMenuItem.Name = "sonus360EditorToolStripMenuItem";
-            this.sonus360EditorToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.sonus360EditorToolStripMenuItem.Text = "Sonus360";
-            this.sonus360EditorToolStripMenuItem.Click += new System.EventHandler(this.sonus360EditorToolStripMenuItem_Click);
+            this.SoundEditorToolStripMenuItem.Name = "SoundEditorToolStripMenuItem";
+            this.SoundEditorToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.SoundEditorToolStripMenuItem.Text = "Sound Editor";
+            this.SoundEditorToolStripMenuItem.Click += new System.EventHandler(this.SoundEditorToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -1311,7 +1311,7 @@ namespace JRunner
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripMenuItem logPostToolStripMenuItem;
         private ToolStripMenuItem pOSTMonitorRATERToolStripMenuItem;
-        private ToolStripMenuItem sonus360EditorToolStripMenuItem;
+        private ToolStripMenuItem SoundEditorToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem3;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;

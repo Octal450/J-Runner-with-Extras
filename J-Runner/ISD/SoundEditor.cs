@@ -1,6 +1,5 @@
 ﻿using EricOulashin;
-using LibUsbDotNet;
-using LibUsbDotNet.Main;
+using LibUsbDotNet.DeviceNotify;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -10,20 +9,22 @@ using System.Windows.Forms;
 using WaveLib;
 using Yeti.MMedia;
 
-
 namespace JRunner.Forms
 {
     public partial class SoundEditor : Form
     {
-
-        private UsbDevice MyUsbDevice;
-        private UsbDeviceFinder JRunner = new UsbDeviceFinder(0x11d4, 0x8338);
+        private IDeviceNotifier devNotifier;
 
         public SoundEditor()
         {
             InitializeComponent();
         }
-
+        void log(string text)
+        {
+            txtOutput.Invoke((MethodInvoker)delegate {
+                txtOutput.AppendText(text + "\r\n");
+            });
+        }
         enum ISD_Function : byte
         {
             read = 0x1,
@@ -36,464 +37,7 @@ namespace JRunner.Forms
             play_custom3
         }
 
-        private void coolfun()
-        {
-            for (int i = 25; i > 0; i--)
-            {
-                this.pictureBox1.Visible = false;
-                Thread.Sleep(i * 5);
-                this.pictureBox1.Visible = true;
-                Thread.Sleep(i * 5);
-            }
-        }
-
-        private int Intro()
-        {
-            UsbSetupPacket packet = new UsbSetupPacket();
-            UsbSetupPacket packetread = new UsbSetupPacket();
-
-            byte[] readBuffer = new byte[8];
-            byte buf = 0x10;
-            int transfer = 0x08;
-
-            packet.Value = 0x00;
-            packet.Index = 0x00;
-            packet.Length = 0x8;
-            packet.Request = 0x30;
-            packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-            packetread.Value = 0x00;
-            packetread.Index = 0x00;
-            packetread.Length = 0x8;
-            packetread.Request = 0x31;
-            packetread.RequestType = 0xC0;
-
-            ///Access Flash
-            txtOutput.AppendText("Sending Flash Init...\n");
-            MyUsbDevice.ControlTransfer(ref packet, buf, 1, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-
-            MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-            txtOutput.AppendText("Status: 0x" + readBuffer[0] + "\n");
-
-            if (readBuffer[0] == 0x80 || readBuffer[0] == 0x60) return 1;
-            else return 0;
-        }
-        private int GetID()
-        {
-            UsbSetupPacket packet = new UsbSetupPacket();
-            UsbSetupPacket packetread = new UsbSetupPacket();
-
-            byte[] readBuffer = new byte[8];
-            byte buf = 0x48;
-            int transfer = 0x08;
-
-            packet.Value = 0x00;
-            packet.Index = 0x00;
-            packet.Length = 0x8;
-            packet.Request = 0x30;
-            packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-            packetread.Value = 0x00;
-            packetread.Index = 0x00;
-            packetread.Length = 0x8;
-            packetread.Request = 0x31;
-            packetread.RequestType = 0xC0;
-
-            byte[] ID = { 0x03, 0xEF, 0x20, 0x01 };
-            byte[] ID_2 = { 0x03, 0xEF, 0x20, 0x10 };
-            byte[] ID_3 = { 0x03, 0xEF, 0x20, 0x11 };
-
-            txtOutput.AppendText("Sending Flash ID...\n");
-            MyUsbDevice.ControlTransfer(ref packet, buf, 5, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-
-            MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-            if (Oper.ByteArrayCompare(ID, Oper.returnportion(readBuffer, 1, 4)))
-            {
-                txtOutput.AppendText("ISD-2110 detected\n");
-                return 1;
-            }
-            else if (Oper.ByteArrayCompare(ID_2, Oper.returnportion(readBuffer, 1, 4)))
-            {
-                txtOutput.AppendText("ISD-2115 detected\n");
-                return 1;
-            }
-            else if (Oper.ByteArrayCompare(ID_3, Oper.returnportion(readBuffer, 1, 4)))
-            {
-                txtOutput.AppendText("ISD-2130 detected\n");
-                return 1;
-            }
-            else
-            {
-                txtOutput.AppendText("no ISD chip detected\n");
-                txtOutput.AppendText("In " + Oper.ByteArrayToString(readBuffer) + "\n");
-                return 0;
-            }
-        }
-        private void Outro()
-        {
-
-            UsbSetupPacket packet = new UsbSetupPacket();
-            UsbSetupPacket packetread = new UsbSetupPacket();
-
-            byte[] readBuffer = new byte[8];
-            byte buf = 0x12;
-            int transfer = 0x08;
-
-            packet.Value = 0x00;
-            packet.Index = 0x00;
-            packet.Length = 0x8;
-            packet.Request = 0x30;
-            packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-            packetread.Value = 0x00;
-            packetread.Index = 0x00;
-            packetread.Length = 0x8;
-            packetread.Request = 0x31;
-            packetread.RequestType = 0xC0;
-
-            txtOutput.AppendText("Sending Flash de-Init...\n");
-            MyUsbDevice.ControlTransfer(ref packet, buf, 1, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-
-            MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-            txtOutput.AppendText("Status: 0x" + readBuffer[0] + "\n");
-
-
-
-            if (readBuffer[0] == 0x61) Thread.Sleep(2000);
-        }
-        private void Normal()
-        {
-            UsbSetupPacket packet = new UsbSetupPacket();
-            UsbSetupPacket packetread = new UsbSetupPacket();
-
-            byte[] readBuffer = new byte[8];
-            byte buf = 0x14;
-            int transfer = 0x08;
-
-            packet.Value = 0x00;
-            packet.Index = 0x00;
-            packet.Length = 0x8;
-            packet.Request = 0x30;
-            packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-            packetread.Value = 0x00;
-            packetread.Index = 0x00;
-            packetread.Length = 0x8;
-            packetread.Request = 0x31;
-            packetread.RequestType = 0xC0;
-
-            txtOutput.AppendText("Setting ISD to normal mode..\n");
-            MyUsbDevice.ControlTransfer(ref packet, buf, 1, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-
-            MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-            txtOutput.AppendText("Status: 0x" + readBuffer[0] + "\n");
-        }
-
-        private void ISD_Read_Flash(string filename)
-        {
-            UsbSetupPacket packet = new UsbSetupPacket();
-            UsbSetupPacket packetread = new UsbSetupPacket();
-            //ErrorCode ec = ErrorCode.None;
-
-            byte[] readBuffer = new byte[8];
-            //Thread.Sleep(variables.delay);
-            packet.Value = 0x00;
-            packet.Index = 0x00;
-            packet.Length = 0x8;
-            packet.Request = 0x30;
-            packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-            packetread.Value = 0x00;
-            packetread.Index = 0x00;
-            packetread.Length = 0x8;
-            packetread.Request = 0x31;
-            packetread.RequestType = 0xC0;
-            int transfer = 0x08;
-
-            try
-            {
-                File.Delete(filename);
-            }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
-
-            BinaryWriter sw = new BinaryWriter(File.Open(filename, FileMode.Append, FileAccess.Write));
-
-            txtOutput.AppendText("Reading from Flash..\n");
-
-            byte[] RES = { 0x60, 0x60, 0x60, 0x60 };
-            byte[] CMD = new byte[8];
-
-            int fails = 0;
-            CMD[0] = 0xA2;
-            for (int i = 0; i < 0xB000; i += 4)
-            {
-                if (variables.escapeloop) break;
-                progressBar1.Value = (i * progressBar1.Maximum) / 0xB000;
-
-                if ((i % 0x400 == 0)) Thread.Sleep(20);
-
-                CMD[3] = (byte)(i & 0x00ff);
-                CMD[2] = (byte)((i & 0xff00) >> 8);
-
-                MyUsbDevice.ControlTransfer(ref packet, CMD, 8, out transfer);
-                Thread.Sleep(variables.delay);
-
-                MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-                if (Oper.ByteArrayCompare(readBuffer, RES, 4))
-                {
-                    sw.Write(Oper.returnportion(readBuffer, 4, 4));
-                    fails = 0;
-                }
-                else
-                {
-                    if (fails == 6)
-                    {
-                        txtOutput.AppendText("\nRead Failed..\n");
-                        break;
-                    }
-                    i -= 4;
-                    Console.Write("X");
-                    fails++;
-                }
-            }
-            progressBar1.Value = progressBar1.Maximum;
-            sw.Close();
-            return;
-        }
-        private void ISD_Erase_Flash()
-        {
-            UsbSetupPacket packet = new UsbSetupPacket();
-            UsbSetupPacket packetread = new UsbSetupPacket();
-
-            byte[] readBuffer = new byte[8];
-            byte[] buf = { 0x26, 0x01 };
-            int transfer = 0x08;
-
-            packet.Value = 0x00;
-            packet.Index = 0x00;
-            packet.Length = 0x8;
-            packet.Request = 0x30;
-            packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-            packetread.Value = 0x00;
-            packetread.Index = 0x00;
-            packetread.Length = 0x8;
-            packetread.Request = 0x31;
-            packetread.RequestType = 0xC0;
-
-            ///Access Flash
-            txtOutput.AppendText("Sending Flash Erase...\n");
-            MyUsbDevice.ControlTransfer(ref packet, buf, 2, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-            Thread.Sleep(variables.delay);
-            MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-            //Console.WriteLine("Status: 0x{0:X}", readBuffer[0]);
-
-            if (readBuffer[0] == 0x60 || readBuffer[0] == 0x60) txtOutput.AppendText("Flash Erased..\n");
-            else if (readBuffer[0] == 0x40 || readBuffer[0] == 0x40) txtOutput.AppendText("Flash Erased..\n");
-            else txtOutput.AppendText("Flash Erase Failed !\n");
-        }
-        private void ISD_Write_Flash(string filename)
-        {
-            long filesize;
-            FileInfo fl = new FileInfo(filename);
-            filesize = fl.Length;
-            if (!File.Exists(filename))
-            {
-                txtOutput.AppendText("Image file not found\n");
-                return;
-            }
-            if (filesize != 0xB000)
-            {
-                txtOutput.AppendText("Image file must be 44Kb\n");
-                return;
-            }
-            try
-            {
-                BinaryReader rw = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
-
-                txtOutput.AppendText("Writing to Flash.." + filename + "\n");
-
-                UsbSetupPacket packet = new UsbSetupPacket();
-                UsbSetupPacket packetread = new UsbSetupPacket();
-                //ErrorCode ec = ErrorCode.None;
-
-                byte[] readBuffer = new byte[8];
-                //Thread.Sleep(variables.delay);
-                packet.Value = 0x00;
-                packet.Index = 0x00;
-                packet.Length = 0x8;
-                packet.Request = 0x30;
-                packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-                packetread.Value = 0x00;
-                packetread.Index = 0x00;
-                packetread.Length = 0x8;
-                packetread.Request = 0x31;
-                packetread.RequestType = 0xC0;
-                int transfer = 0x08;
-                int AddPause = 0;
-                int stayPause = 0;
-                byte[] RES = { 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60 };
-                byte[] CMD = new byte[8];
-                CMD[0] = 0xA0;
-
-                for (int i = 0; i < 0xB000; i += 4)
-                {
-                    if (variables.escapeloop) break;
-                    progressBar1.Value = (i * progressBar1.Maximum) / 0xB000;
-                    if (AddPause != 0) stayPause++;
-                    AddPause = 0;
-
-                    byte[] buffer = rw.ReadBytes(0x4);
-                    CMD[4] = 0x00; CMD[5] = 0x00; CMD[6] = 0x00; CMD[7] = 0x00;
-
-                    Buffer.BlockCopy(buffer, 0, CMD, 4, buffer.Length);
-
-                    CMD[3] = (byte)(i & 0x00ff);
-                    CMD[2] = (byte)((i & 0xff00) >> 8);
-
-                    MyUsbDevice.ControlTransfer(ref packet, CMD, 8, out transfer);
-                    Thread.Sleep(variables.delay + stayPause);
-                    MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-                    while (!Oper.ByteArrayCompare(readBuffer, RES, 5))
-                    {
-                        AddPause += 2;
-                        Thread.Sleep(variables.delay + AddPause + stayPause);
-                        MyUsbDevice.ControlTransfer(ref packet, CMD, 8, out transfer);
-                        Thread.Sleep(variables.delay + AddPause + stayPause);
-                        MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-                        txtOutput.AppendText("byte mismatch, retrying..\n");
-                        if (variables.debugme) Console.WriteLine("Slowing down...");
-                        if (variables.debugme) Console.WriteLine("additional delay now set to :" + AddPause);
-
-                        if (AddPause > 16)
-                        {
-                            variables.escapeloop = true;
-                            txtOutput.AppendText("Write Failed\n");
-                            ThreadStart starter = delegate { escapedloop(); };
-                            new Thread(starter).Start();
-                            break;
-                        }
-                    }
-                    //if (!NandX.ByteArrayCompare(readBuffer, RES, 5))
-                    //{
-                    //    i -= 4;
-                    //    Console.Write("X");
-                    //}
-                }
-
-                if (stayPause > 0) Console.WriteLine("Consider changing delay in setting page to : " + (variables.delay + 1));
-                progressBar1.Value = progressBar1.Maximum;
-                rw.Close();
-            }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
-        }
-        private void ISD_Verify_Flash(string filename)
-        {
-            long filesize;
-            FileInfo fl = new FileInfo(filename);
-            filesize = fl.Length;
-            if (!File.Exists(filename))
-            {
-                txtOutput.AppendText("Image file not found\n");
-                return;
-            }
-            if (filesize != 0xB000)
-            {
-                txtOutput.AppendText("Image file must be 44Kb\n");
-                return;
-            }
-            BinaryReader rw = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
-            byte[] file = rw.ReadBytes(0xB000);
-            rw.Close();
-            txtOutput.AppendText("Verifying with Flash..\n");
-
-            UsbSetupPacket packet = new UsbSetupPacket();
-            UsbSetupPacket packetread = new UsbSetupPacket();
-            //ErrorCode ec = ErrorCode.None;
-
-            byte[] readBuffer = new byte[8];
-            byte[] data = new byte[0xB000];
-            //Thread.Sleep(variables.delay);
-            packet.Value = 0x00;
-            packet.Index = 0x00;
-            packet.Length = 0x8;
-            packet.Request = 0x30;
-            packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-            packetread.Value = 0x00;
-            packetread.Index = 0x00;
-            packetread.Length = 0x8;
-            packetread.Request = 0x31;
-            packetread.RequestType = 0xC0;
-            int transfer = 0x08;
-
-            byte[] RES = { 0x60, 0x60, 0x60, 0x60 };
-            byte[] CMD = new byte[8];
-
-            int fails = 0;
-            CMD[0] = 0xA2;
-            for (int i = 0; i < 0xB000; i += 4)
-            {
-                if (variables.escapeloop) break;
-                progressBar1.Value = ((i) * progressBar1.Maximum) / 0xB000;
-
-                CMD[3] = (byte)(i & 0x00ff);
-                CMD[2] = (byte)((i & 0xff00) >> 8);
-
-                fails = 0;
-                do
-                {
-                    if (fails == 1) Console.Write("x");
-                    MyUsbDevice.ControlTransfer(ref packet, CMD, 8, out transfer);
-                    Thread.Sleep(variables.delay + fails);
-                    MyUsbDevice.ControlTransfer(ref packetread, readBuffer, 8, out transfer);
-
-                    Buffer.BlockCopy(readBuffer, 4, data, i, 4);
-
-                    if (fails == 6)
-                    {
-                        variables.escapeloop = true;
-
-                        new Thread(escapedloop).Start();
-                        break;
-                    }
-                    fails++;
-                } while (!Oper.ByteArrayCompare(readBuffer, RES, 4));
-            }
-            progressBar1.Value = progressBar1.Maximum;
-
-            if (Oper.ByteArrayCompare(file, data)) txtOutput.AppendText("VERIFIED! Flash matches File..\n");
-            else txtOutput.AppendText("Verify Failed !!..\n");
-        }
-
-        private void ISD_Play(byte[] buf)
-        {
-            UsbSetupPacket packet = new UsbSetupPacket();
-
-            int transfer = 0x08;
-
-            packet.Value = 0x00;
-            packet.Index = 0x00;
-            packet.Length = 0x8;
-            packet.Request = 0x30;
-            packet.RequestType = (byte)UsbRequestType.TypeVendor;
-
-            ///Access Flash
-            txtOutput.AppendText("Playing...\n");
-            MyUsbDevice.ControlTransfer(ref packet, buf, 3, out transfer);
-            if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
-        }
+        private IISD isd = null;
 
         /// <summary>
         /// 1 - read
@@ -508,40 +52,47 @@ namespace JRunner.Forms
         /// <param name="function"></param>
         private void do_stuff(ISD_Function fun, string filename)
         {
-            if (MyUsbDevice != null && MyUsbDevice.IsOpen)
+            if (isd == null)
             {
-                txtOutput.AppendText("Device Already in Use\n");
+                log("No ISD12XX flasher found!\n");
                 return;
             }
+
             try
             {
-                MyUsbDevice = UsbDevice.OpenUsbDevice(JRunner);
-                if (MyUsbDevice == null)
-                {
-                    if (variables.debugme) Console.WriteLine("null device...");
-                    return;
-                }
-                IUsbDevice wholeUsbDevice = MyUsbDevice as IUsbDevice;
-                if (!ReferenceEquals(wholeUsbDevice, null))
-                {
-                    wholeUsbDevice.SetConfiguration(1);
-                    if (variables.debugme) Console.WriteLine("Claiming Interface...");
-                    wholeUsbDevice.ClaimInterface(0);
-                    if (variables.debugme) Console.WriteLine("The Interface is ours!");
-                }
+                isd.Open();
 
                 Stopwatch stopwatch = new Stopwatch();
-                if (Intro() == 0)
+
+                log("Sending Flash Init...\n");
+                if (isd.PowerUp() == 0)
                 {
-                    txtOutput.AppendText("SPI Init Failed !\n");
+                    log("SPI Init Failed !\n");
                     return;
                 }
-                Thread.Sleep(50);
-                if (GetID() == 0)
+
+                log("Sending Flash ID...\n");
+                int dev_id = isd.GetID();
+                if (dev_id == 0)
                 {
-                    txtOutput.AppendText("SPI ID Failed !\n");
+                    log("SPI ID Failed !\n");
+                    log("no ISD chip detected\n");
                     return;
                 }
+                
+                if (dev_id == 1)
+                {
+                    log("ISD2110 detected\n");
+                }
+                else if (dev_id == 2)
+                {
+                    log("ISD2115 detected\n");
+                }
+                else if (dev_id == 3)
+                {
+                    log("ISD2130 detected\n");
+                }
+
                 Thread.Sleep(50);
                 enable(false);
 
@@ -550,56 +101,71 @@ namespace JRunner.Forms
                 switch (fun)
                 {
                     case ISD_Function.read:
-                        ISD_Read_Flash(filename);
+                        log("Reading from Flash..\n");
+                        if (isd.ISD_Read_Flash(filename) == 0)
+                            log("\nRead Failed..\n");
+
                         if (veraftreadchk.Checked)
                         {
                             Thread.Sleep(250);
-                            ISD_Verify_Flash(filename);
+                            isd.ISD_Verify_Flash(filename);
                         }
                         break;
                     case ISD_Function.write:
-                        ISD_Erase_Flash();
+                        log("Sending Flash Erase...\n");
+                        if (isd.ISD_Erase_Flash() != 0)
+                            log("Flash Erased..\n");
+                        else
+                            log("Flash Erase Failed !\n");
+
                         Thread.Sleep(250);
-                        ISD_Write_Flash(filename);
+                        isd.ISD_Write_Flash(filename);
                         if (veraftreadchk.Checked)
                         {
                             Thread.Sleep(250);
-                            ISD_Verify_Flash(filename);
+                            isd.ISD_Verify_Flash(filename);
                         }
                         break;
                     case ISD_Function.verify:
-                        ISD_Verify_Flash(filename);
+                        isd.ISD_Verify_Flash(filename);
                         break;
                     case ISD_Function.play_power:
-                        ISD_Play(new byte[] { 0xA6, 0x00, 0x05 });
+                        log("Playing...\n");
+                        isd.ISD_Play(0x05);
                         Thread.Sleep(2500);
                         break;
                     case ISD_Function.play_eject:
-                        ISD_Play(new byte[] { 0xA6, 0x00, 0x06 });
+                        log("Playing...\n");
+                        isd.ISD_Play(0x06);
                         Thread.Sleep(2500);
                         break;
                     case ISD_Function.play_custom1:
-                        ISD_Play(new byte[] { 0xB0, 0x00, 0x03 });
+                        log("Playing...\n");
+                        isd.ISD_Exec(0x03);
                         Thread.Sleep(2500);
                         break;
                     case ISD_Function.play_custom2:
-                        ISD_Play(new byte[] { 0xB0, 0x00, 0x04 });
+                        log("Playing...\n");
+                        isd.ISD_Exec(0x04);
                         Thread.Sleep(2500);
                         break;
                     case ISD_Function.play_custom3:
-                        ISD_Play(new byte[] { 0xB0, 0x00, 0x05 });
+                        log("Playing...\n");
+                        isd.ISD_Exec(0x05);
                         Thread.Sleep(2500);
                         break;
                     default:
-                        txtOutput.AppendText("You shouldn't be here\n");
+                        log("You shouldn't be here\n");
                         break;
                 }
 
                 stopwatch.Stop();
-                txtOutput.AppendText("Done! Time Elapsed: " + stopwatch.Elapsed.Minutes + ":" + stopwatch.Elapsed.Seconds + "\n");
-                //Console.WriteLine("");
-                Outro();
-                Normal();
+                log("Done! Time Elapsed: " + stopwatch.Elapsed.Minutes + ":" + stopwatch.Elapsed.Seconds + "\n");
+
+                log("Sending Flash de-Init...\n");
+                isd.PowerDown();
+                log("Setting ISD to normal mode..\n");
+                isd.Reset();
                 enable(true);
             }
             catch (Exception ex)
@@ -610,22 +176,8 @@ namespace JRunner.Forms
             }
             finally
             {
-                if (MyUsbDevice != null)
-                {
-                    if (MyUsbDevice.IsOpen)
-                    {
-                        IUsbDevice wholeUsbDevice = MyUsbDevice as IUsbDevice;
-                        if (!ReferenceEquals(wholeUsbDevice, null))
-                        {
-                            wholeUsbDevice.ReleaseInterface(0);
-                        }
-                        MyUsbDevice.Close();
-                    }
-                }
-                MyUsbDevice = null;
-                UsbDevice.Exit();
+                isd.Close();
             }
-            return;
         }
 
         private void btnRead_Click(object sender, EventArgs e)
@@ -675,15 +227,20 @@ namespace JRunner.Forms
 
         private void enable(bool what)
         {
-            if (txtFile.Enabled && what) btnFile.Enabled = what;
-            btnPlayEject.Enabled = what;
-            btnPlayPower.Enabled = what;
-            btnRead.Enabled = what;
-            btnWrite.Enabled = what;
-            btnVerify.Enabled = what;
-            btnCustom1.Enabled = what;
-            btnCustom2.Enabled = what;
-            btnCustom3.Enabled = what;
+            txtFile.BeginInvoke(new Action(() =>
+            {
+                if (txtFile.Enabled && what)
+                    btnFile.Enabled = what;
+                btnPlayEject.Enabled = what;
+                btnPlayPower.Enabled = what;
+                btnRead.Enabled = what;
+                btnWrite.Enabled = what;
+                btnVerify.Enabled = what;
+                btnCustom1.Enabled = what;
+                btnCustom2.Enabled = what;
+                btnCustom3.Enabled = what;
+				veraftreadchk.Enabled = what;
+            }));
         }
         private void loadfile()
         {
@@ -793,8 +350,64 @@ namespace JRunner.Forms
 
         private void SoundEditor_Load(object sender, EventArgs e)
         {
-            new Thread(coolfun).Start();
             updateLogColor();
+            enable(false);
+
+            devNotifier = DeviceNotifier.OpenDeviceNotifier();
+            devNotifier.OnDeviceNotify += onDevNotify;
+
+            if (MainForm.mainForm.IsUsbDeviceConnected("600D", "7001")) // PicoFlasher
+            {
+                pictureBox1.Image = Properties.Resources.picoflasher;
+                isd = new PicoFlasher();
+                enable(true);
+            }
+            if (MainForm.mainForm.IsUsbDeviceConnected("11D4", "8338")) // xFlasher SPI
+            {
+                pictureBox1.Image = Properties.Resources.sonuslogo;
+                isd = new Sonus360();
+                enable(true);
+            }
+
+        }
+        private void onDevNotify(object sender, DeviceNotifyEventArgs e)
+        {
+            try
+            {
+                if (variables.debugme) Console.WriteLine("DevNotify - {0}", e.Device.Name);
+                if (variables.debugme) Console.WriteLine("EventType - {0}", e.EventType);
+                if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival)
+                {
+                    if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001) // PicoFlasher
+                    {
+                        pictureBox1.Image = Properties.Resources.picoflasher;
+                        isd = new PicoFlasher();
+                        enable(true);
+                    }
+                    else if (e.Device.IdVendor == 0x11D4 && e.Device.IdProduct == 0x8338) // JR-Programmer
+                    {
+                        pictureBox1.Image = Properties.Resources.sonuslogo;
+                        isd = new Sonus360();
+                        enable(true);
+                    }
+                }
+                else if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceRemoveComplete)
+                {
+                    if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001)
+                    {
+                        pictureBox1.Image = null;
+                        enable(false);
+                        isd = null;
+                    }
+                    else if(e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8338)
+                    {
+                        pictureBox1.Image = null;
+                        enable(false);
+                        isd = null;
+                    }
+                }
+            }
+            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
