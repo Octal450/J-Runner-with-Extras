@@ -73,6 +73,19 @@ namespace UI
         #endregion
 
         #region appearance
+        public Image BtnImage
+        {
+            get
+            {
+                return Image;
+            }
+            set
+            {
+                Image = value;
+                Invalidate();
+            }
+        }
+
         private void setHot(bool hot) // False sets not hot only if all focus is lost
         {
             if (menuOpen || Focused || hot) isHot = true;
@@ -85,19 +98,6 @@ namespace UI
             else
             {
                 BtnImage = JRunner.Properties.Resources.arrow_dn;
-            }
-        }
-
-        public Image BtnImage
-        {
-            get
-            {
-                return Image;
-            }
-            set
-            {
-                Image = value;
-                Invalidate();
             }
         }
         #endregion
