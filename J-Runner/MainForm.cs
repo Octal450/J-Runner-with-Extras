@@ -31,13 +31,25 @@ namespace JRunner
 {
     public partial class MainForm : Form
     {
+        public enum DEVICE
+        {
+            JR_PROGRAMMER_BOOTLOADER = -1,
+            NO_DEVICE = 0,
+            JR_PROGRAMMER = 1,
+            NAND_X = 2,
+            XFLASHER_SPI = 3,
+            XFLASHER_EMMC = 4,
+            PICOFLASHER = 5,
+        }
+
         #region shitloadofvariables
         public static TextWriter _writer = null;
         public static MainForm mainForm;
         private IDeviceNotifier devNotifier;
-        public int device = 0;
+        public DEVICE device = DEVICE.NO_DEVICE;
         IP myIP = new IP();
         public static Nand.PrivateN nand = new Nand.PrivateN();
+        public PicoFlasher picoflasher = new PicoFlasher();
         public xFlasher xflasher = new xFlasher();
         public Mtx_Usb mtx_usb = new Mtx_Usb();
         public xdkbuild XDKbuild = new xdkbuild();
@@ -251,18 +263,24 @@ namespace JRunner
 
             if (!DemoN.DemonDetected)
             {
-                if (IsUsbDeviceConnected("6010", "0403")) // xFlasher SPI
+                if (IsUsbDeviceConnected("600D", "7001")) // PicoFlasher
+                {
+                    nTools.setImage(Properties.Resources.picoflasher);
+                    PicoFlasherToolStripMenuItem.Visible = true;
+                    device = DEVICE.PICOFLASHER;
+                }
+                else if (IsUsbDeviceConnected("6010", "0403")) // xFlasher SPI
                 {
                     nTools.setImage(Properties.Resources.xflash_spi);
                     xFlasherToolStripMenuItem.Visible = true;
-                    device = 3;
+                    device = DEVICE.XFLASHER_SPI;
                     xflasher.ready = true; // Skip init
                 }
                 else if (IsUsbDeviceConnected("8334", "11D4")) // JR-Programmer Bootloader
                 {
                     nTools.setImage(Properties.Resources.usb);
                     jRPBLToolStripMenuItem.Visible = true;
-                    device = -1;
+                    device = DEVICE.JR_PROGRAMMER_BOOTLOADER;
                 }
                 else
                 {
@@ -280,24 +298,24 @@ namespace JRunner
                                 nTools.setImage(Properties.Resources.NANDX);
                             }
                             nANDXToolStripMenuItem.Visible = true;
-                            device = 2;
+                            device = DEVICE.NAND_X;
                         }
                         else if (devic.Pid == 0x8338 && devic.Vid == 0x11D4) // JR-Programmer
                         {
                             nTools.setImage(Properties.Resources.JRP);
                             jRPToolStripMenuItem.Visible = true;
-                            device = 1;
+                            device = DEVICE.JR_PROGRAMMER;
                         }
                     }
                 }
 
-                if (device == 0) // Must check this after everything else
+                if (device == DEVICE.NO_DEVICE) // Must check this after everything else
                 {
                     if (IsUsbDeviceConnected("AAAA", "8816") || IsUsbDeviceConnected("05E3", "0751")) // xFlasher eMMC
                     {
                         nTools.setImage(Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
-                        device = 4;
+                        device = DEVICE.XFLASHER_EMMC;
                     }
                 }
             }
@@ -534,7 +552,11 @@ namespace JRunner
 
         void xPanel_getmb()
         {
-            if (device == 3)
+            if (device == DEVICE.PICOFLASHER)
+            {
+                picoflasher.getFlashConfig();
+            }
+            else if (device == DEVICE.XFLASHER_SPI)
             {
                 xflasher.getFlashConfig();
             }
@@ -778,7 +800,12 @@ namespace JRunner
                             vnand.read_v2(filename, startblock, length);
                         };
                     }
-                    else if (device == 3)
+                    else if (device == DEVICE.PICOFLASHER)
+                    {
+                        MessageBox.Show("TODO: FIX ME.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else if (device == DEVICE.XFLASHER_SPI)
                     {
                         xflasher.readNand(size, filename, startblock, length);
                     }
@@ -799,7 +826,12 @@ namespace JRunner
                             vnand.erase_v2(startblock, length);
                         };
                     }
-                    else if (device == 3)
+                    else if (device == DEVICE.PICOFLASHER)
+                    {
+                        MessageBox.Show("PicoFlasher can't erase.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else if (device == DEVICE.XFLASHER_SPI)
                     {
                         xflasher.writeNand(size, "erase", 0, startblock, length);
                     }
@@ -821,14 +853,19 @@ namespace JRunner
                             else vnand.write_v2(filename, startblock, length);
                         };
                     }
-                    else if (device == 3)
+                    else if (device == DEVICE.PICOFLASHER)
+                    {
+                        MessageBox.Show("TODO: FIX ME.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else if (device == DEVICE.XFLASHER_SPI)
                     {
                         if (Path.GetExtension(filename) == ".ecc") xflasher.writeNand(16, filename, 1, startblock, length, true);
                         else xflasher.writeNand(size, filename, 0, startblock, length, true);
                     }
                     else
                     {
-                        if (device == 2 && variables.mtxUsbMode)
+                        if (device == DEVICE.NAND_X && variables.mtxUsbMode)
                         {
                             if (Path.GetExtension(filename) == ".ecc") mtx_usb.writeNand(16, filename, 1, startblock, length);
                             else mtx_usb.writeNand(size, filename, 0, startblock, length);
@@ -847,16 +884,21 @@ namespace JRunner
                 {
                     if (nTools.getRbtnUSB())
                     {
-                        if (device == 3)
+                        if (device == DEVICE.PICOFLASHER)
+                        {
+                            MessageBox.Show("PicoFlasher can't write timing.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        else if (device == DEVICE.XFLASHER_SPI)
                         {
                             xflasher.flashSvf(filename);
                         }
-                        else if (device == 4)
+                        else if (device == DEVICE.XFLASHER_EMMC)
                         {
                             MessageBox.Show("Unable to write timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        else if (device == 2 && variables.mtxUsbMode)
+                        else if (device == DEVICE.NAND_X && variables.mtxUsbMode)
                         {
                             mtx_usb.flashXsvf(filename);
                         }
@@ -951,7 +993,7 @@ namespace JRunner
         {
             string file = "";
             if (filex == "") return;
-            if (device == 3)
+            if (device == DEVICE.XFLASHER_SPI)
                 file = variables.pathforit + @"\common\svf\" + filex + ".svf";
             else
                 file = variables.pathforit + @"\common\xsvf\" + filex + ".xsvf";
@@ -966,16 +1008,21 @@ namespace JRunner
             {
                 if (nTools.getRbtnUSB())
                 {
-                    if (device == 3)
+                     if (device == DEVICE.PICOFLASHER)
+                    {
+                        MessageBox.Show("PicoFlasher can't to write timing.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else if(device == DEVICE.XFLASHER_SPI)
                     {
                         xflasher.flashSvf(file);
                     }
-                    else if (device == 4)
+                    else if (device == DEVICE.XFLASHER_EMMC)
                     {
                         MessageBox.Show("Unable to write timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    else if (device == 2 && variables.mtxUsbMode)
+                    else if (device == DEVICE.NAND_X && variables.mtxUsbMode)
                     {
                         mtx_usb.flashXsvf(file);
                     }
@@ -2854,11 +2901,15 @@ namespace JRunner
 
         void btnReadClick()
         {
-            if (device == 3)
+            if (device == DEVICE.PICOFLASHER)
+            {
+                picoflasher.ReadNand(nTools.getNumericIterations());
+            }
+            else if (device == DEVICE.XFLASHER_SPI)
             {
                 xflasher.readNandAuto(0, nTools.getNumericIterations());
             }
-            else if (device == 4)
+            else if (device == DEVICE.XFLASHER_EMMC)
             {
                 variables.ctyp = variables.cunts[11];
                 xPanel.setMBname(variables.cunts[11].Text);
@@ -2951,7 +3002,11 @@ namespace JRunner
 
         void btnWriteECCClick()
         {
-            if (device == 3)
+            if (device == DEVICE.PICOFLASHER)
+            {
+                picoflasher.WriteNand(nTools.getbtnWriteECC().Contains("XeLL") ? 0 : 1);
+            }
+            else if (device == DEVICE.XFLASHER_SPI)
             {
                 if (nTools.getbtnWriteECC().Contains("XeLL"))
                 {
@@ -2968,7 +3023,7 @@ namespace JRunner
                 ThreadStart starter = delegate { writexell(); };
                 new Thread(starter).Start();
             }
-            else if (device == 4)
+            else if (device == DEVICE.XFLASHER_EMMC)
             {
                 variables.ctyp = variables.cunts[11];
                 xPanel.setMBname(variables.cunts[11].Text);
@@ -2976,7 +3031,7 @@ namespace JRunner
             }
             else
             {
-                if (device == 2 && variables.mtxUsbMode)
+                if (device == DEVICE.NAND_X && variables.mtxUsbMode)
                 {
                     if (nTools.getbtnWriteECC().Contains("XeLL"))
                     {
@@ -2993,11 +3048,15 @@ namespace JRunner
 
         void btnWriteClick()
         {
-            if (device == 3)
+            if (device == DEVICE.PICOFLASHER)
+            {
+                picoflasher.WriteNand(0);
+            }
+            else if (device == DEVICE.XFLASHER_SPI)
             {
                 xflasher.writeNandAuto();
             }
-            else if (device == 4)
+            else if (device == DEVICE.XFLASHER_EMMC)
             {
                 variables.ctyp = variables.cunts[11];
                 xPanel.setMBname(variables.cunts[11].Text);
@@ -3005,7 +3064,7 @@ namespace JRunner
             }
             else
             {
-                if (device == 2 && variables.mtxUsbMode) mtx_usb.writeNandAuto();
+                if (device == DEVICE.NAND_X && variables.mtxUsbMode) mtx_usb.writeNandAuto();
                 else getconsoletype(2);
             }
         }
@@ -3318,7 +3377,11 @@ namespace JRunner
             }
             else if (e.KeyCode == Keys.F2)
             {
-                if (device == 3)
+                if (device == DEVICE.PICOFLASHER)
+                {
+                    picoflasher.getFlashConfig();
+                }
+                else if (device == DEVICE.XFLASHER_SPI)
                 {
                     xflasher.getFlashConfig();
                 }
@@ -3441,15 +3504,15 @@ namespace JRunner
             }
             else
             {
-                if (device == -1)
+                if (device == DEVICE.JR_PROGRAMMER_BOOTLOADER)
                 {
                     nTools.setImage(Properties.Resources.usb);
                 }
-                else if (device == 1)
+                else if (device == DEVICE.JR_PROGRAMMER)
                 {
                     nTools.setImage(Properties.Resources.JRP);
                 }
-                else if (device == 2)
+                else if (device == DEVICE.NAND_X)
                 {
                     if (variables.mtxUsbMode)
                     {
@@ -3460,13 +3523,17 @@ namespace JRunner
                         nTools.setImage(Properties.Resources.NANDX);
                     }
                 }
-                else if (device == 3)
+                else if (device == DEVICE.XFLASHER_SPI)
                 {
                     nTools.setImage(Properties.Resources.xflash_spi);
                 }
-                else if (device == 4)
+                else if (device == DEVICE.XFLASHER_EMMC)
                 {
                     nTools.setImage(Properties.Resources.xflash_emmc);
+                }
+                else if (device == DEVICE.PICOFLASHER)
+                {
+                    nTools.setImage(Properties.Resources.picoflasher);
                 }
                 else
                 {
@@ -3491,11 +3558,17 @@ namespace JRunner
                 if (variables.debugme) Console.WriteLine("EventType - {0}", e.EventType);
                 if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival)
                 {
-                    if (e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010) // xFlasher SPI
+                    if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001) // PicoFlasher
+                    {
+                        if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.picoflasher);
+                        PicoFlasherToolStripMenuItem.Visible = true;
+                        device = DEVICE.PICOFLASHER;
+                    }
+                    else if (e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010) // xFlasher SPI
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.xflash_spi);
                         xFlasherToolStripMenuItem.Visible = true;
-                        device = 3;
+                        device = DEVICE.XFLASHER_SPI;
                         xflasher.initDevice();
                     }
                     else if (e.Device.IdVendor == 0xFFFF && e.Device.IdProduct == 0x004) // NAND-X
@@ -3512,32 +3585,38 @@ namespace JRunner
                             }
                         }
                         nANDXToolStripMenuItem.Visible = true;
-                        device = 2;
+                        device = DEVICE.NAND_X;
                     }
                     else if (e.Device.IdVendor == 0x11D4 && e.Device.IdProduct == 0x8338) // JR-Programmer
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.JRP);
                         jRPBLToolStripMenuItem.Visible = false;
                         jRPToolStripMenuItem.Visible = true;
-                        device = 1;
+                        device = DEVICE.JR_PROGRAMMER;
                     }
                     else if (e.Device.IdVendor == 0x11D4 && e.Device.IdProduct == 0x8334) // JR-Programmer Bootloader
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.usb);
                         jRPToolStripMenuItem.Visible = false;
                         jRPBLToolStripMenuItem.Visible = true;
-                        device = -1;
+                        device = DEVICE.JR_PROGRAMMER_BOOTLOADER;
                     }
                     else if ((e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816) || (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751)) // xFlasher eMMC
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
-                        device = 4;
+                        device = DEVICE.XFLASHER_EMMC;
                     }
                 }
                 else if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceRemoveComplete)
                 {
-                    if (e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8334)
+                    if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001)
+                    {
+                        if (!DemoN.DemonDetected) nTools.setImage(null);
+                        PicoFlasherToolStripMenuItem.Visible = false;
+                        device = DEVICE.NO_DEVICE;
+                    }
+                    else if(e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8334)
                     {
                         HID.BootloaderDetected = false;
                         if (!DemoN.DemonDetected) nTools.setImage(null);
@@ -3554,25 +3633,15 @@ namespace JRunner
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         jRPToolStripMenuItem.Visible = false;
-                        device = 0;
+                        device = DEVICE.NO_DEVICE;
                     }
-                    else if (e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010)
+                    else if ((e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010) ||
+                        (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751) ||
+                         (e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816))
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         xFlasherToolStripMenuItem.Visible = false;
-                        device = 0;
-                    }
-                    else if (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751)
-                    {
-                        if (!DemoN.DemonDetected) nTools.setImage(null);
-                        xFlasherToolStripMenuItem.Visible = false;
-                        device = 0;
-                    }
-                    else if (e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816)
-                    {
-                        if (!DemoN.DemonDetected) nTools.setImage(null);
-                        xFlasherToolStripMenuItem.Visible = false;
-                        device = 0;
+                        device = DEVICE.NO_DEVICE;
                     }
                 }
 
@@ -4173,6 +4242,104 @@ namespace JRunner
 
         #endregion
 
+        #region PicoFlasher interactions with UI
+        public void PicoFlasherInitNand(int idx)
+        {
+            if (idx == 0 && File.Exists(variables.filename))
+            {
+                txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = Path.Combine(variables.filename)));
+                variables.filename1 = variables.filename;
+                nand_init();
+            }
+            if (idx == 1 && File.Exists(variables.filename))
+            {
+                txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = Path.Combine(variables.filename)));
+                variables.filename2 = variables.filename;
+                new Thread(comparenands).Start();
+            }
+        }
+
+        public void PicoFlasherEccCleanup()
+        {
+            if (variables.tempfile != "")
+            {
+                variables.filename1 = variables.tempfile;
+                txtFilePath1.Text = variables.tempfile;
+            }
+        }
+
+        public void PicoFlasherNandSelShow(int xfseltype, bool bigblock = false)
+        {
+            variables.xfSelType = xfseltype;
+            xFlasherNandSel xfselform = new xFlasherNandSel();
+            xfselform.TopMost = true;
+            xfselform.SizeClick += PicoFlasherSizeClick;
+            xfselform.BigBlock(bigblock);
+            xfselform.Show();
+        }
+
+        void PicoFlasherSizeClick(int size)
+        {
+            if (variables.xfSelType == 1)
+            {
+                xflasher.readNandAuto(size, nTools.getNumericIterations(), true);
+                variables.xfSelType = 0;
+            }
+            else if (variables.xfSelType == 2)
+            {
+                xflasher.writeNand(size, variables.filename1);
+                variables.xfSelType = 0;
+            }
+        }
+
+        public void PicoFlasherBusy(int mode)
+        {
+            if (mode > 0)
+            {
+                ProgressLabel.BeginInvoke(new Action(() => {
+                    if (mode == 3) ProgressLabel.Text = "Erasing";
+                    else if (mode == 2) ProgressLabel.Text = "Writing";
+                    else if (mode == 1) ProgressLabel.Text = "Reading";
+                }));
+                progressBar.BeginInvoke(new Action(() => { progressBar.Style = ProgressBarStyle.Blocks; }));
+            }
+            else if (mode == -2)
+            {
+                progressBar.BeginInvoke(new Action(() => { progressBar.Style = ProgressBarStyle.Marquee; }));
+            }
+            else if (mode == -1)
+            {
+                ProgressLabel.BeginInvoke(new Action(() => { ProgressLabel.Text = "Progress"; }));
+                progressBar.BeginInvoke(new Action(() => {
+                    progressBar.Style = ProgressBarStyle.Blocks;
+                    progressBar.Value = progressBar.Minimum;
+                }));
+                txtBlocks.BeginInvoke(new Action(() => { txtBlocks.Text = ""; }));
+            }
+            else
+            {
+                ProgressLabel.BeginInvoke(new Action(() => { ProgressLabel.Text = "Progress"; }));
+                progressBar.BeginInvoke(new Action(() => {
+                    progressBar.Style = ProgressBarStyle.Blocks;
+                    progressBar.Value = progressBar.Maximum;
+                }));
+                txtBlocks.BeginInvoke(new Action(() => { txtBlocks.Text = ""; }));
+            }
+        }
+
+        public void PicoFlasherBlocksUpdate(string str, int progress)
+        {
+            if (picoflasher.InUse)
+            {
+                txtBlocks.BeginInvoke((Action)(() => txtBlocks.Text = str));
+                if (progress >= 0)
+                    progressBar.BeginInvoke((Action)(() => progressBar.Value = progress));
+                else
+                    progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
+            }
+        }
+        #endregion
+
         #region xFlasher interactions with UI
         public void xFlasherInitNand(int i = 2)
         {
@@ -4451,22 +4618,26 @@ namespace JRunner
             {
                 rpcDevice = "DemoN";
             }
-            else if (device == 2)
+            else if (device == DEVICE.NAND_X)
             {
                 if (variables.mtxUsbMode) rpcDevice = "MTX USB";
                 else rpcDevice = "NAND-X";
             }
-            else if (device == 1)
+            else if (device == DEVICE.JR_PROGRAMMER)
             {
                 rpcDevice = "JR-Programmer";
             }
-            else if (device == 3)
+            else if (device == DEVICE.XFLASHER_SPI)
             {
                 rpcDevice = "xFlasher SPI";
             }
-            else if (device == 4)
+            else if (device == DEVICE.XFLASHER_EMMC)
             {
                 rpcDevice = "xFlasher eMMC";
+            }
+            else if (device == DEVICE.PICOFLASHER)
+            {
+                rpcDevice = "PicoFlasher";
             }
             else
             {
@@ -4556,7 +4727,7 @@ namespace JRunner
 
         private void flashOpenXeniumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (device == 3)
+            if (device == DEVICE.XFLASHER_SPI)
             {
                 MessageBox.Show("Connect OpenXenium and press OK", "Connect Device", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 xflasher.flashSvf(variables.pathforit + @"\common\svf\openxenium.svf");
@@ -4873,7 +5044,7 @@ namespace JRunner
         {
             variables.mtxUsbMode = mtxUsbModeToolStripMenuItem.Checked = !mtxUsbModeToolStripMenuItem.Checked;
 
-            if (device == 2)
+            if (device == DEVICE.NAND_X)
             {
                 if (variables.mtxUsbMode)
                 {

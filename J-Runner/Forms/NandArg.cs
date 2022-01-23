@@ -197,8 +197,10 @@ namespace JRunner
 
         public void UpdateDevice()
         {
-            if (MainForm.mainForm.device == 3 || MainForm.mainForm.device == 4) xsvfbtn.Text = "SVF";
-            else xsvfbtn.Text = "XSVF";
+            if (MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_SPI || MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_EMMC)
+                xsvfbtn.Text = "SVF";
+            else
+                xsvfbtn.Text = "XSVF";
         }
 
         private void txtStartLength_TextChanged(object sender, EventArgs e)

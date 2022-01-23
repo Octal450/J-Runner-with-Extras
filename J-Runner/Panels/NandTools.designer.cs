@@ -263,7 +263,7 @@
             this.pBoxDevice.Location = new System.Drawing.Point(323, 106);
             this.pBoxDevice.Name = "pBoxDevice";
             this.pBoxDevice.Size = new System.Drawing.Size(53, 43);
-            this.pBoxDevice.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pBoxDevice.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBoxDevice.TabIndex = 83;
             this.pBoxDevice.TabStop = false;
             this.pBoxDevice.Click += new System.EventHandler(this.pBoxDevice_Click);

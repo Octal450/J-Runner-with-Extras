@@ -17,6 +17,7 @@ namespace JRunner.Forms
                                     "SGCSam: 6717/9199 XeBuild Patches",
                                     "Orpheus: Updates to KV Info/Bugfixes",
                                     "DaCukiMonsta: Nand Info Improvements/Bugfixes",
+                                    "Balika011: PicoFlasher support",
                                     "And all who tested the software!",};
         static int contribloc = 0;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]

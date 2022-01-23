@@ -142,6 +142,7 @@ namespace JRunner
             this.patchNandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xFlasherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PicoFlasherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installDriversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOpenXeniumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nANDXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -960,6 +961,7 @@ namespace JRunner
             this.nandToolStripMenuItem,
             this.advancedToolStripMenuItem,
             this.xFlasherToolStripMenuItem,
+            this.PicoFlasherToolStripMenuItem,
             this.nANDXToolStripMenuItem,
             this.jRPToolStripMenuItem,
             this.jRPBLToolStripMenuItem,
@@ -1134,6 +1136,14 @@ namespace JRunner
             this.flashOpenXeniumToolStripMenuItem.Text = "Program OpenXenium";
             this.flashOpenXeniumToolStripMenuItem.Click += new System.EventHandler(this.flashOpenXeniumToolStripMenuItem_Click);
             // 
+            // PicoFlasherToolStripMenuItem
+            // 
+            this.PicoFlasherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {});
+            this.PicoFlasherToolStripMenuItem.Name = "PicoFlasherToolStripMenuItem";
+            this.PicoFlasherToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.PicoFlasherToolStripMenuItem.Text = "PicoFlasher";
+            this.PicoFlasherToolStripMenuItem.Visible = false;
+            // 
             // nANDXToolStripMenuItem
             // 
             this.nANDXToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1294,6 +1304,7 @@ namespace JRunner
         private ToolStripMenuItem updateAvailableToolStripMenuItem;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem xFlasherToolStripMenuItem;
+        private ToolStripMenuItem PicoFlasherToolStripMenuItem;
         private ToolStripMenuItem dEVGLCPUKeyToolsToolStripMenuItem;
         private ToolStripMenuItem cBFuseToolStripMenuItem;
         private ToolStripMenuItem flashOpenXeniumToolStripMenuItem;

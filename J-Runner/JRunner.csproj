@@ -152,6 +152,7 @@
   <ItemGroup>
     <Compile Include="Classes\Mtx-Usb.cs" />
     <Compile Include="Classes\NativeMethods.cs" />
+    <Compile Include="Classes\PicoFlasher.cs" />
     <Compile Include="Classes\RC4.cs" />
     <Compile Include="Classes\RGH2to3.cs" />
     <Compile Include="Classes\rgh3build.cs" />
@@ -867,6 +868,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Project3.ico" />
+    <None Include="Resources\picoflasher.png" />
     <None Include="Resources\key_U.png" />
     <None Include="Resources\key_R.png" />
     <None Include="Resources\key_L.png" />
