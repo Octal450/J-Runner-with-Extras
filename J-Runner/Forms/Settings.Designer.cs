@@ -378,7 +378,7 @@
             // chkIpDefault
             // 
             this.chkIpDefault.AutoSize = true;
-            this.chkIpDefault.Location = new System.Drawing.Point(78, 26);
+            this.chkIpDefault.Location = new System.Drawing.Point(78, 27);
             this.chkIpDefault.Name = "chkIpDefault";
             this.chkIpDefault.Size = new System.Drawing.Size(15, 14);
             this.chkIpDefault.TabIndex = 30;
