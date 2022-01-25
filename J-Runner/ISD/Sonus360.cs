@@ -11,14 +11,14 @@ namespace JRunner
 {
     public class Sonus360 : IISD
     {
-        private UsbDevice MyUsbDevice;
-        private UsbDeviceFinder JRunner = new UsbDeviceFinder(0x11d4, 0x8338);
-
         public delegate void updateProgress_t(int progress);
         public event updateProgress_t UpdateProgress;
 
         public delegate void log_t(string text);
         public event log_t log;
+
+        private UsbDevice MyUsbDevice;
+        private UsbDeviceFinder JRunner = new UsbDeviceFinder(0x11d4, 0x8338);
 
         public int Open()
         {
@@ -411,7 +411,7 @@ namespace JRunner
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
         }
-        public void ISD_Verify_Flash(string filename)
+        public Boolean ISD_Verify_Flash(string filename)
         {
             long filesize;
             FileInfo fl = new FileInfo(filename);
@@ -419,12 +419,12 @@ namespace JRunner
             if (!File.Exists(filename))
             {
                 log("Image file not found\n");
-                return;
+                return false;
             }
             if (filesize != 0xB000)
             {
                 log("Image file must be 44Kb\n");
-                return;
+                return false;
             }
             BinaryReader rw = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
             byte[] file = rw.ReadBytes(0xB000);
@@ -484,8 +484,7 @@ namespace JRunner
             }
             UpdateProgress(100);
 
-            if (Oper.ByteArrayCompare(file, data)) log("VERIFIED! Flash matches File..\n");
-            else log("Verify Failed !!..\n");
+            return Oper.ByteArrayCompare(file, data);
         }
 
         public void ISD_Play(UInt16 index)

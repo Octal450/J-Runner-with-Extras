@@ -21,8 +21,15 @@ namespace JRunner.Forms
         }
         void log(string text)
         {
-            txtOutput.Invoke((MethodInvoker)delegate {
+            txtOutput.BeginInvoke((MethodInvoker)delegate {
                 txtOutput.AppendText(text + "\r\n");
+            });
+        }
+        void updateProgress(int progress)
+        {
+            progressBar1.BeginInvoke((MethodInvoker)delegate
+            {
+                progressBar1.Value = progress;
             });
         }
         enum ISD_Function : byte
@@ -108,7 +115,10 @@ namespace JRunner.Forms
                         if (veraftreadchk.Checked)
                         {
                             Thread.Sleep(250);
-                            isd.ISD_Verify_Flash(filename);
+                            if (isd.ISD_Verify_Flash(filename))
+                                log("VERIFIED! Flash matches File..\n");
+                            else
+                                log("Verify Failed !!..\n");
                         }
                         break;
                     case ISD_Function.write:
@@ -123,11 +133,17 @@ namespace JRunner.Forms
                         if (veraftreadchk.Checked)
                         {
                             Thread.Sleep(250);
-                            isd.ISD_Verify_Flash(filename);
+                            if (isd.ISD_Verify_Flash(filename))
+                                log("VERIFIED! Flash matches File..\n");
+                            else
+                                log("Verify Failed !!..\n");
                         }
                         break;
                     case ISD_Function.verify:
-                        isd.ISD_Verify_Flash(filename);
+                        if (isd.ISD_Verify_Flash(filename))
+                            log("VERIFIED! Flash matches File..\n");
+                        else
+                            log("Verify Failed !!..\n");
                         break;
                     case ISD_Function.play_power:
                         log("Playing...\n");
@@ -359,13 +375,19 @@ namespace JRunner.Forms
             if (MainForm.mainForm.IsUsbDeviceConnected("600D", "7001")) // PicoFlasher
             {
                 pictureBox1.Image = Properties.Resources.picoflasher;
-                isd = new PicoFlasher();
+                PicoFlasher _isd = new PicoFlasher();
+                _isd.log += log;
+                _isd.UpdateProgress += updateProgress;
+                isd = _isd;
                 enable(true);
             }
             if (MainForm.mainForm.IsUsbDeviceConnected("11D4", "8338")) // xFlasher SPI
             {
                 pictureBox1.Image = Properties.Resources.sonuslogo;
-                isd = new Sonus360();
+                Sonus360 _isd = new Sonus360();
+                _isd.log += log;
+                _isd.UpdateProgress += updateProgress;
+                isd = _isd;
                 enable(true);
             }
 
@@ -381,13 +403,19 @@ namespace JRunner.Forms
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001) // PicoFlasher
                     {
                         pictureBox1.Image = Properties.Resources.picoflasher;
-                        isd = new PicoFlasher();
+                        PicoFlasher _isd = new PicoFlasher();
+                        _isd.log += log;
+                        _isd.UpdateProgress += updateProgress;
+                        isd = _isd;
                         enable(true);
                     }
                     else if (e.Device.IdVendor == 0x11D4 && e.Device.IdProduct == 0x8338) // JR-Programmer
                     {
                         pictureBox1.Image = Properties.Resources.sonuslogo;
-                        isd = new Sonus360();
+                        Sonus360 _isd = new Sonus360();
+                        _isd.log += log;
+                        _isd.UpdateProgress += updateProgress;
+                        isd = _isd;
                         enable(true);
                     }
                 }
