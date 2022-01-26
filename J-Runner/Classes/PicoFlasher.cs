@@ -15,22 +15,33 @@ namespace JRunner
 {
     public class PicoFlasher : IISD
     {
+        public delegate void updateProgress_t(int progress);
+        public event updateProgress_t UpdateProgress;
+
+        public delegate void log_t(string text);
+        public event log_t log;
+
         public bool InUse = false;
 
         enum COMMANDS : byte
         {
             GET_VERSION = 0x00,
-            GET_FLASH_CONFIG = 0x01,
-            READ_FLASH = 0x02,
-            WRITE_FLASH = 0x03,
-            ISD1200_INIT = 0x04,
-            ISD1200_DEINIT = 0x05,
-            ISD1200_READ_ID = 0x06,
-            ISD1200_READ_FLASH = 0x07,
-            ISD1200_ERASE_FLASH = 0x08,
-            ISD1200_WRITE_FLASH = 0x09,
-            ISD1200_PLAY_VOICE = 0x10,
-            READ_FLASH_STREAM = 0x11,
+            GET_FLASH_CONFIG,
+            READ_FLASH,
+            WRITE_FLASH,
+            READ_FLASH_STREAM,
+
+            ISD1200_INIT = 0xA0,
+            ISD1200_DEINIT,
+            ISD1200_READ_ID ,
+            ISD1200_READ_FLASH,
+            ISD1200_ERASE_FLASH,
+            ISD1200_WRITE_FLASH,
+            ISD1200_PLAY_VOICE,
+            ISD1200_EXEC_MACRO,
+            ISD1200_RESET,
+
+            REBOOT_TO_BOOTLOADER = 0xFE
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -101,7 +112,7 @@ namespace JRunner
 
             UInt32 version = RecvUInt32(serial);
 
-            if (version != 1)
+            if (version != 2)
             {
                 serial.Close();
                 MessageBox.Show("Update the PicoFlasher firmware!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -137,7 +148,7 @@ namespace JRunner
         {
             byte[] rxbuffer = new byte[4];
             int got = 0;
-            while (got < 4)
+            while (got < rxbuffer.Length)
                 got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
 
             return BitConverter.ToUInt32(rxbuffer, 0);
@@ -147,13 +158,13 @@ namespace JRunner
         {
             byte[] rxbuffer = new byte[1];
             int got = 0;
-            while (got < 1)
+            while (got < rxbuffer.Length)
                 got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
 
             return rxbuffer[0];
         }
 
-        private uint getFlashSize(SerialPort serial)
+        private uint getFlashConfig(SerialPort serial)
         {
             CMD cmd = new CMD();
             cmd.cmd = COMMANDS.GET_FLASH_CONFIG;
@@ -170,6 +181,11 @@ namespace JRunner
                 return 0;
             }
 
+            return flashconfig;
+        }
+
+        private uint getFlashSize(uint flashconfig)
+        {
             uint flashsize = 0;
 
             if (flashconfig == 0x23010 /* Jasper 16MB, Trinity */ || flashconfig == 0x43000 /* Corona */ || flashconfig == 0x1198010 /* Xenon, Zephyr, Falcon */)
@@ -232,7 +248,8 @@ namespace JRunner
 
             CloseSerial(serial);
         }
-        public void ReadNand(int iterations)
+
+        public void ReadNand(int iterations, uint start = 0, uint end = 0)
         {
             Thread readerThread = new Thread(() =>
             {
@@ -240,7 +257,9 @@ namespace JRunner
                 if (serial == null)
                     return;
 
-                uint flashsize = getFlashSize(serial);
+                uint flashconfig = getFlashConfig(serial);
+
+                uint flashsize = getFlashSize(flashconfig);
                 if (flashsize == 0)
                 {
                     Console.WriteLine("Unknown flash size!");
@@ -264,66 +283,68 @@ namespace JRunner
 
                     MainForm.mainForm.PicoFlasherBusy(1);
                     
-                    BinaryWriter bw = new BinaryWriter(File.Open(variables.filename, FileMode.Append, FileAccess.Write));
+                    BinaryWriter bw = new BinaryWriter(File.Open(variables.filename, FileMode.Create, FileAccess.Write));
 
-                    /*
-                    for (uint j = 0; j < flashsize / 512; j++)
+                    if (start == 0 && end == 0)
                     {
                         CMD cmd = new CMD();
-                        cmd.cmd = COMMANDS.READ_FLASH;
-                        cmd.lba = j;
+                        cmd.cmd = COMMANDS.READ_FLASH_STREAM;
+                        cmd.lba = flashsize / 512;
 
                         SendCmd(serial, cmd);
 
-                        UInt32 ret = RecvUInt32(serial);
-
-                        if (ret != 0)
+                        for (uint j = 0; j < flashsize / 512; j++)
                         {
-                            Console.WriteLine("Error: " + ret.ToString("X"));
-                            Console.WriteLine("");
-                            break;
+                            UInt32 ret = RecvUInt32(serial);
+
+                            if (ret != 0)
+                            {
+                                Console.WriteLine("Error: " + ret.ToString("X"));
+                                Console.WriteLine("");
+                                break;
+                            }
+
+                            byte[] rxbuffer = new byte[0x210];
+                            int got = 0;
+                            while (got < rxbuffer.Length)
+                                got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
+
+                            bw.Write(rxbuffer);
+
+                            if (j % 0x20 == 0)
+                                MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x20).ToString("X"), (int)((j * 100) / (flashsize / 512)));
                         }
-
-                        byte[] rxbuffer = new byte[0x210];
-                        int got = 0;
-                        while (got < 4)
-                            got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
-
-                        bw.Write(rxbuffer);
-
-                        if (j % 0x20 == 0)
-                            MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x20).ToString("X"), (int)((j * 100) / (flashsize / 512)));
                     }
-                    */
-
-                    CMD cmd = new CMD();
-                    cmd.cmd = COMMANDS.READ_FLASH_STREAM;
-                    cmd.lba = flashsize / 512;
-
-                    SendCmd(serial, cmd);
-
-                    for (uint j = 0; j < flashsize / 512; j++)
+                    else
                     {
-                        UInt32 ret = RecvUInt32(serial);
-
-                        if (ret != 0)
+                        for (uint j = (start * 0x20); j < (end * 0x20); j++)
                         {
-                            Console.WriteLine("Error: " + ret.ToString("X"));
-                            Console.WriteLine("");
-                            break;
+                            CMD cmd = new CMD();
+                            cmd.cmd = COMMANDS.READ_FLASH;
+                            cmd.lba = j;
+
+                            SendCmd(serial, cmd);
+
+                            UInt32 ret = RecvUInt32(serial);
+
+                            if (ret != 0)
+                            {
+                                Console.WriteLine("Error: " + ret.ToString("X"));
+                                Console.WriteLine("");
+                                break;
+                            }
+
+                            byte[] rxbuffer = new byte[0x210];
+                            int got = 0;
+                            while (got < rxbuffer.Length)
+                                got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
+
+                            bw.Write(rxbuffer);
+
+                            if (j % 0x20 == 0)
+                                MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x20).ToString("X"), (int)((j * 100) / (flashsize / 512)));
                         }
-
-                        byte[] rxbuffer = new byte[0x210];
-                        int got = 0;
-                        while (got < 4)
-                            got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
-
-                        bw.Write(rxbuffer);
-
-                        if (j % 0x20 == 0)
-                            MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x20).ToString("X"), (int)((j * 100) / (flashsize / 512)));
                     }
-
 
                     bw.Close();
 
@@ -336,7 +357,8 @@ namespace JRunner
             });
             readerThread.Start();
         }
-        public void WriteNand(int fixEcc)
+
+        public void WriteNand(int fixEcc, uint start = 0, uint end = 0)
         {
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
@@ -364,7 +386,9 @@ namespace JRunner
                 if (serial == null)
                     return;
 
-                uint flashsize = getFlashSize(serial);
+                uint flashconfig = getFlashConfig(serial);
+
+                uint flashsize = getFlashSize(flashconfig);
                 if (flashsize == 0)
                 {
                     Console.WriteLine("Unknown flash size!");
@@ -373,41 +397,54 @@ namespace JRunner
                     return;
                 }
 
+                int layout = 1;
+                if (flashconfig == 0xAA3020 || flashconfig == 0x8A3020)
+                    layout = 2;
+                else if (flashconfig == 0x1198010)
+                    layout = 0;
+
                 MainForm.mainForm.PicoFlasherBusy(2);
 
                 BinaryReader br = new BinaryReader(File.Open(variables.filename1, FileMode.Open, FileAccess.Read));
 
-                for (uint j = 0; j < flashsize / 512; j++)
+                uint writeend = flashsize / (512 * 8);
+                if (start != 0 || end != 0)
+                    writeend = end;
+                
+                for (uint j = start; j < writeend; j++)
                 {
-                    byte[] read = br.ReadBytes(0x210);
-                    if (read == null || read.Length != 0x210)
+                    byte[] read = br.ReadBytes(0x210 * 8);
+                    if (read == null || read.Length % 0x210 != 0)
                         break;
 
-                    // TODO: Implement ECC fixing.
+                    if (fixEcc == 1)
+                        read = JRunner.Nand.Nand.addecc_v2(read, false, (int)(j * 0x4200), layout);
 
-                    CMD cmd = new CMD();
-                    cmd.cmd = COMMANDS.WRITE_FLASH;
-                    cmd.lba = j;
-
-                    int size = Marshal.SizeOf(cmd) + read.Length;
-                    byte[] arr = new byte[size];
-                    IntPtr ptr = Marshal.AllocHGlobal(size);
-                    Marshal.StructureToPtr(cmd, ptr, true);
-                    Marshal.Copy(ptr, arr, 0, size);
-                    Marshal.FreeHGlobal(ptr);
-                    read.CopyTo(arr, Marshal.SizeOf(cmd));
-                    serial.Write(arr, 0, arr.Length);
-
-                    UInt32 ret = RecvUInt32(serial);
-                    if (ret != 0)
+                    for (uint k = 0; k < read.Length / 0x210; k++)
                     {
-                        Console.WriteLine("Error: " + ret.ToString("X"));
-                        Console.WriteLine("");
-                        break;
+                        CMD cmd = new CMD();
+                        cmd.cmd = COMMANDS.WRITE_FLASH;
+                        cmd.lba = j * 8 + k;
+
+                        int size = Marshal.SizeOf(cmd) + 0x210;
+                        byte[] arr = new byte[size];
+                        IntPtr ptr = Marshal.AllocHGlobal(size);
+                        Marshal.StructureToPtr(cmd, ptr, true);
+                        Marshal.Copy(ptr, arr, 0, size);
+                        Marshal.FreeHGlobal(ptr);
+                        Buffer.BlockCopy(read, (int)k * 0x210, arr, Marshal.SizeOf(cmd), 0x210);
+                        serial.Write(arr, 0, arr.Length);
+
+                        UInt32 ret = RecvUInt32(serial);
+                        if (ret != 0)
+                        {
+                            Console.WriteLine("Error: " + ret.ToString("X"));
+                            Console.WriteLine("");
+                            break;
+                        }
                     }
 
-                    if (j % 0x20 == 0)
-                        MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x20).ToString("X"), (int)((j * 100) / (flashsize / 512)));
+                    MainForm.mainForm.PicoFlasherBlocksUpdate((j / 4).ToString("X"), (int)((j * 100) / (flashsize / (512 * 8))));
                 }
 
                 br.Close();
@@ -505,7 +542,19 @@ namespace JRunner
 
         public void Reset()
         {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return;
 
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.ISD1200_RESET;
+            cmd.lba = 0;
+
+            SendCmd(serial, cmd);
+
+            RecvUInt8(serial);
+
+            CloseSerial(serial);
         }
 
         public int ISD_Read_Flash(string filename)
@@ -524,7 +573,7 @@ namespace JRunner
                 };
             }
 
-            BinaryWriter bw = new BinaryWriter(File.Open(filename, FileMode.Append, FileAccess.Write));
+            BinaryWriter bw = new BinaryWriter(File.Open(filename, FileMode.Create, FileAccess.Write));
 
             for (uint i = 0; i < 0xB000 / 512; i++)
             {
@@ -536,13 +585,14 @@ namespace JRunner
 
                 byte[] rxbuffer = new byte[512];
                 int got = 0;
-                while (got < 4)
+                while (got < rxbuffer.Length)
                     got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
 
                 bw.Write(rxbuffer);
 
-                // MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x100).ToString("X"), (int)((i * 100) / (0xB000 / 512)));
+                UpdateProgress((int)((i * 100) / (0xB000 / 512)));
             }
+            UpdateProgress(100);
 
             bw.Close();
 
@@ -604,17 +654,57 @@ namespace JRunner
                     break;
                 }
 
-                // MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x100).ToString("X"), (int)((i * 100) / (0xB000 / 512)));
+                UpdateProgress((int)((i * 100) / (0xB000 / 16)));
             }
+            UpdateProgress(100);
 
             br.Close();
 
             CloseSerial(serial);
         }
 
-        public void ISD_Verify_Flash(string filename)
+        public Boolean ISD_Verify_Flash(string filename)
         {
-            throw new NotImplementedException();
+            if (!File.Exists(filename))
+            {
+                log("Image file not found\n");
+                return false;
+            }
+            FileInfo fl = new FileInfo(filename);
+            if (fl.Length != 0xB000)
+            {
+                log("Image file must be 44Kb\n");
+                return false;
+            }
+            BinaryReader rw = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
+            byte[] file = rw.ReadBytes(0xB000);
+            rw.Close();
+            
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return false;
+
+            byte[] data = new byte[0xB000];
+
+            for (uint i = 0; i < 0xB000 / 512; i++)
+            {
+                CMD cmd = new CMD();
+                cmd.cmd = COMMANDS.ISD1200_READ_FLASH;
+                cmd.lba = i;
+
+                SendCmd(serial, cmd);
+
+                int got = 0;
+                while (got < 512)
+                    got += serial.Read(data, (int) i * 512 + got, 512 - got);
+
+                UpdateProgress((int)((i * 100) / (0xB000 / 512)));
+            }
+            UpdateProgress(100);
+
+            CloseSerial(serial);
+
+            return Oper.ByteArrayCompare(file, data);
         }
 
         public void ISD_Play(ushort index)
@@ -636,7 +726,19 @@ namespace JRunner
 
         public void ISD_Exec(ushort index)
         {
-            throw new NotImplementedException();
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return;
+
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.ISD1200_EXEC_MACRO;
+            cmd.lba = index;
+
+            SendCmd(serial, cmd);
+
+            RecvUInt8(serial);
+
+            CloseSerial(serial);
         }
     }
 }

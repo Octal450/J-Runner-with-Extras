@@ -802,8 +802,7 @@ namespace JRunner
                     }
                     else if (device == DEVICE.PICOFLASHER)
                     {
-                        MessageBox.Show("TODO: FIX ME.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        picoflasher.ReadNand(1, (uint) startblock, (uint) (startblock + length));
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
                     {
@@ -855,8 +854,7 @@ namespace JRunner
                     }
                     else if (device == DEVICE.PICOFLASHER)
                     {
-                        MessageBox.Show("TODO: FIX ME.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        picoflasher.WriteNand(Path.GetExtension(filename) == ".ecc" ? 1 : 0, (uint)startblock, (uint)(startblock + length));
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
                     {
