@@ -25,7 +25,7 @@ using MessageBox = System.Windows.Forms.MessageBox;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
-// Copyright (c) 2021 J-Runner with Extras Development Team
+// Copyright (c) 2022 J-Runner with Extras Development Team
 
 namespace JRunner
 {
