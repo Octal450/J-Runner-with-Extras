@@ -435,6 +435,7 @@ namespace JRunner
 
         public void IPScanner(ref ProgressBar pb)
         {
+            found = false;
             initaddresses();
             Console.WriteLine("Tip: Load the nand on source to have quicker results.");
             variables.isscanningip = true;
@@ -446,6 +447,8 @@ namespace JRunner
             if (found)
             {
                 Console.WriteLine("Finished");
+                Console.WriteLine("");
+                variables.isscanningip = false;
                 return;
             }
             bool use = false;
@@ -475,7 +478,8 @@ namespace JRunner
             Console.WriteLine("");
             pb.Value = 100;
             if (!found) Console.WriteLine("No Xbox Detected");
-            Console.WriteLine("Finished");
+            else Console.WriteLine("Finished");
+            Console.WriteLine("");
             variables.isscanningip = false;
         }
 
