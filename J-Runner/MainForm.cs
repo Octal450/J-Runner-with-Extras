@@ -263,7 +263,7 @@ namespace JRunner
 
             if (!DemoN.DemonDetected)
             {
-                if (IsUsbDeviceConnected("600D", "7001")) // PicoFlasher
+                if (IsUsbDeviceConnected("7001", "600D")) // PicoFlasher
                 {
                     nTools.setImage(Properties.Resources.picoflasher);
                     PicoFlasherToolStripMenuItem.Visible = true;
