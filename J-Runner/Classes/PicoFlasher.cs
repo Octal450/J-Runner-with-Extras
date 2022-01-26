@@ -91,7 +91,7 @@ namespace JRunner
 
             if (ports.Count <= 0)
             {
-                MessageBox.Show("Can't find PicoFlasher com port.\r\nUpdate the PicoFlasher firmware and check your drivers!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Can't find PicoFlasher com port\n\nUpdate the PicoFlasher firmware and check your drivers", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -115,7 +115,7 @@ namespace JRunner
             if (version != 2)
             {
                 serial.Close();
-                MessageBox.Show("Update the PicoFlasher firmware!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("PicoFlasher firmware is too old\n\nUpdate the PicoFlasher firmware to continue", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
