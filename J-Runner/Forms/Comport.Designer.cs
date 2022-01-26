@@ -132,22 +132,22 @@
             // rbtnHex
             // 
             this.rbtnHex.AutoSize = true;
-            this.rbtnHex.Checked = true;
-            this.rbtnHex.Location = new System.Drawing.Point(267, 3);
+            this.rbtnHex.Location = new System.Drawing.Point(316, 3);
             this.rbtnHex.Name = "rbtnHex";
             this.rbtnHex.Size = new System.Drawing.Size(44, 17);
             this.rbtnHex.TabIndex = 12;
-            this.rbtnHex.TabStop = true;
             this.rbtnHex.Text = "Hex";
             this.rbtnHex.UseVisualStyleBackColor = true;
             // 
             // rbtnText
             // 
             this.rbtnText.AutoSize = true;
-            this.rbtnText.Location = new System.Drawing.Point(314, 3);
+            this.rbtnText.Checked = true;
+            this.rbtnText.Location = new System.Drawing.Point(267, 3);
             this.rbtnText.Name = "rbtnText";
             this.rbtnText.Size = new System.Drawing.Size(46, 17);
             this.rbtnText.TabIndex = 13;
+            this.rbtnText.TabStop = true;
             this.rbtnText.Text = "Text";
             this.rbtnText.UseVisualStyleBackColor = true;
             // 
@@ -231,7 +231,7 @@
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.exportToolStripMenuItem.Text = "Export...";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
@@ -239,7 +239,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

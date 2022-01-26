@@ -2752,7 +2752,7 @@ namespace JRunner
             variables.cpkey = txtCPUKey.Text;
             patch patchform = new patch();
             patchform.frm1 = this;
-            patchform.Show();
+            patchform.ShowDialog();
         }
 
         private void changeLDVToolStripMenuItem_Click(object sender, EventArgs e)
