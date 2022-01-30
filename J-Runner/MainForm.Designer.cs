@@ -57,10 +57,10 @@ namespace JRunner
             this.btnInit = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnNewSession = new System.Windows.Forms.Button();
-            this.btnOpenWorkingFolder = new UI.SplitButton();
+            this.btnShowWorkingFolder = new UI.SplitButton();
             this.showWorkingFolderMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openRootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openOutputFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showRootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showOutputFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRestart = new System.Windows.Forms.Button();
             this.XeBuildOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -306,8 +306,8 @@ namespace JRunner
             // 
             this.btnIPGetCPU.AutoSize = true;
             this.btnIPGetCPU.BtnImage = ((System.Drawing.Image)(resources.GetObject("btnIPGetCPU.BtnImage")));
-            this.btnIPGetCPU.contextMenuStrip = this.getCpuKeyContextMenu;
             this.btnIPGetCPU.ContextMenuStrip = this.getCpuKeyContextMenu;
+            this.btnIPGetCPU.DropDownContextMenu = this.getCpuKeyContextMenu;
             this.btnIPGetCPU.Image = ((System.Drawing.Image)(resources.GetObject("btnIPGetCPU.Image")));
             this.btnIPGetCPU.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnIPGetCPU.Location = new System.Drawing.Point(6, 36);
@@ -408,44 +408,44 @@ namespace JRunner
             this.btnNewSession.UseVisualStyleBackColor = true;
             this.btnNewSession.Click += new System.EventHandler(this.btnNewSession_Click);
             // 
-            // btnOpenWorkingFolder
+            // btnShowWorkingFolder
             // 
-            this.btnOpenWorkingFolder.AutoSize = true;
-            this.btnOpenWorkingFolder.BtnImage = ((System.Drawing.Image)(resources.GetObject("btnOpenWorkingFolder.BtnImage")));
-            this.btnOpenWorkingFolder.contextMenuStrip = this.showWorkingFolderMenu;
-            this.btnOpenWorkingFolder.ContextMenuStrip = this.showWorkingFolderMenu;
-            this.btnOpenWorkingFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenWorkingFolder.Image")));
-            this.btnOpenWorkingFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOpenWorkingFolder.Location = new System.Drawing.Point(480, 485);
-            this.btnOpenWorkingFolder.Name = "btnOpenWorkingFolder";
-            this.btnOpenWorkingFolder.Size = new System.Drawing.Size(170, 26);
-            this.btnOpenWorkingFolder.TabIndex = 90;
-            this.btnOpenWorkingFolder.Text = "Open Working Folder";
-            this.toolTip1.SetToolTip(this.btnOpenWorkingFolder, "Opens the working folder in Windows Explorer");
-            this.btnOpenWorkingFolder.UseVisualStyleBackColor = true;
-            this.btnOpenWorkingFolder.Click += new System.EventHandler(this.btnOpenWorkingFolder_Click);
+            this.btnShowWorkingFolder.AutoSize = true;
+            this.btnShowWorkingFolder.BtnImage = ((System.Drawing.Image)(resources.GetObject("btnShowWorkingFolder.BtnImage")));
+            this.btnShowWorkingFolder.ContextMenuStrip = this.showWorkingFolderMenu;
+            this.btnShowWorkingFolder.DropDownContextMenu = this.showWorkingFolderMenu;
+            this.btnShowWorkingFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnShowWorkingFolder.Image")));
+            this.btnShowWorkingFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnShowWorkingFolder.Location = new System.Drawing.Point(480, 485);
+            this.btnShowWorkingFolder.Name = "btnShowWorkingFolder";
+            this.btnShowWorkingFolder.Size = new System.Drawing.Size(170, 26);
+            this.btnShowWorkingFolder.TabIndex = 90;
+            this.btnShowWorkingFolder.Text = "Show Working Folder";
+            this.toolTip1.SetToolTip(this.btnShowWorkingFolder, "Shows the working folder in Windows Explorer");
+            this.btnShowWorkingFolder.UseVisualStyleBackColor = true;
+            this.btnShowWorkingFolder.Click += new System.EventHandler(this.btnShowWorkingFolder_Click);
             // 
             // showWorkingFolderMenu
             // 
             this.showWorkingFolderMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openRootFolderToolStripMenuItem,
-            this.openOutputFolderToolStripMenuItem});
+            this.showRootFolderToolStripMenuItem,
+            this.showOutputFolderToolStripMenuItem});
             this.showWorkingFolderMenu.Name = "contextMenuStrip1";
             this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 48);
             // 
-            // openRootFolderToolStripMenuItem
+            // showRootFolderToolStripMenuItem
             // 
-            this.openRootFolderToolStripMenuItem.Name = "openRootFolderToolStripMenuItem";
-            this.openRootFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openRootFolderToolStripMenuItem.Text = "Open Root Folder";
-            this.openRootFolderToolStripMenuItem.Click += new System.EventHandler(this.openRootFolderToolStripMenuItem_Click);
+            this.showRootFolderToolStripMenuItem.Name = "showRootFolderToolStripMenuItem";
+            this.showRootFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showRootFolderToolStripMenuItem.Text = "Show Root Folder";
+            this.showRootFolderToolStripMenuItem.Click += new System.EventHandler(this.showRootFolderToolStripMenuItem_Click);
             // 
-            // openOutputFolderToolStripMenuItem
+            // showOutputFolderToolStripMenuItem
             // 
-            this.openOutputFolderToolStripMenuItem.Name = "openOutputFolderToolStripMenuItem";
-            this.openOutputFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openOutputFolderToolStripMenuItem.Text = "Open Output Folder";
-            this.openOutputFolderToolStripMenuItem.Click += new System.EventHandler(this.openOutputFolderToolStripMenuItem_Click);
+            this.showOutputFolderToolStripMenuItem.Name = "showOutputFolderToolStripMenuItem";
+            this.showOutputFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showOutputFolderToolStripMenuItem.Text = "Show Output Folder";
+            this.showOutputFolderToolStripMenuItem.Click += new System.EventHandler(this.showOutputFolderToolStripMenuItem_Click);
             // 
             // btnRestart
             // 
@@ -1185,7 +1185,7 @@ namespace JRunner
             this.Controls.Add(this.btnScanner);
             this.Controls.Add(this.btnNewSession);
             this.Controls.Add(this.btnRestart);
-            this.Controls.Add(this.btnOpenWorkingFolder);
+            this.Controls.Add(this.btnShowWorkingFolder);
             this.Controls.Add(this.pnlExtra);
             this.Controls.Add(this.pnlTools);
             this.Controls.Add(this.progressBar);
@@ -1343,8 +1343,8 @@ namespace JRunner
         private ToolStripMenuItem getAndSaveToWorkingFolderToolStripMenuItem;
         private ToolStripMenuItem saveToDesktopToolStripMenuItem;
         private ContextMenuStrip showWorkingFolderMenu;
-        private ToolStripMenuItem openRootFolderToolStripMenuItem;
-        private ToolStripMenuItem openOutputFolderToolStripMenuItem;
-        private UI.SplitButton btnOpenWorkingFolder;
+        private ToolStripMenuItem showRootFolderToolStripMenuItem;
+        private ToolStripMenuItem showOutputFolderToolStripMenuItem;
+        private UI.SplitButton btnShowWorkingFolder;
     }
 }
