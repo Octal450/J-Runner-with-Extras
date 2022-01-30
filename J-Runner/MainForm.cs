@@ -3115,7 +3115,7 @@ namespace JRunner
             }
         }
 
-        Forms.Comport cm;
+        Comport cm;
         private void btnCOM_Click(object sender, EventArgs e)
         {
             if (Application.OpenForms.OfType<Comport>().Any())
@@ -3125,7 +3125,7 @@ namespace JRunner
             }
             else
             {
-                cm = new Forms.Comport();
+                cm = new Comport();
                 cm.Show();
                 cm.Location = new Point(Location.X + (Width - cm.Width) / 2, Location.Y + (Height - cm.Height) / 2);
             }
@@ -4886,6 +4886,22 @@ namespace JRunner
         {
             Issues issues = new Issues();
             issues.ShowDialog();
+        }
+
+        XB1HDD xb1hdd;
+        private void xboxOneHDDToolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms.OfType<XB1HDD>().Any())
+            {
+                xb1hdd.WindowState = FormWindowState.Normal;
+                xb1hdd.Activate();
+            }
+            else
+            {
+                xb1hdd = new XB1HDD();
+                xb1hdd.Show();
+                xb1hdd.Location = new Point(Location.X + (Width - xb1hdd.Width) / 2, Location.Y + (Height - xb1hdd.Height) / 2);
+            }
         }
     }
 }

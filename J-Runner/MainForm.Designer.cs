@@ -149,6 +149,7 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xboxOneHDDToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyContextMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -664,6 +665,7 @@ namespace JRunner
             this.toolStripMenuItem3,
             this.rescanDevicesToolStripMenuItem,
             this.mTXUSBFirmwareUtilityToolStripMenuItem,
+            this.xboxOneHDDToolToolStripMenuItem,
             this.toolStripMenuItem8,
             this.timingAssistantToolStripMenuItem,
             this.cBFuseToolStripMenuItem});
@@ -1175,6 +1177,13 @@ namespace JRunner
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // xboxOneHDDToolToolStripMenuItem
+            // 
+            this.xboxOneHDDToolToolStripMenuItem.Name = "xboxOneHDDToolToolStripMenuItem";
+            this.xboxOneHDDToolToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.xboxOneHDDToolToolStripMenuItem.Text = "Xbox One HDD Tool";
+            this.xboxOneHDDToolToolStripMenuItem.Click += new System.EventHandler(this.xboxOneHDDToolToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1346,5 +1355,6 @@ namespace JRunner
         private ToolStripMenuItem showRootFolderToolStripMenuItem;
         private ToolStripMenuItem showOutputFolderToolStripMenuItem;
         private UI.SplitButton btnShowWorkingFolder;
+        private ToolStripMenuItem xboxOneHDDToolToolStripMenuItem;
     }
 }
