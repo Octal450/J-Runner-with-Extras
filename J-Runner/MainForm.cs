@@ -31,7 +31,7 @@ namespace JRunner
 {
     public partial class MainForm : Form
     {
-        #region shitloadofvariables
+        #region Variables
         public static TextWriter _writer = null;
         public static MainForm mainForm;
         private IDeviceNotifier devNotifier;
@@ -432,6 +432,114 @@ namespace JRunner
             File.AppendAllText(file, "\n" + txtConsole.Text);
         }
 
+        #region DiscordRPC
+
+        private void rpcInit()
+        {
+            rpcClient = new DiscordRpcClient("768884149578104883");
+            rpcClient.Initialize();
+            rpcClient.SetPresence(new RichPresence
+            {
+                Details = string.Concat(new object[]
+                {
+                    "Device: ",
+                    "Detecting..."
+                }),
+                State = string.Concat(new object[]
+                {
+                    "Status: ",
+                    "Detecting..."
+                }),
+                Assets = new Assets
+                {
+                    LargeImageKey = "j-runner",
+                    LargeImageText = "J-Runner with Extras",
+                    SmallImageKey = ""
+                }
+            });
+            rpcReady = true;
+        }
+
+        private void rpcCheck()
+        {
+            while (rpcReady)
+            {
+                rpcUpdate();
+                Thread.Sleep(5000);
+            }
+        }
+
+        private void rpcUpdate()
+        {
+            if (DemoN.DemonDetected)
+            {
+                rpcDevice = "DemoN";
+            }
+            else if (device == 2)
+            {
+                if (variables.mtxUsbMode) rpcDevice = "MTX USB";
+                else rpcDevice = "NAND-X";
+            }
+            else if (device == 1)
+            {
+                rpcDevice = "JR-Programmer";
+            }
+            else if (device == 3)
+            {
+                rpcDevice = "xFlasher SPI";
+            }
+            else if (device == 4)
+            {
+                rpcDevice = "xFlasher eMMC";
+            }
+            else
+            {
+                rpcDevice = "No Device";
+            }
+
+            if (device != 0)
+            {
+                if (variables.writing)
+                {
+                    rpcStatus = "Writing NAND";
+                }
+                else if (variables.reading)
+                {
+                    rpcStatus = "Reading NAND";
+                }
+                else
+                {
+                    rpcStatus = "Idle";
+                }
+            }
+            else
+            {
+                rpcStatus = "No Device";
+            }
+
+            rpcClient.SetPresence(new RichPresence
+            {
+                Details = string.Concat(new object[]
+                {
+                    "Device: ",
+                    rpcDevice
+                }),
+                State = string.Concat(new object[]
+                {
+                    "Status: ",
+                    rpcStatus
+                }),
+                Assets = new Assets
+                {
+                    LargeImageKey = "j-runner",
+                    LargeImageText = "J-Runner with Extras",
+                    SmallImageKey = ""
+                }
+            });
+        }
+
+        #endregion
+
         #endregion
 
         #region Panels
@@ -629,9 +737,6 @@ namespace JRunner
                 nand_init();
             }
         }
-
-
-
         #endregion
 
         #region EXEs
@@ -2367,6 +2472,285 @@ namespace JRunner
             }
         }
 
+        public void extractFilesFromNand()
+        {
+            if (!nand.ok)
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Console.WriteLine("Extracting Files...");
+            string tmpout = "";
+            if (variables.modder && variables.custname != "")
+            {
+                tmpout = Path.Combine(getCurrentWorkingFolder(), "Extracts-" + variables.custname);
+            }
+            else
+            {
+                tmpout = Path.Combine(getCurrentWorkingFolder(), "Extracts-" + nand.ki.serial);
+            }
+
+            if (Directory.Exists(tmpout) == false)
+            {
+                Directory.CreateDirectory(tmpout);
+            }
+
+            Console.WriteLine("Saving SMC_en.bin");
+            Oper.savefile(Nand.Nand.encrypt_SMC(nand._smc), Path.Combine(tmpout, "SMC_en.bin"));
+            Console.WriteLine("Saving SMC_dec.bin");
+            Oper.savefile(nand._smc, Path.Combine(tmpout, "SMC_dec.bin"));
+            Console.WriteLine("Saving KV_en.bin");
+            Oper.savefile(nand._rawkv, Path.Combine(tmpout, "KV_en.bin"));
+
+            if (!String.IsNullOrEmpty(nand._cpukey))
+            {
+                Console.WriteLine("Saving KV_dec.bin");
+                Oper.savefile(Nand.Nand.decryptkv(nand._rawkv, Oper.StringToByteArray(nand._cpukey)), Path.Combine(tmpout, "KV_dec.bin"));
+            }
+            Console.WriteLine("Saving smc_config.bin");
+            nand.getsmcconfig();
+            Oper.savefile(nand._smc_config, Path.Combine(tmpout, "smc_config.bin"));
+
+            if (variables.ctyp.ID == 1 || variables.ctyp.ID == 10 || variables.ctyp.ID == 11)
+            {
+                byte[] t;
+                Console.WriteLine("Working...");
+                byte[] fcrt = nand.exctractFSfile("fcrt.bin");
+                if (fcrt != null)
+                {
+                    Console.WriteLine("Saving fcrt_en.bin");
+                    Oper.savefile(fcrt, Path.Combine(tmpout, "fcrt_en.bin"));
+                    byte[] fcrt_dec;
+                    if (Nand.Nand.decrypt_fcrt(fcrt, Oper.StringToByteArray(nand._cpukey), out fcrt_dec))
+                    {
+                        Console.WriteLine("Saving fcrt_dec.bin");
+                        File.WriteAllBytes(Path.Combine(tmpout, "fcrt_dec.bin"), fcrt_dec);
+                    }
+                    t = responses(fcrt, Oper.StringToByteArray(nand._cpukey), nand.ki.dvdkey);
+
+                    if (t != null)
+                    {
+
+                        Console.WriteLine("Saving C-R.bin");
+                        File.WriteAllBytes(Path.Combine(tmpout, "C-R.bin"), t);
+                        Console.WriteLine("Saving key.bin");
+                        File.WriteAllBytes(Path.Combine(tmpout, "key.bin"), Oper.StringToByteArray(nand.ki.dvdkey));
+                    }
+                    else Console.WriteLine("Failed to create C-R.bin");
+                }
+                else Console.WriteLine("Failed to find fcrt.bin");
+            }
+            Console.WriteLine("Location: {0}", tmpout);
+            Console.WriteLine("Done");
+            Console.WriteLine("");
+        }
+        public static byte[] responses(byte[] fcrt, byte[] cpukey, string dvdkey = "")
+        {
+            byte[] fcrt_dec;
+            if (Nand.Nand.decrypt_fcrt(fcrt, cpukey, out fcrt_dec))
+            {
+                byte[] rfct = new byte[0x1F6 * 0x13];
+                Oper.removeByteArray(ref fcrt_dec, 0, 0x140);
+                Random rnd = new Random();
+                int[] randomNumbers = Enumerable.Range(0, 502).OrderBy(i => rnd.Next()).ToArray();
+                int counter = 0;
+                while (counter < (rfct.Length / 0x13))
+                {
+                    byte[] cr = Oper.returnportion(fcrt_dec, counter * 0x20, 0x20);
+                    Oper.removeByteArray(ref cr, 2, 0x10 - 3);
+                    Buffer.BlockCopy(cr, 0, rfct, randomNumbers[counter] * cr.Length, cr.Length);
+                    counter++;
+                }
+                for (int i = 0; i < 0x1f6; i++)
+                {
+                    if (Oper.allsame(Oper.returnportion(fcrt_dec, i * 0x20, 0x10), 0x00)) continue;
+                    for (int j = i + 1; j < 0x1f6; j++)
+                    {
+                        if (Oper.allsame(Oper.returnportion(fcrt_dec, j * 0x20, 0x10), 0x00)) continue;
+                        if (rfct[i * 0x13] == rfct[j * 0x13] &&
+                            rfct[(i * 0x13) + 1] == rfct[(j * 0x13) + 1] &&
+                            rfct[(i * 0x13) + 2] == rfct[(j * 0x13) + 2])
+                        {
+                            if (variables.debugme) Console.WriteLine("You're FUCKED");
+                        }
+                    }
+                }
+                return encryptFirmware(rfct, variables.xor, rfct.Length);
+            }
+            return null;
+        }
+        private static byte swapBits(byte chunk, int[] bits)
+        {
+            byte result = 0;
+            //var bit = (b & (1 << bits[i])) != 0;
+            int i;
+            for (i = 0; i < 8; i++)
+            {
+                byte bit = (byte)((chunk & (1 << bits[i])) >> bits[i]);
+                result = (byte)((result << 1) | bit);
+            }
+            return result;
+        }
+        private static byte[] encryptFirmware(byte[] inputBuffer, byte[] XorList, int size)
+        {
+            int[] encryptBits = { 3, 2, 7, 6, 1, 0, 5, 4 };
+            int i;
+            byte bt, done;
+            byte[] outputBuffer = new byte[size];
+            for (i = 0; i < size; i++)
+            {
+                bt = (byte)(inputBuffer[i] ^ XorList[i]);
+                done = swapBits(bt, encryptBits);
+                outputBuffer[i] = done;
+            }
+            return outputBuffer;
+        }
+
+        public void createDonor(string con, string hack, string smc, string cpuk, string kvPath, string fcrtPath, string smcConfPath, int ldv, bool nofcrt)
+        {
+            newSession(true);
+
+            Console.WriteLine("=======================");
+            Console.WriteLine("Starting Donor Nand Creation");
+
+            // Set Clean SMC if needed
+            if (hack == "Retail" || hack == "Glitch" || hack == "DEVGL") xPanel.setCleanSMCChecked(true);
+            if (hack == "Glitch2" || hack == "Glitch2m")
+            {
+                if (smc == "Glitch") xPanel.setCleanSMCChecked(true);
+            }
+
+            variables.cpkey = txtCPUKey.Text = cpuk; // Copy CPU Key
+            variables.highldv = ldv; // Copy LDV
+            variables.changeldv = 2; // Enable Custom LDV
+
+            Thread donorThread = new Thread(() =>
+            {
+                try
+                {
+                    Console.WriteLine("Copying Files Into Place...");
+
+                    // Copy KV
+                    if (kvPath == "donor")
+                    {
+                        string kv;
+                        if (con.Contains("Trinity") || con.Contains("Corona")) kv = "slim_nofcrt";
+                        else if (con.Contains("Xenon")) kv = "phat_t1";
+                        else kv = "phat_t2";
+                        File.Copy(Path.Combine(variables.donorPath, kv + ".bin"), variables.xePath + "KV.bin", true);
+                    }
+                    else File.Copy(kvPath, variables.xePath + "KV.bin", true);
+                    Console.WriteLine("Copied KV.bin");
+
+                    // Copy FCRT and set nofcrt if needed
+                    if (fcrtPath != "unneeded")
+                    {
+                        if (fcrtPath == "donor") File.Copy(Path.Combine(variables.donorPath, "fcrt.bin"), variables.xePath + "fcrt.bin", true);
+                        else File.Copy(fcrtPath, variables.xePath + "fcrt.bin", true);
+                        xPanel.setNoFcrt(nofcrt);
+                        Console.WriteLine("Copied fcrt.bin");
+                    }
+                    else
+                    {
+                        if (File.Exists(variables.xePath + "fcrt.bin")) File.Delete(variables.xePath + "fcrt.bin");
+                        xPanel.setNoFcrt(false);
+                    }
+
+                    // Copy SMC - only needed for RGH3
+                    if ((hack == "Glitch2" || hack == "Glitch2m") && smc == "RGH3")
+                    {
+                        if (con.Contains("Corona")) File.Copy(variables.xePath + "CORONA_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Trinity")) File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Jasper")) File.Copy(variables.xePath + "JASPER_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Falcon")) File.Copy(variables.xePath + "FALCON_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                        else if (con.Contains("Zephyr")) File.Copy(variables.xePath + "ZEPHYR_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        else if (con.Contains("Xenon")) File.Copy(variables.xePath + "XENON_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        Console.WriteLine("Copied SMC.bin");
+                    }
+
+                    // Copy SMC Config
+                    if (smcConfPath == "donor")
+                    {
+                        string smcConfig;
+
+                        // Catch all types
+                        if (con.Contains("Corona")) smcConfig = "Corona";
+                        else if (con.Contains("Jasper")) smcConfig = "Jasper";
+                        else if (con.Contains("Trinity")) smcConfig = "Trinity";
+                        else smcConfig = con;
+
+                        File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xePath + "smc_config.bin", true);
+                    }
+                    else File.Copy(smcConfPath, variables.xePath + "smc_config.bin", true);
+                    Console.WriteLine("Copied smc_config.bin");
+
+                    // Launch XeBuild
+                    Thread.Sleep(1000);
+                    nand = new Nand.PrivateN();
+                    nand._cpukey = txtCPUKey.Text;
+                    string kvfile = Path.Combine(variables.pathforit, @"xebuild\data\kv.bin");
+                    if (File.Exists(kvfile))
+                    {
+                        nand._rawkv = File.ReadAllBytes(kvfile);
+                        nand.updatekvval();
+                    }
+                    xPanel.createxebuild_v2(true, nand, true);
+                }
+                catch
+                {
+                    Console.WriteLine("Donor Nand Creation Failed");
+                    Console.WriteLine("");
+                    return;
+                }
+            });
+            donorThread.Start();
+        }
+
+        private void createDonorAdvanced()
+        {
+            newSession(true);
+            nand = new Nand.PrivateN();
+            nand._cpukey = txtCPUKey.Text;
+            string kvfile = Path.Combine(variables.pathforit, @"xebuild\data\kv.bin");
+            if (File.Exists(kvfile))
+            {
+                nand._rawkv = File.ReadAllBytes(kvfile);
+                nand.updatekvval();
+
+            }
+            ThreadStart starter = delegate { xPanel.createxebuild_v2(true, nand, false); };
+            new Thread(starter).Start();
+        }
+
+        public void startKvDecrypt(string path, string key)
+        {
+            Thread decryptThread = new Thread(() =>
+            {
+                try
+                {
+                    if (File.Exists(path))
+                    {
+                        Console.WriteLine("Decrypting Keyvault...");
+                        byte[] data = Nand.Nand.decryptkv(File.ReadAllBytes(path), Oper.StringToByteArray(key));
+                        Thread.Sleep(250);
+                        if (data != null)
+                        {
+                            string outPath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path).Replace("_en", "") + "_dec" + Path.GetExtension(path));
+                            Oper.savefile(data, outPath);
+                            Console.WriteLine("Decrypted Successfully: " + outPath);
+                        }
+                        else Console.WriteLine("Decrypt Failed");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Decrypt Failed");
+                    Console.WriteLine(ex.Message);
+                }
+            });
+            decryptThread.Start();
+        }
         #endregion
 
         #region Forms
@@ -2517,177 +2901,293 @@ namespace JRunner
 
         #region Menu Bar
 
+        #region JRunner
+
+        Form shade;
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            shade = new Form();
+            shade.ControlBox = false;
+            shade.FormBorderStyle = FormBorderStyle.None;
+            shade.Text = "";
+            shade.Size = ClientSize;
+            shade.BackColor = Color.Black;
+            shade.Opacity = 0.4f;
+            shade.ShowInTaskbar = false;
+            shade.Show();
+            shade.Location = PointToScreen(Point.Empty);
+
+            this.Text = "Press escape to return to work";
+            Form about = new Forms.About();
+            about.Show();
+            about.Location = new Point(Location.X + (Width - about.Width) / 2, Location.Y + (Height - about.Height) / 2);
+        }
+
+        public void killShade()
+        {
+            shade.Dispose();
+            this.Text = "J-Runner with Extras";
+        }
+
+        private void reportIssueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Issues issues = new Issues();
+            issues.ShowDialog();
+        }
+
+        private void changelogToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            TextViewer tv = new TextViewer();
+            tv.Show();
+            tv.Location = new Point(Location.X + (Width - tv.Width) / 2, Location.Y + (Height - tv.Height) / 2);
+            tv.LoadFile("Changelog.txt");
+        }
+
+        private void shortcutsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("J-Runner with Extras has several shortcut keybinds:\n\n" +
+                "Operations:\n" +
+                "Esc - Cancel active task (if possible)\n" +
+                "F1 - New Session\n" +
+                "F9 - Try CPU Key against database\n" +
+                "CTRL+F1 - Restart\n" +
+                "ALT+F4 - Exit\n\n" +
+                "Device:\n" +
+                "F2 - Get console type\n" +
+                "F3 - Program Timing File\n" +
+                "F4 - Custom Nand/Timing File Functions\n" +
+                "F5 - Corona 4GB Read/Write\n" +
+                "F12 - Send Timing File via JTAG (if enabled)\n\n" +
+                "Interface:\n" +
+                "F6 - Timing Assistant\n" +
+                "CTRL+H - Shortcuts",
+                "Shortcuts", MessageBoxButtons.OK, MessageBoxIcon.Question);
+        }
+
+        #endregion
+
         #region Tools
 
-        public void extractFilesFromNand()
+        POST ps;
+        private void pOSTMonitorRATERToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!nand.ok)
+            if (Application.OpenForms.OfType<POST>().Any())
             {
-                MessageBox.Show("No Nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            Console.WriteLine("Extracting Files...");
-            string tmpout = "";
-            if (variables.modder && variables.custname != "")
-            {
-                tmpout = Path.Combine(getCurrentWorkingFolder(), "Extracts-" + variables.custname);
+                ps.WindowState = FormWindowState.Normal;
+                ps.Activate();
             }
             else
             {
-                tmpout = Path.Combine(getCurrentWorkingFolder(), "Extracts-" + nand.ki.serial);
+                ps = new POST();
+                ps.Show();
+                ps.Location = new Point(Location.X + (Width - ps.Width) / 2, Location.Y + (Height - ps.Height) / 2);
             }
-
-            if (Directory.Exists(tmpout) == false)
-            {
-                Directory.CreateDirectory(tmpout);
-            }
-
-            Console.WriteLine("Saving SMC_en.bin");
-            Oper.savefile(Nand.Nand.encrypt_SMC(nand._smc), Path.Combine(tmpout, "SMC_en.bin"));
-            Console.WriteLine("Saving SMC_dec.bin");
-            Oper.savefile(nand._smc, Path.Combine(tmpout, "SMC_dec.bin"));
-            Console.WriteLine("Saving KV_en.bin");
-            Oper.savefile(nand._rawkv, Path.Combine(tmpout, "KV_en.bin"));
-
-            if (!String.IsNullOrEmpty(nand._cpukey))
-            {
-                Console.WriteLine("Saving KV_dec.bin");
-                Oper.savefile(Nand.Nand.decryptkv(nand._rawkv, Oper.StringToByteArray(nand._cpukey)), Path.Combine(tmpout, "KV_dec.bin"));
-            }
-            Console.WriteLine("Saving smc_config.bin");
-            nand.getsmcconfig();
-            Oper.savefile(nand._smc_config, Path.Combine(tmpout, "smc_config.bin"));
-
-            if (variables.ctyp.ID == 1 || variables.ctyp.ID == 10 || variables.ctyp.ID == 11)
-            {
-                byte[] t;
-                Console.WriteLine("Working...");
-                byte[] fcrt = nand.exctractFSfile("fcrt.bin");
-                if (fcrt != null)
-                {
-                    Console.WriteLine("Saving fcrt_en.bin");
-                    Oper.savefile(fcrt, Path.Combine(tmpout, "fcrt_en.bin"));
-                    byte[] fcrt_dec;
-                    if (Nand.Nand.decrypt_fcrt(fcrt, Oper.StringToByteArray(nand._cpukey), out fcrt_dec))
-                    {
-                        Console.WriteLine("Saving fcrt_dec.bin");
-                        File.WriteAllBytes(Path.Combine(tmpout, "fcrt_dec.bin"), fcrt_dec);
-                    }
-                    t = responses(fcrt, Oper.StringToByteArray(nand._cpukey), nand.ki.dvdkey);
-
-                    if (t != null)
-                    {
-
-                        Console.WriteLine("Saving C-R.bin");
-                        File.WriteAllBytes(Path.Combine(tmpout, "C-R.bin"), t);
-                        Console.WriteLine("Saving key.bin");
-                        File.WriteAllBytes(Path.Combine(tmpout, "key.bin"), Oper.StringToByteArray(nand.ki.dvdkey));
-                    }
-                    else Console.WriteLine("Failed to create C-R.bin");
-                }
-                else Console.WriteLine("Failed to find fcrt.bin");
-            }
-            Console.WriteLine("Location: {0}", tmpout);
-            Console.WriteLine("Done");
-            Console.WriteLine("");
         }
-        public static byte[] responses(byte[] fcrt, byte[] cpukey, string dvdkey = "")
+
+        Comport cm;
+        private void btnCOM_Click(object sender, EventArgs e)
         {
-            byte[] fcrt_dec;
-            if (Nand.Nand.decrypt_fcrt(fcrt, cpukey, out fcrt_dec))
+            if (Application.OpenForms.OfType<Comport>().Any())
             {
-                byte[] rfct = new byte[0x1F6 * 0x13];
-                Oper.removeByteArray(ref fcrt_dec, 0, 0x140);
-                Random rnd = new Random();
-                int[] randomNumbers = Enumerable.Range(0, 502).OrderBy(i => rnd.Next()).ToArray();
-                int counter = 0;
-                while (counter < (rfct.Length / 0x13))
-                {
-                    byte[] cr = Oper.returnportion(fcrt_dec, counter * 0x20, 0x20);
-                    Oper.removeByteArray(ref cr, 2, 0x10 - 3);
-                    Buffer.BlockCopy(cr, 0, rfct, randomNumbers[counter] * cr.Length, cr.Length);
-                    counter++;
-                }
-                for (int i = 0; i < 0x1f6; i++)
-                {
-                    if (Oper.allsame(Oper.returnportion(fcrt_dec, i * 0x20, 0x10), 0x00)) continue;
-                    for (int j = i + 1; j < 0x1f6; j++)
-                    {
-                        if (Oper.allsame(Oper.returnportion(fcrt_dec, j * 0x20, 0x10), 0x00)) continue;
-                        if (rfct[i * 0x13] == rfct[j * 0x13] &&
-                            rfct[(i * 0x13) + 1] == rfct[(j * 0x13) + 1] &&
-                            rfct[(i * 0x13) + 2] == rfct[(j * 0x13) + 2])
-                        {
-                            if (variables.debugme) Console.WriteLine("You're FUCKED");
-                        }
-                    }
-                }
-                return encryptFirmware(rfct, variables.xor, rfct.Length);
+                cm.WindowState = FormWindowState.Normal;
+                cm.Activate();
             }
-            return null;
+            else
+            {
+                cm = new Comport();
+                cm.Show();
+                cm.Location = new Point(Location.X + (Width - cm.Width) / 2, Location.Y + (Height - cm.Height) / 2);
+            }
         }
-        private static byte swapBits(byte chunk, int[] bits)
+        private void sonus360EditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            byte result = 0;
-            //var bit = (b & (1 << bits[i])) != 0;
-            int i;
-            for (i = 0; i < 8; i++)
+            if (!Application.OpenForms.OfType<SoundEditor>().Any())
             {
-                byte bit = (byte)((chunk & (1 << bits[i])) >> bits[i]);
-                result = (byte)((result << 1) | bit);
+                SoundEditor se = new SoundEditor();
+                se.ShowDialog();
             }
-            return result;
         }
-        private static byte[] encryptFirmware(byte[] inputBuffer, byte[] XorList, int size)
+
+        private void rescanDevicesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int[] encryptBits = { 3, 2, 7, 6, 1, 0, 5, 4 };
-            int i;
-            byte bt, done;
-            byte[] outputBuffer = new byte[size];
-            for (i = 0; i < size; i++)
-            {
-                bt = (byte)(inputBuffer[i] ^ XorList[i]);
-                done = swapBits(bt, encryptBits);
-                outputBuffer[i] = done;
-            }
-            return outputBuffer;
+            progressBar.Value = progressBar.Minimum;
+            deviceinit();
+            Thread.Sleep(100);
+            if (listInfo.Contains(ldInfo)) ldInfo.refreshDrives(true);
+            else progressBar.Value = progressBar.Maximum;
         }
+
+        private void mTXUSBFirmwareUtilityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process[] processes = Process.GetProcessesByName("mtx-utility");
+            if (processes.Length == 0)
+            {
+                try
+                {
+                    ProcessStartInfo mtxUtility = new ProcessStartInfo("mtx-utility.exe");
+                    mtxUtility.WorkingDirectory = Path.Combine(Environment.CurrentDirectory, "common\\mtx-utility");
+                    mtxUtility.UseShellExecute = true;
+                    Process.Start(mtxUtility);
+                }
+                catch { }
+            }
+            else
+            {
+                MessageBox.Show("The utility is already running", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        XB1HDD xb1hdd;
+        private void xboxOneHDDToolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms.OfType<XB1HDD>().Any())
+            {
+                xb1hdd.WindowState = FormWindowState.Normal;
+                xb1hdd.Activate();
+            }
+            else
+            {
+                xb1hdd = new XB1HDD();
+                xb1hdd.Show();
+                xb1hdd.Location = new Point(Location.X + (Width - xb1hdd.Width) / 2, Location.Y + (Height - xb1hdd.Height) / 2);
+            }
+        }
+
+        Timing timing;
+        private void timingAssistantToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timingAssistant();
+        }
+
+        public void timingAssistant()
+        {
+            if (Application.OpenForms.OfType<Timing>().Any())
+            {
+                timing.Activate();
+            }
+            else
+            {
+                timing = new Timing();
+                timing.Show();
+                timing.Location = new Point(Location.X + (Width - timing.Width) / 2 - 175, Location.Y + 60);
+            }
+        }
+
+        Nand.CB_Fuse cb;
+        private void cBFuseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms.OfType<Nand.CB_Fuse>().Any())
+            {
+                cb.Activate();
+            }
+            else
+            {
+                cb = new Nand.CB_Fuse();
+                cb.Show();
+                cb.Location = new Point(Location.X + (Width - cb.Width) / 2, Location.Y + (Height - cb.Height) / 2);
+            }
+        }
+
+        #endregion
+
+        #region Nand
+
         private void extractFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             extractFilesFromNand();
         }
 
-        private void logPostToolStripMenuItem_Click(object sender, EventArgs e)
+        CreateDonorNand cdonor;
+        private void createDonorNandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ThreadStart starter = delegate { nandx.log_post(); };
-            new Thread(starter).Start();
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                createDonorAdvanced();
+                return;
+            }
+
+            if (variables.ctyp.ID == -1) variables.ctyp = callconsoletypes(ConsoleTypes.Selected.All);
+            if (variables.ctyp.ID == -1) return;
+            if (Application.OpenForms.OfType<CreateDonorNand>().Any())
+            {
+                cdonor.WindowState = FormWindowState.Normal;
+                cdonor.Activate();
+            }
+            else
+            {
+                cdonor = new CreateDonorNand();
+                cdonor.Show();
+                cdonor.Location = new Point(Location.X + 14, Location.Y + (Height - cdonor.Height) - 14);
+            }
         }
 
-        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void decryptKeyvaultToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "HEX files (*.hex)|*.hex|All files (*.*)|*.*";
-            openFileDialog1.Title = "Select HEX File";
-            //openFileDialog1.InitialDirectory = variables.currentdir;
-            openFileDialog1.RestoreDirectory = false;
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                variables.filename1 = openFileDialog1.FileName;
-            }
-            else return;
-            if (variables.filename1 != null) this.txtFilePath1.Text = variables.filename1;
-            variables.currentdir = variables.filename1;
-            ThreadStart starter = delegate { HID.program(ref this.progressBar); };
-            Thread start = new Thread(starter);
-            start.IsBackground = true;
-            start.Start();
+            KeyvaultDecrypter dk = new KeyvaultDecrypter();
+            dk.ShowDialog();
         }
 
         private void sMCConfigViewerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Forms.SMCConfig smcedit = new Forms.SMCConfig();
+            SMCConfig smcedit = new SMCConfig();
             smcedit.ShowDialog();
+        }
+
+        private void patchNandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!nand.ok)
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            variables.cpkey = txtCPUKey.Text;
+            patch patchform = new patch();
+            patchform.frm1 = this;
+            patchform.ShowDialog();
+        }
+
+        private void changeLDVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            xeBuildOptions xbo = new xeBuildOptions();
+            xbo.disableAdv();
+            xbo.ShowDialog();
+        }
+
+        #endregion
+
+        #region Advanced
+
+        private void customNandProCommandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            nandcustom();
+        }
+
+        private void corona4GBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            calldrives();
+        }
+
+        private void CustomXeBuildMenuItem_Click(object sender, EventArgs e)
+        {
+            CustomXebuild CX = new CustomXebuild();
+            CX.ShowDialog();
+            if (CX.DialogResult == DialogResult.Cancel) return;
+            else if (CX.DialogResult == DialogResult.OK)
+            {
+                Classes.xebuild xe = new Classes.xebuild();
+                xe.xeExit += xPanel.xe_xeExit;
+                ThreadStart starter = delegate { xe.build(CX.getString()); };
+                Thread thr = new Thread(starter);
+                thr.IsBackground = true;
+                thr.Start();
+            }
+        }
+
+        private void writeFusionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThreadStart starter = delegate { writefusion(); };
+            new Thread(starter).Start();
         }
 
         HexEdit.HexViewer hv;
@@ -2705,84 +3205,32 @@ namespace JRunner
             }
         }
 
-        #endregion
-
-        #region Advanced
-
-        private void CustomXeBuildMenuItem_Click(object sender, EventArgs e)
+        CPUKeyGen cpu;
+        private void dEVGLCPUKeyToolsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Forms.CustomXebuild CX = new Forms.CustomXebuild();
-            CX.ShowDialog();
-            if (CX.DialogResult == DialogResult.Cancel) return;
-            else if (CX.DialogResult == System.Windows.Forms.DialogResult.OK)
+            if (checkOpenedForms("CPUKeyGen"))
             {
-                Classes.xebuild xe = new Classes.xebuild();
-                xe.xeExit += xPanel.xe_xeExit;
-                ThreadStart starter = delegate { xe.build(CX.getString()); };
-                Thread thr = new Thread(starter);
-                thr.IsBackground = true;
-                thr.Start();
+                cpu.Activate();
             }
-        }
-
-        private void corona4GBToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            calldrives();
-        }
-
-        private void customNandProCommandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            nandcustom();
-        }
-
-        private void writeFusionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ThreadStart starter = delegate { writefusion(); };
-            new Thread(starter).Start();
-        }
-
-        private void patchNandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!nand.ok)
+            else
             {
-                MessageBox.Show("No Nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                cpu = new CPUKeyGen();
+                cpu.Show();
+                cpu.Location = new Point(Location.X + (Width - cpu.Width) / 2, Location.Y + 125);
             }
-
-            variables.cpkey = txtCPUKey.Text;
-            patch patchform = new patch();
-            patchform.frm1 = this;
-            patchform.ShowDialog();
-        }
-
-        private void changeLDVToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.xeBuildOptions xbo = new Forms.xeBuildOptions();
-            xbo.disableAdv();
-            xbo.ShowDialog();
-        }
-
-        #endregion
-
-        #region Dev
-
-        private void xValueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.XValue x = new Forms.XValue();
-            x.ShowDialog();
         }
 
         private void checkSecdataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(variables.filename1))
             {
-                MessageBox.Show("A nand must be loaded as source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (nand == null || !nand.ok) return;
             if (String.IsNullOrWhiteSpace(txtCPUKey.Text))
             {
-                MessageBox.Show("A matching CPU Key must be entered", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No CPU Key entered", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -2790,20 +3238,111 @@ namespace JRunner
             Nand.Nand.DecryptSecData(secdata, Oper.StringToByteArray(txtCPUKey.Text));
         }
 
-        Pirs.STFS p;
-        private void pirsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void xValueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Application.OpenForms.OfType<Pirs.STFS>().Any())
+            Forms.XValue x = new Forms.XValue();
+            x.ShowDialog();
+        }
+
+        //private void toolStripMenuItemVNand_Click(object sender, EventArgs e)
+        //{
+        //    Nand.VNandForm f = new Nand.VNandForm();
+        //    if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        //    {
+        //        if (f.filename == null)
+        //        {
+        //            MessageBox.Show("You did not select anything", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            return;
+        //        }
+        //        vnand = new Nand.VNand(f.filename, f.console, f.flashconfig, f.BadBlocks);
+        //        vnand.create();
+        //        usingVNand = true;
+        //    }
+        //}
+
+        //Pirs.STFS p;
+        //private void pirsToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (Application.OpenForms.OfType<Pirs.STFS>().Any())
+        //    {
+        //        p.WindowState = FormWindowState.Normal;
+        //        p.Activate();
+        //    }
+        //    else
+        //    {
+        //        p = new Pirs.STFS(txtFilePath1.Text, txtFilePath2.Text);
+        //        p.Show();
+        //        p.Location = new Point(Location.X + (Width - p.Width) / 2, Location.Y + (Height - p.Height) / 2);
+        //    }
+        //}
+
+        #endregion
+
+        #region xFlasher
+
+        private void installDriversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!xflasher.osCheck()) return;
+
+            Thread xFlasherDrivers = new Thread(() =>
             {
-                p.WindowState = FormWindowState.Normal;
-                p.Activate();
+                try
+                {
+                    ProcessStartInfo xflasherdrivers = new ProcessStartInfo("common\\drivers\\xFlasher-Drivers.exe");
+                    xflasherdrivers.WorkingDirectory = Environment.CurrentDirectory;
+                    xflasherdrivers.UseShellExecute = true;
+                    xflasherdrivers.Verb = "runas";
+                    Process.Start(xflasherdrivers);
+                }
+                catch
+                {
+                    MessageBox.Show("Could not launch driver installer for some reason!\n\nPlease launch it manually from the common\\drivers folder", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            });
+            xFlasherDrivers.Start();
+        }
+
+        private void flashOpenXeniumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (device == 3)
+            {
+                MessageBox.Show("Connect OpenXenium and press OK", "Connect Device", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                xflasher.flashSvf(variables.pathforit + @"\common\svf\openxenium.svf");
             }
             else
             {
-                p = new Pirs.STFS(txtFilePath1.Text, txtFilePath2.Text);
-                p.Show();
-                p.Location = new Point(Location.X + (Width - p.Width) / 2, Location.Y + (Height - p.Height) / 2);
+                MessageBox.Show("This only works with xFlasher in SPI Mode!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        #endregion
+
+        #region NAND-X
+
+        private void mtxUsbModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            variables.mtxUsbMode = mtxUsbModeToolStripMenuItem.Checked = !mtxUsbModeToolStripMenuItem.Checked;
+
+            if (device == 2)
+            {
+                if (variables.mtxUsbMode)
+                {
+                    nTools.setImage(Properties.Resources.mtx);
+                }
+                else
+                {
+                    nTools.setImage(Properties.Resources.NANDX);
+                }
+            }
+        }
+
+        #endregion
+
+        #region JR-P
+
+        private void powerOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            nandx.PowerUp();
         }
 
         private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2816,20 +3355,93 @@ namespace JRunner
             nandx.Update();
         }
 
-        private void powerOnToolStripMenuItem_Click(object sender, EventArgs e)
+        private void logPostToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            nandx.PowerUp();
+            ThreadStart starter = delegate { nandx.log_post(); };
+            new Thread(starter).Start();
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "HEX files (*.hex)|*.hex|All files (*.*)|*.*";
+            openFileDialog1.Title = "Select HEX File";
+            openFileDialog1.RestoreDirectory = false;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                variables.filename1 = openFileDialog1.FileName;
+            }
+            else return;
+            if (variables.filename1 != null) this.txtFilePath1.Text = variables.filename1;
+            variables.currentdir = variables.filename1;
+            ThreadStart starter = delegate { HID.program(ref this.progressBar); };
+            Thread start = new Thread(starter);
+            start.IsBackground = true;
+            start.Start();
         }
 
         #endregion
 
-        #region Menu Buttons
+        #region DemoN
 
-        private void btnSettings_Click(object sender, EventArgs e)
+        private void powerOnToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            JRunner.Forms.Settings mForm = new JRunner.Forms.Settings();
-            mForm.ShowDialog();
+            demon.Power_On();
         }
+
+        private void powerOffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            demon.Power_Off();
+        }
+
+        private void toggleNANDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            demon.toggle();
+        }
+
+        private void connectToUARTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            demon_uart demon_uart_frm = new demon_uart();
+            demon_uart_frm.Show();
+        }
+
+        private void getInvalidBlocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<int> invalidblocks = new List<int>();
+                demon.get_Invalid_Blocks(ref invalidblocks);
+            }
+            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+        }
+
+        private void updateFwToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "(*.bin)|*.bin|All files (*.*)|*.*";
+            openFileDialog1.Title = "Select Firmware File";
+            openFileDialog1.RestoreDirectory = false;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                variables.filename1 = openFileDialog1.FileName;
+            }
+            else return;
+            if (variables.filename1 != null) this.txtFilePath1.Text = variables.filename1;
+            ThreadStart starter = delegate { demon.Update_DemoN(variables.filename1); };
+            Thread start = new Thread(starter);
+            start.Start();
+        }
+
+        #endregion
+
+        #region Update
+
+        private void updateAvailableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        #endregion
 
         #endregion
 
@@ -2839,6 +3451,11 @@ namespace JRunner
 
         #region Basic Buttons
 
+        private void btnNewSession_Click(object sender, EventArgs e)
+        {
+            newSession();
+        }
+
         private void btnRestart_Click(object sender, EventArgs e)
         {
             Application.Restart();
@@ -2847,6 +3464,45 @@ namespace JRunner
         void btnExit_Click(object sender, EventArgs e)
         {
             Program.exit();
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            Settings mForm = new Settings();
+            mForm.ShowDialog();
+        }
+
+        public string getCurrentWorkingFolder()
+        {
+            if (!String.IsNullOrWhiteSpace(nand.ki.serial))
+            {
+                if (variables.xefolder != null && variables.xefolder != "")
+                {
+                    if (Directory.Exists(variables.xefolder)) return (variables.xefolder);
+                    else return variables.outfolder;
+                }
+                else if (Directory.Exists(Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial)))
+                {
+                    return Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
+                }
+                else return variables.outfolder;
+            }
+            else return variables.outfolder;
+        }
+
+        private void btnShowWorkingFolder_Click(object sender, EventArgs e)
+        {
+            Process.Start(getCurrentWorkingFolder());
+        }
+
+        private void showRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+        }
+
+        private void showOutputFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(variables.outfolder);
         }
 
         void btnReadClick()
@@ -3115,22 +3771,6 @@ namespace JRunner
             }
         }
 
-        Comport cm;
-        private void btnCOM_Click(object sender, EventArgs e)
-        {
-            if (Application.OpenForms.OfType<Comport>().Any())
-            {
-                cm.WindowState = FormWindowState.Normal;
-                cm.Activate();
-            }
-            else
-            {
-                cm = new Comport();
-                cm.Show();
-                cm.Location = new Point(Location.X + (Width - cm.Width) / 2, Location.Y + (Height - cm.Height) / 2);
-            }
-        }
-
         #endregion
 
         #endregion
@@ -3370,8 +4010,6 @@ namespace JRunner
 
         #endregion
 
-        #endregion
-
         #region Demon
         bool showingdemon = false;
         protected override void WndProc(ref Message m)
@@ -3585,106 +4223,7 @@ namespace JRunner
                 // Do nothing
             }
         }
-
-        private void toggleNANDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            demon.toggle();
-        }
-        private void powerOnToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            demon.Power_On();
-        }
-        private void powerOffToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            demon.Power_Off();
-        }
-        private void updateFwToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "(*.bin)|*.bin|All files (*.*)|*.*";
-            openFileDialog1.Title = "Select Firmware File";
-            openFileDialog1.RestoreDirectory = false;
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                variables.filename1 = openFileDialog1.FileName;
-            }
-            else return;
-            if (variables.filename1 != null) this.txtFilePath1.Text = variables.filename1;
-            ThreadStart starter = delegate { demon.Update_DemoN(variables.filename1); };
-            Thread start = new Thread(starter);
-            start.Start();
-        }
-        private void getInvalidBlocksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                List<int> invalidblocks = new List<int>();
-                demon.get_Invalid_Blocks(ref invalidblocks);
-            }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
-        }
         #endregion
-
-        private string GetIP()
-        {
-            string host = Dns.GetHostName();
-            IPAddress[] localIPs = Dns.GetHostAddresses(host);
-            string localIP = "?";
-            int i = 0, t = 0;
-            foreach (IPAddress iptest in localIPs)
-            {
-                if (Dns.GetHostEntry(host).AddressList[i].AddressFamily == AddressFamily.InterNetwork)
-                {
-                    if (t == 0)
-                    {
-                        localIP = Dns.GetHostEntry(host).AddressList[i].ToString();
-                    }
-                    t++;
-                }
-                i++;
-            }
-            return localIP;
-        }
-
-
-        public string download(string link, string disk)
-        {
-            String filename = "";
-            Uri url = new Uri(link);
-            System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
-            System.Net.HttpWebResponse response = (System.Net.HttpWebResponse)request.GetResponse();
-            response.Close();
-            filename = Path.GetFileName(response.ResponseUri.LocalPath);
-            Console.WriteLine("Downloading {0}", filename);
-            Int64 iSize = response.ContentLength;
-            Int64 iRunningByteTotal = 0;
-            using (System.Net.WebClient client = new System.Net.WebClient())
-            {
-                using (System.IO.Stream streamRemote = client.OpenRead(new Uri(link)))
-                {
-                    using (Stream streamLocal = new FileStream(Path.Combine(disk, filename), FileMode.Create, FileAccess.Write, FileShare.None))
-                    {
-                        int iByteSize = 0;
-                        byte[] byteBuffer = new byte[iSize];
-                        while ((iByteSize = streamRemote.Read(byteBuffer, 0, byteBuffer.Length)) > 0)
-                        {
-                            streamLocal.Write(byteBuffer, 0, iByteSize);
-                            iRunningByteTotal += iByteSize;
-                            double dIndex = iRunningByteTotal;
-                            double dTotal = byteBuffer.Length;
-                            double dProgressPercentage = (dIndex / dTotal);
-                            int iProgressPercentage = (int)(dProgressPercentage * 100);
-                            updateBlocks(String.Format("{0}%", iProgressPercentage));
-                            updateProgress(iProgressPercentage);
-                        }
-                        streamLocal.Close();
-                    }
-                    streamRemote.Close();
-                }
-            }
-            Console.WriteLine("Done");
-            return filename;
-        }
 
         #region Settings & Dashes
 
@@ -4170,6 +4709,7 @@ namespace JRunner
         #endregion
 
         #region xFlasher interactions with UI
+
         public void xFlasherInitNand(int i = 2)
         {
             if (i == 2 && File.Exists(variables.filename))
@@ -4257,7 +4797,10 @@ namespace JRunner
                 else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
             }
         }
+
         #endregion
+
+        #region Matrix Flasher interactions with UI
 
         public void mtxBusy(int mode)
         {
@@ -4276,56 +4819,9 @@ namespace JRunner
             }
         }
 
-        private void toolStripMenuItemVNand_Click(object sender, EventArgs e)
-        {
-            Nand.VNandForm f = new Nand.VNandForm();
-            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (f.filename == null)
-                {
-                    MessageBox.Show("You did not select anything", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                vnand = new Nand.VNand(f.filename, f.console, f.flashconfig, f.BadBlocks);
-                vnand.create();
-                usingVNand = true;
-            }
-        }
+        #endregion
 
-        Nand.CB_Fuse cb;
-        private void cBFuseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Application.OpenForms.OfType<Nand.CB_Fuse>().Any())
-            {
-                cb.Activate();
-            }
-            else
-            {
-                cb = new Nand.CB_Fuse();
-                cb.Show();
-                cb.Location = new Point(Location.X + (Width - cb.Width) / 2, Location.Y + (Height - cb.Height) / 2);
-            }
-        }
-
-        Forms.Timing timing;
-        private void timingAssistantToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            timingAssistant();
-        }
-
-        public void timingAssistant()
-        {
-            if (Application.OpenForms.OfType<Timing>().Any())
-            {
-                timing.Activate();
-            }
-            else
-            {
-                timing = new Timing();
-                timing.Show();
-                timing.Location = new Point(Location.X + (Width - timing.Width) / 2 - 175, Location.Y + 60);
-            }
-        }
+        #region Misc
 
         public bool checkOpenedForms(string formName)
         {
@@ -4367,381 +4863,10 @@ namespace JRunner
 
         }
 
-        private void connectToUARTToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            demon_uart demon_uart_frm = new demon_uart();
-            demon_uart_frm.Show();
-        }
-
-        public string getCurrentWorkingFolder()
-        {
-            if (!String.IsNullOrWhiteSpace(nand.ki.serial))
-            {
-                if (variables.xefolder != null && variables.xefolder != "")
-                {
-                    if (Directory.Exists(variables.xefolder)) return (variables.xefolder);
-                    else return variables.outfolder;
-                }
-                else if (Directory.Exists(Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial)))
-                {
-                    return Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
-                }
-                else return variables.outfolder;
-            }
-            else return variables.outfolder;
-        }
-
-        private void btnShowWorkingFolder_Click(object sender, EventArgs e)
-        {
-            Process.Start(getCurrentWorkingFolder());
-        }
-
-        private void showRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-        }
-
-        private void showOutputFolderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(variables.outfolder);
-        }
-        
-        private void rpcInit()
-        {
-            rpcClient = new DiscordRpcClient("768884149578104883");
-            rpcClient.Initialize();
-            rpcClient.SetPresence(new RichPresence
-            {
-                Details = string.Concat(new object[]
-                {
-                    "Device: ",
-                    "Detecting..."
-                }),
-                State = string.Concat(new object[]
-                {
-                    "Status: ",
-                    "Detecting..."
-                }),
-                Assets = new Assets
-                {
-                    LargeImageKey = "j-runner",
-                    LargeImageText = "J-Runner with Extras",
-                    SmallImageKey = ""
-                }
-            });
-            rpcReady = true;
-        }
-
-        private void rpcCheck()
-        {
-            while (rpcReady)
-            {
-                rpcUpdate();
-                Thread.Sleep(5000);
-            }
-        }
-
-        private void rpcUpdate()
-        {
-            if (DemoN.DemonDetected)
-            {
-                rpcDevice = "DemoN";
-            }
-            else if (device == 2)
-            {
-                if (variables.mtxUsbMode) rpcDevice = "MTX USB";
-                else rpcDevice = "NAND-X";
-            }
-            else if (device == 1)
-            {
-                rpcDevice = "JR-Programmer";
-            }
-            else if (device == 3)
-            {
-                rpcDevice = "xFlasher SPI";
-            }
-            else if (device == 4)
-            {
-                rpcDevice = "xFlasher eMMC";
-            }
-            else
-            {
-                rpcDevice = "No Device";
-            }
-
-            if (device != 0)
-            {
-                if (variables.writing)
-                {
-                    rpcStatus = "Writing NAND";
-                }
-                else if (variables.reading)
-                {
-                    rpcStatus = "Reading NAND";
-                }
-                else
-                {
-                    rpcStatus = "Idle";
-                }
-            }
-            else
-            {
-                rpcStatus = "No Device";
-            }
-
-            rpcClient.SetPresence(new RichPresence
-            {
-                Details = string.Concat(new object[]
-                {
-                    "Device: ",
-                    rpcDevice
-                }),
-                State = string.Concat(new object[]
-                {
-                    "Status: ",
-                    rpcStatus
-                }),
-                Assets = new Assets
-                {
-                    LargeImageKey = "j-runner",
-                    LargeImageText = "J-Runner with Extras",
-                    SmallImageKey = ""
-                }
-            });
-        }
-
-        private void updateAvailableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
-
-        private void mTXUSBFirmwareUtilityToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process[] processes = Process.GetProcessesByName("mtx-utility");
-            if (processes.Length == 0)
-            {
-                try
-                {
-                    ProcessStartInfo mtxUtility = new ProcessStartInfo("mtx-utility.exe");
-                    mtxUtility.WorkingDirectory = Path.Combine(Environment.CurrentDirectory, "common\\mtx-utility");
-                    mtxUtility.UseShellExecute = true;
-                    Process.Start(mtxUtility);
-                }
-                catch { }
-            }
-            else
-            {
-                MessageBox.Show("The utility is already running", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        Forms.CPUKeyGen cpu;
-        private void dEVGLCPUKeyToolsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (checkOpenedForms("CPUKeyGen"))
-            {
-                cpu.Activate();
-            }
-            else
-            {
-                cpu = new Forms.CPUKeyGen();
-                cpu.Show();
-                cpu.Location = new Point(Location.X + (Width - cpu.Width) / 2, Location.Y + 125);
-            }
-        }
-
-        private void flashOpenXeniumToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (device == 3)
-            {
-                MessageBox.Show("Connect OpenXenium and press OK", "Connect Device", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                xflasher.flashSvf(variables.pathforit + @"\common\svf\openxenium.svf");
-            }
-            else
-            {
-                MessageBox.Show("This only works with xFlasher in SPI Mode!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         public void updateLogColor()
         {
             txtConsole.BackColor = variables.logbackground;
             txtConsole.ForeColor = variables.logtext;
-        }
-
-        Form shade;
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            shade = new Form();
-            shade.ControlBox = false;
-            shade.FormBorderStyle = FormBorderStyle.None;
-            shade.Text = "";
-            shade.Size = ClientSize;
-            shade.BackColor = Color.Black;
-            shade.Opacity = 0.4f;
-            shade.ShowInTaskbar = false;
-            shade.Show();
-            shade.Location = PointToScreen(Point.Empty);
-
-            this.Text = "Press escape to return to work";
-            Form about = new Forms.About();
-            about.Show();
-            about.Location = new Point(Location.X + (Width - about.Width) / 2, Location.Y + (Height - about.Height) / 2);
-        }
-
-        public void killShade()
-        {
-            shade.Dispose();
-            this.Text = "J-Runner with Extras";
-        }
-
-        private void installDriversToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!xflasher.osCheck()) return;
-
-            Thread xFlasherDrivers = new Thread(() =>
-            {
-                try
-                {
-                    ProcessStartInfo xflasherdrivers = new ProcessStartInfo("common\\drivers\\xFlasher-Drivers.exe");
-                    xflasherdrivers.WorkingDirectory = Environment.CurrentDirectory;
-                    xflasherdrivers.UseShellExecute = true;
-                    xflasherdrivers.Verb = "runas";
-                    Process.Start(xflasherdrivers);
-                }
-                catch
-                {
-                    MessageBox.Show("Could not launch driver installer for some reason!\n\nPlease launch it manually from the common\\drivers folder", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            });
-            xFlasherDrivers.Start();
-        }
-
-        POST ps;
-        private void pOSTMonitorRATERToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Application.OpenForms.OfType<POST>().Any())
-            {
-                ps.WindowState = FormWindowState.Normal;
-                ps.Activate();
-            }
-            else
-            {
-                ps = new POST();
-                ps.Show();
-                ps.Location = new Point(Location.X + (Width - ps.Width) / 2, Location.Y + (Height - ps.Height) / 2);
-            }
-        }
-
-        private void sonus360EditorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Application.OpenForms.OfType<SoundEditor>().Any())
-            {
-                SoundEditor se = new SoundEditor();
-                se.ShowDialog();
-            }
-        }
-
-        private void rescanDevicesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            progressBar.Value = progressBar.Minimum;
-            deviceinit();
-            Thread.Sleep(100);
-            if (listInfo.Contains(ldInfo)) ldInfo.refreshDrives(true);
-            else progressBar.Value = progressBar.Maximum;
-        }
-
-        private void btnNewSession_Click(object sender, EventArgs e)
-        {
-            newSession();
-        }
-
-        private void shortcutsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("J-Runner with Extras has several shortcut keybinds:\n\n" +
-                "Operations:\n" +
-                "Esc - Cancel active task (if possible)\n" +
-                "F1 - New Session\n" +
-                "F9 - Try CPU Key against database\n" +
-                "CTRL+F1 - Restart\n" +
-                "ALT+F4 - Exit\n\n" +
-                "Device:\n" +
-                "F2 - Get console type\n" +
-                "F3 - Program Timing File\n" +
-                "F4 - Custom Nand/Timing File Functions\n" +
-                "F5 - Corona 4GB Read/Write\n" +
-                "F12 - Send Timing File via JTAG (if enabled)\n\n" +
-                "Interface:\n" +
-                "F6 - Timing Assistant\n" +
-                "CTRL+H - Shortcuts",
-                "Shortcuts", MessageBoxButtons.OK, MessageBoxIcon.Question);
-        }
-
-        private void changelogToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            TextViewer tv = new TextViewer();
-            tv.Show();
-            tv.Location = new Point(Location.X + (Width - tv.Width) / 2, Location.Y + (Height - tv.Height) / 2);
-            tv.LoadFile("Changelog.txt");
-        }
-
-        CreateDonorNand cdonor;
-        private void createDonorNandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if ((ModifierKeys & Keys.Shift) == Keys.Shift)
-            {
-                createDonorAdvanced();
-                return;
-            }
-
-            if (variables.ctyp.ID == -1) variables.ctyp = callconsoletypes(ConsoleTypes.Selected.All);
-            if (variables.ctyp.ID == -1) return;
-            if (Application.OpenForms.OfType<CreateDonorNand>().Any())
-            {
-                cdonor.WindowState = FormWindowState.Normal;
-                cdonor.Activate();
-            }
-            else
-            {
-                cdonor = new CreateDonorNand();
-                cdonor.Show();
-                cdonor.Location = new Point(Location.X + 14, Location.Y + (Height - cdonor.Height) - 14);
-            }
-        }
-
-        private void decryptKeyvaultToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            KeyvaultDecrypter dk = new KeyvaultDecrypter();
-            dk.ShowDialog();
-        }
-
-        public void startKvDecrypt(string path, string key)
-        {
-            Thread decryptThread = new Thread(() =>
-            {
-                try
-                {
-                    if (File.Exists(path))
-                    {
-                        Console.WriteLine("Decrypting Keyvault...");
-                        byte[] data = Nand.Nand.decryptkv(File.ReadAllBytes(path), Oper.StringToByteArray(key));
-                        Thread.Sleep(250);
-                        if (data != null)
-                        {
-                            string outPath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path).Replace("_en", "") + "_dec" + Path.GetExtension(path));
-                            Oper.savefile(data, outPath);
-                            Console.WriteLine("Decrypted Successfully: " + outPath);
-                        }
-                        else Console.WriteLine("Decrypt Failed");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Decrypt Failed");
-                    Console.WriteLine(ex.Message);
-                }
-            });
-            decryptThread.Start();
         }
 
         public string getTxtCpuKey()
@@ -4749,159 +4874,6 @@ namespace JRunner
             return txtCPUKey.Text;
         }
 
-        public void createDonor(string con, string hack, string smc, string cpuk, string kvPath, string fcrtPath, string smcConfPath, int ldv, bool nofcrt)
-        {
-            newSession(true);
-
-            Console.WriteLine("=======================");
-            Console.WriteLine("Starting Donor Nand Creation");
-
-            // Set Clean SMC if needed
-            if (hack == "Retail" || hack == "Glitch" || hack == "DEVGL") xPanel.setCleanSMCChecked(true);
-            if (hack == "Glitch2" || hack == "Glitch2m")
-            {
-                if (smc == "Glitch") xPanel.setCleanSMCChecked(true);
-            }
-
-            variables.cpkey = txtCPUKey.Text = cpuk; // Copy CPU Key
-            variables.highldv = ldv; // Copy LDV
-            variables.changeldv = 2; // Enable Custom LDV
-
-            Thread donorThread = new Thread(() =>
-            {
-                try
-                {
-                    Console.WriteLine("Copying Files Into Place...");
-
-                    // Copy KV
-                    if (kvPath == "donor")
-                    {
-                        string kv;
-                        if (con.Contains("Trinity") || con.Contains("Corona")) kv = "slim_nofcrt";
-                        else if (con.Contains("Xenon")) kv = "phat_t1";
-                        else kv = "phat_t2";
-                        File.Copy(Path.Combine(variables.donorPath, kv + ".bin"), variables.xePath + "KV.bin", true);
-                    }
-                    else File.Copy(kvPath, variables.xePath + "KV.bin", true);
-                    Console.WriteLine("Copied KV.bin");
-
-                    // Copy FCRT and set nofcrt if needed
-                    if (fcrtPath != "unneeded")
-                    {
-                        if (fcrtPath == "donor") File.Copy(Path.Combine(variables.donorPath, "fcrt.bin"), variables.xePath + "fcrt.bin", true);
-                        else File.Copy(fcrtPath, variables.xePath + "fcrt.bin", true);
-                        xPanel.setNoFcrt(nofcrt);
-                        Console.WriteLine("Copied fcrt.bin");
-                    }
-                    else
-                    {
-                        if (File.Exists(variables.xePath + "fcrt.bin")) File.Delete(variables.xePath + "fcrt.bin");
-                        xPanel.setNoFcrt(false);
-                    }
-
-                    // Copy SMC - only needed for RGH3
-                    if ((hack == "Glitch2" || hack == "Glitch2m") && smc == "RGH3")
-                    {
-                        if (con.Contains("Corona")) File.Copy(variables.xePath + "CORONA_CLEAN.bin", variables.xePath + "SMC.bin", true);
-                        else if (con.Contains("Trinity")) File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
-                        else if (con.Contains("Jasper")) File.Copy(variables.xePath + "JASPER_CLEAN.bin", variables.xePath + "SMC.bin", true);
-                        else if (con.Contains("Falcon")) File.Copy(variables.xePath + "FALCON_CLEAN.bin", variables.xePath + "SMC.bin", true);
-                        else if (con.Contains("Zephyr")) File.Copy(variables.xePath + "ZEPHYR_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
-                        else if (con.Contains("Xenon")) File.Copy(variables.xePath + "XENON_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
-                        Console.WriteLine("Copied SMC.bin");
-                    }
-
-                    // Copy SMC Config
-                    if (smcConfPath == "donor")
-                    {
-                        string smcConfig;
-
-                        // Catch all types
-                        if (con.Contains("Corona")) smcConfig = "Corona";
-                        else if (con.Contains("Jasper")) smcConfig = "Jasper";
-                        else if (con.Contains("Trinity")) smcConfig = "Trinity";
-                        else smcConfig = con;
-
-                        File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xePath + "smc_config.bin", true);
-                    }
-                    else File.Copy(smcConfPath, variables.xePath + "smc_config.bin", true);
-                    Console.WriteLine("Copied smc_config.bin");
-
-                    // Launch XeBuild
-                    Thread.Sleep(1000);
-                    nand = new Nand.PrivateN();
-                    nand._cpukey = txtCPUKey.Text;
-                    string kvfile = Path.Combine(variables.pathforit, @"xebuild\data\kv.bin");
-                    if (File.Exists(kvfile))
-                    {
-                        nand._rawkv = File.ReadAllBytes(kvfile);
-                        nand.updatekvval();
-                    }
-                    xPanel.createxebuild_v2(true, nand, true);
-                }
-                catch
-                {
-                    Console.WriteLine("Donor Nand Creation Failed");
-                    Console.WriteLine("");
-                    return;
-                }
-            });
-            donorThread.Start();
-        }
-
-        private void createDonorAdvanced()
-        {
-            newSession(true);
-            nand = new Nand.PrivateN();
-            nand._cpukey = txtCPUKey.Text;
-            string kvfile = Path.Combine(variables.pathforit, @"xebuild\data\kv.bin");
-            if (File.Exists(kvfile))
-            {
-                nand._rawkv = File.ReadAllBytes(kvfile);
-                nand.updatekvval();
-
-            }
-            ThreadStart starter = delegate { xPanel.createxebuild_v2(true, nand, false); };
-            new Thread(starter).Start();
-        }
-
-        private void mtxUsbModeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            variables.mtxUsbMode = mtxUsbModeToolStripMenuItem.Checked = !mtxUsbModeToolStripMenuItem.Checked;
-
-            if (device == 2)
-            {
-                if (variables.mtxUsbMode)
-                {
-                    nTools.setImage(Properties.Resources.mtx);
-                }
-                else
-                {
-                    nTools.setImage(Properties.Resources.NANDX);
-                }
-            }
-        }
-
-        private void reportIssueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Issues issues = new Issues();
-            issues.ShowDialog();
-        }
-
-        XB1HDD xb1hdd;
-        private void xboxOneHDDToolToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Application.OpenForms.OfType<XB1HDD>().Any())
-            {
-                xb1hdd.WindowState = FormWindowState.Normal;
-                xb1hdd.Activate();
-            }
-            else
-            {
-                xb1hdd = new XB1HDD();
-                xb1hdd.Show();
-                xb1hdd.Location = new Point(Location.X + (Width - xb1hdd.Width) / 2, Location.Y + (Height - xb1hdd.Height) / 2);
-            }
-        }
+        #endregion
     }
 }
