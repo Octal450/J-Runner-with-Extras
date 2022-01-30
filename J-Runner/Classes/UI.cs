@@ -12,8 +12,22 @@ namespace UI
         ContextMenuStrip contextStrip;
         bool isHot;
         bool menuOpen;
+        bool alwaysShowMenu = false;
 
         #region context menu
+        [DefaultValue(false)]
+        public bool AlwaysShowMenu
+        {
+            get
+            {
+                return alwaysShowMenu;
+            }
+            set
+            {
+                alwaysShowMenu = value;
+            }
+        }
+
         void contextStrip_Opening(object sender, CancelEventArgs e)
         {
             menuOpen = true;
@@ -26,7 +40,7 @@ namespace UI
         }
 
         [DefaultValue(null)]
-        public ContextMenuStrip contextMenuStrip
+        public ContextMenuStrip DropDownContextMenu
         {
             get
             {
@@ -55,11 +69,11 @@ namespace UI
         {
             get
             {
-                return contextMenuStrip;
+                return DropDownContextMenu;
             }
             set
             {
-                contextMenuStrip = value;
+                DropDownContextMenu = value;
             }
         }
 
@@ -131,7 +145,7 @@ namespace UI
         {
             var clickPos = PointToClient(new Point(MousePosition.X, MousePosition.Y));
 
-            if (clickPos.X >= (Size.Width - Image.Width)) showMenu();
+            if (clickPos.X >= (Size.Width - Image.Width) || alwaysShowMenu) showMenu();
             else base.OnClick(e);
         }
 

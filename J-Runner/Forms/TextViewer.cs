@@ -17,7 +17,7 @@ namespace JRunner.Forms
 
         private void TextViewer_FormClosing(object sender, EventArgs e)
         {
-            fileStream.Dispose();
+            if (fileStream != null) fileStream.Dispose();
         }
 
         public void LoadFile(string file)

@@ -279,6 +279,12 @@
     <Compile Include="Forms\UpdateFailed.Designer.cs">
       <DependentUpon>UpdateFailed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\XB1HDD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\XB1HDD.designer.cs">
+      <DependentUpon>XB1HDD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\xFlasherNandSel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -677,6 +683,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UpdateFailed.resx">
       <DependentUpon>UpdateFailed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XB1HDD.resx">
+      <DependentUpon>XB1HDD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\xFlasherNandSel.resx">
       <DependentUpon>xFlasherNandSel.cs</DependentUpon>
