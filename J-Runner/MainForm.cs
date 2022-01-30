@@ -3047,6 +3047,7 @@ namespace JRunner
                 cm.Location = new Point(Location.X + (Width - cm.Width) / 2, Location.Y + (Height - cm.Height) / 2);
             }
         }
+
         private void SoundEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Application.OpenForms.OfType<SoundEditor>().Any())
