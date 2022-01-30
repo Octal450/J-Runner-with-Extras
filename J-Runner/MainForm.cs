@@ -266,7 +266,7 @@ namespace JRunner
                 if (IsUsbDeviceConnected("7001", "600D")) // PicoFlasher
                 {
                     nTools.setImage(Properties.Resources.picoflasher);
-                    PicoFlasherToolStripMenuItem.Visible = true;
+                    //PicoFlasherToolStripMenuItem.Visible = true;
                     device = DEVICE.PICOFLASHER;
                 }
                 else if (IsUsbDeviceConnected("6010", "0403")) // xFlasher SPI
@@ -3048,7 +3048,7 @@ namespace JRunner
             }
         }
 
-        private void SoundEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sonus360EditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Application.OpenForms.OfType<SoundEditor>().Any())
             {
@@ -4198,7 +4198,7 @@ namespace JRunner
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001) // PicoFlasher
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(Properties.Resources.picoflasher);
-                        PicoFlasherToolStripMenuItem.Visible = true;
+                        //PicoFlasherToolStripMenuItem.Visible = true;
                         device = DEVICE.PICOFLASHER;
                     }
                     else if (e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010) // xFlasher SPI
@@ -4250,7 +4250,7 @@ namespace JRunner
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
-                        PicoFlasherToolStripMenuItem.Visible = false;
+                        //PicoFlasherToolStripMenuItem.Visible = false;
                         device = DEVICE.NO_DEVICE;
                     }
                     else if(e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8334)
@@ -4780,6 +4780,98 @@ namespace JRunner
 
         #endregion
 
+        #region xFlasher interactions with UI
+
+        public void xFlasherInitNand(int i = 2)
+        {
+            if (i == 2 && File.Exists(variables.filename))
+            {
+                this.txtFilePath1.Text = Path.Combine(variables.filename);
+                variables.filename1 = variables.filename;
+                nand_init();
+            }
+            if (i == 3 && File.Exists(variables.filename))
+            {
+                this.txtFilePath2.Text = Path.Combine(variables.filename);
+                variables.filename2 = variables.filename;
+                new Thread(comparenands).Start();
+            }
+        }
+
+        public void xFlasherEccCleanup()
+        {
+            if (variables.tempfile != "")
+            {
+                variables.filename1 = variables.tempfile;
+                txtFilePath1.Text = variables.tempfile;
+            }
+        }
+
+        public void xFlasherNandSelShow(int xfseltype, bool bigblock = false)
+        {
+            variables.xfSelType = xfseltype;
+            xFlasherNandSel xfselform = new xFlasherNandSel();
+            xfselform.TopMost = true;
+            xfselform.SizeClick += xFlasherSizeClick;
+            xfselform.BigBlock(bigblock);
+            xfselform.Show();
+        }
+
+        void xFlasherSizeClick(int size)
+        {
+            if (variables.xfSelType == 1)
+            {
+                xflasher.readNandAuto(size, nTools.getNumericIterations(), true);
+                variables.xfSelType = 0;
+            }
+            else if (variables.xfSelType == 2)
+            {
+                xflasher.writeNand(size, variables.filename1);
+                variables.xfSelType = 0;
+            }
+        }
+
+        public void xFlasherBusy(int mode)
+        {
+            if (mode > 0)
+            {
+                if (mode == 3) ProgressLabel.Text = "Erasing";
+                else if (mode == 2) ProgressLabel.Text = "Writing";
+                else if (mode == 1) ProgressLabel.Text = "Reading";
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
+            }
+            else if (mode == -2)
+            {
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Marquee));
+            }
+            else if (mode == -1)
+            {
+                ProgressLabel.Text = "Progress";
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
+                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Minimum));
+                txtBlocks.Text = "";
+            }
+            else
+            {
+                ProgressLabel.Text = "Progress";
+                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
+                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Maximum));
+                txtBlocks.Text = "";
+            }
+        }
+
+        public void xFlasherBlocksUpdate(string str, int progress)
+        {
+            if (xflasher.inUse)
+            {
+                txtBlocks.Text = str;
+                if (progress >= 0) progressBar.BeginInvoke((Action)(() => progressBar.Value = progress)); // Just in case
+                else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
+            }
+        }
+
+        #endregion
+
         #region PicoFlasher interactions with UI
         public void PicoFlasherInitNand(int idx)
         {
@@ -4876,98 +4968,6 @@ namespace JRunner
                     progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
             }
         }
-        #endregion
-
-        #region xFlasher interactions with UI
-
-        public void xFlasherInitNand(int i = 2)
-        {
-            if (i == 2 && File.Exists(variables.filename))
-            {
-                this.txtFilePath1.Text = Path.Combine(variables.filename);
-                variables.filename1 = variables.filename;
-                nand_init();
-            }
-            if (i == 3 && File.Exists(variables.filename))
-            {
-                this.txtFilePath2.Text = Path.Combine(variables.filename);
-                variables.filename2 = variables.filename;
-                new Thread(comparenands).Start();
-            }
-        }
-
-        public void xFlasherEccCleanup()
-        {
-            if (variables.tempfile != "")
-            {
-                variables.filename1 = variables.tempfile;
-                txtFilePath1.Text = variables.tempfile;
-            }
-        }
-
-        public void xFlasherNandSelShow(int xfseltype, bool bigblock = false)
-        {
-            variables.xfSelType = xfseltype;
-            xFlasherNandSel xfselform = new xFlasherNandSel();
-            xfselform.TopMost = true;
-            xfselform.SizeClick += xFlasherSizeClick;
-            xfselform.BigBlock(bigblock);
-            xfselform.Show();
-        }
-
-        void xFlasherSizeClick(int size)
-        {
-            if (variables.xfSelType == 1)
-            {
-                xflasher.readNandAuto(size, nTools.getNumericIterations(), true);
-                variables.xfSelType = 0;
-            }
-            else if (variables.xfSelType == 2)
-            {
-                xflasher.writeNand(size, variables.filename1);
-                variables.xfSelType = 0;
-            }
-        }
-
-        public void xFlasherBusy(int mode)
-        {
-            if (mode > 0)
-            {
-                if (mode == 3) ProgressLabel.Text = "Erasing";
-                else if (mode == 2) ProgressLabel.Text = "Writing";
-                else if (mode == 1) ProgressLabel.Text = "Reading";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
-            }
-            else if (mode == -2)
-            {
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Marquee));
-            }
-            else if (mode == -1)
-            {
-                ProgressLabel.Text = "Progress";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
-                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Minimum));
-                txtBlocks.Text = "";
-            }
-            else
-            {
-                ProgressLabel.Text = "Progress";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
-                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Maximum));
-                txtBlocks.Text = "";
-            }
-        }
-
-        public void xFlasherBlocksUpdate(string str, int progress)
-        {
-            if (xflasher.inUse)
-            {
-                txtBlocks.Text = str;
-                if (progress >= 0) progressBar.BeginInvoke((Action)(() => progressBar.Value = progress)); // Just in case
-                else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
-            }
-        }
-
         #endregion
 
         #region Matrix Flasher interactions with UI

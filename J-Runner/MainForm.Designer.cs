@@ -88,10 +88,11 @@ namespace JRunner
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSTMonitorRATERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMMonitorAdvancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SoundEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sonus360EditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.rescanDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTXUSBFirmwareUtilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xboxOneHDDToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.timingAssistantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cBFuseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,7 +143,6 @@ namespace JRunner
             this.patchNandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xFlasherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PicoFlasherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installDriversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOpenXeniumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nANDXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,7 +150,6 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xboxOneHDDToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyContextMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -662,7 +661,7 @@ namespace JRunner
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pOSTMonitorRATERToolStripMenuItem,
             this.cOMMonitorAdvancedToolStripMenuItem,
-            this.SoundEditorToolStripMenuItem,
+            this.sonus360EditorToolStripMenuItem,
             this.toolStripMenuItem3,
             this.rescanDevicesToolStripMenuItem,
             this.mTXUSBFirmwareUtilityToolStripMenuItem,
@@ -688,12 +687,12 @@ namespace JRunner
             this.cOMMonitorAdvancedToolStripMenuItem.Text = "COM Monitor";
             this.cOMMonitorAdvancedToolStripMenuItem.Click += new System.EventHandler(this.btnCOM_Click);
             // 
-            // SoundEditorToolStripMenuItem
+            // sonus360EditorToolStripMenuItem
             // 
-            this.SoundEditorToolStripMenuItem.Name = "SoundEditorToolStripMenuItem";
-            this.SoundEditorToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.SoundEditorToolStripMenuItem.Text = "Sound Editor";
-            this.SoundEditorToolStripMenuItem.Click += new System.EventHandler(this.SoundEditorToolStripMenuItem_Click);
+            this.sonus360EditorToolStripMenuItem.Name = "sonus360EditorToolStripMenuItem";
+            this.sonus360EditorToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.sonus360EditorToolStripMenuItem.Text = "Sonus360";
+            this.sonus360EditorToolStripMenuItem.Click += new System.EventHandler(this.sonus360EditorToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -713,6 +712,13 @@ namespace JRunner
             this.mTXUSBFirmwareUtilityToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.mTXUSBFirmwareUtilityToolStripMenuItem.Text = "MTX USB Firmware Utility";
             this.mTXUSBFirmwareUtilityToolStripMenuItem.Click += new System.EventHandler(this.mTXUSBFirmwareUtilityToolStripMenuItem_Click);
+            // 
+            // xboxOneHDDToolToolStripMenuItem
+            // 
+            this.xboxOneHDDToolToolStripMenuItem.Name = "xboxOneHDDToolToolStripMenuItem";
+            this.xboxOneHDDToolToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.xboxOneHDDToolToolStripMenuItem.Text = "Xbox One HDD Tool";
+            this.xboxOneHDDToolToolStripMenuItem.Click += new System.EventHandler(this.xboxOneHDDToolToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
@@ -963,7 +969,6 @@ namespace JRunner
             this.nandToolStripMenuItem,
             this.advancedToolStripMenuItem,
             this.xFlasherToolStripMenuItem,
-            this.PicoFlasherToolStripMenuItem,
             this.nANDXToolStripMenuItem,
             this.jRPToolStripMenuItem,
             this.jRPBLToolStripMenuItem,
@@ -1138,14 +1143,6 @@ namespace JRunner
             this.flashOpenXeniumToolStripMenuItem.Text = "Program OpenXenium";
             this.flashOpenXeniumToolStripMenuItem.Click += new System.EventHandler(this.flashOpenXeniumToolStripMenuItem_Click);
             // 
-            // PicoFlasherToolStripMenuItem
-            // 
-            this.PicoFlasherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {});
-            this.PicoFlasherToolStripMenuItem.Name = "PicoFlasherToolStripMenuItem";
-            this.PicoFlasherToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.PicoFlasherToolStripMenuItem.Text = "PicoFlasher";
-            this.PicoFlasherToolStripMenuItem.Visible = false;
-            // 
             // nANDXToolStripMenuItem
             // 
             this.nANDXToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1158,7 +1155,7 @@ namespace JRunner
             // mtxUsbModeToolStripMenuItem
             // 
             this.mtxUsbModeToolStripMenuItem.Name = "mtxUsbModeToolStripMenuItem";
-            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mtxUsbModeToolStripMenuItem.Text = "MTX USB Mode";
             this.mtxUsbModeToolStripMenuItem.Click += new System.EventHandler(this.mtxUsbModeToolStripMenuItem_Click);
             // 
@@ -1186,13 +1183,6 @@ namespace JRunner
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // xboxOneHDDToolToolStripMenuItem
-            // 
-            this.xboxOneHDDToolToolStripMenuItem.Name = "xboxOneHDDToolToolStripMenuItem";
-            this.xboxOneHDDToolToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.xboxOneHDDToolToolStripMenuItem.Text = "Xbox One HDD Tool";
-            this.xboxOneHDDToolToolStripMenuItem.Click += new System.EventHandler(this.xboxOneHDDToolToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1313,14 +1303,13 @@ namespace JRunner
         private ToolStripMenuItem updateAvailableToolStripMenuItem;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem xFlasherToolStripMenuItem;
-        private ToolStripMenuItem PicoFlasherToolStripMenuItem;
         private ToolStripMenuItem dEVGLCPUKeyToolsToolStripMenuItem;
         private ToolStripMenuItem cBFuseToolStripMenuItem;
         private ToolStripMenuItem flashOpenXeniumToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripMenuItem logPostToolStripMenuItem;
         private ToolStripMenuItem pOSTMonitorRATERToolStripMenuItem;
-        private ToolStripMenuItem SoundEditorToolStripMenuItem;
+        private ToolStripMenuItem sonus360EditorToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem3;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
