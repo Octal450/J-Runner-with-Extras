@@ -95,7 +95,7 @@
             this.groupBox1.Controls.Add(this.rbtnStarWars);
             this.groupBox1.Controls.Add(this.rbtnMW3);
             this.groupBox1.Controls.Add(this.rbtnGOW3);
-            this.groupBox1.Location = new System.Drawing.Point(288, 75);
+            this.groupBox1.Location = new System.Drawing.Point(284, 75);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(120, 253);
             this.groupBox1.TabIndex = 0;
@@ -350,7 +350,7 @@
             this.groupBox2.Controls.Add(this.btnStart);
             this.groupBox2.Controls.Add(this.txtEject);
             this.groupBox2.Controls.Add(this.txtStart);
-            this.groupBox2.Location = new System.Drawing.Point(414, 8);
+            this.groupBox2.Location = new System.Drawing.Point(428, 8);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(399, 320);
             this.groupBox2.TabIndex = 14;
@@ -629,7 +629,7 @@
             this.groupBox6.Controls.Add(this.txtFile);
             this.groupBox6.Controls.Add(this.btnVerify);
             this.groupBox6.Controls.Add(this.veraftreadchk);
-            this.groupBox6.Location = new System.Drawing.Point(9, 75);
+            this.groupBox6.Location = new System.Drawing.Point(5, 75);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(273, 253);
             this.groupBox6.TabIndex = 40;
@@ -640,7 +640,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 331);
+            this.ClientSize = new System.Drawing.Size(832, 331);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.pictureBox1);
@@ -652,7 +652,7 @@
             this.Name = "SoundEditor";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Xecuter Sonus 360 Editor";
+            this.Text = "Sonus360";
             this.Load += new System.EventHandler(this.SoundEditor_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SoundEditor_KeyUp);
             this.groupBox1.ResumeLayout(false);
