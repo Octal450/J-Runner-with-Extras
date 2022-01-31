@@ -705,8 +705,7 @@ namespace JRunner.Panels
         {
             if (chkRgh3.Checked)
             {
-                //Console.WriteLine("RGH3 Selected"); // Enable when out of beta
-                Console.WriteLine("Warning: RGH3 is still in beta, use at your own risk"); // Remove when out of beta
+                Console.WriteLine("RGH3 Selected");
                 chkCleanSMC.Checked = false;
                 chkCR4.Checked = false;
                 chkSMCP.Checked = false;
