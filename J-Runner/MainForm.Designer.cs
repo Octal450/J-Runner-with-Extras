@@ -104,7 +104,7 @@ namespace JRunner
             this.writeFusionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripHexEditor = new System.Windows.Forms.ToolStripMenuItem();
-            this.dEVGLCPUKeyToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cPUKeyToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.checkSecdataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -754,7 +754,7 @@ namespace JRunner
             this.writeFusionToolStripMenuItem,
             this.toolStripMenuItem5,
             this.toolStripHexEditor,
-            this.dEVGLCPUKeyToolsToolStripMenuItem,
+            this.cPUKeyToolsToolStripMenuItem,
             this.toolStripSeparator15,
             this.checkSecdataToolStripMenuItem,
             this.xValueToolStripMenuItem});
@@ -805,13 +805,12 @@ namespace JRunner
             this.toolStripHexEditor.Text = "Hex Viewer";
             this.toolStripHexEditor.Click += new System.EventHandler(this.toolStripHexEditor_Click);
             // 
-            // dEVGLCPUKeyToolsToolStripMenuItem
+            // cPUKeyToolsToolStripMenuItem
             // 
-            this.dEVGLCPUKeyToolsToolStripMenuItem.Name = "dEVGLCPUKeyToolsToolStripMenuItem";
-            this.dEVGLCPUKeyToolsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.dEVGLCPUKeyToolsToolStripMenuItem.Text = "DEVGL CPU Key Tools";
-            this.dEVGLCPUKeyToolsToolStripMenuItem.Visible = false;
-            this.dEVGLCPUKeyToolsToolStripMenuItem.Click += new System.EventHandler(this.dEVGLCPUKeyToolsToolStripMenuItem_Click);
+            this.cPUKeyToolsToolStripMenuItem.Name = "cPUKeyToolsToolStripMenuItem";
+            this.cPUKeyToolsToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.cPUKeyToolsToolStripMenuItem.Text = "CPU Key Tools";
+            this.cPUKeyToolsToolStripMenuItem.Click += new System.EventHandler(this.cPUKeyToolsToolStripMenuItem_Click);
             // 
             // toolStripSeparator15
             // 
@@ -1155,7 +1154,7 @@ namespace JRunner
             // mtxUsbModeToolStripMenuItem
             // 
             this.mtxUsbModeToolStripMenuItem.Name = "mtxUsbModeToolStripMenuItem";
-            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mtxUsbModeToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.mtxUsbModeToolStripMenuItem.Text = "MTX USB Mode";
             this.mtxUsbModeToolStripMenuItem.Click += new System.EventHandler(this.mtxUsbModeToolStripMenuItem_Click);
             // 
@@ -1303,7 +1302,7 @@ namespace JRunner
         private ToolStripMenuItem updateAvailableToolStripMenuItem;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem xFlasherToolStripMenuItem;
-        private ToolStripMenuItem dEVGLCPUKeyToolsToolStripMenuItem;
+        private ToolStripMenuItem cPUKeyToolsToolStripMenuItem;
         private ToolStripMenuItem cBFuseToolStripMenuItem;
         private ToolStripMenuItem flashOpenXeniumToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem2;

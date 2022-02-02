@@ -635,14 +635,6 @@ namespace JRunner
             else if (xPanel.getRbtnRetailChecked()) variables.ttyp = variables.hacktypes.retail;
             else if (xPanel.getRbtnDevGLChecked()) variables.ttyp = variables.hacktypes.devgl;
             else variables.ttyp = variables.hacktypes.nothing;
-            if (xPanel.getRbtnDevGLChecked())
-            {
-                dEVGLCPUKeyToolsToolStripMenuItem.Visible = true;
-            }
-            else
-            {
-                dEVGLCPUKeyToolsToolStripMenuItem.Visible = false;
-            }
         }
 
         void xPanel_AddedDash()
@@ -3255,17 +3247,18 @@ namespace JRunner
         }
 
         CPUKeyGen cpu;
-        private void dEVGLCPUKeyToolsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cPUKeyToolsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (checkOpenedForms("CPUKeyGen"))
+            if (Application.OpenForms.OfType<CPUKeyGen>().Any())
             {
+                cpu.WindowState = FormWindowState.Normal;
                 cpu.Activate();
             }
             else
             {
                 cpu = new CPUKeyGen();
                 cpu.Show();
-                cpu.Location = new Point(Location.X + (Width - cpu.Width) / 2, Location.Y + 125);
+                cpu.Location = new Point(Location.X + (Width - cpu.Width) / 2, Location.Y + 155);
             }
         }
 
@@ -4992,20 +4985,6 @@ namespace JRunner
         #endregion
 
         #region Misc
-
-        public bool checkOpenedForms(string formName)
-        {
-            FormCollection openedForms = Application.OpenForms;
-            foreach (Form testForm in openedForms)
-            {
-                if (testForm.Name == formName)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         private void demonSerialToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forms.DemonCom good = new Forms.DemonCom();
