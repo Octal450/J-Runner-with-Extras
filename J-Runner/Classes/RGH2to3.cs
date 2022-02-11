@@ -30,6 +30,7 @@ namespace JRunner.Classes
         private const int ECC_SIZE_ECC = 1351680;
         private const int ECC_SIZE_NOECC = 1310720;
         private static readonly byte[] _1BL_KEY = { 0xDD, 0x88, 0xAD, 0x0C, 0x9E, 0xD6, 0x69, 0xE7, 0xB5, 0x67, 0x94, 0xFB, 0x68, 0x56, 0x3E, 0xFA };
+        private static readonly byte[] _ZERO_KEY = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
         internal static byte[] XeCryptHmacSha(byte[] key, byte[] data0, int offset0, int size0, byte[] data1 = null, int offset1 = 0, int size1 = 0, byte[] data2 = null, int offset2 = 0, int size2 = 0)
         {
@@ -73,6 +74,11 @@ namespace JRunner.Classes
             if (size == 0)
                 size = data0.Length;
             return data0.Skip(offset0).Take(size).SequenceEqual(data1.Skip(offset1).Take(size));
+        }
+
+        internal static string ReadString(byte[] data, int offset, int length)
+        {
+            return System.Text.Encoding.UTF8.GetString(data.Skip(offset).Take(length).ToArray());
         }
 
         internal static ushort U16ReadBE(byte[] data, int offset)
@@ -177,9 +183,11 @@ namespace JRunner.Classes
             }
         }
 
-        internal static byte[] DecryptCBB(byte[] cbbData, byte[] cbaNonce, byte[] cpuKey)
+        internal static byte[] DecryptCBB(byte[] cbbData, byte[] cbaNonce, byte[] cpuKey, byte[] key = null)
         {
-            byte[] key = XeCryptHmacSha(cbaNonce, cbbData, 0x10, 0x10, cpuKey, 0, 0x10);
+            // Allow passing static key
+            if(key == null) 
+                key = XeCryptHmacSha(cbaNonce, cbbData, 0x10, 0x10, cpuKey, 0, 0x10);
             using (var ms = new MemoryStream())
             {
                 ms.Write(cbbData.Take(0x10).ToArray(), 0, 0x10);
@@ -234,7 +242,7 @@ namespace JRunner.Classes
             uint loaderOffs = U32ReadBE(eccData, 8);
 
             // RGH3 CB_A
-            ushort loaderName = U16ReadBE(eccData, (int)loaderOffs);
+            string loaderName = ReadString(eccData, (int)loaderOffs, 2);
             ushort loaderVer = U16ReadBE(eccData, (int)(loaderOffs + 2));
             uint loaderFlags = U32ReadBE(eccData, (int)(loaderOffs + 4));
             uint loaderEntry = U32ReadBE(eccData, (int)(loaderOffs + 8));
@@ -243,7 +251,7 @@ namespace JRunner.Classes
             loaderOffs += loaderSize;
 
             // RGH3 CB_B
-            loaderName = U16ReadBE(eccData, (int)loaderOffs);
+            loaderName = ReadString(eccData, (int)loaderOffs, 2);
             loaderVer = U16ReadBE(eccData, (int)(loaderOffs + 2));
             loaderFlags = U32ReadBE(eccData, (int)(loaderOffs + 4));
             loaderEntry = U32ReadBE(eccData, (int)(loaderOffs + 8));
@@ -254,6 +262,30 @@ namespace JRunner.Classes
             {
                 return RGH_CONVERT_ERROR.ERROR_INVALID_ECC_BOOTLOADERS;
             }
+
+            // Patch RGH3 CB_B
+            byte[] rgh3CbaDec = DecryptCBA(rgh3Cba);
+            byte[] rgh3PayloadDec = DecryptCBB(rgh3Payload, rgh3CbaDec.Skip(0x10).Take(0x10).ToArray(), _ZERO_KEY);
+            if(U32ReadBE(rgh3PayloadDec, 0x354) == 0x646A0002)
+            {
+                using (var ms = new MemoryStream(rgh3PayloadDec))
+                {
+                    ms.Seek(0x354, SeekOrigin.Begin);
+                    ms.Write(Unhexlify("64690002"), 0, 4);
+                    ms.Seek(0x368, SeekOrigin.Begin);
+                    ms.Write(Unhexlify("7D8C482A"), 0, 4);
+                    ms.Seek(0x370, SeekOrigin.Begin);
+                    ms.Write(Unhexlify("64690006"), 0, 4);
+                    ms.Seek(0x37C, SeekOrigin.Begin);
+                    ms.Write(Unhexlify("F8491010"), 0, 4);
+                    ms.Seek(0, SeekOrigin.Begin);
+                    ms.Write(DecryptCBB(ms.ToArray(), rgh3CbaDec.Skip(0x10).Take(0x10).ToArray(), _ZERO_KEY, rgh3PayloadDec.Skip(0x10).Take(0x10).ToArray<byte>()), 0, rgh3Payload.Length);
+                    ms.Seek(0x10, SeekOrigin.Begin);
+                    ms.Write(_ZERO_KEY, 0, 0x10);
+                    rgh3Payload = ms.ToArray();
+                }
+            }
+
 
             bool flashHasEcc = false;
             uint xellOffs = 0;
@@ -302,20 +334,15 @@ namespace JRunner.Classes
                 // 4GB flash image
             }
 
+            bool xellNotFound = false;
             if (!ByteArrayCompare(flashData, (int)xellOffs, Unhexlify("48000020480000EC4800000048000000"), 0, 0x10))
-            {
-                return RGH_CONVERT_ERROR.ERROR_XELL_NOT_FOUND;
-            }
+                xellNotFound = true;
 
-            patchFlashData = patchFlashData.Take((int)rgh3SmcOffs)
-                .Concat(rgh3Smc)
-                .Concat(patchFlashData.Skip((int)(rgh3SmcOffs + rgh3SmcLen)))
-                .ToArray();
-
+            // Flash Loader Offset
             loaderOffs = U32ReadBE(patchFlashData, 8);
 
-            // flash CB_A
-            loaderName = U16ReadBE(patchFlashData, (int)loaderOffs);
+            // Flash CB_A
+            loaderName = ReadString(patchFlashData, (int)loaderOffs, 2);
             loaderVer = U16ReadBE(patchFlashData, (int)(loaderOffs + 2));
             loaderFlags = U32ReadBE(patchFlashData, (int)(loaderOffs + 4));
             loaderEntry = U32ReadBE(patchFlashData, (int)(loaderOffs + 8));
@@ -324,16 +351,65 @@ namespace JRunner.Classes
             byte[] flashCba = patchFlashData.Skip((int)flashCbaOffs).Take((int)loaderSize).ToArray();
             loaderOffs += loaderSize;
 
-            // flash CB_B
-            loaderName = U16ReadBE(patchFlashData, (int)loaderOffs);
+            // Flash CB_B
+            loaderName = ReadString(patchFlashData, (int)loaderOffs, 2);
             loaderVer = U16ReadBE(patchFlashData, (int)(loaderOffs + 2));
             loaderFlags = U32ReadBE(patchFlashData, (int)(loaderOffs + 4));
             loaderEntry = U32ReadBE(patchFlashData, (int)(loaderOffs + 8));
             loaderSize = U32ReadBE(patchFlashData, (int)(loaderOffs + 12));
             uint flashCbbOffs = loaderOffs;
             byte[] flashCbb = patchFlashData.Skip((int)flashCbbOffs).Take((int)loaderSize).ToArray();
-            // loaderOffs += loaderSize;
+            loaderOffs += loaderSize;
 
+            // Check for XDK Bootloaders
+            if (xellNotFound)
+            {
+                loaderName = ReadString(patchFlashData, (int)loaderOffs, 2);
+                loaderVer = U16ReadBE(patchFlashData, (int)(loaderOffs + 2));
+                loaderFlags = U32ReadBE(patchFlashData, (int)(loaderOffs + 4));
+                loaderEntry = U32ReadBE(patchFlashData, (int)(loaderOffs + 8));
+                loaderSize = U32ReadBE(patchFlashData, (int)(loaderOffs + 12));
+                loaderOffs += loaderSize;
+                if(loaderName == "SC")
+                {
+                    // SD
+                    loaderName = ReadString(patchFlashData, (int)loaderOffs, 2);
+                    loaderVer = U16ReadBE(patchFlashData, (int)(loaderOffs + 2));
+                    loaderFlags = U32ReadBE(patchFlashData, (int)(loaderOffs + 4));
+                    loaderEntry = U32ReadBE(patchFlashData, (int)(loaderOffs + 8));
+                    loaderSize = U32ReadBE(patchFlashData, (int)(loaderOffs + 12));
+                    loaderOffs += loaderSize;
+                    // SE
+                    loaderName = ReadString(patchFlashData, (int)loaderOffs, 2);
+                    loaderVer = U16ReadBE(patchFlashData, (int)(loaderOffs + 2));
+                    loaderFlags = U32ReadBE(patchFlashData, (int)(loaderOffs + 4));
+                    loaderEntry = U32ReadBE(patchFlashData, (int)(loaderOffs + 8));
+                    loaderSize = U32ReadBE(patchFlashData, (int)(loaderOffs + 12));
+                    loaderOffs += loaderSize;
+                    // Extra Pages
+                    int numPages = (int)loaderOffs / 0x200;
+                    if(loaderOffs % 0x200 != 0)
+                        numPages += 1;
+                    numPages += 4;
+
+                    int flashEnd = numPages * (flashHasEcc ? 0x210 : 0x200);
+                    patchFlashData = flashData.Take(flashEnd).ToArray();
+                    if(flashHasEcc)
+                        patchFlashData = UnEcc(patchFlashData);
+                }
+                else
+                {
+                    return RGH_CONVERT_ERROR.ERROR_XELL_NOT_FOUND;
+                }
+            }
+
+            // Replace SMC
+            patchFlashData = patchFlashData.Take((int)rgh3SmcOffs)
+                .Concat(rgh3Smc)
+                .Concat(patchFlashData.Skip((int)(rgh3SmcOffs + rgh3SmcLen)))
+                .ToArray();
+
+            // Decrypt CBB
             flashCba = DecryptCBA(flashCba);
             flashCbb = DecryptCBB(flashCbb, flashCba.Skip(0x10).Take(0x10).ToArray(), cpuKey);
             if (!ByteArrayCompare(flashCbb, 0x392, Unhexlify("58424F585F524F4D"), 0, 8) &&
