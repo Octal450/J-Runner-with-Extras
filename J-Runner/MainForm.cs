@@ -3046,7 +3046,7 @@ namespace JRunner
             }
         }
 
-        private void sonus360EditorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SoundEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Application.OpenForms.OfType<SoundEditor>().Any())
             {

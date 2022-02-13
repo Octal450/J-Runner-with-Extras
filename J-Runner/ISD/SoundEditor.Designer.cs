@@ -499,7 +499,7 @@
             this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtOutput.Size = new System.Drawing.Size(276, 149);
             this.txtOutput.TabIndex = 31;
-            this.toolTip1.SetToolTip(this.txtOutput, "Log window to see whats going on\r\nwhilst using Sonus360");
+            this.toolTip1.SetToolTip(this.txtOutput, "Log window to see whats going on");
             // 
             // txtFinalbin
             // 
@@ -655,7 +655,7 @@
             this.Name = "SoundEditor";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Sonus360";
+            this.Text = "SoundEditor";
             this.Load += new System.EventHandler(this.SoundEditor_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SoundEditor_KeyUp);
             this.groupBox1.ResumeLayout(false);
