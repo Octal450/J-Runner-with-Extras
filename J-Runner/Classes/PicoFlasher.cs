@@ -184,28 +184,33 @@ namespace JRunner
             return flashconfig;
         }
 
-        private uint getFlashSize(uint flashconfig)
+        private uint getFlashSize(uint flash_config)
         {
-            uint flashsize = 0;
+            uint size = 0;
 
-            if (flashconfig == 0x23010 /* Jasper 16MB, Trinity */ || flashconfig == 0x43000 /* Corona */ || flashconfig == 0x1198010 /* Xenon, Zephyr, Falcon */)
+            uint major = (flash_config >> 17) & 3;
+            uint minor = (flash_config >> 4) & 3;
+            if (major >= 1)
             {
-                flashsize = 16 * 1024 * 1024;
+                if (minor == 0) // Corona 16MB
+                {
+                    if (((flash_config >> 17) & 0x03) != 0x01)
+                        size = 16;
+                }
+                else if (minor == 1) // Jasper 16MB, Trinity 16MB
+                {
+                    if (((flash_config >> 17) & 0x03) != 0x01)
+                        size = 64;
+                    else
+                        size = 16;
+                }
+                else if (minor == 2 || minor == 3) // Jasper 256MB / 512MB, Trinity 512MB (XDK)
+                    size = (uint)(8 << (int)(((flash_config >> 19) & 0x3) + ((flash_config >> 21) & 0xF)));
             }
-            else if (flashconfig == 0x1198030 /* Xenon, Zephyr, Falcon */)
-            {
-                flashsize = 64 * 1024 * 1024;
-            }
-            else if (flashconfig == 0x8A3020 /* Jasper 256MB */)
-            {
-                flashsize = 256 * 1024 * 1024;
-            }
-            else if (flashconfig == 0xAA3020 /* Jasper 512MB */)
-            {
-                flashsize = 512 * 1024 * 1024;
-            }
+            else // Xenon, Zephyr, Falcon
+                size = (uint)(8 << (int)minor);
 
-            return flashsize;
+            return size * 1024 * 1024;
         }
 
         public void getFlashConfig()
