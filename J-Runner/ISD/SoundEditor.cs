@@ -381,7 +381,7 @@ namespace JRunner.Forms
                 isd = _isd;
                 enable(true);
             }
-            if (MainForm.mainForm.IsUsbDeviceConnected("11D4", "8338")) // xFlasher SPI
+            else if (MainForm.mainForm.IsUsbDeviceConnected("11D4", "8338")) // JR Programmer
             {
                 pictureBox1.Image = Properties.Resources.sonuslogo;
                 Sonus360 _isd = new Sonus360();
@@ -390,7 +390,6 @@ namespace JRunner.Forms
                 isd = _isd;
                 enable(true);
             }
-
         }
         private void onDevNotify(object sender, DeviceNotifyEventArgs e)
         {
@@ -398,7 +397,7 @@ namespace JRunner.Forms
             {
                 if (variables.debugme) Console.WriteLine("DevNotify - {0}", e.Device.Name);
                 if (variables.debugme) Console.WriteLine("EventType - {0}", e.EventType);
-                if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival)
+                if (e.EventType == EventType.DeviceArrival)
                 {
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001) // PicoFlasher
                     {
@@ -419,7 +418,7 @@ namespace JRunner.Forms
                         enable(true);
                     }
                 }
-                else if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceRemoveComplete)
+                else if (e.EventType == EventType.DeviceRemoveComplete)
                 {
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001)
                     {

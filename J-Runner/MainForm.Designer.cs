@@ -500,7 +500,7 @@ namespace JRunner
             this.FWVersion,
             this.FlashStatus,
             this.FlashVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 581);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 579);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(832, 22);
             this.statusStrip1.SizingGrip = false;
@@ -601,7 +601,7 @@ namespace JRunner
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter1.Enabled = false;
-            this.splitter1.Location = new System.Drawing.Point(0, 578);
+            this.splitter1.Location = new System.Drawing.Point(0, 576);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(832, 3);
             this.splitter1.TabIndex = 78;
@@ -1189,7 +1189,7 @@ namespace JRunner
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(832, 603);
+            this.ClientSize = new System.Drawing.Size(832, 601);
             this.Controls.Add(this.btnScanner);
             this.Controls.Add(this.btnNewSession);
             this.Controls.Add(this.btnRestart);
