@@ -2130,16 +2130,17 @@ namespace JRunner
                 {
                     variables.cpkey = parsecpukey(cpufile);
                 }
-
-                if ((variables.cpkey.Length != 32 || !objAlphaPattern.IsMatch(variables.cpkey))) variables.cpkey = "";
+                
+                if (variables.cpkey.Length != 32 || !objAlphaPattern.IsMatch(variables.cpkey)) variables.cpkey = "";
 
                 bool foundKey = !string.IsNullOrEmpty(variables.cpkey);
                 bool gotKeyFromCrc = false;
 
                 if (!foundKey)
                 {
-                    long filenameKvCrc = Nand.Nand.kvcrc(variables.filename1);
-
+                    nand = new Nand.PrivateN(variables.filename1, "");
+                    long filenameKvCrc = nand.kvcrc();
+                    
                     if (variables.debugme) Console.WriteLine("KV CRC: {0:X}", filenameKvCrc);
                     if (variables.debugme) Console.WriteLine("Searching Registry Entrys");
                     try
@@ -2150,8 +2151,7 @@ namespace JRunner
                     }
                     catch (NullReferenceException ex) { Console.WriteLine(ex.ToString()); }
                 }
-                else
-                    txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
+                else txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 nandInfo.change_tab();
