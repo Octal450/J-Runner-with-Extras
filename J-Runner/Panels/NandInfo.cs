@@ -170,39 +170,39 @@ namespace JRunner.Panels
                         textMFRdate.Text = "";
                         lblfcrt.Visible = false;
                     }
-
-                    // Bad Blocks
-                    nand.getbadblocks();
-                    if (nand.bad_blocks.Count != 0)
-                    {
-                        string text = "";
-                        int blocksize = nand.bigblock ? 0x21000 : 0x4200;
-                        int reservestartpos = nand.bigblock ? 0x1E0 : 0x3E0;
-                        foreach (int bblock in nand.bad_blocks)
-                        {
-                            text += ("• Bad Block ID @ 0x" + bblock.ToString("X") + " [Offset: 0x" + ((bblock) * blocksize).ToString("X") + "]");
-                            text += Environment.NewLine;
-                        }
-                        if (nand.remapped_blocks.Count != 0)
-                        {
-                            text += Environment.NewLine;
-                            text += Environment.NewLine;
-                            int i = 0;
-                            foreach (int bblock in nand.remapped_blocks)
-                            {
-                                if (bblock != -1)
-                                {
-                                    text += ("• Bad Block ID @ 0x" + nand.bad_blocks[i].ToString("X") + " Found @ 0x" + (reservestartpos + bblock).ToString("X") + "[Offset: 0x" + (blocksize * (reservestartpos + bblock)).ToString("X") + "]");
-                                    text += Environment.NewLine;
-                                }
-                                i++;
-                            }
-                        }
-                        else text += ("Remapped Blocks Don't Exist");
-                        add_badblocks_tab(text);
-                    }
-                    else add_badblocks_tab("No Bad Blocks");
                 }));
+
+                // Bad Blocks
+                nand.getbadblocks();
+                if (nand.bad_blocks.Count != 0)
+                {
+                    string text = "";
+                    int blocksize = nand.bigblock ? 0x21000 : 0x4200;
+                    int reservestartpos = nand.bigblock ? 0x1E0 : 0x3E0;
+                    foreach (int bblock in nand.bad_blocks)
+                    {
+                        text += ("• Bad Block ID @ 0x" + bblock.ToString("X") + " [Offset: 0x" + ((bblock) * blocksize).ToString("X") + "]");
+                        text += Environment.NewLine;
+                    }
+                    if (nand.remapped_blocks.Count != 0)
+                    {
+                        text += Environment.NewLine;
+                        text += Environment.NewLine;
+                        int i = 0;
+                        foreach (int bblock in nand.remapped_blocks)
+                        {
+                            if (bblock != -1)
+                            {
+                                text += ("• Bad Block ID @ 0x" + nand.bad_blocks[i].ToString("X") + " Found @ 0x" + (reservestartpos + bblock).ToString("X") + "[Offset: 0x" + (blocksize * (reservestartpos + bblock)).ToString("X") + "]");
+                                text += Environment.NewLine;
+                            }
+                            i++;
+                        }
+                    }
+                    else text += ("Remapped Blocks Don't Exist");
+                    add_badblocks_tab(text);
+                }
+                else add_badblocks_tab("No Bad Blocks");
             }
         }
 
@@ -223,7 +223,7 @@ namespace JRunner.Panels
         public void setNand(Nand.PrivateN Nand)
         {
             this.nand = Nand;
-            this.BeginInvoke(new Action(() => populateInfo()));
+            populateInfo();
         }
 
         delegate void ShowCpuKeyTab();

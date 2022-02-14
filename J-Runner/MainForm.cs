@@ -2119,7 +2119,7 @@ namespace JRunner
             }
             try
             {
-                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Minimum));
+                updateProgress(progressBar.Minimum);
                 if (Path.GetExtension(variables.filename1) != ".bin") return;
                 variables.gotvalues = true;
 
@@ -2217,9 +2217,8 @@ namespace JRunner
                         else Console.WriteLine("Wrong CPU Key");
                     }
                 }
-
+                
                 nandInfo.setNand(nand);
-
                 updateProgress((progressBar.Maximum / 4) * 3); // 75%
 
                 if (variables.debugme) Console.WriteLine("----------------------");
