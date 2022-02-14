@@ -1705,7 +1705,7 @@ namespace JRunner
             }
 
             variables.filename1 = variables.filename1.Replace(variables.outfolder, variables.xefolder);
-            txtFilePath1.Text = variables.filename1;
+            txtFilePath1.BeginInvoke(new Action(() => txtFilePath1.Text = variables.filename1));            
             nand = new Nand.PrivateN(variables.filename1, variables.cpkey); // Re-init because folder changed
         }
 
@@ -1721,7 +1721,7 @@ namespace JRunner
             _event1.WaitOne();
             if (variables.debugme) Console.WriteLine("Event Started");
             if (variables.debugme) Console.WriteLine(variables.cpkey);
-            this.txtCPUKey.Text = variables.cpkey;
+            txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
         }
 
         private static void savekvinfo(string savefile)
@@ -2145,12 +2145,13 @@ namespace JRunner
                     try
                     {
                         variables.cpkey = CpuKeyDB.getkey_s(filenameKvCrc, xPanel.getDataSet());
-                        txtCPUKey.Text = variables.cpkey;
+                        txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
                         if (!string.IsNullOrEmpty(variables.cpkey)) gotKeyFromCrc = true;
                     }
                     catch (NullReferenceException ex) { Console.WriteLine(ex.ToString()); }
                 }
-                else txtCPUKey.Text = variables.cpkey;
+                else
+                    txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 nandInfo.change_tab();
@@ -2203,7 +2204,7 @@ namespace JRunner
 
                             }
                             if (reg) nandInfo.show_cpukey_tab();
-                            txtCPUKey.Text = variables.cpkey;
+                            txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
                             if ((!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
                             {
                                 if (!movedalready)
@@ -2225,7 +2226,7 @@ namespace JRunner
                 if (variables.debugme) Console.WriteLine("----------------------");
                 variables.ctyp = variables.cunts[0];
                 variables.ctyp = Nand.Nand.getConsole(nand, variables.flashconfig);
-                xPanel.setMBname(variables.ctyp.Text);
+                xPanel.BeginInvoke(new Action(() => xPanel.setMBname(variables.ctyp.Text)));
                 variables.jtagable = false;
                 variables.rghable = true;
 
@@ -2241,32 +2242,36 @@ namespace JRunner
                 switch (Nand.ntable.getHackfromCB(nand.bl.CB_A))
                 {
                     case Classes.xebuild.hacktypes.glitch:
-                        xPanel.setRbtnGlitchChecked(true);
+                        xPanel.BeginInvoke(new Action(() => xPanel.setRbtnGlitchChecked(true)));
                         break;
                     case Classes.xebuild.hacktypes.glitch2:
-                        xPanel.setRbtnGlitch2Checked(true);
+                        xPanel.BeginInvoke(new Action(() => xPanel.setRbtnGlitch2Checked(true)));
                         break;
                     case Classes.xebuild.hacktypes.jtag:
-                        xPanel.setRbtnJtagChecked(true);
+                        xPanel.BeginInvoke(new Action(() => xPanel.setRbtnJtagChecked(true)));
                         break;
                     case Classes.xebuild.hacktypes.devgl:
-                        if (xPanel.canDevGL(variables.boardtype)) xPanel.setRbtnDevGLChecked(true);
-                        else xPanel.setRbtnRetailChecked(true);
+                        if (xPanel.canDevGL(variables.boardtype))
+                            xPanel.BeginInvoke(new Action(() => xPanel.setRbtnDevGLChecked(true)));
+                        else
+                            xPanel.BeginInvoke(new Action(() => xPanel.setRbtnRetailChecked(true)));
                         break;
                     default:
-                        xPanel.setRbtnRetailChecked(true);
+                        xPanel.BeginInvoke(new Action(() => xPanel.setRbtnRetailChecked(true)));
                         break;
                 }
 
-                if (String.IsNullOrEmpty(variables.cpkey)) variables.gotvalues = false;
-                else variables.gotvalues = true;
+                variables.gotvalues = !String.IsNullOrEmpty(variables.cpkey);
                 Console.WriteLine("Nand Initialization Finished");
                 Console.WriteLine("");
 
                 updateProgress(progressBar.Maximum);
-                if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
-                if (variables.debugme) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
-                if (variables.debugme) Console.WriteLine(variables.filename1.Contains(variables.outfolder));
+                if (variables.debugme)
+                    Console.WriteLine("allmove ", variables.allmove);
+                if (variables.debugme)
+                    Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
+                if (variables.debugme)
+                    Console.WriteLine(variables.filename1.Contains(variables.outfolder));
                 if ((variables.allmove) && (!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
                 {
                     if (!movedalready)
@@ -2661,7 +2666,8 @@ namespace JRunner
                 if (smc == "Glitch") xPanel.setCleanSMCChecked(true);
             }
 
-            variables.cpkey = txtCPUKey.Text = cpuk; // Copy CPU Key
+            variables.cpkey = cpuk; // Copy CPU Key
+            txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = cpuk));
             variables.highldv = ldv; // Copy LDV
             variables.changeldv = 2; // Enable Custom LDV
 
@@ -3818,7 +3824,7 @@ namespace JRunner
             }
             else
             {
-                ThreadStart starter = delegate { myIP.IPScanner(ref this.progressBar); };
+                ThreadStart starter = delegate { myIP.IPScanner(this.progressBar); };
                 new Thread(starter).Start();
                 if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
                 new Thread(updatecptextbox).Start();

@@ -222,7 +222,7 @@ namespace JRunner.Panels
         public void setNand(Nand.PrivateN Nand)
         {
             this.nand = Nand;
-            populateInfo();
+            this.BeginInvoke(new Action(() => populateInfo()));
         }
 
         delegate void ShowCpuKeyTab();

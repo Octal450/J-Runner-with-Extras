@@ -111,7 +111,8 @@ namespace JRunner.Forms
                         }
                         if (showall) lvi.SubItems.Add(GetMode(info).ToString());
                         else lvi.SubItems.Add("");
-                        if (driv.DriveType == DriveType.Fixed || showall) listView1.Items.Add(lvi);
+                        if (driv.DriveType == DriveType.Fixed || showall)
+                            listView1.BeginInvoke(new Action(() => listView1.Items.Add(lvi)));
                         j++;
                     }
                 }

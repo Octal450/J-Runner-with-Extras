@@ -401,7 +401,7 @@ namespace JRunner
         {
             return System.Net.IPAddress.Parse(address.ToString()).ToString();
         }
-        private void scanLiveHosts(string ipFrom, string ipTo, ref ProgressBar pb)
+        private void scanLiveHosts(string ipFrom, string ipTo, ProgressBar pb)
         {
             long from = ToInt(ipFrom);
             long to = ToInt(ipTo);
@@ -410,7 +410,7 @@ namespace JRunner
             while (ipLong < to)
             {
                 i = ((int)(ipLong - from) * pb.Maximum) / (int)(to - from);
-                pb.Value = i;
+                pb.BeginInvoke(new Action(() => pb.Value = i));
                 //Console.Write("\r{0}%   ", i);
                 string address = ToAddr(ipLong);
                 sendAsyncPingPacket(address);
@@ -421,7 +421,7 @@ namespace JRunner
                 ipLong++;
             }
             //Console.WriteLine("\r100%   ");
-            pb.Value = pb.Maximum;
+            pb.BeginInvoke(new Action(() => pb.Value = pb.Maximum));
         }
 
         public string getkey()
@@ -433,7 +433,7 @@ namespace JRunner
             return ldvvalue;
         }
 
-        public void IPScanner(ref ProgressBar pb)
+        public void IPScanner(ProgressBar pb)
         {
             found = false;
             initaddresses();
@@ -453,11 +453,11 @@ namespace JRunner
             }
             bool use = false;
             Console.WriteLine("IP Scan Stage 1: Please wait...");
-            scanLiveHosts(variables.IPstart, variables.IPend, ref pb);
+            scanLiveHosts(variables.IPstart, variables.IPend, pb);
             Thread.Sleep(500);
             found = false;
             Console.WriteLine("IP Scan Stage 2: This will take some time...");
-            pb.Value = 1;
+            pb.BeginInvoke(new Action(() => pb.Value = pb.Minimum));
             foreach (string o in ip)
             {
                 IPAddress myScanIP = IPAddress.Parse(o);
@@ -471,12 +471,12 @@ namespace JRunner
                 {
                     Console.WriteLine(myScanHost.HostName.ToString() + "\t");
                 }
-                pb.Value = pb.Value + (100 / (ip.Count + 1));
+                pb.BeginInvoke(new Action(() => pb.Value = pb.Value + (100 / (ip.Count + 1))));
                 if (o != localGatewayIp) IP_GetCpuKey(o, false);
                 if (found) break;
             }
             Console.WriteLine("");
-            pb.Value = 100;
+            pb.BeginInvoke(new Action(() => pb.Value = pb.Maximum));
             if (!found) Console.WriteLine("No Xbox Detected");
             else Console.WriteLine("Finished");
             Console.WriteLine("");

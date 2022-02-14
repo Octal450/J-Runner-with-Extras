@@ -202,7 +202,7 @@ namespace JRunner.Forms
             else
             {
                 btnEdit.Text = "Edit Config";
-                new Thread(config_edit).Start();
+                config_edit();
             }
             enable(save);
         }
@@ -263,7 +263,9 @@ namespace JRunner.Forms
                 val.gameregion = new byte[1];
                 val.videoregion = new byte[1];
 
-                if (comboVideo.SelectedIndex == (int)VideoRegion.PAL) val.gameregion[0] = 0x02;
+                if (comboVideo.SelectedIndex == (int)VideoRegion.PAL)
+                    val.gameregion[0] = 0x02;
+
                 switch (comboGame.SelectedIndex)
                 {
                     case (int)GameRegion.USA:
@@ -320,7 +322,12 @@ namespace JRunner.Forms
                 Console.WriteLine("SMC Config Patch Successful");
                 MainForm.mainForm.nand_init();
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (variables.debugme)
+                    Console.WriteLine(ex.ToString());
+            }
         }
 
         private void enable(bool what)
