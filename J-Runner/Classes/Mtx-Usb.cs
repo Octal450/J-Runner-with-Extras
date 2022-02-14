@@ -127,7 +127,7 @@ namespace JRunner
                     }
 
                     System.Diagnostics.Process process = new System.Diagnostics.Process();
-                    process.StartInfo.FileName = "common/mtx-tools/NandPro2e.exe";
+                    process.StartInfo.FileName = "common/mtx-tools/NandPro2b_Armv3.exe";
                     if (mode == 1) process.StartInfo.Arguments = "usb: +w" + size + " \"" + filename + "\"" + slArg;
                     else process.StartInfo.Arguments = "usb: -w" + size + " \"" + filename + "\"" + slArg;
                     process.StartInfo.UseShellExecute = false;
