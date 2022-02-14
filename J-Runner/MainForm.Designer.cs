@@ -88,7 +88,7 @@ namespace JRunner
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOSTMonitorRATERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMMonitorAdvancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SoundEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.soundEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.rescanDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTXUSBFirmwareUtilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -661,7 +661,7 @@ namespace JRunner
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pOSTMonitorRATERToolStripMenuItem,
             this.cOMMonitorAdvancedToolStripMenuItem,
-            this.SoundEditorToolStripMenuItem,
+            this.soundEditorToolStripMenuItem,
             this.toolStripMenuItem3,
             this.rescanDevicesToolStripMenuItem,
             this.mTXUSBFirmwareUtilityToolStripMenuItem,
@@ -687,12 +687,12 @@ namespace JRunner
             this.cOMMonitorAdvancedToolStripMenuItem.Text = "COM Monitor";
             this.cOMMonitorAdvancedToolStripMenuItem.Click += new System.EventHandler(this.btnCOM_Click);
             // 
-            // SoundEditorToolStripMenuItem
+            // soundEditorToolStripMenuItem
             // 
-            this.SoundEditorToolStripMenuItem.Name = "SoundEditorToolStripMenuItem";
-            this.SoundEditorToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.SoundEditorToolStripMenuItem.Text = "Sound Editor";
-            this.SoundEditorToolStripMenuItem.Click += new System.EventHandler(this.SoundEditorToolStripMenuItem_Click);
+            this.soundEditorToolStripMenuItem.Name = "soundEditorToolStripMenuItem";
+            this.soundEditorToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.soundEditorToolStripMenuItem.Text = "Sound Editor";
+            this.soundEditorToolStripMenuItem.Click += new System.EventHandler(this.soundEditorToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -1308,7 +1308,7 @@ namespace JRunner
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripMenuItem logPostToolStripMenuItem;
         private ToolStripMenuItem pOSTMonitorRATERToolStripMenuItem;
-        private ToolStripMenuItem SoundEditorToolStripMenuItem;
+        private ToolStripMenuItem soundEditorToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem3;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;

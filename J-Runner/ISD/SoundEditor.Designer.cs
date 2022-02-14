@@ -191,6 +191,7 @@
             // 
             // btnRead
             // 
+            this.btnRead.Enabled = false;
             this.btnRead.Location = new System.Drawing.Point(11, 28);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(141, 40);
@@ -199,10 +200,10 @@
             this.toolTip1.SetToolTip(this.btnRead, "Read the sound file from the console\r\n");
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
-            this.btnRead.Enabled = false;
             // 
             // btnWrite
             // 
+            this.btnWrite.Enabled = false;
             this.btnWrite.Location = new System.Drawing.Point(11, 128);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(141, 38);
@@ -211,10 +212,10 @@
             this.toolTip1.SetToolTip(this.btnWrite, "Writes the file shown in the box below to the console");
             this.btnWrite.UseVisualStyleBackColor = true;
             this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
-            this.btnWrite.Enabled = false;
             // 
             // btnVerify
             // 
+            this.btnVerify.Enabled = false;
             this.btnVerify.Location = new System.Drawing.Point(11, 80);
             this.btnVerify.Name = "btnVerify";
             this.btnVerify.Size = new System.Drawing.Size(141, 39);
@@ -223,7 +224,6 @@
             this.toolTip1.SetToolTip(this.btnVerify, "This checks the file on the console\r\n against the file on your PC");
             this.btnVerify.UseVisualStyleBackColor = true;
             this.btnVerify.Click += new System.EventHandler(this.btnVerify_Click);
-            this.btnVerify.Enabled = false;
             // 
             // btnFile
             // 
@@ -280,6 +280,7 @@
             // veraftreadchk
             // 
             this.veraftreadchk.AutoSize = true;
+            this.veraftreadchk.Enabled = false;
             this.veraftreadchk.Location = new System.Drawing.Point(11, 174);
             this.veraftreadchk.Name = "veraftreadchk";
             this.veraftreadchk.Size = new System.Drawing.Size(77, 17);
@@ -288,7 +289,6 @@
             this.toolTip1.SetToolTip(this.veraftreadchk, "will auto verify after a write");
             this.veraftreadchk.UseVisualStyleBackColor = true;
             this.veraftreadchk.CheckedChanged += new System.EventHandler(this.veraftreadchk_CheckedChanged);
-            this.veraftreadchk.Enabled = false;
             // 
             // pictureBox1
             // 
@@ -655,7 +655,7 @@
             this.Name = "SoundEditor";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "SoundEditor";
+            this.Text = "Sound Editor";
             this.Load += new System.EventHandler(this.SoundEditor_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SoundEditor_KeyUp);
             this.groupBox1.ResumeLayout(false);
