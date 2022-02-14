@@ -755,7 +755,7 @@ namespace JRunner.Panels
                 Rgh3Label.Visible = Rgh3Label2.Visible = Rgh3Mhz.Visible = false;
             }
 
-            if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Jasper SB") || board.Contains("Trinity BB") || chkXdkBuild.Checked)
+            if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Jasper SB") || board.Contains("Trinity BB"))
             {
                 chkRgh3.Checked = false;
                 chkRgh3.Enabled = false;
