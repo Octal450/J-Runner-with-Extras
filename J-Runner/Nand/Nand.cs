@@ -1025,12 +1025,13 @@ namespace JRunner.Nand
             return Keyvault;
         }
 
-        public static long kvcrc(string filename)
+        public static long kvcrc(string filename, bool nobbcheck = false)
         {
             byte[] Keyvault = null;
-            //long size = 0;
-            //byte[] data = openfile(filename, ref size, 40 * 1024);
-            byte[] data = Oper.returnportion(BadBlock.find_bad_blocks_X(filename, 2), 0, 40 * 1024);
+            byte[] data;
+            long size = 0;
+            if (nobbcheck) data = Oper.openfile(filename, ref size, 40 * 1024);
+            else data = Oper.returnportion(BadBlock.find_bad_blocks_X(filename, 2), 0, 40 * 1024);
 
             if (data[0] == 0xFF && data[1] == 0x4F)
             {
@@ -1054,7 +1055,7 @@ namespace JRunner.Nand
             }
             else
             {
-                //Console.WriteLine("* unknown image found !");
+                if (variables.debugme) Console.WriteLine("* unknown image found !");
                 return 0;
             }
         }

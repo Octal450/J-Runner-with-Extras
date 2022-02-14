@@ -170,7 +170,6 @@ namespace JRunner.Panels
                         textMFRdate.Text = "";
                         lblfcrt.Visible = false;
                     }
-                    Console.WriteLine(name);
 
                     // Bad Blocks
                     nand.getbadblocks();

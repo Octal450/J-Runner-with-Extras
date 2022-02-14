@@ -795,7 +795,7 @@ namespace JRunner
             long crc = 0;
             if (String.IsNullOrWhiteSpace(txtSearch.Text))
             {
-                if (MessageBox.Show("NO cpukey in searchbox. Use a dump?", "Search", MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes) return;
+                if (MessageBox.Show("No cpukey in searchbox. Use a dump?", "Search", MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes) return;
                 kv = true;
             }
 

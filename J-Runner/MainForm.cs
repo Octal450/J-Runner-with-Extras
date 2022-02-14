@@ -2138,8 +2138,7 @@ namespace JRunner
 
                 if (!foundKey)
                 {
-                    nand = new Nand.PrivateN(variables.filename1, "");
-                    long filenameKvCrc = nand.kvcrc();
+                    long filenameKvCrc = Nand.Nand.kvcrc(variables.filename1, true);
                     
                     if (variables.debugme) Console.WriteLine("KV CRC: {0:X}", filenameKvCrc);
                     if (variables.debugme) Console.WriteLine("Searching Registry Entrys");
