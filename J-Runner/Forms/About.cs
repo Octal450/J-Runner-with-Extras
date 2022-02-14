@@ -7,18 +7,18 @@ namespace JRunner.Forms
 {
     public partial class About : Form
     {
-        static string[] contrib = { "Nick Stefanou: Original J-Runner \nDevelopment and Software",
+        static string[] contrib = { "15432: RGH3 Exploit",
+                                    "Balika011: PicoFlasher Support",
+                                    "DaCukiMonsta: Nand Info Improvements/Bugfixes",
+                                    "DrSchottky, Visual Studio, proferabg: RGH2 to 3",
+                                    "Element18592: xFlasher Hardware",
                                     "Josh/Octal450: J-Runner with Extras \nMain Development",
                                     "Mena:\nGeneral Dev, xFlasher Speedup,\nMatrix Hex Flashing, CPU Key Gen",
-                                    "Element18592: xFlasher Hardware",
-                                    "15432: RGH3 Exploit",
-                                    "DrSchottky, Visual Studio, proferabg: RGH2 to 3",
-                                    "Xvistaman2005: XDKbuild",
-                                    "SGCSam: 6717/9199 XeBuild Patches",
+                                    "Nick Stefanou: Original J-Runner \nDevelopment and Software",
                                     "Orpheus: Updates to KV Info/Bugfixes",
-                                    "DaCukiMonsta: Nand Info Improvements/Bugfixes",
-                                    "Balika011: PicoFlasher support",
-                                    "And all who tested the software!",};
+                                    "SGCSam: 6717/9199 XeBuild Patches",
+                                    "Xvistaman2005: XDKbuild",
+        };
         static int contribloc = 0;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr RoundCorner(
