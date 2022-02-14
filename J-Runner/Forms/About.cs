@@ -12,7 +12,7 @@ namespace JRunner.Forms
                                     "Mena:\nGeneral Dev, xFlasher Speedup,\nMatrix Hex Flashing, CPU Key Gen",
                                     "Element18592: xFlasher Hardware",
                                     "15432: RGH3 Exploit",
-                                    "DrSchottky, Visual Studio: RGH2 to 3",
+                                    "DrSchottky, Visual Studio, proferabg: RGH2 to 3",
                                     "Xvistaman2005: XDKbuild",
                                     "SGCSam: 6717/9199 XeBuild Patches",
                                     "Orpheus: Updates to KV Info/Bugfixes",
