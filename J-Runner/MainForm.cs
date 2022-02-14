@@ -4785,13 +4785,13 @@ namespace JRunner
         {
             if (i == 2 && File.Exists(variables.filename))
             {
-                this.txtFilePath1.Text = Path.Combine(variables.filename);
+                txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = Path.Combine(variables.filename)));
                 variables.filename1 = variables.filename;
                 nand_init();
             }
             if (i == 3 && File.Exists(variables.filename))
             {
-                this.txtFilePath2.Text = Path.Combine(variables.filename);
+                txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = Path.Combine(variables.filename)));
                 variables.filename2 = variables.filename;
                 new Thread(comparenands).Start();
             }
@@ -4834,28 +4834,34 @@ namespace JRunner
         {
             if (mode > 0)
             {
-                if (mode == 3) ProgressLabel.Text = "Erasing";
-                else if (mode == 2) ProgressLabel.Text = "Writing";
-                else if (mode == 1) ProgressLabel.Text = "Reading";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
+                ProgressLabel.BeginInvoke(new Action(() => {
+                    if (mode == 3) ProgressLabel.Text = "Erasing";
+                    else if (mode == 2) ProgressLabel.Text = "Writing";
+                    else if (mode == 1) ProgressLabel.Text = "Reading";
+                }));
+                progressBar.BeginInvoke(new Action(() => progressBar.Style = ProgressBarStyle.Blocks));
             }
             else if (mode == -2)
             {
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Marquee));
+                progressBar.BeginInvoke(new Action(() => progressBar.Style = ProgressBarStyle.Marquee));
             }
             else if (mode == -1)
             {
-                ProgressLabel.Text = "Progress";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
-                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Minimum));
-                txtBlocks.Text = "";
+                ProgressLabel.BeginInvoke(new Action(() => ProgressLabel.Text = "Progress"));
+                progressBar.BeginInvoke(new Action(() => {
+                    progressBar.Style = ProgressBarStyle.Blocks;
+                    progressBar.Value = progressBar.Minimum;
+                }));
+                txtBlocks.BeginInvoke(new Action(() => txtBlocks.Text = ""));
             }
             else
             {
-                ProgressLabel.Text = "Progress";
-                progressBar.BeginInvoke((Action)(() => progressBar.Style = ProgressBarStyle.Blocks));
-                progressBar.BeginInvoke((Action)(() => progressBar.Value = progressBar.Maximum));
-                txtBlocks.Text = "";
+                ProgressLabel.BeginInvoke(new Action(() => ProgressLabel.Text = "Progress"));
+                progressBar.BeginInvoke(new Action(() => {
+                    progressBar.Style = ProgressBarStyle.Blocks;
+                    progressBar.Value = progressBar.Minimum;
+                }));
+                txtBlocks.BeginInvoke(new Action(() => { txtBlocks.Text = ""; }));
             }
         }
 
@@ -4863,7 +4869,7 @@ namespace JRunner
         {
             if (xflasher.inUse)
             {
-                txtBlocks.Text = str;
+                txtBlocks.BeginInvoke((Action)(() => txtBlocks.Text = str));
                 if (progress >= 0) progressBar.BeginInvoke((Action)(() => progressBar.Value = progress)); // Just in case
                 else progressBar.BeginInvoke((Action)(() => progressBar.Value = 0));
             }

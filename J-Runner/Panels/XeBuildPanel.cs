@@ -100,32 +100,32 @@ namespace JRunner.Panels
         public void setRbtnRetailChecked(bool check)
         {
             if (check && !rbtnRetail.Enabled) return;
-            rbtnRetail.BeginInvoke(new Action(() => { rbtnRetail.Enabled = check; }));
+            rbtnRetail.BeginInvoke(new Action(() => rbtnRetail.Checked = check));
         }
         public void setRbtnGlitchChecked(bool check)
         {
             if (check && !rbtnGlitch.Enabled) return;
-            rbtnGlitch.BeginInvoke(new Action(() => { rbtnGlitch.Enabled = check; }));
+            rbtnGlitch.BeginInvoke(new Action(() => rbtnGlitch.Checked = check));
         }
         public void setRbtnGlitch2Checked(bool check)
         {
             if (check && !rbtnGlitch2.Enabled) return;
-            rbtnGlitch2.BeginInvoke(new Action(() => { rbtnGlitch2.Enabled = check; }));
+            rbtnGlitch2.BeginInvoke(new Action(() => rbtnGlitch2.Checked = check));
         }
         public void setRbtnGlitch2mChecked(bool check)
         {
             if (check && !rbtnGlitch2m.Enabled) return;
-            rbtnGlitch2m.BeginInvoke(new Action(() => { rbtnGlitch2m.Enabled = check; }));
+            rbtnGlitch2m.BeginInvoke(new Action(() => rbtnGlitch2m.Checked = check));
         }
         public void setRbtnJtagChecked(bool check)
         {
             if (check && !rbtnJtag.Enabled) return;
-            rbtnJtag.BeginInvoke(new Action(() => { rbtnJtag.Enabled = check; }));
+            rbtnJtag.BeginInvoke(new Action(() => rbtnJtag.Checked = check));
         }
         public void setRbtnDevGLChecked(bool check)
         {
             if (check && !rbtnDevGL.Enabled) return;
-            rbtnDevGL.BeginInvoke(new Action(() => { rbtnDevGL.Enabled = check; }));
+            rbtnDevGL.BeginInvoke(new Action(() => rbtnDevGL.Checked = check));
         }
 
         // Checkbox Getters
