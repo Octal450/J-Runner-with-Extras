@@ -11,7 +11,7 @@ namespace JRunner
         private string sc;
         private string key1bl_options = "";
 
-        public void create(string board)
+        public void create(string board, bool notlast = false)
         {
             Console.WriteLine("Converting Image to XDKbuild...");
             Thread.Sleep(1000); // Important
@@ -69,7 +69,7 @@ namespace JRunner
                     pProcess.CancelOutputRead();
                     Console.WriteLine("XDKbuild Conversion Finished!");
                     Console.WriteLine("Remember to program a compatible timing file!");
-                    MainForm.mainForm.xPanel.xeExitActual();
+                    if (!notlast) MainForm.mainForm.xPanel.xeExitActual();
                 }
             }
             catch (Exception objException)

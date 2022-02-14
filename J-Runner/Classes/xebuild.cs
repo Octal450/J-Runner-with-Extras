@@ -588,7 +588,7 @@ namespace JRunner.Classes
 
             if (_xdkbuild && _rgh3)
             {
-                MainForm.mainForm.XDKbuild.create(boardtype);
+                MainForm.mainForm.XDKbuild.create(boardtype, true);
                 MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000");
             }
             else if (_xdkbuild) MainForm.mainForm.XDKbuild.create(boardtype);
