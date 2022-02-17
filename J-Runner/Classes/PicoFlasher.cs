@@ -263,6 +263,13 @@ namespace JRunner
                     return;
 
                 uint flashconfig = getFlashConfig(serial);
+                if (flashconfig == 0)
+                {
+                    Console.WriteLine("Unknown flash config!");
+                    Console.WriteLine("");
+                    CloseSerial(serial);
+                    return;
+                }
 
                 uint flashsize = getFlashSize(flashconfig);
                 if (flashsize == 0)
@@ -392,6 +399,13 @@ namespace JRunner
                     return;
 
                 uint flashconfig = getFlashConfig(serial);
+                if (flashconfig == 0)
+                {
+                    Console.WriteLine("Unknown flash config!");
+                    Console.WriteLine("");
+                    CloseSerial(serial);
+                    return;
+                }
 
                 uint flashsize = getFlashSize(flashconfig);
                 if (flashsize == 0)
