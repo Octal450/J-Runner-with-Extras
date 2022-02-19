@@ -4857,7 +4857,7 @@ namespace JRunner
                 ProgressLabel.BeginInvoke(new Action(() => ProgressLabel.Text = "Progress"));
                 progressBar.BeginInvoke(new Action(() => {
                     progressBar.Style = ProgressBarStyle.Blocks;
-                    progressBar.Value = progressBar.Minimum;
+                    progressBar.Value = progressBar.Maximum;
                 }));
                 txtBlocks.BeginInvoke(new Action(() => { txtBlocks.Text = ""; }));
             }
