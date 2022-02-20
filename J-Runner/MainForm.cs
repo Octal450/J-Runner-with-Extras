@@ -4777,6 +4777,19 @@ namespace JRunner
 
         #endregion
 
+        #region General device interactions with UI
+
+        public void afterWriteEccCleanup()
+        {
+            if (variables.tempfile != "")
+            {
+                variables.filename1 = variables.tempfile;
+                txtFilePath1.Text = variables.tempfile;
+            }
+        }
+
+        #endregion
+
         #region xFlasher interactions with UI
 
         public void xFlasherInitNand(int i = 2)
@@ -4792,15 +4805,6 @@ namespace JRunner
                 txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = Path.Combine(variables.filename)));
                 variables.filename2 = variables.filename;
                 new Thread(comparenands).Start();
-            }
-        }
-
-        public void xFlasherEccCleanup()
-        {
-            if (variables.tempfile != "")
-            {
-                variables.filename1 = variables.tempfile;
-                txtFilePath1.Text = variables.tempfile;
             }
         }
 
@@ -4889,15 +4893,6 @@ namespace JRunner
                 txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = Path.Combine(variables.filename)));
                 variables.filename2 = variables.filename;
                 new Thread(comparenands).Start();
-            }
-        }
-
-        public void PicoFlasherEccCleanup()
-        {
-            if (variables.tempfile != "")
-            {
-                variables.filename1 = variables.tempfile;
-                txtFilePath1.Text = variables.tempfile;
             }
         }
 

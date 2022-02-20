@@ -482,6 +482,12 @@ namespace JRunner
                 SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
                 if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
                 success.Play();
+
+                if (fixEcc != 0)
+                {
+                    Thread.Sleep(500);
+                    MainForm.mainForm.afterWriteEccCleanup();
+                }
             });
             writerThread.Start();
         }

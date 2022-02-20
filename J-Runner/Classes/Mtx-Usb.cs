@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Media;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -145,6 +146,16 @@ namespace JRunner
                     MainForm.mainForm.mtxBusy(0);
                     Console.WriteLine("NandPro: Completed! Time Elapsed: {0}", mtxTimeString);
                     Console.WriteLine("");
+
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
+                    success.Play();
+
+                    if (mode >= 1)
+                    {
+                        Thread.Sleep(500);
+                        MainForm.mainForm.afterWriteEccCleanup();
+                    }
                 }
                 catch (Exception ex)
                 {

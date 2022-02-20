@@ -746,7 +746,7 @@ namespace JRunner
                         if (mode >= 1)
                         {
                             Thread.Sleep(500);
-                            MainForm.mainForm.xFlasherEccCleanup();
+                            MainForm.mainForm.afterWriteEccCleanup();
                         }
                     }
                     else if (result == -2)
