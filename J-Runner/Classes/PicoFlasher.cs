@@ -365,6 +365,7 @@ namespace JRunner
 
                     MainForm.mainForm.PicoFlasherBusy(0);
 
+                    Thread.Sleep(1000);
                     MainForm.mainForm.PicoFlasherInitNand(i);
                 }
 
