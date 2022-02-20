@@ -501,9 +501,9 @@ namespace JRunner
 
             byte[] buf = new byte[3];
             buf[0] = 0xA6;
-            buf[1] = (byte)(index & 0x00ff);
-            buf[2] = (byte)((index & 0xff00) >> 8);
-
+            buf[1] = (byte)((index & 0xff00) >> 8);
+            buf[2] = (byte)(index & 0x00ff);
+            
             ///Access Flash
             MyUsbDevice.ControlTransfer(ref packet, buf, 3, out transfer);
             if (variables.debugme) Console.WriteLine("Length Transferred: {0}", transfer);
@@ -523,8 +523,8 @@ namespace JRunner
 
             byte[] buf = new byte[3];
             buf[0] = 0xB0;
-            buf[1] = (byte)(index & 0x00ff);
-            buf[2] = (byte)((index & 0xff00) >> 8);
+            buf[1] = (byte)((index & 0xff00) >> 8);
+            buf[2] = (byte)(index & 0x00ff);
 
             ///Access Flash
             MyUsbDevice.ControlTransfer(ref packet, buf, 3, out transfer);
