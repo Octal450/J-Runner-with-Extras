@@ -501,7 +501,7 @@ namespace JRunner
 
             byte[] buf = new byte[3];
             buf[0] = 0xA6;
-            buf[3] = (byte)(index & 0x00ff);
+            buf[1] = (byte)(index & 0x00ff);
             buf[2] = (byte)((index & 0xff00) >> 8);
 
             ///Access Flash
@@ -523,7 +523,7 @@ namespace JRunner
 
             byte[] buf = new byte[3];
             buf[0] = 0xB0;
-            buf[3] = (byte)(index & 0x00ff);
+            buf[1] = (byte)(index & 0x00ff);
             buf[2] = (byte)((index & 0xff00) >> 8);
 
             ///Access Flash

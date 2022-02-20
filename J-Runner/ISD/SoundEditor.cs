@@ -83,7 +83,7 @@ namespace JRunner.Forms
                 if (dev_id == 0)
                 {
                     log("SPI ID Failed !\n");
-                    log("no ISD chip detected\n");
+                    log("No ISD chip detected\n");
                     return;
                 }
                 
@@ -180,8 +180,9 @@ namespace JRunner.Forms
 
                 log("Sending Flash de-Init...\n");
                 isd.PowerDown();
-                log("Setting ISD to normal mode..\n");
+                log("Setting ISD to normal mode...\n");
                 isd.Reset();
+                log("Done!\n");
                 enable(true);
             }
             catch (Exception ex)
