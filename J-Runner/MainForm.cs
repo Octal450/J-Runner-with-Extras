@@ -152,7 +152,7 @@ namespace JRunner
                 rpcInit();
                 new Thread(new ThreadStart(this.rpcCheck)).Start();
             }
-
+            
             try
             {
                 if (File.Exists(xflasher.svfPath)) File.Delete(xflasher.svfPath);
@@ -351,11 +351,11 @@ namespace JRunner
                         xPanel.getComboDash().SelectedIndex = variables.dashes_all.IndexOf(variables.preferredDash);
                         variables.dashversion = Convert.ToInt32(xPanel.getComboDash().Text);
                     }
-                    else if (xPanel.getComboDash().Items.Count > 3) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = (xPanel.getComboDash().Items.Count - 3)));
+                    else if (xPanel.getComboDash().Items.Count > 3) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = xPanel.getComboDash().Items.Count - 3));
                 }
                 xPanel.checkAvailableHackTypes();
             }
-            catch (InvalidOperationException)
+            catch
             {
             }
 
@@ -899,7 +899,7 @@ namespace JRunner
                     }
                     else if (device == DEVICE.PICOFLASHER)
                     {
-                        picoflasher.ReadNand(1, (uint) startblock, (uint) (startblock + length));
+                        picoflasher.ReadNand(1, (uint) startblock, (uint) (startblock + length)); // TODO: respect filename
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
                     {
@@ -924,7 +924,7 @@ namespace JRunner
                     }
                     else if (device == DEVICE.PICOFLASHER)
                     {
-                        MessageBox.Show("PicoFlasher can't erase.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("PicoFlasher can't erase", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
@@ -951,7 +951,7 @@ namespace JRunner
                     }
                     else if (device == DEVICE.PICOFLASHER)
                     {
-                        picoflasher.WriteNand(Path.GetExtension(filename) == ".ecc" ? 1 : 0, (uint)startblock, (uint)(startblock + length));
+                        picoflasher.WriteNand(Path.GetExtension(filename) == ".ecc" ? 1 : 0, (uint)startblock, (uint)(startblock + length)); // TODO: respect filename
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
                     {
@@ -4760,7 +4760,7 @@ namespace JRunner
                         bool isNumeric = int.TryParse(xPanel.getComboDash().Text, out n);
                         if (isNumeric) variables.dashversion = n;
                     }
-                    else if (xPanel.getComboDash().Items.Count > 3) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = (xPanel.getComboDash().Items.Count - 3)));
+                    else if (xPanel.getComboDash().Items.Count > 3) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = xPanel.getComboDash().Items.Count - 3));
                 }
             }
             catch (InvalidOperationException)

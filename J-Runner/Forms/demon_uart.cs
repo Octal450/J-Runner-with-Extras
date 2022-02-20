@@ -22,10 +22,8 @@ namespace JRunner.Forms
         }
         private void MonitorOnNewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
-
             var tmp = Encoding.UTF8.GetString(e.Data);
             Console.Write(tmp);
-
         }
         private void demon_uart_Load(object sender, EventArgs e)
         {

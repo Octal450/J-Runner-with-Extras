@@ -91,7 +91,7 @@ namespace JRunner
 
             if (ports.Count <= 0)
             {
-                MessageBox.Show("Can't find PicoFlasher com port\n\nUpdate the PicoFlasher firmware and check your drivers", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Can't find PicoFlasher COM port\n\nUpdate the PicoFlasher firmware and check your drivers", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
 
@@ -219,6 +219,7 @@ namespace JRunner
             if (serial == null)
                 return;
 
+            Console.WriteLine("Checking Console...");
             CMD cmd = new CMD();
             cmd.cmd = COMMANDS.GET_FLASH_CONFIG;
             cmd.lba = 0;
@@ -226,6 +227,7 @@ namespace JRunner
             SendCmd(serial, cmd);
 
             UInt32 flashconfig = RecvUInt32(serial);
+            Console.WriteLine("0x" + flashconfig.ToString("X8"));
 
             if (flashconfig == 0x00000000 || flashconfig == 0xFFFFFFFF)
             {
@@ -248,7 +250,7 @@ namespace JRunner
             else if (flashconfig == 0xC0462002)
                 Console.WriteLine("Corona 4GB");
             else
-                Console.WriteLine("Unrecongized Flash Config: " + flashconfig.ToString("X8"));
+                Console.WriteLine("Unrecongized Flash Config");
             Console.WriteLine("");
 
             CloseSerial(serial);
@@ -265,7 +267,7 @@ namespace JRunner
                 uint flashconfig = getFlashConfig(serial);
                 if (flashconfig == 0)
                 {
-                    Console.WriteLine("Unknown flash config!");
+                    Console.WriteLine("Console Not Found");
                     Console.WriteLine("");
                     CloseSerial(serial);
                     return;
@@ -274,7 +276,7 @@ namespace JRunner
                 uint flashsize = getFlashSize(flashconfig);
                 if (flashsize == 0)
                 {
-                    Console.WriteLine("Unknown flash size!");
+                    Console.WriteLine("Unknown Flash Size");
                     Console.WriteLine("");
                     CloseSerial(serial);
                     return;
@@ -294,7 +296,8 @@ namespace JRunner
                     }
 
                     MainForm.mainForm.PicoFlasherBusy(1);
-                    
+                    Console.WriteLine("Reading Nand to {0}", variables.filename);
+
                     BinaryWriter bw = new BinaryWriter(File.Open(variables.filename, FileMode.Create, FileAccess.Write));
 
                     if (start == 0 && end == 0)
@@ -379,7 +382,7 @@ namespace JRunner
             {
                 if (Path.GetExtension(variables.filename1) == ".ecc")
                 {
-                    Console.WriteLine("xFlasher: You need an .bin image");
+                    Console.WriteLine("You need an .bin image");
                     return;
                 }
             }
@@ -387,7 +390,7 @@ namespace JRunner
             {
                 if (Path.GetExtension(variables.filename1) != ".ecc")
                 {
-                    Console.WriteLine("xFlasher: You need an .ecc image");
+                    Console.WriteLine("You need an .ecc image");
                     return;
                 }
             }
@@ -401,7 +404,7 @@ namespace JRunner
                 uint flashconfig = getFlashConfig(serial);
                 if (flashconfig == 0)
                 {
-                    Console.WriteLine("Unknown flash config!");
+                    Console.WriteLine("Console Not Found");
                     Console.WriteLine("");
                     CloseSerial(serial);
                     return;
@@ -410,7 +413,7 @@ namespace JRunner
                 uint flashsize = getFlashSize(flashconfig);
                 if (flashsize == 0)
                 {
-                    Console.WriteLine("Unknown flash size!");
+                    Console.WriteLine("Unknown Flash Size!");
                     Console.WriteLine("");
                     CloseSerial(serial);
                     return;
@@ -423,6 +426,7 @@ namespace JRunner
                     layout = 0;
 
                 MainForm.mainForm.PicoFlasherBusy(2);
+                Console.WriteLine("Writing {0} to Nand", Path.GetFileName(variables.filename1));
 
                 BinaryReader br = new BinaryReader(File.Open(variables.filename1, FileMode.Open, FileAccess.Read));
 

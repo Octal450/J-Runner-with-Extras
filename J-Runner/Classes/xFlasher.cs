@@ -332,7 +332,7 @@ namespace JRunner
                         if (result == -1)
                         {
                             i = iterations + 1;
-                            Console.WriteLine("xFlasher: Aborted!");
+                            Console.WriteLine("xFlasher: Cancelled");
                             Console.WriteLine("");
                             return;
                         }
@@ -462,7 +462,7 @@ namespace JRunner
 
                     if (result == -1)
                     {
-                        Console.WriteLine("xFlasher: Aborted!");
+                        Console.WriteLine("xFlasher: Cancelled");
                         Console.WriteLine("");
                         return;
                     }
@@ -729,7 +729,7 @@ namespace JRunner
 
                     if (result == -1)
                     {
-                        Console.WriteLine("xFlasher: Aborted!");
+                        Console.WriteLine("xFlasher: Cancelled");
                         Console.WriteLine("");
                         return;
                     }

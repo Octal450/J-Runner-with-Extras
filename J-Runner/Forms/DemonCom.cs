@@ -17,12 +17,6 @@ namespace JRunner.Forms
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
         private static Demon _demon;
 
         private bool StartDemon()

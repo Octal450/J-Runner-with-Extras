@@ -883,7 +883,7 @@
             this.resetNo.Name = "resetNo";
             this.resetNo.Size = new System.Drawing.Size(271, 34);
             this.resetNo.TabIndex = 10;
-            this.resetNo.Text = "Couldn\'t retrieve reset sequence";
+            this.resetNo.Text = "Reset sequence not available";
             this.resetNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // reset4

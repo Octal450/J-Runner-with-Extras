@@ -25,6 +25,7 @@ namespace JRunner.Forms
             if (!File.Exists(file))
             {
                 MessageBox.Show("File doesn't exist", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
                 return;
             }
             string extn = Path.GetExtension(file);
@@ -58,7 +59,7 @@ namespace JRunner.Forms
             Close();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e) // If ever needed
         {
             string file = "";
             OpenFileDialog openDialog = new OpenFileDialog();
@@ -73,7 +74,7 @@ namespace JRunner.Forms
             if (file != "") LoadFile(file);
         }
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e) // If ever needed
         {
             if (FileOpen)
             {
