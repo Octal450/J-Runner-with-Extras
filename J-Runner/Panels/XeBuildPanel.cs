@@ -1078,7 +1078,7 @@ namespace JRunner.Panels
         void xe_update()
         {
             Classes.xebuild xe = new Classes.xebuild();
-            xe.Uloadvariables(variables.dashversion, (Classes.xebuild.hacktypes)variables.ttyp, patches, chkxesettings.Checked, chkNoWrite.Checked, chkNoAva.Checked, chkClean.Checked, chkNoReeb.Checked, checkDLPatches.Checked,
+            xe.Uloadvariables(variables.dashversion, (variables.hacktypes)variables.ttyp, patches, chkxesettings.Checked, chkNoWrite.Checked, chkNoAva.Checked, chkClean.Checked, chkNoReeb.Checked, checkDLPatches.Checked,
                 chkLaunch.Checked);
             File.Delete(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin"));
             try
@@ -1156,7 +1156,7 @@ namespace JRunner.Panels
         public void createxebuild_v2(bool custom, Nand.PrivateN nand, bool fullDataClean)
         {
             Classes.xebuild xe = new Classes.xebuild();
-            xe.loadvariables(nand._cpukey, (Classes.xebuild.hacktypes)variables.ttyp, variables.dashversion,
+            xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                              variables.ctyp, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
                              chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, fullDataClean);
 
@@ -1285,8 +1285,8 @@ namespace JRunner.Panels
                     if (variables.ctyp.ID == -1) return;
                     else
                     {
-                        Console.WriteLine((Classes.xebuild.hacktypes)variables.ttyp);
-                        xe.loadvariables(nand._cpukey, (Classes.xebuild.hacktypes)variables.ttyp, variables.dashversion,
+                        Console.WriteLine((variables.hacktypes)variables.ttyp);
+                        xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                             variables.ctyp, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked,
                             chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, fullDataClean);
@@ -1507,7 +1507,7 @@ namespace JRunner.Panels
         {
             if (wait) Thread.Sleep(100);
             string c = "";
-            c = "-t " + (Classes.xebuild.hacktypes)variables.ttyp;
+            c = "-t " + variables.ttyp;
             c += " -c " + variables.ctyp.XeBuild;
             foreach (String patch in patches)
             {

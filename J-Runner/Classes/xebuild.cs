@@ -10,16 +10,6 @@ namespace JRunner.Classes
 
     class xebuild
     {
-        public enum hacktypes
-        {
-            nothing = 0,
-            retail = 1,
-            glitch = 2,
-            jtag = 3,
-            glitch2 = 4,
-            glitch2m = 5,
-            devgl = 6
-        }
         public enum XebuildError
         {
             none = 0,
@@ -35,7 +25,7 @@ namespace JRunner.Classes
         }
 
         private string _cpukey;
-        private hacktypes _ttype;
+        private variables.hacktypes _ttype;
         private int _dash;
         private consoles _ctype;
         private bool _audclamp;
@@ -58,7 +48,7 @@ namespace JRunner.Classes
         private Nand.PrivateN _nand;
         private List<String> _patches;
 
-        public void loadvariables(string cpukey, hacktypes ttype, int dash, consoles ctype, List<String> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool fullDataClean)
+        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<String> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool fullDataClean)
         {
             this._cpukey = cpukey;
             this._ttype = ttype;
@@ -103,7 +93,7 @@ namespace JRunner.Classes
 
         void copySMC()
         {
-            if (_ttype == hacktypes.jtag && !File.Exists(Path.Combine(variables.xePath, "SMC.bin")))
+            if (_ttype == variables.hacktypes.jtag && !File.Exists(Path.Combine(variables.xePath, "SMC.bin")))
             {
                 if (_ctype.ID == 2)
                 {
@@ -132,7 +122,7 @@ namespace JRunner.Classes
                 }
                 variables.copiedSMC = true;
             }
-            else if (_ttype != hacktypes.jtag && _CleanSMC)
+            else if (_ttype != variables.hacktypes.jtag && _CleanSMC)
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
@@ -160,7 +150,7 @@ namespace JRunner.Classes
                 }
                 variables.copiedSMC = true;
             }
-            else if ((_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m) && _CR4)
+            else if ((_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m) && _CR4)
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
@@ -180,7 +170,7 @@ namespace JRunner.Classes
                 }
                 variables.copiedSMC = true;
             }
-            else if ((_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m) && _SMCP)
+            else if ((_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m) && _SMCP)
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
@@ -207,7 +197,7 @@ namespace JRunner.Classes
         }
         void copySMCcustom()
         {
-            if (_ttype == hacktypes.jtag)
+            if (_ttype == variables.hacktypes.jtag)
             {
                 if (_ctype.ID == 2)
                 {
@@ -236,7 +226,7 @@ namespace JRunner.Classes
                 }
                 variables.copiedSMC = true;
             }
-            else if (_ttype != hacktypes.jtag && _CleanSMC)
+            else if (_ttype != variables.hacktypes.jtag && _CleanSMC)
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
@@ -264,7 +254,7 @@ namespace JRunner.Classes
                 }
                 variables.copiedSMC = true;
             }
-            else if ((_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m) && _CR4)
+            else if ((_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m) && _CR4)
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
@@ -284,7 +274,7 @@ namespace JRunner.Classes
                 }
                 variables.copiedSMC = true;
             }
-            else if ((_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m) && _SMCP)
+            else if ((_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m) && _SMCP)
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
@@ -327,9 +317,9 @@ namespace JRunner.Classes
         void edittheini()
         {
             if (variables.debugme) Console.WriteLine(_dash);
-            foreach (hacktypes type in Enum.GetValues(typeof(hacktypes)))
+            foreach (variables.hacktypes type in Enum.GetValues(typeof(variables.hacktypes)))
             {
-                if (type == hacktypes.retail || type == hacktypes.nothing) continue;
+                if (type == variables.hacktypes.retail || type == variables.hacktypes.nothing) continue;
                 string file = Path.Combine(variables.pathforit, @"xeBuild\" + _dash + @"\_" + type + ".ini");
                 string[] writepatches = { @"..\launch.xex", @"..\lhelper.xex", @"..\launch.ini" };
                 string[] writepatches2 = { @"..\launch.xex", @"..\lhelper.xex" };
@@ -409,7 +399,7 @@ namespace JRunner.Classes
         }
         void moveXell()
         {
-            if (_ttype != hacktypes.retail)
+            if (_ttype != variables.hacktypes.retail)
             {
                 File.Copy(Path.Combine(variables.pathforit, @"common\xell\xell-2f.bin"), Path.Combine(variables.pathforit, @"xebuild\data\xell-2f.bin"), true);
                 File.Copy(Path.Combine(variables.pathforit, @"common\xell\xell-gggggg.bin"), Path.Combine(variables.pathforit, @"xebuild\data\xell-gggggg.bin"), true);
@@ -479,7 +469,7 @@ namespace JRunner.Classes
             string boardtype = _ctype.XeBuild;
             arguments = "-t " + _ttype;
 
-            if (_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m)
+            if (_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m)
             {
                 if (boardtype == "xenon")
                 {
@@ -524,7 +514,7 @@ namespace JRunner.Classes
                 arguments += " -c " + boardtype;
             }
 
-            if (_zfuse && _ttype == hacktypes.devgl)
+            if (_zfuse && _ttype == variables.hacktypes.devgl)
             {
                 arguments += " -a hvfixkeys";
             }
@@ -601,7 +591,7 @@ namespace JRunner.Classes
             pProcess.StartInfo.FileName = variables.pathforit + @"\xeBuild\xeBuild.exe";
             string boardtype = _ctype.XeBuild;
 
-            if (_ttype == hacktypes.glitch2 || _ttype == hacktypes.glitch2m)
+            if (_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m)
             {
                 if (boardtype == "xenon")
                 {
@@ -646,7 +636,7 @@ namespace JRunner.Classes
                 arguments += " -c " + boardtype;
             }
 
-            if (_zfuse && _ttype == hacktypes.devgl)
+            if (_zfuse && _ttype == variables.hacktypes.devgl)
             {
                 arguments += " -a hvfixkeys";
             }
@@ -704,7 +694,7 @@ namespace JRunner.Classes
         ////////////////////////////////////////////////
 
 
-        public void Uloadvariables(int dash, hacktypes ttype, List<String> patches, bool altoptions, bool nowrite, bool noava, bool clean, bool noreeb, bool DLpatches, bool includeLaunch)
+        public void Uloadvariables(int dash, variables.hacktypes ttype, List<String> patches, bool altoptions, bool nowrite, bool noava, bool clean, bool noreeb, bool DLpatches, bool includeLaunch)
         {
             this._dash = dash;
             this._ttype = ttype;

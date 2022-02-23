@@ -2245,16 +2245,16 @@ namespace JRunner
 
                 switch (Nand.ntable.getHackfromCB(nand.bl.CB_A))
                 {
-                    case Classes.xebuild.hacktypes.glitch:
+                    case variables.hacktypes.glitch:
                         xPanel.BeginInvoke(new Action(() => xPanel.setRbtnGlitchChecked(true)));
                         break;
-                    case Classes.xebuild.hacktypes.glitch2:
+                    case variables.hacktypes.glitch2:
                         xPanel.BeginInvoke(new Action(() => xPanel.setRbtnGlitch2Checked(true)));
                         break;
-                    case Classes.xebuild.hacktypes.jtag:
+                    case variables.hacktypes.jtag:
                         xPanel.BeginInvoke(new Action(() => xPanel.setRbtnJtagChecked(true)));
                         break;
-                    case Classes.xebuild.hacktypes.devgl:
+                    case variables.hacktypes.devgl:
                         if (xPanel.canDevGL(variables.boardtype))
                             xPanel.BeginInvoke(new Action(() => xPanel.setRbtnDevGLChecked(true)));
                         else
