@@ -87,7 +87,13 @@ namespace JRunner
         {
             if (InUse)
                 return null;
-            List<string> ports = ComPortNames("600D", "7001");
+
+            List<string> ports = null;
+            try
+            {
+                ports = ComPortNames("600D", "7001");
+            }
+            catch { } // No crash if it fails
 
             if (ports.Count <= 0)
             {

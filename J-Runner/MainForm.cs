@@ -879,6 +879,12 @@ namespace JRunner
             if (startblock < 0) startblock = 0;
             if (length < 0) length = 0;
 
+            if (device == DEVICE.PICOFLASHER) // Remove once PicoFlasher supports the filename properly
+            {
+                MessageBox.Show("PicoFlasher does not support custom operations yet", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Nandsize sizex = Nandsize.S0;
             if (size == 16) sizex = Nandsize.S16;
             else if (size == 64) sizex = Nandsize.S64;
@@ -981,7 +987,7 @@ namespace JRunner
                     {
                         if (device == DEVICE.PICOFLASHER)
                         {
-                            MessageBox.Show("PicoFlasher can't write timing.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("PicoFlasher can't write timing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                         else if (device == DEVICE.XFLASHER_SPI)
