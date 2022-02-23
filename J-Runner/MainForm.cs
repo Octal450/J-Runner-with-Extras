@@ -905,7 +905,7 @@ namespace JRunner
                     }
                     else if (device == DEVICE.PICOFLASHER)
                     {
-                        picoflasher.ReadNand(1, (uint) startblock, (uint) (startblock + length)); // TODO: respect filename
+                        picoflasher.Read(1, (uint) startblock, (uint) (startblock + length)); // TODO: respect filename
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
                     {
@@ -957,7 +957,7 @@ namespace JRunner
                     }
                     else if (device == DEVICE.PICOFLASHER)
                     {
-                        picoflasher.WriteNand(Path.GetExtension(filename) == ".ecc" ? 1 : 0, (uint)startblock, (uint)(startblock + length)); // TODO: respect filename
+                        picoflasher.Write(Path.GetExtension(filename) == ".ecc" ? 1 : 0, (uint)startblock, (uint)(startblock + length)); // TODO: respect filename
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
                     {
@@ -3561,7 +3561,7 @@ namespace JRunner
         {
             if (device == DEVICE.PICOFLASHER)
             {
-                picoflasher.ReadNand(nTools.getNumericIterations());
+                picoflasher.Read(nTools.getNumericIterations());
             }
             else if (device == DEVICE.XFLASHER_SPI)
             {
@@ -3662,7 +3662,7 @@ namespace JRunner
         {
             if (device == DEVICE.PICOFLASHER)
             {
-                picoflasher.WriteNand(nTools.getbtnWriteECC().Contains("XeLL") ? 0 : 1);
+                picoflasher.Write(nTools.getbtnWriteECC().Contains("XeLL") ? 0 : 1);
             }
             else if (device == DEVICE.XFLASHER_SPI)
             {
@@ -3708,7 +3708,7 @@ namespace JRunner
         {
             if (device == DEVICE.PICOFLASHER)
             {
-                picoflasher.WriteNand(0);
+                picoflasher.Write(0);
             }
             else if (device == DEVICE.XFLASHER_SPI)
             {

@@ -31,9 +31,18 @@ namespace JRunner
             WRITE_FLASH,
             READ_FLASH_STREAM,
 
+            EMMC_DETECT = 0x50,
+            EMMC_INIT,
+            EMMC_GET_CID,
+            EMMC_GET_CSD,
+            EMMC_GET_EXT_CSD,
+            EMMC_READ,
+            EMMC_READ_STREAM,
+            EMMC_WRITE,
+
             ISD1200_INIT = 0xA0,
             ISD1200_DEINIT,
-            ISD1200_READ_ID ,
+            ISD1200_READ_ID,
             ISD1200_READ_FLASH,
             ISD1200_ERASE_FLASH,
             ISD1200_WRITE_FLASH,
@@ -118,7 +127,7 @@ namespace JRunner
 
             UInt32 version = RecvUInt32(serial);
 
-            if (version != 2)
+            if (version != 3)
             {
                 serial.Close();
                 MessageBox.Show("PicoFlasher firmware is too old\n\nUpdate the PicoFlasher firmware to continue", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -219,6 +228,21 @@ namespace JRunner
             return size * 1024 * 1024;
         }
 
+        private UInt32 UNSTUFF_BITS(UInt32[] resp, int start, int size)
+        {
+            int __size = size;
+            UInt32 __mask = (UInt32)(__size < 32 ? 1 << __size : 0) - 1;
+            int __off = 3 - ((start) / 32);
+            int __shft = (start) & 31;
+            UInt32 __res;
+
+            __res = resp[__off] >> __shft;
+            if (__size + __shft > 32)
+                __res |= resp[__off - 1] << ((32 - __shft) % 32);
+
+            return __res & __mask;
+        }
+
         public void getFlashConfig()
         {
             SerialPort serial = OpenSerial();
@@ -229,40 +253,150 @@ namespace JRunner
             CMD cmd = new CMD();
             cmd.cmd = COMMANDS.GET_FLASH_CONFIG;
             cmd.lba = 0;
-
             SendCmd(serial, cmd);
-
             UInt32 flashconfig = RecvUInt32(serial);
             Console.WriteLine("0x" + flashconfig.ToString("X8"));
 
-            if (flashconfig == 0x00000000 || flashconfig == 0xFFFFFFFF)
+            cmd.cmd = COMMANDS.EMMC_DETECT;
+            SendCmd(serial, cmd);
+            byte emmc_det = RecvUInt8(serial);
+
+            if (flashconfig != 0x00000000 && flashconfig != 0xFFFFFFFF && flashconfig != 0xC0462002)
+            {
+                if (flashconfig == 0x01198010 || flashconfig == 0x01198030)
+                    Console.WriteLine("Xenon, Zephyr, Falcon");
+                else if (flashconfig == 0x00023010)
+                    Console.WriteLine("Jasper 16MB, Trinity");
+                else if (flashconfig == 0x00043000)
+                    Console.WriteLine("Corona 16MB");
+                else if (flashconfig == 0x008A3020)
+                    Console.WriteLine("Jasper 256MB");
+                else if (flashconfig == 0x00AA3020)
+                    Console.WriteLine("Jasper 512MB");
+                else
+                    Console.WriteLine("Unrecongized Flash Config");
+            }
+            else if (emmc_det == 0 && flashconfig == 0xC0462002)
+            {
+                Console.WriteLine("Corona 4GB (EMMC not connected)");
+            }
+            else if (emmc_det != 0)
+            {
+                if (flashconfig == 0xC0462002)
+                    Console.WriteLine("Corona 4GB");
+                else if (flashconfig != 0x00000000 && flashconfig != 0xFFFFFFFF)
+                    Console.WriteLine("Unrecongized Flash Config");
+
+                cmd.cmd = COMMANDS.EMMC_INIT;
+                SendCmd(serial, cmd);
+                UInt32 emmc_init_ret = RecvUInt32(serial);
+
+                if (emmc_init_ret != 0)
+                {
+                    Console.WriteLine("EMMC init failed: " + emmc_init_ret);
+                }
+                else
+                {
+                    cmd.cmd = COMMANDS.EMMC_GET_CID;
+                    SendCmd(serial, cmd);
+
+                    byte[] CID = new byte[16];
+                    int got = 0;
+                    while (got < CID.Length)
+                        got += serial.Read(CID, got, CID.Length - got);
+
+                    cmd.cmd = COMMANDS.EMMC_GET_CSD;
+                    SendCmd(serial, cmd);
+
+                    byte[] CSD = new byte[16];
+                    got = 0;
+                    while (got < CSD.Length)
+                        got += serial.Read(CSD, got, CSD.Length - got);
+
+                    cmd.cmd = COMMANDS.EMMC_GET_EXT_CSD;
+                    SendCmd(serial, cmd);
+
+                    byte[] ext_csd = new byte[512];
+                    got = 0;
+                    while (got < CSD.Length)
+                        got += serial.Read(ext_csd, got, ext_csd.Length - got);
+
+                    Console.Write("CID: ");
+                    for (int i = 0; i < CID.Length; i++)
+                        Console.Write(CID[i].ToString("X2"));
+                    Console.WriteLine("");
+
+                    Console.Write("CSD: ");
+                    for (int i = 0; i < CSD.Length; i++)
+                        Console.Write(CSD[i].ToString("X2"));
+                    Console.WriteLine("");
+
+                    UInt32[] csd = new UInt32[4];
+                    Buffer.BlockCopy(CSD, 0, csd, 0, CSD.Length);
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        byte[] bytes = BitConverter.GetBytes(csd[i]);
+                        Array.Reverse(bytes);
+                        csd[i] = BitConverter.ToUInt32(bytes, 0);
+                    }
+
+                    Console.WriteLine("CSD_STRUCTURE: " + UNSTUFF_BITS(csd, 126, 2).ToString("X"));
+                    Console.WriteLine("TAAC: " + UNSTUFF_BITS(csd, 112, 8).ToString("X"));
+                    Console.WriteLine("TRAN_SPEED: " + UNSTUFF_BITS(csd, 96, 8).ToString("X"));
+                    Console.WriteLine("READ_BL_LEN: " + UNSTUFF_BITS(csd, 80, 4).ToString("X"));
+                    Console.WriteLine("READ_BL_PARTIAL: " + UNSTUFF_BITS(csd, 79, 1).ToString("X"));
+                    Console.WriteLine("C_SIZE: " + UNSTUFF_BITS(csd, 62, 12).ToString("X"));
+                    Console.WriteLine("C_SIZE_MULT: " + UNSTUFF_BITS(csd, 47, 3).ToString("X"));
+                    Console.WriteLine("ERASE_GRP_SIZE: " + UNSTUFF_BITS(csd, 42, 5).ToString("X"));
+
+                    Console.WriteLine("Extended CSD V1." + ext_csd[194].ToString()); // EXT_CSD_STRUCTURE
+                    Console.WriteLine(" Spec Version:  " + UNSTUFF_BITS(csd, 122, 4).ToString("X2"));
+                    Console.WriteLine(" Extended Rev:  1." + ext_csd[192].ToString()); // EXT_CSD_REV
+
+                    byte[] devver = new byte[4];
+                    Buffer.BlockCopy(ext_csd, 262, devver, 0, 2); // EXT_CSD_DEVICE_VERSION
+                    Console.WriteLine(" Dev Version:   " + BitConverter.ToUInt32(devver, 0).ToString());
+                    Console.WriteLine(" Cmd Classes:   " + UNSTUFF_BITS(csd, 84, 12).ToString("X2"));
+                    Console.WriteLine(" Capacity:      " + ((UNSTUFF_BITS(csd, 62, 12) == 0xfff && UNSTUFF_BITS(csd, 47, 3) == 7) ? "High" : "Low"));
+                    byte card_type = ext_csd[196]; // EXT_CSD_CARD_TYPE
+                    int speed = 0;
+                    if ((card_type & (1 << 0)) != 0) // EXT_CSD_CARD_TYPE_HS_26
+                        speed = (26 << 16) | 26;
+                    if ((card_type & (1 << 1)) != 0) // EXT_CSD_CARD_TYPE_HS_52
+                        speed = (52 << 16) | 52;
+                    if ((card_type & (1 << 2)) != 0) // EXT_CSD_CARD_TYPE_DDR_1_8V
+                        speed = (52 << 16) | 104;
+                    if ((card_type & (1 << 4)) != 0) // EXT_CSD_CARD_TYPE_HS200_1_8V
+                        speed = (200 << 16) | 200;
+                    if ((card_type & (1 << 6)) != 0) // EXT_CSD_CARD_TYPE_HS400_1_8V
+                        speed = (200 << 16) | 400;
+                    Console.WriteLine(" Max Rate:      " + (speed & 0xFFFF).ToString() + " MB/s (" + ((speed >> 16) & 0xFFFF).ToString() + " MHz)");
+                    Console.Write(" Type Support:  ");
+                    if ((card_type & (1 << 0)) != 0) // EXT_CSD_CARD_TYPE_HS_26
+                        Console.Write("HS26");
+                    if ((card_type & (1 << 1)) != 0) // EXT_CSD_CARD_TYPE_HS_52
+                        Console.Write(", HS52");
+                    if ((card_type & (1 << 2)) != 0) // EXT_CSD_CARD_TYPE_DDR_1_8V
+                        Console.Write(", DDR52_1.8V");
+                    if ((card_type & (1 << 4)) != 0) // EXT_CSD_CARD_TYPE_HS200_1_8V
+                        Console.Write(", HS200_1.8V");
+                    if ((card_type & (1 << 6)) != 0) // EXT_CSD_CARD_TYPE_HS400_1_8V
+                        Console.Write(", HS400_1.8V");
+                    Console.WriteLine("");
+                }
+
+            }
+            else
             {
                 Console.WriteLine("Console Not Found");
-                Console.WriteLine("");
-                CloseSerial(serial);
-                return;
             }
 
-            if (flashconfig == 0x01198010 || flashconfig == 0x01198030)
-                Console.WriteLine("Xenon, Zephyr, Falcon");
-            else if (flashconfig == 0x00023010)
-                Console.WriteLine("Jasper 16MB, Trinity");
-            else if (flashconfig == 0x00043000)
-                Console.WriteLine("Corona 16MB");
-            else if (flashconfig == 0x008A3020)
-                Console.WriteLine("Jasper 256MB");
-            else if (flashconfig == 0x00AA3020)
-                Console.WriteLine("Jasper 512MB");
-            else if (flashconfig == 0xC0462002)
-                Console.WriteLine("Corona 4GB");
-            else
-                Console.WriteLine("Unrecongized Flash Config");
             Console.WriteLine("");
-
             CloseSerial(serial);
         }
 
-        public void ReadNand(int iterations, uint start = 0, uint end = 0)
+        private void ReadNand(int iterations, uint start = 0, uint end = 0)
         {
             Thread readerThread = new Thread(() =>
             {
@@ -303,7 +437,7 @@ namespace JRunner
 
                     MainForm.mainForm.PicoFlasherBusy(1);
                     Console.WriteLine("Reading Nand to {0}", variables.filename);
-
+					
                     BinaryWriter bw = new BinaryWriter(File.Open(variables.filename, FileMode.Create, FileAccess.Write));
 
                     if (start == 0 && end == 0)
@@ -380,7 +514,7 @@ namespace JRunner
             readerThread.Start();
         }
 
-        public void WriteNand(int fixEcc, uint start = 0, uint end = 0)
+        private void WriteNand(int fixEcc, uint start = 0, uint end = 0)
         {
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
@@ -440,7 +574,7 @@ namespace JRunner
                 uint writeend = flashsize / (512 * 8);
                 if (start != 0 || end != 0)
                     writeend = end;
-                
+
                 for (uint j = start; j < writeend; j++)
                 {
                     byte[] read = br.ReadBytes(0x210 * 8);
@@ -497,6 +631,220 @@ namespace JRunner
                 }
             });
             writerThread.Start();
+        }
+
+        private void ReadEmmc(int iterations, uint start = 0, uint end = 0)
+        {
+            getFlashConfig();
+
+            Thread readerThread = new Thread(() =>
+            {
+                SerialPort serial = OpenSerial();
+                if (serial == null)
+                    return;
+
+                uint flashsize = 48 * 1024 * 1024; // On EMMC we only need the first 48MB
+
+                for (int i = 0; i < iterations; i++)
+                {
+                    variables.filename = variables.outfolder + "\\nanddump" + (i + 1) + ".bin";
+                    if (File.Exists(variables.filename))
+                    {
+                        if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                        {
+                            Console.WriteLine("Cancelled");
+                            Console.WriteLine("");
+                            return;
+                        };
+                    }
+
+                    MainForm.mainForm.PicoFlasherBusy(1);
+
+                    BinaryWriter bw = new BinaryWriter(File.Open(variables.filename, FileMode.Create, FileAccess.Write));
+
+                    if (start == 0 && end == 0)
+                    {
+                        CMD cmd = new CMD();
+                        cmd.cmd = COMMANDS.EMMC_READ_STREAM;
+                        cmd.lba = flashsize / 512;
+
+                        SendCmd(serial, cmd);
+
+                        for (uint j = 0; j < flashsize / 512; j++)
+                        {
+                            UInt32 ret = RecvUInt32(serial);
+
+                            if (ret != 0)
+                            {
+                                Console.WriteLine("Error: " + ret.ToString("X"));
+                                Console.WriteLine("");
+                                break;
+                            }
+
+                            byte[] rxbuffer = new byte[0x200];
+                            int got = 0;
+                            while (got < rxbuffer.Length)
+                                got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
+
+                            bw.Write(rxbuffer);
+
+                            if (j % 0x20 == 0)
+                                MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x20).ToString("X"), (int)((j * 100) / (flashsize / 512)));
+                        }
+                    }
+                    else
+                    {
+                        for (uint j = (start * 0x20); j < (end * 0x20); j++)
+                        {
+                            CMD cmd = new CMD();
+                            cmd.cmd = COMMANDS.EMMC_READ;
+                            cmd.lba = j;
+
+                            SendCmd(serial, cmd);
+
+                            UInt32 ret = RecvUInt32(serial);
+
+                            if (ret != 0)
+                            {
+                                Console.WriteLine("Error: " + ret.ToString("X"));
+                                Console.WriteLine("");
+                                break;
+                            }
+
+                            byte[] rxbuffer = new byte[0x200];
+                            int got = 0;
+                            while (got < rxbuffer.Length)
+                                got += serial.Read(rxbuffer, got, rxbuffer.Length - got);
+
+                            bw.Write(rxbuffer);
+
+                            if (j % 0x20 == 0)
+                                MainForm.mainForm.PicoFlasherBlocksUpdate((j / 0x20).ToString("X"), (int)((j * 100) / (flashsize / 512)));
+                        }
+                    }
+
+                    bw.Close();
+
+                    MainForm.mainForm.PicoFlasherBusy(0);
+
+                    MainForm.mainForm.PicoFlasherInitNand(i);
+                }
+
+                CloseSerial(serial);
+            });
+            readerThread.Start();
+        }
+
+        private void WriteEmmc(uint start = 0, uint end = 0)
+        {
+            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (!File.Exists(variables.filename1)) return;
+
+            getFlashConfig();
+
+            Thread writerThread = new Thread(() =>
+            {
+                SerialPort serial = OpenSerial();
+                if (serial == null)
+                    return;
+
+                uint flashsize = 48 * 1024 * 1024; // On EMMC we only need the first 48MB
+
+                MainForm.mainForm.PicoFlasherBusy(2);
+
+                BinaryReader br = new BinaryReader(File.Open(variables.filename1, FileMode.Open, FileAccess.Read));
+
+                uint writeend = flashsize / (512 * 8);
+                if (start != 0 || end != 0)
+                    writeend = end;
+
+                for (uint j = start; j < writeend; j++)
+                {
+                    byte[] read = br.ReadBytes(0x200 * 8);
+                    if (read == null || read.Length % 0x200 != 0)
+                        break;
+
+                    for (uint k = 0; k < read.Length / 0x200; k++)
+                    {
+                        CMD cmd = new CMD();
+                        cmd.cmd = COMMANDS.EMMC_WRITE;
+                        cmd.lba = j * 8 + k;
+
+                        int size = Marshal.SizeOf(cmd) + 0x200;
+                        byte[] arr = new byte[size];
+                        IntPtr ptr = Marshal.AllocHGlobal(size);
+                        Marshal.StructureToPtr(cmd, ptr, true);
+                        Marshal.Copy(ptr, arr, 0, size);
+                        Marshal.FreeHGlobal(ptr);
+                        Buffer.BlockCopy(read, (int)k * 0x200, arr, Marshal.SizeOf(cmd), 0x200);
+                        serial.Write(arr, 0, arr.Length);
+
+                        UInt32 ret = RecvUInt32(serial);
+                        if (ret != 0)
+                        {
+                            Console.WriteLine("Error: " + ret.ToString("X"));
+                            Console.WriteLine("");
+                            break;
+                        }
+                    }
+
+                    MainForm.mainForm.PicoFlasherBlocksUpdate((j / 4).ToString("X"), (int)((j * 100) / (flashsize / (512 * 8))));
+                }
+
+                br.Close();
+
+                MainForm.mainForm.PicoFlasherBusy(0);
+
+                CloseSerial(serial);
+
+                Console.WriteLine("Write Successful!");
+                Console.WriteLine("");
+
+                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
+                success.Play();
+            });
+            writerThread.Start();
+        }
+
+        public void Read(int iterations, uint start = 0, uint end = 0)
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return;
+
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.EMMC_DETECT;
+            cmd.lba = 0;
+            SendCmd(serial, cmd);
+            byte emmc_det = RecvUInt8(serial);
+
+            CloseSerial(serial);
+
+            if (emmc_det == 0)
+                ReadNand(iterations, start, end);
+            else
+                ReadEmmc(iterations, start, end);
+        }
+
+        public void Write(int fixEcc, uint start = 0, uint end = 0)
+        {
+            SerialPort serial = OpenSerial();
+            if (serial == null)
+                return;
+
+            CMD cmd = new CMD();
+            cmd.cmd = COMMANDS.EMMC_DETECT;
+            cmd.lba = 0;
+            SendCmd(serial, cmd);
+            byte emmc_det = RecvUInt8(serial);
+
+            CloseSerial(serial);
+
+            if (emmc_det == 0)
+                WriteNand(fixEcc, start, end);
+            else
+                WriteEmmc(start, end);
         }
 
         public int Open()
@@ -715,7 +1063,7 @@ namespace JRunner
             BinaryReader rw = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
             byte[] file = rw.ReadBytes(0xB000);
             rw.Close();
-            
+
             SerialPort serial = OpenSerial();
             if (serial == null)
                 return false;
