@@ -293,6 +293,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Enabled = false;
+            this.pictureBox1.Image = global::JRunner.Properties.Resources.sonuslogo;
             this.pictureBox1.Location = new System.Drawing.Point(29, 8);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(355, 63);
@@ -655,7 +656,7 @@
             this.Name = "SoundEditor";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Sound Editor";
+            this.Text = "ISD Sound Editor";
             this.Load += new System.EventHandler(this.SoundEditor_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SoundEditor_KeyUp);
             this.groupBox1.ResumeLayout(false);

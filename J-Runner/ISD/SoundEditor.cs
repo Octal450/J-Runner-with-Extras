@@ -423,13 +423,13 @@ namespace JRunner.Forms
                 {
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001)
                     {
-                        pictureBox1.Image = null;
+                        pictureBox1.Image = Properties.Resources.sonuslogo;
                         enable(false);
                         isd = null;
                     }
                     else if(e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8338)
                     {
-                        pictureBox1.Image = null;
+                        pictureBox1.Image = Properties.Resources.sonuslogo;
                         enable(false);
                         isd = null;
                     }

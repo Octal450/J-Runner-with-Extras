@@ -691,7 +691,7 @@ namespace JRunner
             // 
             this.soundEditorToolStripMenuItem.Name = "soundEditorToolStripMenuItem";
             this.soundEditorToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.soundEditorToolStripMenuItem.Text = "Sound Editor";
+            this.soundEditorToolStripMenuItem.Text = "ISD Sound Editor";
             this.soundEditorToolStripMenuItem.Click += new System.EventHandler(this.soundEditorToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
