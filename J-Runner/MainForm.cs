@@ -3664,7 +3664,7 @@ namespace JRunner
         {
             if (device == DEVICE.PICOFLASHER)
             {
-                picoflasher.Write(nTools.getbtnWriteECC().Contains("XeLL") ? 0 : 1);
+                picoflasher.Write(nTools.getbtnWriteECC().Contains("XeLL") ? 0 : 1, 0, 0, true);
             }
             else if (device == DEVICE.XFLASHER_SPI)
             {

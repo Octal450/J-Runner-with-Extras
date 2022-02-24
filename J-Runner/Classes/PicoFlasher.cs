@@ -505,8 +505,18 @@ namespace JRunner
 
                     MainForm.mainForm.PicoFlasherBusy(0);
 
+                    Console.WriteLine("Read Successful!");
+                    Console.WriteLine("");
+
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
+                    success.Play();
+
                     Thread.Sleep(1000);
                     MainForm.mainForm.PicoFlasherInitNand(i);
+
+                    if (i + 1 < iterations)
+                        Thread.Sleep(1000);
                 }
 
                 CloseSerial(serial);
@@ -514,7 +524,7 @@ namespace JRunner
             readerThread.Start();
         }
 
-        private void WriteNand(int fixEcc, uint start = 0, uint end = 0)
+        private void WriteNand(int fixEcc, uint start = 0, uint end = 0, bool isEccOrXell = false)
         {
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
@@ -624,7 +634,7 @@ namespace JRunner
                 if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
                 success.Play();
 
-                if (fixEcc != 0)
+                if (isEccOrXell)
                 {
                     Thread.Sleep(500);
                     MainForm.mainForm.afterWriteEccCleanup();
@@ -727,7 +737,18 @@ namespace JRunner
 
                     MainForm.mainForm.PicoFlasherBusy(0);
 
+                    Console.WriteLine("Read Successful!");
+                    Console.WriteLine("");
+
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
+                    success.Play();
+
+                    Thread.Sleep(1000);
                     MainForm.mainForm.PicoFlasherInitNand(i);
+
+                    if (i + 1 < iterations)
+                        Thread.Sleep(1000);
                 }
 
                 CloseSerial(serial);
@@ -735,7 +756,7 @@ namespace JRunner
             readerThread.Start();
         }
 
-        private void WriteEmmc(uint start = 0, uint end = 0)
+        private void WriteEmmc(uint start = 0, uint end = 0, bool isEccOrXell = false)
         {
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
@@ -803,6 +824,12 @@ namespace JRunner
                 SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
                 if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
                 success.Play();
+
+                if (isEccOrXell)
+                {
+                    Thread.Sleep(500);
+                    MainForm.mainForm.afterWriteEccCleanup();
+                }
             });
             writerThread.Start();
         }
@@ -827,7 +854,7 @@ namespace JRunner
                 ReadEmmc(iterations, start, end);
         }
 
-        public void Write(int fixEcc, uint start = 0, uint end = 0)
+        public void Write(int fixEcc, uint start = 0, uint end = 0, bool isEccOrXell = false)
         {
             SerialPort serial = OpenSerial();
             if (serial == null)
@@ -842,9 +869,9 @@ namespace JRunner
             CloseSerial(serial);
 
             if (emmc_det == 0)
-                WriteNand(fixEcc, start, end);
+                WriteNand(fixEcc, start, end, isEccOrXell);
             else
-                WriteEmmc(start, end);
+                WriteEmmc(start, end, isEccOrXell);
         }
 
         public int Open()
