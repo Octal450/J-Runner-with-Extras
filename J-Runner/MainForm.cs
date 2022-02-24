@@ -2681,6 +2681,8 @@ namespace JRunner
                 {
                     Console.WriteLine("Copying Files Into Place...");
 
+                    if (File.Exists(variables.xePath + "nanddump.bin")) File.Delete(variables.xePath + "nanddump.bin"); // Just in case
+
                     // Copy KV
                     if (kvPath == "donor")
                     {
