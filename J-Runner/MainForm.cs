@@ -4718,7 +4718,7 @@ namespace JRunner
                     {
                         if (regex.IsMatch(Path.GetFileNameWithoutExtension(a))) variables.dashes_all.Add(Path.GetFileNameWithoutExtension(a));
                     }
-                    variables.dashes_all.Sort();
+                    variables.dashes_all.Sort((a,b)=>Convert.ToInt32(a) - Convert.ToInt32(b));
                     if (variables.debugme) Console.WriteLine("Checking dashes");
                     foreach (string valueName in variables.dashes_all)
                     {
