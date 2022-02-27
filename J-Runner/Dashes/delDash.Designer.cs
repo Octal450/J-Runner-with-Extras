@@ -50,7 +50,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(146, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Delete Dash";
+            this.button1.Text = "Delete Kernels";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -73,9 +73,11 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkedListBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "delDash";
             this.ShowInTaskbar = false;
-            this.Text = "Delete Dash";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Delete Kernels";
             this.Load += new System.EventHandler(this.delDash_Load);
             this.ResumeLayout(false);
 

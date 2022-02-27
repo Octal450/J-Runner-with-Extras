@@ -632,6 +632,12 @@
       <DependentUpon>CpuKeyDB.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashes\addDash.resx">
+      <DependentUpon>addDash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashes\delDash.resx">
+      <DependentUpon>delDash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>

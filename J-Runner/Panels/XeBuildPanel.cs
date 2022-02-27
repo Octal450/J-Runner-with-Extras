@@ -1105,7 +1105,7 @@ namespace JRunner.Panels
             }
             else if (er == Classes.xebuild.XebuildError.nodash)
             {
-                MessageBox.Show("No Dash Selected");
+                MessageBox.Show("No Kernel Selected");
                 return;
             }
             else
@@ -1135,7 +1135,11 @@ namespace JRunner.Panels
         void add_dash()
         {
             addDash newdash = new addDash();
-            if (newdash.ShowDialog() == DialogResult.Cancel) return;
+            if (newdash.ShowDialog() == DialogResult.Cancel)
+            {
+                DeletedDash(); // Yes this is correct, it just refreshes the list
+                return;
+            }
             try
             {
                 AddedDash();
@@ -1268,7 +1272,7 @@ namespace JRunner.Panels
                     MessageBox.Show("CPU Key is Missing");
                     return;
                 case Classes.xebuild.XebuildError.nodash:
-                    MessageBox.Show("No Dash Selected");
+                    MessageBox.Show("No Kernel Selected");
                     return;
                 case Classes.xebuild.XebuildError.noinis:
                     MessageBox.Show("Ini's are Missing");

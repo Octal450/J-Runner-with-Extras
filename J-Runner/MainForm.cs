@@ -4740,12 +4740,12 @@ namespace JRunner
             counter++;
             DataRow dashrows1 = dashtable.NewRow();
             dashrows1[0] = counter;
-            dashrows1[1] = "Add Dash";
+            dashrows1[1] = "Add Kernel";
             dashtable.Rows.Add(dashrows1);
             counter++;
             DataRow dashrows2 = dashtable.NewRow();
             dashrows2[0] = counter;
-            dashrows2[1] = "Del Dash";
+            dashrows2[1] = "Del Kernel";
             dashtable.Rows.Add(dashrows2);
             counter++;
             Thread.Sleep(10);

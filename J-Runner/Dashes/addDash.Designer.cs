@@ -54,14 +54,14 @@
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(164, 23);
             this.buttonOK.TabIndex = 1;
-            this.buttonOK.Text = "Add Dashes";
+            this.buttonOK.Text = "Add Kernels";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.button1_Click);
             // 
             // checkAdvanced
             // 
             this.checkAdvanced.AutoSize = true;
-            this.checkAdvanced.Location = new System.Drawing.Point(134, 12);
+            this.checkAdvanced.Location = new System.Drawing.Point(135, 14);
             this.checkAdvanced.Name = "checkAdvanced";
             this.checkAdvanced.Size = new System.Drawing.Size(75, 17);
             this.checkAdvanced.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             // textAdvAdd
             // 
-            this.textAdvAdd.Location = new System.Drawing.Point(12, 10);
+            this.textAdvAdd.Location = new System.Drawing.Point(8, 10);
             this.textAdvAdd.MaxLength = 5;
             this.textAdvAdd.Name = "textAdvAdd";
             this.textAdvAdd.Size = new System.Drawing.Size(67, 20);
@@ -90,9 +90,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(85, 8);
+            this.btnAdd.Location = new System.Drawing.Point(81, 9);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(26, 23);
+            this.btnAdd.Size = new System.Drawing.Size(26, 22);
             this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -110,9 +110,11 @@
             this.Controls.Add(this.checkAdvanced);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.checkedDashes);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "addDash";
             this.ShowInTaskbar = false;
-            this.Text = "Add Dash";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Add Kernels";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
