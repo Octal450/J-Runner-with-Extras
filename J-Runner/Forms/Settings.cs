@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -53,7 +54,7 @@ namespace JRunner.Forms
             openFileDialog1.Title = "Select a File";
             //openFileDialog1.InitialDirectory = variables.currentdir;
             openFileDialog1.RestoreDirectory = false;
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtsuccom.Text = openFileDialog1.FileName;
             }
@@ -66,7 +67,7 @@ namespace JRunner.Forms
             openFileDialog1.Title = "Select a File";
             //openFileDialog1.InitialDirectory = variables.currentdir;
             openFileDialog1.RestoreDirectory = false;
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtsuccess.Text = openFileDialog1.FileName;
             }
@@ -79,7 +80,7 @@ namespace JRunner.Forms
             openFileDialog1.Title = "Select a File";
             //openFileDialog1.InitialDirectory = variables.currentdir;
             openFileDialog1.RestoreDirectory = false;
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txterror.Text = openFileDialog1.FileName;
             }
@@ -87,22 +88,41 @@ namespace JRunner.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.folderBrowserDialog1.ShowNewFolderButton = true;
-            this.folderBrowserDialog1.RootFolder = Environment.SpecialFolder.Desktop;
-
-
-
-            DialogResult outres = folderBrowserDialog1.ShowDialog();
-            if (outres == DialogResult.OK)
+            if (variables.isVistaOrLater)
             {
-                string path;
-                if (string.Equals(Path.GetFileName(folderBrowserDialog1.SelectedPath), "output", StringComparison.OrdinalIgnoreCase)) path = folderBrowserDialog1.SelectedPath;
-                else path = Path.Combine(folderBrowserDialog1.SelectedPath, "output");
-                if (!Directory.Exists(path))
+                CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
+                openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtfolder.Text);
+                openDialog.RestoreDirectory = false;
+                openDialog.IsFolderPicker = true;
+
+                if (openDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    Directory.CreateDirectory(path);
+                    string path;
+                    if (string.Equals(Path.GetFileName(openDialog.FileName), "output", StringComparison.OrdinalIgnoreCase)) path = openDialog.FileName;
+                    else path = Path.Combine(openDialog.FileName, "output");
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    txtfolder.Text = path;
                 }
-                txtfolder.Text = path;
+            }
+            else
+            {
+                this.folderDialog.ShowNewFolderButton = true;
+                this.folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
+
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string path;
+                    if (string.Equals(Path.GetFileName(folderDialog.SelectedPath), "output", StringComparison.OrdinalIgnoreCase)) path = folderDialog.SelectedPath;
+                    else path = Path.Combine(folderDialog.SelectedPath, "output");
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    txtfolder.Text = path;
+                }
             }
         }
 

@@ -118,7 +118,7 @@ namespace JRunner.Forms
             this.PrereqPage.Controls.Add(this.label1);
             this.PrereqPage.Controls.Add(this.label8);
             this.PrereqPage.Name = "PrereqPage";
-            this.PrereqPage.Size = new System.Drawing.Size(507, 250);
+            this.PrereqPage.Size = new System.Drawing.Size(507, 247);
             this.PrereqPage.TabIndex = 4;
             this.PrereqPage.Text = "Prerequisites";
             // 
@@ -127,7 +127,7 @@ namespace JRunner.Forms
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(2, 226);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 15);
+            this.label1.Size = new System.Drawing.Size(231, 15);
             this.label1.TabIndex = 6;
             this.label1.Text = "Click Next when you are ready to continue";
             // 
@@ -150,7 +150,7 @@ namespace JRunner.Forms
             this.CpuKvPage.Controls.Add(this.DonorKv);
             this.CpuKvPage.Name = "CpuKvPage";
             this.CpuKvPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CpuKvPage.Size = new System.Drawing.Size(507, 250);
+            this.CpuKvPage.Size = new System.Drawing.Size(507, 247);
             this.CpuKvPage.TabIndex = 1;
             this.CpuKvPage.Text = "CPU Key and Keyvault";
             // 
@@ -209,7 +209,7 @@ namespace JRunner.Forms
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(0, 228);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(390, 15);
+            this.label3.Size = new System.Drawing.Size(389, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "If your keyvault requires an FCRT, you will be prompted on the next page";
             // 
@@ -294,7 +294,7 @@ namespace JRunner.Forms
             this.RetailFcrtWarn.ForeColor = System.Drawing.Color.Firebrick;
             this.RetailFcrtWarn.Location = new System.Drawing.Point(225, 5);
             this.RetailFcrtWarn.Name = "RetailFcrtWarn";
-            this.RetailFcrtWarn.Size = new System.Drawing.Size(255, 15);
+            this.RetailFcrtWarn.Size = new System.Drawing.Size(253, 15);
             this.RetailFcrtWarn.TabIndex = 8;
             this.RetailFcrtWarn.Text = "Retail Nands require the FCRT to match the KV!";
             // 
@@ -324,7 +324,7 @@ namespace JRunner.Forms
             this.DonorFcrt.AutoSize = true;
             this.DonorFcrt.Location = new System.Drawing.Point(4, 4);
             this.DonorFcrt.Name = "DonorFcrt";
-            this.DonorFcrt.Size = new System.Drawing.Size(90, 19);
+            this.DonorFcrt.Size = new System.Drawing.Size(88, 19);
             this.DonorFcrt.TabIndex = 3;
             this.DonorFcrt.Text = "Donor FCRT";
             this.DonorFcrt.UseVisualStyleBackColor = true;
@@ -346,7 +346,7 @@ namespace JRunner.Forms
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 18);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 15);
+            this.label4.Size = new System.Drawing.Size(36, 15);
             this.label4.TabIndex = 2;
             this.label4.Text = "FCRT:";
             // 
@@ -376,7 +376,7 @@ namespace JRunner.Forms
             this.DonorFcrtText.AutoSize = true;
             this.DonorFcrtText.Location = new System.Drawing.Point(2, 228);
             this.DonorFcrtText.Name = "DonorFcrtText";
-            this.DonorFcrtText.Size = new System.Drawing.Size(282, 15);
+            this.DonorFcrtText.Size = new System.Drawing.Size(278, 15);
             this.DonorFcrtText.TabIndex = 5;
             this.DonorFcrtText.Text = "If you don\'t have an FCRT to use, check Donor FCRT";
             // 
@@ -574,7 +574,7 @@ namespace JRunner.Forms
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(2, 99);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 15);
+            this.label10.Size = new System.Drawing.Size(67, 15);
             this.label10.TabIndex = 3;
             this.label10.Text = "Hack Type: ";
             // 

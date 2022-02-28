@@ -898,5 +898,7 @@ namespace JRunner
 
 
         #endregion
+
+        public static bool isVistaOrLater = Environment.OSVersion.Version.Major >= 6;
     }
 }

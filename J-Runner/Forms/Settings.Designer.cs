@@ -49,7 +49,7 @@
             this.chksuccom = new System.Windows.Forms.CheckBox();
             this.chksuccess = new System.Windows.Forms.CheckBox();
             this.chkerror = new System.Windows.Forms.CheckBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -616,7 +616,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Settings_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -648,7 +647,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnfolder;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.FolderBrowserDialog folderDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
