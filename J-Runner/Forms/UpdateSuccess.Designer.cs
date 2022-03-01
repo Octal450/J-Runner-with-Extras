@@ -42,15 +42,11 @@ namespace JRunner
             // 
             // SuccessWizard
             // 
-            this.SuccessWizard.BackColor = System.Drawing.Color.White;
-            this.SuccessWizard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SuccessWizard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SuccessWizard.Location = new System.Drawing.Point(0, 0);
             this.SuccessWizard.Name = "SuccessWizard";
             this.SuccessWizard.Pages.Add(this.SuccessPage);
             this.SuccessWizard.Size = new System.Drawing.Size(554, 401);
             this.SuccessWizard.TabIndex = 0;
-            this.SuccessWizard.Text = "J-Runner with Extras";
             this.SuccessWizard.Title = "J-Runner with Extras";
             this.SuccessWizard.TitleIcon = ((System.Drawing.Icon)(resources.GetObject("SuccessWizard.TitleIcon")));
             // 

@@ -45,15 +45,11 @@ namespace JRunner.Forms
             // 
             // DecryptWizard
             // 
-            this.DecryptWizard.BackColor = System.Drawing.Color.White;
-            this.DecryptWizard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DecryptWizard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DecryptWizard.Location = new System.Drawing.Point(0, 0);
             this.DecryptWizard.Name = "DecryptWizard";
             this.DecryptWizard.Pages.Add(this.DecryptPage);
             this.DecryptWizard.Size = new System.Drawing.Size(554, 401);
             this.DecryptWizard.TabIndex = 0;
-            this.DecryptWizard.Text = "Decrypt Keyvault";
             this.DecryptWizard.Title = "Decrypt Keyvault";
             this.DecryptWizard.TitleIcon = ((System.Drawing.Icon)(resources.GetObject("DecryptWizard.TitleIcon")));
             // 

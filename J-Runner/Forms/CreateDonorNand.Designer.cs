@@ -97,9 +97,6 @@ namespace JRunner.Forms
             // 
             // DonorWizard
             // 
-            this.DonorWizard.BackColor = System.Drawing.Color.White;
-            this.DonorWizard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DonorWizard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DonorWizard.Location = new System.Drawing.Point(0, 0);
             this.DonorWizard.Name = "DonorWizard";
             this.DonorWizard.Pages.Add(this.PrereqPage);
@@ -109,7 +106,6 @@ namespace JRunner.Forms
             this.DonorWizard.Pages.Add(this.FinishPage);
             this.DonorWizard.Size = new System.Drawing.Size(554, 401);
             this.DonorWizard.TabIndex = 0;
-            this.DonorWizard.Text = "Create Donor Nand";
             this.DonorWizard.Title = "Create Donor Nand";
             this.DonorWizard.TitleIcon = ((System.Drawing.Icon)(resources.GetObject("DonorWizard.TitleIcon")));
             // 

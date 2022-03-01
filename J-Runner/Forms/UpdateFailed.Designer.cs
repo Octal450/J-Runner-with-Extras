@@ -41,15 +41,11 @@ namespace JRunner
             // 
             // FailedWizard
             // 
-            this.FailedWizard.BackColor = System.Drawing.Color.White;
-            this.FailedWizard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FailedWizard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FailedWizard.Location = new System.Drawing.Point(0, 0);
             this.FailedWizard.Name = "FailedWizard";
             this.FailedWizard.Pages.Add(this.FailedPage);
             this.FailedWizard.Size = new System.Drawing.Size(554, 401);
             this.FailedWizard.TabIndex = 0;
-            this.FailedWizard.Text = "J-Runner with Extras";
             this.FailedWizard.Title = "J-Runner with Extras";
             this.FailedWizard.TitleIcon = ((System.Drawing.Icon)(resources.GetObject("FailedWizard.TitleIcon")));
             // 

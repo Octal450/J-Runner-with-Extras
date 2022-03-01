@@ -41,16 +41,12 @@ namespace JRunner
             // 
             // IssueWizard
             // 
-            this.IssueWizard.BackColor = System.Drawing.Color.White;
-            this.IssueWizard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.IssueWizard.FinishButtonText = "&Close";
-            this.IssueWizard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IssueWizard.Location = new System.Drawing.Point(0, 0);
             this.IssueWizard.Name = "IssueWizard";
             this.IssueWizard.Pages.Add(this.wizardPage1);
             this.IssueWizard.Size = new System.Drawing.Size(554, 401);
             this.IssueWizard.TabIndex = 0;
-            this.IssueWizard.Text = "Report Issue";
             this.IssueWizard.Title = "Report Issue";
             this.IssueWizard.TitleIcon = ((System.Drawing.Icon)(resources.GetObject("IssueWizard.TitleIcon")));
             // 

@@ -39,15 +39,11 @@ namespace JRunner
             // 
             // UpdateWizard
             // 
-            this.UpdateWizard.BackColor = System.Drawing.Color.White;
-            this.UpdateWizard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UpdateWizard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateWizard.Location = new System.Drawing.Point(0, 0);
             this.UpdateWizard.Name = "UpdateWizard";
             this.UpdateWizard.Pages.Add(this.UpdatePage);
             this.UpdateWizard.Size = new System.Drawing.Size(554, 401);
             this.UpdateWizard.TabIndex = 2;
-            this.UpdateWizard.Text = "J-Runner with Extras";
             this.UpdateWizard.Title = "J-Runner with Extras";
             this.UpdateWizard.TitleIcon = ((System.Drawing.Icon)(resources.GetObject("UpdateWizard.TitleIcon")));
             // 
