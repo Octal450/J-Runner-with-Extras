@@ -7,6 +7,24 @@ using System.Windows.Forms;
 
 namespace UI
 {
+    public class CommandLink : Button
+    {
+        public CommandLink()
+        {
+            this.FlatStyle = FlatStyle.System;
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cParams = base.CreateParams;
+                cParams.Style |= 0x0000000E;
+                return cParams;
+            }
+        }
+    }
+
     public class SplitButton : Button
     {
         ContextMenuStrip contextStrip;

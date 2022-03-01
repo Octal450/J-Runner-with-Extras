@@ -32,8 +32,8 @@ namespace JRunner
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Issues));
             this.IssueWizard = new AeroWizard.WizardControl();
             this.wizardPage1 = new AeroWizard.WizardPage();
-            this.CreateButton = new System.Windows.Forms.Button();
-            this.ViewButton = new System.Windows.Forms.Button();
+            this.CreateButton = new UI.CommandLink();
+            this.ViewButton = new UI.CommandLink();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.IssueWizard)).BeginInit();
             this.wizardPage1.SuspendLayout();
@@ -64,9 +64,10 @@ namespace JRunner
             // 
             // CreateButton
             // 
-            this.CreateButton.Location = new System.Drawing.Point(4, 121);
+            this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.CreateButton.Location = new System.Drawing.Point(1, 132);
             this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(232, 23);
+            this.CreateButton.Size = new System.Drawing.Size(232, 45);
             this.CreateButton.TabIndex = 3;
             this.CreateButton.Text = "Create New Issue";
             this.CreateButton.UseVisualStyleBackColor = true;
@@ -74,9 +75,10 @@ namespace JRunner
             // 
             // ViewButton
             // 
-            this.ViewButton.Location = new System.Drawing.Point(4, 79);
+            this.ViewButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ViewButton.Location = new System.Drawing.Point(2, 79);
             this.ViewButton.Name = "ViewButton";
-            this.ViewButton.Size = new System.Drawing.Size(232, 23);
+            this.ViewButton.Size = new System.Drawing.Size(232, 45);
             this.ViewButton.TabIndex = 2;
             this.ViewButton.Text = "View Open Issues";
             this.ViewButton.UseVisualStyleBackColor = true;
@@ -116,7 +118,7 @@ namespace JRunner
         private AeroWizard.WizardControl IssueWizard;
         private AeroWizard.WizardPage wizardPage1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button ViewButton;
-        private System.Windows.Forms.Button CreateButton;
+        private UI.CommandLink ViewButton;
+        private UI.CommandLink CreateButton;
     }
 }

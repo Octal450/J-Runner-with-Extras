@@ -33,7 +33,7 @@ namespace JRunner
             this.FailedWizard = new AeroWizard.WizardControl();
             this.FailedPage = new AeroWizard.WizardPage();
             this.FailedReason = new System.Windows.Forms.Label();
-            this.DownloadButton = new System.Windows.Forms.Button();
+            this.DownloadButton = new UI.CommandLink();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FailedWizard)).BeginInit();
             this.FailedPage.SuspendLayout();
@@ -58,7 +58,7 @@ namespace JRunner
             this.FailedPage.Controls.Add(this.label1);
             this.FailedPage.Name = "FailedPage";
             this.FailedPage.ShowCancel = false;
-            this.FailedPage.Size = new System.Drawing.Size(507, 250);
+            this.FailedPage.Size = new System.Drawing.Size(507, 247);
             this.FailedPage.TabIndex = 0;
             this.FailedPage.Text = "Update Failed";
             // 
@@ -73,9 +73,10 @@ namespace JRunner
             // 
             // DownloadButton
             // 
+            this.DownloadButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.DownloadButton.Location = new System.Drawing.Point(4, 97);
             this.DownloadButton.Name = "DownloadButton";
-            this.DownloadButton.Size = new System.Drawing.Size(232, 23);
+            this.DownloadButton.Size = new System.Drawing.Size(232, 45);
             this.DownloadButton.TabIndex = 1;
             this.DownloadButton.Text = "Download Manually";
             this.DownloadButton.UseVisualStyleBackColor = true;
@@ -118,7 +119,7 @@ namespace JRunner
         private AeroWizard.WizardControl FailedWizard;
         private AeroWizard.WizardPage FailedPage;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button DownloadButton;
+        private UI.CommandLink DownloadButton;
         private System.Windows.Forms.Label FailedReason;
     }
 }
