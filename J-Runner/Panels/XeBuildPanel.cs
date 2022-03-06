@@ -383,7 +383,7 @@ namespace JRunner.Panels
                 checkGlitch2m(variables.boardtype);
             }
 
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "/_glitch.ini")))
+            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_glitch.ini")))
             {
                 rbtnGlitch.Enabled = rbtnGlitch.Checked = false;
             }
@@ -392,7 +392,7 @@ namespace JRunner.Panels
                 checkGlitch(variables.boardtype);
             }
 
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "/_jtag.ini")))
+            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_jtag.ini")))
             {
                 rbtnJtag.Enabled = rbtnJtag.Checked = false;
             }
@@ -401,7 +401,7 @@ namespace JRunner.Panels
                 checkJtag(variables.boardtype);
             }
 
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "/_retail.ini")))
+            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_retail.ini")))
             {
                 rbtnRetail.Checked = rbtnRetail.Enabled = false;
             }
@@ -409,7 +409,7 @@ namespace JRunner.Panels
             {
                 rbtnRetail.Enabled = true;
             }
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "/_devgl.ini")))
+            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_devgl.ini")))
             {
                 rbtnDevGL.Enabled = rbtnDevGL.Checked = false;
             }

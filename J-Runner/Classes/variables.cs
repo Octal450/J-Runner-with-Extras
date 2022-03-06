@@ -139,7 +139,7 @@ namespace JRunner
         /// <summary>
         /// Nand
         /// </summary>
-        public static bool rghable = true, jtagable = false;
+        public static bool rghable = true;
         public static int changeldv = 0, highldv;
         public static List<string> dashes_all = new List<string>();
         public static int xfSelType = 0;

@@ -2063,6 +2063,7 @@ namespace JRunner
                 variables.filename = "";
                 variables.filename1 = "";
                 variables.filename2 = "";
+                variables.xefolder = "";
                 variables.cpkey = "";
                 variables.gotvalues = false;
                 variables.twombread = false;
@@ -2071,7 +2072,6 @@ namespace JRunner
                 variables.changeldv = 0;
                 variables.rghable = true;
                 variables.rgh1able = true;
-                variables.jtagable = false;
                 nand = new Nand.PrivateN();
                 nandInfo.clear();
             }
@@ -2227,21 +2227,21 @@ namespace JRunner
                 nandInfo.setNand(nand);
                 updateProgress((progressBar.Maximum / 4) * 3); // 75%
 
+                if (nand.ki.serial.Length > 0) // Reset XeFolder
+                {
+                    string xePath = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
+                    if (Directory.Exists(xePath)) variables.xefolder = xePath;
+                    else variables.xefolder = "";
+                }
+                else variables.xefolder = "";
+
+                variables.rgh1able = Nand.ntable.isGlitch1Able(nand.bl.CB_A);
+
                 if (variables.debugme) Console.WriteLine("----------------------");
                 variables.ctyp = variables.cunts[0];
                 variables.ctyp = Nand.Nand.getConsole(nand, variables.flashconfig);
-                xPanel.BeginInvoke(new Action(() => xPanel.setMBname(variables.ctyp.Text)));
-                variables.jtagable = false;
+                xPanel.setMBname(variables.ctyp.Text);
                 variables.rghable = true;
-
-                if ((nand.bl.CF_0 > nand.bl.CF_1 ? nand.bl.CF_0 : nand.bl.CF_1) > 14699)
-                {
-                    variables.rgh1able = false;
-                }
-                else
-                {
-                    variables.rgh1able = true;
-                }
 
                 switch (Nand.ntable.getHackfromCB(nand.bl.CB_A))
                 {

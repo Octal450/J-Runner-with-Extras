@@ -1,4 +1,6 @@
-﻿namespace JRunner.Nand
+﻿using System;
+
+namespace JRunner.Nand
 {
     class ntable
     {
@@ -75,7 +77,7 @@
             new _nand(9188, "Trinity", 8498, 14699, 1, 1, variables.hacktypes.glitch2, variables.cunts[1]),
             new _nand(10918, "Corona", 8498, 14699, 1, 1, variables.hacktypes.glitch2, variables.cunts[10]),
             new _nand(13121, "Corona", 8498, 14699, 1, 1, variables.hacktypes.glitch2, variables.cunts[10]),
-            new _nand(1941, "Xenon", 14717, 14719, 9, 9, variables.hacktypes.nothing, variables.cunts[8]),
+            new _nand(1941, "Xenon", 14717, 14719, 9, 9, variables.hacktypes.glitch2, variables.cunts[8]),
             new _nand(4576, "Zephyr", 14717, 14719, 9, 9, variables.hacktypes.glitch2, variables.cunts[3]),
             new _nand(4577, "Zephyr", 14717, 14719, 9, 9, variables.hacktypes.glitch2, variables.cunts[3]),
             new _nand(5772, "Falcon", 14717, 14719, 9, 9, variables.hacktypes.glitch2, variables.cunts[2]),
@@ -103,13 +105,9 @@
 
         public static variables.hacktypes getHackfromCB(int CB)
         {
-            int c = CB;
-            if (CB > 4 && CB <= 7) c = 4;
-            if (c == 11) c = 10;
-            if (c == 9) c = 2;
             foreach (_nand n in Table)
             {
-                if (n.CB == c) return n.preferredHackType;
+                if (n.CB == CB) return n.preferredHackType;
             }
             return variables.hacktypes.nothing;
         }
@@ -123,6 +121,24 @@
             return 0;
         }
 
+        public static bool isGlitch1Able(int CB)
+        {
+            variables.hacktypes prefHack = variables.hacktypes.nothing;
 
+            foreach (_nand n in Table)
+            {
+                if (n.CB == CB)
+                {
+                    prefHack = n.preferredHackType;
+                    if (prefHack == variables.hacktypes.glitch || prefHack == variables.hacktypes.jtag)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+
+            return true; // Fail true so if we don't know, allow it
+        }
     }
 }
