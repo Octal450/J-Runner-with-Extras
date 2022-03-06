@@ -69,9 +69,9 @@ namespace JRunner
             MODEJR,
             MODEFW
         }
-        public static string version = "3.1.2b Beta";
-        public static string build = "3121." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
-        public const string staticversion = "3.1.2.1";
+        public static string version = "3.1.3 Beta";
+        public static string build = "3130." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
+        public const string staticversion = "3.1.3.0";
         public static int revision = 17;
         public static bool iswriting;
         public static bool isscanningip = false;

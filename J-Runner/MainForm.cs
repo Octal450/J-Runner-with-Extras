@@ -455,7 +455,7 @@ namespace JRunner
 
         private void rpcInit()
         {
-            rpcClient = new DiscordRpcClient("768884149578104883");
+            rpcClient = new DiscordRpcClient("950072541622468618");
             rpcClient.Initialize();
             rpcClient.SetPresence(new RichPresence
             {
@@ -473,7 +473,7 @@ namespace JRunner
                 {
                     LargeImageKey = "j-runner",
                     LargeImageText = "J-Runner with Extras",
-                    SmallImageKey = ""
+                    SmallImageText = "",
                 }
             });
             rpcReady = true;
