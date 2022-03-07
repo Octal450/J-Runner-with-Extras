@@ -123,11 +123,10 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnIPGetCPU.BtnImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAAjAAAAIwHV9BZdAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAFRJREFUOE9jGAVDD4gCsRIezAnEJAF1IH4JxP+x4J1AzA7EJAMDIH4P
-        xMiGHQVibiAmG1gB8RcgBhl2HogFgJhi4AbEl4BYHMyjEmCB0qNg6AAGBgBmPREDe/D/RgAAAABJRU5E
-        rkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        IwAAACMB1fQWXQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABUSURBVDhPYxgF
+        Qw+IArESHswJxCQBdSB+CcT/seCdQMwOxCQDAyB+D8TIhh0FYm4gJhtYAfEXIAYZdh6IBYCYYuAGxJeA
+        WBzMoxJggdKjYOgABgYAZj0RA3vw/0YAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="getCpuKeyContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -135,20 +134,18 @@
   </metadata>
   <data name="btnIPGetCPU.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAAjAAAAIwHV9BZdAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAFRJREFUOE9jGAVDD4gCsRIezAnEJAF1IH4JxP+x4J1AzA7EJAMDIH4P
-        xMiGHQVibiAmG1gB8RcgBhl2HogFgJhi4AbEl4BYHMyjEmCB0qNg6AAGBgBmPREDe/D/RgAAAABJRU5E
-        rkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        IwAAACMB1fQWXQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABUSURBVDhPYxgF
+        Qw+IArESHswJxCQBdSB+CcT/seCdQMwOxCQDAyB+D8TIhh0FYm4gJhtYAfEXIAYZdh6IBYCYYuAGxJeA
+        WBzMoxJggdKjYOgABgYAZj0RA3vw/0YAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="btnShowWorkingFolder.BtnImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAAjAAAAIwHV9BZdAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAFRJREFUOE9jGAVDD4gCsRIezAnEJAF1IH4JxP+x4J1AzA7EJAMDIH4P
-        xMiGHQVibiAmG1gB8RcgBhl2HogFgJhi4AbEl4BYHMyjEmCB0qNg6AAGBgBmPREDe/D/RgAAAABJRU5E
-        rkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        IwAAACMB1fQWXQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABUSURBVDhPYxgF
+        Qw+IArESHswJxCQBdSB+CcT/seCdQMwOxCQDAyB+D8TIhh0FYm4gJhtYAfEXIAYZdh6IBYCYYuAGxJeA
+        WBzMoxJggdKjYOgABgYAZj0RA3vw/0YAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="showWorkingFolderMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -156,11 +153,10 @@
   </metadata>
   <data name="btnShowWorkingFolder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAAjAAAAIwHV9BZdAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAFRJREFUOE9jGAVDD4gCsRIezAnEJAF1IH4JxP+x4J1AzA7EJAMDIH4P
-        xMiGHQVibiAmG1gB8RcgBhl2HogFgJhi4AbEl4BYHMyjEmCB0qNg6AAGBgBmPREDe/D/RgAAAABJRU5E
-        rkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        IwAAACMB1fQWXQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABUSURBVDhPYxgF
+        Qw+IArESHswJxCQBdSB+CcT/seCdQMwOxCQDAyB+D8TIhh0FYm4gJhtYAfEXIAYZdh6IBYCYYuAGxJeA
+        WBzMoxJggdKjYOgABgYAZj0RA3vw/0YAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

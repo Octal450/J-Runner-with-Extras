@@ -13,22 +13,6 @@ namespace JRunner.Panels
             InitializeComponent();
         }
 
-        public NandTools(string lptport)
-        {
-            txtLPTPort.Text = lptport;
-        }
-
-        public NandTools(int iterations)
-        {
-            numericIterations.Value = iterations;
-        }
-
-        public NandTools(string lptport, int iterations)
-        {
-            numericIterations.Value = iterations;
-            txtLPTPort.Text = lptport;
-        }
-
         public int getNumericIterations()
         {
             return (int)numericIterations.Value;
@@ -37,34 +21,9 @@ namespace JRunner.Panels
         {
             numericIterations.Value = value;
         }
-        public string getLptPort()
-        {
-            return txtLPTPort.Text;
-        }
-        public void setLptPort(string port)
-        {
-            txtLPTPort.Text = port;
-        }
-        public bool getRbtnUSB()
-        {
-            return rbtnUSB.Checked;
-        }
-        public bool getRbtnLPT()
-        {
-            return rbtnLPT.Checked;
-        }
-
-        public void setbtnCreateECCEnabled(bool b)
-        {
-            btnCreateECC.Enabled = b;
-        }
         public void setbtnCreateECC(string text)
         {
             btnCreateECC.Text = text;
-        }
-        public string getbtnCreateECC()
-        {
-            return btnCreateECC.Text;
         }
         public void setbtnWriteECC(string text)
         {
@@ -96,10 +55,6 @@ namespace JRunner.Panels
         public event ClickedCPUDB CPUDBClick;
         public delegate void ChangedIter(int iter);
         public event ChangedIter IterChange;
-        //public delegate void CheckedChanged();
-        //public event CheckedChanged ChangedChecked;
-        //public delegate void PortChanged();
-        //public event PortChanged ChangedPort;
 
         private void btnRead_Click(object sender, EventArgs e)
         {
@@ -131,16 +86,19 @@ namespace JRunner.Panels
             ProgramCRClick();
         }
 
-        private void rbtn_CheckedChanged(object sender, EventArgs e)
-        {
-            //ChangedChecked();
-            txtLPTPort.Visible = (rbtnLPT.Checked);
-            lblLPTPort.Visible = txtLPTPort.Visible;
-        }
-
         private void numericIterations_ValueChanged(object sender, EventArgs e)
         {
             IterChange((int)numericIterations.Value);
+        }
+
+        private void btnTimingAssistant_Click(object sender, EventArgs e)
+        {
+            MainForm.mainForm.timingAssistant();
+        }
+
+        private void btnCreateDonor_Click(object sender, EventArgs e)
+        {
+            MainForm.mainForm.createDonorNand();
         }
 
         private void btnCPUDB_Click(object sender, EventArgs e)
@@ -148,38 +106,33 @@ namespace JRunner.Panels
             CPUDBClick();
         }
 
-        private void txtLPTPort_TextChanged(object sender, EventArgs e)
-        {
-            //ChangedPort();
-        }
-
-        private int eeCount = 0;
+        private int funCount = 0;
         private void pBoxDevice_Click(object sender, EventArgs e)
         {
-            if (eeCount == 5)
+            if (funCount == 5)
             {
                 MessageBox.Show("Wtf are you doing!?!?!", "Confusion!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
-            else if (eeCount == 8)
+            else if (funCount == 8)
             {
                 MessageBox.Show("#%&@ Stop doing that!!!!!", "#%&@", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (eeCount == 10)
+            else if (funCount == 10)
             {
                 MessageBox.Show("Cut that shit out!!!!!", "You're Annoying!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (eeCount == 12)
+            else if (funCount == 12)
             {
                 MessageBox.Show("CLICK ME AGAIN!\nI DARE YOU!", "You Gon Get It", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (eeCount == 13)
+            else if (funCount == 13)
             {
                 SoundPlayer goodbye = new SoundPlayer(Properties.Resources.goodbye);
                 goodbye.Play();
                 Thread.Sleep(1000);
                 Application.Exit();
             }
-            eeCount += 1;
+            funCount += 1;
         }
     }
 }

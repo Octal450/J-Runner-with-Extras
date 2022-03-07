@@ -106,8 +106,9 @@ namespace JRunner
         public static int delay = 2;
         public static string preferredDash = latest_dashboard.ToString();
         public static bool DashLaunchE = false;
-        public static System.Drawing.Point location = new System.Drawing.Point(0, 0);
-        public static string xebuild = "", dashlaunch = "", LPTport = "";
+        public static Point location = new Point(0, 0);
+        public static bool LPTtiming = false;
+        public static string xebuild = "", dashlaunch = "", LPTport = "378";
         public static decimal NoReads = 0;
         public static string settingsfile = Path.Combine(AppData, "settings.xml");
         public static bool escapeloop = false, exitedxe = true, autoExtract = false, allmove = false, modder = false;
@@ -120,9 +121,9 @@ namespace JRunner
         public static Color logbackground = Color.Black;
         public static Color logtext = Color.White;
         public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Errorsound", "Comparesound", "Successsound", "Delay",
-                                          "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "XebuildName", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
-                                          "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "DiscordRPC", "TimingOnKeypress", "LogBackground", "LogText",
-                                          "MinimizeToTray", "SlimPreferSrgh", "MtxUsbMode"};
+                                            "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "XebuildName", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
+                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "DiscordRPC", "TimingOnKeypress", "LogBackground",
+                                            "LogText", "MinimizeToTray", "SlimPreferSrgh", "MtxUsbMode"};
 
         #region
 

@@ -983,7 +983,7 @@ namespace JRunner
                 }
                 else if (function == "Xsvf")
                 {
-                    if (nTools.getRbtnUSB())
+                    if (!variables.LPTtiming)
                     {
                         if (device == DEVICE.PICOFLASHER)
                         {
@@ -1014,7 +1014,7 @@ namespace JRunner
                     else
                     {
                         unpack_lpt(); //changed
-                        starter = delegate { call_lpt_player(filename, nTools.getLptPort()); };
+                        starter = delegate { call_lpt_player(filename, variables.LPTport); };
                         //starter = delegate { LPT_XSVF.lxsvf(filename, txtLPTPort.Text, true); };
                     }
                 }
@@ -1107,9 +1107,9 @@ namespace JRunner
             }
             else
             {
-                if (nTools.getRbtnUSB())
+                if (!variables.LPTtiming)
                 {
-                     if (device == DEVICE.PICOFLASHER)
+                    if (device == DEVICE.PICOFLASHER)
                     {
                         MessageBox.Show("PicoFlasher can't to write timing.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -1139,7 +1139,7 @@ namespace JRunner
                     unpack_lpt(); //changed
                     //ThreadStart starter = delegate { LPT_XSVF.lxsvf(file, txtLPTPort.Text, true); };
                     //new Thread(starter).Start();
-                    ThreadStart starter = delegate { call_lpt_player(file, nTools.getLptPort()); };
+                    ThreadStart starter = delegate { call_lpt_player(file, variables.LPTport); };
                     new Thread(starter).Start();
                 }
             }
@@ -3153,6 +3153,11 @@ namespace JRunner
         CreateDonorNand cdonor;
         private void createDonorNandToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            createDonorNand();
+        }
+
+        public void createDonorNand()
+        {
             if ((ModifierKeys & Keys.Shift) == Keys.Shift)
             {
                 createDonorAdvanced();
@@ -3846,6 +3851,7 @@ namespace JRunner
         void txtCPUKey_TextChanged(object sender, System.EventArgs e)
         {
             if (variables.current_mode == variables.JR_MODE.MODEFW) return;
+            if (variables.reading || variables.writing) return;
             if (txtCPUKey.Text.Length == 32)
             {
                 if (objAlphaPattern.IsMatch(txtCPUKey.Text))
@@ -4421,6 +4427,9 @@ namespace JRunner
                         case "WorkingDir":
                             x.write(name, variables.outfolder);
                             break;
+                        case "LPTtiming":
+                            x.write(name, variables.LPTtiming.ToString());
+                            break;
                         case "LPTport":
                             x.write(name, variables.LPTport);
                             break;
@@ -4600,9 +4609,13 @@ namespace JRunner
                                 }
                             }
                             break;
+                        case "LPTtiming":
+                            bvalue = false;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
+                            variables.LPTtiming = bvalue;
+                            break;
                         case "LPTport":
-                            nTools.setLptPort(val);
-                            variables.LPTport = val;
+                            if (!string.IsNullOrWhiteSpace(val)) variables.LPTport = val;
                             break;
                         case "AutoExtract":
                             bvalue = false;

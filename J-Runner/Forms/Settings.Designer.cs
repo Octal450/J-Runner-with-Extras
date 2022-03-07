@@ -57,6 +57,7 @@
             this.txtNandflash = new System.Windows.Forms.TextBox();
             this.txtIPStart = new System.Windows.Forms.TextBox();
             this.txtIPEnd = new System.Windows.Forms.TextBox();
+            this.txtTimingLptPort = new System.Windows.Forms.TextBox();
             this.chkfiles = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -81,10 +82,14 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SlimPreferSrgh = new System.Windows.Forms.RadioButton();
             this.SlimPreferRgh12 = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rbtnTimingLpt = new System.Windows.Forms.RadioButton();
+            this.rbtnTimingUsb = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnsuccom
@@ -319,6 +324,17 @@
             this.txtIPEnd.Size = new System.Drawing.Size(92, 20);
             this.txtIPEnd.TabIndex = 29;
             this.toolTip1.SetToolTip(this.txtIPEnd, "Set the end of IP range for\r\nScan IP range function");
+            // 
+            // txtTimingLptPort
+            // 
+            this.txtTimingLptPort.Enabled = false;
+            this.txtTimingLptPort.Location = new System.Drawing.Point(108, 17);
+            this.txtTimingLptPort.MaxLength = 5;
+            this.txtTimingLptPort.Name = "txtTimingLptPort";
+            this.txtTimingLptPort.Size = new System.Drawing.Size(57, 20);
+            this.txtTimingLptPort.TabIndex = 52;
+            this.toolTip1.SetToolTip(this.txtTimingLptPort, "determines the name given to the file\r\nproduced upon creation of a Nand\r\nImage");
+            this.txtTimingLptPort.TextChanged += new System.EventHandler(this.txtTimingLptPort_TextChanged);
             // 
             // chkfiles
             // 
@@ -577,12 +593,49 @@
             this.SlimPreferRgh12.Text = "RGH1.2 (Best)";
             this.SlimPreferRgh12.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.txtTimingLptPort);
+            this.groupBox4.Controls.Add(this.rbtnTimingLpt);
+            this.groupBox4.Controls.Add(this.rbtnTimingUsb);
+            this.groupBox4.Location = new System.Drawing.Point(421, 266);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(174, 45);
+            this.groupBox4.TabIndex = 51;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Timing File Programming";
+            // 
+            // rbtnTimingLpt
+            // 
+            this.rbtnTimingLpt.AutoSize = true;
+            this.rbtnTimingLpt.Location = new System.Drawing.Point(63, 18);
+            this.rbtnTimingLpt.Name = "rbtnTimingLpt";
+            this.rbtnTimingLpt.Size = new System.Drawing.Size(45, 17);
+            this.rbtnTimingLpt.TabIndex = 1;
+            this.rbtnTimingLpt.Text = "LPT";
+            this.rbtnTimingLpt.UseVisualStyleBackColor = true;
+            this.rbtnTimingLpt.CheckedChanged += new System.EventHandler(this.timingRbtn_CheckedChanged);
+            // 
+            // rbtnTimingUsb
+            // 
+            this.rbtnTimingUsb.AutoSize = true;
+            this.rbtnTimingUsb.Checked = true;
+            this.rbtnTimingUsb.Location = new System.Drawing.Point(9, 18);
+            this.rbtnTimingUsb.Name = "rbtnTimingUsb";
+            this.rbtnTimingUsb.Size = new System.Drawing.Size(47, 17);
+            this.rbtnTimingUsb.TabIndex = 0;
+            this.rbtnTimingUsb.TabStop = true;
+            this.rbtnTimingUsb.Text = "USB";
+            this.rbtnTimingUsb.UseVisualStyleBackColor = true;
+            this.rbtnTimingUsb.CheckedChanged += new System.EventHandler(this.timingRbtn_CheckedChanged);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 455);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.minimizeToSystemTray);
             this.Controls.Add(this.logDefault);
@@ -624,6 +677,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -682,5 +737,9 @@
         private System.Windows.Forms.RadioButton SlimPreferSrgh;
         private System.Windows.Forms.RadioButton SlimPreferRgh12;
         private System.Windows.Forms.CheckBox chkIpDefault;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox txtTimingLptPort;
+        private System.Windows.Forms.RadioButton rbtnTimingLpt;
+        private System.Windows.Forms.RadioButton rbtnTimingUsb;
     }
 }

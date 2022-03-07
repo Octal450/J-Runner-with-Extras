@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnCPUDB = new System.Windows.Forms.Button();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.txtLPTPort = new System.Windows.Forms.TextBox();
-            this.lblLPTPort = new System.Windows.Forms.Label();
-            this.rbtnLPT = new System.Windows.Forms.RadioButton();
-            this.rbtnUSB = new System.Windows.Forms.RadioButton();
             this.btnProgramCR = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCreateECC = new System.Windows.Forms.Button();
@@ -46,9 +41,10 @@
             this.numericIterations = new System.Windows.Forms.NumericUpDown();
             this.pBoxDevice = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnTimingAssistant = new System.Windows.Forms.Button();
+            this.btnCreateDonor = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericIterations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxDevice)).BeginInit();
@@ -58,7 +54,7 @@
             // 
             // btnCPUDB
             // 
-            this.btnCPUDB.Location = new System.Drawing.Point(206, 107);
+            this.btnCPUDB.Location = new System.Drawing.Point(136, 106);
             this.btnCPUDB.Name = "btnCPUDB";
             this.btnCPUDB.Size = new System.Drawing.Size(65, 51);
             this.btnCPUDB.TabIndex = 80;
@@ -67,66 +63,6 @@
             this.toolTip1.SetToolTip(this.btnCPUDB, "Database of CPU Keys and Serial Numbers");
             this.btnCPUDB.UseVisualStyleBackColor = true;
             this.btnCPUDB.Click += new System.EventHandler(this.btnCPUDB_Click);
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.txtLPTPort);
-            this.groupBox9.Controls.Add(this.lblLPTPort);
-            this.groupBox9.Controls.Add(this.rbtnLPT);
-            this.groupBox9.Controls.Add(this.rbtnUSB);
-            this.groupBox9.Location = new System.Drawing.Point(63, 99);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(137, 62);
-            this.groupBox9.TabIndex = 82;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Glitch Chip Programming";
-            // 
-            // txtLPTPort
-            // 
-            this.txtLPTPort.Location = new System.Drawing.Point(66, 36);
-            this.txtLPTPort.MaxLength = 4;
-            this.txtLPTPort.Name = "txtLPTPort";
-            this.txtLPTPort.Size = new System.Drawing.Size(46, 20);
-            this.txtLPTPort.TabIndex = 3;
-            this.txtLPTPort.TabStop = false;
-            this.txtLPTPort.Text = "378";
-            this.txtLPTPort.Visible = false;
-            this.txtLPTPort.TextChanged += new System.EventHandler(this.txtLPTPort_TextChanged);
-            // 
-            // lblLPTPort
-            // 
-            this.lblLPTPort.AutoSize = true;
-            this.lblLPTPort.Location = new System.Drawing.Point(63, 19);
-            this.lblLPTPort.Name = "lblLPTPort";
-            this.lblLPTPort.Size = new System.Drawing.Size(26, 13);
-            this.lblLPTPort.TabIndex = 2;
-            this.lblLPTPort.Text = "Port";
-            this.lblLPTPort.Visible = false;
-            // 
-            // rbtnLPT
-            // 
-            this.rbtnLPT.AutoSize = true;
-            this.rbtnLPT.Location = new System.Drawing.Point(10, 37);
-            this.rbtnLPT.Name = "rbtnLPT";
-            this.rbtnLPT.Size = new System.Drawing.Size(45, 17);
-            this.rbtnLPT.TabIndex = 1;
-            this.rbtnLPT.TabStop = true;
-            this.rbtnLPT.Text = "LPT";
-            this.rbtnLPT.UseVisualStyleBackColor = true;
-            this.rbtnLPT.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
-            // 
-            // rbtnUSB
-            // 
-            this.rbtnUSB.AutoSize = true;
-            this.rbtnUSB.Checked = true;
-            this.rbtnUSB.Location = new System.Drawing.Point(10, 18);
-            this.rbtnUSB.Name = "rbtnUSB";
-            this.rbtnUSB.Size = new System.Drawing.Size(47, 17);
-            this.rbtnUSB.TabIndex = 10;
-            this.rbtnUSB.TabStop = true;
-            this.rbtnUSB.Text = "USB";
-            this.rbtnUSB.UseVisualStyleBackColor = true;
-            this.rbtnUSB.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
             // 
             // btnProgramCR
             // 
@@ -150,7 +86,7 @@
             this.groupBox3.Controls.Add(this.btnWriteECC);
             this.groupBox3.Location = new System.Drawing.Point(3, 1);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(373, 87);
+            this.groupBox3.Size = new System.Drawing.Size(373, 86);
             this.groupBox3.TabIndex = 81;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nand";
@@ -220,7 +156,7 @@
             // lblNReads
             // 
             this.lblNReads.AutoSize = true;
-            this.lblNReads.Location = new System.Drawing.Point(6, 15);
+            this.lblNReads.Location = new System.Drawing.Point(6, 14);
             this.lblNReads.Name = "lblNReads";
             this.lblNReads.Size = new System.Drawing.Size(38, 13);
             this.lblNReads.TabIndex = 63;
@@ -232,7 +168,7 @@
             this.numericIterations.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericIterations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.numericIterations.ForeColor = System.Drawing.Color.Black;
-            this.numericIterations.Location = new System.Drawing.Point(9, 33);
+            this.numericIterations.Location = new System.Drawing.Point(8, 31);
             this.numericIterations.Maximum = new decimal(new int[] {
             4,
             0,
@@ -260,21 +196,45 @@
             // 
             this.pBoxDevice.ErrorImage = null;
             this.pBoxDevice.InitialImage = null;
-            this.pBoxDevice.Location = new System.Drawing.Point(323, 106);
+            this.pBoxDevice.Location = new System.Drawing.Point(281, 92);
             this.pBoxDevice.Name = "pBoxDevice";
-            this.pBoxDevice.Size = new System.Drawing.Size(53, 43);
-            this.pBoxDevice.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pBoxDevice.Size = new System.Drawing.Size(180, 76);
+            this.pBoxDevice.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pBoxDevice.TabIndex = 83;
             this.pBoxDevice.TabStop = false;
             this.pBoxDevice.Click += new System.EventHandler(this.pBoxDevice_Click);
+            // 
+            // btnTimingAssistant
+            // 
+            this.btnTimingAssistant.Location = new System.Drawing.Point(64, 106);
+            this.btnTimingAssistant.Name = "btnTimingAssistant";
+            this.btnTimingAssistant.Size = new System.Drawing.Size(65, 51);
+            this.btnTimingAssistant.TabIndex = 87;
+            this.btnTimingAssistant.TabStop = false;
+            this.btnTimingAssistant.Text = "Timing Assistant";
+            this.toolTip1.SetToolTip(this.btnTimingAssistant, "Database of CPU Keys and Serial Numbers");
+            this.btnTimingAssistant.UseVisualStyleBackColor = true;
+            this.btnTimingAssistant.Click += new System.EventHandler(this.btnTimingAssistant_Click);
+            // 
+            // btnCreateDonor
+            // 
+            this.btnCreateDonor.Location = new System.Drawing.Point(208, 106);
+            this.btnCreateDonor.Name = "btnCreateDonor";
+            this.btnCreateDonor.Size = new System.Drawing.Size(65, 51);
+            this.btnCreateDonor.TabIndex = 88;
+            this.btnCreateDonor.TabStop = false;
+            this.btnCreateDonor.Text = "Create Donor Nand";
+            this.toolTip1.SetToolTip(this.btnCreateDonor, "Database of CPU Keys and Serial Numbers");
+            this.btnCreateDonor.UseVisualStyleBackColor = true;
+            this.btnCreateDonor.Click += new System.EventHandler(this.btnCreateDonor_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblNReads);
             this.groupBox1.Controls.Add(this.numericIterations);
-            this.groupBox1.Location = new System.Drawing.Point(3, 99);
+            this.groupBox1.Location = new System.Drawing.Point(3, 101);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(53, 62);
+            this.groupBox1.Size = new System.Drawing.Size(53, 56);
             this.groupBox1.TabIndex = 85;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nand";
@@ -284,7 +244,7 @@
             this.groupBox2.Controls.Add(this.btnProgramCR);
             this.groupBox2.Location = new System.Drawing.Point(383, 1);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(80, 87);
+            this.groupBox2.Size = new System.Drawing.Size(80, 86);
             this.groupBox2.TabIndex = 86;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Glitch Chip";
@@ -293,16 +253,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnTimingAssistant);
+            this.Controls.Add(this.btnCreateDonor);
+            this.Controls.Add(this.btnCPUDB);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pBoxDevice);
-            this.Controls.Add(this.btnCPUDB);
-            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox3);
             this.Name = "NandTools";
-            this.Size = new System.Drawing.Size(463, 175);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
+            this.Size = new System.Drawing.Size(463, 173);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericIterations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxDevice)).EndInit();
@@ -310,7 +269,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -318,11 +276,6 @@
 
         private System.Windows.Forms.PictureBox pBoxDevice;
         private System.Windows.Forms.Button btnCPUDB;
-        private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.TextBox txtLPTPort;
-        private System.Windows.Forms.Label lblLPTPort;
-        private System.Windows.Forms.RadioButton rbtnLPT;
-        private System.Windows.Forms.RadioButton rbtnUSB;
         private System.Windows.Forms.Button btnProgramCR;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnCreateECC;
@@ -335,5 +288,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnTimingAssistant;
+        private System.Windows.Forms.Button btnCreateDonor;
     }
 }

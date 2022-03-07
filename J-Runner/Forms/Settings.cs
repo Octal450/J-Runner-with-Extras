@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
@@ -45,6 +46,8 @@ namespace JRunner.Forms
             if (variables.sounderror != "") chkerror.Checked = true;
             if (variables.soundsuccess != "") chksuccess.Checked = true;
             if (variables.slimprefersrgh) SlimPreferSrgh.Checked = true;
+            if (variables.LPTtiming) rbtnTimingLpt.Checked = true;
+            txtTimingLptPort.Text = variables.LPTport;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -146,6 +149,9 @@ namespace JRunner.Forms
                 variables.autoExtract = AutoExtractcheckBox.Checked;
                 variables.modder = modderbut.Checked;
                 variables.allmove = !almovebut.Checked;
+                variables.LPTtiming = rbtnTimingLpt.Checked;
+                if (!String.IsNullOrWhiteSpace(txtTimingLptPort.Text)) variables.LPTport = txtTimingLptPort.Text;
+                else variables.LPTport = "378";
 
                 if (txtfolder.Text == "")
                 {
@@ -271,6 +277,20 @@ namespace JRunner.Forms
         {
             txtIP.Enabled = chkIpDefault.Checked;
             if (!chkIpDefault.Checked) txtIP.Text = "";
+        }
+
+        private void timingRbtn_CheckedChanged(object sender, EventArgs e)
+        {
+            txtTimingLptPort.Enabled = rbtnTimingLpt.Checked;
+        }
+
+        private void txtTimingLptPort_TextChanged(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(txtTimingLptPort.Text, @"^\d+$"))
+            {
+                MessageBox.Show("Port is not valid", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTimingLptPort.Text = variables.LPTport;
+            }
         }
     }
 }
