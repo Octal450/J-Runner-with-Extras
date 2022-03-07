@@ -165,7 +165,7 @@ namespace JRunner
             new consoles(9, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0), // Previously Opus but that is stupid because Opus is Falcon
             new consoles(10, "corona", "corona", "Corona 16MB", 16, Nandsize.S16, 0),
             new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
-            new consoles(12, "trinitybb", "trinity", "Trinity BB", 16, Nandsize.S16, 1),
+            new consoles(12, "trinitybb", "trinity", "Trinity BB", 16, Nandsize.S64, 2),
         };
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
         {
