@@ -266,7 +266,7 @@
             this.chkOptional.Location = new System.Drawing.Point(9, 0);
             this.chkOptional.Name = "chkOptional";
             this.chkOptional.Size = new System.Drawing.Size(15, 14);
-            this.chkOptional.TabIndex = 11;
+            this.chkOptional.TabIndex = 6;
             this.chkOptional.UseVisualStyleBackColor = true;
             this.chkOptional.CheckedChanged += new System.EventHandler(this.chkOptional_CheckedChanged);
             // 

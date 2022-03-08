@@ -175,7 +175,7 @@
             this.Rgh3Label2.Location = new System.Drawing.Point(289, 64);
             this.Rgh3Label2.Name = "Rgh3Label2";
             this.Rgh3Label2.Size = new System.Drawing.Size(19, 13);
-            this.Rgh3Label2.TabIndex = 100;
+            this.Rgh3Label2.TabIndex = 21;
             this.Rgh3Label2.Text = "27";
             this.Rgh3Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -208,7 +208,7 @@
             this.chkRgh3.Location = new System.Drawing.Point(230, 63);
             this.chkRgh3.Name = "chkRgh3";
             this.chkRgh3.Size = new System.Drawing.Size(56, 17);
-            this.chkRgh3.TabIndex = 97;
+            this.chkRgh3.TabIndex = 19;
             this.chkRgh3.Text = "RGH3";
             this.toolTip1.SetToolTip(this.chkRgh3, "Uses the SMC to glitch the console");
             this.chkRgh3.UseVisualStyleBackColor = true;
@@ -222,7 +222,7 @@
             this.chkWB.Location = new System.Drawing.Point(230, 5);
             this.chkWB.Name = "chkWB";
             this.chkWB.Size = new System.Drawing.Size(60, 17);
-            this.chkWB.TabIndex = 96;
+            this.chkWB.TabIndex = 14;
             this.chkWB.TabStop = false;
             this.chkWB.Text = "WB 2K";
             this.toolTip1.SetToolTip(this.chkWB, "Check to use 13182 CBB for Winbond 2K consoles");
@@ -235,7 +235,7 @@
             this.chkCR4.Location = new System.Drawing.Point(230, 31);
             this.chkCR4.Name = "chkCR4";
             this.chkCR4.Size = new System.Drawing.Size(47, 17);
-            this.chkCR4.TabIndex = 95;
+            this.chkCR4.TabIndex = 17;
             this.chkCR4.Text = "CR4";
             this.toolTip1.SetToolTip(this.chkCR4, "Speeds up glitch timouts and allows use of the TX CR4 RGH2+ method\r\n");
             this.chkCR4.UseVisualStyleBackColor = true;
@@ -248,7 +248,7 @@
             this.chkCleanSMC.Location = new System.Drawing.Point(230, 90);
             this.chkCleanSMC.Name = "chkCleanSMC";
             this.chkCleanSMC.Size = new System.Drawing.Size(79, 17);
-            this.chkCleanSMC.TabIndex = 94;
+            this.chkCleanSMC.TabIndex = 23;
             this.chkCleanSMC.Text = "Clean SMC";
             this.toolTip1.SetToolTip(this.chkCleanSMC, "Use a clean retail SMC");
             this.chkCleanSMC.UseVisualStyleBackColor = true;
@@ -262,7 +262,7 @@
             this.chkXdkBuild.Location = new System.Drawing.Point(230, 5);
             this.chkXdkBuild.Name = "chkXdkBuild";
             this.chkXdkBuild.Size = new System.Drawing.Size(70, 17);
-            this.chkXdkBuild.TabIndex = 93;
+            this.chkXdkBuild.TabIndex = 15;
             this.chkXdkBuild.Text = "XDKbuild";
             this.toolTip1.SetToolTip(this.chkXdkBuild, "Builds XDK filesystem for booting on an RGH, requires custom timing files located" +
         " in the common folder");
@@ -276,7 +276,7 @@
             this.chk0Fuse.Location = new System.Drawing.Point(230, 74);
             this.chk0Fuse.Name = "chk0Fuse";
             this.chk0Fuse.Size = new System.Drawing.Size(58, 17);
-            this.chk0Fuse.TabIndex = 92;
+            this.chk0Fuse.TabIndex = 22;
             this.chk0Fuse.Text = "0 Fuse";
             this.toolTip1.SetToolTip(this.chk0Fuse, "Check if building for a 0 Fuse console");
             this.chk0Fuse.UseVisualStyleBackColor = true;
@@ -289,7 +289,7 @@
             this.rbtnDevGL.Location = new System.Drawing.Point(153, 89);
             this.rbtnDevGL.Name = "rbtnDevGL";
             this.rbtnDevGL.Size = new System.Drawing.Size(61, 17);
-            this.rbtnDevGL.TabIndex = 90;
+            this.rbtnDevGL.TabIndex = 13;
             this.rbtnDevGL.Text = "DEVGL";
             this.rbtnDevGL.UseVisualStyleBackColor = false;
             this.rbtnDevGL.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
@@ -301,7 +301,7 @@
             this.chkSMCP.Location = new System.Drawing.Point(230, 47);
             this.chkSMCP.Name = "chkSMCP";
             this.chkSMCP.Size = new System.Drawing.Size(55, 17);
-            this.chkSMCP.TabIndex = 89;
+            this.chkSMCP.TabIndex = 18;
             this.chkSMCP.Text = "SMC+";
             this.toolTip1.SetToolTip(this.chkSMCP, "Increases the glitch timeout to the maximum possible, recommended for RGH1.2 and " +
         "S-RGH");
@@ -323,7 +323,7 @@
             this.comboCB.Location = new System.Drawing.Point(248, 3);
             this.comboCB.Name = "comboCB";
             this.comboCB.Size = new System.Drawing.Size(57, 21);
-            this.comboCB.TabIndex = 87;
+            this.comboCB.TabIndex = 16;
             this.comboCB.SelectedIndexChanged += new System.EventHandler(this.comboCB_SelectedIndexChanged);
             // 
             // rbtnGlitch2m
@@ -334,7 +334,7 @@
             this.rbtnGlitch2m.Location = new System.Drawing.Point(153, 55);
             this.rbtnGlitch2m.Name = "rbtnGlitch2m";
             this.rbtnGlitch2m.Size = new System.Drawing.Size(66, 17);
-            this.rbtnGlitch2m.TabIndex = 86;
+            this.rbtnGlitch2m.TabIndex = 11;
             this.rbtnGlitch2m.Text = "Glitch2m";
             this.rbtnGlitch2m.UseVisualStyleBackColor = false;
             this.rbtnGlitch2m.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
@@ -344,7 +344,7 @@
             this.btnGetMB.Location = new System.Drawing.Point(105, 72);
             this.btnGetMB.Name = "btnGetMB";
             this.btnGetMB.Size = new System.Drawing.Size(25, 22);
-            this.btnGetMB.TabIndex = 75;
+            this.btnGetMB.TabIndex = 7;
             this.btnGetMB.Text = "?";
             this.toolTip1.SetToolTip(this.btnGetMB, "Query the console to get the type");
             this.btnGetMB.UseVisualStyleBackColor = true;
@@ -376,7 +376,7 @@
             this.chkAudClamp.Location = new System.Drawing.Point(230, 65);
             this.chkAudClamp.Name = "chkAudClamp";
             this.chkAudClamp.Size = new System.Drawing.Size(80, 17);
-            this.chkAudClamp.TabIndex = 58;
+            this.chkAudClamp.TabIndex = 20;
             this.chkAudClamp.TabStop = false;
             this.chkAudClamp.Text = "Aud_Clamp";
             this.toolTip1.SetToolTip(this.chkAudClamp, "Check if using Aud_Clamp wiring on HDMI Phats");
@@ -393,7 +393,7 @@
             this.comboDash.Location = new System.Drawing.Point(18, 29);
             this.comboDash.Name = "comboDash";
             this.comboDash.Size = new System.Drawing.Size(71, 21);
-            this.comboDash.TabIndex = 6;
+            this.comboDash.TabIndex = 5;
             this.toolTip1.SetToolTip(this.comboDash, "Select the kernel/dashboard version used for XeBuild");
             this.comboDash.ValueMember = "Dash";
             this.comboDash.SelectedIndexChanged += new System.EventHandler(this.comboDash_SelectedIndexChanged);
@@ -427,7 +427,7 @@
             this.txtMBname.Name = "txtMBname";
             this.txtMBname.ReadOnly = true;
             this.txtMBname.Size = new System.Drawing.Size(86, 20);
-            this.txtMBname.TabIndex = 4;
+            this.txtMBname.TabIndex = 6;
             this.txtMBname.Text = "None Selected";
             this.txtMBname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.txtMBname, "Click to set the console type for XeBuild");
@@ -443,7 +443,7 @@
             this.rbtnRetail.Location = new System.Drawing.Point(153, 4);
             this.rbtnRetail.Name = "rbtnRetail";
             this.rbtnRetail.Size = new System.Drawing.Size(52, 17);
-            this.rbtnRetail.TabIndex = 7;
+            this.rbtnRetail.TabIndex = 8;
             this.rbtnRetail.TabStop = true;
             this.rbtnRetail.Text = "Retail";
             this.rbtnRetail.UseVisualStyleBackColor = false;
@@ -457,7 +457,7 @@
             this.rbtnJtag.Location = new System.Drawing.Point(153, 72);
             this.rbtnJtag.Name = "rbtnJtag";
             this.rbtnJtag.Size = new System.Drawing.Size(52, 17);
-            this.rbtnJtag.TabIndex = 26;
+            this.rbtnJtag.TabIndex = 12;
             this.rbtnJtag.Text = "JTAG";
             this.rbtnJtag.UseVisualStyleBackColor = false;
             this.rbtnJtag.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
@@ -470,7 +470,7 @@
             this.rbtnGlitch2.Location = new System.Drawing.Point(153, 38);
             this.rbtnGlitch2.Name = "rbtnGlitch2";
             this.rbtnGlitch2.Size = new System.Drawing.Size(58, 17);
-            this.rbtnGlitch2.TabIndex = 71;
+            this.rbtnGlitch2.TabIndex = 10;
             this.rbtnGlitch2.Text = "Glitch2";
             this.rbtnGlitch2.UseVisualStyleBackColor = false;
             this.rbtnGlitch2.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
@@ -483,7 +483,7 @@
             this.rbtnGlitch.Location = new System.Drawing.Point(153, 21);
             this.rbtnGlitch.Name = "rbtnGlitch";
             this.rbtnGlitch.Size = new System.Drawing.Size(52, 17);
-            this.rbtnGlitch.TabIndex = 25;
+            this.rbtnGlitch.TabIndex = 9;
             this.rbtnGlitch.Text = "Glitch";
             this.rbtnGlitch.UseVisualStyleBackColor = false;
             this.rbtnGlitch.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
@@ -539,7 +539,7 @@
             this.chkxesettings.Location = new System.Drawing.Point(183, 87);
             this.chkxesettings.Name = "chkxesettings";
             this.chkxesettings.Size = new System.Drawing.Size(117, 17);
-            this.chkxesettings.TabIndex = 68;
+            this.chkxesettings.TabIndex = 66;
             this.chkxesettings.TabStop = false;
             this.chkxesettings.Text = "Use Edited Options";
             this.chkxesettings.UseVisualStyleBackColor = true;
@@ -568,7 +568,7 @@
             this.chkBigffs.Location = new System.Drawing.Point(125, 8);
             this.chkBigffs.Name = "chkBigffs";
             this.chkBigffs.Size = new System.Drawing.Size(51, 17);
-            this.chkBigffs.TabIndex = 99;
+            this.chkBigffs.TabIndex = 71;
             this.chkBigffs.Text = "bigffs";
             this.toolTip1.SetToolTip(this.chkBigffs, "Only for 64MB and large NAND sizes");
             this.chkBigffs.UseVisualStyleBackColor = true;
@@ -581,7 +581,7 @@
             this.chkWB4G.Location = new System.Drawing.Point(105, 88);
             this.chkWB4G.Name = "chkWB4G";
             this.chkWB4G.Size = new System.Drawing.Size(91, 17);
-            this.chkWB4G.TabIndex = 98;
+            this.chkWB4G.TabIndex = 72;
             this.chkWB4G.Text = "WB 2K Buffer";
             this.toolTip1.SetToolTip(this.chkWB4G, "Check to use 13182 CBB with a buffer for Winbond 2K consoles\r\n");
             this.chkWB4G.UseVisualStyleBackColor = true;
@@ -604,7 +604,7 @@
             this.chkLaunch.Location = new System.Drawing.Point(206, 43);
             this.chkLaunch.Name = "chkLaunch";
             this.chkLaunch.Size = new System.Drawing.Size(109, 17);
-            this.chkLaunch.TabIndex = 67;
+            this.chkLaunch.TabIndex = 74;
             this.chkLaunch.Text = "Custom launch.ini";
             this.chkLaunch.UseVisualStyleBackColor = false;
             this.chkLaunch.Visible = false;
@@ -614,7 +614,7 @@
             this.btnLaunch.Location = new System.Drawing.Point(205, 75);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(112, 28);
-            this.btnLaunch.TabIndex = 66;
+            this.btnLaunch.TabIndex = 75;
             this.btnLaunch.TabStop = false;
             this.btnLaunch.Text = "Launch.ini Options";
             this.btnLaunch.UseVisualStyleBackColor = true;
@@ -628,7 +628,7 @@
             this.checkDLPatches.Location = new System.Drawing.Point(206, 7);
             this.checkDLPatches.Name = "checkDLPatches";
             this.checkDLPatches.Size = new System.Drawing.Size(121, 30);
-            this.checkDLPatches.TabIndex = 9;
+            this.checkDLPatches.TabIndex = 73;
             this.checkDLPatches.Text = "Custom Dashlaunch\r\nPatches";
             this.checkDLPatches.UseVisualStyleBackColor = false;
             this.checkDLPatches.CheckedChanged += new System.EventHandler(this.checkDLPatches_CheckedChanged);
@@ -695,7 +695,7 @@
             this.txtIP.Location = new System.Drawing.Point(237, 58);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(75, 20);
-            this.txtIP.TabIndex = 8;
+            this.txtIP.TabIndex = 11;
             this.txtIP.Text = "Autoscan LAN";
             this.txtIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIP.TextChanged += new System.EventHandler(this.txtIP_TextChanged);
@@ -706,7 +706,7 @@
             this.chkForceIP.Location = new System.Drawing.Point(246, 35);
             this.chkForceIP.Name = "chkForceIP";
             this.chkForceIP.Size = new System.Drawing.Size(66, 17);
-            this.chkForceIP.TabIndex = 7;
+            this.chkForceIP.TabIndex = 10;
             this.chkForceIP.Text = "Force IP";
             this.chkForceIP.UseVisualStyleBackColor = true;
             this.chkForceIP.CheckedChanged += new System.EventHandler(this.chkForceIP_CheckedChanged);
@@ -717,7 +717,7 @@
             this.chkNoReeb.Location = new System.Drawing.Point(18, 76);
             this.chkNoReeb.Name = "chkNoReeb";
             this.chkNoReeb.Size = new System.Drawing.Size(59, 17);
-            this.chkNoReeb.TabIndex = 4;
+            this.chkNoReeb.TabIndex = 8;
             this.chkNoReeb.Text = "noreeb";
             this.toolTip1.SetToolTip(this.chkNoReeb, "do not automatically reboot console after writes are completed");
             this.chkNoReeb.UseVisualStyleBackColor = true;
@@ -729,7 +729,7 @@
             this.chkClean.Location = new System.Drawing.Point(18, 57);
             this.chkClean.Name = "chkClean";
             this.chkClean.Size = new System.Drawing.Size(52, 17);
-            this.chkClean.TabIndex = 3;
+            this.chkClean.TabIndex = 7;
             this.chkClean.Text = "clean";
             this.toolTip1.SetToolTip(this.chkClean, "secdata, extended and statistics will not be retrieved from consol");
             this.chkClean.UseVisualStyleBackColor = true;
@@ -741,7 +741,7 @@
             this.chkNoAva.Location = new System.Drawing.Point(18, 37);
             this.chkNoAva.Name = "chkNoAva";
             this.chkNoAva.Size = new System.Drawing.Size(56, 17);
-            this.chkNoAva.TabIndex = 2;
+            this.chkNoAva.TabIndex = 6;
             this.chkNoAva.Text = "noava";
             this.toolTip1.SetToolTip(this.chkNoAva, "will not send avatar data if available and HDD present");
             this.chkNoAva.UseVisualStyleBackColor = true;
@@ -753,7 +753,7 @@
             this.chkNoWrite.Location = new System.Drawing.Point(18, 17);
             this.chkNoWrite.Name = "chkNoWrite";
             this.chkNoWrite.Size = new System.Drawing.Size(60, 17);
-            this.chkNoWrite.TabIndex = 1;
+            this.chkNoWrite.TabIndex = 5;
             this.chkNoWrite.Text = "nowrite";
             this.toolTip1.SetToolTip(this.chkNoWrite, "will not write anything to console flash or HDD\r\nwithout -d results of update are" +
         " not kept anywhere");
@@ -765,7 +765,7 @@
             this.btnXEUpdate.Location = new System.Drawing.Point(106, 65);
             this.btnXEUpdate.Name = "btnXEUpdate";
             this.btnXEUpdate.Size = new System.Drawing.Size(100, 27);
-            this.btnXEUpdate.TabIndex = 0;
+            this.btnXEUpdate.TabIndex = 9;
             this.btnXEUpdate.Text = "Update";
             this.btnXEUpdate.UseVisualStyleBackColor = true;
             this.btnXEUpdate.Click += new System.EventHandler(this.btnXEUpdate_Click);
@@ -800,7 +800,7 @@
             this.btnInfo.Location = new System.Drawing.Point(114, 56);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(57, 23);
-            this.btnInfo.TabIndex = 15;
+            this.btnInfo.TabIndex = 13;
             this.btnInfo.Text = "Get Info";
             this.toolTip1.SetToolTip(this.btnInfo, "Grab Console info and save files to output folder");
             this.btnInfo.UseVisualStyleBackColor = true;
@@ -825,7 +825,7 @@
             this.txtIP2.Location = new System.Drawing.Point(243, 57);
             this.txtIP2.Name = "txtIP2";
             this.txtIP2.Size = new System.Drawing.Size(75, 20);
-            this.txtIP2.TabIndex = 12;
+            this.txtIP2.TabIndex = 15;
             this.txtIP2.Text = "Autoscan LAN";
             this.toolTip1.SetToolTip(this.txtIP2, "Box to Enter an IP if wishing to specify one");
             this.txtIP2.TextChanged += new System.EventHandler(this.txtIP2_TextChanged);
@@ -853,7 +853,7 @@
             this.btnErase.Location = new System.Drawing.Point(131, 6);
             this.btnErase.Name = "btnErase";
             this.btnErase.Size = new System.Drawing.Size(75, 23);
-            this.btnErase.TabIndex = 9;
+            this.btnErase.TabIndex = 7;
             this.btnErase.Text = "Erase Block";
             this.toolTip1.SetToolTip(this.btnErase, "Uses LAN to erase the blocks specified by offset and length boxes");
             this.btnErase.UseVisualStyleBackColor = true;
@@ -872,7 +872,7 @@
             this.txtLength.Location = new System.Drawing.Point(277, 29);
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(35, 20);
-            this.txtLength.TabIndex = 7;
+            this.txtLength.TabIndex = 11;
             this.toolTip1.SetToolTip(this.txtLength, "Length used in conjunction with offset");
             // 
             // btnPatches
@@ -881,7 +881,7 @@
             this.btnPatches.Location = new System.Drawing.Point(3, 56);
             this.btnPatches.Name = "btnPatches";
             this.btnPatches.Size = new System.Drawing.Size(105, 23);
-            this.btnPatches.TabIndex = 6;
+            this.btnPatches.TabIndex = 12;
             this.btnPatches.Text = "Update Patch(es)";
             this.toolTip1.SetToolTip(this.btnPatches, "add specified patches from settings tab");
             this.btnPatches.UseVisualStyleBackColor = true;
@@ -892,7 +892,7 @@
             this.btnComp.Location = new System.Drawing.Point(145, 84);
             this.btnComp.Name = "btnComp";
             this.btnComp.Size = new System.Drawing.Size(173, 23);
-            this.btnComp.TabIndex = 5;
+            this.btnComp.TabIndex = 17;
             this.btnComp.Text = "Send XBOX Compatibility data";
             this.toolTip1.SetToolTip(this.btnComp, "fucked if I know - Refer to Xebuild\'s Notes");
             this.btnComp.UseVisualStyleBackColor = true;
@@ -903,7 +903,7 @@
             this.btnAvatar.Location = new System.Drawing.Point(3, 84);
             this.btnAvatar.Name = "btnAvatar";
             this.btnAvatar.Size = new System.Drawing.Size(133, 23);
-            this.btnAvatar.TabIndex = 4;
+            this.btnAvatar.TabIndex = 16;
             this.btnAvatar.Text = "Send Avatar/Kinect data";
             this.toolTip1.SetToolTip(this.btnAvatar, "update your Avatar and Kinect Data");
             this.btnAvatar.UseVisualStyleBackColor = true;
@@ -914,7 +914,7 @@
             this.btnWrite.Location = new System.Drawing.Point(63, 6);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(52, 23);
-            this.btnWrite.TabIndex = 3;
+            this.btnWrite.TabIndex = 6;
             this.btnWrite.Text = "Write";
             this.toolTip1.SetToolTip(this.btnWrite, "Uses LAN to write the nand");
             this.btnWrite.UseVisualStyleBackColor = true;
@@ -925,7 +925,7 @@
             this.btnRead.Location = new System.Drawing.Point(3, 6);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(54, 23);
-            this.btnRead.TabIndex = 2;
+            this.btnRead.TabIndex = 5;
             this.btnRead.Text = "Read";
             this.toolTip1.SetToolTip(this.btnRead, "Uses LAN to read the nand");
             this.btnRead.UseVisualStyleBackColor = true;
@@ -937,7 +937,7 @@
             this.chkReboot.Location = new System.Drawing.Point(86, 35);
             this.chkReboot.Name = "chkReboot";
             this.chkReboot.Size = new System.Drawing.Size(61, 17);
-            this.chkReboot.TabIndex = 1;
+            this.chkReboot.TabIndex = 10;
             this.chkReboot.Text = "Reboot";
             this.toolTip1.SetToolTip(this.chkReboot, "Reboots the console after read/write/erase/updates etc");
             this.chkReboot.UseVisualStyleBackColor = true;
@@ -949,7 +949,7 @@
             this.chkShutdown.Location = new System.Drawing.Point(6, 35);
             this.chkShutdown.Name = "chkShutdown";
             this.chkShutdown.Size = new System.Drawing.Size(74, 17);
-            this.chkShutdown.TabIndex = 0;
+            this.chkShutdown.TabIndex = 9;
             this.chkShutdown.Text = "Shutdown";
             this.toolTip1.SetToolTip(this.chkShutdown, "Shutsdown the console after read/write/erase/update etc");
             this.chkShutdown.UseVisualStyleBackColor = true;
