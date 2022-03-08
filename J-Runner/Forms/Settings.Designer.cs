@@ -85,6 +85,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rbtnTimingLpt = new System.Windows.Forms.RadioButton();
             this.rbtnTimingUsb = new System.Windows.Forms.RadioButton();
+            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -629,12 +630,23 @@
             this.rbtnTimingUsb.UseVisualStyleBackColor = true;
             this.rbtnTimingUsb.CheckedChanged += new System.EventHandler(this.timingRbtn_CheckedChanged);
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(519, 415);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(76, 23);
+            this.btnReset.TabIndex = 52;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 455);
             this.ControlBox = false;
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.minimizeToSystemTray);
@@ -741,5 +753,6 @@
         private System.Windows.Forms.TextBox txtTimingLptPort;
         private System.Windows.Forms.RadioButton rbtnTimingLpt;
         private System.Windows.Forms.RadioButton rbtnTimingUsb;
+        private System.Windows.Forms.Button btnReset;
     }
 }

@@ -168,9 +168,13 @@ namespace JRunner.Forms
             this.Close();
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void btnReset_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (File.Exists(variables.settingsfile)) File.Delete(variables.settingsfile);
+            if (DialogResult.Yes == MessageBox.Show("Settings will be reset when the application restarts\n\nDo you want to restart now?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+            {
+                Program.restart(); // Restart without running on exit tasks, prevents setting from being put back
+            }
         }
 
         private void almovebut_CheckedChanged(object sender, EventArgs e)
