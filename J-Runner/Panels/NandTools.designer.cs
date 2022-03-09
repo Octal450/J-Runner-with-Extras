@@ -57,8 +57,7 @@
             this.btnCPUDB.Location = new System.Drawing.Point(136, 106);
             this.btnCPUDB.Name = "btnCPUDB";
             this.btnCPUDB.Size = new System.Drawing.Size(65, 51);
-            this.btnCPUDB.TabIndex = 13;
-            this.btnCPUDB.TabStop = false;
+            this.btnCPUDB.TabIndex = 29;
             this.btnCPUDB.Text = "CPU Key Database";
             this.toolTip1.SetToolTip(this.btnCPUDB, "Database of CPU Keys and Serial Numbers");
             this.btnCPUDB.UseVisualStyleBackColor = true;
@@ -66,11 +65,10 @@
             // 
             // btnProgramCR
             // 
-            this.btnProgramCR.Location = new System.Drawing.Point(7, 22);
+            this.btnProgramCR.Location = new System.Drawing.Point(9, 22);
             this.btnProgramCR.Name = "btnProgramCR";
             this.btnProgramCR.Size = new System.Drawing.Size(66, 51);
-            this.btnProgramCR.TabIndex = 10;
-            this.btnProgramCR.TabStop = false;
+            this.btnProgramCR.TabIndex = 26;
             this.btnProgramCR.Text = "Program Timing File";
             this.toolTip1.SetToolTip(this.btnProgramCR, "Program one of the built in timing files to a glitch chip");
             this.btnProgramCR.UseVisualStyleBackColor = true;
@@ -87,7 +85,7 @@
             this.groupBox3.Location = new System.Drawing.Point(3, 1);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(373, 86);
-            this.groupBox3.TabIndex = 81;
+            this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nand";
             // 
@@ -96,8 +94,7 @@
             this.btnCreateECC.Location = new System.Drawing.Point(82, 22);
             this.btnCreateECC.Name = "btnCreateECC";
             this.btnCreateECC.Size = new System.Drawing.Size(65, 51);
-            this.btnCreateECC.TabIndex = 6;
-            this.btnCreateECC.TabStop = false;
+            this.btnCreateECC.TabIndex = 21;
             this.btnCreateECC.Text = "Create ECC";
             this.toolTip1.SetToolTip(this.btnCreateECC, "Creates an ECC or XeLL from the source file, and the settings selected on the XeB" +
         "uild panel");
@@ -109,8 +106,7 @@
             this.btnXeBuild.Location = new System.Drawing.Point(226, 22);
             this.btnXeBuild.Name = "btnXeBuild";
             this.btnXeBuild.Size = new System.Drawing.Size(65, 51);
-            this.btnXeBuild.TabIndex = 8;
-            this.btnXeBuild.TabStop = false;
+            this.btnXeBuild.TabIndex = 24;
             this.btnXeBuild.Text = "Create XeBuild Image";
             this.toolTip1.SetToolTip(this.btnXeBuild, "Creates an XeBuild image from the source file, and the settings selected on the X" +
         "eBuild panel");
@@ -122,8 +118,7 @@
             this.btnWrite.Location = new System.Drawing.Point(298, 22);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(65, 51);
-            this.btnWrite.TabIndex = 9;
-            this.btnWrite.TabStop = false;
+            this.btnWrite.TabIndex = 25;
             this.btnWrite.Text = "Write Nand";
             this.toolTip1.SetToolTip(this.btnWrite, "Writes the source to the nand");
             this.btnWrite.UseVisualStyleBackColor = true;
@@ -134,8 +129,7 @@
             this.btnRead.Location = new System.Drawing.Point(10, 22);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(65, 51);
-            this.btnRead.TabIndex = 5;
-            this.btnRead.TabStop = false;
+            this.btnRead.TabIndex = 20;
             this.btnRead.Text = "Read Nand";
             this.toolTip1.SetToolTip(this.btnRead, "Reads the nand the amount of times selected below");
             this.btnRead.UseVisualStyleBackColor = true;
@@ -146,8 +140,7 @@
             this.btnWriteECC.Location = new System.Drawing.Point(154, 22);
             this.btnWriteECC.Name = "btnWriteECC";
             this.btnWriteECC.Size = new System.Drawing.Size(65, 51);
-            this.btnWriteECC.TabIndex = 7;
-            this.btnWriteECC.TabStop = false;
+            this.btnWriteECC.TabIndex = 23;
             this.btnWriteECC.Text = "Write\r\nECC";
             this.toolTip1.SetToolTip(this.btnWriteECC, "Writes ECC or XeLL to the nand");
             this.btnWriteECC.UseVisualStyleBackColor = true;
@@ -181,8 +174,7 @@
             0});
             this.numericIterations.Name = "numericIterations";
             this.numericIterations.Size = new System.Drawing.Size(37, 17);
-            this.numericIterations.TabIndex = 11;
-            this.numericIterations.TabStop = false;
+            this.numericIterations.TabIndex = 27;
             this.numericIterations.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.numericIterations, "This is the number of reads that will be performed on Read Nand");
             this.numericIterations.Value = new decimal(new int[] {
@@ -209,8 +201,7 @@
             this.btnTimingAssistant.Location = new System.Drawing.Point(64, 106);
             this.btnTimingAssistant.Name = "btnTimingAssistant";
             this.btnTimingAssistant.Size = new System.Drawing.Size(65, 51);
-            this.btnTimingAssistant.TabIndex = 12;
-            this.btnTimingAssistant.TabStop = false;
+            this.btnTimingAssistant.TabIndex = 28;
             this.btnTimingAssistant.Text = "Timing Assistant";
             this.toolTip1.SetToolTip(this.btnTimingAssistant, "Database of CPU Keys and Serial Numbers");
             this.btnTimingAssistant.UseVisualStyleBackColor = true;
@@ -221,8 +212,7 @@
             this.btnCreateDonor.Location = new System.Drawing.Point(208, 106);
             this.btnCreateDonor.Name = "btnCreateDonor";
             this.btnCreateDonor.Size = new System.Drawing.Size(65, 51);
-            this.btnCreateDonor.TabIndex = 14;
-            this.btnCreateDonor.TabStop = false;
+            this.btnCreateDonor.TabIndex = 30;
             this.btnCreateDonor.Text = "Create Donor Nand";
             this.toolTip1.SetToolTip(this.btnCreateDonor, "Database of CPU Keys and Serial Numbers");
             this.btnCreateDonor.UseVisualStyleBackColor = true;
@@ -235,17 +225,17 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 101);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(53, 56);
-            this.groupBox1.TabIndex = 85;
+            this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nand";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnProgramCR);
-            this.groupBox2.Location = new System.Drawing.Point(383, 1);
+            this.groupBox2.Location = new System.Drawing.Point(381, 1);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(80, 86);
-            this.groupBox2.TabIndex = 86;
+            this.groupBox2.Size = new System.Drawing.Size(84, 86);
+            this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Glitch Chip";
             // 
@@ -261,7 +251,7 @@
             this.Controls.Add(this.pBoxDevice);
             this.Controls.Add(this.groupBox3);
             this.Name = "NandTools";
-            this.Size = new System.Drawing.Size(463, 173);
+            this.Size = new System.Drawing.Size(465, 173);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericIterations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxDevice)).EndInit();

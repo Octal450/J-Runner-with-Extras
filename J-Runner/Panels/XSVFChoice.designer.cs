@@ -147,20 +147,20 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(86, 265);
+            this.btnCancel.Location = new System.Drawing.Point(88, 269);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 11;
+            this.btnCancel.TabIndex = 81;
             this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnProgram
             // 
-            this.btnProgram.Location = new System.Drawing.Point(4, 265);
+            this.btnProgram.Location = new System.Drawing.Point(6, 269);
             this.btnProgram.Name = "btnProgram";
             this.btnProgram.Size = new System.Drawing.Size(75, 23);
-            this.btnProgram.TabIndex = 10;
+            this.btnProgram.TabIndex = 80;
             this.btnProgram.Text = "Program";
             this.btnProgram.UseVisualStyleBackColor = true;
             this.btnProgram.Click += new System.EventHandler(this.btnProgram_Click);
@@ -171,10 +171,10 @@
             this.TimingTabs.Controls.Add(this.SrghTimings);
             this.TimingTabs.Controls.Add(this.MiscTimings);
             this.TimingTabs.ItemSize = new System.Drawing.Size(111, 18);
-            this.TimingTabs.Location = new System.Drawing.Point(5, 3);
+            this.TimingTabs.Location = new System.Drawing.Point(7, 5);
             this.TimingTabs.Name = "TimingTabs";
             this.TimingTabs.SelectedIndex = 0;
-            this.TimingTabs.Size = new System.Drawing.Size(327, 260);
+            this.TimingTabs.Size = new System.Drawing.Size(328, 260);
             this.TimingTabs.TabIndex = 0;
             // 
             // Rgh12Timings
@@ -190,7 +190,7 @@
             this.Rgh12Timings.Location = new System.Drawing.Point(4, 22);
             this.Rgh12Timings.Name = "Rgh12Timings";
             this.Rgh12Timings.Padding = new System.Windows.Forms.Padding(3);
-            this.Rgh12Timings.Size = new System.Drawing.Size(319, 234);
+            this.Rgh12Timings.Size = new System.Drawing.Size(320, 234);
             this.Rgh12Timings.TabIndex = 1;
             this.Rgh12Timings.Text = "RGH1.2 V2";
             // 
@@ -199,7 +199,7 @@
             this.label5.Location = new System.Drawing.Point(213, 180);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 51);
-            this.label5.TabIndex = 23;
+            this.label5.TabIndex = 93;
             this.label5.Text = "Corona 4GB may\r\nneed higher timings\r\nthan suggested";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -208,7 +208,7 @@
             this.label1.Location = new System.Drawing.Point(213, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 91);
-            this.label1.TabIndex = 22;
+            this.label1.TabIndex = 94;
             this.label1.Text = "Timings are for\r\nRev-C or Matrix\r\nglitch chips";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -218,10 +218,10 @@
             this.Rgh12TcSelectGroup.Controls.Add(this.Rgh12Corona);
             this.Rgh12TcSelectGroup.Controls.Add(this.Rgh12Trinity);
             this.Rgh12TcSelectGroup.Enabled = false;
-            this.Rgh12TcSelectGroup.Location = new System.Drawing.Point(213, 3);
+            this.Rgh12TcSelectGroup.Location = new System.Drawing.Point(214, 3);
             this.Rgh12TcSelectGroup.Name = "Rgh12TcSelectGroup";
             this.Rgh12TcSelectGroup.Size = new System.Drawing.Size(100, 83);
-            this.Rgh12TcSelectGroup.TabIndex = 3;
+            this.Rgh12TcSelectGroup.TabIndex = 2;
             this.Rgh12TcSelectGroup.TabStop = false;
             this.Rgh12TcSelectGroup.Text = "Slim Selector";
             // 
@@ -231,7 +231,7 @@
             this.Rgh12CoronaWb.Location = new System.Drawing.Point(13, 56);
             this.Rgh12CoronaWb.Name = "Rgh12CoronaWb";
             this.Rgh12CoronaWb.Size = new System.Drawing.Size(80, 17);
-            this.Rgh12CoronaWb.TabIndex = 61;
+            this.Rgh12CoronaWb.TabIndex = 2;
             this.Rgh12CoronaWb.Text = "Corona WB";
             this.Rgh12CoronaWb.UseVisualStyleBackColor = true;
             // 
@@ -241,7 +241,7 @@
             this.Rgh12Corona.Location = new System.Drawing.Point(13, 37);
             this.Rgh12Corona.Name = "Rgh12Corona";
             this.Rgh12Corona.Size = new System.Drawing.Size(59, 17);
-            this.Rgh12Corona.TabIndex = 60;
+            this.Rgh12Corona.TabIndex = 1;
             this.Rgh12Corona.Text = "Corona";
             this.Rgh12Corona.UseVisualStyleBackColor = true;
             // 
@@ -252,7 +252,7 @@
             this.Rgh12Trinity.Location = new System.Drawing.Point(13, 18);
             this.Rgh12Trinity.Name = "Rgh12Trinity";
             this.Rgh12Trinity.Size = new System.Drawing.Size(53, 17);
-            this.Rgh12Trinity.TabIndex = 59;
+            this.Rgh12Trinity.TabIndex = 0;
             this.Rgh12Trinity.TabStop = true;
             this.Rgh12Trinity.Text = "Trinity";
             this.Rgh12Trinity.UseVisualStyleBackColor = true;
@@ -262,7 +262,7 @@
             this.label8.Location = new System.Drawing.Point(100, 180);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(108, 51);
-            this.label8.TabIndex = 20;
+            this.label8.TabIndex = 91;
             this.label8.Text = "Suggested Timings:\r\nStandby Clock: 95\r\nOscilator: 80-110";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -284,10 +284,10 @@
             this.Rgh12TcGroup.Controls.Add(this.Rgh12Tc_70);
             this.Rgh12TcGroup.Controls.Add(this.Rgh12Tc_65);
             this.Rgh12TcGroup.Controls.Add(this.Rgh12Tc_60);
-            this.Rgh12TcGroup.Location = new System.Drawing.Point(100, 3);
+            this.Rgh12TcGroup.Location = new System.Drawing.Point(101, 3);
             this.Rgh12TcGroup.Name = "Rgh12TcGroup";
             this.Rgh12TcGroup.Size = new System.Drawing.Size(108, 177);
-            this.Rgh12TcGroup.TabIndex = 2;
+            this.Rgh12TcGroup.TabIndex = 1;
             this.Rgh12TcGroup.TabStop = false;
             this.Rgh12TcGroup.Text = "Trinity/Corona";
             this.Rgh12TcGroup.Enter += new System.EventHandler(this.enterRgh12Tc);
@@ -298,7 +298,7 @@
             this.Rgh12Tc_135.Location = new System.Drawing.Point(59, 151);
             this.Rgh12Tc_135.Name = "Rgh12Tc_135";
             this.Rgh12Tc_135.Size = new System.Drawing.Size(43, 17);
-            this.Rgh12Tc_135.TabIndex = 58;
+            this.Rgh12Tc_135.TabIndex = 15;
             this.Rgh12Tc_135.TabStop = true;
             this.Rgh12Tc_135.Text = "135";
             this.Rgh12Tc_135.UseVisualStyleBackColor = true;
@@ -309,7 +309,7 @@
             this.Rgh12Tc_130.Location = new System.Drawing.Point(59, 132);
             this.Rgh12Tc_130.Name = "Rgh12Tc_130";
             this.Rgh12Tc_130.Size = new System.Drawing.Size(43, 17);
-            this.Rgh12Tc_130.TabIndex = 57;
+            this.Rgh12Tc_130.TabIndex = 14;
             this.Rgh12Tc_130.TabStop = true;
             this.Rgh12Tc_130.Text = "130";
             this.Rgh12Tc_130.UseVisualStyleBackColor = true;
@@ -320,7 +320,7 @@
             this.Rgh12Tc_125.Location = new System.Drawing.Point(59, 113);
             this.Rgh12Tc_125.Name = "Rgh12Tc_125";
             this.Rgh12Tc_125.Size = new System.Drawing.Size(43, 17);
-            this.Rgh12Tc_125.TabIndex = 56;
+            this.Rgh12Tc_125.TabIndex = 13;
             this.Rgh12Tc_125.TabStop = true;
             this.Rgh12Tc_125.Text = "125";
             this.Rgh12Tc_125.UseVisualStyleBackColor = true;
@@ -331,7 +331,7 @@
             this.Rgh12Tc_120.Location = new System.Drawing.Point(59, 94);
             this.Rgh12Tc_120.Name = "Rgh12Tc_120";
             this.Rgh12Tc_120.Size = new System.Drawing.Size(43, 17);
-            this.Rgh12Tc_120.TabIndex = 55;
+            this.Rgh12Tc_120.TabIndex = 12;
             this.Rgh12Tc_120.TabStop = true;
             this.Rgh12Tc_120.Text = "120";
             this.Rgh12Tc_120.UseVisualStyleBackColor = true;
@@ -342,7 +342,7 @@
             this.Rgh12Tc_115.Location = new System.Drawing.Point(59, 75);
             this.Rgh12Tc_115.Name = "Rgh12Tc_115";
             this.Rgh12Tc_115.Size = new System.Drawing.Size(43, 17);
-            this.Rgh12Tc_115.TabIndex = 54;
+            this.Rgh12Tc_115.TabIndex = 11;
             this.Rgh12Tc_115.TabStop = true;
             this.Rgh12Tc_115.Text = "115";
             this.Rgh12Tc_115.UseVisualStyleBackColor = true;
@@ -353,7 +353,7 @@
             this.Rgh12Tc_110.Location = new System.Drawing.Point(59, 56);
             this.Rgh12Tc_110.Name = "Rgh12Tc_110";
             this.Rgh12Tc_110.Size = new System.Drawing.Size(43, 17);
-            this.Rgh12Tc_110.TabIndex = 53;
+            this.Rgh12Tc_110.TabIndex = 10;
             this.Rgh12Tc_110.TabStop = true;
             this.Rgh12Tc_110.Text = "110";
             this.Rgh12Tc_110.UseVisualStyleBackColor = true;
@@ -364,7 +364,7 @@
             this.Rgh12Tc_105.Location = new System.Drawing.Point(59, 37);
             this.Rgh12Tc_105.Name = "Rgh12Tc_105";
             this.Rgh12Tc_105.Size = new System.Drawing.Size(43, 17);
-            this.Rgh12Tc_105.TabIndex = 52;
+            this.Rgh12Tc_105.TabIndex = 9;
             this.Rgh12Tc_105.TabStop = true;
             this.Rgh12Tc_105.Text = "105";
             this.Rgh12Tc_105.UseVisualStyleBackColor = true;
@@ -375,7 +375,7 @@
             this.Rgh12Tc_100.Location = new System.Drawing.Point(59, 18);
             this.Rgh12Tc_100.Name = "Rgh12Tc_100";
             this.Rgh12Tc_100.Size = new System.Drawing.Size(43, 17);
-            this.Rgh12Tc_100.TabIndex = 51;
+            this.Rgh12Tc_100.TabIndex = 8;
             this.Rgh12Tc_100.TabStop = true;
             this.Rgh12Tc_100.Text = "100";
             this.Rgh12Tc_100.UseVisualStyleBackColor = true;
@@ -386,7 +386,7 @@
             this.Rgh12Tc_95.Location = new System.Drawing.Point(10, 151);
             this.Rgh12Tc_95.Name = "Rgh12Tc_95";
             this.Rgh12Tc_95.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Tc_95.TabIndex = 50;
+            this.Rgh12Tc_95.TabIndex = 7;
             this.Rgh12Tc_95.TabStop = true;
             this.Rgh12Tc_95.Text = "95";
             this.Rgh12Tc_95.UseVisualStyleBackColor = true;
@@ -397,7 +397,7 @@
             this.Rgh12Tc_90.Location = new System.Drawing.Point(10, 132);
             this.Rgh12Tc_90.Name = "Rgh12Tc_90";
             this.Rgh12Tc_90.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Tc_90.TabIndex = 49;
+            this.Rgh12Tc_90.TabIndex = 6;
             this.Rgh12Tc_90.TabStop = true;
             this.Rgh12Tc_90.Text = "90";
             this.Rgh12Tc_90.UseVisualStyleBackColor = true;
@@ -408,7 +408,7 @@
             this.Rgh12Tc_85.Location = new System.Drawing.Point(10, 113);
             this.Rgh12Tc_85.Name = "Rgh12Tc_85";
             this.Rgh12Tc_85.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Tc_85.TabIndex = 48;
+            this.Rgh12Tc_85.TabIndex = 5;
             this.Rgh12Tc_85.TabStop = true;
             this.Rgh12Tc_85.Text = "85";
             this.Rgh12Tc_85.UseVisualStyleBackColor = true;
@@ -419,7 +419,7 @@
             this.Rgh12Tc_80.Location = new System.Drawing.Point(10, 94);
             this.Rgh12Tc_80.Name = "Rgh12Tc_80";
             this.Rgh12Tc_80.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Tc_80.TabIndex = 47;
+            this.Rgh12Tc_80.TabIndex = 4;
             this.Rgh12Tc_80.TabStop = true;
             this.Rgh12Tc_80.Text = "80";
             this.Rgh12Tc_80.UseVisualStyleBackColor = true;
@@ -430,7 +430,7 @@
             this.Rgh12Tc_75.Location = new System.Drawing.Point(10, 75);
             this.Rgh12Tc_75.Name = "Rgh12Tc_75";
             this.Rgh12Tc_75.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Tc_75.TabIndex = 46;
+            this.Rgh12Tc_75.TabIndex = 3;
             this.Rgh12Tc_75.TabStop = true;
             this.Rgh12Tc_75.Text = "75";
             this.Rgh12Tc_75.UseVisualStyleBackColor = true;
@@ -441,7 +441,7 @@
             this.Rgh12Tc_70.Location = new System.Drawing.Point(10, 56);
             this.Rgh12Tc_70.Name = "Rgh12Tc_70";
             this.Rgh12Tc_70.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Tc_70.TabIndex = 45;
+            this.Rgh12Tc_70.TabIndex = 2;
             this.Rgh12Tc_70.TabStop = true;
             this.Rgh12Tc_70.Text = "70";
             this.Rgh12Tc_70.UseVisualStyleBackColor = true;
@@ -452,7 +452,7 @@
             this.Rgh12Tc_65.Location = new System.Drawing.Point(10, 37);
             this.Rgh12Tc_65.Name = "Rgh12Tc_65";
             this.Rgh12Tc_65.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Tc_65.TabIndex = 44;
+            this.Rgh12Tc_65.TabIndex = 1;
             this.Rgh12Tc_65.TabStop = true;
             this.Rgh12Tc_65.Text = "65";
             this.Rgh12Tc_65.UseVisualStyleBackColor = true;
@@ -463,7 +463,7 @@
             this.Rgh12Tc_60.Location = new System.Drawing.Point(10, 18);
             this.Rgh12Tc_60.Name = "Rgh12Tc_60";
             this.Rgh12Tc_60.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Tc_60.TabIndex = 43;
+            this.Rgh12Tc_60.TabIndex = 0;
             this.Rgh12Tc_60.TabStop = true;
             this.Rgh12Tc_60.Text = "60";
             this.Rgh12Tc_60.UseVisualStyleBackColor = true;
@@ -473,7 +473,7 @@
             this.label9.Location = new System.Drawing.Point(6, 180);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 51);
-            this.label9.TabIndex = 18;
+            this.label9.TabIndex = 90;
             this.label9.Text = "Suggested Timings:\r\n18-21";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -489,8 +489,8 @@
             this.Rgh12FjGroup.Controls.Add(this.Rgh12Fj_17);
             this.Rgh12FjGroup.Location = new System.Drawing.Point(6, 3);
             this.Rgh12FjGroup.Name = "Rgh12FjGroup";
-            this.Rgh12FjGroup.Size = new System.Drawing.Size(89, 177);
-            this.Rgh12FjGroup.TabIndex = 1;
+            this.Rgh12FjGroup.Size = new System.Drawing.Size(90, 177);
+            this.Rgh12FjGroup.TabIndex = 0;
             this.Rgh12FjGroup.TabStop = false;
             this.Rgh12FjGroup.Text = "Falcon/Jasper";
             this.Rgh12FjGroup.Enter += new System.EventHandler(this.enterRgh12Fj);
@@ -501,7 +501,7 @@
             this.Rgh12Fj_24.Location = new System.Drawing.Point(29, 151);
             this.Rgh12Fj_24.Name = "Rgh12Fj_24";
             this.Rgh12Fj_24.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Fj_24.TabIndex = 42;
+            this.Rgh12Fj_24.TabIndex = 7;
             this.Rgh12Fj_24.TabStop = true;
             this.Rgh12Fj_24.Text = "24";
             this.Rgh12Fj_24.UseVisualStyleBackColor = true;
@@ -512,7 +512,7 @@
             this.Rgh12Fj_23.Location = new System.Drawing.Point(29, 132);
             this.Rgh12Fj_23.Name = "Rgh12Fj_23";
             this.Rgh12Fj_23.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Fj_23.TabIndex = 41;
+            this.Rgh12Fj_23.TabIndex = 6;
             this.Rgh12Fj_23.TabStop = true;
             this.Rgh12Fj_23.Text = "23";
             this.Rgh12Fj_23.UseVisualStyleBackColor = true;
@@ -523,7 +523,7 @@
             this.Rgh12Fj_22.Location = new System.Drawing.Point(29, 113);
             this.Rgh12Fj_22.Name = "Rgh12Fj_22";
             this.Rgh12Fj_22.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Fj_22.TabIndex = 40;
+            this.Rgh12Fj_22.TabIndex = 5;
             this.Rgh12Fj_22.TabStop = true;
             this.Rgh12Fj_22.Text = "22";
             this.Rgh12Fj_22.UseVisualStyleBackColor = true;
@@ -534,7 +534,7 @@
             this.Rgh12Fj_21.Location = new System.Drawing.Point(29, 94);
             this.Rgh12Fj_21.Name = "Rgh12Fj_21";
             this.Rgh12Fj_21.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Fj_21.TabIndex = 39;
+            this.Rgh12Fj_21.TabIndex = 4;
             this.Rgh12Fj_21.TabStop = true;
             this.Rgh12Fj_21.Text = "21";
             this.Rgh12Fj_21.UseVisualStyleBackColor = true;
@@ -545,7 +545,7 @@
             this.Rgh12Fj_20.Location = new System.Drawing.Point(29, 75);
             this.Rgh12Fj_20.Name = "Rgh12Fj_20";
             this.Rgh12Fj_20.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Fj_20.TabIndex = 38;
+            this.Rgh12Fj_20.TabIndex = 3;
             this.Rgh12Fj_20.TabStop = true;
             this.Rgh12Fj_20.Text = "20";
             this.Rgh12Fj_20.UseVisualStyleBackColor = true;
@@ -556,7 +556,7 @@
             this.Rgh12Fj_19.Location = new System.Drawing.Point(29, 56);
             this.Rgh12Fj_19.Name = "Rgh12Fj_19";
             this.Rgh12Fj_19.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Fj_19.TabIndex = 37;
+            this.Rgh12Fj_19.TabIndex = 2;
             this.Rgh12Fj_19.TabStop = true;
             this.Rgh12Fj_19.Text = "19";
             this.Rgh12Fj_19.UseVisualStyleBackColor = true;
@@ -567,7 +567,7 @@
             this.Rgh12Fj_18.Location = new System.Drawing.Point(29, 37);
             this.Rgh12Fj_18.Name = "Rgh12Fj_18";
             this.Rgh12Fj_18.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Fj_18.TabIndex = 36;
+            this.Rgh12Fj_18.TabIndex = 1;
             this.Rgh12Fj_18.TabStop = true;
             this.Rgh12Fj_18.Text = "18";
             this.Rgh12Fj_18.UseVisualStyleBackColor = true;
@@ -578,7 +578,7 @@
             this.Rgh12Fj_17.Location = new System.Drawing.Point(29, 18);
             this.Rgh12Fj_17.Name = "Rgh12Fj_17";
             this.Rgh12Fj_17.Size = new System.Drawing.Size(37, 17);
-            this.Rgh12Fj_17.TabIndex = 35;
+            this.Rgh12Fj_17.TabIndex = 0;
             this.Rgh12Fj_17.TabStop = true;
             this.Rgh12Fj_17.Text = "17";
             this.Rgh12Fj_17.UseVisualStyleBackColor = true;
@@ -593,7 +593,7 @@
             this.SrghTimings.Location = new System.Drawing.Point(4, 22);
             this.SrghTimings.Name = "SrghTimings";
             this.SrghTimings.Padding = new System.Windows.Forms.Padding(3);
-            this.SrghTimings.Size = new System.Drawing.Size(319, 234);
+            this.SrghTimings.Size = new System.Drawing.Size(320, 234);
             this.SrghTimings.TabIndex = 2;
             this.SrghTimings.Text = "S-RGH";
             // 
@@ -602,7 +602,7 @@
             this.label2.Location = new System.Drawing.Point(162, 180);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(151, 51);
-            this.label2.TabIndex = 19;
+            this.label2.TabIndex = 95;
             this.label2.Text = "Suggested Timings:\r\n54.5 0.2,  54.8 0.2\r\n55.2 0.3,  55.2 0.5";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -638,7 +638,7 @@
             this.Corona555_06.Location = new System.Drawing.Point(84, 154);
             this.Corona555_06.Name = "Corona555_06";
             this.Corona555_06.Size = new System.Drawing.Size(64, 17);
-            this.Corona555_06.TabIndex = 93;
+            this.Corona555_06.TabIndex = 15;
             this.Corona555_06.TabStop = true;
             this.Corona555_06.Text = "55.5 0.6";
             this.Corona555_06.UseVisualStyleBackColor = true;
@@ -649,7 +649,7 @@
             this.Corona555_05.Location = new System.Drawing.Point(84, 135);
             this.Corona555_05.Name = "Corona555_05";
             this.Corona555_05.Size = new System.Drawing.Size(64, 17);
-            this.Corona555_05.TabIndex = 92;
+            this.Corona555_05.TabIndex = 14;
             this.Corona555_05.TabStop = true;
             this.Corona555_05.Text = "55.5 0.5";
             this.Corona555_05.UseVisualStyleBackColor = true;
@@ -660,7 +660,7 @@
             this.Corona555_03.Location = new System.Drawing.Point(84, 116);
             this.Corona555_03.Name = "Corona555_03";
             this.Corona555_03.Size = new System.Drawing.Size(64, 17);
-            this.Corona555_03.TabIndex = 91;
+            this.Corona555_03.TabIndex = 13;
             this.Corona555_03.TabStop = true;
             this.Corona555_03.Text = "55.5 0.3";
             this.Corona555_03.UseVisualStyleBackColor = true;
@@ -671,7 +671,7 @@
             this.Corona555_02.Location = new System.Drawing.Point(84, 97);
             this.Corona555_02.Name = "Corona555_02";
             this.Corona555_02.Size = new System.Drawing.Size(64, 17);
-            this.Corona555_02.TabIndex = 90;
+            this.Corona555_02.TabIndex = 12;
             this.Corona555_02.TabStop = true;
             this.Corona555_02.Text = "55.5 0.2";
             this.Corona555_02.UseVisualStyleBackColor = true;
@@ -682,7 +682,7 @@
             this.Corona552_06.Location = new System.Drawing.Point(84, 71);
             this.Corona552_06.Name = "Corona552_06";
             this.Corona552_06.Size = new System.Drawing.Size(64, 17);
-            this.Corona552_06.TabIndex = 89;
+            this.Corona552_06.TabIndex = 11;
             this.Corona552_06.TabStop = true;
             this.Corona552_06.Text = "55.2 0.6";
             this.Corona552_06.UseVisualStyleBackColor = true;
@@ -693,7 +693,7 @@
             this.Corona552_05.Location = new System.Drawing.Point(84, 52);
             this.Corona552_05.Name = "Corona552_05";
             this.Corona552_05.Size = new System.Drawing.Size(64, 17);
-            this.Corona552_05.TabIndex = 88;
+            this.Corona552_05.TabIndex = 10;
             this.Corona552_05.TabStop = true;
             this.Corona552_05.Text = "55.2 0.5";
             this.Corona552_05.UseVisualStyleBackColor = true;
@@ -704,7 +704,7 @@
             this.Corona552_03.Location = new System.Drawing.Point(84, 33);
             this.Corona552_03.Name = "Corona552_03";
             this.Corona552_03.Size = new System.Drawing.Size(64, 17);
-            this.Corona552_03.TabIndex = 87;
+            this.Corona552_03.TabIndex = 9;
             this.Corona552_03.TabStop = true;
             this.Corona552_03.Text = "55.2 0.3";
             this.Corona552_03.UseVisualStyleBackColor = true;
@@ -715,7 +715,7 @@
             this.Corona552_02.Location = new System.Drawing.Point(84, 14);
             this.Corona552_02.Name = "Corona552_02";
             this.Corona552_02.Size = new System.Drawing.Size(64, 17);
-            this.Corona552_02.TabIndex = 86;
+            this.Corona552_02.TabIndex = 8;
             this.Corona552_02.TabStop = true;
             this.Corona552_02.Text = "55.2 0.2";
             this.Corona552_02.UseVisualStyleBackColor = true;
@@ -726,7 +726,7 @@
             this.Corona548_06.Location = new System.Drawing.Point(8, 154);
             this.Corona548_06.Name = "Corona548_06";
             this.Corona548_06.Size = new System.Drawing.Size(64, 17);
-            this.Corona548_06.TabIndex = 85;
+            this.Corona548_06.TabIndex = 7;
             this.Corona548_06.TabStop = true;
             this.Corona548_06.Text = "54.8 0.6";
             this.Corona548_06.UseVisualStyleBackColor = true;
@@ -737,7 +737,7 @@
             this.Corona548_05.Location = new System.Drawing.Point(8, 135);
             this.Corona548_05.Name = "Corona548_05";
             this.Corona548_05.Size = new System.Drawing.Size(64, 17);
-            this.Corona548_05.TabIndex = 84;
+            this.Corona548_05.TabIndex = 6;
             this.Corona548_05.TabStop = true;
             this.Corona548_05.Text = "54.8 0.5";
             this.Corona548_05.UseVisualStyleBackColor = true;
@@ -748,7 +748,7 @@
             this.Corona548_03.Location = new System.Drawing.Point(8, 116);
             this.Corona548_03.Name = "Corona548_03";
             this.Corona548_03.Size = new System.Drawing.Size(64, 17);
-            this.Corona548_03.TabIndex = 83;
+            this.Corona548_03.TabIndex = 5;
             this.Corona548_03.TabStop = true;
             this.Corona548_03.Text = "54.8 0.3";
             this.Corona548_03.UseVisualStyleBackColor = true;
@@ -759,7 +759,7 @@
             this.Corona548_02.Location = new System.Drawing.Point(8, 97);
             this.Corona548_02.Name = "Corona548_02";
             this.Corona548_02.Size = new System.Drawing.Size(64, 17);
-            this.Corona548_02.TabIndex = 82;
+            this.Corona548_02.TabIndex = 4;
             this.Corona548_02.TabStop = true;
             this.Corona548_02.Text = "54.8 0.2";
             this.Corona548_02.UseVisualStyleBackColor = true;
@@ -770,7 +770,7 @@
             this.Corona545_06.Location = new System.Drawing.Point(8, 71);
             this.Corona545_06.Name = "Corona545_06";
             this.Corona545_06.Size = new System.Drawing.Size(64, 17);
-            this.Corona545_06.TabIndex = 81;
+            this.Corona545_06.TabIndex = 3;
             this.Corona545_06.TabStop = true;
             this.Corona545_06.Text = "54.5 0.6";
             this.Corona545_06.UseVisualStyleBackColor = true;
@@ -781,7 +781,7 @@
             this.Corona545_05.Location = new System.Drawing.Point(8, 52);
             this.Corona545_05.Name = "Corona545_05";
             this.Corona545_05.Size = new System.Drawing.Size(64, 17);
-            this.Corona545_05.TabIndex = 80;
+            this.Corona545_05.TabIndex = 2;
             this.Corona545_05.TabStop = true;
             this.Corona545_05.Text = "54.5 0.5";
             this.Corona545_05.UseVisualStyleBackColor = true;
@@ -792,7 +792,7 @@
             this.Corona545_03.Location = new System.Drawing.Point(8, 33);
             this.Corona545_03.Name = "Corona545_03";
             this.Corona545_03.Size = new System.Drawing.Size(64, 17);
-            this.Corona545_03.TabIndex = 79;
+            this.Corona545_03.TabIndex = 1;
             this.Corona545_03.TabStop = true;
             this.Corona545_03.Text = "54.5 0.3";
             this.Corona545_03.UseVisualStyleBackColor = true;
@@ -803,7 +803,7 @@
             this.Corona545_02.Location = new System.Drawing.Point(8, 14);
             this.Corona545_02.Name = "Corona545_02";
             this.Corona545_02.Size = new System.Drawing.Size(64, 17);
-            this.Corona545_02.TabIndex = 78;
+            this.Corona545_02.TabIndex = 0;
             this.Corona545_02.TabStop = true;
             this.Corona545_02.Text = "54.5 0.2";
             this.Corona545_02.UseVisualStyleBackColor = true;
@@ -813,7 +813,7 @@
             this.label7.Location = new System.Drawing.Point(6, 180);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(151, 51);
-            this.label7.TabIndex = 17;
+            this.label7.TabIndex = 96;
             this.label7.Text = "Suggested Timings:\r\n60.3 0.3,  60.3 0.5\r\n60.6 0.5,  60.6 0.6";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -849,7 +849,7 @@
             this.Trinity609_08.Location = new System.Drawing.Point(84, 154);
             this.Trinity609_08.Name = "Trinity609_08";
             this.Trinity609_08.Size = new System.Drawing.Size(64, 17);
-            this.Trinity609_08.TabIndex = 77;
+            this.Trinity609_08.TabIndex = 15;
             this.Trinity609_08.TabStop = true;
             this.Trinity609_08.Text = "60.9 0.8";
             this.Trinity609_08.UseVisualStyleBackColor = true;
@@ -860,7 +860,7 @@
             this.Trinity609_06.Location = new System.Drawing.Point(84, 135);
             this.Trinity609_06.Name = "Trinity609_06";
             this.Trinity609_06.Size = new System.Drawing.Size(64, 17);
-            this.Trinity609_06.TabIndex = 76;
+            this.Trinity609_06.TabIndex = 14;
             this.Trinity609_06.TabStop = true;
             this.Trinity609_06.Text = "60.9 0.6";
             this.Trinity609_06.UseVisualStyleBackColor = true;
@@ -871,7 +871,7 @@
             this.Trinity609_05.Location = new System.Drawing.Point(84, 116);
             this.Trinity609_05.Name = "Trinity609_05";
             this.Trinity609_05.Size = new System.Drawing.Size(64, 17);
-            this.Trinity609_05.TabIndex = 75;
+            this.Trinity609_05.TabIndex = 13;
             this.Trinity609_05.TabStop = true;
             this.Trinity609_05.Text = "60.9 0.5";
             this.Trinity609_05.UseVisualStyleBackColor = true;
@@ -882,7 +882,7 @@
             this.Trinity609_03.Location = new System.Drawing.Point(84, 97);
             this.Trinity609_03.Name = "Trinity609_03";
             this.Trinity609_03.Size = new System.Drawing.Size(64, 17);
-            this.Trinity609_03.TabIndex = 74;
+            this.Trinity609_03.TabIndex = 12;
             this.Trinity609_03.TabStop = true;
             this.Trinity609_03.Text = "60.9 0.3";
             this.Trinity609_03.UseVisualStyleBackColor = true;
@@ -893,7 +893,7 @@
             this.Trinity606_08.Location = new System.Drawing.Point(84, 71);
             this.Trinity606_08.Name = "Trinity606_08";
             this.Trinity606_08.Size = new System.Drawing.Size(64, 17);
-            this.Trinity606_08.TabIndex = 73;
+            this.Trinity606_08.TabIndex = 11;
             this.Trinity606_08.TabStop = true;
             this.Trinity606_08.Text = "60.6 0.8";
             this.Trinity606_08.UseVisualStyleBackColor = true;
@@ -904,7 +904,7 @@
             this.Trinity606_06.Location = new System.Drawing.Point(84, 52);
             this.Trinity606_06.Name = "Trinity606_06";
             this.Trinity606_06.Size = new System.Drawing.Size(64, 17);
-            this.Trinity606_06.TabIndex = 72;
+            this.Trinity606_06.TabIndex = 10;
             this.Trinity606_06.TabStop = true;
             this.Trinity606_06.Text = "60.6 0.6";
             this.Trinity606_06.UseVisualStyleBackColor = true;
@@ -915,7 +915,7 @@
             this.Trinity606_05.Location = new System.Drawing.Point(84, 33);
             this.Trinity606_05.Name = "Trinity606_05";
             this.Trinity606_05.Size = new System.Drawing.Size(64, 17);
-            this.Trinity606_05.TabIndex = 71;
+            this.Trinity606_05.TabIndex = 9;
             this.Trinity606_05.TabStop = true;
             this.Trinity606_05.Text = "60.6 0.5";
             this.Trinity606_05.UseVisualStyleBackColor = true;
@@ -926,7 +926,7 @@
             this.Trinity606_03.Location = new System.Drawing.Point(84, 14);
             this.Trinity606_03.Name = "Trinity606_03";
             this.Trinity606_03.Size = new System.Drawing.Size(64, 17);
-            this.Trinity606_03.TabIndex = 70;
+            this.Trinity606_03.TabIndex = 8;
             this.Trinity606_03.TabStop = true;
             this.Trinity606_03.Text = "60.6 0.3";
             this.Trinity606_03.UseVisualStyleBackColor = true;
@@ -937,7 +937,7 @@
             this.Trinity603_08.Location = new System.Drawing.Point(8, 154);
             this.Trinity603_08.Name = "Trinity603_08";
             this.Trinity603_08.Size = new System.Drawing.Size(64, 17);
-            this.Trinity603_08.TabIndex = 69;
+            this.Trinity603_08.TabIndex = 7;
             this.Trinity603_08.TabStop = true;
             this.Trinity603_08.Text = "60.3 0.8";
             this.Trinity603_08.UseVisualStyleBackColor = true;
@@ -948,7 +948,7 @@
             this.Trinity603_06.Location = new System.Drawing.Point(8, 135);
             this.Trinity603_06.Name = "Trinity603_06";
             this.Trinity603_06.Size = new System.Drawing.Size(64, 17);
-            this.Trinity603_06.TabIndex = 68;
+            this.Trinity603_06.TabIndex = 6;
             this.Trinity603_06.TabStop = true;
             this.Trinity603_06.Text = "60.3 0.6";
             this.Trinity603_06.UseVisualStyleBackColor = true;
@@ -959,7 +959,7 @@
             this.Trinity603_05.Location = new System.Drawing.Point(8, 116);
             this.Trinity603_05.Name = "Trinity603_05";
             this.Trinity603_05.Size = new System.Drawing.Size(64, 17);
-            this.Trinity603_05.TabIndex = 67;
+            this.Trinity603_05.TabIndex = 5;
             this.Trinity603_05.TabStop = true;
             this.Trinity603_05.Text = "60.3 0.5";
             this.Trinity603_05.UseVisualStyleBackColor = true;
@@ -970,7 +970,7 @@
             this.Trinity603_03.Location = new System.Drawing.Point(8, 97);
             this.Trinity603_03.Name = "Trinity603_03";
             this.Trinity603_03.Size = new System.Drawing.Size(64, 17);
-            this.Trinity603_03.TabIndex = 66;
+            this.Trinity603_03.TabIndex = 4;
             this.Trinity603_03.TabStop = true;
             this.Trinity603_03.Text = "60.3 0.3";
             this.Trinity603_03.UseVisualStyleBackColor = true;
@@ -981,7 +981,7 @@
             this.Trinity600_08.Location = new System.Drawing.Point(8, 71);
             this.Trinity600_08.Name = "Trinity600_08";
             this.Trinity600_08.Size = new System.Drawing.Size(64, 17);
-            this.Trinity600_08.TabIndex = 65;
+            this.Trinity600_08.TabIndex = 3;
             this.Trinity600_08.TabStop = true;
             this.Trinity600_08.Text = "60.0 0.8";
             this.Trinity600_08.UseVisualStyleBackColor = true;
@@ -992,7 +992,7 @@
             this.Trinity600_06.Location = new System.Drawing.Point(8, 52);
             this.Trinity600_06.Name = "Trinity600_06";
             this.Trinity600_06.Size = new System.Drawing.Size(64, 17);
-            this.Trinity600_06.TabIndex = 64;
+            this.Trinity600_06.TabIndex = 2;
             this.Trinity600_06.TabStop = true;
             this.Trinity600_06.Text = "60.0 0.6";
             this.Trinity600_06.UseVisualStyleBackColor = true;
@@ -1003,7 +1003,7 @@
             this.Trinity600_05.Location = new System.Drawing.Point(8, 33);
             this.Trinity600_05.Name = "Trinity600_05";
             this.Trinity600_05.Size = new System.Drawing.Size(64, 17);
-            this.Trinity600_05.TabIndex = 63;
+            this.Trinity600_05.TabIndex = 1;
             this.Trinity600_05.TabStop = true;
             this.Trinity600_05.Text = "60.0 0.5";
             this.Trinity600_05.UseVisualStyleBackColor = true;
@@ -1014,7 +1014,7 @@
             this.Trinity600_03.Location = new System.Drawing.Point(8, 14);
             this.Trinity600_03.Name = "Trinity600_03";
             this.Trinity600_03.Size = new System.Drawing.Size(64, 17);
-            this.Trinity600_03.TabIndex = 62;
+            this.Trinity600_03.TabIndex = 0;
             this.Trinity600_03.TabStop = true;
             this.Trinity600_03.Text = "60.0 0.3";
             this.Trinity600_03.UseVisualStyleBackColor = true;
@@ -1030,7 +1030,7 @@
             this.MiscTimings.Location = new System.Drawing.Point(4, 22);
             this.MiscTimings.Name = "MiscTimings";
             this.MiscTimings.Padding = new System.Windows.Forms.Padding(3);
-            this.MiscTimings.Size = new System.Drawing.Size(319, 234);
+            this.MiscTimings.Size = new System.Drawing.Size(320, 234);
             this.MiscTimings.TabIndex = 0;
             this.MiscTimings.Text = "RGH1, RGH2, R-JTOP";
             // 
@@ -1041,7 +1041,7 @@
             this.RjtopGroup.Location = new System.Drawing.Point(162, 93);
             this.RjtopGroup.Name = "RjtopGroup";
             this.RjtopGroup.Size = new System.Drawing.Size(151, 66);
-            this.RjtopGroup.TabIndex = 3;
+            this.RjtopGroup.TabIndex = 2;
             this.RjtopGroup.TabStop = false;
             this.RjtopGroup.Text = "R-JTOP Rev-C/Matrix";
             this.RjtopGroup.Enter += new System.EventHandler(this.enterRjtop);
@@ -1073,7 +1073,7 @@
             this.label3.Location = new System.Drawing.Point(6, 180);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 51);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 97;
             this.label3.Text = "Suggested Timings:\r\n69.3 0.3,  69.3 0.5,  69.3 0.6";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1082,7 +1082,7 @@
             this.label4.Location = new System.Drawing.Point(162, 158);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(151, 72);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 98;
             this.label4.Text = "Zephyr RGH2 uses Falcon\r\nbootloaders, automatically\r\nswitched when building\r\n\r\nR-" +
     "JTOP requires JTAG wiring";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1095,7 +1095,7 @@
             this.Rgh1Group.Location = new System.Drawing.Point(162, 3);
             this.Rgh1Group.Name = "Rgh1Group";
             this.Rgh1Group.Size = new System.Drawing.Size(151, 89);
-            this.Rgh1Group.TabIndex = 2;
+            this.Rgh1Group.TabIndex = 1;
             this.Rgh1Group.TabStop = false;
             this.Rgh1Group.Text = "RGH1 Rev-C/Matrix";
             this.Rgh1Group.Enter += new System.EventHandler(this.enterRgh1);
@@ -1154,7 +1154,7 @@
             this.ZephyrRgh2Group.Location = new System.Drawing.Point(6, 3);
             this.ZephyrRgh2Group.Name = "ZephyrRgh2Group";
             this.ZephyrRgh2Group.Size = new System.Drawing.Size(151, 177);
-            this.ZephyrRgh2Group.TabIndex = 1;
+            this.ZephyrRgh2Group.TabIndex = 0;
             this.ZephyrRgh2Group.TabStop = false;
             this.ZephyrRgh2Group.Text = "Zephyr RGH2 X360ACE";
             this.ZephyrRgh2Group.Enter += new System.EventHandler(this.enterZephyrRgh2);
@@ -1337,10 +1337,10 @@
             // 
             // btnAss
             // 
-            this.btnAss.Location = new System.Drawing.Point(225, 265);
+            this.btnAss.Location = new System.Drawing.Point(228, 269);
             this.btnAss.Name = "btnAss";
             this.btnAss.Size = new System.Drawing.Size(106, 23);
-            this.btnAss.TabIndex = 12;
+            this.btnAss.TabIndex = 82;
             this.btnAss.Text = "Timing Assistant";
             this.btnAss.UseVisualStyleBackColor = true;
             this.btnAss.Click += new System.EventHandler(this.btnAss_Click);
@@ -1350,13 +1350,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.btnAss);
             this.Controls.Add(this.TimingTabs);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnProgram);
             this.Name = "XSVFChoice";
-            this.Size = new System.Drawing.Size(340, 296);
+            this.Size = new System.Drawing.Size(342, 298);
             this.TimingTabs.ResumeLayout(false);
             this.Rgh12Timings.ResumeLayout(false);
             this.Rgh12TcSelectGroup.ResumeLayout(false);

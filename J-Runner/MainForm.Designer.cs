@@ -162,10 +162,10 @@ namespace JRunner
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnExit.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExit.Location = new System.Drawing.Point(568, 547);
+            this.btnExit.Location = new System.Drawing.Point(567, 550);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(82, 26);
-            this.btnExit.TabIndex = 28;
+            this.btnExit.Size = new System.Drawing.Size(85, 26);
+            this.btnExit.TabIndex = 298;
             this.btnExit.Text = "Exit";
             this.toolTip1.SetToolTip(this.btnExit, "Exit the application");
             this.btnExit.UseVisualStyleBackColor = true;
@@ -173,11 +173,10 @@ namespace JRunner
             // 
             // comparebutton
             // 
-            this.comparebutton.Location = new System.Drawing.Point(388, 13);
+            this.comparebutton.Location = new System.Drawing.Point(390, 13);
             this.comparebutton.Name = "comparebutton";
             this.comparebutton.Size = new System.Drawing.Size(65, 51);
-            this.comparebutton.TabIndex = 17;
-            this.comparebutton.TabStop = false;
+            this.comparebutton.TabIndex = 24;
             this.comparebutton.Text = "Nand Compare";
             this.toolTip1.SetToolTip(this.comparebutton, "Compares the source and extra nands");
             this.comparebutton.UseVisualStyleBackColor = true;
@@ -188,8 +187,7 @@ namespace JRunner
             this.btnLoadFile2.Location = new System.Drawing.Point(7, 42);
             this.btnLoadFile2.Name = "btnLoadFile2";
             this.btnLoadFile2.Size = new System.Drawing.Size(76, 22);
-            this.btnLoadFile2.TabIndex = 18;
-            this.btnLoadFile2.TabStop = false;
+            this.btnLoadFile2.TabIndex = 22;
             this.btnLoadFile2.Text = "Load Extra";
             this.toolTip1.SetToolTip(this.btnLoadFile2, "Load an extra nand for comparison");
             this.btnLoadFile2.UseVisualStyleBackColor = true;
@@ -200,8 +198,7 @@ namespace JRunner
             this.btnLoadFile1.Location = new System.Drawing.Point(7, 13);
             this.btnLoadFile1.Name = "btnLoadFile1";
             this.btnLoadFile1.Size = new System.Drawing.Size(76, 22);
-            this.btnLoadFile1.TabIndex = 15;
-            this.btnLoadFile1.TabStop = false;
+            this.btnLoadFile1.TabIndex = 20;
             this.btnLoadFile1.Text = "Load Source";
             this.toolTip1.SetToolTip(this.btnLoadFile1, "Load the primary working nand");
             this.btnLoadFile1.UseVisualStyleBackColor = true;
@@ -215,8 +212,8 @@ namespace JRunner
             this.txtFilePath2.Location = new System.Drawing.Point(89, 43);
             this.txtFilePath2.Name = "txtFilePath2";
             this.txtFilePath2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtFilePath2.Size = new System.Drawing.Size(293, 20);
-            this.txtFilePath2.TabIndex = 19;
+            this.txtFilePath2.Size = new System.Drawing.Size(295, 20);
+            this.txtFilePath2.TabIndex = 23;
             this.toolTip1.SetToolTip(this.txtFilePath2, "The file listed in this box is used to compare against file loaded in \"Source fil" +
         "e\" box\r\n");
             this.txtFilePath2.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtFilePath2_DragDrop);
@@ -229,8 +226,8 @@ namespace JRunner
             this.txtFilePath1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFilePath1.Location = new System.Drawing.Point(89, 14);
             this.txtFilePath1.Name = "txtFilePath1";
-            this.txtFilePath1.Size = new System.Drawing.Size(293, 20);
-            this.txtFilePath1.TabIndex = 16;
+            this.txtFilePath1.Size = new System.Drawing.Size(295, 20);
+            this.txtFilePath1.TabIndex = 21;
             this.toolTip1.SetToolTip(this.txtFilePath1, "The file in this box is used for all read/write/create operations.\r\nif you use th" +
         "e functions above out of order, ensure your required\r\nfile is loaded into this b" +
         "ox first.");
@@ -247,7 +244,7 @@ namespace JRunner
             this.txtConsole.Name = "txtConsole";
             this.txtConsole.ReadOnly = true;
             this.txtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtConsole.Size = new System.Drawing.Size(462, 252);
+            this.txtConsole.Size = new System.Drawing.Size(462, 253);
             this.txtConsole.TabIndex = 22;
             this.txtConsole.TabStop = false;
             this.txtConsole.DoubleClick += new System.EventHandler(this.txtConsole_DoubleClick);
@@ -260,8 +257,8 @@ namespace JRunner
             this.txtCPUKey.Location = new System.Drawing.Point(89, 72);
             this.txtCPUKey.MaxLength = 32;
             this.txtCPUKey.Name = "txtCPUKey";
-            this.txtCPUKey.Size = new System.Drawing.Size(293, 20);
-            this.txtCPUKey.TabIndex = 20;
+            this.txtCPUKey.Size = new System.Drawing.Size(295, 20);
+            this.txtCPUKey.TabIndex = 25;
             this.toolTip1.SetToolTip(this.txtCPUKey, "This is where your CPU key should be entered. You can drag and drop previously sa" +
         "ved cpukey.txt or paste in your CPU Key details.");
             this.txtCPUKey.TextChanged += new System.EventHandler(this.txtCPUKey_TextChanged);
@@ -294,10 +291,10 @@ namespace JRunner
             this.groupBox8.Controls.Add(this.btnIPGetCPU);
             this.groupBox8.Controls.Add(this.labelIP);
             this.groupBox8.Controls.Add(this.txtIP);
-            this.groupBox8.Location = new System.Drawing.Point(656, 480);
+            this.groupBox8.Location = new System.Drawing.Point(656, 483);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(165, 66);
-            this.groupBox8.TabIndex = 73;
+            this.groupBox8.TabIndex = 299;
             this.groupBox8.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox8, "If you connect your Xbox 360 to your PC using a network cable, \r\nOnce booted with" +
         " Xellous or Xell-Reloaded place the displayed IP address in\r\nthe box and retriev" +
@@ -315,7 +312,7 @@ namespace JRunner
             this.btnIPGetCPU.Name = "btnIPGetCPU";
             this.btnIPGetCPU.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnIPGetCPU.Size = new System.Drawing.Size(153, 26);
-            this.btnIPGetCPU.TabIndex = 26;
+            this.btnIPGetCPU.TabIndex = 11;
             this.btnIPGetCPU.Text = "Get CPU Key";
             this.toolTip1.SetToolTip(this.btnIPGetCPU, "Tries to retrieve the CPU Key and Fuses from XeLL using the IP above");
             this.btnIPGetCPU.UseVisualStyleBackColor = true;
@@ -346,7 +343,7 @@ namespace JRunner
             // labelIP
             // 
             this.labelIP.AutoSize = true;
-            this.labelIP.Location = new System.Drawing.Point(8, 14);
+            this.labelIP.Location = new System.Drawing.Point(4, 15);
             this.labelIP.Name = "labelIP";
             this.labelIP.Size = new System.Drawing.Size(20, 13);
             this.labelIP.TabIndex = 5;
@@ -354,19 +351,18 @@ namespace JRunner
             // 
             // txtIP
             // 
-            this.txtIP.Location = new System.Drawing.Point(34, 11);
+            this.txtIP.Location = new System.Drawing.Point(29, 12);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(124, 20);
-            this.txtIP.TabIndex = 5;
+            this.txtIP.Size = new System.Drawing.Size(129, 20);
+            this.txtIP.TabIndex = 10;
             this.txtIP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtIP_KeyUp);
             // 
             // btnScanner
             // 
-            this.btnScanner.Location = new System.Drawing.Point(662, 547);
+            this.btnScanner.Location = new System.Drawing.Point(662, 550);
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(153, 26);
-            this.btnScanner.TabIndex = 29;
-            this.btnScanner.TabStop = false;
+            this.btnScanner.TabIndex = 300;
             this.btnScanner.Text = "Scan IP";
             this.toolTip1.SetToolTip(this.btnScanner, "Scans the IP range looking for XeLL to retrieve the CPU Key and Fuses");
             this.btnScanner.UseVisualStyleBackColor = true;
@@ -375,11 +371,10 @@ namespace JRunner
             // btnInit
             // 
             this.btnInit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInit.Location = new System.Drawing.Point(388, 71);
+            this.btnInit.Location = new System.Drawing.Point(390, 71);
             this.btnInit.Name = "btnInit";
             this.btnInit.Size = new System.Drawing.Size(65, 22);
-            this.btnInit.TabIndex = 21;
-            this.btnInit.TabStop = false;
+            this.btnInit.TabIndex = 26;
             this.btnInit.Text = "Reload";
             this.toolTip1.SetToolTip(this.btnInit, "Reloads and initializes the nand in source box");
             this.btnInit.UseVisualStyleBackColor = true;
@@ -387,11 +382,10 @@ namespace JRunner
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(567, 516);
+            this.btnSettings.Location = new System.Drawing.Point(567, 519);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(83, 26);
-            this.btnSettings.TabIndex = 25;
-            this.btnSettings.TabStop = false;
+            this.btnSettings.Size = new System.Drawing.Size(85, 26);
+            this.btnSettings.TabIndex = 296;
             this.btnSettings.Text = "Settings";
             this.toolTip1.SetToolTip(this.btnSettings, "Edit settings and behavior");
             this.btnSettings.UseVisualStyleBackColor = true;
@@ -399,11 +393,10 @@ namespace JRunner
             // 
             // btnNewSession
             // 
-            this.btnNewSession.Location = new System.Drawing.Point(480, 516);
+            this.btnNewSession.Location = new System.Drawing.Point(478, 519);
             this.btnNewSession.Name = "btnNewSession";
-            this.btnNewSession.Size = new System.Drawing.Size(83, 26);
-            this.btnNewSession.TabIndex = 24;
-            this.btnNewSession.TabStop = false;
+            this.btnNewSession.Size = new System.Drawing.Size(85, 26);
+            this.btnNewSession.TabIndex = 295;
             this.btnNewSession.Text = "New Session";
             this.toolTip1.SetToolTip(this.btnNewSession, "Closes the current nand and starts a new session");
             this.btnNewSession.UseVisualStyleBackColor = true;
@@ -417,10 +410,10 @@ namespace JRunner
             this.btnShowWorkingFolder.DropDownContextMenu = this.showWorkingFolderMenu;
             this.btnShowWorkingFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnShowWorkingFolder.Image")));
             this.btnShowWorkingFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnShowWorkingFolder.Location = new System.Drawing.Point(480, 485);
+            this.btnShowWorkingFolder.Location = new System.Drawing.Point(478, 488);
             this.btnShowWorkingFolder.Name = "btnShowWorkingFolder";
-            this.btnShowWorkingFolder.Size = new System.Drawing.Size(170, 26);
-            this.btnShowWorkingFolder.TabIndex = 23;
+            this.btnShowWorkingFolder.Size = new System.Drawing.Size(174, 26);
+            this.btnShowWorkingFolder.TabIndex = 294;
             this.btnShowWorkingFolder.Text = "Show Working Folder";
             this.toolTip1.SetToolTip(this.btnShowWorkingFolder, "Shows the working folder in Windows Explorer");
             this.btnShowWorkingFolder.UseVisualStyleBackColor = true;
@@ -452,10 +445,10 @@ namespace JRunner
             // 
             this.btnRestart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnRestart.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRestart.Location = new System.Drawing.Point(480, 547);
+            this.btnRestart.Location = new System.Drawing.Point(478, 550);
             this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(83, 26);
-            this.btnRestart.TabIndex = 27;
+            this.btnRestart.Size = new System.Drawing.Size(85, 26);
+            this.btnRestart.TabIndex = 297;
             this.btnRestart.Text = "Restart";
             this.toolTip1.SetToolTip(this.btnRestart, "Completely restarts the application");
             this.btnRestart.UseVisualStyleBackColor = true;
@@ -480,8 +473,8 @@ namespace JRunner
             this.groupBox4.Controls.Add(this.txtCPUKey);
             this.groupBox4.Location = new System.Drawing.Point(12, 192);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(460, 101);
-            this.groupBox4.TabIndex = 67;
+            this.groupBox4.Size = new System.Drawing.Size(462, 101);
+            this.groupBox4.TabIndex = 21;
             this.groupBox4.TabStop = false;
             // 
             // statusStrip1
@@ -618,8 +611,8 @@ namespace JRunner
             // 
             this.pnlInfo.Location = new System.Drawing.Point(479, 186);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(342, 294);
-            this.pnlInfo.TabIndex = 79;
+            this.pnlInfo.Size = new System.Drawing.Size(342, 298);
+            this.pnlInfo.TabIndex = 23;
             // 
             // txtBlocks
             // 
@@ -646,15 +639,15 @@ namespace JRunner
             // 
             this.pnlTools.Location = new System.Drawing.Point(9, 25);
             this.pnlTools.Name = "pnlTools";
-            this.pnlTools.Size = new System.Drawing.Size(463, 173);
-            this.pnlTools.TabIndex = 84;
+            this.pnlTools.Size = new System.Drawing.Size(465, 173);
+            this.pnlTools.TabIndex = 20;
             // 
             // pnlExtra
             // 
             this.pnlExtra.Location = new System.Drawing.Point(479, 25);
             this.pnlExtra.Name = "pnlExtra";
             this.pnlExtra.Size = new System.Drawing.Size(342, 156);
-            this.pnlExtra.TabIndex = 85;
+            this.pnlExtra.TabIndex = 22;
             // 
             // toolsToolStripMenuItem
             // 
