@@ -825,7 +825,7 @@ namespace JRunner
 
             if (Process.GetProcessesByName("jtag").Length > 0)
             {
-                Console.WriteLine("xFlasher: SVF software is already running, Can Not Continue");
+                Console.WriteLine("xFlasher: SVF software is already running!");
                 return;
             }
 
