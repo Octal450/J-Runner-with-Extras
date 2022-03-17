@@ -92,7 +92,8 @@ namespace JRunner
 
         void button1_Click(object sender, System.EventArgs e)
         {
-            Console.WriteLine((this.heResult().Text + " Manually Selected"));
+            string ct = this.heResult().Text;
+            if (!String.IsNullOrWhiteSpace(ct)) Console.WriteLine(ct + " Manually Selected");
             this.heResult();
             this.Close();
         }
