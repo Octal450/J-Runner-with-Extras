@@ -1308,7 +1308,7 @@ namespace JRunner
             {
                 MyUsbDevice = OpenDevice();
 
-                if (MyUsbDevice == null) { Console.WriteLine("Device not found."); return Errors.DeviceNotFound; }
+                if (MyUsbDevice == null) { Console.WriteLine("Device Not Found"); return Errors.DeviceNotFound; }
                 if (!jrp) { return xsvfwrite(filename, MyUsbDevice); }
                 UsbEndpointReader reader = MyUsbDevice.OpenEndpointReader(ReadEndpointID.Ep02);
                 UsbEndpointWriter writer = MyUsbDevice.OpenEndpointWriter(WriteEndpointID.Ep05);
@@ -1316,7 +1316,7 @@ namespace JRunner
 
                 if (sendXSVF(x64_id, MyUsbDevice, writer) == 1)
                 {
-                    Console.WriteLine("Xilinx XC2C64A ......... [DETECTED]");
+                    Console.WriteLine("Xilinx XC2C64A Detected");
                     if (!Oper.ByteArrayCompare(Oper.returnportion(x64_id, 0x13, 9), Oper.returnportion(File.ReadAllBytes(filename), 0x1C, 9)))
                     {
                         Console.WriteLine("Unsupported XSVF file");
@@ -1325,7 +1325,7 @@ namespace JRunner
                 }
                 else if (sendXSVF(x32_id, MyUsbDevice, writer) == 1)
                 {
-                    Console.WriteLine("Xilinx XC2C32A ......... [DETECTED]");
+                    Console.WriteLine("Xilinx XC2C32A Detected");
                     if (!Oper.ByteArrayCompare(Oper.returnportion(x32_id, 0x13, 9), Oper.returnportion(File.ReadAllBytes(filename), 0x1C, 9)))
                     {
                         Console.WriteLine("Unsupported XSVF file");
@@ -1334,7 +1334,7 @@ namespace JRunner
                 }
                 else if (sendXSVF(x128_id, MyUsbDevice, writer) == 1)
                 {
-                    Console.WriteLine("Xilinx XC2C128 ......... [DETECTED]");
+                    Console.WriteLine("Xilinx XC2C128 Detected");
                     if (sendXSVF(protected_id, MyUsbDevice, writer) == 1)
                     {
                         //Console.WriteLine("Protection check");
@@ -1351,7 +1351,7 @@ namespace JRunner
                 }
                 else if (sendXSVF(x256_id, MyUsbDevice, writer) == 1)
                 {
-                    Console.WriteLine("Xilinx XC2C256 ......... [DETECTED]");
+                    Console.WriteLine("Xilinx XC2C256 Detected");
                     if (!Oper.ByteArrayCompare(Oper.returnportion(x256_id, 0x13, 9), Oper.returnportion(File.ReadAllBytes(filename), 0x1C, 9)))
                     {
                         Console.WriteLine("Unsupported XSVF file");
@@ -1360,7 +1360,7 @@ namespace JRunner
                 }
                 else
                 {
-                    Console.WriteLine("Xilinx Device ..... [NOT DETECTED]");
+                    Console.WriteLine("Xilinx Device Not Detect");
                     return Errors.DeviceNotFound;
                 }
                 if (sendErase(MyUsbDevice) == 0)
@@ -1372,7 +1372,7 @@ namespace JRunner
                     Console.WriteLine("Erase Succeeded");
 
                 Console.WriteLine("File: " + Path.GetFileName(filename));
-                Console.WriteLine("Sending Out Packets .........");
+                Console.WriteLine("Sending Out Packets...");
 
                 if (sendcode(filename, MyUsbDevice, writer) == 1)
                 {
@@ -1381,7 +1381,7 @@ namespace JRunner
                 }
                 else
                 {
-                    Console.WriteLine("Write Failed!");
+                    Console.WriteLine("Write Failed");
                 }
                 return Errors.GeneralError;
             }
@@ -1572,12 +1572,14 @@ namespace JRunner
                     UpdateBloc((i / 64).ToString());
                     i += 64;
                 }										//	already on a cmd
-                if (Status[0] == 0x22)
-                {																	// status = 0x22  xsvf_ok  good!
+                if (Status[0] == 0x22) // status = 0x22  xsvf_ok  good!
+                {
+                    UpdateBloc("");
                     return 1;
                 }
 
             }
+            UpdateBloc("");
             return 0;
         }
 
