@@ -46,7 +46,6 @@ namespace JRunner.Forms
 
         private void ConsoleSelect_Load(object sender, EventArgs e)
         {
-            Console.WriteLine(this.Height);
             if (sel == Selected.BigBlock || sel == Selected.Slim)
             {
                 btnFalcon.Enabled = false;
