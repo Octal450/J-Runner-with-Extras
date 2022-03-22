@@ -8,7 +8,7 @@ namespace JRunner.Nand
     {
         public string _flashconfig = "";
         public string _filename = "";
-        public consoles _console = variables.cunts[0];
+        public consoles _console = variables.ctypes[0];
         public List<int> _badBlocks = new List<int>();
 
         public VNand(string filename, consoles c)

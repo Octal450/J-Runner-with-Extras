@@ -33,7 +33,7 @@ namespace JRunner.Nand
         private void CB_Fuse_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
-            foreach (JRunner.consoles c in JRunner.variables.cunts)
+            foreach (JRunner.consoles c in JRunner.variables.ctypes)
             {
                 if (c.ID == -1 || c.ID == 9 || c.ID == 11 || c.ID == 5 || c.ID == 6 || c.ID == 7) continue;
                 ListViewGroup lvg = new ListViewGroup(c.Text, c.Text);

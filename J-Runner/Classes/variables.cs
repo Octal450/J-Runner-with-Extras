@@ -153,7 +153,7 @@ namespace JRunner
         /// <summary>
         /// console types
         /// </summary>
-        public static consoles[] cunts = {
+        public static consoles[] ctypes = {
             new consoles(-1, "", "", "", -1, Nandsize.S0, -1),
             new consoles(1, "trinity", "trinity", "Trinity", 16, Nandsize.S16, 1),
             new consoles(2, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0),
@@ -266,7 +266,7 @@ namespace JRunner
             testkit,
             testkit16
         }
-        public static consoles ctyp = cunts[0];
+        public static consoles ctyp = ctypes[0];
         public static hacktypes ttyp = hacktypes.retail;
         public static string xePath = (Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\xeBuild\data\");
         public static string update_path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"xeBuild\");

@@ -5,12 +5,11 @@ namespace JRunner
 {
     public partial class ConsoleTypes : Form
     {
-        consoles hresult = variables.cunts[0];
+        consoles hresult = variables.ctypes[0];
         public enum Selected
         {
             All,
             AllX,
-            JTAG,
             BigBlock,
             Slim,
             None
@@ -28,58 +27,56 @@ namespace JRunner
             btnCancel.DialogResult = DialogResult.Cancel;
         }
 
-
         public consoles heResult()
         {
             if (radiobtnTrinity.Checked)
             {
-                hresult = variables.cunts[1];
+                hresult = variables.ctypes[1];
             }
             else if (radiobtnFalcon.Checked)
             {
-                hresult = variables.cunts[2];
+                hresult = variables.ctypes[2];
             }
             else if (radiobtnZephyr.Checked)
             {
-                hresult = variables.cunts[3];
+                hresult = variables.ctypes[3];
             }
             else if (radiobtnJasper.Checked)
             {
-                hresult = variables.cunts[4];
+                hresult = variables.ctypes[4];
             }
             else if (radiobtnJasperSB.Checked)
             {
-                hresult = variables.cunts[5];
+                hresult = variables.ctypes[5];
             }
             else if (radiobtnJasper256.Checked)
             {
-                hresult = variables.cunts[6];
+                hresult = variables.ctypes[6];
             }
             else if (radiobtnJasper512.Checked)
             {
-                hresult = variables.cunts[7];
+                hresult = variables.ctypes[7];
             }
             else if (radiobtnXenon.Checked)
             {
-                hresult = variables.cunts[8];
+                hresult = variables.ctypes[8];
             }
             else if (radiobtnCorona.Checked)
             {
-                hresult = variables.cunts[10];
+                hresult = variables.ctypes[10];
             }
             else if (radiobtnCorona4gb.Checked)
             {
-                hresult = variables.cunts[11];
+                hresult = variables.ctypes[11];
             }
             else if (radiobtnTrinityBB.Checked)
             {
-                hresult = variables.cunts[12];
+                hresult = variables.ctypes[12];
             }
-            else hresult = variables.cunts[0];
+            else hresult = variables.ctypes[0];
 
             return hresult;
         }
-
 
         public bool fulldump()
         {
@@ -90,14 +87,14 @@ namespace JRunner
             return checkBox2MB.Checked;
         }
 
-        void button1_Click(object sender, System.EventArgs e)
+        void btnOk_Click(object sender, System.EventArgs e)
         {
             string ct = this.heResult().Text;
             if (!String.IsNullOrWhiteSpace(ct)) Console.WriteLine(ct + " Manually Selected");
             this.heResult();
             this.Close();
         }
-        void button2_Click(object sender, System.EventArgs e)
+        void btnCancel_Click(object sender, System.EventArgs e)
         {
             this.Close();
         }
@@ -130,13 +127,6 @@ namespace JRunner
                     radiobtnJasper256.Enabled = false;
                     radiobtnJasper512.Enabled = false;
                 }
-            }
-            else if (sel == Selected.JTAG)
-            {
-                radiobtnTrinity.Enabled = false;
-                radiobtnTrinityBB.Enabled = false;
-                radiobtnCorona.Enabled = false;
-                radiobtnCorona4gb.Enabled = false;
             }
             else if (sel == Selected.AllX)
             {

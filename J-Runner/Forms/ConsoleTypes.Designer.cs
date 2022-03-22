@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsoleTypes));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radiobtnTrinity = new System.Windows.Forms.RadioButton();
@@ -41,13 +40,8 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.fulldumpbox = new System.Windows.Forms.CheckBox();
-            this.linkLabelHelp = new System.Windows.Forms.LinkLabel();
             this.radiobtnXenon = new System.Windows.Forms.RadioButton();
             this.checkBox2MB = new System.Windows.Forms.CheckBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
             this.chkAdv = new System.Windows.Forms.CheckBox();
             this.radiobtnCorona = new System.Windows.Forms.RadioButton();
             this.radiobtnCorona4gb = new System.Windows.Forms.RadioButton();
@@ -101,7 +95,6 @@
             this.radiobtnJasper256.Size = new System.Drawing.Size(93, 17);
             this.radiobtnJasper256.TabIndex = 5;
             this.radiobtnJasper256.Text = "Jasper 256MB";
-            this.toolTip2.SetToolTip(this.radiobtnJasper256, "Without additional selection of boxes - this will dump first 64Mb of Nand Only!");
             this.radiobtnJasper256.UseVisualStyleBackColor = true;
             // 
             // radiobtnJasperSB
@@ -133,7 +126,6 @@
             this.radiobtnJasper512.Size = new System.Drawing.Size(93, 17);
             this.radiobtnJasper512.TabIndex = 6;
             this.radiobtnJasper512.Text = "Jasper 512MB";
-            this.toolTip2.SetToolTip(this.radiobtnJasper512, "Without additional selection of boxes - this will dump first 64Mb of Nand Only!");
             this.radiobtnJasper512.UseVisualStyleBackColor = true;
             // 
             // btnOk
@@ -144,7 +136,7 @@
             this.btnOk.TabIndex = 9;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.button1_Click);
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
@@ -155,7 +147,7 @@
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // fulldumpbox
             // 
@@ -165,20 +157,8 @@
             this.fulldumpbox.Size = new System.Drawing.Size(73, 17);
             this.fulldumpbox.TabIndex = 11;
             this.fulldumpbox.Text = "Full Dump";
-            this.toolTip3.SetToolTip(this.fulldumpbox, "Selecting this will allow FULL dumps of the 256 or 512 nands");
             this.fulldumpbox.UseVisualStyleBackColor = true;
             this.fulldumpbox.CheckedChanged += new System.EventHandler(this.fulldumpbox_CheckedChanged);
-            // 
-            // linkLabelHelp
-            // 
-            this.linkLabelHelp.AutoSize = true;
-            this.linkLabelHelp.Location = new System.Drawing.Point(183, 2);
-            this.linkLabelHelp.Name = "linkLabelHelp";
-            this.linkLabelHelp.Size = new System.Drawing.Size(29, 13);
-            this.linkLabelHelp.TabIndex = 12;
-            this.linkLabelHelp.TabStop = true;
-            this.linkLabelHelp.Text = "Help";
-            this.linkLabelHelp.Click += new System.EventHandler(this.linkLabel1_Click);
             // 
             // radiobtnXenon
             // 
@@ -198,7 +178,6 @@
             this.checkBox2MB.Size = new System.Drawing.Size(79, 17);
             this.checkBox2MB.TabIndex = 14;
             this.checkBox2MB.Text = "2MB Dump";
-            this.toolTip1.SetToolTip(this.checkBox2MB, resources.GetString("checkBox2MB.ToolTip"));
             this.checkBox2MB.UseVisualStyleBackColor = true;
             this.checkBox2MB.Visible = false;
             this.checkBox2MB.CheckedChanged += new System.EventHandler(this.checkBox2MB_CheckedChanged);
@@ -253,7 +232,6 @@
             this.AutoSize = true;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(287, 296);
-            this.ControlBox = false;
             this.Controls.Add(this.radiobtnTrinityBB);
             this.Controls.Add(this.radiobtnJasperSB);
             this.Controls.Add(this.radiobtnCorona4gb);
@@ -261,7 +239,6 @@
             this.Controls.Add(this.chkAdv);
             this.Controls.Add(this.checkBox2MB);
             this.Controls.Add(this.radiobtnXenon);
-            this.Controls.Add(this.linkLabelHelp);
             this.Controls.Add(this.fulldumpbox);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
@@ -272,23 +249,18 @@
             this.Controls.Add(this.radiobtnFalcon);
             this.Controls.Add(this.radiobtnTrinity);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ConsoleTypes";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Select Motherboard";
-            this.toolTip4.SetToolTip(this, "Choose your motherboard type. If you are unsure of your type\r\nthen use the \"Get m" +
-        "b Type\" in \"Tools\" menu.\r\n (the Nand-x is required to be connected)");
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Select Console Type";
             this.Load += new System.EventHandler(this.ConsoleTypes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        void linkLabel1_Click(object sender, System.EventArgs e)
-        {
-            PictureViewer newform = new PictureViewer(variables.xmodel);
-            newform.Show();
         }
         #endregion
 
@@ -303,13 +275,8 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.CheckBox fulldumpbox;
-        private System.Windows.Forms.LinkLabel linkLabelHelp;
         private System.Windows.Forms.RadioButton radiobtnXenon;
         private System.Windows.Forms.CheckBox checkBox2MB;
-        private System.Windows.Forms.ToolTip toolTip2;
-        private System.Windows.Forms.ToolTip toolTip3;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolTip toolTip4;
         private System.Windows.Forms.CheckBox chkAdv;
         private System.Windows.Forms.RadioButton radiobtnCorona;
         private System.Windows.Forms.RadioButton radiobtnCorona4gb;

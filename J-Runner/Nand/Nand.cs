@@ -1985,7 +1985,7 @@ namespace JRunner.Nand
             if (cons[6] == cons[7] && consl == 6) return "Jasper BB";
             if (cons[4] == cons[6] && cons[4] == cons[7] && consl == 4) return "Jasper";
 
-            return variables.cunts[consl].Text;
+            return variables.ctypes[consl].Text;
         }
         public static consoles getConsole(PrivateN nand, string flashconfig = "")
         {
@@ -2005,11 +2005,11 @@ namespace JRunner.Nand
                 else if (max == cons[i]) howmany++;
             }
             
-            if (cons[2] == cons[9] && consl == 2) return variables.cunts[2];
-            if (cons[6] == cons[7] && consl == 6) return variables.cunts[6];
-            if (cons[4] == cons[5] && cons[4] == cons[6] && cons[4] == cons[7] && consl == 4) return variables.cunts[0];
+            if (cons[2] == cons[9] && consl == 2) return variables.ctypes[2];
+            if (cons[6] == cons[7] && consl == 6) return variables.ctypes[6];
+            if (cons[4] == cons[5] && cons[4] == cons[6] && cons[4] == cons[7] && consl == 4) return variables.ctypes[0];
             
-            return variables.cunts[consl];
+            return variables.ctypes[consl];
         }
         public static int[] identifyConsole(PrivateN nand, string flashconfig = "")
         {

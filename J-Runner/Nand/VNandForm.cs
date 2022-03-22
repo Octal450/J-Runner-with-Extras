@@ -21,7 +21,7 @@ namespace JRunner.Nand
 
         private void VNandForm_Load(object sender, EventArgs e)
         {
-            foreach (consoles c in variables.cunts)
+            foreach (consoles c in variables.ctypes)
             {
                 if (c.ID == -1 || c.ID == 11) continue;
                 listBoxConsoles.Items.Add(c.Text);
@@ -77,7 +77,7 @@ namespace JRunner.Nand
         private void listBoxConsoles_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBoxConfigs.Items.Clear();
-            foreach (consoles c in variables.cunts)
+            foreach (consoles c in variables.ctypes)
             {
                 if (c.ID == -1) continue;
                 if (listBoxConsoles.Items[listBoxConsoles.SelectedIndex].ToString() == c.Text) console = c;

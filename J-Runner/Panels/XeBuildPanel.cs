@@ -1470,8 +1470,8 @@ namespace JRunner.Panels
             myNewForm.twombread = twomb;
             myNewForm.sfulldump = full;
             myNewForm.ShowDialog();
-            if (myNewForm.DialogResult == DialogResult.Cancel) return (variables.cunts[0]);
-            if (myNewForm.heResult().ID == -1) return variables.cunts[0];
+            if (myNewForm.DialogResult == DialogResult.Cancel) return (variables.ctypes[0]);
+            if (myNewForm.heResult().ID == -1) return variables.ctypes[0];
             variables.fulldump = myNewForm.fulldump();
             variables.twombread = myNewForm.twombdump();
             if (variables.debugme) Console.WriteLine("fulldump variable = {0}", variables.fulldump);
@@ -1594,12 +1594,12 @@ namespace JRunner.Panels
 
         private consoles getConsoleFromIni(string ini)
         {
-            foreach (consoles c in variables.cunts)
+            foreach (consoles c in variables.ctypes)
             {
                 if (c.ID == -1) continue;
                 if (ini == c.Ini) return c;
             }
-            return variables.cunts[0];
+            return variables.ctypes[0];
         }
 
         class CB
