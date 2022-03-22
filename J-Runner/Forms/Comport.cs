@@ -111,7 +111,10 @@ namespace JRunner.Forms
             if (cboPort.Text == "") return;
             try
             {
-                comm.OpenPort();
+                if (!comm.OpenPort())
+                {
+                    return;
+                }
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
 

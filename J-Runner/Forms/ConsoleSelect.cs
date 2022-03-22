@@ -46,6 +46,7 @@ namespace JRunner.Forms
 
         private void ConsoleSelect_Load(object sender, EventArgs e)
         {
+            Console.WriteLine(this.Height);
             if (sel == Selected.BigBlock || sel == Selected.Slim)
             {
                 btnFalcon.Enabled = false;
@@ -198,8 +199,16 @@ namespace JRunner.Forms
 
         private void advancedChk_CheckedChanged(object sender, EventArgs e)
         {
-            if (advancedChk.Checked) AdvancedBox.Visible = true;
-            else AdvancedBox.Visible = false;
+            if (advancedChk.Checked)
+            {
+                this.Height += 55;
+                AdvancedBox.Visible = true;
+            }
+            else
+            {
+                this.Height -= 55;
+                AdvancedBox.Visible = false;
+            }
         }
     }
 }

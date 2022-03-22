@@ -211,7 +211,7 @@ namespace JRunner.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 373);
+            this.ClientSize = new System.Drawing.Size(248, 318);
             this.Controls.Add(this.advancedChk);
             this.Controls.Add(this.AdvancedBox);
             this.Controls.Add(this.slimBox);

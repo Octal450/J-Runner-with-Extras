@@ -290,6 +290,11 @@ namespace CommPort
                 //return true
                 return true;
             }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("COM port could not be opened\n\nAnother application is currently using the selected port", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             catch (Exception ex)
             {
                 DisplayData(MessageType.Error, ex.Message);
