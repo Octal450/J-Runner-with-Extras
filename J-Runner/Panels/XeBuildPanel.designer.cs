@@ -280,6 +280,7 @@
             this.chk0Fuse.Text = "0 Fuse";
             this.toolTip1.SetToolTip(this.chk0Fuse, "Check if building for a 0 Fuse console");
             this.chk0Fuse.UseVisualStyleBackColor = true;
+            this.chk0Fuse.CheckedChanged += new System.EventHandler(this.chk0Fuse_CheckedChanged);
             // 
             // rbtnDevGL
             // 
@@ -498,7 +499,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(326, 110);
+            this.tabPage1.Size = new System.Drawing.Size(324, 110);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "XB Settings";
             // 
@@ -558,7 +559,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(326, 110);
+            this.tabPage3.Size = new System.Drawing.Size(324, 110);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Patches/Dashlaunch";
             // 
@@ -668,7 +669,7 @@
             this.tabUpdate.Location = new System.Drawing.Point(4, 22);
             this.tabUpdate.Name = "tabUpdate";
             this.tabUpdate.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUpdate.Size = new System.Drawing.Size(326, 110);
+            this.tabUpdate.Size = new System.Drawing.Size(324, 110);
             this.tabUpdate.TabIndex = 4;
             this.tabUpdate.Text = "Update Mode";
             // 
@@ -791,7 +792,7 @@
             this.tabClient.Location = new System.Drawing.Point(4, 22);
             this.tabClient.Name = "tabClient";
             this.tabClient.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClient.Size = new System.Drawing.Size(326, 110);
+            this.tabClient.Size = new System.Drawing.Size(324, 110);
             this.tabClient.TabIndex = 5;
             this.tabClient.Text = "Client Mode";
             // 

@@ -842,6 +842,12 @@ namespace JRunner.Panels
             else Console.WriteLine("Aud_Clamp Deselected");
         }
 
+        private void chk0Fuse_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk0Fuse.Checked) Console.WriteLine("0 Fuse Selected");
+            else Console.WriteLine("0 Fuse Deselected");
+        }
+
         private void btnGetMB_Click(object sender, EventArgs e)
         {
             Getmb();
