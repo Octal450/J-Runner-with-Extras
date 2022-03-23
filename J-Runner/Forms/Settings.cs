@@ -91,41 +91,21 @@ namespace JRunner.Forms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (variables.isVistaOrLater)
-            {
-                CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
-                openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtfolder.Text);
-                openDialog.RestoreDirectory = false;
-                openDialog.IsFolderPicker = true;
+            CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
+            openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtfolder.Text);
+            openDialog.RestoreDirectory = false;
+            openDialog.IsFolderPicker = true;
 
-                if (openDialog.ShowDialog() == CommonFileDialogResult.Ok)
-                {
-                    string path;
-                    if (string.Equals(Path.GetFileName(openDialog.FileName), "output", StringComparison.OrdinalIgnoreCase)) path = openDialog.FileName;
-                    else path = Path.Combine(openDialog.FileName, "output");
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    txtfolder.Text = path;
-                }
-            }
-            else
+            if (openDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                this.folderDialog.ShowNewFolderButton = true;
-                this.folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
-
-                if (folderDialog.ShowDialog() == DialogResult.OK)
+                string path;
+                if (string.Equals(Path.GetFileName(openDialog.FileName), "output", StringComparison.OrdinalIgnoreCase)) path = openDialog.FileName;
+                else path = Path.Combine(openDialog.FileName, "output");
+                if (!Directory.Exists(path))
                 {
-                    string path;
-                    if (string.Equals(Path.GetFileName(folderDialog.SelectedPath), "output", StringComparison.OrdinalIgnoreCase)) path = folderDialog.SelectedPath;
-                    else path = Path.Combine(folderDialog.SelectedPath, "output");
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    txtfolder.Text = path;
+                    Directory.CreateDirectory(path);
                 }
+                txtfolder.Text = path;
             }
         }
 

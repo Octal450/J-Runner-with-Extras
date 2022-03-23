@@ -418,17 +418,7 @@ namespace JRunner
                 WindowsIdentity identity = WindowsIdentity.GetCurrent();
                 WindowsPrincipal principal = new WindowsPrincipal(identity);
             }
-
-            if (Environment.OSVersion.Version.Major <= 5)
-            {
-                xflasher.svfPath = Path.Combine(Path.GetPathRoot(Environment.SystemDirectory), "TimingSvfTemp.svf"); // Required for Windows XP, will not work in Windows Vista and later
-                xflasher.svfRoot = Path.GetPathRoot(Environment.SystemDirectory);                                    // Even though it doesn't work on XP, lets keep this just in case we figure out how to make it work
-
-                Console.WriteLine("Support for Windows XP is limited, some features may not function correctly or at all");
-                Console.WriteLine("");
-            }
-
-            if (!firsttime)
+            else
             {
                 if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
                 {

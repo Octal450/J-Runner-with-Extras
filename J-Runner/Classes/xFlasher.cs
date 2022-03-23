@@ -40,19 +40,9 @@ namespace JRunner
         // Libraries
         public bool osCheck()
         {
-            if (Environment.OSVersion.Version.Major > 6) // Win 10+
+            if (Environment.OSVersion.Version.Major >= 6) // Vista and later
             {
                 return true;
-            }
-            else if (Environment.OSVersion.Version.Major == 6)
-            {
-                if (Environment.OSVersion.Version.Minor > 0) return true; // Win 7/8/8.1
-                else if (Environment.OSVersion.ServicePack == "Service Pack 2") return true; // Vista SP2
-                else // Vista RTM/SP1
-                {
-                    MessageBox.Show("This version of Windows is not supported\n\nxFlasher requires Microsoft Windows Vista Service Pack 2 or later", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
             }
             else // XP and older
             {

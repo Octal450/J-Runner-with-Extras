@@ -34,6 +34,12 @@ namespace JRunner
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
+                if (Environment.OSVersion.Version.Major < 6)
+                {
+                    MessageBox.Show("This version of Windows is not supported\n\nJ-Runner with Extras requires Microsoft Windows Vista or later", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (File.Exists(@"JRunner.exe.old"))
                 {
                     File.Delete(@"JRunner.exe.old");
