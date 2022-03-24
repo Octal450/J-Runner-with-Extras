@@ -2958,18 +2958,18 @@ namespace JRunner
             this.Text = "J-Runner with Extras";
         }
 
-        private void reportIssueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Issues issues = new Issues();
-            issues.ShowDialog();
-        }
-
         private void changelogToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             TextViewer tv = new TextViewer();
             tv.Show();
             tv.Location = new Point(Location.X + (Width - tv.Width) / 2, Location.Y + (Height - tv.Height) / 2);
             tv.LoadFile("Changelog.txt");
+        }
+
+        private void reportIssueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Issues issues = new Issues();
+            issues.ShowDialog();
         }
 
         private void shortcutsToolStripMenuItem_Click(object sender, EventArgs e)

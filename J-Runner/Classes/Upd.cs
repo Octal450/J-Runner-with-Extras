@@ -53,7 +53,7 @@ namespace JRunner
                                 {
                                     if (!int.TryParse(xml.Value, out minDeltaRevision))
                                     {
-                                        Upd.checkSuccess = false; // Defaults true
+                                        checkSuccess = false; // Defaults true
                                         throw new Exception(); // Cancel the rest and go to catch
                                     }
                                 }
@@ -61,7 +61,7 @@ namespace JRunner
                                 {
                                     if (!int.TryParse(xml.Value, out serverRevision))
                                     {
-                                        Upd.checkSuccess = false; // Defaults true
+                                        checkSuccess = false; // Defaults true
                                         throw new Exception(); // Cancel the rest and go to catch
                                     }
                                 }
@@ -91,13 +91,13 @@ namespace JRunner
 
                     if (serverRevision == 0) // If this happened we didn't get revision sucessfully, there is never revision 0
                     {
-                        Upd.checkSuccess = false; // Defaults true
+                        checkSuccess = false; // Defaults true
                     }
                 }
             }
             catch
             {
-                Upd.checkSuccess = false; // Defaults true
+                checkSuccess = false; // Defaults true
             }
             finally
             {
@@ -110,16 +110,16 @@ namespace JRunner
             Thread.Sleep(100);
             updateCheck.Dispose();
 
-            if (Upd.checkSuccess)
+            if (checkSuccess)
             {
                 if (variables.revision >= serverRevision) // Up to Date
                 {
-                    Upd.upToDate = true;
+                    upToDate = true;
                     Application.Run(new MainForm());
                 }
                 else
                 {
-                    Upd.upToDate = false;
+                    upToDate = false;
 
                     if (MessageBox.Show("Updates are available for J-Runner with Extras\n\n" + changelog + "\n\nWould you like to download and install the update?", "J-Runner with Extras", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
                     {
