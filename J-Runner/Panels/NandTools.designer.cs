@@ -41,7 +41,7 @@
             this.numericIterations = new System.Windows.Forms.NumericUpDown();
             this.pBoxDevice = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnTimingAssistant = new System.Windows.Forms.Button();
+            this.btnExtractFiles = new System.Windows.Forms.Button();
             this.btnCreateDonor = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -54,7 +54,7 @@
             // 
             // btnCPUDB
             // 
-            this.btnCPUDB.Location = new System.Drawing.Point(136, 106);
+            this.btnCPUDB.Location = new System.Drawing.Point(64, 106);
             this.btnCPUDB.Name = "btnCPUDB";
             this.btnCPUDB.Size = new System.Drawing.Size(65, 51);
             this.btnCPUDB.TabIndex = 29;
@@ -196,25 +196,25 @@
             this.pBoxDevice.TabStop = false;
             this.pBoxDevice.Click += new System.EventHandler(this.pBoxDevice_Click);
             // 
-            // btnTimingAssistant
+            // btnExtractFiles
             // 
-            this.btnTimingAssistant.Location = new System.Drawing.Point(64, 106);
-            this.btnTimingAssistant.Name = "btnTimingAssistant";
-            this.btnTimingAssistant.Size = new System.Drawing.Size(65, 51);
-            this.btnTimingAssistant.TabIndex = 28;
-            this.btnTimingAssistant.Text = "Timing Assistant";
-            this.toolTip1.SetToolTip(this.btnTimingAssistant, "Database of CPU Keys and Serial Numbers");
-            this.btnTimingAssistant.UseVisualStyleBackColor = true;
-            this.btnTimingAssistant.Click += new System.EventHandler(this.btnTimingAssistant_Click);
+            this.btnExtractFiles.Location = new System.Drawing.Point(208, 106);
+            this.btnExtractFiles.Name = "btnExtractFiles";
+            this.btnExtractFiles.Size = new System.Drawing.Size(65, 51);
+            this.btnExtractFiles.TabIndex = 28;
+            this.btnExtractFiles.Text = "Extract Files";
+            this.toolTip1.SetToolTip(this.btnExtractFiles, "Extracts the files from the source nand");
+            this.btnExtractFiles.UseVisualStyleBackColor = true;
+            this.btnExtractFiles.Click += new System.EventHandler(this.btnExtractFiles_Click);
             // 
             // btnCreateDonor
             // 
-            this.btnCreateDonor.Location = new System.Drawing.Point(208, 106);
+            this.btnCreateDonor.Location = new System.Drawing.Point(136, 106);
             this.btnCreateDonor.Name = "btnCreateDonor";
             this.btnCreateDonor.Size = new System.Drawing.Size(65, 51);
             this.btnCreateDonor.TabIndex = 30;
             this.btnCreateDonor.Text = "Create Donor Nand";
-            this.toolTip1.SetToolTip(this.btnCreateDonor, "Database of CPU Keys and Serial Numbers");
+            this.toolTip1.SetToolTip(this.btnCreateDonor, "Launches the Create Donor Nand Wizard");
             this.btnCreateDonor.UseVisualStyleBackColor = true;
             this.btnCreateDonor.Click += new System.EventHandler(this.btnCreateDonor_Click);
             // 
@@ -243,7 +243,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnTimingAssistant);
+            this.Controls.Add(this.btnExtractFiles);
             this.Controls.Add(this.btnCreateDonor);
             this.Controls.Add(this.btnCPUDB);
             this.Controls.Add(this.groupBox2);
@@ -278,7 +278,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnTimingAssistant;
+        private System.Windows.Forms.Button btnExtractFiles;
         private System.Windows.Forms.Button btnCreateDonor;
     }
 }

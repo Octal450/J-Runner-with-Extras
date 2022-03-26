@@ -91,9 +91,9 @@ namespace JRunner.Panels
             IterChange((int)numericIterations.Value);
         }
 
-        private void btnTimingAssistant_Click(object sender, EventArgs e)
+        private void btnExtractFiles_Click(object sender, EventArgs e)
         {
-            MainForm.mainForm.timingAssistant();
+            MainForm.mainForm.extractFilesFromNand();
         }
 
         private void btnCreateDonor_Click(object sender, EventArgs e)
