@@ -499,7 +499,9 @@ namespace JRunner.Forms
 
             if (File.Exists(smcConfPath))
             {
-                if (new FileInfo(smcConfPath).Length == 65536)
+                long smcConfLength = new FileInfo(smcConfPath).Length;
+
+                if (smcConfLength == 65536 || smcConfLength == 524288)
                 {
                     smcConfValid = true;
                 }

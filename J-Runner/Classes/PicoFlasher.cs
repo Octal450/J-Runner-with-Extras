@@ -407,19 +407,33 @@ namespace JRunner
                 uint flashconfig = getFlashConfig(serial);
                 if (flashconfig == 0)
                 {
-                    Console.WriteLine("Console Not Found");
-                    Console.WriteLine("");
                     CloseSerial(serial);
                     return;
                 }
 
                 uint flashsize = getFlashSize(flashconfig);
+
                 if (flashsize == 0)
                 {
                     Console.WriteLine("Unknown Flash Size");
                     Console.WriteLine("");
                     CloseSerial(serial);
                     return;
+                }
+
+                if (flashsize == 268435456 || flashsize == 536870912)
+                {
+                    DialogResult bbdr = MessageBox.Show("A big block nand has been detected\n\nDo you want to dump only the system partition? (recommended)", "Nand Dump Size", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    
+                    if (bbdr == DialogResult.Cancel)
+                    {
+                        CloseSerial(serial);
+                        return;
+                    }
+                    else if (bbdr == DialogResult.Yes)
+                    {
+                        flashsize = 67108864;
+                    }
                 }
 
                 for (int i = 0; i < iterations; i++)
