@@ -37,11 +37,9 @@ namespace JRunner.Forms
 
             AutoExtractcheckBox.Checked = variables.autoExtract;
             modderbut.Checked = variables.modder;
-            discordRPCEnable.Checked = variables.discordrpc;
+            
             timingOnKeypressEnable.Checked = variables.timingonkeypress;
-            minimizeToSystemTray.Checked = variables.minimizetotray;
             almovebut.Checked = !variables.allmove;
-            //if (MainForm.mainForm.device == 4 && variables.boardtype == null) buttonDeviceGroup.Visible = true;
             if (variables.soundcompare != "") chksuccom.Checked = true;
             if (variables.sounderror != "") chkerror.Checked = true;
             if (variables.soundsuccess != "") chksuccess.Checked = true;
@@ -167,28 +165,6 @@ namespace JRunner.Forms
             variables.modder = modderbut.Checked;
         }
 
-        private void discordRPCEnable_CheckedChanged(object sender, EventArgs e)
-        {
-            variables.discordrpc = discordRPCEnable.Checked;
-        }
-
-        private void discordRPCEnable_Click(object sender, EventArgs e)
-        {
-            DialogResult d;
-            if (variables.discordrpc)
-            {
-                d = MessageBox.Show("J-Runner must be restarted to enable DiscordRPC!" + Environment.NewLine + Environment.NewLine + "Do you want to restart J-Runner now?", "DiscordRPC", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
-            else
-            {
-                d = MessageBox.Show("J-Runner must be restarted to disable DiscordRPC!" + Environment.NewLine + Environment.NewLine + "Do you want to restart J-Runner now?", "DiscordRPC", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
-            if (d == DialogResult.Yes)
-            {
-                Application.Restart();
-            }
-        }
-
         private void timingOnKeypressEnable_CheckedChanged(object sender, EventArgs e)
         {
             variables.timingonkeypress = timingOnKeypressEnable.Checked;
@@ -245,11 +221,6 @@ namespace JRunner.Forms
                 variables.logtext = textDlg.Color;
                 MainForm.mainForm.updateLogColor();
             }
-        }
-
-        private void minimizeToSystemTray_CheckedChanged(object sender, EventArgs e)
-        {
-            variables.minimizetotray = minimizeToSystemTray.Checked;
         }
 
         private void SlimPreferSrgh_CheckedChanged(object sender, EventArgs e)

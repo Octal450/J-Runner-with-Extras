@@ -1,5 +1,4 @@
-﻿using DiscordRPC;
-using JRunner.Forms;
+﻿using JRunner.Forms;
 using LibUsbDotNet.DeviceNotify;
 using Microsoft.Win32;
 using RenameRegistryKey;
@@ -12,8 +11,6 @@ using System.IO;
 using System.Linq;
 using System.Management;
 using System.Media;
-using System.Net;
-using System.Net.Sockets;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text;
@@ -71,11 +68,6 @@ namespace JRunner
         public static bool usingVNand = false;
         Regex objAlphaPattern = new Regex("[a-fA-F0-9]{32}$");
         public NotifyIcon trayIcon = null;
-        // RPC
-        private static DiscordRpcClient rpcClient;
-        private bool rpcReady = false;
-        private string rpcDevice = "No Device";
-        private string rpcStatus = "No Device";
         #endregion
 
         #region Initialization
@@ -98,6 +90,17 @@ namespace JRunner
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Determine current Windows version
+            if (Environment.OSVersion.Version.Major >= 10) variables.currentOS = variables.Windows.Win10; // or 11
+            else if (Environment.OSVersion.Version.Major >= 6)
+            {
+                if (Environment.OSVersion.Version.Minor >= 3) variables.currentOS = variables.Windows.Win81;
+                if (Environment.OSVersion.Version.Minor == 2) variables.currentOS = variables.Windows.Win8;
+                if (Environment.OSVersion.Version.Minor == 1) variables.currentOS = variables.Windows.Win7;
+                else variables.currentOS = variables.Windows.Vista;
+            }
+            else if (Environment.OSVersion.Version.Major == 5 && Environment.OSVersion.Version.Minor == 1) variables.currentOS = variables.Windows.XP;
+
             mainForm = this;
             versionToolStripMenuItem.Text = "V" + variables.version;
 
@@ -146,12 +149,6 @@ namespace JRunner
             new Thread(on_load).Start();
 
             deviceinit();
-
-            if (variables.discordrpc)
-            {
-                rpcInit();
-                new Thread(new ThreadStart(this.rpcCheck)).Start();
-            }
             
             try
             {
@@ -440,114 +437,6 @@ namespace JRunner
             string file = Path.Combine(variables.pathforit, "Log.txt");
             File.AppendAllText(file, "\n" + txtConsole.Text);
         }
-
-        #region DiscordRPC
-
-        private void rpcInit()
-        {
-            rpcClient = new DiscordRpcClient("950072541622468618");
-            rpcClient.Initialize();
-            rpcClient.SetPresence(new RichPresence
-            {
-                Details = string.Concat(new object[]
-                {
-                    "Device: ",
-                    "Detecting..."
-                }),
-                State = string.Concat(new object[]
-                {
-                    "Status: ",
-                    "Detecting..."
-                }),
-                Assets = new Assets
-                {
-                    LargeImageKey = "j-runner",
-                    LargeImageText = "J-Runner with Extras",
-                    SmallImageText = "",
-                }
-            });
-            rpcReady = true;
-        }
-
-        private void rpcCheck()
-        {
-            while (rpcReady)
-            {
-                rpcUpdate();
-                Thread.Sleep(5000);
-            }
-        }
-
-        private void rpcUpdate()
-        {
-            if (DemoN.DemonDetected)
-            {
-                rpcDevice = "DemoN";
-            }
-            else if (device == DEVICE.NAND_X)
-            {
-                if (variables.mtxUsbMode) rpcDevice = "MTX USB";
-                else rpcDevice = "NAND-X";
-            }
-            else if (device == DEVICE.JR_PROGRAMMER)
-            {
-                rpcDevice = "JR-Programmer";
-            }
-            else if (device == DEVICE.XFLASHER_SPI)
-            {
-                rpcDevice = "xFlasher SPI";
-            }
-            else if (device == DEVICE.XFLASHER_EMMC)
-            {
-                rpcDevice = "xFlasher eMMC";
-            }
-            else
-            {
-                rpcDevice = "No Device";
-            }
-
-            if (device != 0)
-            {
-                if (variables.writing)
-                {
-                    rpcStatus = "Writing NAND";
-                }
-                else if (variables.reading)
-                {
-                    rpcStatus = "Reading NAND";
-                }
-                else
-                {
-                    rpcStatus = "Idle";
-                }
-            }
-            else
-            {
-                rpcStatus = "No Device";
-            }
-
-            rpcClient.SetPresence(new RichPresence
-            {
-                Details = string.Concat(new object[]
-                {
-                    "Device: ",
-                    rpcDevice
-                }),
-                State = string.Concat(new object[]
-                {
-                    "Status: ",
-                    rpcStatus
-                }),
-                Assets = new Assets
-                {
-                    LargeImageKey = "j-runner",
-                    LargeImageText = "J-Runner with Extras",
-                    SmallImageKey = ""
-                }
-            });
-        }
-
-        #endregion
 
         #endregion
 
@@ -4424,9 +4313,6 @@ namespace JRunner
                         case "Modder":
                             x.write(name, variables.modder.ToString());
                             break;
-                        case "DiscordRPC":
-                            x.write(name, variables.discordrpc.ToString());
-                            break;
                         case "TimingOnKeypress":
                             x.write(name, variables.timingonkeypress.ToString());
                             break;
@@ -4613,11 +4499,6 @@ namespace JRunner
                             bvalue = false;
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             variables.modder = bvalue;
-                            break;
-                        case "DiscordRPC":
-                            bvalue = true;
-                            if (!bool.TryParse(val, out bvalue)) bvalue = true;
-                            variables.discordrpc = bvalue;
                             break;
                         case "TimingOnKeypress":
                             bvalue = false;

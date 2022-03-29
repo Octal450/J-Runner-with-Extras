@@ -73,6 +73,11 @@ namespace JRunner
                     Vcredist.Start();
                     return;
                 }
+                else if (Control.ModifierKeys == Keys.Shift)
+                {
+                    Upd.checkSuccess = false;
+                    Application.Run(new MainForm());
+                }
                 else
                 {
                     Upd.check();

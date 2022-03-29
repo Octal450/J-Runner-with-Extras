@@ -40,11 +40,11 @@ namespace JRunner
         // Libraries
         public bool osCheck()
         {
-            if (Environment.OSVersion.Version.Major >= 6) // Vista and later
+            if (variables.currentOS != variables.Windows.XP)
             {
                 return true;
             }
-            else // XP and older
+            else
             {
                 MessageBox.Show("This version of Windows is not supported\n\nxFlasher requires Microsoft Windows Vista Service Pack 2 or later", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

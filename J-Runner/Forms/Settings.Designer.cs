@@ -67,7 +67,6 @@
             this.AutoExtractcheckBox = new System.Windows.Forms.CheckBox();
             this.almovebut = new System.Windows.Forms.CheckBox();
             this.modderbut = new System.Windows.Forms.CheckBox();
-            this.discordRPCEnable = new System.Windows.Forms.CheckBox();
             this.timingOnKeypressEnable = new System.Windows.Forms.CheckBox();
             this.logBackgroundCustom = new System.Windows.Forms.Button();
             this.logBackgroundBlue = new System.Windows.Forms.Button();
@@ -78,7 +77,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.logDefault = new System.Windows.Forms.Button();
-            this.minimizeToSystemTray = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SlimPreferSrgh = new System.Windows.Forms.RadioButton();
             this.SlimPreferRgh12 = new System.Windows.Forms.RadioButton();
@@ -217,7 +215,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(268, 415);
+            this.btnOK.Location = new System.Drawing.Point(268, 367);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 23);
             this.btnOK.TabIndex = 17;
@@ -405,7 +403,7 @@
             // AutoExtractcheckBox
             // 
             this.AutoExtractcheckBox.AutoSize = true;
-            this.AutoExtractcheckBox.Location = new System.Drawing.Point(18, 238);
+            this.AutoExtractcheckBox.Location = new System.Drawing.Point(18, 215);
             this.AutoExtractcheckBox.Name = "AutoExtractcheckBox";
             this.AutoExtractcheckBox.Size = new System.Drawing.Size(165, 17);
             this.AutoExtractcheckBox.TabIndex = 33;
@@ -417,7 +415,7 @@
             this.almovebut.AutoSize = true;
             this.almovebut.Checked = true;
             this.almovebut.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.almovebut.Location = new System.Drawing.Point(18, 261);
+            this.almovebut.Location = new System.Drawing.Point(18, 238);
             this.almovebut.Name = "almovebut";
             this.almovebut.Size = new System.Drawing.Size(244, 17);
             this.almovebut.TabIndex = 34;
@@ -428,7 +426,7 @@
             // modderbut
             // 
             this.modderbut.AutoSize = true;
-            this.modderbut.Location = new System.Drawing.Point(18, 284);
+            this.modderbut.Location = new System.Drawing.Point(18, 261);
             this.modderbut.Name = "modderbut";
             this.modderbut.Size = new System.Drawing.Size(280, 17);
             this.modderbut.TabIndex = 35;
@@ -436,24 +434,10 @@
             this.modderbut.UseVisualStyleBackColor = true;
             this.modderbut.CheckedChanged += new System.EventHandler(this.modderbut_CheckedChanged);
             // 
-            // discordRPCEnable
-            // 
-            this.discordRPCEnable.AutoSize = true;
-            this.discordRPCEnable.Checked = true;
-            this.discordRPCEnable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.discordRPCEnable.Location = new System.Drawing.Point(18, 215);
-            this.discordRPCEnable.Name = "discordRPCEnable";
-            this.discordRPCEnable.Size = new System.Drawing.Size(120, 17);
-            this.discordRPCEnable.TabIndex = 36;
-            this.discordRPCEnable.Text = "Enable DiscordRPC";
-            this.discordRPCEnable.UseVisualStyleBackColor = true;
-            this.discordRPCEnable.CheckedChanged += new System.EventHandler(this.discordRPCEnable_CheckedChanged);
-            this.discordRPCEnable.Click += new System.EventHandler(this.discordRPCEnable_Click);
-            // 
             // timingOnKeypressEnable
             // 
             this.timingOnKeypressEnable.AutoSize = true;
-            this.timingOnKeypressEnable.Location = new System.Drawing.Point(18, 307);
+            this.timingOnKeypressEnable.Location = new System.Drawing.Point(18, 284);
             this.timingOnKeypressEnable.Name = "timingOnKeypressEnable";
             this.timingOnKeypressEnable.Size = new System.Drawing.Size(306, 17);
             this.timingOnKeypressEnable.TabIndex = 37;
@@ -463,7 +447,7 @@
             // 
             // logBackgroundCustom
             // 
-            this.logBackgroundCustom.Location = new System.Drawing.Point(241, 353);
+            this.logBackgroundCustom.Location = new System.Drawing.Point(241, 305);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
             this.logBackgroundCustom.TabIndex = 41;
@@ -474,7 +458,7 @@
             // logBackgroundBlue
             // 
             this.logBackgroundBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(36)))), ((int)(((byte)(86)))));
-            this.logBackgroundBlue.Location = new System.Drawing.Point(215, 353);
+            this.logBackgroundBlue.Location = new System.Drawing.Point(215, 305);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlue.TabIndex = 40;
@@ -484,7 +468,7 @@
             // logBackgroundBlack
             // 
             this.logBackgroundBlack.BackColor = System.Drawing.Color.Black;
-            this.logBackgroundBlack.Location = new System.Drawing.Point(189, 353);
+            this.logBackgroundBlack.Location = new System.Drawing.Point(189, 305);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlack.TabIndex = 39;
@@ -493,7 +477,7 @@
             // 
             // logTextCustom
             // 
-            this.logTextCustom.Location = new System.Drawing.Point(241, 379);
+            this.logTextCustom.Location = new System.Drawing.Point(241, 331);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
             this.logTextCustom.TabIndex = 45;
@@ -504,7 +488,7 @@
             // logTextBlack
             // 
             this.logTextBlack.BackColor = System.Drawing.Color.Black;
-            this.logTextBlack.Location = new System.Drawing.Point(215, 379);
+            this.logTextBlack.Location = new System.Drawing.Point(215, 331);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
             this.logTextBlack.TabIndex = 44;
@@ -514,7 +498,7 @@
             // logTextWhite
             // 
             this.logTextWhite.BackColor = System.Drawing.Color.White;
-            this.logTextWhite.Location = new System.Drawing.Point(189, 379);
+            this.logTextWhite.Location = new System.Drawing.Point(189, 331);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
             this.logTextWhite.TabIndex = 43;
@@ -524,7 +508,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(11, 382);
+            this.label11.Location = new System.Drawing.Point(11, 334);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 42;
@@ -533,7 +517,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 356);
+            this.label10.Location = new System.Drawing.Point(11, 308);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 38;
@@ -541,24 +525,13 @@
             // 
             // logDefault
             // 
-            this.logDefault.Location = new System.Drawing.Point(133, 353);
+            this.logDefault.Location = new System.Drawing.Point(133, 305);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
             this.logDefault.TabIndex = 46;
             this.logDefault.Text = "Default";
             this.logDefault.UseVisualStyleBackColor = true;
             this.logDefault.Click += new System.EventHandler(this.logDefault_Click);
-            // 
-            // minimizeToSystemTray
-            // 
-            this.minimizeToSystemTray.AutoSize = true;
-            this.minimizeToSystemTray.Location = new System.Drawing.Point(18, 330);
-            this.minimizeToSystemTray.Name = "minimizeToSystemTray";
-            this.minimizeToSystemTray.Size = new System.Drawing.Size(133, 17);
-            this.minimizeToSystemTray.TabIndex = 48;
-            this.minimizeToSystemTray.Text = "Minimize to system tray";
-            this.minimizeToSystemTray.UseVisualStyleBackColor = true;
-            this.minimizeToSystemTray.CheckedChanged += new System.EventHandler(this.minimizeToSystemTray_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -632,7 +605,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(519, 415);
+            this.btnReset.Location = new System.Drawing.Point(519, 367);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(76, 23);
             this.btnReset.TabIndex = 52;
@@ -644,12 +617,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 455);
+            this.ClientSize = new System.Drawing.Size(612, 407);
             this.ControlBox = false;
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.minimizeToSystemTray);
             this.Controls.Add(this.logDefault);
             this.Controls.Add(this.logTextCustom);
             this.Controls.Add(this.logTextBlack);
@@ -660,7 +632,6 @@
             this.Controls.Add(this.logBackgroundBlack);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.timingOnKeypressEnable);
-            this.Controls.Add(this.discordRPCEnable);
             this.Controls.Add(this.modderbut);
             this.Controls.Add(this.almovebut);
             this.Controls.Add(this.AutoExtractcheckBox);
@@ -730,7 +701,6 @@
         private System.Windows.Forms.CheckBox AutoExtractcheckBox;
         private System.Windows.Forms.CheckBox almovebut;
         private System.Windows.Forms.CheckBox modderbut;
-        private System.Windows.Forms.CheckBox discordRPCEnable;
         private System.Windows.Forms.CheckBox timingOnKeypressEnable;
         private System.Windows.Forms.Button logBackgroundCustom;
         private System.Windows.Forms.Button logBackgroundBlue;
@@ -744,7 +714,6 @@
         private System.Windows.Forms.CheckBox chksuccom;
         private System.Windows.Forms.CheckBox chksuccess;
         private System.Windows.Forms.CheckBox chkerror;
-        private System.Windows.Forms.CheckBox minimizeToSystemTray;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton SlimPreferSrgh;
         private System.Windows.Forms.RadioButton SlimPreferRgh12;

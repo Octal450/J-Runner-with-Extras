@@ -69,10 +69,21 @@ namespace JRunner
             MODEJR,
             MODEFW
         }
+        public enum Windows
+        {
+            Unknown,
+            XP,
+            Vista,
+            Win7,
+            Win8,
+            Win81,
+            Win10 // or 11
+        }
         public static string version = "3.1.3 Beta";
         public static string build = "3130." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
         public const string staticversion = "3.1.3.0";
         public static int revision = 17;
+        public static Windows currentOS = Windows.Unknown;
         public static bool iswriting;
         public static bool isscanningip = false;
         public static JR_MODE current_mode = JR_MODE.MODEJR;
@@ -80,7 +91,6 @@ namespace JRunner
         public const string BOOTLOADER_GUID_STRING = "{a5dcbf10-6530-11d2-901f-00c04fb951ed}";
         public static string boardtype;
         public static int latest_dashboard = 17559;
-        //public const String BOOTLOADER_GUID_STRING = "{4d1e55b2-f16f-11cf-88cb-001111000030}";
 
         /// <summary>
         /// Paths
@@ -113,7 +123,6 @@ namespace JRunner
         public static string settingsfile = Path.Combine(AppData, "settings.xml");
         public static bool escapeloop = false, exitedxe = true, autoExtract = false, allmove = false, modder = false;
         public static bool reading = false, writing;
-        public static bool discordrpc = true;
         public static bool timingonkeypress = false;
         public static bool minimizetotray = false;
         public static bool slimprefersrgh = false;
@@ -122,7 +131,7 @@ namespace JRunner
         public static Color logtext = Color.White;
         public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Errorsound", "Comparesound", "Successsound", "Delay",
                                             "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "XebuildName", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
-                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "DiscordRPC", "TimingOnKeypress", "LogBackground",
+                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "TimingOnKeypress", "LogBackground",
                                             "LogText", "MinimizeToTray", "SlimPreferSrgh", "MtxUsbMode"};
 
         #region
