@@ -183,15 +183,6 @@ namespace JRunner
             }
         }
 
-        private void MainForm_Resize(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Minimized && variables.minimizetotray)
-            {
-                ShowInTaskbar = false;
-                trayIcon.Visible = true;
-            }
-        }
-
         void setUp()
         {
             demon.UpdateBloc += updateBlocks;
@@ -4322,9 +4313,6 @@ namespace JRunner
                         case "LogText":
                             x.write(name, ColorTranslator.ToHtml(variables.logtext));
                             break;
-                        case "MinimizeToTray":
-                            x.write(name, variables.minimizetotray.ToString());
-                            break;
                         case "SlimPreferSrgh":
                             x.write(name, variables.slimprefersrgh.ToString());
                             break;
@@ -4526,11 +4514,6 @@ namespace JRunner
                                 }
                                 catch { }
                             }
-                            break;
-                        case "MinimizeToTray":
-                            bvalue = false;
-                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
-                            variables.minimizetotray = bvalue;
                             break;
                         case "SlimPreferSrgh":
                             bvalue = false;

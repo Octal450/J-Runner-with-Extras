@@ -1213,7 +1213,6 @@ namespace JRunner
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
-            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.getCpuKeyContextMenu.ResumeLayout(false);
