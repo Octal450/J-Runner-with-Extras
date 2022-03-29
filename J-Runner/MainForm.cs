@@ -157,19 +157,6 @@ namespace JRunner
             Activate();
         }
 
-        private void restoreTrayClick(object sender, EventArgs e)
-        {
-            showApplication();
-        }
-
-        private void activateWindow(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                showApplication();
-            }
-        }
-
         void setUp()
         {
             demon.UpdateBloc += updateBlocks;

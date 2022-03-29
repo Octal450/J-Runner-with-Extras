@@ -215,7 +215,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(268, 367);
+            this.btnOK.Location = new System.Drawing.Point(268, 371);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 23);
             this.btnOK.TabIndex = 17;
@@ -447,7 +447,7 @@
             // 
             // logBackgroundCustom
             // 
-            this.logBackgroundCustom.Location = new System.Drawing.Point(241, 305);
+            this.logBackgroundCustom.Location = new System.Drawing.Point(245, 309);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
             this.logBackgroundCustom.TabIndex = 41;
@@ -458,7 +458,7 @@
             // logBackgroundBlue
             // 
             this.logBackgroundBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(36)))), ((int)(((byte)(86)))));
-            this.logBackgroundBlue.Location = new System.Drawing.Point(215, 305);
+            this.logBackgroundBlue.Location = new System.Drawing.Point(219, 309);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlue.TabIndex = 40;
@@ -468,7 +468,7 @@
             // logBackgroundBlack
             // 
             this.logBackgroundBlack.BackColor = System.Drawing.Color.Black;
-            this.logBackgroundBlack.Location = new System.Drawing.Point(189, 305);
+            this.logBackgroundBlack.Location = new System.Drawing.Point(193, 309);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlack.TabIndex = 39;
@@ -477,7 +477,7 @@
             // 
             // logTextCustom
             // 
-            this.logTextCustom.Location = new System.Drawing.Point(241, 331);
+            this.logTextCustom.Location = new System.Drawing.Point(245, 335);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
             this.logTextCustom.TabIndex = 45;
@@ -488,7 +488,7 @@
             // logTextBlack
             // 
             this.logTextBlack.BackColor = System.Drawing.Color.Black;
-            this.logTextBlack.Location = new System.Drawing.Point(215, 331);
+            this.logTextBlack.Location = new System.Drawing.Point(219, 335);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
             this.logTextBlack.TabIndex = 44;
@@ -498,7 +498,7 @@
             // logTextWhite
             // 
             this.logTextWhite.BackColor = System.Drawing.Color.White;
-            this.logTextWhite.Location = new System.Drawing.Point(189, 331);
+            this.logTextWhite.Location = new System.Drawing.Point(193, 335);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
             this.logTextWhite.TabIndex = 43;
@@ -508,7 +508,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(11, 334);
+            this.label11.Location = new System.Drawing.Point(15, 338);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 42;
@@ -517,7 +517,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 308);
+            this.label10.Location = new System.Drawing.Point(15, 312);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 38;
@@ -525,7 +525,7 @@
             // 
             // logDefault
             // 
-            this.logDefault.Location = new System.Drawing.Point(133, 305);
+            this.logDefault.Location = new System.Drawing.Point(137, 309);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
             this.logDefault.TabIndex = 46;
@@ -605,7 +605,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(519, 367);
+            this.btnReset.Location = new System.Drawing.Point(519, 371);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(76, 23);
             this.btnReset.TabIndex = 52;
@@ -617,7 +617,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 407);
+            this.ClientSize = new System.Drawing.Size(612, 411);
             this.ControlBox = false;
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.groupBox4);
