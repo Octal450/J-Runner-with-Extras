@@ -67,7 +67,6 @@ namespace JRunner
         public static Nand.VNand vnand;
         public static bool usingVNand = false;
         Regex objAlphaPattern = new Regex("[a-fA-F0-9]{32}$");
-        public NotifyIcon trayIcon = null;
         #endregion
 
         #region Initialization
@@ -131,17 +130,6 @@ namespace JRunner
                 return;
             }
 
-            ContextMenuStrip trayContext = new ContextMenuStrip();
-            trayContext.Items.Add("Restore", null, restoreTrayClick);
-            trayContext.Items.Add("Exit", null, btnExit_Click);
-
-            trayIcon = new NotifyIcon();
-            trayIcon.ContextMenuStrip = trayContext;
-            trayIcon.MouseClick += new MouseEventHandler(activateWindow);
-            trayIcon.Icon = Properties.Resources.Project3;
-            trayIcon.Text = "J-Runner with Extras";
-            trayIcon.Visible = false;
-
             settings();
 
             printstartuptext(true);
@@ -160,7 +148,6 @@ namespace JRunner
         private void showApplication()
         {
             ShowInTaskbar = true;
-            trayIcon.Visible = false;
             WindowState = FormWindowState.Normal;
 
             bool top = TopMost;

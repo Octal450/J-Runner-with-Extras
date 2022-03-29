@@ -125,8 +125,6 @@ namespace JRunner
             try
             {
                 mutex.ReleaseMutex();
-                MainForm.mainForm.trayIcon.Visible = false;
-                MainForm.mainForm.trayIcon.Dispose();
             }
             catch (Exception) { }
             Application.ExitThread();
