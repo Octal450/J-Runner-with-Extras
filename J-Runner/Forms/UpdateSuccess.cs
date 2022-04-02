@@ -14,12 +14,12 @@ namespace JRunner
 
         private void WizardCancelled(object sender, EventArgs e)
         {
-            Program.restart();
+            Application.Restart();
         }
 
         private void WizardFinished(object sender, EventArgs e)
         {
-            Program.restart();
+            Application.Restart();
         }
     }
 }

@@ -231,7 +231,7 @@ namespace JRunner
                     return;
                 }
 
-                File.Move(@"JRunner.exe", @"JRunner.exe.old");
+                File.Move(@"" + System.AppDomain.CurrentDomain.FriendlyName, @"JRunner.exe.old");
 
                 // Unzip
                 using (ZipFile zip = ZipFile.Read(filename))
