@@ -41,7 +41,7 @@ namespace JRunner.Forms
 
         private void About_Load(object sender, EventArgs e)
         {
-            ver.Text = "v" + variables.version;
+            ver.Text = "V" + variables.version;
             build.Text = variables.build;
             lblCredits.Text = "";
             contribloc = 0;
