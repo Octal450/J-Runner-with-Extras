@@ -137,7 +137,7 @@ namespace JRunner
                             wc = new WebClient();
                             wc.DownloadProgressChanged += updateDownload.updateProgress;
                             wc.DownloadFileCompleted += delta;
-                            wc.DownloadFileAsync(new System.Uri(deltaUrl), "delta.zip");
+                            wc.DownloadFileAsync(new Uri(deltaUrl), "delta.zip");
                         });
                         updateDelta.Start();
                         Application.Run(updateDownload);
@@ -153,7 +153,7 @@ namespace JRunner
                             wc = new WebClient();
                             wc.DownloadProgressChanged += updateDownload.updateProgress;
                             wc.DownloadFileCompleted += full;
-                            wc.DownloadFileAsync(new System.Uri(fullUrl), "full.zip");
+                            wc.DownloadFileAsync(new Uri(fullUrl), "full.zip");
                         });
                         updateFull.Start();
                         Application.Run(updateDownload);
@@ -231,7 +231,7 @@ namespace JRunner
                     return;
                 }
 
-                File.Move(@"" + System.AppDomain.CurrentDomain.FriendlyName, @"JRunner.exe.old");
+                File.Move(AppDomain.CurrentDomain.FriendlyName, @"JRunner.exe.old");
 
                 // Unzip
                 using (ZipFile zip = ZipFile.Read(filename))
@@ -239,6 +239,11 @@ namespace JRunner
                     zip.ExtractAll(Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
                 }
                 File.Delete(filename);
+
+                if (AppDomain.CurrentDomain.FriendlyName != "JRunner.exe")
+                {
+                    if (File.Exists("JRunner.exe")) File.Move("JRunner.exe", AppDomain.CurrentDomain.FriendlyName);
+                }
             }
             catch
             {

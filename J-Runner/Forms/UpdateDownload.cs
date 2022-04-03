@@ -20,7 +20,7 @@ namespace JRunner
 
         private void WizardFinished(object sender, EventArgs e)
         {
-            Program.restart();
+            Application.Restart();
         }
 
         public void updateProgress(object sender, DownloadProgressChangedEventArgs e)
