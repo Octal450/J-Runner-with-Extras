@@ -231,24 +231,27 @@ namespace JRunner
                     return;
                 }
 
+                // Install Package
                 File.Move(AppDomain.CurrentDomain.FriendlyName, @"JRunner.exe.old");
 
-                // Unzip
                 using (ZipFile zip = ZipFile.Read(filename))
                 {
                     zip.ExtractAll(Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
                 }
                 File.Delete(filename);
 
-                if (AppDomain.CurrentDomain.FriendlyName != "JRunner.exe")
+                if (File.Exists(@"package\release.exe"))
                 {
-                    if (File.Exists("JRunner.exe")) File.Move("JRunner.exe", AppDomain.CurrentDomain.FriendlyName);
+                    if (File.Exists(AppDomain.CurrentDomain.FriendlyName)) File.Delete(AppDomain.CurrentDomain.FriendlyName);
+                    File.Move(@"package\release.exe", AppDomain.CurrentDomain.FriendlyName);
+                    if (Directory.GetFiles("package", "*", SearchOption.TopDirectoryOnly).Length == 0) Directory.Delete("package");
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 if (File.Exists(filename)) File.Delete(filename);
                 updateDownload.Dispose();
+                File.AppendAllText("Error.log", ex.ToString() + Environment.NewLine);
                 failedReason = "Failed to extract and install the package";
                 Application.Run(new UpdateFailed());
             }
