@@ -1643,7 +1643,7 @@ namespace JRunner
             }
             Console.WriteLine("using base port 0x{0:X}\n", PortInterop.base_port);
 
-            if (!File.Exists(Path.Combine(variables.pathforit, "inpout32.dll")) || PortInterop.IsInpOutOpen() != 1)
+            if (!File.Exists(Path.Combine(variables.rootfolder, "inpout32.dll")) || PortInterop.IsInpOutOpen() != 1)
             {
                 Console.WriteLine("Failed To open dll");
                 return;
@@ -1683,7 +1683,7 @@ namespace JRunner
                     if (deletedll)
                     {
                         PortInterop.UnloadModule("inpout32.dll");
-                        File.Delete(Path.Combine(variables.pathforit, "inpout32.dll"));
+                        File.Delete(Path.Combine(variables.rootfolder, "inpout32.dll"));
                     }
                     fs.Close();
                 }

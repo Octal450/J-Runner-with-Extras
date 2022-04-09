@@ -77,7 +77,7 @@ namespace JRunner.Classes
         {
             List<int> cbs = new List<int>();
             string[] ommit = { "version", "security", "flashfs" };
-            foreach (string s in parse_ini.getlabels(Path.Combine(variables.pathforit, @"xeBuild\" + _dash + @"\_" + _ttype + ".ini")))
+            foreach (string s in parse_ini.getlabels(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\_" + _ttype + ".ini")))
             {
                 if (!ommit.Contains(s) && s.Contains(_ctype.Ini))
                 {
@@ -302,6 +302,37 @@ namespace JRunner.Classes
             }
         }
 
+        private void copyXLUsb()
+        {
+            if (File.Exists(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xl_usb\xam.xex")))
+            {
+                if (File.Exists(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xam.xex")))
+                {
+                    File.Move(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xam.xex"), Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xam.xex.tmp"));
+                }
+
+                File.Copy(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xl_usb\xam.xex"), Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xam.xex"), true);
+
+                string buildIni = Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\_" + variables.ttyp.ToString() + ".ini");
+                string xlUsbIni = Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xl_usb\_" + variables.ttyp.ToString() + ".ini");
+                if (File.Exists(xlUsbIni))
+                {
+                    if (File.Exists(buildIni))
+                    {
+                        File.Move(buildIni, buildIni + ".tmp");
+                    }
+
+                    File.Copy(xlUsbIni, buildIni, true);
+                }
+
+                variables.copiedXLUsb = true;
+            }
+            else
+            {
+                variables.copiedXLUsb = false;
+            }
+        }
+
         void checkDashLaunch()
         {
             if (_DLpatches && _includeLaunch)
@@ -322,7 +353,7 @@ namespace JRunner.Classes
             foreach (variables.hacktypes type in Enum.GetValues(typeof(variables.hacktypes)))
             {
                 if (type == variables.hacktypes.retail || type == variables.hacktypes.nothing) continue;
-                string file = Path.Combine(variables.pathforit, @"xeBuild\" + _dash + @"\_" + type + ".ini");
+                string file = Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\_" + type + ".ini");
                 string[] writepatches = { @"..\launch.xex", @"..\lhelper.xex", @"..\launch.ini" };
                 string[] writepatches2 = { @"..\launch.xex", @"..\lhelper.xex" };
                 string[] empty = { };
@@ -403,8 +434,8 @@ namespace JRunner.Classes
         {
             if (_ttype != variables.hacktypes.retail)
             {
-                File.Copy(Path.Combine(variables.pathforit, @"common\xell\xell-2f.bin"), Path.Combine(variables.pathforit, @"xebuild\data\xell-2f.bin"), true);
-                File.Copy(Path.Combine(variables.pathforit, @"common\xell\xell-gggggg.bin"), Path.Combine(variables.pathforit, @"xebuild\data\xell-gggggg.bin"), true);
+                File.Copy(Path.Combine(variables.rootfolder, @"common\xell\xell-2f.bin"), Path.Combine(variables.rootfolder, @"xebuild\data\xell-2f.bin"), true);
+                File.Copy(Path.Combine(variables.rootfolder, @"common\xell\xell-gggggg.bin"), Path.Combine(variables.rootfolder, @"xebuild\data\xell-gggggg.bin"), true);
             }
         }
         void moveOptions()
@@ -412,11 +443,11 @@ namespace JRunner.Classes
             if (_altoptions)
             {
                 Console.WriteLine("Using edited settings");
-                File.Copy(Path.Combine(variables.pathforit, @"xebuild\options_edited.ini"), Path.Combine(variables.pathforit, @"xebuild\data\options.ini"), true);
+                File.Copy(Path.Combine(variables.rootfolder, @"xebuild\options_edited.ini"), Path.Combine(variables.rootfolder, @"xebuild\data\options.ini"), true);
             }
             else
             {
-                File.Copy(Path.Combine(variables.pathforit, @"xebuild\options.ini"), Path.Combine(variables.pathforit, @"xebuild\data\options.ini"), true);
+                File.Copy(Path.Combine(variables.rootfolder, @"xebuild\options.ini"), Path.Combine(variables.rootfolder, @"xebuild\data\options.ini"), true);
             }
         }
 
@@ -432,12 +463,13 @@ namespace JRunner.Classes
                 string cfldv = "cfldv=" + variables.highldv.ToString();
                 string[] edit = { cfldv };
                 string[] delete = { };
-                parse_ini.edit_ini(Path.Combine(variables.pathforit, @"xeBuild\data\options.ini"), edit, delete);
+                parse_ini.edit_ini(Path.Combine(variables.rootfolder, @"xeBuild\data\options.ini"), edit, delete);
             }
 
             Console.WriteLine("XeBuild Initialized");
             if (!custom) copySMC();
             else copySMCcustom();
+            if (_xlusb) copyXLUsb();
             variables.fullDataClean = _fullDataClean;
 
             checkDashLaunch();
@@ -447,7 +479,7 @@ namespace JRunner.Classes
                 string cfldv = "cfldv=" + variables.highldv.ToString();
                 string[] edit = { cfldv };
                 string[] delete = { };
-                parse_ini.edit_ini(Path.Combine(variables.pathforit, @"xeBuild\data\options.ini"), edit, delete);
+                parse_ini.edit_ini(Path.Combine(variables.rootfolder, @"xeBuild\data\options.ini"), edit, delete);
             }
 
             Console.WriteLine("Kernel Selected: {0}", _dash);
@@ -466,7 +498,7 @@ namespace JRunner.Classes
         public void build()
         {
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = variables.pathforit + @"\xeBuild\xeBuild.exe";
+            pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
             string arguments = "";
             string boardtype = _ctype.XeBuild;
             arguments = "-t " + _ttype;
@@ -537,12 +569,12 @@ namespace JRunner.Classes
             Regex regex = new Regex(@"[ ]{2,}", options);
             arguments = regex.Replace(arguments, @" ");
 
-            if (variables.debugme) Console.WriteLine(variables.pathforit);
-            if (variables.debugme) Console.WriteLine("---" + variables.pathforit + @"\xeBuild\xeBuild.exe");
+            if (variables.debugme) Console.WriteLine(variables.rootfolder);
+            if (variables.debugme) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
             if (variables.debugme) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.WorkingDirectory = variables.pathforit;
+            pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
             pProcess.StartInfo.RedirectStandardInput = true;
             pProcess.StartInfo.RedirectStandardOutput = true;
             pProcess.StartInfo.CreateNoWindow = true;
@@ -592,7 +624,7 @@ namespace JRunner.Classes
         public void build(string arguments)
         {
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = variables.pathforit + @"\xeBuild\xeBuild.exe";
+            pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
             string boardtype = _ctype.XeBuild;
 
             if (_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m)
@@ -647,12 +679,12 @@ namespace JRunner.Classes
 
             if (_xlusb) arguments += " -a xl_usb";
 
-            if (variables.debugme) Console.WriteLine(variables.pathforit);
-            if (variables.debugme) Console.WriteLine("---" + variables.pathforit + @"\xeBuild\xeBuild.exe");
+            if (variables.debugme) Console.WriteLine(variables.rootfolder);
+            if (variables.debugme) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
             if (variables.debugme) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.WorkingDirectory = variables.pathforit;
+            pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
             pProcess.StartInfo.RedirectStandardInput = true;
             pProcess.StartInfo.RedirectStandardOutput = true;
             pProcess.StartInfo.CreateNoWindow = true;
@@ -735,7 +767,7 @@ namespace JRunner.Classes
         public void update()
         {
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = variables.pathforit + @"\xeBuild\xeBuild.exe";
+            pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
             string arguments = "update ";
             foreach (String patch in _patches)
             {
@@ -755,12 +787,12 @@ namespace JRunner.Classes
             Regex regex = new Regex(@"[ ]{2,}", options);
             arguments = regex.Replace(arguments, @" ");
 
-            if (variables.debugme) Console.WriteLine(variables.pathforit);
-            if (variables.debugme) Console.WriteLine("---" + variables.pathforit + @"\xeBuild\xeBuild.exe");
+            if (variables.debugme) Console.WriteLine(variables.rootfolder);
+            if (variables.debugme) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
             if (variables.debugme) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.WorkingDirectory = variables.pathforit;
+            pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
             pProcess.StartInfo.RedirectStandardInput = true;
             pProcess.StartInfo.RedirectStandardOutput = true;
             pProcess.StartInfo.CreateNoWindow = true;
@@ -800,7 +832,7 @@ namespace JRunner.Classes
         public void client(string args)
         {
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = variables.pathforit + @"\xeBuild\xeBuild.exe";
+            pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
             string arguments = "client ";
             arguments += args;
             if (variables.debugme) arguments += " -v";
@@ -810,12 +842,12 @@ namespace JRunner.Classes
             Regex regex = new Regex(@"[ ]{2,}", options);
             arguments = regex.Replace(arguments, @" ");
 
-            if (variables.debugme) Console.WriteLine(variables.pathforit);
-            if (variables.debugme) Console.WriteLine("---" + variables.pathforit + @"\xeBuild\xeBuild.exe");
+            if (variables.debugme) Console.WriteLine(variables.rootfolder);
+            if (variables.debugme) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
             if (variables.debugme) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.WorkingDirectory = variables.pathforit;
+            pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
             pProcess.StartInfo.RedirectStandardInput = true;
             pProcess.StartInfo.RedirectStandardOutput = true;
             pProcess.StartInfo.CreateNoWindow = true;

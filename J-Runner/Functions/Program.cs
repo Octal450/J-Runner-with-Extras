@@ -140,7 +140,7 @@ namespace JRunner
         private static void OnCurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             //MessageBox.Show(e.ExceptionObject.ToString());
-            File.AppendAllText(Path.Combine(variables.pathforit, "Error.log"), e.ExceptionObject.ToString() + Environment.NewLine);
+            File.AppendAllText(Path.Combine(variables.rootfolder, "Error.log"), e.ExceptionObject.ToString() + Environment.NewLine);
         }
 
         private static void checkVcredist()

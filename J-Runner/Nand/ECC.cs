@@ -259,7 +259,7 @@ namespace JRunner
                         Console.WriteLine();
                         Console.WriteLine("* XOR HACK NEEDED FOR CB {0}", Oper.ByteArrayToInt(build(dt.CB_B)));
 
-                        byte[] CB_B_plain = Oper.openfile(Path.Combine(variables.pathforit, @"common\CB\CB_B." + Oper.ByteArrayToInt(build(dt.CB_B)) + ".bin"), ref size, 0);
+                        byte[] CB_B_plain = Oper.openfile(Path.Combine(variables.rootfolder, @"common\CB\CB_B." + Oper.ByteArrayToInt(build(dt.CB_B)) + ".bin"), ref size, 0);
                         if (CB_B_plain == null) { Console.WriteLine("Failed to open CB_B.{0}.bin", Oper.ByteArrayToInt(build(dt.CB_B))); return 5; }
 
                         byte[] CB_B_patched = Oper.openfile(cbbpath, ref size, 0);
@@ -325,11 +325,11 @@ namespace JRunner
                     dt.CB_A_crypted = null;
                     if (MessageBox.Show("There have been various reports that using a different bootloader improves the glitch speeds on xenon. Click Yes to use the 7375 Bootloader or Click No to use the 1940 one.", "Choose CB", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                     {
-                        dt.CB_A = Oper.openfile(Path.Combine(variables.pathforit, @"common\CB\CB_A.7375.bin"), ref size, 0);
+                        dt.CB_A = Oper.openfile(Path.Combine(variables.rootfolder, @"common\CB\CB_A.7375.bin"), ref size, 0);
                     }
                     else
                     {
-                        dt.CB_A = Oper.openfile(Path.Combine(variables.pathforit, @"common\CB\CB_A.1940.bin"), ref size, 0);
+                        dt.CB_A = Oper.openfile(Path.Combine(variables.rootfolder, @"common\CB\CB_A.1940.bin"), ref size, 0);
                     }
                     if (dt.CB_A == null) { Console.WriteLine("Failed to open CB"); return 5; }
                     dt.CB_B = null;
@@ -553,7 +553,7 @@ namespace JRunner
                             {
                                 Console.WriteLine("A donor version will be used with this CB");
                                 long csize = 0;
-                                dt.CB_A = Oper.openfile(Path.Combine(variables.pathforit, "common/CB/cb_6750.bin"), ref csize, 0);
+                                dt.CB_A = Oper.openfile(Path.Combine(variables.rootfolder, "common/CB/cb_6750.bin"), ref csize, 0);
                                 if (dt.CB_A == null) Console.WriteLine("CB_A 6750 file is missing!!!");
                                 donor = true;
                             }

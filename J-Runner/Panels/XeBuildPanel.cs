@@ -471,7 +471,7 @@ namespace JRunner.Panels
         public bool canDevGL(string board)
         {
             if (board == null) board = "None";
-            if (File.Exists(Path.Combine(variables.pathforit, @"xebuild\common\" + "sb_priv.bin")))
+            if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\common\" + "sb_priv.bin")))
             {
                 if (board.Contains("Jasper") || board.Contains("Corona") || board.Contains("Trinity") || board.Contains("None")) return true;
                 else return false;
@@ -515,7 +515,7 @@ namespace JRunner.Panels
         bool chkWB4GEn = true;
         public void checkWBXdkBuild()
         {
-            if (rbtnGlitch2m.Checked && variables.dashversion == 17489 && File.Exists(variables.pathforit + @"\xeBuild\17489\!XDKbuild Only!.txt"))
+            if (rbtnGlitch2m.Checked && variables.dashversion == 17489 && File.Exists(variables.rootfolder + @"\xeBuild\17489\!XDKbuild Only!.txt"))
             {
                 chkWB.Visible = false;
                 chkWB.Checked = false;
@@ -652,11 +652,11 @@ namespace JRunner.Panels
 
             if (chkCleanSMC.Checked)
             {
-                if (File.Exists(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin")))
+                if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin")))
                 {
                     if (MessageBox.Show("smc.bin found. Delete it?\nUnless you put it there, delete it!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
-                        File.Delete(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin"));
+                        File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin"));
                     }
                 }
             }
@@ -678,11 +678,11 @@ namespace JRunner.Panels
 
             if (chkCR4.Checked)
             {
-                if (File.Exists(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin")))
+                if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin")))
                 {
                     if (MessageBox.Show("smc.bin found. Delete it?\nUnless you put it there, delete it!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
-                        File.Delete(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin"));
+                        File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin"));
                     }
                 }
             }
@@ -704,11 +704,11 @@ namespace JRunner.Panels
 
             if (chkSMCP.Checked)
             {
-                if (File.Exists(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin")))
+                if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin")))
                 {
                     if (MessageBox.Show("smc.bin found. Delete it?\nUnless you put it there, delete it!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
-                        File.Delete(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin"));
+                        File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin"));
                     }
                 }
             }
@@ -730,11 +730,11 @@ namespace JRunner.Panels
 
             if (chkRgh3.Checked)
             {
-                if (File.Exists(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin")))
+                if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin")))
                 {
                     if (MessageBox.Show("smc.bin found. Delete it?\nUnless you put it there, delete it!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
-                        File.Delete(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin"));
+                        File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin"));
                     }
                 }
             }
@@ -1110,17 +1110,17 @@ namespace JRunner.Panels
             Classes.xebuild xe = new Classes.xebuild();
             xe.Uloadvariables(variables.dashversion, (variables.hacktypes)variables.ttyp, patches, chkxesettings.Checked, chkNoWrite.Checked, chkNoAva.Checked, chkClean.Checked, chkNoReeb.Checked, checkDLPatches.Checked,
                 chkLaunch.Checked);
-            File.Delete(Path.Combine(variables.pathforit, @"xebuild\data\" + "smc.bin"));
+            File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin"));
             try
             {
                 string[] files = { "kv.bin", "smc.bin", "smc_config.bin", "fcrt.bin" };
                 foreach (string file in files)
                 {
-                    if (File.Exists(Path.Combine(variables.pathforit, @"xebuild\data\" + file)))
+                    if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\" + file)))
                     {
                         if (MessageBox.Show(file + " found. Delete it?\nUnless you put it there, delete it!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                         {
-                            File.Delete(Path.Combine(variables.pathforit, @"xebuild\data\" + file));
+                            File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + file));
                         }
                     }
                 }
@@ -1222,11 +1222,11 @@ namespace JRunner.Panels
                     string[] files = { "kv.bin", "smc.bin", "smc_config.bin", "fcrt.bin" };
                     foreach (string file in files)
                     {
-                        if (File.Exists(Path.Combine(variables.pathforit, @"xebuild\data\" + file)))
+                        if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\" + file)))
                         {
                             if (MessageBox.Show(file + " found. Delete it?\nUnless you put it there, delete it!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                             {
-                                File.Delete(Path.Combine(variables.pathforit, @"xebuild\data\" + file));
+                                File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + file));
                             }
                         }
                     }
@@ -1249,7 +1249,7 @@ namespace JRunner.Panels
                     }
                     else
                     {
-                        if (!File.Exists(Path.Combine(variables.pathforit, @"xebuild\data\" + file)))
+                        if (!File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\" + file)))
                         {
                             MessageBox.Show(file + " is missing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
@@ -1263,15 +1263,15 @@ namespace JRunner.Panels
                 {
                     if (variables.debugme) Console.WriteLine("Key verification");
                     long size = 0;
-                    if (Nand.Nand.cpukeyverification(Oper.openfile(Path.Combine(variables.pathforit, @"xebuild\data\kv.bin"), ref size, 0), variables.cpkey))
+                    if (Nand.Nand.cpukeyverification(Oper.openfile(Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin"), ref size, 0), variables.cpkey))
                     {
                         if (variables.debugme) Console.WriteLine("CPU Key is Correct");
-                        if (Nand.Nand.getfcrtflag(File.ReadAllBytes(Path.Combine(variables.pathforit, @"xebuild\data\kv.bin")), variables.cpkey))
+                        if (Nand.Nand.getfcrtflag(File.ReadAllBytes(Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin")), variables.cpkey))
                         {
-                            if (!File.Exists(Path.Combine(variables.pathforit, @"xebuild\data\fcrt.bin")))
+                            if (!File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\fcrt.bin")))
                             {
                                 MessageBox.Show("fcrt.bin is missing");
-                                Process.Start(Path.Combine(variables.pathforit, @"xebuild\data"));
+                                Process.Start(Path.Combine(variables.rootfolder, @"xebuild\data"));
                                 return;
                             }
                         }
@@ -1349,7 +1349,7 @@ namespace JRunner.Panels
 
             try
             {
-                File.Copy(Path.Combine(variables.pathforit, @"xebuild\options.ini"), Path.Combine(variables.pathforit, @"xebuild\data\options.ini"), true);
+                File.Copy(Path.Combine(variables.rootfolder, @"xebuild\options.ini"), Path.Combine(variables.rootfolder, @"xebuild\data\options.ini"), true);
                 chkxesettings.Checked = false;
                 File.Move(Path.Combine(variables.xefolder, variables.nandflash + ".log"), Path.Combine(variables.xefolder, variables.nandflash.Substring(0, variables.nandflash.IndexOf(".")) + "(" + DateTime.Now.ToString("ddMMyyyyHHmm") + ").bin.log"));
             }
@@ -1357,7 +1357,7 @@ namespace JRunner.Panels
 
             try
             {
-                if (File.Exists(Path.Combine(variables.pathforit, @"build.log"))) File.Delete(Path.Combine(variables.pathforit, @"build.log"));
+                if (File.Exists(Path.Combine(variables.rootfolder, @"build.log"))) File.Delete(Path.Combine(variables.rootfolder, @"build.log"));
             }
             catch { }
 
@@ -1487,6 +1487,29 @@ namespace JRunner.Panels
                 {
                     File.Delete(Path.Combine(variables.xePath, "smc_config.bin"));
                     if (variables.debugme) Console.WriteLine("Deleted KV.bin");
+                }
+                catch (System.IO.IOException e)
+                { MessageBox.Show(e.Message); return; }
+            }
+            if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex")) && variables.copiedXLUsb)
+            {
+                try
+                {
+                    File.Delete(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex"));
+                    if (variables.debugme) Console.WriteLine("Deleted XL USB xam.xex");
+                    if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex.tmp")))
+                    {
+                        File.Move(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex.tmp"), Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex"));
+                    }
+                    if (variables.debugme) Console.WriteLine("Restored non XL USB xam.xex");
+
+                    string buildIni = Path.Combine(variables.update_path, comboDash.SelectedValue + @"\_" + variables.ttyp.ToString() + ".ini");
+                    if (File.Exists(buildIni + ".tmp"))
+                    {
+                        File.Delete(buildIni);
+                        File.Move(buildIni + ".tmp", buildIni);
+                    }
+                    if (variables.debugme) Console.WriteLine("Restored non XL USB ini");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }

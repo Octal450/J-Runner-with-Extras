@@ -33,7 +33,7 @@ namespace JRunner
 
             filename = Path.Combine(variables.xefolder, variables.nandflash);
 
-            Classes.RGH2to3.ConvertRgh2ToRgh3(Path.Combine(variables.pathforit, "common", "ECC", ecc + ".ecc"), filename, cpuKey, filename);
+            Classes.RGH2to3.ConvertRgh2ToRgh3(Path.Combine(variables.rootfolder, "common", "ECC", ecc + ".ecc"), filename, cpuKey, filename);
 
             Console.WriteLine("RGH3 Conversion Finished!");
 

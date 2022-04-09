@@ -740,7 +740,7 @@ namespace JRunner.Forms
             if (variables.debugme) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.WorkingDirectory = variables.pathforit;
+            pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
             pProcess.StartInfo.RedirectStandardInput = true;
             pProcess.StartInfo.RedirectStandardOutput = true;
             pProcess.StartInfo.CreateNoWindow = true;

@@ -324,16 +324,16 @@ namespace JRunner
         }
         private void createdirectories()
         {
-            if (!Directory.Exists(Path.Combine(variables.pathforit, "output")))
+            if (!Directory.Exists(Path.Combine(variables.rootfolder, "output")))
             {
                 try
                 {
-                    Directory.CreateDirectory(Path.Combine(variables.pathforit, "output"));
+                    Directory.CreateDirectory(Path.Combine(variables.rootfolder, "output"));
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    variables.pathforit = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    Directory.CreateDirectory(Path.Combine(variables.pathforit, "output"));
+                    variables.rootfolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                    Directory.CreateDirectory(Path.Combine(variables.rootfolder, "output"));
                 }
             }
             if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
@@ -399,7 +399,7 @@ namespace JRunner
 
         private void saveToLog()
         {
-            string file = Path.Combine(variables.pathforit, "Log.txt");
+            string file = Path.Combine(variables.rootfolder, "Log.txt");
             File.AppendAllText(file, "\n" + txtConsole.Text);
         }
 
@@ -663,7 +663,7 @@ namespace JRunner
             pProcess.StartInfo.FileName = variables.AppData + @"\LPT_XSVF_Player.exe";
             pProcess.StartInfo.Arguments = "\"" + file + "\"" + " " + port;
             pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.WorkingDirectory = variables.pathforit;
+            pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
             pProcess.StartInfo.RedirectStandardInput = true;
             pProcess.StartInfo.RedirectStandardOutput = true;
             pProcess.StartInfo.CreateNoWindow = true;
@@ -939,9 +939,9 @@ namespace JRunner
             string file = "";
             if (filex == "") return;
             if (device == DEVICE.XFLASHER_SPI)
-                file = variables.pathforit + @"\common\svf\" + filex + ".svf";
+                file = variables.rootfolder + @"\common\svf\" + filex + ".svf";
             else
-                file = variables.pathforit + @"\common\xsvf\" + filex + ".xsvf";
+                file = variables.rootfolder + @"\common\xsvf\" + filex + ".xsvf";
 
             Console.WriteLine("Programming Glitch Chip");
 
@@ -1239,9 +1239,9 @@ namespace JRunner
                     Thread.Sleep(1000);
                     if (j == 2)
                     {
-                        if (File.Exists(Path.Combine(variables.pathforit, variables.filename)))
+                        if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                         {
-                            this.txtFilePath1.Text = System.IO.Path.Combine(variables.pathforit, variables.filename1);
+                            this.txtFilePath1.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1);
                             Thread.Sleep(1000);
                             nand_init();
                             Thread.Sleep(1000);
@@ -1249,9 +1249,9 @@ namespace JRunner
                     }
                     else if (j >= 3)
                     {
-                        if (File.Exists(Path.Combine(variables.pathforit, variables.filename)))
+                        if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                         {
-                            this.txtFilePath2.Text = System.IO.Path.Combine(variables.pathforit, variables.filename2);
+                            this.txtFilePath2.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename2);
                             new Thread(comparenands).Start();
                         }
                     }
@@ -1301,9 +1301,9 @@ namespace JRunner
             }
             if (j == 2)
             {
-                if (File.Exists(Path.Combine(variables.pathforit, variables.filename)))
+                if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                 {
-                    this.txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = System.IO.Path.Combine(variables.pathforit, variables.filename1)));
+                    this.txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1)));
 
                     Thread.Sleep(1000);
                     nand_init();
@@ -1311,9 +1311,9 @@ namespace JRunner
             }
             else if (j >= 3)
             {
-                if (File.Exists(Path.Combine(variables.pathforit, variables.filename)))
+                if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                 {
-                    this.txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = System.IO.Path.Combine(variables.pathforit, variables.filename)));
+                    this.txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename)));
                     new Thread(comparenands).Start();
                 }
 
@@ -1800,40 +1800,40 @@ namespace JRunner
             if (String.IsNullOrWhiteSpace(cbb)) splitcb = false;
             if (!splitcb)
             {
-                if (!File.Exists(Path.Combine(variables.pathforit, "common", "cb_" + cba + ".bin")))
+                if (!File.Exists(Path.Combine(variables.rootfolder, "common", "cb_" + cba + ".bin")))
                 {
                     Console.WriteLine("{0} not found. Trying to download file..", "common/cb_" + cba + ".bin");
                 }
-                if (!File.Exists(Path.Combine(variables.pathforit, "common", "cb_" + cba + ".bin")))
+                if (!File.Exists(Path.Combine(variables.rootfolder, "common", "cb_" + cba + ".bin")))
                 {
                     Console.WriteLine("{0} not found. Insert it manually on the common folder", "cb_" + cba + ".bin");
                     return false;
                 }
-                bla = "cb_" + cba + ".bin," + CRCbl(Path.Combine(variables.pathforit, "common", "cb_" + cba + ".bin")).ToString("x8");
+                bla = "cb_" + cba + ".bin," + CRCbl(Path.Combine(variables.rootfolder, "common", "cb_" + cba + ".bin")).ToString("x8");
                 blb = "none,00000000";
             }
             else
             {
-                if (!File.Exists(Path.Combine(variables.pathforit, "common", "cba_" + cba + ".bin")))
+                if (!File.Exists(Path.Combine(variables.rootfolder, "common", "cba_" + cba + ".bin")))
                 {
                     Console.WriteLine("{0} not found. Trying to download file..", "common/cba_" + cba + ".bin");
                 }
-                if (!File.Exists(Path.Combine(variables.pathforit, "common", "cbb_" + cbb + ".bin")))
+                if (!File.Exists(Path.Combine(variables.rootfolder, "common", "cbb_" + cbb + ".bin")))
                 {
                     Console.WriteLine("{0} not found. Trying to download file..", "common/cbb_" + cbb + ".bin");
                 }
-                if (!File.Exists(Path.Combine(variables.pathforit, "common", "cba_" + cba + ".bin")))
+                if (!File.Exists(Path.Combine(variables.rootfolder, "common", "cba_" + cba + ".bin")))
                 {
                     Console.WriteLine("{0} not found. Insert it manually on the common folder", "cba_" + cba + ".bin");
                     return false;
                 }
-                if (!File.Exists(Path.Combine(variables.pathforit, "common", "cbb_" + cbb + ".bin")))
+                if (!File.Exists(Path.Combine(variables.rootfolder, "common", "cbb_" + cbb + ".bin")))
                 {
                     Console.WriteLine("{0} not found. Insert it manually on the common folder", "cbb_" + cba + ".bin");
                     return false;
                 }
-                bla = "cba_" + cba + ".bin," + CRCbl(Path.Combine(variables.pathforit, "common", "cba_" + cba + ".bin")).ToString("x8");
-                blb = "cbb_" + cbb + ".bin," + CRCbl(Path.Combine(variables.pathforit, "common", "cbb_" + cbb + ".bin")).ToString("x8");
+                bla = "cba_" + cba + ".bin," + CRCbl(Path.Combine(variables.rootfolder, "common", "cba_" + cba + ".bin")).ToString("x8");
+                blb = "cbb_" + cbb + ".bin," + CRCbl(Path.Combine(variables.rootfolder, "common", "cbb_" + cbb + ".bin")).ToString("x8");
             }
             Console.WriteLine("Editing File..");
             string[] lines = File.ReadAllLines(file);
@@ -2156,29 +2156,29 @@ namespace JRunner
                 switch (variables.ctyp.ID)
                 {
                     case 1:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGH3_trinity + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_trinity + ".ecc");
                         break;
                     case 2:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGH3_falcon + mhz + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_falcon + mhz + ".ecc");
                         break;
                     case 3:
                     case 4:
                     case 5:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGH3_jasper + mhz + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_jasper + mhz + ".ecc");
                         break;
                     case 6:
                     case 7:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGH3_jasperBB + mhz + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_jasperBB + mhz + ".ecc");
                         break;
                     case 8:
                     case 9:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGH3_trinity + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_trinity + ".ecc");
                         break;
                     case 10:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGH3_corona + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGH3_corona4GB + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona4GB + ".ecc");
                         break;
                     default:
                         return "";
@@ -2196,32 +2196,32 @@ namespace JRunner
                 switch (variables.ctyp.ID)
                 {
                     case 1:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_trinity + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_trinity + cr4 + smcp + ".ecc");
                         break;
                     case 2:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 3:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc"); // Use Falcon
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc"); // Use Falcon
                         Console.WriteLine("Using Falcon type for Zephyr");
                         break;
                     case 4:
                     case 5:
                     case 6:
                     case 7:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_jasper + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_jasper + cr4 + smcp + ".ecc");
                         break;
                     case 8:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_xenon + ".ecc"); // No CR4 or SMC+
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_xenon + ".ecc"); // No CR4 or SMC+
                         break;
                     case 9:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 10:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_corona + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_corona + wb + cr4 + smcp + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.pathforit, "common", "ECC", variables.RGX_corona4GB + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_corona4GB + wb + cr4 + smcp + ".ecc");
                         break;
                     default:
                         return "";
@@ -2332,7 +2332,7 @@ namespace JRunner
                     if (variables.debugme) Console.WriteLine(xellfile);
 
 
-                    byte[] xellous = Oper.openfile(Path.Combine(variables.pathforit, "common\\xell\\" + xellfile), ref size1, 0);
+                    byte[] xellous = Oper.openfile(Path.Combine(variables.rootfolder, "common\\xell\\" + xellfile), ref size1, 0);
                     if (variables.debugme) Console.WriteLine("{0} file loaded successfully", xellfile);
                     if (variables.debugme) Console.WriteLine("{0:X} | {1:X}", xellous.Length, Keyraw.Length);
 
@@ -2584,7 +2584,7 @@ namespace JRunner
                     Thread.Sleep(1000);
                     nand = new Nand.PrivateN();
                     nand._cpukey = txtCPUKey.Text;
-                    string kvfile = Path.Combine(variables.pathforit, @"xebuild\data\kv.bin");
+                    string kvfile = Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin");
                     if (File.Exists(kvfile))
                     {
                         nand._rawkv = File.ReadAllBytes(kvfile);
@@ -2607,7 +2607,7 @@ namespace JRunner
             newSession(true);
             nand = new Nand.PrivateN();
             nand._cpukey = txtCPUKey.Text;
-            string kvfile = Path.Combine(variables.pathforit, @"xebuild\data\kv.bin");
+            string kvfile = Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin");
             if (File.Exists(kvfile))
             {
                 nand._rawkv = File.ReadAllBytes(kvfile);
@@ -3197,7 +3197,7 @@ namespace JRunner
             if (device == DEVICE.XFLASHER_SPI)
             {
                 MessageBox.Show("Connect OpenXenium and press OK", "Connect Device", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                xflasher.flashSvf(variables.pathforit + @"\common\svf\openxenium.svf");
+                xflasher.flashSvf(variables.rootfolder + @"\common\svf\openxenium.svf");
             }
             else
             {
@@ -3726,10 +3726,10 @@ namespace JRunner
 
         private void txtConsole_DoubleClick(object sender, EventArgs e)
         {
-            File.AppendAllText(Path.Combine(variables.pathforit, "tempLog.txt"), txtConsole.Text);
-            System.Diagnostics.Process.Start(Path.Combine(variables.pathforit, "tempLog.txt"));
+            File.AppendAllText(Path.Combine(variables.rootfolder, "tempLog.txt"), txtConsole.Text);
+            System.Diagnostics.Process.Start(Path.Combine(variables.rootfolder, "tempLog.txt"));
             Thread.Sleep(1000);
-            File.Delete(Path.Combine(variables.pathforit, "tempLog.txt"));
+            File.Delete(Path.Combine(variables.rootfolder, "tempLog.txt"));
         }
 
         #endregion

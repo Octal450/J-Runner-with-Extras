@@ -261,7 +261,6 @@ namespace JRunner.Nand
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
 
-
             #region blocks
             try
             {
@@ -348,6 +347,12 @@ namespace JRunner.Nand
                 }
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            #endregion
+
+            #region Patch Parsing
+
+
+
             #endregion
 
             try

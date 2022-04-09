@@ -18,7 +18,7 @@ namespace JRunner
 
             try
             {
-                key1bl_options = File.ReadAllText(variables.pathforit + @"\xeBuild\options.ini");
+                key1bl_options = File.ReadAllText(variables.rootfolder + @"\xeBuild\options.ini");
                 key1bl_options = key1bl_options.Substring(key1bl_options.IndexOf("1blkey = ") + 9, 32);
             }
             catch
@@ -36,10 +36,10 @@ namespace JRunner
             sc = board + ".bin";
 
             Process pProcess = new Process();
-            pProcess.StartInfo.FileName = variables.pathforit + @"\xeBuild\XDKbuild\XDKbuild.exe";
+            pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\XDKbuild\XDKbuild.exe";
             pProcess.StartInfo.Arguments = "\"" + filename + "\" " + key1bl_options + " " + sc;
             pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.WorkingDirectory = variables.pathforit + @"\xeBuild\XDKbuild\";
+            pProcess.StartInfo.WorkingDirectory = variables.rootfolder + @"\xeBuild\XDKbuild\";
             pProcess.StartInfo.RedirectStandardInput = true;
             pProcess.StartInfo.RedirectStandardOutput = true;
             pProcess.StartInfo.CreateNoWindow = true;

@@ -296,16 +296,16 @@ namespace JRunner
             MainForm._waitmb.Set();
             if (variables.iterations == 1)
             {
-                if (File.Exists(Path.Combine(variables.pathforit, variables.filename)))
+                if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                 {
-                    variables.filename1 = Path.Combine(variables.pathforit, variables.filename);
+                    variables.filename1 = Path.Combine(variables.rootfolder, variables.filename);
                 }
             }
             if (variables.iterations >= 2)
             {
-                if (File.Exists(Path.Combine(variables.pathforit, variables.filename)))
+                if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                 {
-                    variables.filename2 = Path.Combine(variables.pathforit, variables.filename);
+                    variables.filename2 = Path.Combine(variables.rootfolder, variables.filename);
                 }
             }
             try

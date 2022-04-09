@@ -132,7 +132,7 @@ namespace JRunner
                     if (mode == 1) process.StartInfo.Arguments = "usb: +w" + size + " \"" + filename + "\"" + slArg;
                     else process.StartInfo.Arguments = "usb: -w" + size + " \"" + filename + "\"" + slArg;
                     process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.WorkingDirectory = Path.Combine(variables.pathforit, "common/mtx-tools");
+                    process.StartInfo.WorkingDirectory = Path.Combine(variables.rootfolder, "common/mtx-tools");
                     process.StartInfo.CreateNoWindow = false;
 
                     NandX.InUse = true;
@@ -183,7 +183,7 @@ namespace JRunner
                     process.StartInfo.FileName = "common/mtx-tools/xsvf/xsvf.exe";
                     process.StartInfo.Arguments = "\"" + filename + "\"";
                     process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.WorkingDirectory = variables.pathforit;
+                    process.StartInfo.WorkingDirectory = variables.rootfolder;
                     process.StartInfo.CreateNoWindow = false;
 
                     NandX.InUse = true;

@@ -9,8 +9,8 @@ namespace JRunner
 {
     public partial class XBOptions : Form
     {
-        string filename = Path.Combine(variables.pathforit, @"xebuild\options_edited.ini");
-        string file = Path.Combine(variables.pathforit, @"xebuild\options.ini");
+        string filename = Path.Combine(variables.rootfolder, @"xebuild\options_edited.ini");
+        string file = Path.Combine(variables.rootfolder, @"xebuild\options.ini");
         string[] delete = { };
 
         public XBOptions()

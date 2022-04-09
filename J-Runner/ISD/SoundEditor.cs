@@ -338,7 +338,7 @@ namespace JRunner.Forms
                 btnRead.Enabled = false;
             }
 
-            txtFile.Text = Path.Combine(variables.pathforit, "common", "sounds", filename);
+            txtFile.Text = Path.Combine(variables.rootfolder, "common", "sounds", filename);
             txtFile.SelectionStart = txtFile.Text.Length;
             txtFile.ScrollToCaret();
         }
