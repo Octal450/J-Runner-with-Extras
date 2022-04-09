@@ -240,11 +240,9 @@ namespace JRunner
                 }
                 File.Delete(filename);
 
-                if (File.Exists(@"package\release.exe"))
+                if (AppDomain.CurrentDomain.FriendlyName != "JRunner.exe")
                 {
-                    if (File.Exists(AppDomain.CurrentDomain.FriendlyName)) File.Delete(AppDomain.CurrentDomain.FriendlyName);
-                    File.Move(@"package\release.exe", AppDomain.CurrentDomain.FriendlyName);
-                    if (Directory.GetFiles("package", "*", SearchOption.TopDirectoryOnly).Length == 0) Directory.Delete("package");
+                    if (File.Exists("JRunner.exe")) File.Move("JRunner.exe", AppDomain.CurrentDomain.FriendlyName);
                 }
             }
             catch (Exception ex)
