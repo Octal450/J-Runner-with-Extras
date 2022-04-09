@@ -65,6 +65,7 @@
             this.btnXeBuildOptions = new System.Windows.Forms.Button();
             this.chkxesettings = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.chkXLUsb = new System.Windows.Forms.CheckBox();
             this.chkBigffs = new System.Windows.Forms.CheckBox();
             this.chkWB4G = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -549,6 +550,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tabPage3.Controls.Add(this.chkXLUsb);
             this.tabPage3.Controls.Add(this.chkBigffs);
             this.tabPage3.Controls.Add(this.chkWB4G);
             this.tabPage3.Controls.Add(this.label4);
@@ -563,10 +565,22 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Patches/Dashlaunch";
             // 
+            // chkXLUsb
+            // 
+            this.chkXLUsb.AutoSize = true;
+            this.chkXLUsb.Enabled = false;
+            this.chkXLUsb.Location = new System.Drawing.Point(100, 8);
+            this.chkXLUsb.Name = "chkXLUsb";
+            this.chkXLUsb.Size = new System.Drawing.Size(99, 17);
+            this.chkXLUsb.TabIndex = 0;
+            this.chkXLUsb.Text = "XL USB (2TB+)";
+            this.chkXLUsb.UseVisualStyleBackColor = true;
+            this.chkXLUsb.CheckedChanged += new System.EventHandler(this.chkXLUsb_CheckedChanged);
+            // 
             // chkBigffs
             // 
             this.chkBigffs.AutoSize = true;
-            this.chkBigffs.Location = new System.Drawing.Point(125, 8);
+            this.chkBigffs.Location = new System.Drawing.Point(205, 4);
             this.chkBigffs.Name = "chkBigffs";
             this.chkBigffs.Size = new System.Drawing.Size(51, 17);
             this.chkBigffs.TabIndex = 71;
@@ -602,7 +616,7 @@
             this.chkLaunch.AutoSize = true;
             this.chkLaunch.BackColor = System.Drawing.Color.Transparent;
             this.chkLaunch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkLaunch.Location = new System.Drawing.Point(206, 43);
+            this.chkLaunch.Location = new System.Drawing.Point(205, 52);
             this.chkLaunch.Name = "chkLaunch";
             this.chkLaunch.Size = new System.Drawing.Size(109, 17);
             this.chkLaunch.TabIndex = 74;
@@ -626,7 +640,7 @@
             this.checkDLPatches.AutoSize = true;
             this.checkDLPatches.BackColor = System.Drawing.Color.Transparent;
             this.checkDLPatches.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkDLPatches.Location = new System.Drawing.Point(206, 7);
+            this.checkDLPatches.Location = new System.Drawing.Point(205, 21);
             this.checkDLPatches.Name = "checkDLPatches";
             this.checkDLPatches.Size = new System.Drawing.Size(121, 30);
             this.checkDLPatches.TabIndex = 73;
@@ -1048,12 +1062,13 @@
         private System.Windows.Forms.CheckBox chkCleanSMC;
         private System.Windows.Forms.CheckBox chkCR4;
         private System.Windows.Forms.CheckBox chkWB;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkWB4G;
         private System.Windows.Forms.CheckBox chkBigffs;
         private System.Windows.Forms.CheckBox chkRgh3;
         private System.Windows.Forms.Label Rgh3Label;
         private System.Windows.Forms.ComboBox Rgh3Mhz;
         private System.Windows.Forms.Label Rgh3Label2;
+        private System.Windows.Forms.CheckBox chkXLUsb;
+        private System.Windows.Forms.Label label4;
     }
 }

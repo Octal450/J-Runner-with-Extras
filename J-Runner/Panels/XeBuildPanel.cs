@@ -266,6 +266,7 @@ namespace JRunner.Panels
 
             checkWBXdkBuild();
             checkBigffs(variables.boardtype);
+            checkXLUsb();
 
             if (!rbtnRetail.Checked && !rbtnGlitch.Checked && !rbtnGlitch2.Checked && !rbtnGlitch2m.Checked && !rbtnDevGL.Checked) chkCleanSMC.Checked = false;
 
@@ -347,6 +348,7 @@ namespace JRunner.Panels
             }
 
             checkWBXdkBuild();
+            checkXLUsb();
             updateCommand();
             setComboCB();
         }
@@ -498,6 +500,15 @@ namespace JRunner.Panels
                 chkBigffs.Checked = false;
                 chkBigffs.Enabled = false;
             }
+        }
+
+        private void checkXLUsb()
+        {
+            if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\bin\xl_usb.bin")))
+            {
+                chkXLUsb.Enabled = !rbtnRetail.Checked;
+            }
+            else chkXLUsb.Checked = chkXLUsb.Enabled = false;
         }
 
         bool chkWB4GVis = false;
@@ -848,6 +859,19 @@ namespace JRunner.Panels
             else Console.WriteLine("0 Fuse Deselected");
         }
 
+        private void chkXLUsb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkXLUsb.Checked)
+            {
+                Console.WriteLine("XL USB Selected");
+                if (DialogResult.Cancel == MessageBox.Show("XL USB requires HDDs to be formatted via FATXplorer, normal Xbox 360 storage devices will no longer work", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                {
+                    chkXLUsb.Checked = false;
+                }
+            }
+            else Console.WriteLine("XL USB Deselected");
+        }
+
         private void btnGetMB_Click(object sender, EventArgs e)
         {
             Getmb();
@@ -1168,7 +1192,7 @@ namespace JRunner.Panels
             Classes.xebuild xe = new Classes.xebuild();
             xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                              variables.ctyp, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
-                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, fullDataClean);
+                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, fullDataClean);
 
             string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_" + variables.ttyp + ".ini");
 
@@ -1299,7 +1323,7 @@ namespace JRunner.Panels
                         xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                             variables.ctyp, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked,
-                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, fullDataClean);
+                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, fullDataClean);
                         goto Start;
                     }
                 case Classes.xebuild.XebuildError.none:

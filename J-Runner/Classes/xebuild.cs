@@ -45,10 +45,11 @@ namespace JRunner.Classes
         private bool _noava;
         private bool _clean;
         private bool _noreeb;
+        private bool _xlusb;
         private Nand.PrivateN _nand;
         private List<String> _patches;
 
-        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<String> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool fullDataClean)
+        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<String> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool xlusb, bool fullDataClean)
         {
             this._cpukey = cpukey;
             this._ttype = ttype;
@@ -68,6 +69,7 @@ namespace JRunner.Classes
             this._bigffs = bigffs;
             this._zfuse = zfuse;
             this._xdkbuild = xdkbuild;
+            this._xlusb = xlusb;
             this._fullDataClean = fullDataClean;
         }
 
@@ -519,6 +521,8 @@ namespace JRunner.Classes
                 arguments += " -a hvfixkeys";
             }
 
+            if (_xlusb) arguments += " -a xl_usb";
+
             foreach (String patch in _patches)
             {
                 arguments += " " + patch;
@@ -640,6 +644,8 @@ namespace JRunner.Classes
             {
                 arguments += " -a hvfixkeys";
             }
+
+            if (_xlusb) arguments += " -a xl_usb";
 
             if (variables.debugme) Console.WriteLine(variables.pathforit);
             if (variables.debugme) Console.WriteLine("---" + variables.pathforit + @"\xeBuild\xeBuild.exe");
