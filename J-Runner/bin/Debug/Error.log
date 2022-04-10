@@ -1,0 +1,28 @@
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Mena\Source\Repos\Pheeeeenom\J-Runner-with-Extras\J-Runner\bin\Debug\output\nanddump.bin'.
+File name: 'C:\Users\Mena\Source\Repos\Pheeeeenom\J-Runner-with-Extras\J-Runner\bin\Debug\output\nanddump.bin'
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.File.InternalReadAllBytes(String path, Boolean checkHost)
+   at System.IO.File.ReadAllBytes(String path)
+   at JRunner.MainForm.nandinit() in C:\Users\Mena\Source\Repos\Pheeeeenom\J-Runner-with-Extras\J-Runner\MainForm.cs:line 1964
+   at JRunner.MainForm.<nand_init>b__83_0() in C:\Users\Mena\Source\Repos\Pheeeeenom\J-Runner-with-Extras\J-Runner\MainForm.cs:line 1564
+   at System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Mena\Source\Repos\Pheeeeenom\J-Runner-with-Extras\J-Runner\bin\Debug\output\nanddump.bin'.
+File name: 'C:\Users\Mena\Source\Repos\Pheeeeenom\J-Runner-with-Extras\J-Runner\bin\Debug\output\nanddump.bin'
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.File.InternalReadAllBytes(String path, Boolean checkHost)
+   at System.IO.File.ReadAllBytes(String path)
+   at JRunner.MainForm.nandinit() in C:\Users\Mena\Source\Repos\Pheeeeenom\J-Runner-with-Extras\J-Runner\MainForm.cs:line 1964
+   at JRunner.MainForm.<nand_init>b__83_0() in C:\Users\Mena\Source\Repos\Pheeeeenom\J-Runner-with-Extras\J-Runner\MainForm.cs:line 1564
+   at System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()

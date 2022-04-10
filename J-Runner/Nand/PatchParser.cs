@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Windows;
 
 namespace JRunner.Nand
 {
     public class PatchParser
     {
-        UInt32 address;
-        UInt32 patchCount;
-        UInt32[] patches;
-        int index;
-        byte[] patchArray;
+        public UInt32 address;
+        public UInt32 patchCount;
+        public UInt32[] patches;
+        public int index;
+        public byte[] patchArray;
 
         public PatchParser(byte[] data)
         {
@@ -67,16 +68,47 @@ namespace JRunner.Nand
         public void parseAll(int i = 0)
         {
             index = i;
-            while (getAddress(patchArray) != (UInt32)0xFFFFFFFFU)
+            while (getAddress(patchArray) != (UInt32)0xFFFFFFFFU) //moves index+4
             {
-                index -= 0x4;
+                index -= 0x4; //return index to original position
+                UInt32 detectd2m_devgl = getAddress(patchArray);
+                if (detectd2m_devgl == 0x00000000 || detectd2m_devgl == 0xF0000000) //moves index to check
+                {
+                    index += 0x50; //devgl/g2m detect
+                    index -= 0x4; //go back to original location + 0x50
+                    continue; //iterate
+                } else
+                {
+                    index -= 0x4; //return to original position
+                }
+                if (getAddress(patchArray) == 0x000E3A7C){ //moves index
+                    if (getCount(patchArray) == 0x00000001)
+                    {
+                        UInt32[] patchlist;
+                        patchlist = getPatches(patchArray);
+
+                        if (patchlist[0] == 0x3CE02000)
+                        {
+                            MessageBox.Show("This NAND will only allow FATXplorer formatted storage to work on the 360.\nIf you don't want this, generate an image without the patches under \"Patches/Dashlaunch\"", "AYO?", MessageBoxButton.OK,MessageBoxImage.Exclamation);
+                        }
+
+                    }
+                     
+                } else
+                {
+                    index -= 0x4; //return to origin
+                }
+
                 getAddress(patchArray);
 
-                getCount(patchArray);
+                if(getCount(patchArray)> 0x1000)
+                {
+                    //assume image has no patches
+                    index = 0;
+                    break;
+                }
                 getPatches(patchArray);
-                printAddress();
-                printPatchCount();
-                printPatches();
+         
             }
         }
 

@@ -1960,6 +1960,9 @@ namespace JRunner
 
         void nandinit()
         {
+            
+            
+
             bool movedalready = false;
             if (String.IsNullOrEmpty(variables.filename1)) return;
             if (!File.Exists(variables.filename1))
@@ -1969,6 +1972,7 @@ namespace JRunner
             }
             try
             {
+
                 updateProgress(progressBar.Minimum);
                 if (Path.GetExtension(variables.filename1) != ".bin") return;
                 variables.gotvalues = true;
@@ -2086,7 +2090,7 @@ namespace JRunner
                 variables.ctyp = Nand.Nand.getConsole(nand, variables.flashconfig);
                 xPanel.setMBname(variables.ctyp.Text);
                 variables.rghable = true;
-
+/////////////////////////
                 switch (Nand.ntable.getHackfromCB(nand.bl.CB_A))
                 {
                     case variables.hacktypes.glitch:
@@ -2114,6 +2118,37 @@ namespace JRunner
                 Console.WriteLine("");
 
                 updateProgress(progressBar.Maximum);
+
+
+                byte[] check_XL_USB = Nand.Nand.unecc(File.ReadAllBytes(variables.filename1));
+                
+                byte[] patches = new byte[0x1000];
+
+                if (nand.bigblock)
+                {
+                    for (int i = 0; i < patches.Length; i++)
+                    {
+                        patches[i] = check_XL_USB[(0xE0000 + 0x10) + i];
+                    }
+                } else
+                {
+                    for (int i = 0; i < patches.Length; i++)
+                    {
+                            patches[i] = check_XL_USB[(0xC0000 + 0x10) + i];
+                    }
+                }
+                
+                Nand.PatchParser patchParser = new Nand.PatchParser(patches);
+                
+                patchParser.parseAll();
+                patches = new byte[0x1000];
+
+                for (int i = 0; i < patches.Length; i++)
+                {
+                    patches[i] = check_XL_USB[(0x913F0) + i];
+                }
+                patchParser = new Nand.PatchParser(patches);
+                patchParser.parseAll();
                 if (variables.debugme)
                     Console.WriteLine("allmove ", variables.allmove);
                 if (variables.debugme)
@@ -2130,6 +2165,7 @@ namespace JRunner
                     }
                 }
             }
+
             catch (SystemException ex)
             {
                 Console.WriteLine("Nand Initialization Failed: {0}", ex.GetType().ToString());
