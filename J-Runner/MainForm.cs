@@ -1960,9 +1960,6 @@ namespace JRunner
 
         void nandinit()
         {
-            
-            
-
             bool movedalready = false;
             if (String.IsNullOrEmpty(variables.filename1)) return;
             if (!File.Exists(variables.filename1))
@@ -2090,7 +2087,9 @@ namespace JRunner
                 variables.ctyp = Nand.Nand.getConsole(nand, variables.flashconfig);
                 xPanel.setMBname(variables.ctyp.Text);
                 variables.rghable = true;
-/////////////////////////
+
+                /////////////////////////
+                
                 switch (Nand.ntable.getHackfromCB(nand.bl.CB_A))
                 {
                     case variables.hacktypes.glitch:
@@ -2113,42 +2112,63 @@ namespace JRunner
                         break;
                 }
 
+                try
+                {
+                    FileStream fs = new FileStream(variables.filename1, FileMode.Open);
+                    
+                    byte[] check_XL_USB = new byte[0x5B230];
+                    fs.Position = 0x8FFD0;
+                    fs.Read(check_XL_USB, 0, 0x5B230); // 0x8FFD0 - 0xEB200
+                    check_XL_USB = Nand.Nand.unecc(check_XL_USB);
+
+                    byte[] patches = new byte[0x1000];
+                    
+                    if (nand.bigblock)
+                    {
+                        for (int i = 0; i < patches.Length; i++)
+                        {
+                            patches[i] = check_XL_USB[(0x54600 + 0x10) + i]; // BB, 0xE0000
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < patches.Length; i++)
+                        {
+                            patches[i] = check_XL_USB[(0x34600 + 0x10) + i]; // 16MB, 0xC0000
+                        }
+                    }
+                    
+                    Nand.PatchParser patchParser = new Nand.PatchParser(patches);
+                    bool patchResult = patchParser.parseAll();
+                    
+                    if (!patchResult)
+                    {
+                        patches = new byte[0x1000];
+
+                        for (int i = 0; i < patches.Length; i++)
+                        {
+                            patches[i] = check_XL_USB[(0x59F0) + i]; // JTAG all sizes, 0x913F0
+                        }
+
+                        patchParser = new Nand.PatchParser(patches);
+                        patchParser.parseAll();
+                    }
+                    
+                    check_XL_USB = null;
+                    fs.Close();
+                    fs.Dispose();
+                }
+                catch
+                {
+                    if (variables.debugme) Console.WriteLine("Could not check for patches");
+                }
+
                 variables.gotvalues = !String.IsNullOrEmpty(variables.cpkey);
                 Console.WriteLine("Nand Initialization Finished");
                 Console.WriteLine("");
 
                 updateProgress(progressBar.Maximum);
 
-
-                byte[] check_XL_USB = Nand.Nand.unecc(File.ReadAllBytes(variables.filename1));
-                
-                byte[] patches = new byte[0x1000];
-
-                if (nand.bigblock)
-                {
-                    for (int i = 0; i < patches.Length; i++)
-                    {
-                        patches[i] = check_XL_USB[(0xE0000 + 0x10) + i];
-                    }
-                } else
-                {
-                    for (int i = 0; i < patches.Length; i++)
-                    {
-                            patches[i] = check_XL_USB[(0xC0000 + 0x10) + i];
-                    }
-                }
-                
-                Nand.PatchParser patchParser = new Nand.PatchParser(patches);
-                
-                patchParser.parseAll();
-                patches = new byte[0x1000];
-
-                for (int i = 0; i < patches.Length; i++)
-                {
-                    patches[i] = check_XL_USB[(0x913F0) + i];
-                }
-                patchParser = new Nand.PatchParser(patches);
-                patchParser.parseAll();
                 if (variables.debugme)
                     Console.WriteLine("allmove ", variables.allmove);
                 if (variables.debugme)
@@ -2175,6 +2195,8 @@ namespace JRunner
                 updateProgress(progressBar.Minimum);
                 return;
             }
+
+            GC.Collect();
         }
 
         string load_ecc()
@@ -4329,6 +4351,9 @@ namespace JRunner
                         case "MtxUsbMode":
                             x.write(name, variables.mtxUsbMode.ToString());
                             break;
+                        case "NoPatchWarnings":
+                            x.write(name, variables.noPatchWarnings.ToString());
+                            break;
                         default:
                             break;
                     }
@@ -4534,6 +4559,11 @@ namespace JRunner
                             bvalue = false;
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             mtxUsbModeToolStripMenuItem.Checked = variables.mtxUsbMode = bvalue;
+                            break;
+                        case "NoPatchWarnings":
+                            bvalue = false;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
+                            variables.noPatchWarnings = bvalue;
                             break;
                         default:
                             break;

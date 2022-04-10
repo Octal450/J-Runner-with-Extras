@@ -421,3 +421,626 @@ Nand Initialization Finished
 Initializing updflash.bin, please wait...
 Nand Initialization Finished
 
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:39:04
+Version: 3131.220410.1838
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:39:10
+Version: 3131.220410.1838
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:39:16
+Version: 3131.220410.1838
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:39:32
+Version: 3131.220410.1839
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:39:39
+Version: 3131.220410.1839
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:39:44
+Version: 3131.220410.1839
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:40:37
+Version: 3131.220410.1840
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:45:12
+Version: 3131.220410.1845
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:46:37
+Version: 3131.220410.1846
+Status: Up to date
+
+Initializing glitch2m.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing updflash.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:50:46
+Version: 3131.220410.1850
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:51:13
+Version: 3131.220410.1851
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:51:53
+Version: 3131.220410.1851
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 14:52:34
+Version: 3131.220410.1852
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:04:08
+Version: 3131.220410.1904
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:06:12
+Version: 3131.220410.1906
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:07:32
+Version: 3131.220410.1907
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+XL USB Patches applied!
+Nand Initialization Finished
+
+XL USB Patches applied!
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:09:08
+Version: 3131.220410.1909
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:21:16
+Version: 3131.220410.1921
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:22:03
+Version: 3131.220410.1922
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:22:29
+Version: 3131.220410.1922
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:24:12
+Version: 3131.220410.1924
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 15:56:42
+Version: 3131.220410.1956
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 16:02:45
+Version: 3131.220410.2002
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 16:03:22
+Version: 3131.220410.2003
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 16:05:22
+Version: 3131.220410.2005
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 16:08:49
+Version: 3131.220410.2008
+Status: Up to date
+
+Initializing jtag.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing updflash.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 16:12:16
+Version: 3131.220410.2012
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 16:12:22
+Version: 3131.220410.2012
+Status: Up to date
+
+Initializing jtag-bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing jtag.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing devgl.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+

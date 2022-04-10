@@ -39,6 +39,7 @@ namespace JRunner.Forms
             modderbut.Checked = variables.modder;
             
             timingOnKeypressEnable.Checked = variables.timingonkeypress;
+            chkNoPatchWarnings.Checked = variables.noPatchWarnings;
             almovebut.Checked = !variables.allmove;
             if (variables.soundcompare != "") chksuccom.Checked = true;
             if (variables.sounderror != "") chkerror.Checked = true;
@@ -246,6 +247,16 @@ namespace JRunner.Forms
                 MessageBox.Show("Port is not valid", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTimingLptPort.Text = variables.LPTport;
             }
+        }
+
+        private void chkNoPatchWarnings_CheckedChanged(object sender, EventArgs e)
+        {
+            variables.noPatchWarnings = chkNoPatchWarnings.Checked;
+        }
+
+        private void chkNoPatchWarnings_Click(object sender, EventArgs e)
+        {
+            if (chkNoPatchWarnings.Checked) MessageBox.Show("Warnings or messages about patches will not be displayed as pop-ups\n\nConsole log messages will continue to show", "Steep Hill Ahead", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

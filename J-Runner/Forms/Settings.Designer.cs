@@ -84,6 +84,7 @@
             this.rbtnTimingLpt = new System.Windows.Forms.RadioButton();
             this.rbtnTimingUsb = new System.Windows.Forms.RadioButton();
             this.btnReset = new System.Windows.Forms.Button();
+            this.chkNoPatchWarnings = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -215,7 +216,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(268, 371);
+            this.btnOK.Location = new System.Drawing.Point(268, 394);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 23);
             this.btnOK.TabIndex = 17;
@@ -447,7 +448,7 @@
             // 
             // logBackgroundCustom
             // 
-            this.logBackgroundCustom.Location = new System.Drawing.Point(245, 309);
+            this.logBackgroundCustom.Location = new System.Drawing.Point(245, 332);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
             this.logBackgroundCustom.TabIndex = 41;
@@ -458,7 +459,7 @@
             // logBackgroundBlue
             // 
             this.logBackgroundBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(36)))), ((int)(((byte)(86)))));
-            this.logBackgroundBlue.Location = new System.Drawing.Point(219, 309);
+            this.logBackgroundBlue.Location = new System.Drawing.Point(219, 332);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlue.TabIndex = 40;
@@ -468,7 +469,7 @@
             // logBackgroundBlack
             // 
             this.logBackgroundBlack.BackColor = System.Drawing.Color.Black;
-            this.logBackgroundBlack.Location = new System.Drawing.Point(193, 309);
+            this.logBackgroundBlack.Location = new System.Drawing.Point(193, 332);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlack.TabIndex = 39;
@@ -477,7 +478,7 @@
             // 
             // logTextCustom
             // 
-            this.logTextCustom.Location = new System.Drawing.Point(245, 335);
+            this.logTextCustom.Location = new System.Drawing.Point(245, 358);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
             this.logTextCustom.TabIndex = 45;
@@ -488,7 +489,7 @@
             // logTextBlack
             // 
             this.logTextBlack.BackColor = System.Drawing.Color.Black;
-            this.logTextBlack.Location = new System.Drawing.Point(219, 335);
+            this.logTextBlack.Location = new System.Drawing.Point(219, 358);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
             this.logTextBlack.TabIndex = 44;
@@ -498,7 +499,7 @@
             // logTextWhite
             // 
             this.logTextWhite.BackColor = System.Drawing.Color.White;
-            this.logTextWhite.Location = new System.Drawing.Point(193, 335);
+            this.logTextWhite.Location = new System.Drawing.Point(193, 358);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
             this.logTextWhite.TabIndex = 43;
@@ -508,7 +509,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(15, 338);
+            this.label11.Location = new System.Drawing.Point(15, 361);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 42;
@@ -517,7 +518,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 312);
+            this.label10.Location = new System.Drawing.Point(15, 335);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 38;
@@ -525,7 +526,7 @@
             // 
             // logDefault
             // 
-            this.logDefault.Location = new System.Drawing.Point(137, 309);
+            this.logDefault.Location = new System.Drawing.Point(137, 332);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
             this.logDefault.TabIndex = 46;
@@ -605,7 +606,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(519, 371);
+            this.btnReset.Location = new System.Drawing.Point(519, 394);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(76, 23);
             this.btnReset.TabIndex = 52;
@@ -613,12 +614,25 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // chkNoPatchWarnings
+            // 
+            this.chkNoPatchWarnings.AutoSize = true;
+            this.chkNoPatchWarnings.Location = new System.Drawing.Point(18, 307);
+            this.chkNoPatchWarnings.Name = "chkNoPatchWarnings";
+            this.chkNoPatchWarnings.Size = new System.Drawing.Size(206, 17);
+            this.chkNoPatchWarnings.TabIndex = 53;
+            this.chkNoPatchWarnings.Text = "Do not show patch warning messages";
+            this.chkNoPatchWarnings.UseVisualStyleBackColor = true;
+            this.chkNoPatchWarnings.CheckedChanged += new System.EventHandler(this.chkNoPatchWarnings_CheckedChanged);
+            this.chkNoPatchWarnings.Click += new System.EventHandler(this.chkNoPatchWarnings_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 411);
+            this.ClientSize = new System.Drawing.Size(612, 434);
             this.ControlBox = false;
+            this.Controls.Add(this.chkNoPatchWarnings);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -723,5 +737,6 @@
         private System.Windows.Forms.RadioButton rbtnTimingLpt;
         private System.Windows.Forms.RadioButton rbtnTimingUsb;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.CheckBox chkNoPatchWarnings;
     }
 }
