@@ -1,0 +1,423 @@
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 0:00:37
+Version: 3131.220410.0400
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 0:21:39
+Version: 3131.220410.0421
+Status: Up to date
+
+WARNING - Working Folder!
+Your working folder is not empty, click Show Working Folder to view its contents
+
+Initializing nanddump.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 1:07:19
+Version: 3131.220410.0507
+Status: Up to date
+
+WARNING - Working Folder!
+Your working folder is not empty, click Show Working Folder to view its contents
+
+Address: 0x00001880
+Patch Count: 0x00000001
+Patch: 0x4800B513
+Address: 0x000000F0
+Patch Count: 0x00000004
+Patch: 0x00000000
+Patch: 0x00000000
+Patch: 0x00000000
+Patch: 0x00000000
+Address: 0x000011BC
+Patch Count: 0x00000001
+Patch: 0x4800154E
+Address: 0x0000154C
+Patch Count: 0x00000004
+Patch: 0x38800007
+Patch: 0x7C212078
+Patch: 0x7C35EBA6
+Patch: 0x480011C2
+Address: 0x00003120
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x0000A560
+Patch Count: 0x00000002
+Patch: 0x38600001
+Patch: 0x4E800020
+Address: 0x0002A30C
+Patch Count: 0x00000002
+Patch: 0x60000000
+Patch: 0x60000000
+Address: 0x0002AA80
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x0002AA8C
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x0000B510
+Patch Count: 0x00000048
+Patch: 0x7D0802A6
+Patch: 0xA0600006
+Patch: 0x38800021
+Patch: 0x7C632078
+Patch: 0xB0600006
+Patch: 0x38600021
+Patch: 0x4800B53F
+Patch: 0x3860000A
+Patch: 0x4800B53F
+Patch: 0x7D0803A6
+Patch: 0x480002DA
+Patch: 0x3C808000
+Patch: 0x60840200
+Patch: 0x788407C6
+Patch: 0x6484EA00
+Patch: 0x5463C00E
+Patch: 0x90641014
+Patch: 0x80641018
+Patch: 0x5463018D
+Patch: 0x4182FFF8
+Patch: 0x4E800020
+Patch: 0x3D607262
+Patch: 0x616B7472
+Patch: 0x7F035840
+Patch: 0x419A0008
+Patch: 0x48001CCA
+Patch: 0x2B040004
+Patch: 0x41990094
+Patch: 0x419A0044
+Patch: 0x38A0154C
+Patch: 0x3CC03880
+Patch: 0x2B040002
+Patch: 0x409A000C
+Patch: 0x60C60007
+Patch: 0x4800000C
+Patch: 0x2B040003
+Patch: 0x409A001C
+Patch: 0x38000000
+Patch: 0x90C50000
+Patch: 0x7C00286C
+Patch: 0x7C002FAC
+Patch: 0x7C0004AC
+Patch: 0x4C00012C
+Patch: 0x38600001
+Patch: 0x4E800020
+Patch: 0x7D8802A6
+Patch: 0xF981FFF8
+Patch: 0xF821FFF1
+Patch: 0x7CA803A6
+Patch: 0x7CE903A6
+Patch: 0x80860000
+Patch: 0x90850000
+Patch: 0x7C00286C
+Patch: 0x7C002FAC
+Patch: 0x7C0004AC
+Patch: 0x4C00012C
+Patch: 0x38A50004
+Patch: 0x38C60004
+Patch: 0x4200FFE0
+Patch: 0x4E800020
+Patch: 0x38210010
+Patch: 0xE981FFF8
+Patch: 0x7D8803A6
+Patch: 0x4E800020
+Patch: 0x2B040005
+Patch: 0x409A0014
+Patch: 0x7CC33378
+Patch: 0x7CA42B78
+Patch: 0x7CE53B78
+Patch: 0x4800A882
+Patch: 0x38600002
+Patch: 0x4E800020
+Address: 0x00015FD0
+Patch Count: 0x00000001
+Patch: 0x0000B564
+Address: 0x00006BB0
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x00006C48
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x00006C98
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x00006D08
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x00006D58
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x0000813C
+Patch Count: 0x00000001
+Patch: 0x48000030
+Address: 0x000070BC
+Patch Count: 0x00000001
+Patch: 0x38600001
+Address: 0x00007268
+Patch Count: 0x00000001
+Patch: 0x38600000
+Address: 0x000072B4
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x000072C4
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x000072EC
+Patch Count: 0x00000002
+Patch: 0x60000000
+Patch: 0x39600001
+Address: 0x00024D58
+Patch Count: 0x00000002
+Patch: 0x38600001
+Patch: 0x4E800020
+Address: 0x000264F0
+Patch Count: 0x00000001
+Patch: 0x38600001
+Address: 0x00029B08
+Patch Count: 0x0000000E
+Patch: 0x2B3C0000
+Patch: 0x419A0030
+Patch: 0x2F030000
+Patch: 0x409A0010
+Patch: 0x388000F0
+Patch: 0x48000018
+Patch: 0x60000000
+Patch: 0x2B1D0000
+Patch: 0x389F0440
+Patch: 0x409A0008
+Patch: 0x38800054
+Patch: 0x7F83E378
+Patch: 0x4BFF65C1
+Patch: 0x3BE00000
+Address: 0x0002B778
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x0002CAE8
+Patch Count: 0x00000001
+Patch: 0x38600000
+Address: 0x0002CDD8
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x0003089C
+Patch Count: 0x00000004
+Patch: 0x409A0008
+Patch: 0x3BA00000
+Patch: 0x60000000
+Patch: 0x60000000
+Address: 0x000304E8
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x000304FC
+Patch Count: 0x00000001
+Patch: 0x60000000
+Address: 0x0007B920
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x0007C4B8
+Patch Count: 0x00000001
+Patch: 0x38600001
+Address: 0x0007C5E8
+Patch Count: 0x00000001
+Patch: 0x38600000
+Address: 0x0007C634
+Patch Count: 0x00000001
+Patch: 0x39600000
+Address: 0x0007C684
+Patch Count: 0x00000001
+Patch: 0x39600000
+Address: 0x0007AF08
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x00094F78
+Patch Count: 0x00000001
+Patch: 0x3AE00010
+Address: 0x000998D0
+Patch Count: 0x00000001
+Patch: 0x2B0B00FF
+Address: 0x000992B4
+Patch Count: 0x00000005
+Patch: 0x38600000
+Patch: 0x60000000
+Patch: 0x60000000
+Patch: 0x60000000
+Patch: 0x60000000
+Address: 0x00109C90
+Patch Count: 0x00000002
+Patch: 0x38600001
+Patch: 0x4E800020
+Address: 0x0010A788
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x0010AA68
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x0010AF30
+Patch Count: 0x00000002
+Patch: 0x38600001
+Patch: 0x4E800020
+Address: 0x0010B138
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x0010B0E8
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x0010B278
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x0010B3F8
+Patch Count: 0x00000002
+Patch: 0x38600000
+Patch: 0x4E800020
+Address: 0x0010BF20
+Patch Count: 0x00000005
+Patch: 0x2B050000
+Patch: 0x38600001
+Patch: 0x419A0008
+Patch: 0x90650000
+Patch: 0x4E800020
+Address: 0x00111990
+Patch Count: 0x00000002
+Patch: 0x38600001
+Patch: 0x4E800020
+Address: 0x000E1754
+Patch Count: 0x00000001
+Patch: 0x48000054
+Address: 0x000E17CC
+Patch Count: 0x00000003
+Patch: 0x835C0098
+Patch: 0x60000000
+Patch: 0x60000000
+Address: 0x0015D9D8
+Patch Count: 0x00000002
+Patch: 0x38600001
+Patch: 0x4E800020
+Address: 0x0010BF40
+Patch Count: 0x0000002C
+Patch: 0x40980008
+Patch: 0x4E800020
+Patch: 0x3C608010
+Patch: 0x3CA00000
+Patch: 0x38800000
+Patch: 0x60840008
+Patch: 0x6063BFD0
+Patch: 0x38C00000
+Patch: 0x4BF71861
+Patch: 0x38600000
+Patch: 0x3C808010
+Patch: 0x6084BFEC
+Patch: 0x4C00012C
+Patch: 0x90640000
+Patch: 0x4BF55464
+Patch: 0x38A10054
+Patch: 0x3CE08010
+Patch: 0x60E7BFEC
+Patch: 0x81070000
+Patch: 0x4C00012C
+Patch: 0x2B080000
+Patch: 0x419A000C
+Patch: 0x7FFFFB78
+Patch: 0x4BFFFFEC
+Patch: 0x4E800020
+Patch: 0x2B030014
+Patch: 0x409A0024
+Patch: 0x3CE08010
+Patch: 0x60E7BFEC
+Patch: 0x81070000
+Patch: 0x4C00012C
+Patch: 0x2B080000
+Patch: 0x419A000C
+Patch: 0x7FFFFB78
+Patch: 0x4BFFFFEC
+Patch: 0x4BFFC444
+Patch: 0x5C446576
+Patch: 0x6963655C
+Patch: 0x466C6173
+Patch: 0x685C6C61
+Patch: 0x756E6368
+Patch: 0x2E786578
+Patch: 0x00000000
+Patch: 0x12345678
+Address: 0x000613CC
+Patch Count: 0x00000001
+Patch: 0x480AAB75
+Address: 0x0007D7F8
+Patch Count: 0x00000001
+Patch: 0x4808E785
+Address: 0x00108E70
+Patch Count: 0x00000001
+Patch: 0x48003134
+Initializing updflash.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 1:16:35
+Version: 3131.220410.0516
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 1:22:49
+Version: 3131.220410.0522
+Status: Up to date
+
+EATON PATCH
+Initializing updflash.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 11:52:38
+Version: 3131.220410.1552
+Status: Up to date
+
+Initializing nanddump2.bin, please wait...
+Nand Initialization Finished
+
+Initializing updflash.bin, please wait...
+Nand Initialization Finished
+
+Initializing nanddump1.bin, please wait...
+CPU Key is Correct
+Added Key to Database
+Nand Initialization Finished
+
+Initializing updflash.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/10/2022 12:52:51
+Version: 3131.220410.1652
+Status: Up to date
+
+Initializing updflash (1).bin, please wait...
+Nand Initialization Finished
+
+Initializing updflash.bin, please wait...
+Nand Initialization Finished
+
