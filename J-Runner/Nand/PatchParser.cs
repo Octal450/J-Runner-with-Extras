@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 
+// Patch Parser by Mena Azer, 2022
+
 namespace JRunner.Nand
 {
     public class PatchParser
@@ -69,16 +71,17 @@ namespace JRunner.Nand
         {
             bool foundAPatch = false;
             index = i;
-            while (getAddress(patchArray) != (UInt32)0xFFFFFFFFU) //moves index+4
+
+            while (getAddress(patchArray) != (UInt32)0xFFFFFFFFU) // moves index+4
             {
-                index -= 0x4; //return index to original position
+                index -= 0x4; // return index to original position
                 UInt32 detectd2m_devgl = getAddress(patchArray);
 
-                if (detectd2m_devgl == 0x00000000 || detectd2m_devgl == 0xF0000000) //moves index to check
+                if (detectd2m_devgl == 0x00000000 || detectd2m_devgl == 0xF0000000) // moves index to check
                 {
-                    index += 0x50; //devgl/g2m detect
-                    index -= 0x4; //go back to original location + 0x50
-                    continue; //iterate
+                    index += 0x50; // devgl/g2m detect
+                    index -= 0x4; // go back to original location + 0x50
+                    continue; // iterate
                 }
                 else
                 {
@@ -96,7 +99,7 @@ namespace JRunner.Nand
                         {
                             foundAPatch = true;
                             Console.WriteLine("XL USB Patches applied!");
-                            if (!variables.noPatchWarnings) MessageBox.Show("This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work.\n\nDevices formatted on the Xbox 360 will NOT work!\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\"", "AYO?", MessageBoxButton.OK,MessageBoxImage.Exclamation);
+                            if (!variables.noPatchWarnings) MessageBox.Show("This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work.\n\nDevices formatted on the Xbox 360 will NOT work!\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\"", "AYO?", MessageBoxButton.OK,MessageBoxImage.Information);
                         }
                     }
                 }
