@@ -10,6 +10,7 @@ namespace JRunner
 
         public string ComFunc = "Read";
         public string SizeFunc = "16";
+        private int timingType = 0;
 
         public NandProArg()
         {
@@ -22,7 +23,7 @@ namespace JRunner
             UpdateDevice();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRun_Click(object sender, EventArgs e)
         {
             this.getfilename();
             this.getlength();
@@ -75,14 +76,13 @@ namespace JRunner
             if (readbtn.Checked)
             {
                 string filename1 = "";
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Nand files (*.bin)|*.bin";
-                saveFileDialog1.Title = "Save to File";
-                //saveFileDialog1.InitialDirectory = variables.currentdir;
-                saveFileDialog1.RestoreDirectory = false;
-                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Nand files (*.bin)|*.bin";
+                saveFileDialog.Title = "Save to File";
+                saveFileDialog.RestoreDirectory = false;
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    filename1 = saveFileDialog1.FileName;
+                    filename1 = saveFileDialog.FileName;
                     variables.currentdir = filename1;
                 }
                 if (filename1 != "") this.txtFilename.Text = filename1;
@@ -90,16 +90,16 @@ namespace JRunner
             else
             {
                 string filename1 = "";
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                if (xsvfbtn.Checked && xsvfbtn.Text == "SVF") openFileDialog1.Filter = "SVF files (*.svf)|*.svf";
-                else if (xsvfbtn.Checked) openFileDialog1.Filter = "XSVF files (*.xsvf)|*.xsvf";
-                else openFileDialog1.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc";
-                openFileDialog1.Title = "Select a File";
-                //openFileDialog1.InitialDirectory = variables.currentdir;
-                openFileDialog1.RestoreDirectory = false;
-                if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (xsvfbtn.Checked && timingType == 2) openFileDialog.Filter = "SVF files (*.svf)|*.svf";
+                else if (xsvfbtn.Checked && timingType == 1) openFileDialog.Filter = "XSVF files (*.xsvf)|*.xsvf";
+                else if (xsvfbtn.Checked) openFileDialog.Filter = "XSVF/SVF files (*.xsvf;*.svf)|*.xsvf;.svf";
+                else openFileDialog.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc";
+                openFileDialog.Title = "Select a File";
+                openFileDialog.RestoreDirectory = false;
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    filename1 = openFileDialog1.FileName;
+                    filename1 = openFileDialog.FileName;
                     variables.currentdir = filename1;
                 }
                 if (filename1 != "") this.txtFilename.Text = filename1;
@@ -197,10 +197,21 @@ namespace JRunner
 
         public void UpdateDevice()
         {
-            if (MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_SPI || MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_EMMC)
-                xsvfbtn.Text = "SVF";
-            else
+            if (MainForm.mainForm.device == MainForm.DEVICE.NAND_X || MainForm.mainForm.device == MainForm.DEVICE.JR_PROGRAMMER)
+            {
+                timingType = 1;
                 xsvfbtn.Text = "XSVF";
+            }
+            else if (MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_SPI || MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_EMMC)
+            {
+                timingType = 2;
+                xsvfbtn.Text = "SVF";
+            }
+            else
+            {
+                timingType = 0;
+                xsvfbtn.Text = "XSVF";
+            }
         }
 
         private void txtStartLength_TextChanged(object sender, EventArgs e)
