@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JRunner.Nand
 {
@@ -43,7 +44,24 @@ namespace JRunner.Nand
             }
         }
 
+        public struct _patch
+        {
+            public readonly int address, count, patch;
+            public readonly string name, consoleMsg, messageBox;
+
+            public _patch(string name, int address, int count, int patch, string consoleMsg, string messageBox)
+            {
+                this.name = name;
+                this.address = address;
+                this.count = count;
+                this.patch = patch;
+                this.consoleMsg = consoleMsg;
+                this.messageBox = messageBox;
+            }
+        }
+
         #region table
+
         public static _nand[] Table = new _nand[]
         {
             new _nand(1888, "Xenon", 4532, 7371, 2, 4, variables.hacktypes.jtag, variables.ctypes[8]),
@@ -101,6 +119,13 @@ namespace JRunner.Nand
             new _nand(13182, "Corona", 15572, variables.latest_dashboard, 4, 4, variables.hacktypes.glitch2, variables.ctypes[10]),
             new _nand(14352, "Corona", 8498, variables.latest_dashboard, 0, 0, variables.hacktypes.devgl, variables.ctypes[10])
         };
+
+        public static _patch[] patchTable = new _patch[]
+        {
+            new _patch("GonnaBlow", 0x0000C000, 0x00000000, 0x38800000, "WARNING: Fuses will be blown!!!", "IMPORTANT:\n\nThis nand has patches that will cause fuses to be BLOWN if you run a malicious xex"),
+            new _patch("XLUSB", 0x000E3A7C, 0x00000001, 0x3CE02000, "XL USB Patches applied!", "This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work.\n\nDevices formatted on the Xbox 360 will NOT work!\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\"")
+        };
+
         #endregion
 
         public static variables.hacktypes getHackfromCB(int CB)

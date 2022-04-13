@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 
 // Patch Parser by Mena Azer, 2022
@@ -12,8 +13,14 @@ namespace JRunner.Nand
         public UInt32[] patches;
         public int index;
         public byte[] patchArray;
+        private List<ntable._patch> foundPatches = new List<ntable._patch>();
 
         public PatchParser(byte[] data)
+        {
+            patchArray = data;
+        }
+
+        public void enterData(byte[] data)
         {
             patchArray = data;
         }
@@ -27,14 +34,14 @@ namespace JRunner.Nand
         public UInt32 getAddress(byte[] data)
         {
             address = ReverseBytes(BitConverter.ToUInt32(patchArray, index));
-            index += 4;
+            index += 0x4;
             return address;
         }
 
         public UInt32 getCount(byte[] data)
         {
             patchCount = ReverseBytes(BitConverter.ToUInt32(patchArray, index));
-            index += 4;
+            index += 0x4;
             return patchCount;
         }
 
@@ -44,7 +51,7 @@ namespace JRunner.Nand
             for (int i = 0; i < patchCount; i++)
             {
                 patches[i] = ReverseBytes(BitConverter.ToUInt32(patchArray, index));
-                index += 4;
+                index += 0x4;
             }
             return patches;
         }
@@ -88,32 +95,36 @@ namespace JRunner.Nand
                     index -= 0x4; //return to original position
                 }
 
-                if (getAddress(patchArray) == 0x000E3A7C) //moves index and gets address
+                foreach (ntable._patch patch in ntable.patchTable)
                 {
-                    if (getCount(patchArray) == 0x00000001) //moves index and gets count
+                    if (getAddress(patchArray) == patch.address) // moves index and gets address
                     {
-                        UInt32[] patchlist;
-                        patchlist = getPatches(patchArray);
-
-                        if (patchlist[0] == 0x3CE02000)
+                        if (getCount(patchArray) == patch.count || patch.count == 0x00000000) // moves index and gets count
                         {
-                            foundAPatch = true;
-                            Console.WriteLine("XL USB Patches applied!");
-                            if (!variables.noPatchWarnings) MessageBox.Show("This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work.\n\nDevices formatted on the Xbox 360 will NOT work!\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\"", "AYO?", MessageBoxButton.OK,MessageBoxImage.Information);
+                            UInt32[] patchlist;
+                            patchlist = getPatches(patchArray);
+
+                            if (patchlist[0] == patch.patch) // gets patch
+                            {
+                                foundAPatch = true;
+                                foundPatches.Add(patch);
+                                if (patch.consoleMsg != null) Console.WriteLine(patch.consoleMsg);
+                                if (!variables.noPatchWarnings && patch.messageBox != null) MessageBox.Show(patch.messageBox, "AYO?", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    index -= 0x4; //return to origin
+                    else
+                    {
+                        index -= 0x4; //return to origin
+                    }
                 }
 
                 getAddress(patchArray);
 
-                if (getCount(patchArray)> 0x1000)
+                if (getCount(patchArray) > 0x1000)
                 {
-                    //assume image has no patches
-                    index = 0;
+                    // assume image has no patches
+                    index = 0x0;
                     break;
                 }
                 getPatches(patchArray);

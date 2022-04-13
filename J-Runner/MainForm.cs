@@ -2138,9 +2138,10 @@ namespace JRunner
                         }
                     }
                     
+                    // Needs to be run twice for Glitch/DevGL and JTAG checking, no reliable way to check which
                     Nand.PatchParser patchParser = new Nand.PatchParser(patches);
                     bool patchResult = patchParser.parseAll();
-                    
+
                     if (!patchResult)
                     {
                         patches = new byte[0x1000];
@@ -2150,7 +2151,7 @@ namespace JRunner
                             patches[i] = check_XL_USB[(0x59F0) + i]; // JTAG all sizes, 0x913F0
                         }
 
-                        patchParser = new Nand.PatchParser(patches);
+                        patchParser.enterData(patches);
                         patchParser.parseAll();
                     }
                     

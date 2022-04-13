@@ -1044,3 +1044,212 @@ Initializing devgl.bin, please wait...
 XL USB Patches applied!
 Nand Initialization Finished
 
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 22:42:02
+Version: 3131.220413.0241
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 22:45:10
+Version: 3131.220413.0245
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 22:57:53
+Version: 3131.220413.0257
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+a
+Nand Initialization Finished
+
+Initializing jtag.bin, please wait...
+XL USB Patches applied!
+a
+Nand Initialization Finished
+
+Initializing A1855AA2F400EBA4F059E2FB4FAF0442.bin, please wait...
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 22:59:15
+Version: 3131.220413.0259
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+a
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 22:59:44
+Version: 3131.220413.0259
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 23:10:08
+Version: 3131.220413.0310
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+WARNING: No Fuse Blowing Protection!!!
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 23:23:28
+Version: 3131.220413.0323
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+WARNING: No Fuse Blowing Protection!!!
+XL USB Patches applied!
+WARNING: No Fuse Blowing Protection!!!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 23:24:11
+Version: 3131.220413.0324
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 23:26:21
+Version: 3131.220413.0326
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 23:27:00
+Version: 3131.220413.0326
+Status: Up to date
+
+Initializing glitch2.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2-unsafe.bin, please wait...
+XL USB Patches applied!
+WARNING: No Fuse Blowing Protection!!!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 23:58:58
+Version: 3131.220413.0358
+Status: Up to date
+
+Initializing devgl.bin, please wait...
+WARNING: No Fuse Blowing Protection!!!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2.bin, please wait...
+WARNING: No Fuse Blowing Protection!!!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+WARNING: No Fuse Blowing Protection!!!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing jtag.bin, please wait...
+WARNING: No Fuse Blowing Protection!!!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing jtag-bb.bin, please wait...
+WARNING: No Fuse Blowing Protection!!!
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing devgl.bin, please wait...
+WARNING: No Fuse Blowing Protection!!!
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/13/2022 0:11:04
+Version: 3131.220413.0410
+Status: Up to date
+
+Initializing updflash.bin, please wait...
+WARNING: Fuses will be blown!!!
+Nand Initialization Finished
+
+Initializing devgl.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing A1855AA2F400EBA4F059E2FB4FAF0442.bin, please wait...
+Nand Initialization Finished
+
+Initializing 001292715109.bin, please wait...
+Nand Initialization Finished
+
+Initializing 1838_XeDK.bin, please wait...
+Too Many Bad Blocks
+Initializing 1MB-JasperBB.bin, please wait...
+Too Many Bad Blocks
+Too Many Bad Blocks
+Too Many Bad Blocks
+Nand Initialization Finished
+
+Initializing falcon.bin, please wait...
+Nand Initialization Finished
+
+Initializing updflashrgh3.bin, please wait...
+Nand Initialization Finished
+
+Initializing RGH3_Trinity.bin, please wait...
+Nand Initialization Finished
+
+Initializing 17559_devgl_corona.bin, please wait...
+Nand Initialization Finished
+
+Initializing 17559_devgl_jasperbb_newkv.bin, please wait...
+Nand Initialization Finished
+
+Initializing DEVKITRECOVERYJASPER.bin, please wait...
+Nand Initialization Finished
+

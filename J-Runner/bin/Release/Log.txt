@@ -6520,3 +6520,35 @@ Address: 0x00006C98
 Patch Count: 0x00000002
 Patch: 0x38600000
 Patch: 0x4E800020
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 22:38:32
+Version: 3131.220413.0238
+Status: Up to date
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+Initializing glitch2bb.bin, please wait...
+XL USB Patches applied!
+Nand Initialization Finished
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 22:39:24
+Version: 3131.220413.0239
+Status: Up to date
+
+
+=========================================================================
+J-Runner with Extras
+Session: 04/12/2022 23:48:43
+Version: 3131.220413.0332
+Status: Up to date
+
+Initializing updflash.bin, please wait...
+Nand Initialization Finished
+
