@@ -104,7 +104,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(344, 299);
+            this.tabControl1.Size = new System.Drawing.Size(343, 299);
             this.tabControl1.TabIndex = 24;
             this.tabControl1.DragDrop += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragDrop);
             this.tabControl1.DragEnter += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragEnter);
@@ -116,7 +116,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(336, 273);
+            this.tabPage1.Size = new System.Drawing.Size(335, 273);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Nand Info";
             // 
@@ -159,7 +159,7 @@
             this.groupBox1.Controls.Add(this.label2bl);
             this.groupBox1.Location = new System.Drawing.Point(4, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(326, 269);
+            this.groupBox1.Size = new System.Drawing.Size(325, 269);
             this.groupBox1.TabIndex = 50;
             this.groupBox1.TabStop = false;
             this.groupBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragDrop);
@@ -167,7 +167,7 @@
             // 
             // textBoxCbType
             // 
-            this.textBoxCbType.Location = new System.Drawing.Point(255, 15);
+            this.textBoxCbType.Location = new System.Drawing.Point(254, 15);
             this.textBoxCbType.Name = "textBoxCbType";
             this.textBoxCbType.ReadOnly = true;
             this.textBoxCbType.Size = new System.Drawing.Size(62, 20);
@@ -178,7 +178,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(201, 18);
+            this.label3.Location = new System.Drawing.Point(200, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 68;
@@ -206,7 +206,7 @@
             // textBoxpd_cb
             // 
             this.textBoxpd_cb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.textBoxpd_cb.Location = new System.Drawing.Point(255, 47);
+            this.textBoxpd_cb.Location = new System.Drawing.Point(254, 47);
             this.textBoxpd_cb.Name = "textBoxpd_cb";
             this.textBoxpd_cb.ReadOnly = true;
             this.textBoxpd_cb.Size = new System.Drawing.Size(62, 20);
@@ -217,7 +217,7 @@
             // labelpd_cb
             // 
             this.labelpd_cb.AutoSize = true;
-            this.labelpd_cb.Location = new System.Drawing.Point(231, 50);
+            this.labelpd_cb.Location = new System.Drawing.Point(230, 50);
             this.labelpd_cb.Name = "labelpd_cb";
             this.labelpd_cb.Size = new System.Drawing.Size(22, 13);
             this.labelpd_cb.TabIndex = 64;
@@ -226,7 +226,7 @@
             // 
             // textBoxldv_cb
             // 
-            this.textBoxldv_cb.Location = new System.Drawing.Point(206, 47);
+            this.textBoxldv_cb.Location = new System.Drawing.Point(205, 47);
             this.textBoxldv_cb.Name = "textBoxldv_cb";
             this.textBoxldv_cb.ReadOnly = true;
             this.textBoxldv_cb.Size = new System.Drawing.Size(23, 20);
@@ -238,7 +238,7 @@
             // labelldv_cb
             // 
             this.labelldv_cb.AutoSize = true;
-            this.labelldv_cb.Location = new System.Drawing.Point(176, 50);
+            this.labelldv_cb.Location = new System.Drawing.Point(175, 50);
             this.labelldv_cb.Name = "labelldv_cb";
             this.labelldv_cb.Size = new System.Drawing.Size(28, 13);
             this.labelldv_cb.TabIndex = 62;
@@ -248,7 +248,7 @@
             // textBoxpd_1
             // 
             this.textBoxpd_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.textBoxpd_1.Location = new System.Drawing.Point(255, 239);
+            this.textBoxpd_1.Location = new System.Drawing.Point(254, 239);
             this.textBoxpd_1.Name = "textBoxpd_1";
             this.textBoxpd_1.ReadOnly = true;
             this.textBoxpd_1.Size = new System.Drawing.Size(62, 20);
@@ -258,7 +258,7 @@
             // labelpd_1
             // 
             this.labelpd_1.AutoSize = true;
-            this.labelpd_1.Location = new System.Drawing.Point(231, 242);
+            this.labelpd_1.Location = new System.Drawing.Point(230, 242);
             this.labelpd_1.Name = "labelpd_1";
             this.labelpd_1.Size = new System.Drawing.Size(22, 13);
             this.labelpd_1.TabIndex = 60;
@@ -285,7 +285,7 @@
             // 
             // textBoxldv_1
             // 
-            this.textBoxldv_1.Location = new System.Drawing.Point(206, 239);
+            this.textBoxldv_1.Location = new System.Drawing.Point(205, 239);
             this.textBoxldv_1.MaxLength = 2;
             this.textBoxldv_1.Name = "textBoxldv_1";
             this.textBoxldv_1.ReadOnly = true;
@@ -297,7 +297,7 @@
             // labelldv_1
             // 
             this.labelldv_1.AutoSize = true;
-            this.labelldv_1.Location = new System.Drawing.Point(176, 242);
+            this.labelldv_1.Location = new System.Drawing.Point(175, 242);
             this.labelldv_1.Name = "labelldv_1";
             this.labelldv_1.Size = new System.Drawing.Size(28, 13);
             this.labelldv_1.TabIndex = 55;
@@ -326,7 +326,7 @@
             // label6bl_p1
             // 
             this.label6bl_p1.AutoSize = true;
-            this.label6bl_p1.Location = new System.Drawing.Point(171, 178);
+            this.label6bl_p1.Location = new System.Drawing.Point(170, 178);
             this.label6bl_p1.Name = "label6bl_p1";
             this.label6bl_p1.Size = new System.Drawing.Size(88, 13);
             this.label6bl_p1.TabIndex = 49;
@@ -334,7 +334,7 @@
             // 
             // textBox6BL_p1
             // 
-            this.textBox6BL_p1.Location = new System.Drawing.Point(264, 175);
+            this.textBox6BL_p1.Location = new System.Drawing.Point(263, 175);
             this.textBox6BL_p1.Name = "textBox6BL_p1";
             this.textBox6BL_p1.ReadOnly = true;
             this.textBox6BL_p1.Size = new System.Drawing.Size(53, 20);
@@ -343,7 +343,7 @@
             // 
             // textBox7BL_p1
             // 
-            this.textBox7BL_p1.Location = new System.Drawing.Point(264, 207);
+            this.textBox7BL_p1.Location = new System.Drawing.Point(263, 207);
             this.textBox7BL_p1.Name = "textBox7BL_p1";
             this.textBox7BL_p1.ReadOnly = true;
             this.textBox7BL_p1.Size = new System.Drawing.Size(53, 20);
@@ -353,7 +353,7 @@
             // label7bl_p1
             // 
             this.label7bl_p1.AutoSize = true;
-            this.label7bl_p1.Location = new System.Drawing.Point(169, 210);
+            this.label7bl_p1.Location = new System.Drawing.Point(168, 210);
             this.label7bl_p1.Name = "label7bl_p1";
             this.label7bl_p1.Size = new System.Drawing.Size(90, 13);
             this.label7bl_p1.TabIndex = 50;
@@ -483,7 +483,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(336, 273);
+            this.tabPage2.Size = new System.Drawing.Size(335, 273);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "KV Info";
             // 
@@ -511,7 +511,7 @@
             this.groupBox2.Controls.Add(this.labeldvdkey);
             this.groupBox2.Location = new System.Drawing.Point(4, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(326, 269);
+            this.groupBox2.Size = new System.Drawing.Size(325, 269);
             this.groupBox2.TabIndex = 51;
             this.groupBox2.TabStop = false;
             // 
@@ -564,7 +564,7 @@
             // 
             // btnAdvanced
             // 
-            this.btnAdvanced.Location = new System.Drawing.Point(253, 14);
+            this.btnAdvanced.Location = new System.Drawing.Point(252, 14);
             this.btnAdvanced.Name = "btnAdvanced";
             this.btnAdvanced.Size = new System.Drawing.Size(65, 41);
             this.btnAdvanced.TabIndex = 25;
@@ -696,7 +696,7 @@
             this.tabPage3.Controls.Add(this.txtBadBlocks);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(336, 273);
+            this.tabPage3.Size = new System.Drawing.Size(335, 273);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Bad Blocks";
             // 
@@ -708,7 +708,7 @@
             this.txtBadBlocks.Multiline = true;
             this.txtBadBlocks.Name = "txtBadBlocks";
             this.txtBadBlocks.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtBadBlocks.Size = new System.Drawing.Size(336, 273);
+            this.txtBadBlocks.Size = new System.Drawing.Size(335, 273);
             this.txtBadBlocks.TabIndex = 0;
             this.txtBadBlocks.TabStop = false;
             // 

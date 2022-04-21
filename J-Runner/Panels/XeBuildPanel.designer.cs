@@ -117,7 +117,7 @@
             this.groupBox7.Controls.Add(this.tabControl1);
             this.groupBox7.Location = new System.Drawing.Point(0, 1);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(342, 156);
+            this.groupBox7.Size = new System.Drawing.Size(341, 156);
             this.groupBox7.TabIndex = 78;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "XeBuild";
@@ -132,7 +132,7 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 14);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(332, 136);
+            this.tabControl1.Size = new System.Drawing.Size(331, 136);
             this.tabControl1.TabIndex = 0;
             // 
             // Xebuild
@@ -166,14 +166,14 @@
             this.Xebuild.Location = new System.Drawing.Point(4, 22);
             this.Xebuild.Name = "Xebuild";
             this.Xebuild.Padding = new System.Windows.Forms.Padding(3);
-            this.Xebuild.Size = new System.Drawing.Size(324, 110);
+            this.Xebuild.Size = new System.Drawing.Size(323, 110);
             this.Xebuild.TabIndex = 0;
             this.Xebuild.Text = "XeBuild";
             // 
             // Rgh3Label2
             // 
             this.Rgh3Label2.AutoSize = true;
-            this.Rgh3Label2.Location = new System.Drawing.Point(289, 64);
+            this.Rgh3Label2.Location = new System.Drawing.Point(286, 64);
             this.Rgh3Label2.Name = "Rgh3Label2";
             this.Rgh3Label2.Size = new System.Drawing.Size(19, 13);
             this.Rgh3Label2.TabIndex = 21;
@@ -183,7 +183,7 @@
             // Rgh3Label
             // 
             this.Rgh3Label.AutoSize = true;
-            this.Rgh3Label.Location = new System.Drawing.Point(284, 48);
+            this.Rgh3Label.Location = new System.Drawing.Point(281, 48);
             this.Rgh3Label.Name = "Rgh3Label";
             this.Rgh3Label.Size = new System.Drawing.Size(32, 13);
             this.Rgh3Label.TabIndex = 99;
@@ -195,7 +195,7 @@
             this.Rgh3Mhz.Items.AddRange(new object[] {
             "10",
             "27"});
-            this.Rgh3Mhz.Location = new System.Drawing.Point(287, 61);
+            this.Rgh3Mhz.Location = new System.Drawing.Point(284, 61);
             this.Rgh3Mhz.Name = "Rgh3Mhz";
             this.Rgh3Mhz.Size = new System.Drawing.Size(36, 21);
             this.Rgh3Mhz.TabIndex = 98;
@@ -206,7 +206,7 @@
             // 
             this.chkRgh3.AutoSize = true;
             this.chkRgh3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkRgh3.Location = new System.Drawing.Point(230, 63);
+            this.chkRgh3.Location = new System.Drawing.Point(229, 63);
             this.chkRgh3.Name = "chkRgh3";
             this.chkRgh3.Size = new System.Drawing.Size(56, 17);
             this.chkRgh3.TabIndex = 19;
@@ -220,7 +220,7 @@
             this.chkWB.AutoSize = true;
             this.chkWB.BackColor = System.Drawing.Color.Transparent;
             this.chkWB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkWB.Location = new System.Drawing.Point(230, 5);
+            this.chkWB.Location = new System.Drawing.Point(229, 5);
             this.chkWB.Name = "chkWB";
             this.chkWB.Size = new System.Drawing.Size(60, 17);
             this.chkWB.TabIndex = 14;
@@ -233,7 +233,7 @@
             // chkCR4
             // 
             this.chkCR4.AutoSize = true;
-            this.chkCR4.Location = new System.Drawing.Point(230, 31);
+            this.chkCR4.Location = new System.Drawing.Point(229, 31);
             this.chkCR4.Name = "chkCR4";
             this.chkCR4.Size = new System.Drawing.Size(47, 17);
             this.chkCR4.TabIndex = 17;
@@ -246,7 +246,7 @@
             // 
             this.chkCleanSMC.AutoSize = true;
             this.chkCleanSMC.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkCleanSMC.Location = new System.Drawing.Point(230, 90);
+            this.chkCleanSMC.Location = new System.Drawing.Point(229, 90);
             this.chkCleanSMC.Name = "chkCleanSMC";
             this.chkCleanSMC.Size = new System.Drawing.Size(79, 17);
             this.chkCleanSMC.TabIndex = 23;
@@ -260,7 +260,7 @@
             this.chkXdkBuild.AutoSize = true;
             this.chkXdkBuild.Enabled = false;
             this.chkXdkBuild.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkXdkBuild.Location = new System.Drawing.Point(230, 5);
+            this.chkXdkBuild.Location = new System.Drawing.Point(229, 5);
             this.chkXdkBuild.Name = "chkXdkBuild";
             this.chkXdkBuild.Size = new System.Drawing.Size(70, 17);
             this.chkXdkBuild.TabIndex = 15;
@@ -274,7 +274,7 @@
             // 
             this.chk0Fuse.AutoSize = true;
             this.chk0Fuse.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chk0Fuse.Location = new System.Drawing.Point(230, 74);
+            this.chk0Fuse.Location = new System.Drawing.Point(229, 74);
             this.chk0Fuse.Name = "chk0Fuse";
             this.chk0Fuse.Size = new System.Drawing.Size(58, 17);
             this.chk0Fuse.TabIndex = 22;
@@ -288,7 +288,7 @@
             this.rbtnDevGL.AutoSize = true;
             this.rbtnDevGL.BackColor = System.Drawing.Color.Transparent;
             this.rbtnDevGL.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnDevGL.Location = new System.Drawing.Point(153, 89);
+            this.rbtnDevGL.Location = new System.Drawing.Point(151, 89);
             this.rbtnDevGL.Name = "rbtnDevGL";
             this.rbtnDevGL.Size = new System.Drawing.Size(61, 17);
             this.rbtnDevGL.TabIndex = 13;
@@ -300,7 +300,7 @@
             // 
             this.chkSMCP.AutoSize = true;
             this.chkSMCP.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkSMCP.Location = new System.Drawing.Point(230, 47);
+            this.chkSMCP.Location = new System.Drawing.Point(229, 47);
             this.chkSMCP.Name = "chkSMCP";
             this.chkSMCP.Size = new System.Drawing.Size(55, 17);
             this.chkSMCP.TabIndex = 18;
@@ -313,7 +313,7 @@
             // labelCB
             // 
             this.labelCB.AutoSize = true;
-            this.labelCB.Location = new System.Drawing.Point(227, 7);
+            this.labelCB.Location = new System.Drawing.Point(226, 7);
             this.labelCB.Name = "labelCB";
             this.labelCB.Size = new System.Drawing.Size(21, 13);
             this.labelCB.TabIndex = 88;
@@ -322,9 +322,9 @@
             // comboCB
             // 
             this.comboCB.FormattingEnabled = true;
-            this.comboCB.Location = new System.Drawing.Point(248, 3);
+            this.comboCB.Location = new System.Drawing.Point(247, 3);
             this.comboCB.Name = "comboCB";
-            this.comboCB.Size = new System.Drawing.Size(57, 21);
+            this.comboCB.Size = new System.Drawing.Size(73, 21);
             this.comboCB.TabIndex = 16;
             this.comboCB.SelectedIndexChanged += new System.EventHandler(this.comboCB_SelectedIndexChanged);
             // 
@@ -333,7 +333,7 @@
             this.rbtnGlitch2m.AutoSize = true;
             this.rbtnGlitch2m.BackColor = System.Drawing.Color.Transparent;
             this.rbtnGlitch2m.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnGlitch2m.Location = new System.Drawing.Point(153, 55);
+            this.rbtnGlitch2m.Location = new System.Drawing.Point(151, 55);
             this.rbtnGlitch2m.Name = "rbtnGlitch2m";
             this.rbtnGlitch2m.Size = new System.Drawing.Size(66, 17);
             this.rbtnGlitch2m.TabIndex = 11;
@@ -343,7 +343,7 @@
             // 
             // btnGetMB
             // 
-            this.btnGetMB.Location = new System.Drawing.Point(105, 72);
+            this.btnGetMB.Location = new System.Drawing.Point(104, 72);
             this.btnGetMB.Name = "btnGetMB";
             this.btnGetMB.Size = new System.Drawing.Size(25, 22);
             this.btnGetMB.TabIndex = 7;
@@ -355,7 +355,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 58);
+            this.label2.Location = new System.Drawing.Point(14, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 72;
@@ -364,7 +364,7 @@
             // lblDashVersion
             // 
             this.lblDashVersion.AutoSize = true;
-            this.lblDashVersion.Location = new System.Drawing.Point(15, 14);
+            this.lblDashVersion.Location = new System.Drawing.Point(14, 14);
             this.lblDashVersion.Name = "lblDashVersion";
             this.lblDashVersion.Size = new System.Drawing.Size(75, 13);
             this.lblDashVersion.TabIndex = 64;
@@ -375,7 +375,7 @@
             this.chkAudClamp.AutoSize = true;
             this.chkAudClamp.BackColor = System.Drawing.Color.Transparent;
             this.chkAudClamp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkAudClamp.Location = new System.Drawing.Point(230, 65);
+            this.chkAudClamp.Location = new System.Drawing.Point(229, 65);
             this.chkAudClamp.Name = "chkAudClamp";
             this.chkAudClamp.Size = new System.Drawing.Size(80, 17);
             this.chkAudClamp.TabIndex = 20;
@@ -392,7 +392,7 @@
             this.comboDash.DisplayMember = "Dash";
             this.comboDash.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboDash.FormattingEnabled = true;
-            this.comboDash.Location = new System.Drawing.Point(18, 29);
+            this.comboDash.Location = new System.Drawing.Point(17, 29);
             this.comboDash.Name = "comboDash";
             this.comboDash.Size = new System.Drawing.Size(71, 21);
             this.comboDash.TabIndex = 5;
@@ -414,7 +414,7 @@
             // 
             this.chkRJtag.AutoSize = true;
             this.chkRJtag.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkRJtag.Location = new System.Drawing.Point(230, 81);
+            this.chkRJtag.Location = new System.Drawing.Point(229, 81);
             this.chkRJtag.Name = "chkRJtag";
             this.chkRJtag.Size = new System.Drawing.Size(64, 17);
             this.chkRJtag.TabIndex = 73;
@@ -425,7 +425,7 @@
             // 
             // txtMBname
             // 
-            this.txtMBname.Location = new System.Drawing.Point(18, 73);
+            this.txtMBname.Location = new System.Drawing.Point(17, 73);
             this.txtMBname.Name = "txtMBname";
             this.txtMBname.ReadOnly = true;
             this.txtMBname.Size = new System.Drawing.Size(86, 20);
@@ -442,7 +442,7 @@
             this.rbtnRetail.BackColor = System.Drawing.Color.Transparent;
             this.rbtnRetail.Checked = true;
             this.rbtnRetail.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnRetail.Location = new System.Drawing.Point(153, 4);
+            this.rbtnRetail.Location = new System.Drawing.Point(151, 4);
             this.rbtnRetail.Name = "rbtnRetail";
             this.rbtnRetail.Size = new System.Drawing.Size(52, 17);
             this.rbtnRetail.TabIndex = 8;
@@ -456,7 +456,7 @@
             this.rbtnJtag.AutoSize = true;
             this.rbtnJtag.BackColor = System.Drawing.Color.Transparent;
             this.rbtnJtag.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnJtag.Location = new System.Drawing.Point(153, 72);
+            this.rbtnJtag.Location = new System.Drawing.Point(151, 72);
             this.rbtnJtag.Name = "rbtnJtag";
             this.rbtnJtag.Size = new System.Drawing.Size(52, 17);
             this.rbtnJtag.TabIndex = 12;
@@ -469,7 +469,7 @@
             this.rbtnGlitch2.AutoSize = true;
             this.rbtnGlitch2.BackColor = System.Drawing.Color.Transparent;
             this.rbtnGlitch2.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnGlitch2.Location = new System.Drawing.Point(153, 38);
+            this.rbtnGlitch2.Location = new System.Drawing.Point(151, 38);
             this.rbtnGlitch2.Name = "rbtnGlitch2";
             this.rbtnGlitch2.Size = new System.Drawing.Size(58, 17);
             this.rbtnGlitch2.TabIndex = 10;
@@ -482,7 +482,7 @@
             this.rbtnGlitch.AutoSize = true;
             this.rbtnGlitch.BackColor = System.Drawing.Color.Transparent;
             this.rbtnGlitch.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnGlitch.Location = new System.Drawing.Point(153, 21);
+            this.rbtnGlitch.Location = new System.Drawing.Point(151, 21);
             this.rbtnGlitch.Name = "rbtnGlitch";
             this.rbtnGlitch.Size = new System.Drawing.Size(52, 17);
             this.rbtnGlitch.TabIndex = 9;
@@ -500,7 +500,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(324, 110);
+            this.tabPage1.Size = new System.Drawing.Size(323, 110);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "XB Settings";
             // 
@@ -561,7 +561,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(324, 110);
+            this.tabPage3.Size = new System.Drawing.Size(323, 110);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Patches/Dashlaunch";
             // 
@@ -626,9 +626,9 @@
             // 
             // btnLaunch
             // 
-            this.btnLaunch.Location = new System.Drawing.Point(205, 75);
+            this.btnLaunch.Location = new System.Drawing.Point(204, 75);
             this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(112, 28);
+            this.btnLaunch.Size = new System.Drawing.Size(111, 28);
             this.btnLaunch.TabIndex = 75;
             this.btnLaunch.TabStop = false;
             this.btnLaunch.Text = "Launch.ini Options";
@@ -683,7 +683,7 @@
             this.tabUpdate.Location = new System.Drawing.Point(4, 22);
             this.tabUpdate.Name = "tabUpdate";
             this.tabUpdate.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUpdate.Size = new System.Drawing.Size(324, 110);
+            this.tabUpdate.Size = new System.Drawing.Size(323, 110);
             this.tabUpdate.TabIndex = 4;
             this.tabUpdate.Text = "Update Mode";
             // 
@@ -806,7 +806,7 @@
             this.tabClient.Location = new System.Drawing.Point(4, 22);
             this.tabClient.Name = "tabClient";
             this.tabClient.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClient.Size = new System.Drawing.Size(324, 110);
+            this.tabClient.Size = new System.Drawing.Size(323, 110);
             this.tabClient.TabIndex = 5;
             this.tabClient.Text = "Client Mode";
             // 
@@ -976,7 +976,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox7);
             this.Name = "XeBuildPanel";
-            this.Size = new System.Drawing.Size(345, 156);
+            this.Size = new System.Drawing.Size(344, 156);
             this.Load += new System.EventHandler(this.XeBuildPanel_Load);
             this.groupBox7.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);

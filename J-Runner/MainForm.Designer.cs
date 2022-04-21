@@ -293,7 +293,7 @@ namespace JRunner
             this.groupBox8.Controls.Add(this.txtIP);
             this.groupBox8.Location = new System.Drawing.Point(656, 483);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(165, 66);
+            this.groupBox8.Size = new System.Drawing.Size(164, 66);
             this.groupBox8.TabIndex = 299;
             this.groupBox8.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox8, "If you connect your Xbox 360 to your PC using a network cable, \r\nOnce booted with" +
@@ -311,7 +311,7 @@ namespace JRunner
             this.btnIPGetCPU.Location = new System.Drawing.Point(6, 36);
             this.btnIPGetCPU.Name = "btnIPGetCPU";
             this.btnIPGetCPU.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnIPGetCPU.Size = new System.Drawing.Size(153, 26);
+            this.btnIPGetCPU.Size = new System.Drawing.Size(152, 26);
             this.btnIPGetCPU.TabIndex = 11;
             this.btnIPGetCPU.Text = "Get CPU Key";
             this.toolTip1.SetToolTip(this.btnIPGetCPU, "Tries to retrieve the CPU Key and Fuses from XeLL using the IP above");
@@ -353,7 +353,7 @@ namespace JRunner
             // 
             this.txtIP.Location = new System.Drawing.Point(29, 12);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(129, 20);
+            this.txtIP.Size = new System.Drawing.Size(128, 20);
             this.txtIP.TabIndex = 10;
             this.txtIP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtIP_KeyUp);
             // 
@@ -361,7 +361,7 @@ namespace JRunner
             // 
             this.btnScanner.Location = new System.Drawing.Point(662, 550);
             this.btnScanner.Name = "btnScanner";
-            this.btnScanner.Size = new System.Drawing.Size(153, 26);
+            this.btnScanner.Size = new System.Drawing.Size(152, 26);
             this.btnScanner.TabIndex = 300;
             this.btnScanner.Text = "Scan IP";
             this.toolTip1.SetToolTip(this.btnScanner, "Scans the IP range looking for XeLL to retrieve the CPU Key and Fuses");

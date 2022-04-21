@@ -147,7 +147,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(88, 269);
+            this.btnCancel.Location = new System.Drawing.Point(87, 269);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 81;
@@ -157,7 +157,7 @@
             // 
             // btnProgram
             // 
-            this.btnProgram.Location = new System.Drawing.Point(6, 269);
+            this.btnProgram.Location = new System.Drawing.Point(5, 269);
             this.btnProgram.Name = "btnProgram";
             this.btnProgram.Size = new System.Drawing.Size(75, 23);
             this.btnProgram.TabIndex = 80;
@@ -171,10 +171,10 @@
             this.TimingTabs.Controls.Add(this.SrghTimings);
             this.TimingTabs.Controls.Add(this.MiscTimings);
             this.TimingTabs.ItemSize = new System.Drawing.Size(111, 18);
-            this.TimingTabs.Location = new System.Drawing.Point(7, 5);
+            this.TimingTabs.Location = new System.Drawing.Point(6, 5);
             this.TimingTabs.Name = "TimingTabs";
             this.TimingTabs.SelectedIndex = 0;
-            this.TimingTabs.Size = new System.Drawing.Size(328, 260);
+            this.TimingTabs.Size = new System.Drawing.Size(329, 260);
             this.TimingTabs.TabIndex = 0;
             // 
             // Rgh12Timings
@@ -190,7 +190,7 @@
             this.Rgh12Timings.Location = new System.Drawing.Point(4, 22);
             this.Rgh12Timings.Name = "Rgh12Timings";
             this.Rgh12Timings.Padding = new System.Windows.Forms.Padding(3);
-            this.Rgh12Timings.Size = new System.Drawing.Size(320, 234);
+            this.Rgh12Timings.Size = new System.Drawing.Size(321, 234);
             this.Rgh12Timings.TabIndex = 1;
             this.Rgh12Timings.Text = "RGH1.2 V2";
             // 
@@ -593,7 +593,7 @@
             this.SrghTimings.Location = new System.Drawing.Point(4, 22);
             this.SrghTimings.Name = "SrghTimings";
             this.SrghTimings.Padding = new System.Windows.Forms.Padding(3);
-            this.SrghTimings.Size = new System.Drawing.Size(320, 234);
+            this.SrghTimings.Size = new System.Drawing.Size(321, 234);
             this.SrghTimings.TabIndex = 2;
             this.SrghTimings.Text = "S-RGH";
             // 
@@ -1030,7 +1030,7 @@
             this.MiscTimings.Location = new System.Drawing.Point(4, 22);
             this.MiscTimings.Name = "MiscTimings";
             this.MiscTimings.Padding = new System.Windows.Forms.Padding(3);
-            this.MiscTimings.Size = new System.Drawing.Size(320, 234);
+            this.MiscTimings.Size = new System.Drawing.Size(321, 234);
             this.MiscTimings.TabIndex = 0;
             this.MiscTimings.Text = "RGH1, RGH2, R-JTOP";
             // 
@@ -1356,7 +1356,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnProgram);
             this.Name = "XSVFChoice";
-            this.Size = new System.Drawing.Size(342, 298);
+            this.Size = new System.Drawing.Size(341, 298);
             this.TimingTabs.ResumeLayout(false);
             this.Rgh12Timings.ResumeLayout(false);
             this.Rgh12TcSelectGroup.ResumeLayout(false);

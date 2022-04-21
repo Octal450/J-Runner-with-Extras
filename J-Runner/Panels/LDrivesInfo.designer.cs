@@ -100,7 +100,7 @@
             // 
             this.btnRefresh.Location = new System.Drawing.Point(133, 191);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(197, 25);
+            this.btnRefresh.Size = new System.Drawing.Size(196, 25);
             this.btnRefresh.TabIndex = 10;
             this.btnRefresh.Text = "Refresh Drive List";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
             // 
             this.btnErase.Location = new System.Drawing.Point(254, 223);
             this.btnErase.Name = "btnErase";
-            this.btnErase.Size = new System.Drawing.Size(76, 33);
+            this.btnErase.Size = new System.Drawing.Size(75, 33);
             this.btnErase.TabIndex = 16;
             this.btnErase.Text = "Erase";
             this.btnErase.UseVisualStyleBackColor = true;
@@ -161,7 +161,7 @@
             // 
             this.btnClose.Location = new System.Drawing.Point(254, 263);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(76, 23);
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 17;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -192,7 +192,7 @@
             this.Controls.Add(this.chkShowAll);
             this.Controls.Add(this.listView1);
             this.Name = "LDrivesInfo";
-            this.Size = new System.Drawing.Size(342, 298);
+            this.Size = new System.Drawing.Size(341, 298);
             this.Load += new System.EventHandler(this.LDrivesInfo_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LDrives_KeyUp);
             this.ResumeLayout(false);
