@@ -2112,57 +2112,59 @@ namespace JRunner
                         break;
                 }
 
+                GC.Collect();
+
+                FileStream fs = new FileStream(variables.filename1, FileMode.Open);
                 try
                 {
-                    FileStream fs = new FileStream(variables.filename1, FileMode.Open);
-                    
                     byte[] check_XL_USB = new byte[0x5B230];
                     fs.Position = 0x8FFD0;
                     fs.Read(check_XL_USB, 0, 0x5B230); // 0x8FFD0 - 0xEB200
                     check_XL_USB = Nand.Nand.unecc(check_XL_USB);
-
+                
                     byte[] patches = new byte[0x1000];
                     
                     if (nand.bigblock)
                     {
                         for (int i = 0; i < patches.Length; i++)
                         {
-                            patches[i] = check_XL_USB[(0x54600 + 0x10) + i]; // BB, 0xE0000
+                            patches[i] = check_XL_USB[0x54600 + 0x10 + i]; // BB, 0xE0000
                         }
                     }
                     else
                     {
                         for (int i = 0; i < patches.Length; i++)
                         {
-                            patches[i] = check_XL_USB[(0x34600 + 0x10) + i]; // 16MB, 0xC0000
+                            patches[i] = check_XL_USB[0x34600 + 0x10 + i]; // 16MB, 0xC0000
                         }
                     }
                     
-                    // Needs to be run twice for Glitch/DevGL and JTAG checking, no reliable way to check which
+                    // Needs to be run twice for JTAG checking, no reliable way to check which it is
                     Nand.PatchParser patchParser = new Nand.PatchParser(patches);
                     bool patchResult = patchParser.parseAll();
-
+                
                     if (!patchResult)
                     {
                         patches = new byte[0x1000];
-
+                
                         for (int i = 0; i < patches.Length; i++)
                         {
-                            patches[i] = check_XL_USB[(0x59F0) + i]; // JTAG all sizes, 0x913F0
+                            patches[i] = check_XL_USB[0x59F0 + i]; // JTAG all sizes, 0x913F0
                         }
-
+                
                         patchParser.enterData(patches);
                         patchParser.parseAll();
                     }
                     
                     check_XL_USB = null;
-                    fs.Close();
-                    fs.Dispose();
                 }
                 catch
                 {
                     if (variables.debugme) Console.WriteLine("Could not check for patches");
                 }
+                
+                fs.Close();
+                fs.Dispose();
 
                 variables.gotvalues = !String.IsNullOrEmpty(variables.cpkey);
                 Console.WriteLine("Nand Initialization Finished");

@@ -825,8 +825,6 @@ namespace JRunner.Classes
             {
                 Console.WriteLine(objException.Message);
             }
-
-
         }
 
         public void client(string args)

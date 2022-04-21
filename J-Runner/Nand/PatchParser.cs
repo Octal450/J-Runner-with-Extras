@@ -109,7 +109,7 @@ namespace JRunner.Nand
                                 foundAPatch = true;
                                 foundPatches.Add(patch);
                                 if (patch.consoleMsg != null) Console.WriteLine(patch.consoleMsg);
-                                if (!variables.noPatchWarnings && patch.messageBox != null) MessageBox.Show(patch.messageBox, "AYO?", MessageBoxButton.OK, MessageBoxImage.Information);
+                                if (!variables.noPatchWarnings && patch.messageBox != null) MessageBox.Show(patch.messageBox, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
                         }
                     }

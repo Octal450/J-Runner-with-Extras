@@ -968,7 +968,6 @@ namespace JRunner.Panels
 
         private void btnAvatar_Click(object sender, EventArgs e)
         {
-
             if (variables.debugme) Console.WriteLine(Path.Combine(variables.update_path, comboDash.Text + @"\$systemupdate"));
             if (Directory.Exists(Path.Combine(variables.update_path, comboDash.Text + @"\$systemupdate")))
             {
