@@ -2118,10 +2118,18 @@ namespace JRunner
                 try
                 {
                     byte[] check_XL_USB = new byte[0x5B230];
-                    fs.Position = 0x8FFD0;
-                    fs.Read(check_XL_USB, 0, 0x5B230); // 0x8FFD0 - 0xEB200
-                    check_XL_USB = Nand.Nand.unecc(check_XL_USB);
-                
+                    if (nand.noecc)
+                    {
+                        fs.Position = 0x8BA00;
+                        fs.Read(check_XL_USB, 0, 0x58600); // 0x8BA00 - 0xE4000
+                    }
+                    else
+                    {
+                        fs.Position = 0x8FFD0;
+                        fs.Read(check_XL_USB, 0, 0x5B230); // 0x8FFD0 - 0xEB200
+                        check_XL_USB = Nand.Nand.unecc(check_XL_USB);
+                    }
+                    
                     byte[] patches = new byte[0x1000];
                     
                     if (nand.bigblock)

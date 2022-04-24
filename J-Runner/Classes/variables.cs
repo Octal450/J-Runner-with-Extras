@@ -82,7 +82,7 @@ namespace JRunner
         public static string version = "3.1.4";
         public static string build = "3140." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
         public const string staticversion = "3.1.4.0";
-        public static int revision = 20;
+        public static int revision = 21;
         public static Windows currentOS = Windows.Unknown;
         public static bool iswriting;
         public static bool isscanningip = false;
