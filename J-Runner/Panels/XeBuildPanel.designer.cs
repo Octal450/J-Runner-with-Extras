@@ -574,6 +574,7 @@
             this.chkXLUsb.Size = new System.Drawing.Size(99, 17);
             this.chkXLUsb.TabIndex = 0;
             this.chkXLUsb.Text = "XL USB (2TB+)";
+            this.toolTip1.SetToolTip(this.chkXLUsb, "Patches Freeboot to allow use of USB hard drives over 2TB in size (BETA)");
             this.chkXLUsb.UseVisualStyleBackColor = true;
             this.chkXLUsb.CheckedChanged += new System.EventHandler(this.chkXLUsb_CheckedChanged);
             // 

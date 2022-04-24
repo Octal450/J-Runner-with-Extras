@@ -506,7 +506,8 @@ namespace JRunner.Panels
         {
             if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\bin\xl_usb.bin")))
             {
-                chkXLUsb.Enabled = !rbtnRetail.Checked;
+                if (rbtnRetail.Checked) chkXLUsb.Checked = chkXLUsb.Enabled = false;
+                else chkXLUsb.Enabled = true;
             }
             else chkXLUsb.Checked = chkXLUsb.Enabled = false;
         }
@@ -863,13 +864,13 @@ namespace JRunner.Panels
         {
             if (chkXLUsb.Checked)
             {
-                Console.WriteLine("XL USB Selected");
+                Console.WriteLine("XL USB (BETA) Selected");
                 if (DialogResult.Cancel == MessageBox.Show("XL USB requires HDDs to be formatted via FATXplorer, normal Xbox 360 storage devices will no longer work", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
                 {
                     chkXLUsb.Checked = false;
                 }
             }
-            else Console.WriteLine("XL USB Deselected");
+            else Console.WriteLine("XL USB (BETA) Deselected");
         }
 
         private void btnGetMB_Click(object sender, EventArgs e)
