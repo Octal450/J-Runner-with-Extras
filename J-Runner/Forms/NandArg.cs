@@ -93,7 +93,7 @@ namespace JRunner
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 if (xsvfbtn.Checked && timingType == 2) openFileDialog.Filter = "SVF files (*.svf)|*.svf";
                 else if (xsvfbtn.Checked && timingType == 1) openFileDialog.Filter = "XSVF files (*.xsvf)|*.xsvf";
-                else if (xsvfbtn.Checked) openFileDialog.Filter = "XSVF/SVF files (*.xsvf;*.svf)|*.xsvf;.svf";
+                else if (xsvfbtn.Checked) openFileDialog.Filter = "XSVF/SVF files (*.xsvf;*.svf)|*.xsvf;*.svf";
                 else openFileDialog.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc";
                 openFileDialog.Title = "Select a File";
                 openFileDialog.RestoreDirectory = false;
