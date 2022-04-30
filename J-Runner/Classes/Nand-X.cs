@@ -1369,19 +1369,21 @@ namespace JRunner
                     return Errors.GeneralError;
                 }
                 else
-                    Console.WriteLine("Erase Succeeded");
+                    Console.WriteLine("Erase Successful");
 
                 Console.WriteLine("File: " + Path.GetFileName(filename));
                 Console.WriteLine("Sending Out Packets...");
 
                 if (sendcode(filename, MyUsbDevice, writer) == 1)
                 {
-                    Console.WriteLine("Success");
+                    Console.WriteLine("Write Successful");
+                    Console.WriteLine("");
                     return Errors.None;
                 }
                 else
                 {
                     Console.WriteLine("Write Failed");
+                    Console.WriteLine("");
                 }
                 return Errors.GeneralError;
             }

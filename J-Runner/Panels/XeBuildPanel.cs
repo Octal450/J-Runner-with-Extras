@@ -875,7 +875,8 @@ namespace JRunner.Panels
 
         private void btnGetMB_Click(object sender, EventArgs e)
         {
-            Getmb();
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift && MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_SPI) MainForm.mainForm.xflasher.getConsoleCb();
+            else Getmb();
         }
 
         private void btnXEUpdate_Click(object sender, EventArgs e)

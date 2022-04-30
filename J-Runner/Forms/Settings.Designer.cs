@@ -94,9 +94,9 @@
             // 
             // btnsuccom
             // 
-            this.btnsuccom.Location = new System.Drawing.Point(331, 31);
+            this.btnsuccom.Location = new System.Drawing.Point(325, 31);
             this.btnsuccom.Name = "btnsuccom";
-            this.btnsuccom.Size = new System.Drawing.Size(29, 23);
+            this.btnsuccom.Size = new System.Drawing.Size(29, 22);
             this.btnsuccom.TabIndex = 0;
             this.btnsuccom.Text = "...";
             this.btnsuccom.UseVisualStyleBackColor = true;
@@ -106,21 +106,21 @@
             // 
             this.txtsuccom.Location = new System.Drawing.Point(36, 32);
             this.txtsuccom.Name = "txtsuccom";
-            this.txtsuccom.Size = new System.Drawing.Size(289, 20);
+            this.txtsuccom.Size = new System.Drawing.Size(283, 20);
             this.txtsuccom.TabIndex = 2;
             // 
             // txtsuccess
             // 
             this.txtsuccess.Location = new System.Drawing.Point(36, 71);
             this.txtsuccess.Name = "txtsuccess";
-            this.txtsuccess.Size = new System.Drawing.Size(289, 20);
+            this.txtsuccess.Size = new System.Drawing.Size(283, 20);
             this.txtsuccess.TabIndex = 4;
             // 
             // btnsuccess
             // 
-            this.btnsuccess.Location = new System.Drawing.Point(331, 70);
+            this.btnsuccess.Location = new System.Drawing.Point(325, 70);
             this.btnsuccess.Name = "btnsuccess";
-            this.btnsuccess.Size = new System.Drawing.Size(29, 23);
+            this.btnsuccess.Size = new System.Drawing.Size(29, 22);
             this.btnsuccess.TabIndex = 5;
             this.btnsuccess.Text = "...";
             this.btnsuccess.UseVisualStyleBackColor = true;
@@ -130,14 +130,14 @@
             // 
             this.txterror.Location = new System.Drawing.Point(36, 110);
             this.txterror.Name = "txterror";
-            this.txterror.Size = new System.Drawing.Size(289, 20);
+            this.txterror.Size = new System.Drawing.Size(283, 20);
             this.txterror.TabIndex = 7;
             // 
             // btnerror
             // 
-            this.btnerror.Location = new System.Drawing.Point(331, 109);
+            this.btnerror.Location = new System.Drawing.Point(325, 109);
             this.btnerror.Name = "btnerror";
-            this.btnerror.Size = new System.Drawing.Size(29, 23);
+            this.btnerror.Size = new System.Drawing.Size(29, 22);
             this.btnerror.TabIndex = 8;
             this.btnerror.Text = "...";
             this.btnerror.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@
             // 
             this.btnfolder.Location = new System.Drawing.Point(334, 183);
             this.btnfolder.Name = "btnfolder";
-            this.btnfolder.Size = new System.Drawing.Size(29, 23);
+            this.btnfolder.Size = new System.Drawing.Size(29, 22);
             this.btnfolder.TabIndex = 9;
             this.btnfolder.Text = "...";
             this.btnfolder.UseVisualStyleBackColor = true;
@@ -238,9 +238,9 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txterror);
             this.groupBox1.Controls.Add(this.btnerror);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(18, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(375, 149);
+            this.groupBox1.Size = new System.Drawing.Size(369, 149);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sounds";
@@ -279,7 +279,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(413, 148);
+            this.label6.Location = new System.Drawing.Point(412, 148);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 13);
             this.label6.TabIndex = 21;
@@ -289,7 +289,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(531, 146);
+            this.numericUpDown1.Location = new System.Drawing.Point(530, 146);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -303,7 +303,7 @@
             // 
             // txtNandflash
             // 
-            this.txtNandflash.Location = new System.Drawing.Point(492, 179);
+            this.txtNandflash.Location = new System.Drawing.Point(491, 184);
             this.txtNandflash.Name = "txtNandflash";
             this.txtNandflash.Size = new System.Drawing.Size(103, 20);
             this.txtNandflash.TabIndex = 24;
@@ -351,7 +351,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(382, 182);
+            this.label7.Location = new System.Drawing.Point(381, 187);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(109, 13);
             this.label7.TabIndex = 25;
@@ -384,7 +384,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(393, 12);
+            this.groupBox2.Location = new System.Drawing.Point(392, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(202, 116);
             this.groupBox2.TabIndex = 31;
@@ -538,7 +538,7 @@
             // 
             this.groupBox3.Controls.Add(this.SlimPreferSrgh);
             this.groupBox3.Controls.Add(this.SlimPreferRgh12);
-            this.groupBox3.Location = new System.Drawing.Point(421, 215);
+            this.groupBox3.Location = new System.Drawing.Point(420, 215);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(174, 45);
             this.groupBox3.TabIndex = 50;
@@ -573,7 +573,7 @@
             this.groupBox4.Controls.Add(this.txtTimingLptPort);
             this.groupBox4.Controls.Add(this.rbtnTimingLpt);
             this.groupBox4.Controls.Add(this.rbtnTimingUsb);
-            this.groupBox4.Location = new System.Drawing.Point(421, 266);
+            this.groupBox4.Location = new System.Drawing.Point(420, 266);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(174, 45);
             this.groupBox4.TabIndex = 51;

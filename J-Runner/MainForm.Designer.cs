@@ -150,6 +150,7 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkConsoleCBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyContextMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -1115,6 +1116,7 @@ namespace JRunner
             // 
             this.xFlasherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.installDriversToolStripMenuItem,
+            this.checkConsoleCBToolStripMenuItem,
             this.flashOpenXeniumToolStripMenuItem});
             this.xFlasherToolStripMenuItem.Name = "xFlasherToolStripMenuItem";
             this.xFlasherToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
@@ -1175,6 +1177,13 @@ namespace JRunner
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // checkConsoleCBToolStripMenuItem
+            // 
+            this.checkConsoleCBToolStripMenuItem.Name = "checkConsoleCBToolStripMenuItem";
+            this.checkConsoleCBToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.checkConsoleCBToolStripMenuItem.Text = "Check Console CB…";
+            this.checkConsoleCBToolStripMenuItem.Click += new System.EventHandler(this.checkConsoleCBToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1347,5 +1356,6 @@ namespace JRunner
         private ToolStripMenuItem showOutputFolderToolStripMenuItem;
         private UI.SplitButton btnShowWorkingFolder;
         private ToolStripMenuItem xboxOneHDDToolToolStripMenuItem;
+        private ToolStripMenuItem checkConsoleCBToolStripMenuItem;
     }
 }

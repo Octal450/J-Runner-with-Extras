@@ -1002,13 +1002,13 @@ namespace JRunner
                 return error;
             }
             if (variables.debugme) Console.WriteLine(variables.flashconfig);
-            if (flashconfig == ("008A3020"))
+            if (flashconfig == "008A3020")
             {
                 variables.ctyp = variables.ctypes[6];
                 Console.WriteLine(variables.ctyp.Text);
                 xPanel.setMBname(variables.ctyp.Text);
             }
-            else if (flashconfig == ("00AA3020"))
+            else if (flashconfig == "00AA3020")
             {
                 variables.ctyp = variables.ctypes[7];
                 Console.WriteLine(variables.ctyp.Text);
@@ -1022,15 +1022,15 @@ namespace JRunner
                 MessageBox.Show("Unable to read/write eMMC type console with an SPI tool\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return error;
             }
-            else if (flashconfig == ("01198010"))
+            else if (flashconfig == "01198010")
             {
                 Console.WriteLine("Xenon, Zephyr, Falcon");
             }
-            else if (flashconfig == ("00023010"))
+            else if (flashconfig == "00023010")
             {
                 Console.WriteLine("Jasper 16MB, Trinity");
             }
-            else if (flashconfig == ("00043000"))
+            else if (flashconfig == "00043000")
             {
                 variables.ctyp = variables.ctypes[10];
                 Console.WriteLine(variables.ctyp.Text);
@@ -1050,6 +1050,7 @@ namespace JRunner
             _waitmb.Set();
             return error;
         }
+
         public void getcb_v(string flashconfig)
         {
             if (variables.debugme) Console.WriteLine("\nGetting cb {0}", flashconfig);
@@ -3261,6 +3262,11 @@ namespace JRunner
             xFlasherDrivers.Start();
         }
 
+        private void checkConsoleCBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            xflasher.getConsoleCb();
+        }
+
         private void flashOpenXeniumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (device == DEVICE.XFLASHER_SPI)
@@ -3938,7 +3944,8 @@ namespace JRunner
                 }
                 else if (device == DEVICE.XFLASHER_SPI)
                 {
-                    xflasher.getFlashConfig();
+                    if (e.Shift) xflasher.getConsoleCb();
+                    else xflasher.getFlashConfig();
                 }
                 else
                 {

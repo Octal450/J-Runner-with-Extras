@@ -145,14 +145,9 @@ namespace JRunner
             Console.WriteLine("xFlasher: Checking Console...");
             inUse = true;
 
-            int result = spi(0, 16, "common/xflasher/nand.bin");
+            int result = spi(0, 16, @"common\xflasher\nand.bin");
 
             flashconf = spiGetConfig().ToString("X8");
-
-            if (File.Exists("common/xflasher/nand.bin"))
-            {
-                File.Delete("common/xflasher/nand.bin");
-            }
 
             inUse = false;
 
@@ -207,6 +202,107 @@ namespace JRunner
                 Console.WriteLine("");
                 return 1;
             }
+        }
+
+        public void getConsoleCb()
+        {
+            if (!osCheck()) return;
+
+            if (waiting) return;
+
+            if (inUse)
+            {
+                return;
+            }
+
+            Thread ftdiThread = new Thread(() =>
+            {
+                try
+                {
+                    if (!ready)
+                    {
+                        waiting = true;
+                        MainForm.mainForm.xFlasherBusy(-2);
+                        Console.WriteLine("xFlasher: Waiting for device to become ready");
+                    }
+                    while (!ready)
+                    {
+                        // Do nothing and wait
+                    }
+
+                    if (getFlashConfigActual(true) != 0)
+                    {
+                        return;
+                    }
+
+                    if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+
+                    MainForm.mainForm.xFlasherBusy(-2);
+                    Console.WriteLine("xFlasher: Checking CB...");
+                    inUse = true;
+
+                    int result = spi(1, 16, @"common\xflasher\nand.bin", 0, 4); // Read Conf
+
+                    int consoleCb = 0;
+                    inUse = false;
+                    MainForm.mainForm.xFlasherBusy(-1);
+
+                    if (result == 0)
+                    {
+                        if (File.Exists("common/xflasher/nand.bin"))
+                        {
+                            variables.conf = File.ReadAllBytes("common/xflasher/nand.bin");
+                            MainForm.mainForm.getcb_v(flashconf);
+                            File.Delete("common/xflasher/nand.bin");
+                        }
+
+                        Console.WriteLine("");
+                    }
+                    else if (result == -2)
+                    {
+                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        Console.WriteLine("xFlasher: Device Not Initialized");
+                        Console.WriteLine("");
+                        return;
+                    }
+                    else if (result == -3)
+                    {
+                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        Console.WriteLine("xFlasher: Console Not Found");
+                        Console.WriteLine("");
+                        return;
+                    }
+                    else if (result == -4)
+                    {
+                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        Console.WriteLine("xFlasher: Unknown Nand");
+                        Console.WriteLine("");
+                        return;
+                    }
+                    else if (result == -11)
+                    {
+                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        Console.WriteLine("xFlasher: Couldn't Open File");
+                        Console.WriteLine("");
+                        return;
+                    }
+                    else
+                    {
+                        if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                        Console.WriteLine("xFlasher: Unknown Error");
+                        Console.WriteLine("");
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+                    Console.WriteLine(ex.Message);
+                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    Console.WriteLine("");
+                }
+            });
+            ftdiThread.Start();
         }
 
         // Read Nand
