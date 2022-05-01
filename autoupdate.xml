@@ -1,0 +1,17 @@
+<jrunner>
+	<changelog>
+V3.1.4:
+- Added: XL USB support
+- Added: Improved updater
+- Added: Alert if dangerous nand is loaded
+- Fixed: Various bugs and usability issues
+- Changed: Preparing the platform for future updates
+- Changed: Cleaned up unused code
+	</changelog>
+	<delta>https://github.com/Octal450/J-Runner-with-Extras/releases/download/V3.1.4/JR-Auto-Update-Delta.zip</delta>
+	<full>https://github.com/Octal450/J-Runner-with-Extras/releases/download/V3.1.4/J-Runner-with-Extras.zip</full>
+	<md5-delta>E48A548B0E781CBA8FD6A8779B5D15EC</md5-delta>
+	<md5-full>5F1E6B002BF18511264615184C438E5F</md5-full>
+	<min-delta-revision>13</min-delta-revision>
+	<revision>21</revision>
+</jrunner>
