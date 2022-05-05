@@ -34,7 +34,18 @@ namespace JRunner
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                if (Environment.OSVersion.Version.Major < 6)
+                // Determine current Windows version
+                if (Environment.OSVersion.Version.Major >= 10) variables.currentOS = variables.Windows.Win10; // or 11
+                else if (Environment.OSVersion.Version.Major >= 6)
+                {
+                    if (Environment.OSVersion.Version.Minor >= 3) variables.currentOS = variables.Windows.Win81;
+                    if (Environment.OSVersion.Version.Minor == 2) variables.currentOS = variables.Windows.Win8;
+                    if (Environment.OSVersion.Version.Minor == 1) variables.currentOS = variables.Windows.Win7;
+                    else variables.currentOS = variables.Windows.Vista;
+                }
+                else if (Environment.OSVersion.Version.Major == 5 && Environment.OSVersion.Version.Minor == 1) variables.currentOS = variables.Windows.XP;
+
+                if (variables.currentOS == variables.Windows.XP)
                 {
                     MessageBox.Show("This version of Windows is not supported\n\nJ-Runner with Extras requires Microsoft Windows Vista or later", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -75,7 +86,7 @@ namespace JRunner
                 }
                 else if (Control.ModifierKeys == Keys.Shift)
                 {
-                    Upd.checkSuccess = false;
+                    Upd.checkStatus = 1;
                     Application.Run(new MainForm());
                 }
                 else

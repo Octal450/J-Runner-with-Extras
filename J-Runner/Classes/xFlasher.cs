@@ -243,7 +243,6 @@ namespace JRunner
 
                     int result = spi(1, 16, @"common\xflasher\nand.bin", 0, 4); // Read Conf
 
-                    int consoleCb = 0;
                     inUse = false;
                     MainForm.mainForm.xFlasherBusy(-1);
 

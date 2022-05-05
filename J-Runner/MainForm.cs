@@ -89,17 +89,6 @@ namespace JRunner
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Determine current Windows version
-            if (Environment.OSVersion.Version.Major >= 10) variables.currentOS = variables.Windows.Win10; // or 11
-            else if (Environment.OSVersion.Version.Major >= 6)
-            {
-                if (Environment.OSVersion.Version.Minor >= 3) variables.currentOS = variables.Windows.Win81;
-                if (Environment.OSVersion.Version.Minor == 2) variables.currentOS = variables.Windows.Win8;
-                if (Environment.OSVersion.Version.Minor == 1) variables.currentOS = variables.Windows.Win7;
-                else variables.currentOS = variables.Windows.Vista;
-            }
-            else if (Environment.OSVersion.Version.Major == 5 && Environment.OSVersion.Version.Minor == 1) variables.currentOS = variables.Windows.XP;
-
             mainForm = this;
             versionToolStripMenuItem.Text = "V" + variables.version;
 
@@ -355,7 +344,7 @@ namespace JRunner
             Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("MM/dd/yyyy H:mm:ss"));
             if (variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
             else Console.WriteLine("Version: {0}", variables.version);
-            if (Upd.checkSuccess)
+            if (Upd.checkStatus == 0)
             {
                 if (Upd.upToDate == true)
                 {
@@ -367,6 +356,10 @@ namespace JRunner
                     updateAvailableToolStripMenuItem.Visible = true;
                     Console.WriteLine("Status: An update is ready to be installed");
                 }
+            }
+            else if (Upd.checkStatus == 2)
+            {
+                Console.WriteLine("Status: Could not connect to update server because TLS1.2 is not enabled");
             }
             else
             {

@@ -519,9 +519,13 @@ namespace JRunner.Classes
 
             if (_xdkbuild)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512" || boardtype == "trinitybb") // requires bigffs
+                if (boardtype == "jasper256" || boardtype == "jasper512") // requires bigffs
                 {
-                    arguments += " -c " + boardtype.Substring(0, 6) + "bigffs -i flash";
+                    arguments += " -c " + "jasperbigffs -i flash";
+                }
+                else if (boardtype == "trinitybb") // requires bigffs
+                {
+                    arguments += " -c " + "trinitybigffs -i flash";
                 }
                 else if (boardtype == "corona4g")
                 {
@@ -534,9 +538,13 @@ namespace JRunner.Classes
             }
             else if (_bigffs)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512" || boardtype == "trinitybb")
+                if (boardtype == "jasper256" || boardtype == "jasper512")
                 {
-                    arguments += " -c " + boardtype.Substring(0, 6) + "bigffs";
+                    arguments += " -c " + "jasperbigffs";
+                }
+                else if (boardtype == "trinitybb") // requires bigffs
+                {
+                    arguments += " -c " + "trinitybigffs";
                 }
                 else
                 {
@@ -643,9 +651,13 @@ namespace JRunner.Classes
 
             if (_xdkbuild)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512" || boardtype == "trinitybb") // requires bigffs
+                if (boardtype == "jasper256" || boardtype == "jasper512") // requires bigffs
                 {
-                    arguments += " -c " + boardtype.Substring(0, 6) + "bigffs -i flash";
+                    arguments += " -c " + "jasperbigffs -i flash";
+                }
+                else if (boardtype == "trinitybb") // requires bigffs
+                {
+                    arguments += " -c " + "trinitybigffs -i flash";
                 }
                 else if (boardtype == "corona4g")
                 {
@@ -658,9 +670,13 @@ namespace JRunner.Classes
             }
             else if (_bigffs)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512" || boardtype == "trinitybb")
+                if (boardtype == "jasper256" || boardtype == "jasper512")
                 {
-                    arguments += " -c " + boardtype.Substring(0, 6) + "bigffs";
+                    arguments += " -c " + "jasperbigffs";
+                }
+                else if (boardtype == "trinitybb") // requires bigffs
+                {
+                    arguments += " -c " + "trinitybigffs";
                 }
                 else
                 {

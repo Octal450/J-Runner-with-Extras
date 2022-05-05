@@ -12,7 +12,7 @@ namespace JRunner
 {
     public static class Upd
     {
-        public static bool checkSuccess = true; // Default true
+        public static int checkStatus = 0; // Default success
         public static bool upToDate = true; // Default true
         public static string failedReason = "Unknown";
         static string changelog = "Could not retrieve changelog for some reason!"; // Overwritten if successful
@@ -27,12 +27,13 @@ namespace JRunner
 
         public static void check()
         {
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12; // Enable TLS1.2 to connect to GitHub
             UpdateCheck updateCheck = new UpdateCheck();
             updateCheck.Show();
 
             try
             {
-                xml = new XmlTextReader("https://cdn.octalsconsoleshop.com/jrunner/autoupdate.xml");
+                xml = new XmlTextReader("http://raw.githubusercontent.com/Octal450/J-Runner-with-Extras/master/autoupdate.xml");
                 xml.MoveToContent();
                 string name = "";
 
@@ -53,7 +54,7 @@ namespace JRunner
                                 {
                                     if (!int.TryParse(xml.Value, out minDeltaRevision))
                                     {
-                                        checkSuccess = false; // Defaults true
+                                        checkStatus = 1;
                                         throw new Exception(); // Cancel the rest and go to catch
                                     }
                                 }
@@ -61,7 +62,7 @@ namespace JRunner
                                 {
                                     if (!int.TryParse(xml.Value, out serverRevision))
                                     {
-                                        checkSuccess = false; // Defaults true
+                                        checkStatus = 1;
                                         throw new Exception(); // Cancel the rest and go to catch
                                     }
                                 }
@@ -91,13 +92,14 @@ namespace JRunner
 
                     if (serverRevision == 0) // If this happened we didn't get revision sucessfully, there is never revision 0
                     {
-                        checkSuccess = false; // Defaults true
+                        checkStatus = 1; // Defaults success
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                checkSuccess = false; // Defaults true
+                if (ex.Message.Contains("SSL/TLS")) checkStatus = 2;
+                else checkStatus = 1;
             }
             finally
             {
@@ -110,7 +112,7 @@ namespace JRunner
             Thread.Sleep(100);
             updateCheck.Dispose();
 
-            if (checkSuccess)
+            if (checkStatus == 0)
             {
                 if (variables.revision >= serverRevision) // Up to Date
                 {
