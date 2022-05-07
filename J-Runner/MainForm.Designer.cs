@@ -144,13 +144,13 @@ namespace JRunner
             this.changeLDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xFlasherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installDriversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkConsoleCBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flashOpenXeniumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nANDXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mtxUsbModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkConsoleCBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyContextMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -1130,6 +1130,13 @@ namespace JRunner
             this.installDriversToolStripMenuItem.Text = "Install Drivers…";
             this.installDriversToolStripMenuItem.Click += new System.EventHandler(this.installDriversToolStripMenuItem_Click);
             // 
+            // checkConsoleCBToolStripMenuItem
+            // 
+            this.checkConsoleCBToolStripMenuItem.Name = "checkConsoleCBToolStripMenuItem";
+            this.checkConsoleCBToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.checkConsoleCBToolStripMenuItem.Text = "Check Console CB";
+            this.checkConsoleCBToolStripMenuItem.Click += new System.EventHandler(this.checkConsoleCBToolStripMenuItem_Click);
+            // 
             // flashOpenXeniumToolStripMenuItem
             // 
             this.flashOpenXeniumToolStripMenuItem.Name = "flashOpenXeniumToolStripMenuItem";
@@ -1177,13 +1184,6 @@ namespace JRunner
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // checkConsoleCBToolStripMenuItem
-            // 
-            this.checkConsoleCBToolStripMenuItem.Name = "checkConsoleCBToolStripMenuItem";
-            this.checkConsoleCBToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.checkConsoleCBToolStripMenuItem.Text = "Check Console CB…";
-            this.checkConsoleCBToolStripMenuItem.Click += new System.EventHandler(this.checkConsoleCBToolStripMenuItem_Click);
             // 
             // MainForm
             // 
