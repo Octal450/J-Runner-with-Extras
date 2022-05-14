@@ -33,7 +33,7 @@ namespace JRunner
 
             try
             {
-                xml = new XmlTextReader("http://raw.githubusercontent.com/Octal450/J-Runner-with-Extras/master/autoupdate.xml");
+                xml = new XmlTextReader("https://raw.githubusercontent.com/Octal450/J-Runner-with-Extras-Updater/master/autoupdate.xml");
                 xml.MoveToContent();
                 string name = "";
 
@@ -92,7 +92,7 @@ namespace JRunner
 
                     if (serverRevision == 0) // If this happened we didn't get revision sucessfully, there is never revision 0
                     {
-                        checkStatus = 1; // Defaults success
+                        checkStatus = 1;
                     }
                 }
             }
@@ -180,7 +180,8 @@ namespace JRunner
             {
                 if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
                 updateDownload.Dispose();
-                failedReason = "Failed to download the package";
+                if (e.Error.ToString().Contains("SSL/TLS")) failedReason = "Could not connect to the update server because TLS1.2 is not enabled";
+                else failedReason = "Failed to download the package";
                 Application.Run(new UpdateFailed());
             }
             else
@@ -201,7 +202,8 @@ namespace JRunner
             {
                 if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
                 updateDownload.Dispose();
-                failedReason = "Failed to download the package";
+                if (e.Error.ToString().Contains("SSL/TLS")) failedReason = "Could not connect to the update server because TLS1.2 is not enabled";
+                else failedReason = "Failed to download the package";
                 Application.Run(new UpdateFailed());
             }
             else

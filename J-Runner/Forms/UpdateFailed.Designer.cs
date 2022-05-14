@@ -65,7 +65,7 @@ namespace JRunner
             // FailedReason
             // 
             this.FailedReason.AutoSize = true;
-            this.FailedReason.Location = new System.Drawing.Point(2, 34);
+            this.FailedReason.Location = new System.Drawing.Point(2, 32);
             this.FailedReason.Name = "FailedReason";
             this.FailedReason.Size = new System.Drawing.Size(76, 15);
             this.FailedReason.TabIndex = 2;

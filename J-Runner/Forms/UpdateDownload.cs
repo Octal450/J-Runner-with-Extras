@@ -31,7 +31,7 @@ namespace JRunner
         public void installMode()
         {
             updateProgressBar.BeginInvoke((Action)(() => updateProgressBar.Style = ProgressBarStyle.Marquee));
-            UpdatePage.Text = "Installing Update";
+            UpdatePage.Text = "Installing Update...";
             UpdatePage.AllowCancel = false;
         }
     }

@@ -359,7 +359,7 @@ namespace JRunner
             }
             else if (Upd.checkStatus == 2)
             {
-                Console.WriteLine("Status: Could not connect to update server because TLS1.2 is not enabled");
+                Console.WriteLine("Status: Could not connect to the update server because TLS1.2 is not enabled");
             }
             else
             {
