@@ -666,7 +666,7 @@ namespace JRunner.Nand
                     bad_blocks.Add(counter);
                     if (counter < 0x50)
                     {
-                        MessageBox.Show("Bad block in Xell area detected!!\nThis will likely not work. Please consider swapping your NAND chip.\nIf the system HANGS/DOES NOT BOOT or has ANY ISSUES. Swap your NAND chip", "CAUTION!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Bad block in Xell area detected!!\nThis will likely not work. Please consider swapping your NAND chip.\nIf the system HANGS/DOES NOT BOOT or has ANY ISSUES. Swap your NAND chip", "NOTICE!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 if (bad_blocks.Count >= 0x20)
