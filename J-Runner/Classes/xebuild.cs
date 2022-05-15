@@ -7,7 +7,6 @@ using System.Threading;
 
 namespace JRunner.Classes
 {
-
     class xebuild
     {
         public enum XebuildError
@@ -24,6 +23,7 @@ namespace JRunner.Classes
             wrongcpukey
         }
 
+        private bool success = false;
         private string _cpukey;
         private variables.hacktypes _ttype;
         private int _dash;
@@ -497,6 +497,7 @@ namespace JRunner.Classes
 
         public void build()
         {
+            success = false;
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
             string arguments = "";
@@ -602,7 +603,10 @@ namespace JRunner.Classes
                     else
                     {
                         Console.WriteLine(e.Data);
-                        if (e.Data != null && e.Data.Contains("image built") && !_xdkbuild && !_rgh3) { variables.xefinished = true; }
+                        if (e.Data != null && e.Data.Contains("image built")) {
+                            success = true;
+                            if (!_xdkbuild && !_rgh3) variables.xefinished = true;
+                        }
                     }
                 };
                 pProcess.Start();
@@ -614,23 +618,27 @@ namespace JRunner.Classes
                 {
                     pProcess.CancelOutputRead();
                 }
+
+                if (success)
+                {
+                    if (_xdkbuild && _rgh3)
+                    {
+                        MainForm.mainForm.XDKbuild.create(boardtype, true);
+                        MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000");
+                    }
+                    else if (_xdkbuild) MainForm.mainForm.XDKbuild.create(boardtype);
+                    else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey);
+                }
             }
             catch (Exception objException)
             {
                 Console.WriteLine(objException.Message);
             }
-
-            if (_xdkbuild && _rgh3)
-            {
-                MainForm.mainForm.XDKbuild.create(boardtype, true);
-                MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000");
-            }
-            else if (_xdkbuild) MainForm.mainForm.XDKbuild.create(boardtype);
-            else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey);
         }
 
         public void build(string arguments)
         {
+            success = false;
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
             string boardtype = _ctype.XeBuild;
@@ -720,7 +728,11 @@ namespace JRunner.Classes
                     else
                     {
                         Console.WriteLine(e.Data);
-                        if (e.Data != null && e.Data.Contains("image built") && !_xdkbuild && !_rgh3) { variables.xefinished = true; }
+                        if (e.Data != null && e.Data.Contains("image built"))
+                        {
+                            success = true;
+                            if (!_xdkbuild && !_rgh3) variables.xefinished = true;
+                        }
                     }
                 };
                 pProcess.Start();
@@ -733,15 +745,21 @@ namespace JRunner.Classes
                     pProcess.CancelOutputRead();
                 }
 
-                if (_xdkbuild) MainForm.mainForm.XDKbuild.create(boardtype);
-                else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey);
+                if (success)
+                {
+                    if (_xdkbuild && _rgh3)
+                    {
+                        MainForm.mainForm.XDKbuild.create(boardtype, true);
+                        MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000");
+                    }
+                    else if (_xdkbuild) MainForm.mainForm.XDKbuild.create(boardtype);
+                    else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey);
+                }
             }
             catch (Exception objException)
             {
                 Console.WriteLine(objException.Message);
             }
-
-
         }
 
 
@@ -782,6 +800,7 @@ namespace JRunner.Classes
 
         public void update()
         {
+            success = false;
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
             string arguments = "update ";
@@ -825,7 +844,11 @@ namespace JRunner.Classes
                     else
                     {
                         Console.WriteLine(e.Data);
-                        if (e.Data != null && e.Data.Contains("image built")) { variables.xefinished = true; }
+                        if (e.Data != null && e.Data.Contains("image built"))
+                        {
+                            success = true;
+                            variables.xefinished = true;
+                        }
                     }
                 };
                 pProcess.Start();

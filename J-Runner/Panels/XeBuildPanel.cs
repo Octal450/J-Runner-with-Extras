@@ -789,15 +789,7 @@ namespace JRunner.Panels
                 Console.WriteLine("Winbond 2K Deselected");
             }
 
-            // Don't do it twice
-            if (!chkWB4G.Checked && chkWB.Checked)
-            {
-                updateWB();
-            }
-            else if (!chkWB.Checked && !chkWB4G.Checked)
-            {
-                updateWB();
-            }
+            updateWB();
         }
 
         private void chkWB4G_CheckedChanged(object sender, EventArgs e)
@@ -813,15 +805,7 @@ namespace JRunner.Panels
                 Console.WriteLine("Winbond 2K Buffer Deselected");
             }
 
-            // Don't do it twice
-            if (!chkWB.Checked && chkWB4G.Checked)
-            {
-                updateWB();
-            }
-            else if (!chkWB.Checked && !chkWB4G.Checked)
-            {
-                updateWB();
-            }
+            updateWB();
         }
 
         private void updateWB()
