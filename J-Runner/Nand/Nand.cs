@@ -638,6 +638,7 @@ namespace JRunner.Nand
             long imgsize = 0;
             byte[] image;
             int blocksize, reservedoffset;
+            bool bad_block_in_xell = false;
 
             if (bigblock)
             {
@@ -664,10 +665,7 @@ namespace JRunner.Nand
                 if (JRunner.Nand.BadBlock.checkifbadblock(block, counter, bigblock, true))
                 {
                     bad_blocks.Add(counter);
-                    if (counter < 0x50)
-                    {
-                        MessageBox.Show("Bad block detected in XeLL image area (0x00-0x50)\n\nThis may cause the console to not boot properly\n\nIf this occurs, replace the NAND TSOP chip and re-write the image", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    if (counter < 0x50) bad_block_in_xell = true;
                 }
                 if (bad_blocks.Count >= 0x20)
                 {
@@ -676,6 +674,7 @@ namespace JRunner.Nand
                 }
             }
 
+            if (bad_block_in_xell) MessageBox.Show("Bad block detected in XeLL image area (0x00-0x50)\n\nThis may cause the console to not boot properly\n\nIf this occurs, replace the NAND TSOP chip and re-write the image", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (bad_blocks.Count == 0)
             {
