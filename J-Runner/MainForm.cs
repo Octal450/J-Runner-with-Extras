@@ -119,7 +119,7 @@ namespace JRunner
                 return;
             }
 
-            settings();
+            loadsettings();
 
             printstartuptext(true);
 
@@ -284,8 +284,6 @@ namespace JRunner
 
         private void on_load()
         {
-            new Thread(createdirectories).Start();
-
             check_dash(); // configures the dashes dropdown
 
             try
@@ -310,31 +308,6 @@ namespace JRunner
             {
             }
 
-        }
-        private void createdirectories()
-        {
-            if (!Directory.Exists(Path.Combine(variables.rootfolder, "output")))
-            {
-                try
-                {
-                    Directory.CreateDirectory(Path.Combine(variables.rootfolder, "output"));
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    variables.rootfolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    Directory.CreateDirectory(Path.Combine(variables.rootfolder, "output"));
-                }
-            }
-            if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
-            {
-                Console.WriteLine("WARNING - Working Folder!");
-                Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
-                Console.WriteLine("");
-            }
-            if (!Directory.Exists(variables.AppData))
-            {
-                Directory.CreateDirectory(variables.AppData);
-            }
         }
 
         private void printstartuptext(bool firsttime = false)
@@ -368,19 +341,17 @@ namespace JRunner
 
             Console.WriteLine("");
 
+            if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
+            {
+                Console.WriteLine("WARNING - Working Folder!");
+                Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
+                Console.WriteLine("");
+            }
+
             if (firsttime)
             {
                 WindowsIdentity identity = WindowsIdentity.GetCurrent();
                 WindowsPrincipal principal = new WindowsPrincipal(identity);
-            }
-            else
-            {
-                if (Directory.GetFiles(variables.outfolder, "*", SearchOption.TopDirectoryOnly).Length > 0)
-                {
-                    Console.WriteLine("WARNING - Working Folder!");
-                    Console.WriteLine("Your working folder is not empty, click Show Working Folder to view its contents");
-                    Console.WriteLine("");
-                }
             }
         }
 
@@ -457,14 +428,14 @@ namespace JRunner
 
         void xPanel_HackChanged()
         {
-            nTools.setbtnCreateECC("Create ECC");
+            nTools.setbtnCreateECC("Create\nECC");
             nTools.setbtnWriteECC("Write\nECC");
 
             if (xPanel.getRbtnGlitchChecked()) variables.ttyp = variables.hacktypes.glitch;
             else if (xPanel.getRbtnJtagChecked())
             {
                 variables.ttyp = variables.hacktypes.jtag;
-                nTools.setbtnCreateECC("Create XeLL");
+                nTools.setbtnCreateECC("Create\nXeLL");
                 nTools.setbtnWriteECC("Write\nXeLL");
             }
             else if (xPanel.getRbtnGlitch2Checked()) variables.ttyp = variables.hacktypes.glitch2;
@@ -2877,10 +2848,7 @@ namespace JRunner
 
         private void changelogToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            TextViewer tv = new TextViewer();
-            tv.Show();
-            tv.Location = new Point(Location.X + (Width - tv.Width) / 2, Location.Y + (Height - tv.Height) / 2);
-            tv.LoadFile("Changelog.txt");
+            Process.Start("notepad.exe", Path.Combine(variables.rootfolder, "Changelog.txt"));
         }
 
         private void reportIssueToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4587,10 +4555,6 @@ namespace JRunner
                 txtIP.Text = localIP.Remove(localIP.LastIndexOf('.')) + ".";
             }
             IP.initaddresses();
-        }
-        void settings()
-        {
-            loadsettings();
         }
 
         void add_dash()

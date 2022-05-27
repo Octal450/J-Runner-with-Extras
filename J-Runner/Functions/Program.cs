@@ -10,8 +10,10 @@ namespace JRunner
 {
     static class Program
     {
-        static bool createdNew = true;
+        [DllImport("Shcore.dll")]
+        static extern int SetProcessDpiAwareness(int PROCESS_DPI_AWARENESS);
 
+        static bool createdNew = true;
         static Mutex mutex = new Mutex(true, "J-Runner", out createdNew);
         static bool needVcredistx86 = false;
         [DllImport("user32.dll")]
@@ -33,6 +35,7 @@ namespace JRunner
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+                SetProcessDpiAwareness(2); // PerMonitorAware
 
                 // Determine current Windows version
                 if (Environment.OSVersion.Version.Major >= 10) variables.currentOS = variables.Windows.Win10; // or 11

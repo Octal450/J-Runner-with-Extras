@@ -94,61 +94,61 @@
             // 
             // btnsuccom
             // 
-            this.btnsuccom.Location = new System.Drawing.Point(325, 31);
+            this.btnsuccom.Location = new System.Drawing.Point(325, 37);
             this.btnsuccom.Name = "btnsuccom";
             this.btnsuccom.Size = new System.Drawing.Size(29, 22);
-            this.btnsuccom.TabIndex = 0;
+            this.btnsuccom.TabIndex = 3;
             this.btnsuccom.Text = "...";
             this.btnsuccom.UseVisualStyleBackColor = true;
             this.btnsuccom.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtsuccom
             // 
-            this.txtsuccom.Location = new System.Drawing.Point(36, 32);
+            this.txtsuccom.Location = new System.Drawing.Point(36, 38);
             this.txtsuccom.Name = "txtsuccom";
             this.txtsuccom.Size = new System.Drawing.Size(283, 20);
             this.txtsuccom.TabIndex = 2;
             // 
             // txtsuccess
             // 
-            this.txtsuccess.Location = new System.Drawing.Point(36, 71);
+            this.txtsuccess.Location = new System.Drawing.Point(36, 77);
             this.txtsuccess.Name = "txtsuccess";
             this.txtsuccess.Size = new System.Drawing.Size(283, 20);
-            this.txtsuccess.TabIndex = 4;
+            this.txtsuccess.TabIndex = 5;
             // 
             // btnsuccess
             // 
-            this.btnsuccess.Location = new System.Drawing.Point(325, 70);
+            this.btnsuccess.Location = new System.Drawing.Point(325, 76);
             this.btnsuccess.Name = "btnsuccess";
             this.btnsuccess.Size = new System.Drawing.Size(29, 22);
-            this.btnsuccess.TabIndex = 5;
+            this.btnsuccess.TabIndex = 6;
             this.btnsuccess.Text = "...";
             this.btnsuccess.UseVisualStyleBackColor = true;
             this.btnsuccess.Click += new System.EventHandler(this.button2_Click);
             // 
             // txterror
             // 
-            this.txterror.Location = new System.Drawing.Point(36, 110);
+            this.txterror.Location = new System.Drawing.Point(36, 116);
             this.txterror.Name = "txterror";
             this.txterror.Size = new System.Drawing.Size(283, 20);
-            this.txterror.TabIndex = 7;
+            this.txterror.TabIndex = 8;
             // 
             // btnerror
             // 
-            this.btnerror.Location = new System.Drawing.Point(325, 109);
+            this.btnerror.Location = new System.Drawing.Point(325, 115);
             this.btnerror.Name = "btnerror";
             this.btnerror.Size = new System.Drawing.Size(29, 22);
-            this.btnerror.TabIndex = 8;
+            this.btnerror.TabIndex = 9;
             this.btnerror.Text = "...";
             this.btnerror.UseVisualStyleBackColor = true;
             this.btnerror.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnfolder
             // 
-            this.btnfolder.Location = new System.Drawing.Point(334, 183);
+            this.btnfolder.Location = new System.Drawing.Point(343, 183);
             this.btnfolder.Name = "btnfolder";
             this.btnfolder.Size = new System.Drawing.Size(29, 22);
-            this.btnfolder.TabIndex = 9;
+            this.btnfolder.TabIndex = 22;
             this.btnfolder.Text = "...";
             this.btnfolder.UseVisualStyleBackColor = true;
             this.btnfolder.Click += new System.EventHandler(this.button4_Click);
@@ -157,8 +157,8 @@
             // 
             this.txtfolder.Location = new System.Drawing.Point(18, 184);
             this.txtfolder.Name = "txtfolder";
-            this.txtfolder.Size = new System.Drawing.Size(310, 20);
-            this.txtfolder.TabIndex = 10;
+            this.txtfolder.Size = new System.Drawing.Size(319, 20);
+            this.txtfolder.TabIndex = 21;
             // 
             // txtIP
             // 
@@ -166,13 +166,13 @@
             this.txtIP.Location = new System.Drawing.Point(99, 24);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(92, 20);
-            this.txtIP.TabIndex = 11;
+            this.txtIP.TabIndex = 3;
             this.toolTip1.SetToolTip(this.txtIP, "Set a default IP for getting CPUKey\r\nover a network.");
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 16);
+            this.label1.Location = new System.Drawing.Point(12, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 12;
@@ -181,7 +181,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 55);
+            this.label2.Location = new System.Drawing.Point(12, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 13;
@@ -190,7 +190,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 94);
+            this.label3.Location = new System.Drawing.Point(12, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 14;
@@ -211,15 +211,16 @@
             this.label5.Location = new System.Drawing.Point(8, 27);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
-            this.label5.TabIndex = 16;
+            this.label5.TabIndex = 1;
             this.label5.Text = "IP Default:";
             // 
             // btnOK
             // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOK.Location = new System.Drawing.Point(268, 394);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 23);
-            this.btnOK.TabIndex = 17;
+            this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.buttonOK_Click);
@@ -241,14 +242,14 @@
             this.groupBox1.Location = new System.Drawing.Point(18, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(369, 149);
-            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sounds";
             // 
             // chksuccom
             // 
             this.chksuccom.AutoSize = true;
-            this.chksuccom.Location = new System.Drawing.Point(15, 35);
+            this.chksuccom.Location = new System.Drawing.Point(15, 41);
             this.chksuccom.Name = "chksuccom";
             this.chksuccom.Size = new System.Drawing.Size(15, 14);
             this.chksuccom.TabIndex = 1;
@@ -257,19 +258,19 @@
             // chksuccess
             // 
             this.chksuccess.AutoSize = true;
-            this.chksuccess.Location = new System.Drawing.Point(15, 74);
+            this.chksuccess.Location = new System.Drawing.Point(15, 80);
             this.chksuccess.Name = "chksuccess";
             this.chksuccess.Size = new System.Drawing.Size(15, 14);
-            this.chksuccess.TabIndex = 3;
+            this.chksuccess.TabIndex = 4;
             this.chksuccess.UseVisualStyleBackColor = true;
             // 
             // chkerror
             // 
             this.chkerror.AutoSize = true;
-            this.chkerror.Location = new System.Drawing.Point(15, 113);
+            this.chkerror.Location = new System.Drawing.Point(15, 119);
             this.chkerror.Name = "chkerror";
             this.chkerror.Size = new System.Drawing.Size(15, 14);
-            this.chkerror.TabIndex = 6;
+            this.chkerror.TabIndex = 7;
             this.chkerror.UseVisualStyleBackColor = true;
             // 
             // openFileDialog1
@@ -297,7 +298,7 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(64, 20);
-            this.numericUpDown1.TabIndex = 22;
+            this.numericUpDown1.TabIndex = 36;
             this.toolTip1.SetToolTip(this.numericUpDown1, "If your nand write with JR-P appears to lag (should be similar speed to read) sel" +
         "ect this!");
             // 
@@ -306,7 +307,7 @@
             this.txtNandflash.Location = new System.Drawing.Point(491, 184);
             this.txtNandflash.Name = "txtNandflash";
             this.txtNandflash.Size = new System.Drawing.Size(103, 20);
-            this.txtNandflash.TabIndex = 24;
+            this.txtNandflash.TabIndex = 37;
             this.toolTip1.SetToolTip(this.txtNandflash, "determines the name given to the file\r\nproduced upon creation of a Nand\r\nImage");
             // 
             // txtIPStart
@@ -314,7 +315,7 @@
             this.txtIPStart.Location = new System.Drawing.Point(99, 55);
             this.txtIPStart.Name = "txtIPStart";
             this.txtIPStart.Size = new System.Drawing.Size(92, 20);
-            this.txtIPStart.TabIndex = 28;
+            this.txtIPStart.TabIndex = 4;
             this.toolTip1.SetToolTip(this.txtIPStart, "Set the starting IP range for\r\nScan IP range function");
             // 
             // txtIPEnd
@@ -322,7 +323,7 @@
             this.txtIPEnd.Location = new System.Drawing.Point(99, 87);
             this.txtIPEnd.Name = "txtIPEnd";
             this.txtIPEnd.Size = new System.Drawing.Size(92, 20);
-            this.txtIPEnd.TabIndex = 29;
+            this.txtIPEnd.TabIndex = 5;
             this.toolTip1.SetToolTip(this.txtIPEnd, "Set the end of IP range for\r\nScan IP range function");
             // 
             // txtTimingLptPort
@@ -386,8 +387,8 @@
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Location = new System.Drawing.Point(392, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(202, 116);
-            this.groupBox2.TabIndex = 31;
+            this.groupBox2.Size = new System.Drawing.Size(202, 118);
+            this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "IP Settings";
             // 
@@ -397,7 +398,7 @@
             this.chkIpDefault.Location = new System.Drawing.Point(78, 27);
             this.chkIpDefault.Name = "chkIpDefault";
             this.chkIpDefault.Size = new System.Drawing.Size(15, 14);
-            this.chkIpDefault.TabIndex = 30;
+            this.chkIpDefault.TabIndex = 2;
             this.chkIpDefault.UseVisualStyleBackColor = true;
             this.chkIpDefault.CheckedChanged += new System.EventHandler(this.chkIpDefault_CheckedChanged);
             // 
@@ -407,7 +408,7 @@
             this.AutoExtractcheckBox.Location = new System.Drawing.Point(18, 215);
             this.AutoExtractcheckBox.Name = "AutoExtractcheckBox";
             this.AutoExtractcheckBox.Size = new System.Drawing.Size(165, 17);
-            this.AutoExtractcheckBox.TabIndex = 33;
+            this.AutoExtractcheckBox.TabIndex = 23;
             this.AutoExtractcheckBox.Text = "Auto Extract Files from Nands";
             this.AutoExtractcheckBox.UseVisualStyleBackColor = true;
             // 
@@ -419,7 +420,7 @@
             this.almovebut.Location = new System.Drawing.Point(18, 238);
             this.almovebut.Name = "almovebut";
             this.almovebut.Size = new System.Drawing.Size(244, 17);
-            this.almovebut.TabIndex = 34;
+            this.almovebut.TabIndex = 24;
             this.almovebut.Text = "Only move nand/files upon first CPU Key entry";
             this.almovebut.UseVisualStyleBackColor = true;
             this.almovebut.CheckedChanged += new System.EventHandler(this.almovebut_CheckedChanged);
@@ -429,9 +430,9 @@
             this.modderbut.AutoSize = true;
             this.modderbut.Location = new System.Drawing.Point(18, 261);
             this.modderbut.Name = "modderbut";
-            this.modderbut.Size = new System.Drawing.Size(280, 17);
-            this.modderbut.TabIndex = 35;
-            this.modderbut.Text = "Use unique name instead of Console type in database";
+            this.modderbut.Size = new System.Drawing.Size(279, 17);
+            this.modderbut.TabIndex = 25;
+            this.modderbut.Text = "Use unique name instead of console type in database";
             this.modderbut.UseVisualStyleBackColor = true;
             this.modderbut.CheckedChanged += new System.EventHandler(this.modderbut_CheckedChanged);
             // 
@@ -441,7 +442,7 @@
             this.timingOnKeypressEnable.Location = new System.Drawing.Point(18, 284);
             this.timingOnKeypressEnable.Name = "timingOnKeypressEnable";
             this.timingOnKeypressEnable.Size = new System.Drawing.Size(306, 17);
-            this.timingOnKeypressEnable.TabIndex = 37;
+            this.timingOnKeypressEnable.TabIndex = 26;
             this.timingOnKeypressEnable.Text = "F12 key programs timings when Program Timing File is open";
             this.timingOnKeypressEnable.UseVisualStyleBackColor = true;
             this.timingOnKeypressEnable.CheckedChanged += new System.EventHandler(this.timingOnKeypressEnable_CheckedChanged);
@@ -451,7 +452,8 @@
             this.logBackgroundCustom.Location = new System.Drawing.Point(245, 332);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
-            this.logBackgroundCustom.TabIndex = 41;
+            this.logBackgroundCustom.TabIndex = 31;
+            this.logBackgroundCustom.TabStop = false;
             this.logBackgroundCustom.Text = "Custom";
             this.logBackgroundCustom.UseVisualStyleBackColor = true;
             this.logBackgroundCustom.Click += new System.EventHandler(this.logBackgroundCustom_Click);
@@ -462,7 +464,8 @@
             this.logBackgroundBlue.Location = new System.Drawing.Point(219, 332);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
-            this.logBackgroundBlue.TabIndex = 40;
+            this.logBackgroundBlue.TabIndex = 30;
+            this.logBackgroundBlue.TabStop = false;
             this.logBackgroundBlue.UseVisualStyleBackColor = false;
             this.logBackgroundBlue.Click += new System.EventHandler(this.logBackgroundBlue_Click);
             // 
@@ -472,7 +475,8 @@
             this.logBackgroundBlack.Location = new System.Drawing.Point(193, 332);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
-            this.logBackgroundBlack.TabIndex = 39;
+            this.logBackgroundBlack.TabIndex = 29;
+            this.logBackgroundBlack.TabStop = false;
             this.logBackgroundBlack.UseVisualStyleBackColor = false;
             this.logBackgroundBlack.Click += new System.EventHandler(this.logBackgroundBlack_Click);
             // 
@@ -481,7 +485,8 @@
             this.logTextCustom.Location = new System.Drawing.Point(245, 358);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
-            this.logTextCustom.TabIndex = 45;
+            this.logTextCustom.TabIndex = 34;
+            this.logTextCustom.TabStop = false;
             this.logTextCustom.Text = "Custom";
             this.logTextCustom.UseVisualStyleBackColor = true;
             this.logTextCustom.Click += new System.EventHandler(this.logTextCustom_Click);
@@ -492,7 +497,8 @@
             this.logTextBlack.Location = new System.Drawing.Point(219, 358);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
-            this.logTextBlack.TabIndex = 44;
+            this.logTextBlack.TabIndex = 33;
+            this.logTextBlack.TabStop = false;
             this.logTextBlack.UseVisualStyleBackColor = false;
             this.logTextBlack.Click += new System.EventHandler(this.logTextBlack_Click);
             // 
@@ -502,7 +508,8 @@
             this.logTextWhite.Location = new System.Drawing.Point(193, 358);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
-            this.logTextWhite.TabIndex = 43;
+            this.logTextWhite.TabIndex = 32;
+            this.logTextWhite.TabStop = false;
             this.logTextWhite.UseVisualStyleBackColor = false;
             this.logTextWhite.Click += new System.EventHandler(this.logTextWhite_Click);
             // 
@@ -529,7 +536,7 @@
             this.logDefault.Location = new System.Drawing.Point(137, 332);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
-            this.logDefault.TabIndex = 46;
+            this.logDefault.TabIndex = 28;
             this.logDefault.Text = "Default";
             this.logDefault.UseVisualStyleBackColor = true;
             this.logDefault.Click += new System.EventHandler(this.logDefault_Click);
@@ -541,7 +548,7 @@
             this.groupBox3.Location = new System.Drawing.Point(420, 215);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(174, 45);
-            this.groupBox3.TabIndex = 50;
+            this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Preferred Slim Method";
             // 
@@ -576,7 +583,7 @@
             this.groupBox4.Location = new System.Drawing.Point(420, 266);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(174, 45);
-            this.groupBox4.TabIndex = 51;
+            this.groupBox4.TabIndex = 39;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Timing File Programming";
             // 
@@ -606,10 +613,11 @@
             // 
             // btnReset
             // 
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnReset.Location = new System.Drawing.Point(519, 394);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(76, 23);
-            this.btnReset.TabIndex = 52;
+            this.btnReset.TabIndex = 40;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -620,7 +628,7 @@
             this.chkNoPatchWarnings.Location = new System.Drawing.Point(18, 307);
             this.chkNoPatchWarnings.Name = "chkNoPatchWarnings";
             this.chkNoPatchWarnings.Size = new System.Drawing.Size(206, 17);
-            this.chkNoPatchWarnings.TabIndex = 53;
+            this.chkNoPatchWarnings.TabIndex = 27;
             this.chkNoPatchWarnings.Text = "Do not show patch warning messages";
             this.chkNoPatchWarnings.UseVisualStyleBackColor = true;
             this.chkNoPatchWarnings.CheckedChanged += new System.EventHandler(this.chkNoPatchWarnings_CheckedChanged);
@@ -628,10 +636,10 @@
             // 
             // Settings
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 434);
-            this.ControlBox = false;
             this.Controls.Add(this.chkNoPatchWarnings);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.groupBox4);
@@ -662,6 +670,8 @@
             this.Controls.Add(this.btnfolder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Settings";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

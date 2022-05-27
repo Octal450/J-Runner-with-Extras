@@ -220,6 +220,5 @@ namespace JRunner
 
             return controls.SelectMany(ctrl => GetAll(ctrl, type)).Concat(controls).Where(c => c.GetType() == type);
         }
-
     }
 }

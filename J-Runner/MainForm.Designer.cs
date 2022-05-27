@@ -1210,12 +1210,11 @@ namespace JRunner
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.txtConsole);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(848, 639);
-            this.MinimumSize = new System.Drawing.Size(848, 639);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "J-Runner with Extras";

@@ -183,7 +183,7 @@
             // Rgh3Label
             // 
             this.Rgh3Label.AutoSize = true;
-            this.Rgh3Label.Location = new System.Drawing.Point(281, 48);
+            this.Rgh3Label.Location = new System.Drawing.Point(281, 47);
             this.Rgh3Label.Name = "Rgh3Label";
             this.Rgh3Label.Size = new System.Drawing.Size(32, 13);
             this.Rgh3Label.TabIndex = 99;

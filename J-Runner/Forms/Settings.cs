@@ -14,13 +14,11 @@ namespace JRunner.Forms
         public Settings()
         {
             InitializeComponent();
-            this.AcceptButton = btnOK;
             btnOK.DialogResult = DialogResult.OK;
         }
 
         private void Settings_Load(object sender, EventArgs e)
         {
-
             if (variables.deletefiles) chkfiles.Checked = true;
             if (String.IsNullOrEmpty(variables.IPend) || String.IsNullOrEmpty(variables.IPstart)) IP.initaddresses();
             txtIPEnd.Text = variables.IPend;

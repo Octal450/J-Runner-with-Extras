@@ -117,10 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
+  </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="checkBox4.ToolTip" xml:space="preserve">
     <value>Normally when a fatal error occurs the xbox will just freeze, setting this to false will cause a reboot or powerdown
 setting to TRUE will also disable the unhandled exception filter which tries to intercept recoverable unhandled exceptions with exit to dash</value>
@@ -132,10 +134,6 @@ note that this option does NOTHING when fatalfreeze is set to true</value>
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>setting this to true will cause the box to reboot (soft reboot) the way it was intended to
 on jtag ONLY set this to true if using blackaddr's reboot fix for SMC, else on reboot you will get E71 and corrupted dash/video/etc settings</value>
-  </data>
-  <data name="checkBox11.ToolTip" xml:space="preserve">
-    <value>when set to true, miniblades will not appear... ever (requested as child saftey measure)
-note that using this option overrides everything in dash launch that relies on miniblade exits to function</value>
   </data>
   <data name="checkBox16.ToolTip" xml:space="preserve">
     <value>if liveblock is set to true, this will block the console from resolving all MS related dns
@@ -174,10 +172,6 @@ setting this to TRUE will cause the shutdown option to be auto selected instead
     <value>when you hold guide button to shut down xbox, normally a dialog comes up
 setting this to TRUE will cause the console to shutdown instead of show a dialog
 !! WARNING OTHER THINGS DO USE THIS DIALOG AND DETECTING THAT IT'S SHUTDOWN DIALOG MAY NOT BE PERFECT !!</value>
-  </data>
-  <data name="checkBox22.ToolTip" xml:space="preserve">
-    <value>14699+ has native http functions, but you are forced to be logged into use them
-this patch removes that restriction, set to false to disable it if you have any problems</value>
   </data>
   <data name="checkBox19.ToolTip" xml:space="preserve">
     <value>when set to TRUE various functions will be spoofed to make firmware think it's connected to LIVE
@@ -220,6 +214,7 @@ it may wind up on any of the usb devices depending on which was enumerated first
 checked on boot, so the device must be present at power on and at crash time for this to be effective
 ie: dumpfile = Usb:\crashlog.txt</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAoAMDAQAAEABABoBgAApgAAACAgEAABAAQA6AIAAA4HAAAQEBAAAQAEACgBAAD2CQAAMDAAAAEA

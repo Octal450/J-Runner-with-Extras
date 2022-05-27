@@ -58,7 +58,7 @@
             this.btnCPUDB.Name = "btnCPUDB";
             this.btnCPUDB.Size = new System.Drawing.Size(65, 51);
             this.btnCPUDB.TabIndex = 29;
-            this.btnCPUDB.Text = "CPU Key Database";
+            this.btnCPUDB.Text = "CPU Key\r\nDatabase";
             this.toolTip1.SetToolTip(this.btnCPUDB, "Database of CPU Keys and Serial Numbers");
             this.btnCPUDB.UseVisualStyleBackColor = true;
             this.btnCPUDB.Click += new System.EventHandler(this.btnCPUDB_Click);
@@ -69,7 +69,7 @@
             this.btnProgramCR.Name = "btnProgramCR";
             this.btnProgramCR.Size = new System.Drawing.Size(66, 51);
             this.btnProgramCR.TabIndex = 26;
-            this.btnProgramCR.Text = "Program Timing File";
+            this.btnProgramCR.Text = "Program\r\nTiming File";
             this.toolTip1.SetToolTip(this.btnProgramCR, "Program one of the built in timing files to a glitch chip");
             this.btnProgramCR.UseVisualStyleBackColor = true;
             this.btnProgramCR.Click += new System.EventHandler(this.btnProgramCR_Click);
@@ -95,7 +95,7 @@
             this.btnCreateECC.Name = "btnCreateECC";
             this.btnCreateECC.Size = new System.Drawing.Size(65, 51);
             this.btnCreateECC.TabIndex = 21;
-            this.btnCreateECC.Text = "Create ECC";
+            this.btnCreateECC.Text = "Create\r\nECC";
             this.toolTip1.SetToolTip(this.btnCreateECC, "Creates an ECC or XeLL from the source file, and the settings selected on the XeB" +
         "uild panel");
             this.btnCreateECC.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             this.btnXeBuild.Name = "btnXeBuild";
             this.btnXeBuild.Size = new System.Drawing.Size(65, 51);
             this.btnXeBuild.TabIndex = 24;
-            this.btnXeBuild.Text = "Create XeBuild Image";
+            this.btnXeBuild.Text = "Create\r\nXeBuild\r\nImage";
             this.toolTip1.SetToolTip(this.btnXeBuild, "Creates an XeBuild image from the source file, and the settings selected on the X" +
         "eBuild panel");
             this.btnXeBuild.UseVisualStyleBackColor = true;
@@ -119,7 +119,7 @@
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(65, 51);
             this.btnWrite.TabIndex = 25;
-            this.btnWrite.Text = "Write Nand";
+            this.btnWrite.Text = "Write\r\nNand";
             this.toolTip1.SetToolTip(this.btnWrite, "Writes the source to the nand");
             this.btnWrite.UseVisualStyleBackColor = true;
             this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
@@ -130,7 +130,7 @@
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(65, 51);
             this.btnRead.TabIndex = 20;
-            this.btnRead.Text = "Read Nand";
+            this.btnRead.Text = "Read\r\nNand";
             this.toolTip1.SetToolTip(this.btnRead, "Reads the nand the amount of times selected below");
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
@@ -202,7 +202,7 @@
             this.btnExtractFiles.Name = "btnExtractFiles";
             this.btnExtractFiles.Size = new System.Drawing.Size(65, 51);
             this.btnExtractFiles.TabIndex = 28;
-            this.btnExtractFiles.Text = "Extract Files";
+            this.btnExtractFiles.Text = "Extract\r\nFiles";
             this.toolTip1.SetToolTip(this.btnExtractFiles, "Extracts the files from the source nand");
             this.btnExtractFiles.UseVisualStyleBackColor = true;
             this.btnExtractFiles.Click += new System.EventHandler(this.btnExtractFiles_Click);
@@ -213,7 +213,7 @@
             this.btnCreateDonor.Name = "btnCreateDonor";
             this.btnCreateDonor.Size = new System.Drawing.Size(65, 51);
             this.btnCreateDonor.TabIndex = 30;
-            this.btnCreateDonor.Text = "Create Donor Nand";
+            this.btnCreateDonor.Text = "Create\r\nDonor\r\nNand";
             this.toolTip1.SetToolTip(this.btnCreateDonor, "Launches the Create Donor Nand Wizard");
             this.btnCreateDonor.UseVisualStyleBackColor = true;
             this.btnCreateDonor.Click += new System.EventHandler(this.btnCreateDonor_Click);
