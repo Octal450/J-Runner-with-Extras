@@ -27,12 +27,10 @@ namespace JRunner.Forms
             if (variables.ip.Length == 0) chkIpDefault.Checked = txtIP.Enabled = false;
             else chkIpDefault.Checked = txtIP.Enabled = true;
             sonusDelay.Value = variables.delay;
-
             AutoExtractcheckBox.Checked = variables.autoExtract;
             modderbut.Checked = variables.modder;
             chkPlaySuccess.Checked = variables.playSuccess;
             chkPlayError.Checked = variables.playError;
-            
             timingOnKeypressEnable.Checked = variables.timingonkeypress;
             chkNoPatchWarnings.Checked = variables.noPatchWarnings;
             almovebut.Checked = !variables.allmove;
@@ -70,7 +68,8 @@ namespace JRunner.Forms
                 variables.delay = (int)sonusDelay.Value;
                 if (variables.debugme) Console.WriteLine("outfolderchanged = true\noutfolder = {0}", variables.outfolder);
                 variables.ip = txtIP.Text;
-
+                variables.playSuccess = chkPlaySuccess.Checked;
+                variables.playError = chkPlayError.Checked;
                 variables.autoExtract = AutoExtractcheckBox.Checked;
                 variables.modder = modderbut.Checked;
                 variables.allmove = !almovebut.Checked;

@@ -199,6 +199,9 @@
         jjMuaKihaGCMA9z1RDf49JW70PkeNTX86F0LCP0omsky9/sx5gGmTjrclvAIzAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="menuBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>819, 19</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>67</value>
   </metadata>
