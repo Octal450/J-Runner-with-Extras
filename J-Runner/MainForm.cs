@@ -330,6 +330,10 @@ namespace JRunner
                     Console.WriteLine("Status: An update is ready to be installed");
                 }
             }
+            else if (Upd.checkStatus == 3)
+            {
+                Console.WriteLine("Status: Update check skipped");
+            }
             else if (Upd.checkStatus == 2)
             {
                 Console.WriteLine("Status: Could not connect to the update server because TLS1.2 is not enabled");
