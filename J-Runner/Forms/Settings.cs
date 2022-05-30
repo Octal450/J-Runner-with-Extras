@@ -5,7 +5,6 @@ using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace JRunner.Forms
 {
@@ -27,66 +26,22 @@ namespace JRunner.Forms
             txtIP.Text = variables.ip;
             if (variables.ip.Length == 0) chkIpDefault.Checked = txtIP.Enabled = false;
             else chkIpDefault.Checked = txtIP.Enabled = true;
-            txtsuccom.Text = variables.soundcompare;
-            txtsuccess.Text = variables.soundsuccess;
-            txterror.Text = variables.sounderror;
-            numericUpDown1.Value = variables.delay;
-            txtNandflash.Text = variables.nandflash;
+            sonusDelay.Value = variables.delay;
 
             AutoExtractcheckBox.Checked = variables.autoExtract;
             modderbut.Checked = variables.modder;
+            chkPlaySuccess.Checked = variables.playSuccess;
+            chkPlayError.Checked = variables.playError;
             
             timingOnKeypressEnable.Checked = variables.timingonkeypress;
             chkNoPatchWarnings.Checked = variables.noPatchWarnings;
             almovebut.Checked = !variables.allmove;
-            if (variables.soundcompare != "") chksuccom.Checked = true;
-            if (variables.sounderror != "") chkerror.Checked = true;
-            if (variables.soundsuccess != "") chksuccess.Checked = true;
             if (variables.slimprefersrgh) SlimPreferSrgh.Checked = true;
             if (variables.LPTtiming) rbtnTimingLpt.Checked = true;
             txtTimingLptPort.Text = variables.LPTport;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "(*.wav)|*.wav";
-            openFileDialog1.Title = "Select a File";
-            //openFileDialog1.InitialDirectory = variables.currentdir;
-            openFileDialog1.RestoreDirectory = false;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txtsuccom.Text = openFileDialog1.FileName;
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "(*.wav)|*.wav";
-            openFileDialog1.Title = "Select a File";
-            //openFileDialog1.InitialDirectory = variables.currentdir;
-            openFileDialog1.RestoreDirectory = false;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txtsuccess.Text = openFileDialog1.FileName;
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "(*.wav)|*.wav";
-            openFileDialog1.Title = "Select a File";
-            //openFileDialog1.InitialDirectory = variables.currentdir;
-            openFileDialog1.RestoreDirectory = false;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txterror.Text = openFileDialog1.FileName;
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void btnFolder_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
             openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtfolder.Text);
@@ -110,19 +65,12 @@ namespace JRunner.Forms
         {
             try
             {
-                if (!chksuccess.Checked) txtsuccess.Text = "";
-                if (!chksuccom.Checked) txtsuccom.Text = "";
-                if (!chkerror.Checked) txterror.Text = "";
-                variables.soundcompare = txtsuccom.Text;
-                variables.sounderror = txterror.Text;
-                variables.soundsuccess = txtsuccess.Text;
                 variables.IPstart = txtIPStart.Text;
                 variables.IPend = txtIPEnd.Text;
-                variables.delay = (int)numericUpDown1.Value;
+                variables.delay = (int)sonusDelay.Value;
                 if (variables.debugme) Console.WriteLine("outfolderchanged = true\noutfolder = {0}", variables.outfolder);
                 variables.ip = txtIP.Text;
 
-                variables.nandflash = txtNandflash.Text;
                 variables.autoExtract = AutoExtractcheckBox.Checked;
                 variables.modder = modderbut.Checked;
                 variables.allmove = !almovebut.Checked;

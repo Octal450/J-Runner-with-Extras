@@ -962,9 +962,11 @@ namespace JRunner
             }
             try
             {
-                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                success.Play();
+                if (variables.playSuccess)
+                {
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    success.Play();
+                }
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
             return result;
@@ -1072,9 +1074,11 @@ namespace JRunner
 
             try
             {
-                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                success.Play();
+                if (variables.playSuccess)
+                {
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    success.Play();
+                }
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
             return result;
@@ -1093,9 +1097,11 @@ namespace JRunner
 
             try
             {
-                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                success.Play();
+                if (variables.playSuccess)
+                {
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    success.Play();
+                }
             }
             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); variables.writing = false; };
             variables.writing = false;
@@ -1396,9 +1402,11 @@ namespace JRunner
 
                 try
                 {
-                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                    success.Play();
+                    if (variables.playSuccess)
+                    {
+                        SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                        success.Play();
+                    }
                 }
                 catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
             }

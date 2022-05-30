@@ -292,9 +292,11 @@ namespace JRunner.Panels
                 Console.WriteLine("Read Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
 
-                SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);
-                if (variables.soundsuccess != "") successSound.SoundLocation = variables.soundsuccess;
-                successSound.Play();
+                if (variables.playSuccess)
+                {
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    success.Play();
+                }
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString() + i); }
             return 1;
@@ -331,7 +333,7 @@ namespace JRunner.Panels
             string ldrive = listView1.SelectedItems[0].SubItems[0].Text;
             if (variables.debugme) Console.WriteLine(ldrive);
 
-            bool success = false;
+            bool successful = false;
             int intOut;
             string deviceId = @"\\.\" + ldrive;
 
@@ -369,8 +371,8 @@ namespace JRunner.Panels
                 lhandles.Add(ldiskHandle);
                 lnames.Add(ldevid);
 
-                success = DeviceIoControl(ldiskHandle, FSCTL_LOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-                if (!success)
+                successful = DeviceIoControl(ldiskHandle, FSCTL_LOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+                if (!successful)
                 {
                     Console.WriteLine(ldevid + " lock error.");
                     Console.WriteLine("");
@@ -380,8 +382,8 @@ namespace JRunner.Panels
 
                 if (variables.debugme) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
 
-                success = DeviceIoControl(ldiskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-                if (!success)
+                successful = DeviceIoControl(ldiskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+                if (!successful)
                 {
                     Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": dismount error.");
                     Console.WriteLine("");
@@ -390,8 +392,8 @@ namespace JRunner.Panels
                     return;
                 }
             }
-            success = DeviceIoControl(diskHandle, FSCTL_LOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-            if (!success)
+            successful = DeviceIoControl(diskHandle, FSCTL_LOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+            if (!successful)
             {
                 Console.WriteLine(deviceId + " lock error.");
                 Console.WriteLine("");
@@ -401,8 +403,8 @@ namespace JRunner.Panels
 
             if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
 
-            success = DeviceIoControl(diskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-            if (!success)
+            successful = DeviceIoControl(diskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+            if (!successful)
             {
                 Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": dismount error.");
                 Console.WriteLine("");
@@ -467,15 +469,17 @@ namespace JRunner.Panels
             Console.WriteLine("");
             fs.Close();
 
-            SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);
-            if (variables.soundsuccess != "") successSound.SoundLocation = variables.soundsuccess;
-            successSound.Play();
+            if (variables.playSuccess)
+            {
+                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                success.Play();
+            }
 
             i = 0;
             foreach (SafeFileHandle sfh in lhandles)
             {
-                success = DeviceIoControl(sfh, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-                if (success)
+                successful = DeviceIoControl(sfh, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+                if (successful)
                 {
                     if (variables.debugme) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
                 }
@@ -488,8 +492,8 @@ namespace JRunner.Panels
             }
 
 
-            success = DeviceIoControl(diskHandle, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-            if (success)
+            successful = DeviceIoControl(diskHandle, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+            if (successful)
             {
                 if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
             }
@@ -502,8 +506,8 @@ namespace JRunner.Panels
             i = 0;
             foreach (SafeFileHandle sfh in lhandles)
             {
-                success = CloseHandle(sfh);
-                if (success)
+                successful = CloseHandle(sfh);
+                if (successful)
                 {
                     if (variables.debugme) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
                 }
@@ -516,8 +520,8 @@ namespace JRunner.Panels
             }
 
 
-            success = CloseHandle(diskHandle);
-            if (success)
+            successful = CloseHandle(diskHandle);
+            if (successful)
             {
                 if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
             }
@@ -570,9 +574,11 @@ namespace JRunner.Panels
                 Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}:{2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
                 Console.WriteLine("");
 
-                SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);
-                if (variables.soundsuccess != "") successSound.SoundLocation = variables.soundsuccess;
-                successSound.Play();
+                if (variables.playSuccess)
+                {
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    success.Play();
+                }
             }
             catch (Exception ex)
             {
@@ -602,7 +608,7 @@ namespace JRunner.Panels
             string ldrive = listView1.SelectedItems[0].SubItems[0].Text;
             if (variables.debugme) Console.WriteLine(ldrive);
 
-            bool success = false;
+            bool successful = false;
             int intOut;
             string deviceId = @"\\.\" + ldrive;
             var diskGeometry = DiskGeometry.FromDevice(@"\\.\" + ldrive.Replace("\\", ""));
@@ -638,8 +644,8 @@ namespace JRunner.Panels
                 lhandles.Add(ldiskHandle);
                 lnames.Add(ldevid);
 
-                success = DeviceIoControl(ldiskHandle, FSCTL_LOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-                if (!success)
+                successful = DeviceIoControl(ldiskHandle, FSCTL_LOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+                if (!successful)
                 {
                     Console.WriteLine(ldevid + " lock error.");
                     Console.WriteLine("");
@@ -649,8 +655,8 @@ namespace JRunner.Panels
 
                 if (variables.debugme) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
 
-                success = DeviceIoControl(ldiskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-                if (!success)
+                successful = DeviceIoControl(ldiskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+                if (!successful)
                 {
                     Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": dismount error.");
                     Console.WriteLine("");
@@ -659,8 +665,8 @@ namespace JRunner.Panels
                     return;
                 }
             }
-            success = DeviceIoControl(diskHandle, FSCTL_LOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-            if (!success)
+            successful = DeviceIoControl(diskHandle, FSCTL_LOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+            if (!successful)
             {
                 Console.WriteLine(deviceId + " lock error.");
                 Console.WriteLine("");
@@ -670,8 +676,8 @@ namespace JRunner.Panels
 
             if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
 
-            success = DeviceIoControl(diskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-            if (!success)
+            successful = DeviceIoControl(diskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+            if (!successful)
             {
                 Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": dismount error.");
                 Console.WriteLine("");
@@ -732,15 +738,17 @@ namespace JRunner.Panels
             Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
             Console.WriteLine("");
 
-            SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);
-            if (variables.soundsuccess != "") successSound.SoundLocation = variables.soundsuccess;
-            successSound.Play();
+            if (variables.playSuccess)
+            {
+                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                success.Play();
+            }
 
             i = 0;
             foreach (SafeFileHandle sfh in lhandles)
             {
-                success = DeviceIoControl(sfh, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-                if (success)
+                successful = DeviceIoControl(sfh, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+                if (successful)
                 {
                     if (variables.debugme) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
                 }
@@ -753,8 +761,8 @@ namespace JRunner.Panels
             }
 
 
-            success = DeviceIoControl(diskHandle, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
-            if (success)
+            successful = DeviceIoControl(diskHandle, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
+            if (successful)
             {
                 if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
             }
@@ -767,8 +775,8 @@ namespace JRunner.Panels
             i = 0;
             foreach (SafeFileHandle sfh in lhandles)
             {
-                success = CloseHandle(sfh);
-                if (success)
+                successful = CloseHandle(sfh);
+                if (successful)
                 {
                     if (variables.debugme) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
                 }
@@ -781,8 +789,8 @@ namespace JRunner.Panels
             }
 
 
-            success = CloseHandle(diskHandle);
-            if (success)
+            successful = CloseHandle(diskHandle);
+            if (successful)
             {
                 if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
             }
@@ -830,9 +838,11 @@ namespace JRunner.Panels
                 Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}:{2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
                 Console.WriteLine("");
 
-                SoundPlayer successSound = new SoundPlayer(Properties.Resources.chime);
-                if (variables.soundsuccess != "") successSound.SoundLocation = variables.soundsuccess;
-                successSound.Play();
+                if (variables.playSuccess)
+                {
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    success.Play();
+                }
             }
             catch (Exception ex)
             {

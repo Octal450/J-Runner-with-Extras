@@ -55,7 +55,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.SystemTxtbox = new System.Windows.Forms.TextBox();
             this.SetupDetailBtn = new System.Windows.Forms.Button();
-            this.ScreenshotBTN = new System.Windows.Forms.Button();
             this.RaterSettings = new System.Windows.Forms.GroupBox();
             this.cr4but = new System.Windows.Forms.RadioButton();
             this.PhatFBut = new System.Windows.Forms.RadioButton();
@@ -64,16 +63,11 @@
             this.PhatBut = new System.Windows.Forms.RadioButton();
             this.numericSDPause = new System.Windows.Forms.NumericUpDown();
             this.txtShow = new System.Windows.Forms.TextBox();
-            this.PostOutButton = new System.Windows.Forms.Button();
-            this.ResultsClipBtn = new System.Windows.Forms.Button();
-            this.CycleClipBtn = new System.Windows.Forms.Button();
-            this.RaterPIC = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericCap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericIter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericCool)).BeginInit();
             this.RaterSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericSDPause)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RaterPIC)).BeginInit();
             this.SuspendLayout();
             // 
             // txtOutput
@@ -89,7 +83,6 @@
             this.txtOutput.TabIndex = 0;
             this.txtOutput.TabStop = false;
             this.toolTip1.SetToolTip(this.txtOutput, "Log window of POST Results \r\nShow exactly whats happening during boot cycle.\r\n");
-            this.txtOutput.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtOutput_Enter);
             // 
             // btnStart
             // 
@@ -272,12 +265,12 @@
             this.txtProgress.BackColor = System.Drawing.Color.Black;
             this.txtProgress.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtProgress.ForeColor = System.Drawing.Color.Lime;
-            this.txtProgress.Location = new System.Drawing.Point(487, 133);
+            this.txtProgress.Location = new System.Drawing.Point(487, 78);
             this.txtProgress.Multiline = true;
             this.txtProgress.Name = "txtProgress";
             this.txtProgress.ReadOnly = true;
             this.txtProgress.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProgress.Size = new System.Drawing.Size(131, 337);
+            this.txtProgress.Size = new System.Drawing.Size(131, 392);
             this.txtProgress.TabIndex = 19;
             this.txtProgress.TabStop = false;
             this.toolTip1.SetToolTip(this.txtProgress, "shows current results of this Rating since\r\nStart button was pressed.\r\n");
@@ -307,7 +300,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(493, 116);
+            this.label8.Location = new System.Drawing.Point(493, 62);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 13);
             this.label8.TabIndex = 22;
@@ -317,7 +310,7 @@
             // 
             this.RaterRes.AutoSize = true;
             this.RaterRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RaterRes.Location = new System.Drawing.Point(538, 116);
+            this.RaterRes.Location = new System.Drawing.Point(538, 62);
             this.RaterRes.Name = "RaterRes";
             this.RaterRes.Size = new System.Drawing.Size(80, 13);
             this.RaterRes.TabIndex = 24;
@@ -358,17 +351,6 @@
             this.SetupDetailBtn.UseVisualStyleBackColor = true;
             this.SetupDetailBtn.Click += new System.EventHandler(this.SetupDetailBtn_Click);
             // 
-            // ScreenshotBTN
-            // 
-            this.ScreenshotBTN.Image = global::JRunner.Properties.Resources.cam;
-            this.ScreenshotBTN.Location = new System.Drawing.Point(578, 8);
-            this.ScreenshotBTN.Name = "ScreenshotBTN";
-            this.ScreenshotBTN.Size = new System.Drawing.Size(43, 31);
-            this.ScreenshotBTN.TabIndex = 29;
-            this.toolTip1.SetToolTip(this.ScreenshotBTN, "Take a screenshot for uploading to forum");
-            this.ScreenshotBTN.UseVisualStyleBackColor = true;
-            this.ScreenshotBTN.Click += new System.EventHandler(this.ScreenshotBTN_Click);
-            // 
             // RaterSettings
             // 
             this.RaterSettings.Controls.Add(this.cr4but);
@@ -392,7 +374,6 @@
             this.RaterSettings.TabIndex = 25;
             this.RaterSettings.TabStop = false;
             this.RaterSettings.Text = "Settings";
-            this.RaterSettings.Enter += new System.EventHandler(this.RaterSettings_Enter);
             // 
             // cr4but
             // 
@@ -427,7 +408,6 @@
             this.CorBut.TabStop = true;
             this.CorBut.Text = "Cor 3+";
             this.CorBut.UseVisualStyleBackColor = true;
-            this.CorBut.CheckedChanged += new System.EventHandler(this.CorBut_CheckedChanged);
             // 
             // SlimBut
             // 
@@ -486,68 +466,16 @@
             this.txtShow.TabStop = false;
             this.txtShow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // PostOutButton
-            // 
-            this.PostOutButton.Image = global::JRunner.Properties.Resources.save_icon;
-            this.PostOutButton.Location = new System.Drawing.Point(251, 445);
-            this.PostOutButton.Name = "PostOutButton";
-            this.PostOutButton.Size = new System.Drawing.Size(27, 25);
-            this.PostOutButton.TabIndex = 32;
-            this.PostOutButton.UseVisualStyleBackColor = true;
-            this.PostOutButton.Visible = false;
-            this.PostOutButton.Click += new System.EventHandler(this.PostOutButton_Click);
-            // 
-            // ResultsClipBtn
-            // 
-            this.ResultsClipBtn.BackgroundImage = global::JRunner.Properties.Resources.clipboard;
-            this.ResultsClipBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ResultsClipBtn.Location = new System.Drawing.Point(571, 445);
-            this.ResultsClipBtn.Name = "ResultsClipBtn";
-            this.ResultsClipBtn.Size = new System.Drawing.Size(28, 25);
-            this.ResultsClipBtn.TabIndex = 28;
-            this.ResultsClipBtn.TabStop = false;
-            this.ResultsClipBtn.UseVisualStyleBackColor = true;
-            this.ResultsClipBtn.Visible = false;
-            this.ResultsClipBtn.Click += new System.EventHandler(this.ResultsClipBtn_Click);
-            // 
-            // CycleClipBtn
-            // 
-            this.CycleClipBtn.BackgroundImage = global::JRunner.Properties.Resources.clipboard;
-            this.CycleClipBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.CycleClipBtn.Location = new System.Drawing.Point(411, 445);
-            this.CycleClipBtn.Name = "CycleClipBtn";
-            this.CycleClipBtn.Size = new System.Drawing.Size(28, 25);
-            this.CycleClipBtn.TabIndex = 27;
-            this.CycleClipBtn.TabStop = false;
-            this.CycleClipBtn.UseVisualStyleBackColor = true;
-            this.CycleClipBtn.Visible = false;
-            this.CycleClipBtn.Click += new System.EventHandler(this.CycleClipBtn_Click);
-            // 
-            // RaterPIC
-            // 
-            this.RaterPIC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RaterPIC.InitialImage = null;
-            this.RaterPIC.Location = new System.Drawing.Point(521, 54);
-            this.RaterPIC.Name = "RaterPIC";
-            this.RaterPIC.Size = new System.Drawing.Size(50, 44);
-            this.RaterPIC.TabIndex = 23;
-            this.RaterPIC.TabStop = false;
-            // 
             // POST
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 482);
-            this.Controls.Add(this.PostOutButton);
             this.Controls.Add(this.SetupDetailBtn);
             this.Controls.Add(this.SystemTxtbox);
-            this.Controls.Add(this.ScreenshotBTN);
-            this.Controls.Add(this.ResultsClipBtn);
-            this.Controls.Add(this.CycleClipBtn);
             this.Controls.Add(this.txtShow);
             this.Controls.Add(this.RaterSettings);
             this.Controls.Add(this.RaterRes);
-            this.Controls.Add(this.RaterPIC);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -574,7 +502,6 @@
             this.RaterSettings.ResumeLayout(false);
             this.RaterSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericSDPause)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RaterPIC)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -602,23 +529,18 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox RaterPIC;
         private System.Windows.Forms.Label RaterRes;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox RaterSettings;
         private System.Windows.Forms.TextBox txtShow;
-        private System.Windows.Forms.Button CycleClipBtn;
-        private System.Windows.Forms.Button ResultsClipBtn;
         private System.Windows.Forms.NumericUpDown numericSDPause;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RadioButton SlimBut;
         private System.Windows.Forms.RadioButton PhatBut;
         private System.Windows.Forms.RadioButton CorBut;
         private System.Windows.Forms.RadioButton PhatFBut;
-        private System.Windows.Forms.Button ScreenshotBTN;
         private System.Windows.Forms.TextBox SystemTxtbox;
         private System.Windows.Forms.Button SetupDetailBtn;
-        private System.Windows.Forms.Button PostOutButton;
         private System.Windows.Forms.RadioButton cr4but;
     }
 }

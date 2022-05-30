@@ -426,9 +426,11 @@ namespace JRunner
                             Console.WriteLine("xFlasher: Read Successful! Time Elapsed: {0}", xFlasherTimeString);
                             Console.WriteLine("");
 
-                            SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                            if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                            success.Play();
+                            if (variables.playSuccess)
+                            {
+                                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                                success.Play();
+                            }
                         }
                         else if (result == -2)
                         {
@@ -556,9 +558,11 @@ namespace JRunner
                         Console.WriteLine("xFlasher: Read Successful! Time Elapsed: {0}", xFlasherTimeString);
                         Console.WriteLine("");
 
-                        SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                        if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                        success.Play();
+                        if (variables.playSuccess)
+                        {
+                            SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                            success.Play();
+                        }
                     }
                     else if (result == -2)
                     {
@@ -824,9 +828,11 @@ namespace JRunner
                         else Console.WriteLine("xFlasher: Write Successful! Time Elapsed: {0}", xFlasherTimeString);
                         Console.WriteLine("");
 
-                        SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                        if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                        success.Play();
+                        if (variables.playSuccess)
+                        {
+                            SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                            success.Play();
+                        }
 
                         if (mode >= 1)
                         {
@@ -1009,9 +1015,12 @@ namespace JRunner
 
                         Console.WriteLine("xFlasher: SVF Flash Successful!");
                         Console.WriteLine("");
-                        SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                        if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                        success.Play();
+
+                        if (variables.playSuccess)
+                        {
+                            SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                            success.Play();
+                        }
                     }
                     else if (strLower.Contains("chain without any parts") == true)
                     {

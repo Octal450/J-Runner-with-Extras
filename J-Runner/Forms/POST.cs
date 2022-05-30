@@ -1408,9 +1408,11 @@ namespace JRunner
 
                             try
                             {
-                                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                                if (variables.soundcompare != "") success.SoundLocation = variables.soundcompare;
-                                success.Play();
+                                if (variables.playSuccess)
+                                {
+                                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                                    success.Play();
+                                }
                             }
                             catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
                             break;
@@ -1459,7 +1461,6 @@ namespace JRunner
         {
             btnStart.Enabled = value;
             SetupDetailBtn.Enabled = btnStart.Enabled;
-            PostOutButton.Enabled = btnStart.Enabled;
             btnStop.Enabled = !value;
             btnNudge.Enabled = !value;
             btnClearRater.Enabled = value;
@@ -1479,7 +1480,6 @@ namespace JRunner
             counterg = 0;
             CappeD = false; // BH - reset capped check to false
             if (numericCap.Value != 0) CappeD = true; // BH - check if capped value is used and set check accordingly
-            RaterPIC.Image = global::JRunner.Properties.Resources.hourglass_clock;// BH - Blank pic on start
             if (SlimBut.Checked) ConTypeSel = "Slim";
             if (CorBut.Checked) ConTypeSel = "Cor 3+";
             if (PhatFBut.Checked) ConTypeSel = "Phat";
@@ -1494,9 +1494,6 @@ namespace JRunner
             DisplayData(Environment.NewLine, 0);
             txtRate.Cursor = Cursors.IBeam;
             txtProgress.Cursor = Cursors.IBeam;
-            CycleClipBtn.Visible = true;
-            PostOutButton.Visible = true;
-            ResultsClipBtn.Visible = true;
             variables.escapeloop = true;
             _bStop = true;
             btnStop.Enabled = false;
@@ -1563,7 +1560,6 @@ namespace JRunner
         private void btnClearRater_Click(object sender, EventArgs e)
         {
             txtRate.Text = ""; // BH - clears rater text box
-            RaterPIC.Image = global::JRunner.Properties.Resources.hourglass_clock;// BH - Blank pic on reset
             RaterRes.Text = "More Data Req";// BH - reset rater text on clear
             txtProgress.Text = ""; // BH - added to clear avgs box at same time as glitch numbers
         }
@@ -1621,37 +1617,30 @@ namespace JRunner
                 {
                     if (score >= 9.75F) // BH - add image for median
                     {
-                        RaterRes.Text = "WTF!";
-                        RaterPIC.Image = global::JRunner.Properties.Resources.perfecto;
+                        RaterRes.Text = "Impossible!";
                     }
                     else if (score >= 8.75F) // BH - add image for median
                     {
                         RaterRes.Text = "Perfecto!";
-                        RaterPIC.Image = global::JRunner.Properties.Resources.perfecto;
                     }
                     else if (score >= 8.0F)
                     {
-                        RaterPIC.Image = global::JRunner.Properties.Resources.legend;
                         RaterRes.Text = "Legend";
                     }
                     else if (score >= 7.0F)
                     {
-                        RaterPIC.Image = global::JRunner.Properties.Resources.great;
                         RaterRes.Text = "Awesome";
                     }
                     else if (score >= 6.0F)
                     {
-                        RaterPIC.Image = global::JRunner.Properties.Resources.good;
                         RaterRes.Text = "Good";
                     }
                     else if (score >= 5.0F)
                     {
-                        RaterPIC.Image = global::JRunner.Properties.Resources.average;
                         RaterRes.Text = "Average";
                     }
                     else
                     {
-                        RaterPIC.Image = global::JRunner.Properties.Resources.bad;
                         RaterRes.Text = "Fair";
                     }
                 }
@@ -1718,39 +1707,19 @@ namespace JRunner
             CappeD = true;
         }
 
-        private void CycleClipBtn_Click(object sender, EventArgs e)
-        {
-            if ((txtRate.Text.Length >= 1)) Clipboard.SetText(txtRate.Text);
-            //
-        }
-        private void ResultsClipBtn_Click(object sender, EventArgs e)
-        {
-            if ((txtProgress.Text.Length >= 1))
-            {
-                Clipboard.SetText(txtProgress.Text);
-            }
-        }
         private void txtRate_Enter(object sender, EventArgs e)
         {
             if (stop == false)
             {
-                CycleClipBtn.Visible = true;
                 txtRate.Cursor = Cursors.No;
-                ActiveControl = CycleClipBtn;
             }
         }
-        private void txtOutput_Enter(object sender, EventArgs e)
-        {
 
-            PostOutButton.Visible = true;
-        }
         private void txtProgress_Enter(object sender, EventArgs e)
         {
             if (stop == false)
             {
-                ResultsClipBtn.Visible = true;
                 txtProgress.Cursor = Cursors.No;
-                ActiveControl = ResultsClipBtn;
             }
         }
 
@@ -1769,68 +1738,9 @@ namespace JRunner
             // if (PhatFBut.Checked) ConTypeSel = "Phat";
         }
 
-        private void ScreenshotBTN_Click(object sender, EventArgs e)
-        {
-            Rectangle bounds = this.Bounds;
-            Size block = bounds.Size;
-            block.Height += 10;
-            block.Width += 10;
-            using (Bitmap bitmap = new Bitmap(bounds.Width + 10, bounds.Height + 10))
-            {
-                using (Graphics g = Graphics.FromImage(bitmap))
-                {
-                    g.CopyFromScreen(new Point(bounds.Left - 5, bounds.Top - 5), Point.Empty, block);
-                }
-
-
-
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
-                saveFileDialog1.FileName = "My Rater Screenshot";
-                saveFileDialog1.Filter = "(*.png)|*.png|All Files (*.*)|*.*";
-                saveFileDialog1.FilterIndex = 1;
-
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    if (variables.debugme) Console.WriteLine(saveFileDialog1.FileName);//Do what you want here
-                }
-                bitmap.Save(saveFileDialog1.FileName, ImageFormat.Png);
-            }
-            if (this.SystemTxtbox.Visible == true) { (this.SystemTxtbox.Visible) = !(this.SystemTxtbox.Visible); }
-        }
-
         private void SetupDetailBtn_Click(object sender, EventArgs e)
         {
             (this.SystemTxtbox.Visible) = !(this.SystemTxtbox.Visible);
-
-        }
-
-        private void PostOutButton_Click(object sender, EventArgs e)
-        {
-            if ((txtOutput.Text.Length >= 1))
-            {
-                //Clipboard.SetText(txtOutput.Text);
-                SaveFileDialog saveFileDialog2 = new SaveFileDialog();
-                saveFileDialog2.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
-                saveFileDialog2.FileName = "My Post output";
-                saveFileDialog2.Filter = "(*.txt)|*.txt|All Files (*.*)|*.*";
-                saveFileDialog2.FilterIndex = 1;
-                if (saveFileDialog2.ShowDialog() == DialogResult.OK)
-                {
-                    File.WriteAllText(saveFileDialog2.FileName, txtOutput.Text);
-                }
-                Clipboard.SetText("[CODE]" + txtOutput.Text + "[/CODE]");
-                MessageBox.Show("Post Out window contents copied to Clipboard & Prepared for pasting to the forum as [CODE][/CODE].", "For TX Forum Use");
-            }
-        }
-
-        private void CorBut_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RaterSettings_Enter(object sender, EventArgs e)
-        {
 
         }
 

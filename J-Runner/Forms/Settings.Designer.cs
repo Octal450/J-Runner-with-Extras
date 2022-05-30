@@ -30,36 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
-            this.btnsuccom = new System.Windows.Forms.Button();
-            this.txtsuccom = new System.Windows.Forms.TextBox();
-            this.txtsuccess = new System.Windows.Forms.TextBox();
-            this.btnsuccess = new System.Windows.Forms.Button();
-            this.txterror = new System.Windows.Forms.TextBox();
-            this.btnerror = new System.Windows.Forms.Button();
-            this.btnfolder = new System.Windows.Forms.Button();
+            this.btnFolder = new System.Windows.Forms.Button();
             this.txtfolder = new System.Windows.Forms.TextBox();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chksuccom = new System.Windows.Forms.CheckBox();
-            this.chksuccess = new System.Windows.Forms.CheckBox();
-            this.chkerror = new System.Windows.Forms.CheckBox();
             this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.sonusDelay = new System.Windows.Forms.NumericUpDown();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.txtNandflash = new System.Windows.Forms.TextBox();
             this.txtIPStart = new System.Windows.Forms.TextBox();
             this.txtIPEnd = new System.Windows.Forms.TextBox();
             this.txtTimingLptPort = new System.Windows.Forms.TextBox();
             this.chkfiles = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -85,77 +70,27 @@
             this.rbtnTimingUsb = new System.Windows.Forms.RadioButton();
             this.btnReset = new System.Windows.Forms.Button();
             this.chkNoPatchWarnings = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.chkPlaySuccess = new System.Windows.Forms.CheckBox();
+            this.chkPlayError = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.sonusDelay)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnsuccom
+            // btnFolder
             // 
-            this.btnsuccom.Location = new System.Drawing.Point(325, 37);
-            this.btnsuccom.Name = "btnsuccom";
-            this.btnsuccom.Size = new System.Drawing.Size(29, 22);
-            this.btnsuccom.TabIndex = 3;
-            this.btnsuccom.Text = "...";
-            this.btnsuccom.UseVisualStyleBackColor = true;
-            this.btnsuccom.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtsuccom
-            // 
-            this.txtsuccom.Location = new System.Drawing.Point(36, 38);
-            this.txtsuccom.Name = "txtsuccom";
-            this.txtsuccom.Size = new System.Drawing.Size(283, 20);
-            this.txtsuccom.TabIndex = 2;
-            // 
-            // txtsuccess
-            // 
-            this.txtsuccess.Location = new System.Drawing.Point(36, 77);
-            this.txtsuccess.Name = "txtsuccess";
-            this.txtsuccess.Size = new System.Drawing.Size(283, 20);
-            this.txtsuccess.TabIndex = 5;
-            // 
-            // btnsuccess
-            // 
-            this.btnsuccess.Location = new System.Drawing.Point(325, 76);
-            this.btnsuccess.Name = "btnsuccess";
-            this.btnsuccess.Size = new System.Drawing.Size(29, 22);
-            this.btnsuccess.TabIndex = 6;
-            this.btnsuccess.Text = "...";
-            this.btnsuccess.UseVisualStyleBackColor = true;
-            this.btnsuccess.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // txterror
-            // 
-            this.txterror.Location = new System.Drawing.Point(36, 116);
-            this.txterror.Name = "txterror";
-            this.txterror.Size = new System.Drawing.Size(283, 20);
-            this.txterror.TabIndex = 8;
-            // 
-            // btnerror
-            // 
-            this.btnerror.Location = new System.Drawing.Point(325, 115);
-            this.btnerror.Name = "btnerror";
-            this.btnerror.Size = new System.Drawing.Size(29, 22);
-            this.btnerror.TabIndex = 9;
-            this.btnerror.Text = "...";
-            this.btnerror.UseVisualStyleBackColor = true;
-            this.btnerror.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // btnfolder
-            // 
-            this.btnfolder.Location = new System.Drawing.Point(343, 183);
-            this.btnfolder.Name = "btnfolder";
-            this.btnfolder.Size = new System.Drawing.Size(29, 22);
-            this.btnfolder.TabIndex = 22;
-            this.btnfolder.Text = "...";
-            this.btnfolder.UseVisualStyleBackColor = true;
-            this.btnfolder.Click += new System.EventHandler(this.button4_Click);
+            this.btnFolder.Location = new System.Drawing.Point(340, 27);
+            this.btnFolder.Name = "btnFolder";
+            this.btnFolder.Size = new System.Drawing.Size(29, 22);
+            this.btnFolder.TabIndex = 22;
+            this.btnFolder.Text = "...";
+            this.btnFolder.UseVisualStyleBackColor = true;
+            this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
             // 
             // txtfolder
             // 
-            this.txtfolder.Location = new System.Drawing.Point(18, 184);
+            this.txtfolder.Location = new System.Drawing.Point(15, 28);
             this.txtfolder.Name = "txtfolder";
             this.txtfolder.Size = new System.Drawing.Size(319, 20);
             this.txtfolder.TabIndex = 21;
@@ -169,37 +104,10 @@
             this.txtIP.TabIndex = 3;
             this.toolTip1.SetToolTip(this.txtIP, "Set a default IP for getting CPUKey\r\nover a network.");
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Success on Compare:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Success:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 100);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 13);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Error/Failure:";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 168);
+            this.label4.Location = new System.Drawing.Point(12, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 15;
@@ -217,61 +125,13 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOK.Location = new System.Drawing.Point(268, 394);
+            this.btnOK.Location = new System.Drawing.Point(268, 288);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 23);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtsuccom);
-            this.groupBox1.Controls.Add(this.btnsuccom);
-            this.groupBox1.Controls.Add(this.chksuccom);
-            this.groupBox1.Controls.Add(this.chksuccess);
-            this.groupBox1.Controls.Add(this.txtsuccess);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.btnsuccess);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.chkerror);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txterror);
-            this.groupBox1.Controls.Add(this.btnerror);
-            this.groupBox1.Location = new System.Drawing.Point(18, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(369, 149);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Sounds";
-            // 
-            // chksuccom
-            // 
-            this.chksuccom.AutoSize = true;
-            this.chksuccom.Location = new System.Drawing.Point(15, 41);
-            this.chksuccom.Name = "chksuccom";
-            this.chksuccom.Size = new System.Drawing.Size(15, 14);
-            this.chksuccom.TabIndex = 1;
-            this.chksuccom.UseVisualStyleBackColor = true;
-            // 
-            // chksuccess
-            // 
-            this.chksuccess.AutoSize = true;
-            this.chksuccess.Location = new System.Drawing.Point(15, 80);
-            this.chksuccess.Name = "chksuccess";
-            this.chksuccess.Size = new System.Drawing.Size(15, 14);
-            this.chksuccess.TabIndex = 4;
-            this.chksuccess.UseVisualStyleBackColor = true;
-            // 
-            // chkerror
-            // 
-            this.chkerror.AutoSize = true;
-            this.chkerror.Location = new System.Drawing.Point(15, 119);
-            this.chkerror.Name = "chkerror";
-            this.chkerror.Size = new System.Drawing.Size(15, 14);
-            this.chkerror.TabIndex = 7;
-            this.chkerror.UseVisualStyleBackColor = true;
             // 
             // openFileDialog1
             // 
@@ -280,7 +140,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(412, 148);
+            this.label6.Location = new System.Drawing.Point(412, 242);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 13);
             this.label6.TabIndex = 21;
@@ -288,27 +148,19 @@
             this.toolTip1.SetToolTip(this.label6, "If your nand write with JR-P appears to lag (should be similar speed to read) sel" +
         "ect this!");
             // 
-            // numericUpDown1
+            // sonusDelay
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(530, 146);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.sonusDelay.Location = new System.Drawing.Point(530, 240);
+            this.sonusDelay.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(64, 20);
-            this.numericUpDown1.TabIndex = 36;
-            this.toolTip1.SetToolTip(this.numericUpDown1, "If your nand write with JR-P appears to lag (should be similar speed to read) sel" +
+            this.sonusDelay.Name = "sonusDelay";
+            this.sonusDelay.Size = new System.Drawing.Size(64, 20);
+            this.sonusDelay.TabIndex = 36;
+            this.toolTip1.SetToolTip(this.sonusDelay, "If your nand write with JR-P appears to lag (should be similar speed to read) sel" +
         "ect this!");
-            // 
-            // txtNandflash
-            // 
-            this.txtNandflash.Location = new System.Drawing.Point(491, 184);
-            this.txtNandflash.Name = "txtNandflash";
-            this.txtNandflash.Size = new System.Drawing.Size(103, 20);
-            this.txtNandflash.TabIndex = 37;
-            this.toolTip1.SetToolTip(this.txtNandflash, "determines the name given to the file\r\nproduced upon creation of a Nand\r\nImage");
             // 
             // txtIPStart
             // 
@@ -348,15 +200,6 @@
             this.chkfiles.Text = "Delete extra files";
             this.chkfiles.UseVisualStyleBackColor = true;
             this.chkfiles.Visible = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(381, 187);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(109, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "XeBuild Image Name:";
             // 
             // label8
             // 
@@ -405,7 +248,7 @@
             // AutoExtractcheckBox
             // 
             this.AutoExtractcheckBox.AutoSize = true;
-            this.AutoExtractcheckBox.Location = new System.Drawing.Point(18, 215);
+            this.AutoExtractcheckBox.Location = new System.Drawing.Point(15, 59);
             this.AutoExtractcheckBox.Name = "AutoExtractcheckBox";
             this.AutoExtractcheckBox.Size = new System.Drawing.Size(165, 17);
             this.AutoExtractcheckBox.TabIndex = 23;
@@ -417,7 +260,7 @@
             this.almovebut.AutoSize = true;
             this.almovebut.Checked = true;
             this.almovebut.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.almovebut.Location = new System.Drawing.Point(18, 238);
+            this.almovebut.Location = new System.Drawing.Point(15, 82);
             this.almovebut.Name = "almovebut";
             this.almovebut.Size = new System.Drawing.Size(244, 17);
             this.almovebut.TabIndex = 24;
@@ -428,7 +271,7 @@
             // modderbut
             // 
             this.modderbut.AutoSize = true;
-            this.modderbut.Location = new System.Drawing.Point(18, 261);
+            this.modderbut.Location = new System.Drawing.Point(15, 105);
             this.modderbut.Name = "modderbut";
             this.modderbut.Size = new System.Drawing.Size(279, 17);
             this.modderbut.TabIndex = 25;
@@ -439,7 +282,7 @@
             // timingOnKeypressEnable
             // 
             this.timingOnKeypressEnable.AutoSize = true;
-            this.timingOnKeypressEnable.Location = new System.Drawing.Point(18, 284);
+            this.timingOnKeypressEnable.Location = new System.Drawing.Point(15, 128);
             this.timingOnKeypressEnable.Name = "timingOnKeypressEnable";
             this.timingOnKeypressEnable.Size = new System.Drawing.Size(306, 17);
             this.timingOnKeypressEnable.TabIndex = 26;
@@ -449,7 +292,7 @@
             // 
             // logBackgroundCustom
             // 
-            this.logBackgroundCustom.Location = new System.Drawing.Point(245, 332);
+            this.logBackgroundCustom.Location = new System.Drawing.Point(242, 222);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
             this.logBackgroundCustom.TabIndex = 31;
@@ -461,7 +304,7 @@
             // logBackgroundBlue
             // 
             this.logBackgroundBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(36)))), ((int)(((byte)(86)))));
-            this.logBackgroundBlue.Location = new System.Drawing.Point(219, 332);
+            this.logBackgroundBlue.Location = new System.Drawing.Point(216, 222);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlue.TabIndex = 30;
@@ -472,7 +315,7 @@
             // logBackgroundBlack
             // 
             this.logBackgroundBlack.BackColor = System.Drawing.Color.Black;
-            this.logBackgroundBlack.Location = new System.Drawing.Point(193, 332);
+            this.logBackgroundBlack.Location = new System.Drawing.Point(190, 222);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlack.TabIndex = 29;
@@ -482,7 +325,7 @@
             // 
             // logTextCustom
             // 
-            this.logTextCustom.Location = new System.Drawing.Point(245, 358);
+            this.logTextCustom.Location = new System.Drawing.Point(242, 248);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
             this.logTextCustom.TabIndex = 34;
@@ -494,7 +337,7 @@
             // logTextBlack
             // 
             this.logTextBlack.BackColor = System.Drawing.Color.Black;
-            this.logTextBlack.Location = new System.Drawing.Point(219, 358);
+            this.logTextBlack.Location = new System.Drawing.Point(216, 248);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
             this.logTextBlack.TabIndex = 33;
@@ -505,7 +348,7 @@
             // logTextWhite
             // 
             this.logTextWhite.BackColor = System.Drawing.Color.White;
-            this.logTextWhite.Location = new System.Drawing.Point(193, 358);
+            this.logTextWhite.Location = new System.Drawing.Point(190, 248);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
             this.logTextWhite.TabIndex = 32;
@@ -516,7 +359,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(15, 361);
+            this.label11.Location = new System.Drawing.Point(12, 251);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 42;
@@ -525,7 +368,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 335);
+            this.label10.Location = new System.Drawing.Point(12, 225);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 38;
@@ -533,7 +376,7 @@
             // 
             // logDefault
             // 
-            this.logDefault.Location = new System.Drawing.Point(137, 332);
+            this.logDefault.Location = new System.Drawing.Point(134, 222);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
             this.logDefault.TabIndex = 28;
@@ -545,7 +388,7 @@
             // 
             this.groupBox3.Controls.Add(this.SlimPreferSrgh);
             this.groupBox3.Controls.Add(this.SlimPreferRgh12);
-            this.groupBox3.Location = new System.Drawing.Point(420, 215);
+            this.groupBox3.Location = new System.Drawing.Point(420, 136);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(174, 45);
             this.groupBox3.TabIndex = 38;
@@ -580,7 +423,7 @@
             this.groupBox4.Controls.Add(this.txtTimingLptPort);
             this.groupBox4.Controls.Add(this.rbtnTimingLpt);
             this.groupBox4.Controls.Add(this.rbtnTimingUsb);
-            this.groupBox4.Location = new System.Drawing.Point(420, 266);
+            this.groupBox4.Location = new System.Drawing.Point(420, 187);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(174, 45);
             this.groupBox4.TabIndex = 39;
@@ -614,7 +457,7 @@
             // btnReset
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnReset.Location = new System.Drawing.Point(519, 394);
+            this.btnReset.Location = new System.Drawing.Point(15, 288);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(76, 23);
             this.btnReset.TabIndex = 40;
@@ -625,7 +468,7 @@
             // chkNoPatchWarnings
             // 
             this.chkNoPatchWarnings.AutoSize = true;
-            this.chkNoPatchWarnings.Location = new System.Drawing.Point(18, 307);
+            this.chkNoPatchWarnings.Location = new System.Drawing.Point(15, 151);
             this.chkNoPatchWarnings.Name = "chkNoPatchWarnings";
             this.chkNoPatchWarnings.Size = new System.Drawing.Size(206, 17);
             this.chkNoPatchWarnings.TabIndex = 27;
@@ -634,12 +477,38 @@
             this.chkNoPatchWarnings.CheckedChanged += new System.EventHandler(this.chkNoPatchWarnings_CheckedChanged);
             this.chkNoPatchWarnings.Click += new System.EventHandler(this.chkNoPatchWarnings_Click);
             // 
+            // chkPlaySuccess
+            // 
+            this.chkPlaySuccess.AutoSize = true;
+            this.chkPlaySuccess.Checked = true;
+            this.chkPlaySuccess.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPlaySuccess.Location = new System.Drawing.Point(15, 174);
+            this.chkPlaySuccess.Name = "chkPlaySuccess";
+            this.chkPlaySuccess.Size = new System.Drawing.Size(157, 17);
+            this.chkPlaySuccess.TabIndex = 43;
+            this.chkPlaySuccess.Text = "Play success sound (chime)";
+            this.chkPlaySuccess.UseVisualStyleBackColor = true;
+            // 
+            // chkPlayError
+            // 
+            this.chkPlayError.AutoSize = true;
+            this.chkPlayError.Checked = true;
+            this.chkPlayError.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPlayError.Location = new System.Drawing.Point(15, 197);
+            this.chkPlayError.Name = "chkPlayError";
+            this.chkPlayError.Size = new System.Drawing.Size(138, 17);
+            this.chkPlayError.TabIndex = 44;
+            this.chkPlayError.Text = "Play error sound (oh no)";
+            this.chkPlayError.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 434);
+            this.ClientSize = new System.Drawing.Size(612, 326);
+            this.Controls.Add(this.chkPlayError);
+            this.Controls.Add(this.chkPlaySuccess);
             this.Controls.Add(this.chkNoPatchWarnings);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.groupBox4);
@@ -658,16 +527,13 @@
             this.Controls.Add(this.almovebut);
             this.Controls.Add(this.AutoExtractcheckBox);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtNandflash);
             this.Controls.Add(this.chkfiles);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.sonusDelay);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtfolder);
-            this.Controls.Add(this.btnfolder);
+            this.Controls.Add(this.btnFolder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -677,9 +543,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sonusDelay)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -692,31 +556,18 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnsuccom;
-        private System.Windows.Forms.TextBox txtsuccom;
-        private System.Windows.Forms.TextBox txtsuccess;
-        private System.Windows.Forms.Button btnsuccess;
-        private System.Windows.Forms.TextBox txterror;
-        private System.Windows.Forms.Button btnerror;
         private System.Windows.Forms.TextBox txtfolder;
         private System.Windows.Forms.TextBox txtIP;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnfolder;
+        private System.Windows.Forms.Button btnFolder;
         private System.Windows.Forms.FolderBrowserDialog folderDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown sonusDelay;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox chkfiles;
-        private System.Windows.Forms.TextBox txtNandflash;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtIPStart;
@@ -735,9 +586,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button logDefault;
-        private System.Windows.Forms.CheckBox chksuccom;
-        private System.Windows.Forms.CheckBox chksuccess;
-        private System.Windows.Forms.CheckBox chkerror;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton SlimPreferSrgh;
         private System.Windows.Forms.RadioButton SlimPreferRgh12;
@@ -748,5 +596,7 @@
         private System.Windows.Forms.RadioButton rbtnTimingUsb;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.CheckBox chkNoPatchWarnings;
+        private System.Windows.Forms.CheckBox chkPlaySuccess;
+        private System.Windows.Forms.CheckBox chkPlayError;
     }
 }

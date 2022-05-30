@@ -147,9 +147,11 @@ namespace JRunner
                     Console.WriteLine("NandPro: Completed! Time Elapsed: {0}", mtxTimeString);
                     Console.WriteLine("");
 
-                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                    success.Play();
+                    if (variables.playSuccess)
+                    {
+                        SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                        success.Play();
+                    }
 
                     if (mode >= 1)
                     {

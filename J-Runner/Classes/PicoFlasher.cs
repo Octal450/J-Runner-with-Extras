@@ -522,9 +522,11 @@ namespace JRunner
                     Console.WriteLine("Read Successful!");
                     Console.WriteLine("");
 
-                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                    success.Play();
+                    if (variables.playSuccess)
+                    {
+                        SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                        success.Play();
+                    }
 
                     Thread.Sleep(1000);
                     MainForm.mainForm.PicoFlasherInitNand(i);
@@ -644,9 +646,11 @@ namespace JRunner
                 Console.WriteLine("Write Successful!");
                 Console.WriteLine("");
 
-                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                success.Play();
+                if (variables.playSuccess)
+                {
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    success.Play();
+                }
 
                 if (isEccOrXell)
                 {
@@ -754,9 +758,11 @@ namespace JRunner
                     Console.WriteLine("Read Successful!");
                     Console.WriteLine("");
 
-                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                    success.Play();
+                    if (variables.playSuccess)
+                    {
+                        SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                        success.Play();
+                    }
 
                     Thread.Sleep(1000);
                     MainForm.mainForm.PicoFlasherInitNand(i);
@@ -835,9 +841,11 @@ namespace JRunner
                 Console.WriteLine("Write Successful!");
                 Console.WriteLine("");
 
-                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                success.Play();
+                if (variables.playSuccess)
+                {
+                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                    success.Play();
+                }
 
                 if (isEccOrXell)
                 {

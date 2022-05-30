@@ -121,6 +121,19 @@ namespace JRunner
 
             loadsettings();
 
+            if (!Directory.Exists(variables.outfolder))
+            {
+                try
+                {
+                    Directory.CreateDirectory(variables.outfolder);
+                }
+                catch (System.IO.DirectoryNotFoundException)
+                {
+                    variables.outfolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                    Directory.CreateDirectory(variables.outfolder);
+                }
+            }
+
             printstartuptext(true);
 
             new Thread(on_load).Start();
@@ -1374,9 +1387,11 @@ namespace JRunner
                 demon.write_fusion(variables.filename1);
                 try
                 {
-                    SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                    if (variables.soundsuccess != "") success.SoundLocation = variables.soundsuccess;
-                    success.Play();
+                    if (variables.playSuccess)
+                    {
+                        SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                        success.Play();
+                    }
                 }
                 catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
             }
@@ -1631,9 +1646,11 @@ namespace JRunner
                         Console.WriteLine("");
                         try
                         {
-                            SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
-                            if (variables.soundcompare != "") success.SoundLocation = variables.soundcompare;
-                            success.Play();
+                            if (variables.playSuccess)
+                            {
+                                SoundPlayer success = new SoundPlayer(Properties.Resources.chime);
+                                success.Play();
+                            }
                         }
                         catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
                         try
@@ -1668,9 +1685,11 @@ namespace JRunner
                     {
                         try
                         {
-                            SoundPlayer error = new SoundPlayer(Properties.Resources.Error);
-                            if (variables.sounderror != "") error.SoundLocation = variables.sounderror;
-                            error.Play();
+                            if (variables.playError)
+                            {
+                                SoundPlayer error = new SoundPlayer(Properties.Resources.error);
+                                error.Play();
+                            }
                         }
                         catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
 
@@ -4262,15 +4281,6 @@ namespace JRunner
                         case "COMPort":
                             x.write(name, variables.COMPort);
                             break;
-                        case "Errorsound":
-                            x.write(name, variables.sounderror);
-                            break;
-                        case "Comparesound":
-                            x.write(name, variables.soundcompare);
-                            break;
-                        case "Successsound":
-                            x.write(name, variables.soundsuccess);
-                            break;
                         case "Delay":
                             x.write(name, variables.delay.ToString());
                             break;
@@ -4288,9 +4298,6 @@ namespace JRunner
                             break;
                         case "IPEnd":
                             x.write(name, variables.IPend);
-                            break;
-                        case "XebuildName":
-                            x.write(name, variables.nandflash);
                             break;
                         case "dashlaunch":
                             x.write(name, variables.dashlaunch);
@@ -4336,6 +4343,12 @@ namespace JRunner
                             break;
                         case "NoPatchWarnings":
                             x.write(name, variables.noPatchWarnings.ToString());
+                            break;
+                        case "PlaySuccess":
+                            x.write(name, variables.playSuccess.ToString());
+                            break;
+                        case "PlayError":
+                            x.write(name, variables.playError.ToString());
                             break;
                         default:
                             break;
@@ -4394,15 +4407,6 @@ namespace JRunner
                         case "COMPort":
                             variables.COMPort = val;
                             break;
-                        case "Errorsound":
-                            variables.sounderror = val;
-                            break;
-                        case "Comparesound":
-                            variables.soundcompare = val;
-                            break;
-                        case "Successsound":
-                            variables.soundsuccess = val;
-                            break;
                         case "Delay":
                             int ivalue = 0;
                             int.TryParse(val, out ivalue);
@@ -4439,9 +4443,6 @@ namespace JRunner
                         case "IPEnd":
                             variables.IPend = val;
                             break;
-                        case "XebuildName":
-                            if (!string.IsNullOrWhiteSpace(val)) variables.nandflash = val;
-                            break;
                         case "dashlaunch":
                             string dlmd5 = Oper.GetMD5HashFromFile(variables.update_path + "launch.xex").ToUpper();
 
@@ -4469,18 +4470,6 @@ namespace JRunner
                             if (!string.IsNullOrWhiteSpace(val))
                             {
                                 variables.outfolder = val;
-                                if (!Directory.Exists(variables.outfolder))
-                                {
-                                    try
-                                    {
-                                        Directory.CreateDirectory(variables.outfolder);
-                                    }
-                                    catch (System.IO.DirectoryNotFoundException)
-                                    {
-                                        variables.outfolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                                        Directory.CreateDirectory(variables.outfolder);
-                                    }
-                                }
                             }
                             break;
                         case "LPTtiming":
@@ -4547,6 +4536,16 @@ namespace JRunner
                             bvalue = false;
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             variables.noPatchWarnings = bvalue;
+                            break;
+                        case "PlaySuccess":
+                            bvalue = true;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = true;
+                            variables.playSuccess = bvalue;
+                            break;
+                        case "PlayError":
+                            bvalue = true;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = true;
+                            variables.playError = bvalue;
                             break;
                         default:
                             break;
