@@ -59,7 +59,7 @@
             this.listView1.Location = new System.Drawing.Point(2, 2);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(336, 182);
+            this.listView1.Size = new System.Drawing.Size(335, 182);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -89,7 +89,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Format";
-            this.columnHeader4.Width = 48;
+            this.columnHeader4.Width = 47;
             // 
             // columnHeader5
             // 
