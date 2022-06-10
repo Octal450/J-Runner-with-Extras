@@ -79,9 +79,9 @@ namespace JRunner
             Win81,
             W10_11
         }
-        public static string version = "3.1.5b";
-        public static string build = "3151." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
-        public const string staticversion = "3.1.5.1";
+        public static string version = "3.1.5c Beta";
+        public static string build = "3152." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
+        public const string staticversion = "3.1.5.2";
         public static int revision = 23;
         public static Windows currentOS = Windows.Unknown;
         public static bool iswriting;
@@ -178,6 +178,9 @@ namespace JRunner
             new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
             new consoles(12, "trinitybb", "trinity", "Trinity BB", 16, Nandsize.S64, 2),
         };
+
+        public static string[] sortedConsoleNames = { "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
+
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
         {
             {"6FB5C6A45999A4BBB037827659991BFE", "1.05"},

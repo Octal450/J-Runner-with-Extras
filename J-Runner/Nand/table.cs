@@ -29,9 +29,9 @@ namespace JRunner.Nand
             public variables.hacktypes preferredHackType { get { return hack; } }
 
             private readonly consoles console;
-            public consoles Cunt { get { return console; } }
+            public consoles Console { get { return console; } }
 
-            public _nand(int cb, string mobo, int mindash, int maxdash, int mincseq, int maxcseq, variables.hacktypes ht, consoles cunt)
+            public _nand(int cb, string mobo, int mindash, int maxdash, int mincseq, int maxcseq, variables.hacktypes ht, consoles console)
             {
                 this.cb = cb;
                 this.mobo = mobo;
@@ -40,7 +40,7 @@ namespace JRunner.Nand
                 this.minCseq = mincseq;
                 this.maxCseq = maxcseq;
                 this.hack = ht;
-                this.console = cunt;
+                this.console = console;
             }
         }
 
@@ -105,7 +105,7 @@ namespace JRunner.Nand
             new _nand(9230, "Trinity", 14717, 14719, 3, 3, variables.hacktypes.glitch2, variables.ctypes[1]),
             new _nand(13180, "Corona", 14717, 14719, 3, 3, variables.hacktypes.glitch2, variables.ctypes[10]),
             new _nand(1942, "Xenon", 15572, variables.latest_dashboard, 11, 11, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(7378, "Xenon", 15572, variables.latest_dashboard, 11, 11, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(7378, "Xenon", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[8]),
             new _nand(4569, "Zephyr", 15572, variables.latest_dashboard, 11, 11, variables.hacktypes.glitch2, variables.ctypes[3]),
             new _nand(4574, "Zephyr", 15572, variables.latest_dashboard, 11, 11, variables.hacktypes.glitch2, variables.ctypes[3]),
             new _nand(5774, "Falcon", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[2]),
@@ -141,7 +141,7 @@ namespace JRunner.Nand
         {
             foreach (_nand n in Table)
             {
-                if (n.Cunt.ID == c.ID && dash >= n.minDashVersion && dash <= n.maxDashVersion) return n.CB;
+                if (n.Console.ID == c.ID && dash >= n.minDashVersion && dash <= n.maxDashVersion) return n.CB;
             }
             return 0;
         }
