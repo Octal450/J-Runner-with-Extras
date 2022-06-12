@@ -1464,12 +1464,11 @@ namespace JRunner
         void movework()
         {
             if (variables.reading) return;
-            Thread.Sleep(2000);
+            Thread.Sleep(100);
             variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
 
             //updateS((variables.filename1.Replace(variables.outfolder, variables.xefolder)));
             Console.WriteLine("Moving all files from output folder to {0}", variables.xefolder);
-            Console.Write("");
             String l_sDirectoryName = variables.xefolder;
             DirectoryInfo l_dDirInfo = new DirectoryInfo(l_sDirectoryName);
             if (l_dDirInfo.Exists == false)
@@ -2010,8 +2009,7 @@ namespace JRunner
                     {
                         if (!movedalready)
                         {
-                            Thread Go = new Thread(movework);
-                            Go.Start();
+                            movework();
                             movedalready = true;
                         }
                     }
@@ -2047,8 +2045,7 @@ namespace JRunner
                             {
                                 if (!movedalready)
                                 {
-                                    Thread Go = new Thread(movework);
-                                    Go.Start();
+                                    movework();
                                     movedalready = true;
                                 }
                             }
@@ -2163,10 +2160,6 @@ namespace JRunner
                 fs.Dispose();
 
                 variables.gotvalues = !String.IsNullOrEmpty(variables.cpkey);
-                Console.WriteLine("Nand Initialization Finished");
-                Console.WriteLine("");
-
-                updateProgress(progressBar.Maximum);
 
                 if (variables.debugme)
                     Console.WriteLine("allmove ", variables.allmove);
@@ -2174,15 +2167,19 @@ namespace JRunner
                     Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
                 if (variables.debugme)
                     Console.WriteLine(variables.filename1.Contains(variables.outfolder));
-                if ((variables.allmove) && (!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
+                if (variables.allmove && !variables.filename1.Contains(nand.ki.serial) && variables.filename1.Contains(variables.outfolder))
                 {
                     if (!movedalready)
                     {
-                        Thread Go = new Thread(movework);
-                        Go.Start();
+                        movework();
                         movedalready = true;
                     }
                 }
+
+                Console.WriteLine("Nand Initialization Finished");
+                Console.WriteLine("");
+
+                updateProgress(progressBar.Maximum);
             }
 
             catch (SystemException ex)
