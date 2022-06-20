@@ -387,7 +387,6 @@
             // 
             // comboDash
             // 
-            this.comboDash.BackColor = System.Drawing.SystemColors.Control;
             this.comboDash.DataSource = this.dataTable2BindingSource;
             this.comboDash.DisplayMember = "Dash";
             this.comboDash.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -425,6 +424,7 @@
             // 
             // txtMBname
             // 
+            this.txtMBname.BackColor = System.Drawing.SystemColors.Window;
             this.txtMBname.Location = new System.Drawing.Point(17, 73);
             this.txtMBname.Name = "txtMBname";
             this.txtMBname.ReadOnly = true;

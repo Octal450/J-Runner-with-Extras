@@ -336,10 +336,8 @@ namespace JRunner.Panels
             else if (comboDash.SelectedIndex >= 0)
             {
                 variables.preferredDash = comboDash.Text;
-
                 variables.dashversion = Convert.ToInt32(comboDash.Text);
                 lblDash.Text = comboDash.Text;
-
             }
 
             if (comboDash.SelectedIndex < comboDash.Items.Count - 3)
@@ -1056,8 +1054,6 @@ namespace JRunner.Panels
             chkAudClamp.Visible = false;
             chkBigffs.Enabled = false;
             chk0Fuse.Visible = false;
-
-            setComboCB();
         }
 
         private void chkNoWrite_CheckedChanged(object sender, EventArgs e)
@@ -1592,7 +1588,7 @@ namespace JRunner.Panels
             new Thread(new ThreadStart(delegate { setComboCB(false, true); })).Start();
         }
 
-        private void setComboCB(bool erase = false, bool wait = false)
+        public void setComboCB(bool erase = false, bool wait = false)
         {
             if (erase)
             {

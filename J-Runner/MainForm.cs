@@ -320,7 +320,6 @@ namespace JRunner
             catch
             {
             }
-
         }
 
         private void printstartuptext(bool firsttime = false)
@@ -1956,7 +1955,6 @@ namespace JRunner
             }
             try
             {
-
                 updateProgress(progressBar.Minimum);
                 if (Path.GetExtension(variables.filename1) != ".bin") return;
                 variables.gotvalues = true;
@@ -4644,6 +4642,7 @@ namespace JRunner
                     }
                     else if (xPanel.getComboDash().Items.Count > 3) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = xPanel.getComboDash().Items.Count - 3));
                 }
+                xPanel.setComboCB();
             }
             catch (InvalidOperationException)
             {
