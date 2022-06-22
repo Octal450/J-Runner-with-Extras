@@ -624,10 +624,10 @@ namespace JRunner.Classes
                     if (_xdkbuild && _rgh3)
                     {
                         MainForm.mainForm.XDKbuild.create(boardtype, true);
-                        MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000");
+                        MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000", true);
                     }
                     else if (_xdkbuild) MainForm.mainForm.XDKbuild.create(boardtype);
-                    else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey);
+                    else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey, true);
                 }
             }
             catch (Exception objException)
@@ -750,10 +750,10 @@ namespace JRunner.Classes
                     if (_xdkbuild && _rgh3)
                     {
                         MainForm.mainForm.XDKbuild.create(boardtype, true);
-                        MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000");
+                        MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000", true);
                     }
                     else if (_xdkbuild) MainForm.mainForm.XDKbuild.create(boardtype);
-                    else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey);
+                    else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey, true);
                 }
             }
             catch (Exception objException)

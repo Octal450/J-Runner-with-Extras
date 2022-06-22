@@ -151,6 +151,8 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToRGH3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyContextMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -744,8 +746,10 @@ namespace JRunner
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customNandProCommandToolStripMenuItem,
             this.corona4GBToolStripMenuItem,
-            this.CustomXeBuildMenuItem,
             this.writeFusionToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.convertToRGH3ToolStripMenuItem,
+            this.CustomXeBuildMenuItem,
             this.toolStripMenuItem5,
             this.toolStripHexEditor,
             this.cPUKeyToolsToolStripMenuItem,
@@ -1185,6 +1189,18 @@ namespace JRunner
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // convertToRGH3ToolStripMenuItem
+            // 
+            this.convertToRGH3ToolStripMenuItem.Name = "convertToRGH3ToolStripMenuItem";
+            this.convertToRGH3ToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.convertToRGH3ToolStripMenuItem.Text = "Convert to RGH3";
+            this.convertToRGH3ToolStripMenuItem.Click += new System.EventHandler(this.convertToRGH3ToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1356,5 +1372,7 @@ namespace JRunner
         private UI.SplitButton btnShowWorkingFolder;
         private ToolStripMenuItem xboxOneHDDToolToolStripMenuItem;
         private ToolStripMenuItem checkConsoleCBToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem convertToRGH3ToolStripMenuItem;
     }
 }

@@ -1538,7 +1538,7 @@ namespace JRunner
 
             variables.filename1 = variables.filename1.Replace(variables.outfolder, variables.xefolder);
             txtFilePath1.BeginInvoke(new Action(() => txtFilePath1.Text = variables.filename1));            
-            nand = new Nand.PrivateN(variables.filename1, variables.cpkey); // Re-init because folder changed
+            nand = new Nand.PrivateN(variables.filename1, variables.cpukey); // Re-init because folder changed
         }
 
         public void nand_init()
@@ -1552,8 +1552,8 @@ namespace JRunner
             if (variables.debugme) Console.WriteLine("Event wait");
             _event1.WaitOne();
             if (variables.debugme) Console.WriteLine("Event Started");
-            if (variables.debugme) Console.WriteLine(variables.cpkey);
-            txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
+            if (variables.debugme) Console.WriteLine(variables.cpukey);
+            txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
         }
 
         private static void savekvinfo(string savefile)
@@ -1584,7 +1584,7 @@ namespace JRunner
                 }
                 tw.WriteLine("Console Type: {0}", console_type);
                 tw.WriteLine("");
-                tw.WriteLine("Cpu Key: {0}", variables.cpkey);
+                tw.WriteLine("Cpu Key: {0}", variables.cpukey);
                 tw.WriteLine("");
                 tw.WriteLine("KV Type: {0}", nand.ki.kvtype.Replace("0", ""));
                 tw.WriteLine("");
@@ -1894,7 +1894,7 @@ namespace JRunner
                 variables.filename1 = "";
                 variables.filename2 = "";
                 variables.xefolder = "";
-                variables.cpkey = "";
+                variables.cpukey = "";
                 variables.gotvalues = false;
                 variables.twombread = false;
                 variables.fulldump = false;
@@ -1927,7 +1927,7 @@ namespace JRunner
         {
             variables.fulldump = false; variables.twombread = false;
             variables.ctyp = variables.ctypes[0]; variables.gotvalues = false;
-            variables.cpkey = "";
+            variables.cpukey = "";
             //variables.outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
             xPanel.setMBname("");
             txtCPUKey.Text = "";
@@ -1959,17 +1959,17 @@ namespace JRunner
                 if (Path.GetExtension(variables.filename1) != ".bin") return;
                 variables.gotvalues = true;
 
-                bool sts = objAlphaPattern.IsMatch(variables.cpkey);
+                bool sts = objAlphaPattern.IsMatch(variables.cpukey);
 
                 string cpufile = Path.Combine(Path.GetDirectoryName(variables.filename1), "cpukey.txt");
-                if (File.Exists(cpufile) && !(variables.cpkey.Length == 32 && sts))
+                if (File.Exists(cpufile) && !(variables.cpukey.Length == 32 && sts))
                 {
-                    variables.cpkey = parsecpukey(cpufile);
+                    variables.cpukey = parsecpukey(cpufile);
                 }
                 
-                if (variables.cpkey.Length != 32 || !objAlphaPattern.IsMatch(variables.cpkey)) variables.cpkey = "";
+                if (variables.cpukey.Length != 32 || !objAlphaPattern.IsMatch(variables.cpukey)) variables.cpukey = "";
 
-                bool foundKey = !string.IsNullOrEmpty(variables.cpkey);
+                bool foundKey = !string.IsNullOrEmpty(variables.cpukey);
                 bool gotKeyFromCrc = false;
 
                 if (!foundKey)
@@ -1980,26 +1980,26 @@ namespace JRunner
                     if (variables.debugme) Console.WriteLine("Searching Registry Entrys");
                     try
                     {
-                        variables.cpkey = CpuKeyDB.getkey_s(filenameKvCrc, xPanel.getDataSet());
-                        txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
-                        if (!string.IsNullOrEmpty(variables.cpkey)) gotKeyFromCrc = true;
+                        variables.cpukey = CpuKeyDB.getkey_s(filenameKvCrc, xPanel.getDataSet());
+                        txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
+                        if (!string.IsNullOrEmpty(variables.cpukey)) gotKeyFromCrc = true;
                     }
                     catch (NullReferenceException ex) { Console.WriteLine(ex.ToString()); }
                 }
-                else txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
+                else txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 nandInfo.change_tab();
                 updateProgress(progressBar.Maximum / 2);
-                nand = new Nand.PrivateN(variables.filename1, variables.cpkey);
+                nand = new Nand.PrivateN(variables.filename1, variables.cpukey);
                 if (!nand.ok) return;
 
-                if (variables.debugme) Console.WriteLine("N Key: {0}, V Key: {1}", nand._cpukey, variables.cpkey);
+                if (variables.debugme) Console.WriteLine("N Key: {0}, V Key: {1}", nand._cpukey, variables.cpukey);
 
                 if (!foundKey && gotKeyFromCrc)
                 {
                     if (variables.debugme) Console.WriteLine("Found key in registry");
-                    nand.cpukeyverification(variables.cpkey);
+                    nand.cpukeyverification(variables.cpukey);
                     if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
                     if (variables.debugme) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
                     if (variables.debugme) Console.WriteLine(variables.filename1.Contains(variables.outfolder));
@@ -2014,17 +2014,17 @@ namespace JRunner
                 }
                 else if (foundKey)
                 {
-                    if (!CpuKeyDB.getkey_s(variables.cpkey, xPanel.getDataSet()))
+                    if (!CpuKeyDB.getkey_s(variables.cpukey, xPanel.getDataSet()))
                     {
                         if (variables.debugme) Console.WriteLine("Key verification");
-                        if (nand.cpukeyverification(variables.cpkey))
+                        if (nand.cpukeyverification(variables.cpukey))
                         {
                             Console.WriteLine("CPU Key is Correct");
                             if (variables.debugme) Console.WriteLine("Adding key to registry");
                             CpuKeyDB.regentries entry = new CpuKeyDB.regentries();
                             entry.kvcrc = nand.kvcrc().ToString("X");
                             entry.serial = nand.ki.serial;
-                            entry.cpukey = variables.cpkey;
+                            entry.cpukey = variables.cpukey;
                             entry.extra = Nand.Nand.getConsoleName(nand, variables.flashconfig);
                             entry.dvdkey = nand.ki.dvdkey;
                             entry.osig = nand.ki.osig;
@@ -2038,7 +2038,7 @@ namespace JRunner
 
                             }
                             if (reg) nandInfo.show_cpukey_tab();
-                            txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpkey));
+                            txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
                             if ((!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
                             {
                                 if (!movedalready)
@@ -2157,7 +2157,7 @@ namespace JRunner
                 fs.Close();
                 fs.Dispose();
 
-                variables.gotvalues = !String.IsNullOrEmpty(variables.cpkey);
+                variables.gotvalues = !String.IsNullOrEmpty(variables.cpukey);
 
                 if (variables.debugme)
                     Console.WriteLine("allmove ", variables.allmove);
@@ -2565,7 +2565,7 @@ namespace JRunner
                 if (smc == "Glitch") xPanel.setCleanSMCChecked(true);
             }
 
-            variables.cpkey = cpuk; // Copy CPU Key
+            variables.cpukey = cpuk; // Copy CPU Key
             txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = cpuk));
             variables.highldv = ldv; // Copy LDV
             variables.changeldv = 2; // Enable Custom LDV
@@ -2815,14 +2815,14 @@ namespace JRunner
 
         void mycpukeydb_FormClosed(object sender, FormClosedEventArgs e)
         {
-            txtCPUKey.Text = variables.cpkey;
+            txtCPUKey.Text = variables.cpukey;
         }
 
         #endregion
 
         #endregion
 
-        #region User Input
+        #region UI
 
         void updateProgress(int progress)
         {
@@ -3079,7 +3079,7 @@ namespace JRunner
                 return;
             }
 
-            variables.cpkey = txtCPUKey.Text;
+            variables.cpukey = txtCPUKey.Text;
             patch patchform = new patch();
             patchform.frm1 = this;
             patchform.ShowDialog();
@@ -3106,6 +3106,25 @@ namespace JRunner
             callDrives();
         }
 
+        private void writeFusionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThreadStart starter = delegate { writefusion(); };
+            new Thread(starter).Start();
+        }
+
+        private void convertToRGH3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Nand.Nand.VerifyKey(Oper.StringToByteArray(variables.cpukey)))
+            {
+                if (nand.cpukeyverification(variables.cpukey))
+                {
+                    rgh3Build.create(variables.boardtype, variables.cpukey);
+                }
+                else Console.WriteLine("Wrong CPU Key");
+            }
+            else Console.WriteLine("Bad CPU Key");
+        }
+
         private void CustomXeBuildMenuItem_Click(object sender, EventArgs e)
         {
             CustomXebuild CX = new CustomXebuild();
@@ -3120,12 +3139,6 @@ namespace JRunner
                 thr.IsBackground = true;
                 thr.Start();
             }
-        }
-
-        private void writeFusionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ThreadStart starter = delegate { writefusion(); };
-            new Thread(starter).Start();
         }
 
         HexEdit.HexViewer hv;
@@ -3697,7 +3710,7 @@ namespace JRunner
         {
             ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text); };
             new Thread(starter).Start();
-            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
             new Thread(updatecptextbox).Start();
         }
 
@@ -3705,7 +3718,7 @@ namespace JRunner
         {
             ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text, 1); };
             new Thread(starter).Start();
-            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
             new Thread(updatecptextbox).Start();
         }
 
@@ -3713,7 +3726,7 @@ namespace JRunner
         {
             ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text, 2); };
             new Thread(starter).Start();
-            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
             new Thread(updatecptextbox).Start();
         }
 
@@ -3727,7 +3740,7 @@ namespace JRunner
             {
                 ThreadStart starter = delegate { myIP.IPScanner(this.progressBar); };
                 new Thread(starter).Start();
-                if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+                if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
                 new Thread(updatecptextbox).Start();
             }
         }
@@ -3748,7 +3761,7 @@ namespace JRunner
                 {
                     if (Nand.Nand.VerifyKey(Oper.StringToByteArray(txtCPUKey.Text)))
                     {
-                        variables.cpkey = txtCPUKey.Text;
+                        variables.cpukey = txtCPUKey.Text;
                         if (!variables.gotvalues && File.Exists(variables.filename1))
                         {
                             nand_init();
@@ -3769,7 +3782,7 @@ namespace JRunner
             {
                 ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text); };
                 new Thread(starter).Start();
-                if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpkey);
+                if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
                 new Thread(updatecptextbox).Start();
             }
         }
@@ -4230,7 +4243,7 @@ namespace JRunner
                             }
                             if (Nand.Nand.cpukeyverification(keyvault, cpukeys.GetValue("cpukey").ToString()))
                             {
-                                variables.cpkey = cpukeys.GetValue("cpukey").ToString();
+                                variables.cpukey = cpukeys.GetValue("cpukey").ToString();
                                 txtCPUKey.Text = cpukeys.GetValue("cpukey").ToString();
                                 Console.WriteLine("Key found");
                                 return;

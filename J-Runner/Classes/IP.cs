@@ -106,7 +106,7 @@ namespace JRunner
                     string cpukeytag = page.Substring(page.IndexOf("CPU Key:"), 70);
                     if (variables.debugme) Console.WriteLine("Cpukey before edit: {0}", cpukeytag);
                     cpukey = cpukeytag.Substring(cpukeytag.IndexOf("<td>") + 4, 32);
-                    variables.cpkey = cpukey;
+                    variables.cpukey = cpukey;
                     if (variables.debugme) Console.WriteLine("Cpukey: {0}", cpukey);
                     string dvdkeytag = page.Substring(page.IndexOf("DVD Key:"), 70);
                     if (variables.debugme) Console.WriteLine("DVDkey before edit: {0}", dvdkeytag);
@@ -126,7 +126,7 @@ namespace JRunner
                     string cpukeytag = page.Substring(page.IndexOf("CPU"), 70);
                     if (variables.debugme) Console.WriteLine("Cpukey before edit: {0}", cpukeytag);
                     cpukey = cpukeytag.Substring(cpukeytag.IndexOf("<td>") + 4, 32);
-                    variables.cpkey = cpukey;
+                    variables.cpukey = cpukey;
                     if (variables.debugme) Console.WriteLine("Cpukey: {0}", cpukey);
 
                     cpukeytag = StripTagsCharArray(cpukeytag);
@@ -197,7 +197,7 @@ namespace JRunner
                     string cpukeytag = page.Substring(page.IndexOf("CPU Key:"), 70);
                     if (variables.debugme) Console.WriteLine("Cpukey before edit: {0}", cpukeytag);
                     cpukey = cpukeytag.Substring(cpukeytag.IndexOf("<td>") + 4, 32);
-                    variables.cpkey = cpukey;
+                    variables.cpukey = cpukey;
                     if (variables.debugme) Console.WriteLine("Cpukey: {0}", cpukey);
                     string dvdkeytag = page.Substring(page.IndexOf("DVD Key:"), 70);
                     if (variables.debugme) Console.WriteLine("DVDkey before edit: {0}", dvdkeytag);
@@ -220,7 +220,7 @@ namespace JRunner
                     string cpukeytag = page.Substring(page.IndexOf("CPU"), 70);
                     if (variables.debugme) Console.WriteLine("Cpukey before edit: {0}", cpukeytag);
                     cpukey = cpukeytag.Substring(cpukeytag.IndexOf("<td>") + 4, 32);
-                    variables.cpkey = cpukey;
+                    variables.cpukey = cpukey;
                     if (variables.debugme) Console.WriteLine("Cpukey: {0}", cpukey);
 
                     cpukeytag = StripTagsCharArray(cpukeytag);

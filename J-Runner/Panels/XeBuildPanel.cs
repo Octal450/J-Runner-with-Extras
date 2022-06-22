@@ -1255,15 +1255,15 @@ namespace JRunner.Panels
                 }
 
                 Regex objAlphaPattern = new Regex("[a-fA-F0-9]{32}$");
-                bool sts = objAlphaPattern.IsMatch(variables.cpkey);
-                if ((variables.cpkey.Length == 32 && sts))
+                bool sts = objAlphaPattern.IsMatch(variables.cpukey);
+                if ((variables.cpukey.Length == 32 && sts))
                 {
                     if (variables.debugme) Console.WriteLine("Key verification");
                     long size = 0;
-                    if (Nand.Nand.cpukeyverification(Oper.openfile(Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin"), ref size, 0), variables.cpkey))
+                    if (Nand.Nand.cpukeyverification(Oper.openfile(Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin"), ref size, 0), variables.cpukey))
                     {
                         if (variables.debugme) Console.WriteLine("CPU Key is Correct");
-                        if (Nand.Nand.getfcrtflag(File.ReadAllBytes(Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin")), variables.cpkey))
+                        if (Nand.Nand.getfcrtflag(File.ReadAllBytes(Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin")), variables.cpukey))
                         {
                             if (!File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\fcrt.bin")))
                             {

@@ -83,7 +83,7 @@ namespace JRunner
             if (!changed) this.Close();
             else
             {
-                if (variables.filename1 == null || variables.cpkey == "") this.Close();
+                if (variables.filename1 == null || variables.cpukey == "") this.Close();
                 byte[] data = Nand.BadBlock.find_bad_blocks_b(variables.filename1, true);
 
                 if (data.Length > 0x4500)
@@ -133,7 +133,7 @@ namespace JRunner
             byte[] blockarray = new byte[4];
             Buffer.BlockCopy(image, 0x4400, blockarray, 0, 4);
 
-            byte[] keyvault = Nand.Nand.decryptkv(Nand.Nand.getkv(image), Oper.StringToByteArray(variables.cpkey));
+            byte[] keyvault = Nand.Nand.decryptkv(Nand.Nand.getkv(image), Oper.StringToByteArray(variables.cpukey));
             Nand.KVInfo kinfo = new Nand.KVInfo();
             kinfo.consoleid = txtConsoleID.Text;
             kinfo.region = getregion(comboRegion.SelectedIndex);
@@ -142,7 +142,7 @@ namespace JRunner
             kinfo.serial = txtSerial.Text;
 
             Nand.Nand.patch_kv(ref keyvault, kinfo);
-            keyvault = Nand.Nand.encryptkv_hmac(keyvault, Oper.StringToByteArray(variables.cpkey));
+            keyvault = Nand.Nand.encryptkv_hmac(keyvault, Oper.StringToByteArray(variables.cpukey));
             if (ecc)
             {
                 if (variables.debugme) Console.WriteLine("Adding ecc to keyvault");
@@ -188,7 +188,7 @@ namespace JRunner
                 CF0_dec[0x21C] = Convert.ToByte(txtCF0pd.Text.Substring(6, 2), 16);
                 CF0_dec[0x21D] = Convert.ToByte(txtCF0pd.Text.Substring(4, 2), 16);
                 CF0_dec[0x21E] = Convert.ToByte(txtCF0pd.Text.Substring(2, 2), 16);
-                CF0 = Nand.Nand.encrypt_CF(CF0_dec, CF0, Oper.StringToByteArray(variables.cpkey));
+                CF0 = Nand.Nand.encrypt_CF(CF0_dec, CF0, Oper.StringToByteArray(variables.cpukey));
                 ready0 = true;
             }
             if (CF1 != null && (changedCF1ldv || changedCF1pd))
@@ -199,7 +199,7 @@ namespace JRunner
                 CF1_dec[0x21C] = Convert.ToByte(txtCF1pd.Text.Substring(6, 2), 16);
                 CF1_dec[0x21D] = Convert.ToByte(txtCF1pd.Text.Substring(4, 2), 16);
                 CF1_dec[0x21E] = Convert.ToByte(txtCF1pd.Text.Substring(2, 2), 16);
-                CF1 = Nand.Nand.encrypt_CF(CF1_dec, CF1, Oper.StringToByteArray(variables.cpkey));
+                CF1 = Nand.Nand.encrypt_CF(CF1_dec, CF1, Oper.StringToByteArray(variables.cpukey));
                 ready1 = true;
             }
             if (ready0)

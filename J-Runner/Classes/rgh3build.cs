@@ -8,14 +8,17 @@ namespace JRunner
     {
         private string filename;
 
-        public void create(string board, string cpuKey)
+        public void create(string board, string cpuKey, bool sequenced = false)
         {
             Console.WriteLine("Converting Image to RGH3...");
             Thread.Sleep(1000); // Important
 
             string ecc;
             string mhz = "";
-            if (MainForm.mainForm.xPanel.getRgh3Mhz() == 10) mhz = "_10";
+            if (sequenced)
+            {
+                if (MainForm.mainForm.xPanel.getRgh3Mhz() == 10) mhz = "_10";
+            }
 
             if (board == "Corona 16MB") ecc = variables.RGH3_corona;
             else if (board == "Corona 4GB") ecc = variables.RGH3_corona4GB;
@@ -26,19 +29,40 @@ namespace JRunner
             else
             {
                 Console.WriteLine("RGH3 Failed: Unsupported Console Type");
-                variables.xefinished = true;
-                MainForm.mainForm.xPanel.xeExitActual();
+                if (sequenced)
+                {
+                    variables.xefinished = true;
+                    MainForm.mainForm.xPanel.xeExitActual();
+                }
                 return;
             }
 
-            filename = Path.Combine(variables.xefolder, variables.nandflash);
+            if (sequenced) filename = Path.Combine(variables.xefolder, variables.nandflash);
+            else filename = variables.filename1;
 
-            Classes.RGH2to3.ConvertRgh2ToRgh3(Path.Combine(variables.rootfolder, "common", "ECC", ecc + ".ecc"), filename, cpuKey, filename);
+            try
+            {
+                Classes.RGH2to3.ConvertRgh2ToRgh3(Path.Combine(variables.rootfolder, "common", "ECC", ecc + ".ecc"), filename, cpuKey, filename);
+            }
+            catch (Exception ex)
+            {
+                if (variables.debugme) Console.WriteLine(ex.ToString());
+                Console.WriteLine("Failed: The image is either already RGH3, or an unsupported image type");
+                Console.WriteLine("");
+                return;
+            }
 
             Console.WriteLine("RGH3 Conversion Finished!");
 
-            variables.xefinished = true;
-            MainForm.mainForm.xPanel.xeExitActual();
+            if (sequenced)
+            {
+                variables.xefinished = true;
+                MainForm.mainForm.xPanel.xeExitActual();
+            }
+            else
+            {
+                MainForm.mainForm.nand_init();
+            }
         }
     }
 }

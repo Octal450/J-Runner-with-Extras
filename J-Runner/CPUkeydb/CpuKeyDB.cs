@@ -512,7 +512,7 @@ namespace JRunner
             try
             {
                 Clipboard.SetText(dataGridView1.CurrentRow.Cells[2].Value.ToString());
-                variables.cpkey = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                variables.cpukey = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 //Console.WriteLine(Path.Combine(Directory.GetParent(variables.outfolder).FullName, dataGridView1.CurrentRow.Cells[1].Value.ToString()));
                 variables.FindFolder = Path.Combine(Path.Combine(Directory.GetParent(variables.outfolder).FullName, dataGridView1.CurrentRow.Cells[1].Value.ToString()));
                 if (variables.debugme) Console.WriteLine((variables.FindFolder));

@@ -103,7 +103,7 @@ namespace JRunner
         public static string outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
         public static string AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "J-Runner with Extras");
         public static string tempfile = "";
-        public static string cpkey = "";
+        public static string cpukey = "";
         public static bool gotvalues = false;
 
         /// <summary>
