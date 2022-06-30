@@ -5,7 +5,7 @@ namespace JRunner
 {
     public partial class NandProArg : Form
     {
-        public delegate void ClickedRun(string function, string filename, int size, int startblock, int length);
+        public delegate void ClickedRun(string function, string filename, int size, int startblock, int length, bool recalcEcc);
         public event ClickedRun RunClick;
 
         public string ComFunc = "Read";
@@ -25,18 +25,18 @@ namespace JRunner
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            this.getfilename();
-            this.getlength();
+            this.getFilename();
+            this.getLength();
             this.getStart();
             this.getSize();
-            this.getfunction();
-            RunClick(getfunction(), getfilename(), getSize(), getStart(), getlength());
+            this.getFunction();
+            RunClick(getFunction(), getFilename(), getSize(), getStart(), getLength(), getRecalcEcc());
         }
-        public string getfilename()
+        public string getFilename()
         {
             return txtFilename.Text;
         }
-        public int getlength()
+        public int getLength()
         {
             try
             {
@@ -56,7 +56,7 @@ namespace JRunner
             catch (Exception) { }
             return 0;
         }
-        public string getfunction()
+        public string getFunction()
         {
             return ComFunc;
         }
@@ -70,26 +70,30 @@ namespace JRunner
             catch (Exception) { }
             return 0;
         }
+        public bool getRecalcEcc()
+        {
+            return chkRecalcEcc.Checked;
+        }
 
         private void btnfile_Click(object sender, EventArgs e)
         {
             if (readbtn.Checked)
             {
-                string filename1 = "";
+                string file = "";
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Nand files (*.bin)|*.bin";
                 saveFileDialog.Title = "Save to File";
                 saveFileDialog.RestoreDirectory = false;
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    filename1 = saveFileDialog.FileName;
-                    variables.currentdir = filename1;
+                    file = saveFileDialog.FileName;
+                    variables.currentdir = file;
                 }
-                if (filename1 != "") this.txtFilename.Text = filename1;
+                if (!String.IsNullOrWhiteSpace(file)) this.txtFilename.Text = file;
             }
             else
             {
-                string filename1 = "";
+                string file = "";
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 if (xsvfbtn.Checked && timingType == 2) openFileDialog.Filter = "SVF files (*.svf)|*.svf";
                 else if (xsvfbtn.Checked && timingType == 1) openFileDialog.Filter = "XSVF files (*.xsvf)|*.xsvf";
@@ -99,10 +103,10 @@ namespace JRunner
                 openFileDialog.RestoreDirectory = false;
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    filename1 = openFileDialog.FileName;
-                    variables.currentdir = filename1;
+                    file = openFileDialog.FileName;
+                    variables.currentdir = file;
                 }
-                if (filename1 != "") this.txtFilename.Text = filename1;
+                if (!String.IsNullOrWhiteSpace(file)) this.txtFilename.Text = file;
             }
         }
 
@@ -138,6 +142,9 @@ namespace JRunner
             {
                 ComFunc = "Xsvf";
             }
+
+            if (!writebtn.Checked) chkRecalcEcc.Checked = false;
+            chkRecalcEcc.Visible = writebtn.Checked;
 
             if (erasebtn.Checked)
             {
@@ -197,19 +204,19 @@ namespace JRunner
 
         public void UpdateDevice()
         {
-            if (MainForm.mainForm.device == MainForm.DEVICE.NAND_X || MainForm.mainForm.device == MainForm.DEVICE.JR_PROGRAMMER)
+            timingType = MainForm.mainForm.getTimingType();
+
+            if (timingType == 1)
             {
                 timingType = 1;
                 xsvfbtn.Text = "XSVF";
             }
-            else if (MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_SPI || MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_EMMC)
+            else if (timingType == 2)
             {
-                timingType = 2;
                 xsvfbtn.Text = "SVF";
             }
             else
             {
-                timingType = 0;
                 xsvfbtn.Text = "XSVF";
             }
         }

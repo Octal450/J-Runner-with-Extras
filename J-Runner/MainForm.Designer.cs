@@ -100,8 +100,10 @@ namespace JRunner
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customNandProCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.corona4GBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomXeBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeFusionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.convertToRGH3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomXeBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripHexEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.cPUKeyToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,8 +153,6 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.convertToRGH3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyContextMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -428,7 +428,7 @@ namespace JRunner
             this.showRootFolderToolStripMenuItem,
             this.showOutputFolderToolStripMenuItem});
             this.showWorkingFolderMenu.Name = "contextMenuStrip1";
-            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 48);
+            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 70);
             // 
             // showRootFolderToolStripMenuItem
             // 
@@ -777,19 +777,31 @@ namespace JRunner
             this.corona4GBToolStripMenuItem.Text = "Corona 4GB Read/Write…";
             this.corona4GBToolStripMenuItem.Click += new System.EventHandler(this.corona4GBToolStripMenuItem_Click);
             // 
-            // CustomXeBuildMenuItem
-            // 
-            this.CustomXeBuildMenuItem.Name = "CustomXeBuildMenuItem";
-            this.CustomXeBuildMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.CustomXeBuildMenuItem.Text = "XeBuild Command…";
-            this.CustomXeBuildMenuItem.Click += new System.EventHandler(this.CustomXeBuildMenuItem_Click);
-            // 
             // writeFusionToolStripMenuItem
             // 
             this.writeFusionToolStripMenuItem.Name = "writeFusionToolStripMenuItem";
             this.writeFusionToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.writeFusionToolStripMenuItem.Text = "Special/Fusion Write";
             this.writeFusionToolStripMenuItem.Click += new System.EventHandler(this.writeFusionToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 6);
+            // 
+            // convertToRGH3ToolStripMenuItem
+            // 
+            this.convertToRGH3ToolStripMenuItem.Name = "convertToRGH3ToolStripMenuItem";
+            this.convertToRGH3ToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.convertToRGH3ToolStripMenuItem.Text = "Convert to RGH3";
+            this.convertToRGH3ToolStripMenuItem.Click += new System.EventHandler(this.convertToRGH3ToolStripMenuItem_Click);
+            // 
+            // CustomXeBuildMenuItem
+            // 
+            this.CustomXeBuildMenuItem.Name = "CustomXeBuildMenuItem";
+            this.CustomXeBuildMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.CustomXeBuildMenuItem.Text = "XeBuild Command…";
+            this.CustomXeBuildMenuItem.Click += new System.EventHandler(this.CustomXeBuildMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -1188,18 +1200,6 @@ namespace JRunner
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // convertToRGH3ToolStripMenuItem
-            // 
-            this.convertToRGH3ToolStripMenuItem.Name = "convertToRGH3ToolStripMenuItem";
-            this.convertToRGH3ToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.convertToRGH3ToolStripMenuItem.Text = "Convert to RGH3";
-            this.convertToRGH3ToolStripMenuItem.Click += new System.EventHandler(this.convertToRGH3ToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 6);
             // 
             // MainForm
             // 

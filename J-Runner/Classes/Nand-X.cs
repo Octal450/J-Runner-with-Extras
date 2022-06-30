@@ -856,7 +856,7 @@ namespace JRunner
             try
             {
                 MyUsbDevice = OpenDevice();
-                if (MyUsbDevice == null) { Console.WriteLine("Device Not Found."); return; }
+                if (MyUsbDevice == null) { Console.WriteLine("Device Not Found"); return; }
                 UsbSetupPacket packet = new UsbSetupPacket();
                 packet.RequestType = (byte)UsbRequestType.TypeVendor;
 
@@ -885,7 +885,7 @@ namespace JRunner
             try
             {
                 MyUsbDevice = OpenDevice();
-                if (MyUsbDevice == null) { Console.WriteLine("Device not found."); return; }
+                if (MyUsbDevice == null) { Console.WriteLine("Device Not Found"); return; }
                 UsbSetupPacket packet = new UsbSetupPacket();
                 packet.RequestType = (byte)UsbRequestType.TypeVendor;
 
@@ -914,7 +914,7 @@ namespace JRunner
             try
             {
                 MyUsbDevice = OpenDevice();
-                if (MyUsbDevice == null) { Console.WriteLine("Device Not Found."); return; }
+                if (MyUsbDevice == null) { Console.WriteLine("Device Not Found"); return; }
                 UsbSetupPacket packet = new UsbSetupPacket();
                 packet.RequestType = (byte)UsbRequestType.TypeVendor;
 

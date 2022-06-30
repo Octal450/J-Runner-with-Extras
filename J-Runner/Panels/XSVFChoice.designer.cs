@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XSVFChoice));
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnProgram = new System.Windows.Forms.Button();
+            this.btnProgram = new UI.SplitButton();
+            this.programMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TimingTabs = new System.Windows.Forms.TabControl();
             this.Rgh12Timings = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
@@ -131,6 +135,7 @@
             this.Zephyr687_03 = new System.Windows.Forms.RadioButton();
             this.Zephyr687_02 = new System.Windows.Forms.RadioButton();
             this.btnAss = new System.Windows.Forms.Button();
+            this.programMenu.SuspendLayout();
             this.TimingTabs.SuspendLayout();
             this.Rgh12Timings.SuspendLayout();
             this.Rgh12TcSelectGroup.SuspendLayout();
@@ -147,9 +152,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(87, 269);
+            this.btnCancel.Location = new System.Drawing.Point(260, 268);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(74, 23);
             this.btnCancel.TabIndex = 81;
             this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -157,13 +162,33 @@
             // 
             // btnProgram
             // 
-            this.btnProgram.Location = new System.Drawing.Point(5, 269);
+            this.btnProgram.AutoSize = true;
+            this.btnProgram.BtnImage = ((System.Drawing.Image)(resources.GetObject("btnProgram.BtnImage")));
+            this.btnProgram.ContextMenuStrip = this.programMenu;
+            this.btnProgram.DropDownContextMenu = this.programMenu;
+            this.btnProgram.Image = ((System.Drawing.Image)(resources.GetObject("btnProgram.Image")));
+            this.btnProgram.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnProgram.Location = new System.Drawing.Point(5, 268);
             this.btnProgram.Name = "btnProgram";
-            this.btnProgram.Size = new System.Drawing.Size(75, 23);
+            this.btnProgram.Size = new System.Drawing.Size(137, 23);
             this.btnProgram.TabIndex = 80;
             this.btnProgram.Text = "Program";
             this.btnProgram.UseVisualStyleBackColor = true;
             this.btnProgram.Click += new System.EventHandler(this.btnProgram_Click);
+            // 
+            // programMenu
+            // 
+            this.programMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectFileToolStripMenuItem});
+            this.programMenu.Name = "programMenu";
+            this.programMenu.Size = new System.Drawing.Size(136, 26);
+            // 
+            // selectFileToolStripMenuItem
+            // 
+            this.selectFileToolStripMenuItem.Name = "selectFileToolStripMenuItem";
+            this.selectFileToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.selectFileToolStripMenuItem.Text = "Select File…";
+            this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
             // 
             // TimingTabs
             // 
@@ -171,7 +196,7 @@
             this.TimingTabs.Controls.Add(this.SrghTimings);
             this.TimingTabs.Controls.Add(this.MiscTimings);
             this.TimingTabs.ItemSize = new System.Drawing.Size(111, 18);
-            this.TimingTabs.Location = new System.Drawing.Point(6, 5);
+            this.TimingTabs.Location = new System.Drawing.Point(6, 6);
             this.TimingTabs.Name = "TimingTabs";
             this.TimingTabs.SelectedIndex = 0;
             this.TimingTabs.Size = new System.Drawing.Size(329, 260);
@@ -1337,7 +1362,7 @@
             // 
             // btnAss
             // 
-            this.btnAss.Location = new System.Drawing.Point(228, 269);
+            this.btnAss.Location = new System.Drawing.Point(148, 268);
             this.btnAss.Name = "btnAss";
             this.btnAss.Size = new System.Drawing.Size(106, 23);
             this.btnAss.TabIndex = 82;
@@ -1357,6 +1382,7 @@
             this.Controls.Add(this.btnProgram);
             this.Name = "XSVFChoice";
             this.Size = new System.Drawing.Size(341, 298);
+            this.programMenu.ResumeLayout(false);
             this.TimingTabs.ResumeLayout(false);
             this.Rgh12Timings.ResumeLayout(false);
             this.Rgh12TcSelectGroup.ResumeLayout(false);
@@ -1378,12 +1404,13 @@
             this.ZephyrRgh2Group.ResumeLayout(false);
             this.ZephyrRgh2Group.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnProgram;
+        private UI.SplitButton btnProgram;
         private System.Windows.Forms.TabControl TimingTabs;
         private System.Windows.Forms.TabPage Rgh12Timings;
         private System.Windows.Forms.TabPage SrghTimings;
@@ -1485,5 +1512,7 @@
         private System.Windows.Forms.GroupBox Rgh1Group;
         private System.Windows.Forms.Button btnAss;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ContextMenuStrip programMenu;
+        private System.Windows.Forms.ToolStripMenuItem selectFileToolStripMenuItem;
     }
 }

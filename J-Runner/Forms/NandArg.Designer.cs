@@ -51,6 +51,7 @@
             this.optionalbox = new System.Windows.Forms.GroupBox();
             this.chkOptional = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkRecalcEcc = new System.Windows.Forms.CheckBox();
             this.Commandgrp.SuspendLayout();
             this.sizebox.SuspendLayout();
             this.optionalbox.SuspendLayout();
@@ -258,23 +259,35 @@
             this.optionalbox.Size = new System.Drawing.Size(133, 79);
             this.optionalbox.TabIndex = 5;
             this.optionalbox.TabStop = false;
-            this.optionalbox.Text = "      Optional";
             // 
             // chkOptional
             // 
             this.chkOptional.AutoSize = true;
-            this.chkOptional.Location = new System.Drawing.Point(9, 0);
+            this.chkOptional.Location = new System.Drawing.Point(9, -1);
             this.chkOptional.Name = "chkOptional";
-            this.chkOptional.Size = new System.Drawing.Size(15, 14);
+            this.chkOptional.Size = new System.Drawing.Size(65, 17);
             this.chkOptional.TabIndex = 6;
+            this.chkOptional.Text = "Optional";
             this.chkOptional.UseVisualStyleBackColor = true;
             this.chkOptional.CheckedChanged += new System.EventHandler(this.chkOptional_CheckedChanged);
+            // 
+            // chkRecalcEcc
+            // 
+            this.chkRecalcEcc.AutoSize = true;
+            this.chkRecalcEcc.Location = new System.Drawing.Point(300, 87);
+            this.chkRecalcEcc.Name = "chkRecalcEcc";
+            this.chkRecalcEcc.Size = new System.Drawing.Size(110, 17);
+            this.chkRecalcEcc.TabIndex = 9;
+            this.chkRecalcEcc.Text = "Recalc ECC Data";
+            this.chkRecalcEcc.UseVisualStyleBackColor = true;
+            this.chkRecalcEcc.Visible = false;
             // 
             // NandProArg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 146);
+            this.Controls.Add(this.chkRecalcEcc);
             this.Controls.Add(this.optionalbox);
             this.Controls.Add(this.sizebox);
             this.Controls.Add(this.Commandgrp);
@@ -322,5 +335,6 @@
         private System.Windows.Forms.GroupBox optionalbox;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox chkOptional;
+        private System.Windows.Forms.CheckBox chkRecalcEcc;
     }
 }

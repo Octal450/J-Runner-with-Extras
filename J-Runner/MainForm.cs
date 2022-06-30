@@ -508,7 +508,10 @@ namespace JRunner
 
         void xsvfInfo_ProgramCRClick()
         {
-            if (xsvfInfo.heResult() == -1) return;
+            if (xsvfInfo.heResult() == -1)
+            {
+                MessageBox.Show("No timing selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             string file;
             if (variables.debugme) Console.WriteLine(xsvfInfo.heResult());
             bool demon = xsvfInfo.deResult();
@@ -533,6 +536,22 @@ namespace JRunner
             pnlInfo.Controls.Remove(xsvfInfo);
             pnlInfo.Controls.Add(listInfo[listInfo.Count - 1]);
             pnlTools.Enabled = true;
+        }
+
+        public int getTimingType()
+        {
+            if (device == DEVICE.NAND_X || device == DEVICE.JR_PROGRAMMER || DemoN.DemonDetected)
+            {
+                return 1;
+            }
+            else if (device == DEVICE.XFLASHER_SPI || device == DEVICE.XFLASHER_EMMC)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         #endregion
@@ -697,7 +716,7 @@ namespace JRunner
         #region Nand
         //////////////////////////////////////////////
 
-        void nandcustom(string function, string filename, int size, int startblock, int length)
+        public void nandcustom(string function, string filename, int size, int startblock, int length, bool recalcEcc)
         {
             if (String.IsNullOrWhiteSpace(filename) && function != "Erase") return;
             if (startblock < 0) startblock = 0;
@@ -775,31 +794,31 @@ namespace JRunner
                     {
                         starter = delegate
                         {
-                            if (Path.GetExtension(filename) == ".ecc") vnand.write_v2(filename, startblock, length, true, true);
+                            if (recalcEcc) vnand.write_v2(filename, startblock, length, true, true);
                             else vnand.write_v2(filename, startblock, length);
                         };
                     }
                     else if (device == DEVICE.PICOFLASHER)
                     {
-                        picoflasher.Write(Path.GetExtension(filename) == ".ecc" ? 1 : 0, (uint)startblock, (uint)(startblock + length)); // TODO: respect filename
+                        picoflasher.Write(recalcEcc ? 1 : 0, (uint)startblock, (uint)(startblock + length)); // TODO: respect filename
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
                     {
-                        if (Path.GetExtension(filename) == ".ecc") xflasher.writeNand(16, filename, 1, startblock, length, true);
+                        if (recalcEcc) xflasher.writeNand(16, filename, 1, startblock, length, true);
                         else xflasher.writeNand(size, filename, 0, startblock, length, true);
                     }
                     else
                     {
                         if (device == DEVICE.NAND_X && variables.mtxUsbMode)
                         {
-                            if (Path.GetExtension(filename) == ".ecc") mtx_usb.writeNand(16, filename, 1, startblock, length);
+                            if (recalcEcc) mtx_usb.writeNand(16, filename, 1, startblock, length);
                             else mtx_usb.writeNand(size, filename, 0, startblock, length);
                         }
                         else
                         {
                             starter = delegate
                             {
-                                if (Path.GetExtension(filename) == ".ecc") nandx.write(filename, sizex, startblock, length, true, true);
+                                if (recalcEcc) nandx.write(filename, sizex, startblock, length, true, true);
                                 else nandx.write(filename, sizex, startblock, length);
                             };
                         }
@@ -827,12 +846,16 @@ namespace JRunner
                         {
                             mtx_usb.flashXsvf(filename);
                         }
-                        else
+                        else if (device == DEVICE.NAND_X || device == DEVICE.JR_PROGRAMMER || DemoN.DemonDetected)
                         {
                             starter = delegate
                             {
                                 nandx.xsvf(filename);
                             };
+                        }
+                        else
+                        {
+                            Console.WriteLine("Device Not Found");
                         }
                     }
                     else
@@ -908,10 +931,19 @@ namespace JRunner
 
             return text.Substring(beginIndex, endIndex - beginIndex).Trim();
         }
-        void cnaform_RunClick(string function, string filename, int size, int startblock, int length)
+        void cnaform_RunClick(string function, string filename, int size, int startblock, int length, bool recalcEcc)
         {
-            if (size == 0 && function != "Xsvf") return;
-            nandcustom(function, filename, size, startblock, length);
+            if (String.IsNullOrWhiteSpace(filename) && function != "Erase")
+            {
+                MessageBox.Show("No file path selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (size == 0 && function != "Xsvf")
+            {
+                MessageBox.Show("No size selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            nandcustom(function, filename, size, startblock, length, recalcEcc);
         }
         //////////////////////////////////////////////
         void programcr(string filex)
@@ -935,7 +967,7 @@ namespace JRunner
                 {
                     if (device == DEVICE.PICOFLASHER)
                     {
-                        MessageBox.Show("PicoFlasher can't to write timing.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("PicoFlasher can't to write timing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else if(device == DEVICE.XFLASHER_SPI)
@@ -1466,7 +1498,6 @@ namespace JRunner
             Thread.Sleep(100);
             variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
 
-            //updateS((variables.filename1.Replace(variables.outfolder, variables.xefolder)));
             Console.WriteLine("Moving all files from output folder to {0}", variables.xefolder);
             String l_sDirectoryName = variables.xefolder;
             DirectoryInfo l_dDirInfo = new DirectoryInfo(l_sDirectoryName);
@@ -1486,12 +1517,12 @@ namespace JRunner
 
                     if ((fold.Contains(nand.ki.serial)) || ((variables.custname != "") && (fold.Contains(variables.custname))))
                     {
-                        System.IO.Directory.Move(fold, Path.Combine(variables.xefolder, name));
+                        Directory.Move(fold, Path.Combine(variables.xefolder, name));
                         variables.custname = "";
                     }
 
                 }
-                catch (System.IO.IOException e)
+                catch (IOException e)
                 {
                     Console.WriteLine(e.Message);
                 }
@@ -1501,7 +1532,7 @@ namespace JRunner
             {
                 if (variables.debugme) Console.WriteLine("Moving {0}", file);
                 FileInfo mFile = new FileInfo(file);
-                if (new FileInfo(l_dDirInfo + "\\" + mFile.Name).Exists == false)//to remove name collusion
+                if (new FileInfo(l_dDirInfo + "\\" + mFile.Name).Exists == false) //to remove name collusion
                     mFile.MoveTo(l_dDirInfo + "\\" + mFile.Name);
                 else
                 {
@@ -3492,19 +3523,15 @@ namespace JRunner
 
         void btnCreateECCClick()
         {
-            if (variables.ctyp.ID == -1)
-            {
-                MessageBox.Show("No console type is selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             if (String.IsNullOrWhiteSpace(variables.filename1))
             {
-                loadfile(ref variables.filename1, ref this.txtFilePath1, true);
-                if (String.IsNullOrWhiteSpace(variables.filename1))
-                {
-                    MessageBox.Show("No file loaded in source!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show("No file loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (variables.ctyp.ID == -1)
+            {
+                MessageBox.Show("No console type is selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             if (xPanel.getRbtnJtagChecked())
@@ -3545,7 +3572,8 @@ namespace JRunner
             }
             else
             {
-                MessageBox.Show("Impossible to create an ECC for this hack type", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("This function does not operate in retail mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
@@ -3570,6 +3598,12 @@ namespace JRunner
 
         void btnWriteECCClick()
         {
+            if (String.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No file loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (device == DEVICE.PICOFLASHER)
             {
                 picoflasher.Write(nTools.getbtnWriteECC().Contains("XeLL") ? 0 : 1, 0, 0, true);
@@ -3614,8 +3648,31 @@ namespace JRunner
             }
         }
 
+        private void btnXeBuildClick()
+        {
+            if (String.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (variables.ctyp.ID == -1)
+            {
+                MessageBox.Show("No console type is selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ThreadStart starter = delegate { xPanel.createxebuild_v2(false, nand, false); };
+            new Thread(starter).Start();
+        }
+
         void btnWriteClick()
         {
+            if (String.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No file loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (device == DEVICE.PICOFLASHER)
             {
                 picoflasher.Write(0);
@@ -3635,13 +3692,6 @@ namespace JRunner
                 if (device == DEVICE.NAND_X && variables.mtxUsbMode) mtx_usb.writeNandAuto();
                 else getconsoletype(2);
             }
-        }
-
-        private void btnXeBuildClick()
-        {
-            if (variables.ctyp.ID == -1) return;
-            ThreadStart starter = delegate { xPanel.createxebuild_v2(false, nand, false); };
-            new Thread(starter).Start();
         }
 
         #endregion

@@ -588,5 +588,22 @@ namespace JRunner.Panels
         {
             MainForm.mainForm.timingAssistant();
         }
+
+        private void selectFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int timingType = MainForm.mainForm.getTimingType();
+            string file = "";
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (timingType == 2) openFileDialog.Filter = "SVF files (*.svf)|*.svf";
+            else if (timingType == 1) openFileDialog.Filter = "XSVF files (*.xsvf)|*.xsvf";
+            else openFileDialog.Filter = "XSVF/SVF files (*.xsvf;*.svf)|*.xsvf;*.svf";
+            openFileDialog.Title = "Select a File";
+            openFileDialog.RestoreDirectory = false;
+            if (openFileDialog.ShowDialog() == DialogResult.OK) file = openFileDialog.FileName;
+            if (!String.IsNullOrWhiteSpace(file))
+            {
+                MainForm.mainForm.nandcustom("Xsvf", file, 16, 0, 0, false);
+            }
+        }
     }
 }

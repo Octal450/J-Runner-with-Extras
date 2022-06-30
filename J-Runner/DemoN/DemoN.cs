@@ -717,7 +717,7 @@ namespace JRunner
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
         }
 
@@ -809,7 +809,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
         }
         public byte[] r_DemoN()
@@ -828,7 +828,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
             return null;
         }
@@ -952,7 +952,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
         }
 
@@ -1574,7 +1574,7 @@ namespace JRunner
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
         }
         public void toggle(Demon_Switch switc)
@@ -1634,7 +1634,7 @@ namespace JRunner
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
         }
         public void Power_On()
@@ -1651,7 +1651,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
         }
         public void Power_Off()
@@ -1668,7 +1668,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
         }
         public bool get_Invalid_Blocks(ref List<int> Invalid_Blocks)
@@ -1735,7 +1735,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
                 return false;
             }
             return false;
@@ -1768,7 +1768,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
             return -1;
         }
@@ -1806,7 +1806,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
         }
         public void getBootloaderVersion()
@@ -1834,7 +1834,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
         }
         public void get_firmware()
@@ -1862,7 +1862,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device not found.");
+                if (variables.debugme) Console.WriteLine("Device Not Found");
             }
         }
         public void get_external_flash_id()
@@ -1890,7 +1890,7 @@ namespace JRunner
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
         }
         public void get_protocol()
@@ -1918,7 +1918,7 @@ namespace JRunner
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
         }
         public void get_id()
@@ -1948,7 +1948,7 @@ namespace JRunner
             }
             else
             {
-                Console.WriteLine("Device not found.");
+                Console.WriteLine("Device Not Found");
             }
         }
 
