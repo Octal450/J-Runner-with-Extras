@@ -1256,7 +1256,7 @@ namespace JRunner
                         {
                             this.txtFilePath1.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1);
                             Thread.Sleep(1000);
-                            nand_init();
+                            nand_init(true);
                             Thread.Sleep(1000);
                         }
                     }
@@ -1319,7 +1319,7 @@ namespace JRunner
                     this.txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1)));
 
                     Thread.Sleep(1000);
-                    nand_init();
+                    nand_init(true);
                 }
             }
             else if (j >= 3)
@@ -1572,9 +1572,9 @@ namespace JRunner
             nand = new Nand.PrivateN(variables.filename1, variables.cpukey); // Re-init because folder changed
         }
 
-        public void nand_init()
+        public void nand_init(bool nomove = false)
         {
-            ThreadStart starter = delegate { nandinit(); };
+            ThreadStart starter = delegate { nandinit(nomove); };
             new Thread(starter).Start();
         }
 
@@ -1975,7 +1975,7 @@ namespace JRunner
             //btnCheckBadBlocks.Visible = true;
         }
 
-        void nandinit()
+        void nandinit(bool nomove = false)
         {
             bool movedalready = false;
             if (String.IsNullOrEmpty(variables.filename1)) return;
@@ -2036,7 +2036,7 @@ namespace JRunner
                     if (variables.debugme) Console.WriteLine(variables.filename1.Contains(variables.outfolder));
                     if ((variables.allmove) && (!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
                     {
-                        if (!movedalready)
+                        if (!movedalready && !nomove)
                         {
                             movework();
                             movedalready = true;
@@ -2072,7 +2072,7 @@ namespace JRunner
                             txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
                             if ((!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
                             {
-                                if (!movedalready)
+                                if (!movedalready && !nomove)
                                 {
                                     movework();
                                     movedalready = true;
@@ -2198,7 +2198,7 @@ namespace JRunner
                     Console.WriteLine(variables.filename1.Contains(variables.outfolder));
                 if (variables.allmove && !variables.filename1.Contains(nand.ki.serial) && variables.filename1.Contains(variables.outfolder))
                 {
-                    if (!movedalready)
+                    if (!movedalready && !nomove)
                     {
                         movework();
                         movedalready = true;
@@ -2279,32 +2279,32 @@ namespace JRunner
                 switch (variables.ctyp.ID)
                 {
                     case 1:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_trinity + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_trinity + cr4 + smcp + ".ecc");
                         break;
                     case 2:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 3:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc"); // Use Falcon
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_falcon + cr4 + smcp + ".ecc"); // Use Falcon
                         Console.WriteLine("Using Falcon type for Zephyr");
                         break;
                     case 4:
                     case 5:
                     case 6:
                     case 7:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_jasper + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_jasper + cr4 + smcp + ".ecc");
                         break;
                     case 8:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_xenon + ".ecc"); // No CR4 or SMC+
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_xenon + ".ecc"); // No CR4 or SMC+
                         break;
                     case 9:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 10:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_corona + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona + wb + cr4 + smcp + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGX_corona4GB + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona4GB + wb + cr4 + smcp + ".ecc");
                         break;
                     default:
                         return "";
@@ -4742,7 +4742,7 @@ namespace JRunner
             {
                 txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = Path.Combine(variables.filename)));
                 variables.filename1 = variables.filename;
-                nand_init();
+                nand_init(true);
             }
             if (i == 3 && File.Exists(variables.filename))
             {
@@ -4830,7 +4830,7 @@ namespace JRunner
             {
                 txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = Path.Combine(variables.filename)));
                 variables.filename1 = variables.filename;
-                nand_init();
+                nand_init(true);
             }
             if (idx == 1 && File.Exists(variables.filename))
             {

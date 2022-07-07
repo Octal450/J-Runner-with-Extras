@@ -77,6 +77,7 @@ namespace JRunner
                 ready = true;
                 initTimer.Stop();
                 if (!inUse) MainForm.mainForm.xFlasherBusy(-1);
+                Thread.Sleep(100);
                 waiting = false;
             }
         }
@@ -105,13 +106,7 @@ namespace JRunner
         {
             if (!osCheck()) return;
 
-            if (waiting) return;
-
-            if (inUse)
-            {
-                Console.WriteLine("xFlasher: Device Is Busy");
-                return;
-            }
+            if (inUse || waiting) return;
 
             Thread ftdiThread = new Thread(() =>
             {
@@ -132,6 +127,8 @@ namespace JRunner
                 }
                 catch (Exception ex)
                 {
+                    inUse = false;
+
                     Console.WriteLine(ex.Message);
                     if (variables.debugme) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
@@ -208,12 +205,7 @@ namespace JRunner
         {
             if (!osCheck()) return;
 
-            if (waiting) return;
-
-            if (inUse)
-            {
-                return;
-            }
+            if (inUse || waiting) return;
 
             Thread ftdiThread = new Thread(() =>
             {
@@ -295,7 +287,10 @@ namespace JRunner
                 }
                 catch (Exception ex)
                 {
+                    inUse = false;
+                    MainForm.mainForm.xFlasherBusy(-1);
                     if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
+
                     Console.WriteLine(ex.Message);
                     if (variables.debugme) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
@@ -309,12 +304,7 @@ namespace JRunner
         {
             if (!osCheck()) return;
 
-            if (waiting) return;
-
-            if (inUse)
-            {
-                return;
-            }
+            if (inUse || waiting) return;
 
             Thread ftdiThread = new Thread(() =>
             {
@@ -473,6 +463,12 @@ namespace JRunner
                 }
                 catch (Exception ex)
                 {
+                    inUseTimer.Enabled = false;
+                    inUseCount = 0;
+                    inUse = false;
+                    variables.reading = false;
+                    MainForm.mainForm.xFlasherBusy(0);
+
                     Console.WriteLine(ex.Message);
                     if (variables.debugme) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
@@ -485,14 +481,9 @@ namespace JRunner
         {
             if (!osCheck()) return;
 
-            if (waiting) return;
+            if (inUse || waiting) return;
 
             if (String.IsNullOrWhiteSpace(filename)) return;
-
-            if (inUse)
-            {
-                return;
-            }
 
             Thread ftdiThread = new Thread(() =>
             {
@@ -597,6 +588,12 @@ namespace JRunner
                 }
                 catch (Exception ex)
                 {
+                    inUseTimer.Enabled = false;
+                    inUseCount = 0;
+                    inUse = false;
+                    variables.reading = false;
+                    MainForm.mainForm.xFlasherBusy(0);
+
                     Console.WriteLine(ex.Message);
                     if (variables.debugme) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
@@ -686,18 +683,12 @@ namespace JRunner
         {
             if (!osCheck()) return;
 
-            if (waiting) return;
+            if (inUse || waiting) return;
 
             if (filename != "erase")
             {
                 if (String.IsNullOrWhiteSpace(filename)) return;
                 if (!File.Exists(filename)) return;
-            }
-
-            if (inUse)
-            {
-                Console.WriteLine("xFlasher: Device Is Busy");
-                return;
             }
 
             Thread ftdiThread = new Thread(() =>
@@ -873,6 +864,12 @@ namespace JRunner
                 }
                 catch (Exception ex)
                 {
+                    inUseTimer.Enabled = false;
+                    inUseCount = 0;
+                    inUse = false;
+                    variables.writing = false;
+                    MainForm.mainForm.xFlasherBusy(0);
+
                     Console.WriteLine(ex.Message);
                     if (variables.debugme) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
@@ -906,13 +903,7 @@ namespace JRunner
         {
             if (!osCheck()) return;
 
-            if (waiting) return;
-
-            if (inUse)
-            {
-                Console.WriteLine("xFlasher: Device Is Busy");
-                return;
-            }
+            if (inUse || waiting) return;
 
             if (Process.GetProcessesByName("jtag").Length > 0)
             {
@@ -1040,6 +1031,8 @@ namespace JRunner
                 }
                 catch (Exception ex)
                 {
+                    inUse = false;
+
                     Console.WriteLine(ex.Message);
                     if (variables.debugme) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");

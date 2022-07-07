@@ -246,13 +246,13 @@ namespace JRunner
         public static int smcmbtype = 0x0;
         public static string flashconfig = "";
 
-        public static string RGX_trinity = "TRINITY";
-        public static string RGX_falcon = "FALCON";
-        public static string RGX_zephyr = "ZEPHYR";
-        public static string RGX_jasper = "JASPER";
-        public static string RGX_xenon = "XENON_V2";
-        public static string RGX_corona = "CORONA_16MB";
-        public static string RGX_corona4GB = "CORONA_4GB";
+        public static string Glitch2_trinity = "TRINITY";
+        public static string Glitch2_falcon = "FALCON";
+        public static string Glitch2_zephyr = "ZEPHYR";
+        public static string Glitch2_jasper = "JASPER";
+        public static string Glitch2_xenon = "XENON_V2";
+        public static string Glitch2_corona = "CORONA_16MB";
+        public static string Glitch2_corona4GB = "CORONA_4GB";
 
         public static string RGH3_trinity = "TRINITY_RGH3";
         public static string RGH3_falcon = "FALCON_RGH3";
