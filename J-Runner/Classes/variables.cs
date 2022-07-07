@@ -223,7 +223,7 @@ namespace JRunner
             // RGH1: 1-3
             "rgh1_zephyr", "rgh1_falcon", "rgh1_jasper",
             // RGH1.2: 4-11
-            "rgh12_17_v2", "rgh12_18_v2", "rgh12_19_v2", "rgh12_20_v2", "rgh12_21_v2", "rgh12_22_v2", "rgh12_23_v2", "rgh12_24_v2",
+            "rgh12_fj_17_v2", "rgh12_fj_18_v2", "rgh12_fj_19_v2", "rgh12_fj_20_v2", "rgh12_fj_21_v2", "rgh12_fj_22_v2", "rgh12_fj_23_v2", "rgh12_fj_24_v2",
             // R-JTOP: 12-13
             "rjtop_falcon", "rjtop_jasper",
             // Trinity S-RGH: 14-29
