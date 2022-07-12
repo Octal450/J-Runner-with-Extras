@@ -74,11 +74,10 @@ namespace JRunner
             }
             else
             {
-                ready = true;
                 initTimer.Stop();
                 if (!inUse) MainForm.mainForm.xFlasherBusy(-1);
-                Thread.Sleep(100);
                 waiting = false;
+                ready = true; // Last
             }
         }
 

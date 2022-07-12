@@ -2286,7 +2286,7 @@ namespace JRunner
                         break;
                     case 3:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_falcon + cr4 + smcp + ".ecc"); // Use Falcon
-                        Console.WriteLine("Using Falcon type for Zephyr");
+                        if (variables.debugme) Console.WriteLine("Using Falcon type for Zephyr");
                         break;
                     case 4:
                     case 5:
