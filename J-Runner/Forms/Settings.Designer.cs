@@ -72,6 +72,7 @@
             this.chkNoPatchWarnings = new System.Windows.Forms.CheckBox();
             this.chkPlaySuccess = new System.Windows.Forms.CheckBox();
             this.chkPlayError = new System.Windows.Forms.CheckBox();
+            this.chkAutoDelEcc = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.sonusDelay)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -125,7 +126,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOK.Location = new System.Drawing.Point(268, 288);
+            this.btnOK.Location = new System.Drawing.Point(268, 311);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 23);
             this.btnOK.TabIndex = 1;
@@ -292,7 +293,8 @@
             // 
             // logBackgroundCustom
             // 
-            this.logBackgroundCustom.Location = new System.Drawing.Point(242, 222);
+            this.logBackgroundCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.logBackgroundCustom.Location = new System.Drawing.Point(242, 245);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
             this.logBackgroundCustom.TabIndex = 31;
@@ -303,8 +305,9 @@
             // 
             // logBackgroundBlue
             // 
+            this.logBackgroundBlue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logBackgroundBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(36)))), ((int)(((byte)(86)))));
-            this.logBackgroundBlue.Location = new System.Drawing.Point(216, 222);
+            this.logBackgroundBlue.Location = new System.Drawing.Point(216, 245);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlue.TabIndex = 30;
@@ -314,8 +317,9 @@
             // 
             // logBackgroundBlack
             // 
+            this.logBackgroundBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logBackgroundBlack.BackColor = System.Drawing.Color.Black;
-            this.logBackgroundBlack.Location = new System.Drawing.Point(190, 222);
+            this.logBackgroundBlack.Location = new System.Drawing.Point(190, 245);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlack.TabIndex = 29;
@@ -325,7 +329,8 @@
             // 
             // logTextCustom
             // 
-            this.logTextCustom.Location = new System.Drawing.Point(242, 248);
+            this.logTextCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.logTextCustom.Location = new System.Drawing.Point(242, 271);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
             this.logTextCustom.TabIndex = 34;
@@ -336,8 +341,9 @@
             // 
             // logTextBlack
             // 
+            this.logTextBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logTextBlack.BackColor = System.Drawing.Color.Black;
-            this.logTextBlack.Location = new System.Drawing.Point(216, 248);
+            this.logTextBlack.Location = new System.Drawing.Point(216, 271);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
             this.logTextBlack.TabIndex = 33;
@@ -347,8 +353,9 @@
             // 
             // logTextWhite
             // 
+            this.logTextWhite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logTextWhite.BackColor = System.Drawing.Color.White;
-            this.logTextWhite.Location = new System.Drawing.Point(190, 248);
+            this.logTextWhite.Location = new System.Drawing.Point(190, 271);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
             this.logTextWhite.TabIndex = 32;
@@ -358,8 +365,9 @@
             // 
             // label11
             // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 251);
+            this.label11.Location = new System.Drawing.Point(12, 274);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 42;
@@ -367,8 +375,9 @@
             // 
             // label10
             // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 225);
+            this.label10.Location = new System.Drawing.Point(12, 248);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 38;
@@ -376,7 +385,8 @@
             // 
             // logDefault
             // 
-            this.logDefault.Location = new System.Drawing.Point(134, 222);
+            this.logDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.logDefault.Location = new System.Drawing.Point(134, 245);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
             this.logDefault.TabIndex = 28;
@@ -457,7 +467,7 @@
             // btnReset
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnReset.Location = new System.Drawing.Point(15, 288);
+            this.btnReset.Location = new System.Drawing.Point(15, 311);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(76, 23);
             this.btnReset.TabIndex = 40;
@@ -482,7 +492,7 @@
             this.chkPlaySuccess.AutoSize = true;
             this.chkPlaySuccess.Checked = true;
             this.chkPlaySuccess.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPlaySuccess.Location = new System.Drawing.Point(15, 174);
+            this.chkPlaySuccess.Location = new System.Drawing.Point(15, 197);
             this.chkPlaySuccess.Name = "chkPlaySuccess";
             this.chkPlaySuccess.Size = new System.Drawing.Size(157, 17);
             this.chkPlaySuccess.TabIndex = 43;
@@ -494,19 +504,32 @@
             this.chkPlayError.AutoSize = true;
             this.chkPlayError.Checked = true;
             this.chkPlayError.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPlayError.Location = new System.Drawing.Point(15, 197);
+            this.chkPlayError.Location = new System.Drawing.Point(15, 220);
             this.chkPlayError.Name = "chkPlayError";
             this.chkPlayError.Size = new System.Drawing.Size(138, 17);
             this.chkPlayError.TabIndex = 44;
             this.chkPlayError.Text = "Play error sound (oh no)";
             this.chkPlayError.UseVisualStyleBackColor = true;
             // 
+            // chkAutoDelEcc
+            // 
+            this.chkAutoDelEcc.AutoSize = true;
+            this.chkAutoDelEcc.Checked = true;
+            this.chkAutoDelEcc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoDelEcc.Location = new System.Drawing.Point(15, 174);
+            this.chkAutoDelEcc.Name = "chkAutoDelEcc";
+            this.chkAutoDelEcc.Size = new System.Drawing.Size(206, 17);
+            this.chkAutoDelEcc.TabIndex = 45;
+            this.chkAutoDelEcc.Text = "Auto delete ECC after successful write";
+            this.chkAutoDelEcc.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 326);
+            this.ClientSize = new System.Drawing.Size(612, 349);
+            this.Controls.Add(this.chkAutoDelEcc);
             this.Controls.Add(this.chkPlayError);
             this.Controls.Add(this.chkPlaySuccess);
             this.Controls.Add(this.chkNoPatchWarnings);
@@ -598,5 +621,6 @@
         private System.Windows.Forms.CheckBox chkNoPatchWarnings;
         private System.Windows.Forms.CheckBox chkPlaySuccess;
         private System.Windows.Forms.CheckBox chkPlayError;
+        private System.Windows.Forms.CheckBox chkAutoDelEcc;
     }
 }

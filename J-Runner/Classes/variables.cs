@@ -129,16 +129,13 @@ namespace JRunner
         public static bool noPatchWarnings = false;
         public static Color logbackground = Color.Black;
         public static Color logtext = Color.White;
-        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Delay", "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
-                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "TimingOnKeypress", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings",
-                                            "PlaySuccess", "PlayError"};
-
-        #region
-
-        #endregion
         public static string ip = "", custname = "";
         public static bool playSuccess = true;
         public static bool playError = true;
+        public static bool autoDelEcc = true;
+        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Delay", "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
+                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "TimingOnKeypress", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings",
+                                            "PlaySuccess", "PlayError", "AutoDelEcc"};
 
         public static string COMPort = "";
 

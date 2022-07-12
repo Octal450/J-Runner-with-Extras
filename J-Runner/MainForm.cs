@@ -1467,8 +1467,10 @@ namespace JRunner
                     txtFileSource.Text = "";
                     if (variables.tempfile != "")
                     {
+                        string ecc = variables.filename1;
                         variables.filename1 = variables.tempfile;
                         txtFileSource.Text = variables.tempfile;
+                        deleteEcc(ecc);
                     }
                 }
             }
@@ -1484,8 +1486,10 @@ namespace JRunner
 
                 if (variables.tempfile != "" && result == NandX.Errors.None)
                 {
+                    string ecc = variables.filename1;
                     variables.filename1 = variables.tempfile;
                     txtFileSource.Text = variables.tempfile;
+                    deleteEcc(ecc);
                 }
             }
         }
@@ -2025,7 +2029,11 @@ namespace JRunner
                 nandInfo.change_tab();
                 updateProgress(progressBar.Maximum / 2);
                 nand = new Nand.PrivateN(variables.filename1, variables.cpukey);
-                if (!nand.ok) return;
+                if (!nand.ok)
+                {
+                    updateProgress(progressBar.Maximum);
+                    return;
+                }
 
                 if (variables.debugme) Console.WriteLine("N Key: {0}, V Key: {1}", nand._cpukey, variables.cpukey);
 
@@ -2449,6 +2457,19 @@ namespace JRunner
             }
         }
 
+        public void deleteEcc(string file)
+        {
+            try
+            {
+                if (File.Exists(file))
+                {
+                    File.Delete(file);
+                    if (variables.debugme) Console.WriteLine("Deleted ECC");
+                }
+            }
+            catch { }
+        }
+
         public void extractFilesFromNand()
         {
             if (!nand.ok)
@@ -2735,7 +2756,7 @@ namespace JRunner
 
         #region Forms
 
-        void loadfile(ref string filename, ref TextBox tx, bool erase = false)
+        public bool loadfile(ref string filename, ref TextBox tx, bool erase = false)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc|HEX files (*.hex)|*.hex|All files (*.*)|*.*";
@@ -2748,13 +2769,15 @@ namespace JRunner
             else openFileDialog1.InitialDirectory = variables.currentdir;
             openFileDialog1.RestoreDirectory = false;
 
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 if (erase) erasevariables();
                 filename = openFileDialog1.FileName;
                 if (!String.IsNullOrWhiteSpace(filename)) tx.Text = filename;
             }
+            else return false;
             variables.currentdir = filename;
+            return true;
         }
 
         consoles callConsoleTypes(ConsoleTypes.Selected selec, bool twomb = false, bool full = false)
@@ -2808,42 +2831,6 @@ namespace JRunner
             pnlInfo.Controls.Add(ldInfo);
             if (listInfo.Contains(ldInfo)) listInfo.Remove(ldInfo);
             listInfo.Add(ldInfo);
-            //Forms.LDrives ld = new Forms.LDrives(filename, f, numericiter);
-            //ld.Show();
-            //ld.FormClosed += ld_FormClosed;
-        }
-
-        void ld_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            string getfilename = "";
-            getfilename = Forms.LDrives.filename;
-            if (!string.IsNullOrEmpty(getfilename) && Forms.LDrives.fu != Forms.LDrives.Function.Write)
-            {
-                txtFileSource.Text = getfilename;
-                variables.filename1 = getfilename;
-            }
-            if (Forms.LDrives.fu == Forms.LDrives.Function.Read && Forms.LDrives.files.Count > 0)
-            {
-                int i = 0;
-                int cnt = Forms.LDrives.files.Count;
-                foreach (string filename in Forms.LDrives.files)
-                {
-                    if (i == 0)
-                    {
-                        txtFileSource.Text = filename;
-                        variables.filename1 = filename;
-                        nand_init();
-                    }
-                    else if (i == 1)
-                    {
-                        txtFileExtra.Text = filename;
-                        variables.filename2 = filename;
-                        new Thread(comparenands).Start();
-                    }
-                    i++;
-                }
-            }
-            //nand_init();
         }
 
         void mycpukeydb_FormClosed(object sender, FormClosedEventArgs e)
@@ -3708,10 +3695,11 @@ namespace JRunner
                 return;
             }
 
-            string oldFile = variables.filename1;
-            loadfile(ref variables.filename1, ref this.txtFileSource, true);
-            Thread.Sleep(100);
-            if (variables.filename1 != oldFile) nand_init();
+            if (loadfile(ref variables.filename1, ref this.txtFileSource, true))
+            {
+                Thread.Sleep(100);
+                nand_init();
+            }
         }
 
         void btnLoadExtra_Click(object sender, System.EventArgs e)
@@ -3727,7 +3715,7 @@ namespace JRunner
             if (variables.debugme) Console.WriteLine("filename2/currentdir = {0}", variables.filename2);
         }
 
-        void comparebutton_Click(object sender, System.EventArgs e)
+        void btnCompare_Click(object sender, System.EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(variables.filename1))
             {
@@ -4444,6 +4432,9 @@ namespace JRunner
                         case "PlayError":
                             x.write(name, variables.playError.ToString());
                             break;
+                        case "AutoDelEcc":
+                            x.write(name, variables.autoDelEcc.ToString());
+                            break;
                         default:
                             break;
                     }
@@ -4641,6 +4632,11 @@ namespace JRunner
                             if (!bool.TryParse(val, out bvalue)) bvalue = true;
                             variables.playError = bvalue;
                             break;
+                        case "AutoDelEcc":
+                            bvalue = true;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = true;
+                            variables.autoDelEcc = bvalue;
+                            break;
                         default:
                             break;
                     }
@@ -4763,8 +4759,10 @@ namespace JRunner
         {
             if (variables.tempfile != "")
             {
+                string ecc = variables.filename1;
                 variables.filename1 = variables.tempfile;
                 txtFileSource.Text = variables.tempfile;
+                deleteEcc(ecc);
             }
         }
 

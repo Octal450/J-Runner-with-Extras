@@ -438,12 +438,6 @@
     <Compile Include="Forms\Comport.Designer.cs">
       <DependentUpon>Comport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LDrives.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LDrives.Designer.cs">
-      <DependentUpon>LDrives.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\LDV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -720,9 +714,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HexEdit\HexViewer.resx">
       <DependentUpon>HexViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LDrives.resx">
-      <DependentUpon>LDrives.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LDV.resx">
       <DependentUpon>LDV.cs</DependentUpon>

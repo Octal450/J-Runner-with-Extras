@@ -31,6 +31,7 @@ namespace JRunner.Forms
             modderbut.Checked = variables.modder;
             chkPlaySuccess.Checked = variables.playSuccess;
             chkPlayError.Checked = variables.playError;
+            chkAutoDelEcc.Checked = variables.autoDelEcc;
             timingOnKeypressEnable.Checked = variables.timingonkeypress;
             chkNoPatchWarnings.Checked = variables.noPatchWarnings;
             almovebut.Checked = !variables.allmove;
@@ -73,6 +74,7 @@ namespace JRunner.Forms
                 variables.autoExtract = AutoExtractcheckBox.Checked;
                 variables.modder = modderbut.Checked;
                 variables.allmove = !almovebut.Checked;
+                variables.autoDelEcc = chkAutoDelEcc.Checked;
                 variables.LPTtiming = rbtnTimingLpt.Checked;
                 if (!String.IsNullOrWhiteSpace(txtTimingLptPort.Text)) variables.LPTport = txtTimingLptPort.Text;
                 else variables.LPTport = "378";

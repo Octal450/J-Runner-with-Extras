@@ -36,7 +36,7 @@ namespace JRunner
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnExit = new System.Windows.Forms.Button();
-            this.comparebutton = new System.Windows.Forms.Button();
+            this.btnCompare = new System.Windows.Forms.Button();
             this.btnLoadExtra = new System.Windows.Forms.Button();
             this.btnLoadSource = new System.Windows.Forms.Button();
             this.txtFileExtra = new System.Windows.Forms.TextBox();
@@ -174,16 +174,16 @@ namespace JRunner
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // comparebutton
+            // btnCompare
             // 
-            this.comparebutton.Location = new System.Drawing.Point(390, 13);
-            this.comparebutton.Name = "comparebutton";
-            this.comparebutton.Size = new System.Drawing.Size(65, 51);
-            this.comparebutton.TabIndex = 24;
-            this.comparebutton.Text = "Nand Compare";
-            this.toolTip1.SetToolTip(this.comparebutton, "Compares the source and extra nands");
-            this.comparebutton.UseVisualStyleBackColor = true;
-            this.comparebutton.Click += new System.EventHandler(this.comparebutton_Click);
+            this.btnCompare.Location = new System.Drawing.Point(390, 13);
+            this.btnCompare.Name = "btnCompare";
+            this.btnCompare.Size = new System.Drawing.Size(65, 51);
+            this.btnCompare.TabIndex = 24;
+            this.btnCompare.Text = "Nand\r\nCompare";
+            this.toolTip1.SetToolTip(this.btnCompare, "Compares the source and extra nands");
+            this.btnCompare.UseVisualStyleBackColor = true;
+            this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
             // 
             // btnLoadExtra
             // 
@@ -472,7 +472,7 @@ namespace JRunner
             this.groupBox4.Controls.Add(this.txtFileSource);
             this.groupBox4.Controls.Add(this.btnLoadSource);
             this.groupBox4.Controls.Add(this.lblCpuKey);
-            this.groupBox4.Controls.Add(this.comparebutton);
+            this.groupBox4.Controls.Add(this.btnCompare);
             this.groupBox4.Controls.Add(this.txtCPUKey);
             this.groupBox4.Location = new System.Drawing.Point(12, 192);
             this.groupBox4.Name = "groupBox4";
@@ -1257,7 +1257,7 @@ namespace JRunner
         #endregion
 
         private Button btnExit;
-        private Button comparebutton;
+        private Button btnCompare;
         private Button btnLoadExtra;
         private Button btnLoadSource;
         private TextBox txtFileExtra;
