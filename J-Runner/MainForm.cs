@@ -424,7 +424,7 @@ namespace JRunner
 
         void ldInfo_UpdateAdditional(string file)
         {
-            txtFilePath2.Text = file;
+            txtFileExtra.Text = file;
             variables.filename2 = file;
         }
 
@@ -492,14 +492,14 @@ namespace JRunner
 
         void xPanel_updateSourc(string filename)
         {
-            txtFilePath1.Text = filename;
+            txtFileSource.Text = filename;
             variables.filename1 = filename;
             nand_init();
         }
 
         void xPanel_loadFil(ref string filename, bool erase = false)
         {
-            loadfile(ref filename, ref txtFilePath1, erase);
+            loadfile(ref filename, ref txtFileSource, erase);
         }
 
         #endregion
@@ -574,7 +574,7 @@ namespace JRunner
                 {
                     File.WriteAllBytes(savefile.FileName, temp);
                     variables.filename1 = savefile.FileName;
-                    txtFilePath1.Text = variables.filename1;
+                    txtFileSource.Text = variables.filename1;
                 }
             }
         }
@@ -587,7 +587,7 @@ namespace JRunner
 
         void nandInfo_DragDropChanged(string filename)
         {
-            this.txtFilePath1.Text = filename;
+            this.txtFileSource.Text = filename;
             variables.filename1 = filename;
             erasevariables();
             if (Path.GetExtension(filename) == ".bin")
@@ -1254,7 +1254,7 @@ namespace JRunner
                     {
                         if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                         {
-                            this.txtFilePath1.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1);
+                            this.txtFileSource.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1);
                             Thread.Sleep(1000);
                             nand_init(true);
                             Thread.Sleep(1000);
@@ -1264,7 +1264,7 @@ namespace JRunner
                     {
                         if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                         {
-                            this.txtFilePath2.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename2);
+                            this.txtFileExtra.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename2);
                             new Thread(comparenands).Start();
                         }
                     }
@@ -1316,7 +1316,7 @@ namespace JRunner
             {
                 if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                 {
-                    this.txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1)));
+                    this.txtFileSource.BeginInvoke((Action)(() => txtFileSource.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1)));
 
                     Thread.Sleep(1000);
                     nand_init(true);
@@ -1326,7 +1326,7 @@ namespace JRunner
             {
                 if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                 {
-                    this.txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename)));
+                    this.txtFileExtra.BeginInvoke((Action)(() => txtFileExtra.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename)));
                     new Thread(comparenands).Start();
                 }
 
@@ -1339,7 +1339,7 @@ namespace JRunner
         /// <param name="ecc"></param>
         void writenand(bool ecc, int writelength = 0)
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFilePath1, true);
+            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
             if (DemoN.DemonDetected)
@@ -1350,7 +1350,7 @@ namespace JRunner
                     if (variables.tempfile != "")
                     {
                         variables.filename1 = variables.tempfile;
-                        txtFilePath1.Text = variables.tempfile;
+                        txtFileSource.Text = variables.tempfile;
                     }
                 }
             }
@@ -1389,7 +1389,7 @@ namespace JRunner
                     if (variables.tempfile != "" && result == NandX.Errors.None)
                     {
                         variables.filename1 = variables.tempfile;
-                        txtFilePath1.Text = variables.tempfile;
+                        txtFileSource.Text = variables.tempfile;
                     }
                 }
                 else if (Path.GetExtension(variables.filename1) == ".bin")
@@ -1409,7 +1409,7 @@ namespace JRunner
         }
         void writefusion()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFilePath1, true);
+            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
             //if (textBox2.Text != "008A3020" && textBox2.Text != "00AA3020") ctypeselected = 0;
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
@@ -1454,7 +1454,7 @@ namespace JRunner
         }
         void writexell()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFilePath1, true);
+            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
             //if (textBox2.Text != "008A3020" && textBox2.Text != "00AA3020") ctypeselected = 0;
@@ -1464,11 +1464,11 @@ namespace JRunner
                 if (Path.GetExtension(variables.filename1) == ".bin")
                 {
                     variables.filename1 = "";
-                    txtFilePath1.Text = "";
+                    txtFileSource.Text = "";
                     if (variables.tempfile != "")
                     {
                         variables.filename1 = variables.tempfile;
-                        txtFilePath1.Text = variables.tempfile;
+                        txtFileSource.Text = variables.tempfile;
                     }
                 }
             }
@@ -1485,7 +1485,7 @@ namespace JRunner
                 if (variables.tempfile != "" && result == NandX.Errors.None)
                 {
                     variables.filename1 = variables.tempfile;
-                    txtFilePath1.Text = variables.tempfile;
+                    txtFileSource.Text = variables.tempfile;
                 }
             }
         }
@@ -1568,7 +1568,7 @@ namespace JRunner
             }
 
             variables.filename1 = variables.filename1.Replace(variables.outfolder, variables.xefolder);
-            txtFilePath1.BeginInvoke(new Action(() => txtFilePath1.Text = variables.filename1));            
+            txtFileSource.BeginInvoke(new Action(() => txtFileSource.Text = variables.filename1));            
             nand = new Nand.PrivateN(variables.filename1, variables.cpukey); // Re-init because folder changed
         }
 
@@ -1705,7 +1705,7 @@ namespace JRunner
                             if (variables.deletefiles)
                             {
                                 File.Delete(variables.filename2);
-                                txtFilePath2.Text = "";
+                                txtFileExtra.Text = "";
                             }
                         }
                         catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
@@ -1726,8 +1726,8 @@ namespace JRunner
                         {
                             FileEquals(variables.filename1, variables.filename2);
                         }
-                        txtFilePath1.Text = "";
-                        txtFilePath2.Text = "";
+                        txtFileSource.Text = "";
+                        txtFileExtra.Text = "";
                         variables.filename1 = "";
                         variables.filename2 = "";
                     }
@@ -1919,8 +1919,8 @@ namespace JRunner
                     variables.boardtype = null;
                 }
 
-                txtFilePath1.Text = "";
-                txtFilePath2.Text = "";
+                txtFileSource.Text = "";
+                txtFileExtra.Text = "";
                 variables.filename = "";
                 variables.filename1 = "";
                 variables.filename2 = "";
@@ -1977,6 +1977,8 @@ namespace JRunner
 
         void nandinit(bool nomove = false)
         {
+            if (variables.reading || variables.writing) return;
+
             bool movedalready = false;
             if (String.IsNullOrEmpty(variables.filename1)) return;
             if (!File.Exists(variables.filename1))
@@ -2310,7 +2312,7 @@ namespace JRunner
                         return "";
                 }
             }
-            txtFilePath1.Text = variables.filename1;
+            txtFileSource.Text = variables.filename1;
             return variables.filename1;
         }
 
@@ -2353,7 +2355,7 @@ namespace JRunner
                     if (result == 1)
                     {
                         variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
-                        txtFilePath1.Text = variables.filename1;
+                        txtFileSource.Text = variables.filename1;
                     }
                     else if (result == 5)
                     {
@@ -2372,7 +2374,7 @@ namespace JRunner
         {
             if (String.IsNullOrWhiteSpace(variables.filename1))
             {
-                loadfile(ref variables.filename1, ref this.txtFilePath1, true);
+                loadfile(ref variables.filename1, ref this.txtFileSource, true);
                 if (String.IsNullOrWhiteSpace(variables.filename1))
                 {
                     MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2440,7 +2442,7 @@ namespace JRunner
                     if (variables.debugme) Console.WriteLine(variables.filename1);
                     Oper.savefile(xellous, variables.filename1);
                     if (variables.debugme) Console.WriteLine("Saved Successfully");
-                    txtFilePath1.Text = variables.filename1;
+                    txtFileSource.Text = variables.filename1;
                     Console.WriteLine("XeLL file created successfully {0}", xellfile);
                     Console.WriteLine("");
                 }
@@ -2817,7 +2819,7 @@ namespace JRunner
             getfilename = Forms.LDrives.filename;
             if (!string.IsNullOrEmpty(getfilename) && Forms.LDrives.fu != Forms.LDrives.Function.Write)
             {
-                txtFilePath1.Text = getfilename;
+                txtFileSource.Text = getfilename;
                 variables.filename1 = getfilename;
             }
             if (Forms.LDrives.fu == Forms.LDrives.Function.Read && Forms.LDrives.files.Count > 0)
@@ -2828,13 +2830,13 @@ namespace JRunner
                 {
                     if (i == 0)
                     {
-                        txtFilePath1.Text = filename;
+                        txtFileSource.Text = filename;
                         variables.filename1 = filename;
                         nand_init();
                     }
                     else if (i == 1)
                     {
-                        txtFilePath2.Text = filename;
+                        txtFileExtra.Text = filename;
                         variables.filename2 = filename;
                         new Thread(comparenands).Start();
                     }
@@ -3182,7 +3184,7 @@ namespace JRunner
             }
             else
             {
-                hv = new HexEdit.HexViewer(txtFilePath1.Text);
+                hv = new HexEdit.HexViewer(txtFileSource.Text);
                 hv.ShowDialog();
             }
         }
@@ -3360,7 +3362,7 @@ namespace JRunner
                 variables.filename1 = openFileDialog1.FileName;
             }
             else return;
-            if (variables.filename1 != null) this.txtFilePath1.Text = variables.filename1;
+            if (variables.filename1 != null) this.txtFileSource.Text = variables.filename1;
             variables.currentdir = variables.filename1;
             ThreadStart starter = delegate { HID.program(ref this.progressBar); };
             Thread start = new Thread(starter);
@@ -3414,7 +3416,7 @@ namespace JRunner
                 variables.filename1 = openFileDialog1.FileName;
             }
             else return;
-            if (variables.filename1 != null) this.txtFilePath1.Text = variables.filename1;
+            if (variables.filename1 != null) this.txtFileSource.Text = variables.filename1;
             ThreadStart starter = delegate { demon.Update_DemoN(variables.filename1); };
             Thread start = new Thread(starter);
             start.Start();
@@ -3565,7 +3567,7 @@ namespace JRunner
                 if (String.IsNullOrWhiteSpace(load_ecc())) return;
                 File.Copy(variables.filename1, Path.Combine(variables.outfolder, "glitch.ecc"), true);
                 variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
-                txtFilePath1.Text = variables.filename1;
+                txtFileSource.Text = variables.filename1;
                 Nand.Nand.injectRawKV(variables.filename1, kv);
                 Console.WriteLine("ECC created");
                 Console.WriteLine("");
@@ -3669,7 +3671,7 @@ namespace JRunner
         {
             if (String.IsNullOrWhiteSpace(variables.filename1))
             {
-                MessageBox.Show("No file loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -3698,22 +3700,45 @@ namespace JRunner
 
         #region File Buttons
 
-        void btnLoadFile1_Click(object sender, System.EventArgs e)
+        void btnLoadSource_Click(object sender, System.EventArgs e)
         {
-            loadfile(ref variables.filename1, ref this.txtFilePath1, true);
+            if (variables.reading || variables.writing)
+            {
+                MessageBox.Show("Files cannot be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string oldFile = variables.filename1;
+            loadfile(ref variables.filename1, ref this.txtFileSource, true);
             Thread.Sleep(100);
-            nand_init();
+            if (variables.filename1 != oldFile) nand_init();
         }
 
-        void btnLoadFile2_Click(object sender, System.EventArgs e)
+        void btnLoadExtra_Click(object sender, System.EventArgs e)
         {
-            loadfile(ref variables.filename2, ref this.txtFilePath2);
+            if (variables.reading || variables.writing)
+            {
+                MessageBox.Show("Files cannot be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            loadfile(ref variables.filename2, ref this.txtFileExtra);
             Thread.Sleep(100);
             if (variables.debugme) Console.WriteLine("filename2/currentdir = {0}", variables.filename2);
         }
 
         void comparebutton_Click(object sender, System.EventArgs e)
         {
+            if (String.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (String.IsNullOrWhiteSpace(variables.filename2))
+            {
+                MessageBox.Show("No nand loaded in extra", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             new Thread(comparenands).Start();
         }
 
@@ -3853,33 +3878,44 @@ namespace JRunner
 
         #region Drag & Drops
 
-        void txtFilePath1_DragDrop(object sender, DragEventArgs e)
+        void txtFileSource_DragDrop(object sender, DragEventArgs e)
         {
+            if (variables.reading || variables.writing)
+            {
+                MessageBox.Show("Files cannot be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            this.txtFilePath1.Text = s[0];
+            this.txtFileSource.Text = s[0];
             variables.filename1 = s[0];
             if (variables.current_mode != variables.JR_MODE.MODEFW) erasevariables();
             if (Path.GetExtension(s[0]) == ".bin")
             {
                 nand_init();
             }
-
         }
-        void txtFilePath1_DragEnter(object sender, DragEventArgs e)
+        void txtFileSource_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.All;
             else
                 e.Effect = DragDropEffects.None;
         }
-        void txtFilePath2_DragDrop(object sender, DragEventArgs e)
+        void txtFileExtra_DragDrop(object sender, DragEventArgs e)
         {
+            if (variables.reading || variables.writing)
+            {
+                MessageBox.Show("Files cannot be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 
-            this.txtFilePath2.Text = s[0];
+            this.txtFileExtra.Text = s[0];
             variables.filename2 = s[0];
         }
-        void txtFilePath2_DragEnter(object sender, DragEventArgs e)
+        void txtFileExtra_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.All;
@@ -4728,7 +4764,7 @@ namespace JRunner
             if (variables.tempfile != "")
             {
                 variables.filename1 = variables.tempfile;
-                txtFilePath1.Text = variables.tempfile;
+                txtFileSource.Text = variables.tempfile;
             }
         }
 
@@ -4740,13 +4776,13 @@ namespace JRunner
         {
             if (i == 2 && File.Exists(variables.filename))
             {
-                txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = Path.Combine(variables.filename)));
+                txtFileSource.BeginInvoke((Action)(() => txtFileSource.Text = Path.Combine(variables.filename)));
                 variables.filename1 = variables.filename;
                 nand_init(true);
             }
             if (i == 3 && File.Exists(variables.filename))
             {
-                txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = Path.Combine(variables.filename)));
+                txtFileExtra.BeginInvoke((Action)(() => txtFileExtra.Text = Path.Combine(variables.filename)));
                 variables.filename2 = variables.filename;
                 new Thread(comparenands).Start();
             }
@@ -4828,13 +4864,13 @@ namespace JRunner
         {
             if (idx == 0 && File.Exists(variables.filename))
             {
-                txtFilePath1.BeginInvoke((Action)(() => txtFilePath1.Text = Path.Combine(variables.filename)));
+                txtFileSource.BeginInvoke((Action)(() => txtFileSource.Text = Path.Combine(variables.filename)));
                 variables.filename1 = variables.filename;
                 nand_init(true);
             }
             if (idx == 1 && File.Exists(variables.filename))
             {
-                txtFilePath2.BeginInvoke((Action)(() => txtFilePath2.Text = Path.Combine(variables.filename)));
+                txtFileExtra.BeginInvoke((Action)(() => txtFileExtra.Text = Path.Combine(variables.filename)));
                 variables.filename2 = variables.filename;
                 new Thread(comparenands).Start();
             }

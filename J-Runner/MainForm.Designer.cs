@@ -37,10 +37,10 @@ namespace JRunner
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnExit = new System.Windows.Forms.Button();
             this.comparebutton = new System.Windows.Forms.Button();
-            this.btnLoadFile2 = new System.Windows.Forms.Button();
-            this.btnLoadFile1 = new System.Windows.Forms.Button();
-            this.txtFilePath2 = new System.Windows.Forms.TextBox();
-            this.txtFilePath1 = new System.Windows.Forms.TextBox();
+            this.btnLoadExtra = new System.Windows.Forms.Button();
+            this.btnLoadSource = new System.Windows.Forms.Button();
+            this.txtFileExtra = new System.Windows.Forms.TextBox();
+            this.txtFileSource = new System.Windows.Forms.TextBox();
             this.txtConsole = new System.Windows.Forms.TextBox();
             this.txtCPUKey = new System.Windows.Forms.TextBox();
             this.lblCpuKey = new System.Windows.Forms.Label();
@@ -185,57 +185,57 @@ namespace JRunner
             this.comparebutton.UseVisualStyleBackColor = true;
             this.comparebutton.Click += new System.EventHandler(this.comparebutton_Click);
             // 
-            // btnLoadFile2
+            // btnLoadExtra
             // 
-            this.btnLoadFile2.Location = new System.Drawing.Point(7, 42);
-            this.btnLoadFile2.Name = "btnLoadFile2";
-            this.btnLoadFile2.Size = new System.Drawing.Size(76, 22);
-            this.btnLoadFile2.TabIndex = 22;
-            this.btnLoadFile2.Text = "Load Extra";
-            this.toolTip1.SetToolTip(this.btnLoadFile2, "Load an extra nand for comparison");
-            this.btnLoadFile2.UseVisualStyleBackColor = true;
-            this.btnLoadFile2.Click += new System.EventHandler(this.btnLoadFile2_Click);
+            this.btnLoadExtra.Location = new System.Drawing.Point(7, 42);
+            this.btnLoadExtra.Name = "btnLoadExtra";
+            this.btnLoadExtra.Size = new System.Drawing.Size(76, 22);
+            this.btnLoadExtra.TabIndex = 22;
+            this.btnLoadExtra.Text = "Load Extra";
+            this.toolTip1.SetToolTip(this.btnLoadExtra, "Load an extra nand for comparison");
+            this.btnLoadExtra.UseVisualStyleBackColor = true;
+            this.btnLoadExtra.Click += new System.EventHandler(this.btnLoadExtra_Click);
             // 
-            // btnLoadFile1
+            // btnLoadSource
             // 
-            this.btnLoadFile1.Location = new System.Drawing.Point(7, 13);
-            this.btnLoadFile1.Name = "btnLoadFile1";
-            this.btnLoadFile1.Size = new System.Drawing.Size(76, 22);
-            this.btnLoadFile1.TabIndex = 20;
-            this.btnLoadFile1.Text = "Load Source";
-            this.toolTip1.SetToolTip(this.btnLoadFile1, "Load the primary working nand");
-            this.btnLoadFile1.UseVisualStyleBackColor = true;
-            this.btnLoadFile1.Click += new System.EventHandler(this.btnLoadFile1_Click);
+            this.btnLoadSource.Location = new System.Drawing.Point(7, 13);
+            this.btnLoadSource.Name = "btnLoadSource";
+            this.btnLoadSource.Size = new System.Drawing.Size(76, 22);
+            this.btnLoadSource.TabIndex = 20;
+            this.btnLoadSource.Text = "Load Source";
+            this.toolTip1.SetToolTip(this.btnLoadSource, "Load the primary working nand");
+            this.btnLoadSource.UseVisualStyleBackColor = true;
+            this.btnLoadSource.Click += new System.EventHandler(this.btnLoadSource_Click);
             // 
-            // txtFilePath2
+            // txtFileExtra
             // 
-            this.txtFilePath2.AllowDrop = true;
-            this.txtFilePath2.BackColor = System.Drawing.Color.White;
-            this.txtFilePath2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFilePath2.Location = new System.Drawing.Point(89, 43);
-            this.txtFilePath2.Name = "txtFilePath2";
-            this.txtFilePath2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtFilePath2.Size = new System.Drawing.Size(295, 20);
-            this.txtFilePath2.TabIndex = 23;
-            this.toolTip1.SetToolTip(this.txtFilePath2, "The file listed in this box is used to compare against file loaded in \"Source fil" +
+            this.txtFileExtra.AllowDrop = true;
+            this.txtFileExtra.BackColor = System.Drawing.Color.White;
+            this.txtFileExtra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFileExtra.Location = new System.Drawing.Point(89, 43);
+            this.txtFileExtra.Name = "txtFileExtra";
+            this.txtFileExtra.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtFileExtra.Size = new System.Drawing.Size(295, 20);
+            this.txtFileExtra.TabIndex = 23;
+            this.toolTip1.SetToolTip(this.txtFileExtra, "The file listed in this box is used to compare against file loaded in \"Source fil" +
         "e\" box\r\n");
-            this.txtFilePath2.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtFilePath2_DragDrop);
-            this.txtFilePath2.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtFilePath2_DragEnter);
+            this.txtFileExtra.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtFileExtra_DragDrop);
+            this.txtFileExtra.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtFileExtra_DragEnter);
             // 
-            // txtFilePath1
+            // txtFileSource
             // 
-            this.txtFilePath1.AllowDrop = true;
-            this.txtFilePath1.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFilePath1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFilePath1.Location = new System.Drawing.Point(89, 14);
-            this.txtFilePath1.Name = "txtFilePath1";
-            this.txtFilePath1.Size = new System.Drawing.Size(295, 20);
-            this.txtFilePath1.TabIndex = 21;
-            this.toolTip1.SetToolTip(this.txtFilePath1, "The file in this box is used for all read/write/create operations.\r\nif you use th" +
+            this.txtFileSource.AllowDrop = true;
+            this.txtFileSource.BackColor = System.Drawing.SystemColors.Window;
+            this.txtFileSource.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFileSource.Location = new System.Drawing.Point(89, 14);
+            this.txtFileSource.Name = "txtFileSource";
+            this.txtFileSource.Size = new System.Drawing.Size(295, 20);
+            this.txtFileSource.TabIndex = 21;
+            this.toolTip1.SetToolTip(this.txtFileSource, "The file in this box is used for all read/write/create operations.\r\nif you use th" +
         "e functions above out of order, ensure your required\r\nfile is loaded into this b" +
         "ox first.");
-            this.txtFilePath1.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtFilePath1_DragDrop);
-            this.txtFilePath1.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtFilePath1_DragEnter);
+            this.txtFileSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtFileSource_DragDrop);
+            this.txtFileSource.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtFileSource_DragEnter);
             // 
             // txtConsole
             // 
@@ -428,7 +428,7 @@ namespace JRunner
             this.showRootFolderToolStripMenuItem,
             this.showOutputFolderToolStripMenuItem});
             this.showWorkingFolderMenu.Name = "contextMenuStrip1";
-            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 70);
+            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 48);
             // 
             // showRootFolderToolStripMenuItem
             // 
@@ -466,11 +466,11 @@ namespace JRunner
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.groupBox4.Controls.Add(this.btnLoadFile2);
+            this.groupBox4.Controls.Add(this.btnLoadExtra);
             this.groupBox4.Controls.Add(this.btnInit);
-            this.groupBox4.Controls.Add(this.txtFilePath2);
-            this.groupBox4.Controls.Add(this.txtFilePath1);
-            this.groupBox4.Controls.Add(this.btnLoadFile1);
+            this.groupBox4.Controls.Add(this.txtFileExtra);
+            this.groupBox4.Controls.Add(this.txtFileSource);
+            this.groupBox4.Controls.Add(this.btnLoadSource);
             this.groupBox4.Controls.Add(this.lblCpuKey);
             this.groupBox4.Controls.Add(this.comparebutton);
             this.groupBox4.Controls.Add(this.txtCPUKey);
@@ -1258,10 +1258,10 @@ namespace JRunner
 
         private Button btnExit;
         private Button comparebutton;
-        private Button btnLoadFile2;
-        private Button btnLoadFile1;
-        private TextBox txtFilePath2;
-        private TextBox txtFilePath1;
+        private Button btnLoadExtra;
+        private Button btnLoadSource;
+        private TextBox txtFileExtra;
+        private TextBox txtFileSource;
         private TextBox txtCPUKey;
         private Label lblCpuKey;
         private TextBox txtConsole;
