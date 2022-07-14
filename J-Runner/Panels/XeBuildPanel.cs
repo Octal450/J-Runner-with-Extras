@@ -10,7 +10,8 @@ namespace JRunner.Panels
 {
     public partial class XeBuildPanel : UserControl
     {
-        List<String> patches = new List<string>(new string[8]);
+        List<CB> cbList;
+        List<string> patches = new List<string>(new string[8]);
         // -a nofcrt
         // -a noSShdd
         // -a nointmu
@@ -43,9 +44,9 @@ namespace JRunner.Panels
         #endregion
 
         #region getters/setters
-        public DataSet1 getDataSet()
+        public DataSet1 getDashDataSet()
         {
-            return dataSet1;
+            return dashDataSet;
         }
         public ComboBox getComboDash()
         {
@@ -1561,40 +1562,59 @@ namespace JRunner.Panels
             if (wait) Thread.Sleep(100);
             try
             {
-                variables.cbs_all = new List<string>();
+                comboCB.Items.Clear();
+                cbList = new List<CB>();
                 if (variables.dashversion != 0)
                 {
                     string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_retail.ini");
-                    List<string> labels = parse_ini.getlabels(ini);
-
+                    List<string> labels = new List<string>();
+                    List<string> cbs = new List<string>();
+                    parse_ini.getLabelsandCBs(ini, ref labels, ref cbs);
+                    string defaultCB = null;
                     foreach (string s in labels)
                     {
                         if (!s.Contains("bl")) continue;
                         if (variables.ctyp.ID == -1)
                         {
-                            if (s.Contains("_")) variables.cbs_all.Add(new CB(s.Substring(s.IndexOf("_") + 1), true).ToString());
+                            if (s.Contains("_")) cbList.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
                             else
                             {
-                                variables.cbs_all.Add(new CB(Nand.ntable.getCBFromDash(getConsoleFromIni(s.Substring(0, s.IndexOf("bl"))), variables.dashversion), false).ToString());
+                                string cb = cbs[labels.IndexOf(s)];
+                                cbList.Add(new CB(cb, false));
+                                if (defaultCB == null) defaultCB = cb; // Only once
                             }
                         }
                         else
                         {
                             if (s.Contains(variables.ctyp.Ini))
                             {
-                                if (s.Contains("_")) comboCB.Items.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
-                                else variables.cbs_all.Add(new CB(Nand.ntable.getCBFromDash(getConsoleFromIni(variables.ctyp.Ini), variables.dashversion), false).ToString());
+                                if (s.Contains("_")) cbList.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
+                                else
+                                {
+                                    string cb = cbs[labels.IndexOf(s)];
+                                    cbList.Add(new CB(cb, false));
+                                    if (defaultCB == null) defaultCB = cb; // Only once
+                                }
                             }
                         }
                     }
-                    
-                    variables.cbs_all.Sort((a, b) => Convert.ToInt32(a) - Convert.ToInt32(b));
-                    comboCB.DataSource = variables.cbs_all;
 
-                if (comboCB.Items.Count > 0) comboCB.SelectedIndex = 0;
+                    cbList.Sort((a, b) => Convert.ToInt32(a.Version) - Convert.ToInt32(b.Version));
+
+                    int defaultIndex = 0; // Fallback
+                    foreach (CB cb in cbList)
+                    {
+                        if (cb.Version == defaultCB) defaultIndex = comboCB.Items.Count; // Before adding!
+                        comboCB.Items.Add(cb);
+                    }
+                
+                    if (comboCB.Items.Count > 0)
+                    {
+                        comboCB.SelectedIndex = defaultIndex; // Important, the combo becomes buggy if the default selection is not the basic (ex: xenonbl, not xenonbl_1928)
+                    }
                 }
             }
-            catch (Exception) { }
+            catch (InvalidOperationException) { }
         }
 
         private void comboCB_SelectedIndexChanged(object sender, EventArgs e)

@@ -51,8 +51,8 @@
             this.lblDashVersion = new System.Windows.Forms.Label();
             this.chkAudClamp = new System.Windows.Forms.CheckBox();
             this.comboDash = new System.Windows.Forms.ComboBox();
-            this.dataTable2BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new JRunner.DataSet1();
+            this.dashBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dashDataSet = new JRunner.DataSet1();
             this.chkRJtag = new System.Windows.Forms.CheckBox();
             this.txtMBname = new System.Windows.Forms.TextBox();
             this.rbtnRetail = new System.Windows.Forms.RadioButton();
@@ -104,8 +104,8 @@
             this.groupBox7.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Xebuild.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable2BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dashBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dashDataSet)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabUpdate.SuspendLayout();
@@ -387,7 +387,7 @@
             // 
             // comboDash
             // 
-            this.comboDash.DataSource = this.dataTable2BindingSource;
+            this.comboDash.DataSource = this.dashBindingSource;
             this.comboDash.DisplayMember = "Dash";
             this.comboDash.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboDash.FormattingEnabled = true;
@@ -399,15 +399,15 @@
             this.comboDash.ValueMember = "Dash";
             this.comboDash.SelectedIndexChanged += new System.EventHandler(this.comboDash_SelectedIndexChanged);
             // 
-            // dataTable2BindingSource
+            // dashBindingSource
             // 
-            this.dataTable2BindingSource.DataMember = "DataTable2";
-            this.dataTable2BindingSource.DataSource = this.dataSet1;
+            this.dashBindingSource.DataMember = "DataTable2";
+            this.dashBindingSource.DataSource = this.dashDataSet;
             // 
-            // dataSet1
+            // dashDataSet
             // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dashDataSet.DataSetName = "DashDataSet";
+            this.dashDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // chkRJtag
             // 
@@ -983,8 +983,8 @@
             this.tabControl1.ResumeLayout(false);
             this.Xebuild.ResumeLayout(false);
             this.Xebuild.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable2BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dashBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dashDataSet)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -1019,8 +1019,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnLaunch;
         private System.Windows.Forms.CheckBox checkDLPatches;
-        private System.Windows.Forms.BindingSource dataTable2BindingSource;
-        private DataSet1 dataSet1;
+        private System.Windows.Forms.BindingSource dashBindingSource;
+        private DataSet1 dashDataSet;
         private System.Windows.Forms.CheckBox chkLaunch;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TabPage tabUpdate;

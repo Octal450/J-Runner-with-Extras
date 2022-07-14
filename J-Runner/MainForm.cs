@@ -2015,7 +2015,7 @@ namespace JRunner
                     if (variables.debugme) Console.WriteLine("Searching Registry Entrys");
                     try
                     {
-                        variables.cpukey = CpuKeyDB.getkey_s(filenameKvCrc, xPanel.getDataSet());
+                        variables.cpukey = CpuKeyDB.getkey_s(filenameKvCrc, xPanel.getDashDataSet());
                         txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
                         if (!string.IsNullOrEmpty(variables.cpukey)) gotKeyFromCrc = true;
                     }
@@ -2053,7 +2053,7 @@ namespace JRunner
                 }
                 else if (foundKey)
                 {
-                    if (!CpuKeyDB.getkey_s(variables.cpukey, xPanel.getDataSet()))
+                    if (!CpuKeyDB.getkey_s(variables.cpukey, xPanel.getDashDataSet()))
                     {
                         if (variables.debugme) Console.WriteLine("Key verification");
                         if (nand.cpukeyverification(variables.cpukey))
@@ -2069,7 +2069,7 @@ namespace JRunner
                             entry.osig = nand.ki.osig;
                             entry.region = nand.ki.region;
 
-                            bool reg = CpuKeyDB.addkey_s(entry, xPanel.getDataSet());
+                            bool reg = CpuKeyDB.addkey_s(entry, xPanel.getDashDataSet());
                             if (variables.autoExtract && reg)
                             {
                                 if (variables.debugme) Console.WriteLine("Auto File Extraction Initiated");
@@ -4650,7 +4650,7 @@ namespace JRunner
 
         void check_dash()
         {
-            DataTable dashtable = xPanel.getDataSet().DataTable2;
+            DataTable dashtable = xPanel.getDashDataSet().DataTable2;
             int counter = 0;
             dashtable.Rows.Clear();
             Thread.Sleep(10);
