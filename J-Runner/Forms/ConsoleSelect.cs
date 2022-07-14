@@ -198,14 +198,15 @@ namespace JRunner.Forms
 
         private void advancedChk_CheckedChanged(object sender, EventArgs e)
         {
+            float dpi = Program.getScalingFactor();
             if (advancedChk.Checked)
             {
-                this.Height += 55;
+                this.Height += Convert.ToInt32(55 * dpi);
                 AdvancedBox.Visible = true;
             }
             else
             {
-                this.Height -= 55;
+                this.Height -= Convert.ToInt32(55 * dpi);
                 AdvancedBox.Visible = false;
             }
         }

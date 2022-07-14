@@ -53,6 +53,11 @@ namespace JRunner.Forms
             timer1.Start();
         }
 
+        private void close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (len >= counter)

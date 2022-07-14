@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -12,7 +13,6 @@ namespace JRunner
     {
         [DllImport("Shcore.dll")]
         static extern int SetProcessDpiAwareness(int PROCESS_DPI_AWARENESS);
-
         static bool createdNew = true;
         static Mutex mutex = new Mutex(true, "J-Runner", out createdNew);
         static bool needVcredistx86 = false;
@@ -184,6 +184,20 @@ namespace JRunner
                 }
                 else needVcredistx86 = true;
             }
+        }
+
+        public static float getScalingFactor()
+        {
+            float dpiX = 96;
+            try
+            {
+                using (Graphics graphics = Graphics.FromHwnd(IntPtr.Zero))
+                {
+                    dpiX = graphics.DpiX;
+                }
+            }
+            catch { }
+            return dpiX / 96;
         }
     }
 }
