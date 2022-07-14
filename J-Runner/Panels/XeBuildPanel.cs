@@ -30,10 +30,6 @@ namespace JRunner.Panels
         public event ClickedGetMB Getmb;
         public delegate void ChangedHack();
         public event ChangedHack HackChanged;
-        public delegate void DashAdded();
-        public event DashAdded AddedDash;
-        public delegate void DashDeleted();
-        public event DashDeleted DeletedDash;
         public delegate void CallMotherboards();
         public event CallMotherboards CallMB;
         public delegate void loadFile(ref string filename, bool erase = false);
@@ -321,15 +317,7 @@ namespace JRunner.Panels
 
         private void comboDash_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboDash.SelectedIndex == comboDash.Items.Count - 2)
-            {
-                add_dash();
-            }
-            else if (comboDash.SelectedIndex == comboDash.Items.Count - 1)
-            {
-                del_dash();
-            }
-            else if (comboDash.SelectedIndex == comboDash.Items.Count - 3)
+            if (comboDash.SelectedIndex == comboDash.Items.Count - 1)
             {
                 checkAvailableHackTypes(); // will set all false
             }
@@ -340,7 +328,7 @@ namespace JRunner.Panels
                 lblDash.Text = comboDash.Text;
             }
 
-            if (comboDash.SelectedIndex < comboDash.Items.Count - 3)
+            if (comboDash.SelectedIndex < comboDash.Items.Count - 1)
             {
                 checkAvailableHackTypes();
             }
@@ -1159,31 +1147,6 @@ namespace JRunner.Panels
             xe.client(arguments);
         }
 
-        void add_dash()
-        {
-            addDash newdash = new addDash();
-            if (newdash.ShowDialog() == DialogResult.Cancel)
-            {
-                DeletedDash(); // Yes this is correct, it just refreshes the list
-                return;
-            }
-            try
-            {
-                AddedDash();
-            }
-            catch (Exception) { }
-        }
-        void del_dash()
-        {
-            Dashes.delDash deldash = new Dashes.delDash();
-            deldash.ShowDialog();
-            try
-            {
-                DeletedDash();
-            }
-            catch (Exception) { }
-        }
-
         public void createxebuild_v2(bool custom, Nand.PrivateN nand, bool fullDataClean)
         {
             Classes.xebuild xe = new Classes.xebuild();
@@ -1598,7 +1561,7 @@ namespace JRunner.Panels
             if (wait) Thread.Sleep(100);
             try
             {
-                comboCB.Items.Clear();
+                variables.cbs_all = new List<string>();
                 if (variables.dashversion != 0)
                 {
                     string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_retail.ini");
@@ -1609,10 +1572,10 @@ namespace JRunner.Panels
                         if (!s.Contains("bl")) continue;
                         if (variables.ctyp.ID == -1)
                         {
-                            if (s.Contains("_")) comboCB.Items.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
+                            if (s.Contains("_")) variables.cbs_all.Add(new CB(s.Substring(s.IndexOf("_") + 1), true).ToString());
                             else
                             {
-                                comboCB.Items.Add(new CB(Nand.ntable.getCBFromDash(getConsoleFromIni(s.Substring(0, s.IndexOf("bl"))), variables.dashversion), false));
+                                variables.cbs_all.Add(new CB(Nand.ntable.getCBFromDash(getConsoleFromIni(s.Substring(0, s.IndexOf("bl"))), variables.dashversion), false).ToString());
                             }
                         }
                         else
@@ -1620,12 +1583,15 @@ namespace JRunner.Panels
                             if (s.Contains(variables.ctyp.Ini))
                             {
                                 if (s.Contains("_")) comboCB.Items.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
-                                else comboCB.Items.Add(new CB(Nand.ntable.getCBFromDash(getConsoleFromIni(variables.ctyp.Ini), variables.dashversion), false));
+                                else variables.cbs_all.Add(new CB(Nand.ntable.getCBFromDash(getConsoleFromIni(variables.ctyp.Ini), variables.dashversion), false).ToString());
                             }
                         }
                     }
+                    
+                    variables.cbs_all.Sort((a, b) => Convert.ToInt32(a) - Convert.ToInt32(b));
+                    comboCB.DataSource = variables.cbs_all;
 
-                    if (comboCB.Items.Count > 0) comboCB.SelectedIndex = 0;
+                if (comboCB.Items.Count > 0) comboCB.SelectedIndex = 0;
                 }
             }
             catch (Exception) { }

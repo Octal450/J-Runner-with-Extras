@@ -176,8 +176,6 @@ namespace JRunner
             nTools.IterChange += nTools_IterChange;
             xsvfInfo.CloseCRClick += xsvfInfo_CloseCRClick;
             xsvfInfo.ProgramCRClick += xsvfInfo_ProgramCRClick;
-            xPanel.DeletedDash += xPanel_DeletedDash;
-            xPanel.AddedDash += xPanel_AddedDash;
             xPanel.HackChanged += xPanel_HackChanged;
             xPanel.CallMB += xPanel_CallMB;
             xPanel.loadFil += xPanel_loadFil;
@@ -4650,24 +4648,6 @@ namespace JRunner
             IP.initaddresses();
         }
 
-        void add_dash()
-        {
-            addDash newdash = new addDash();
-            newdash.ShowDialog();
-            //check_dash();
-            ThreadStart starte = delegate { check_dashes(true); };
-            Thread th = new Thread(starte);
-            th.IsBackground = true;
-            th.Start();
-            //check_dash();
-        }
-        void del_dash()
-        {
-            Dashes.delDash deldash = new Dashes.delDash();
-            deldash.ShowDialog();
-            check_dash();
-        }
-
         void check_dash()
         {
             DataTable dashtable = xPanel.getDataSet().DataTable2;
@@ -4699,26 +4679,14 @@ namespace JRunner
                 }
                 catch (NullReferenceException) { }
             }
-            Thread.Sleep(10);
             DataRow dashrows = dashtable.NewRow();
             dashrows[0] = counter;
             dashrows[1] = "-------------";
             dashtable.Rows.Add(dashrows);
             counter++;
-            DataRow dashrows1 = dashtable.NewRow();
-            dashrows1[0] = counter;
-            dashrows1[1] = "Add Kernel";
-            dashtable.Rows.Add(dashrows1);
-            counter++;
-            DataRow dashrows2 = dashtable.NewRow();
-            dashrows2[0] = counter;
-            dashrows2[1] = "Del Kernel";
-            dashtable.Rows.Add(dashrows2);
-            counter++;
-            Thread.Sleep(10);
             try
             {
-                if (xPanel.getComboDash().Items.Count == 4)
+                if (xPanel.getComboDash().Items.Count == 2)
                 {
                     xPanel.getComboDash().SelectedIndex = 1;
                     xPanel.getComboDash().SelectedIndex = 0;
@@ -4735,14 +4703,11 @@ namespace JRunner
                         bool isNumeric = int.TryParse(xPanel.getComboDash().Text, out n);
                         if (isNumeric) variables.dashversion = n;
                     }
-                    else if (xPanel.getComboDash().Items.Count > 3) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = xPanel.getComboDash().Items.Count - 3));
+                    else if (xPanel.getComboDash().Items.Count > 1) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = xPanel.getComboDash().Items.Count - 1));
                 }
                 xPanel.setComboCB();
             }
-            catch (InvalidOperationException)
-            {
-            }
-            Thread.Sleep(100);
+            catch { }
         }
 
         void check_dashes(bool check = false)
