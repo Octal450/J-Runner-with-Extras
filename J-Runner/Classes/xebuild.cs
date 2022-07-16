@@ -349,7 +349,7 @@ namespace JRunner.Classes
         }
         void edittheini()
         {
-            if (variables.debugme) Console.WriteLine(_dash);
+            if (variables.debugMode) Console.WriteLine(_dash);
             foreach (variables.hacktypes type in Enum.GetValues(typeof(variables.hacktypes)))
             {
                 if (type == variables.hacktypes.retail || type == variables.hacktypes.nothing) continue;
@@ -369,7 +369,7 @@ namespace JRunner.Classes
                         parse_ini.edit_ini(file, empty, writepatches);
                     }
                 }
-                else if (variables.debugme) Console.WriteLine("Couldn't add dashlaunch patches to {0}", file);
+                else if (variables.debugMode) Console.WriteLine("Couldn't add dashlaunch patches to {0}", file);
             }
         }
         void savekvinfo(string savefile)
@@ -413,7 +413,7 @@ namespace JRunner.Classes
                 tw.Close();
                 Console.WriteLine("KV Info saved to file");
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); Console.WriteLine("Failed"); Console.WriteLine(""); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); Console.WriteLine("Failed"); Console.WriteLine(""); }
         }
 
         XebuildError doSomeChecks()
@@ -486,7 +486,7 @@ namespace JRunner.Classes
 
 
             variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, _nand.ki.serial);
-            if (variables.debugme) Console.WriteLine("outfolder: {0}", variables.xefolder);
+            if (variables.debugMode) Console.WriteLine("outfolder: {0}", variables.xefolder);
             if (!Directory.Exists(variables.xefolder)) Directory.CreateDirectory(variables.xefolder);
             File.WriteAllText(System.IO.Path.Combine(variables.xefolder, variables.cpukeypath), _cpukey);
             savekvinfo(Path.Combine(variables.xefolder, "KV_Info.txt"));
@@ -568,19 +568,19 @@ namespace JRunner.Classes
             {
                 arguments += " " + patch;
             }
-            if (variables.debugme) arguments += " -v";
+            if (variables.debugMode) arguments += " -v";
             arguments += " -noenter";
             arguments += " -f " + _dash;
             arguments += " -d data";
-            arguments += " \"" + variables.xefolder + "\\" + variables.nandflash + "\" ";
+            arguments += " \"" + variables.xefolder + "\\" + variables.updflash + "\" ";
 
             RegexOptions options = RegexOptions.None;
             Regex regex = new Regex(@"[ ]{2,}", options);
             arguments = regex.Replace(arguments, @" ");
 
-            if (variables.debugme) Console.WriteLine(variables.rootfolder);
-            if (variables.debugme) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
-            if (variables.debugme) Console.WriteLine(arguments);
+            if (variables.debugMode) Console.WriteLine(variables.rootfolder);
+            if (variables.debugMode) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
+            if (variables.debugMode) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
             pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
@@ -703,9 +703,9 @@ namespace JRunner.Classes
 
             if (_xlusb) arguments += " -a xl_usb";
 
-            if (variables.debugme) Console.WriteLine(variables.rootfolder);
-            if (variables.debugme) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
-            if (variables.debugme) Console.WriteLine(arguments);
+            if (variables.debugMode) Console.WriteLine(variables.rootfolder);
+            if (variables.debugMode) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
+            if (variables.debugMode) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
             pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
@@ -808,7 +808,7 @@ namespace JRunner.Classes
             {
                 arguments += " " + patch;
             }
-            if (variables.debugme) arguments += " -v";
+            if (variables.debugMode) arguments += " -v";
             if (_noava) arguments += " -noava";
             if (_nowrite) arguments += " -nowrite";
             if (_clean) arguments += " -clean";
@@ -822,9 +822,9 @@ namespace JRunner.Classes
             Regex regex = new Regex(@"[ ]{2,}", options);
             arguments = regex.Replace(arguments, @" ");
 
-            if (variables.debugme) Console.WriteLine(variables.rootfolder);
-            if (variables.debugme) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
-            if (variables.debugme) Console.WriteLine(arguments);
+            if (variables.debugMode) Console.WriteLine(variables.rootfolder);
+            if (variables.debugMode) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
+            if (variables.debugMode) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
             pProcess.StartInfo.WorkingDirectory = variables.rootfolder;
@@ -872,16 +872,16 @@ namespace JRunner.Classes
             pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
             string arguments = "client ";
             arguments += args;
-            if (variables.debugme) arguments += " -v";
+            if (variables.debugMode) arguments += " -v";
             arguments += " -noenter";
 
             RegexOptions options = RegexOptions.None;
             Regex regex = new Regex(@"[ ]{2,}", options);
             arguments = regex.Replace(arguments, @" ");
 
-            if (variables.debugme) Console.WriteLine(variables.rootfolder);
-            if (variables.debugme) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
-            if (variables.debugme) Console.WriteLine(arguments);
+            if (variables.debugMode) Console.WriteLine(variables.rootfolder);
+            if (variables.debugMode) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
+            if (variables.debugMode) Console.WriteLine(arguments);
             pProcess.StartInfo.Arguments = arguments;
             pProcess.StartInfo.UseShellExecute = false;
             pProcess.StartInfo.WorkingDirectory = variables.rootfolder;

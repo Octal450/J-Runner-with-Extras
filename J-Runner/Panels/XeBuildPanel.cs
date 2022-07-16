@@ -353,7 +353,7 @@ namespace JRunner.Panels
                 return;
             }
 
-            if (variables.debugme) Console.WriteLine(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_file.ini"));
+            if (variables.debugMode) Console.WriteLine(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_file.ini"));
             if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_glitch2.ini")))
             {
                 rbtnGlitch2.Enabled = rbtnGlitch2.Checked = false;
@@ -957,7 +957,7 @@ namespace JRunner.Panels
 
         private void btnAvatar_Click(object sender, EventArgs e)
         {
-            if (variables.debugme) Console.WriteLine(Path.Combine(variables.update_path, comboDash.Text + @"\$systemupdate"));
+            if (variables.debugMode) Console.WriteLine(Path.Combine(variables.update_path, comboDash.Text + @"\$systemupdate"));
             if (Directory.Exists(Path.Combine(variables.update_path, comboDash.Text + @"\$systemupdate")))
             {
                 Console.WriteLine("Starting, please wait!");
@@ -1111,7 +1111,7 @@ namespace JRunner.Panels
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
 
             Classes.xebuild.XebuildError er = xe.createxebuild();
             if (er == Classes.xebuild.XebuildError.none)
@@ -1192,7 +1192,7 @@ namespace JRunner.Panels
                         }
                     }
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                 if (!nand.cpukeyverification(nand._cpukey))
                 {
                     Console.WriteLine("Wrong CPU Key");
@@ -1222,11 +1222,11 @@ namespace JRunner.Panels
                 bool sts = objAlphaPattern.IsMatch(variables.cpukey);
                 if ((variables.cpukey.Length == 32 && sts))
                 {
-                    if (variables.debugme) Console.WriteLine("Key verification");
+                    if (variables.debugMode) Console.WriteLine("Key verification");
                     long size = 0;
                     if (Nand.Nand.cpukeyverification(Oper.openfile(Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin"), ref size, 0), variables.cpukey))
                     {
-                        if (variables.debugme) Console.WriteLine("CPU Key is Correct");
+                        if (variables.debugMode) Console.WriteLine("CPU Key is Correct");
                         if (Nand.Nand.getfcrtflag(File.ReadAllBytes(Path.Combine(variables.rootfolder, @"xebuild\data\kv.bin")), variables.cpukey))
                         {
                             if (!File.Exists(Path.Combine(variables.rootfolder, @"xebuild\data\fcrt.bin")))
@@ -1312,9 +1312,9 @@ namespace JRunner.Panels
             {
                 File.Copy(Path.Combine(variables.rootfolder, @"xebuild\options.ini"), Path.Combine(variables.rootfolder, @"xebuild\data\options.ini"), true);
                 chkxesettings.Checked = false;
-                File.Move(Path.Combine(variables.xefolder, variables.nandflash + ".log"), Path.Combine(variables.xefolder, variables.nandflash.Substring(0, variables.nandflash.IndexOf(".")) + "(" + DateTime.Now.ToString("ddMMyyyyHHmm") + ").bin.log"));
+                File.Move(Path.Combine(variables.xefolder, variables.updflash + ".log"), Path.Combine(variables.xefolder, variables.updflash.Substring(0, variables.updflash.IndexOf(".")) + "(" + DateTime.Now.ToString("ddMMyyyyHHmm") + ").bin.log"));
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
 
             try
             {
@@ -1326,7 +1326,7 @@ namespace JRunner.Panels
             {
                 Console.WriteLine("Saved to {0}", variables.xefolder);
                 Console.WriteLine("Image is Ready");
-                variables.filename1 = Path.Combine(variables.xefolder, variables.nandflash);
+                variables.filename1 = Path.Combine(variables.xefolder, variables.updflash);
                 updateSourc(variables.filename1);
                 //Process.Start(variables.xefolder);
             }
@@ -1339,8 +1339,8 @@ namespace JRunner.Panels
             {
                 delfiles();
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
-            if (variables.debugme) Console.WriteLine("Deleted Files Successfully");
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
+            if (variables.debugMode) Console.WriteLine("Deleted Files Successfully");
             variables.xefinished = false;
         }
 
@@ -1376,7 +1376,7 @@ namespace JRunner.Panels
                         fr.Close();
                         fw.Close();
                     }
-                    catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                    catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
 
                 }
             }
@@ -1390,7 +1390,7 @@ namespace JRunner.Panels
                 try
                 {
                     File.Delete(variables.xePath + variables.nanddump);
-                    if (variables.debugme) Console.WriteLine("Deleted {0}", variables.xePath + variables.nanddump);
+                    if (variables.debugMode) Console.WriteLine("Deleted {0}", variables.xePath + variables.nanddump);
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
@@ -1398,7 +1398,7 @@ namespace JRunner.Panels
             if (File.Exists(variables.xePath + variables.cpukeypath))
             {
                 try
-                { File.Delete(variables.xePath + variables.cpukeypath); if (variables.debugme) Console.WriteLine("Deleted {0}", variables.xePath + variables.cpukeypath); }
+                { File.Delete(variables.xePath + variables.cpukeypath); if (variables.debugMode) Console.WriteLine("Deleted {0}", variables.xePath + variables.cpukeypath); }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
@@ -1407,7 +1407,7 @@ namespace JRunner.Panels
                 try
                 {
                     File.Delete(variables.launchpath + @"\" + variables.dashversion + @"\launch.ini");
-                    if (variables.debugme) Console.WriteLine("Deleted launch.ini");
+                    if (variables.debugMode) Console.WriteLine("Deleted launch.ini");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
@@ -1417,7 +1417,7 @@ namespace JRunner.Panels
                 try
                 {
                     File.Delete(Path.Combine(variables.xePath, "SMC.bin"));
-                    if (variables.debugme) Console.WriteLine("Deleted SMC.bin");
+                    if (variables.debugMode) Console.WriteLine("Deleted SMC.bin");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
@@ -1427,7 +1427,7 @@ namespace JRunner.Panels
                 try
                 {
                     File.Delete(Path.Combine(variables.xePath, "KV.bin"));
-                    if (variables.debugme) Console.WriteLine("Deleted KV.bin");
+                    if (variables.debugMode) Console.WriteLine("Deleted KV.bin");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
@@ -1437,7 +1437,7 @@ namespace JRunner.Panels
                 try
                 {
                     File.Delete(Path.Combine(variables.xePath, "fcrt.bin"));
-                    if (variables.debugme) Console.WriteLine("Deleted fcrt.bin");
+                    if (variables.debugMode) Console.WriteLine("Deleted fcrt.bin");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
@@ -1447,7 +1447,7 @@ namespace JRunner.Panels
                 try
                 {
                     File.Delete(Path.Combine(variables.xePath, "smc_config.bin"));
-                    if (variables.debugme) Console.WriteLine("Deleted KV.bin");
+                    if (variables.debugMode) Console.WriteLine("Deleted KV.bin");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
@@ -1457,12 +1457,12 @@ namespace JRunner.Panels
                 try
                 {
                     File.Delete(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex"));
-                    if (variables.debugme) Console.WriteLine("Deleted XL USB xam.xex");
+                    if (variables.debugMode) Console.WriteLine("Deleted XL USB xam.xex");
                     if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex.tmp")))
                     {
                         File.Move(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex.tmp"), Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex"));
                     }
-                    if (variables.debugme) Console.WriteLine("Restored non XL USB xam.xex");
+                    if (variables.debugMode) Console.WriteLine("Restored non XL USB xam.xex");
 
                     string buildIni = Path.Combine(variables.update_path, comboDash.SelectedValue + @"\_" + variables.ttyp.ToString() + ".ini");
                     if (File.Exists(buildIni + ".tmp"))
@@ -1470,7 +1470,7 @@ namespace JRunner.Panels
                         File.Delete(buildIni);
                         File.Move(buildIni + ".tmp", buildIni);
                     }
-                    if (variables.debugme) Console.WriteLine("Restored non XL USB ini");
+                    if (variables.debugMode) Console.WriteLine("Restored non XL USB ini");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
@@ -1488,7 +1488,7 @@ namespace JRunner.Panels
             if (myNewForm.heResult().ID == -1) return variables.ctypes[0];
             variables.fulldump = myNewForm.fulldump();
             variables.twombread = myNewForm.twombdump();
-            if (variables.debugme) Console.WriteLine("fulldump variable = {0}", variables.fulldump);
+            if (variables.debugMode) Console.WriteLine("fulldump variable = {0}", variables.fulldump);
             setMBname(myNewForm.heResult().Text);
             return (myNewForm.heResult());
         }
@@ -1502,7 +1502,7 @@ namespace JRunner.Panels
             {
                 Console.WriteLine("Saved to {0}", variables.xefolder);
                 Console.WriteLine("Image is Ready");
-                variables.filename1 = Path.Combine(variables.xefolder, variables.nandflash);
+                variables.filename1 = Path.Combine(variables.xefolder, variables.updflash);
                 updateSourc(variables.filename1);
                 //Process.Start(variables.xefolder);
             }
@@ -1533,7 +1533,7 @@ namespace JRunner.Panels
             }
             c += " -f " + variables.dashversion;
             c += " -d data";
-            c += " \"" + variables.xefolder + "\\" + variables.nandflash + "\" ";
+            c += " \"" + variables.xefolder + "\\" + variables.updflash + "\" ";
 
             RegexOptions options = RegexOptions.None;
             Regex regex = new Regex(@"[ ]{2,}", options);

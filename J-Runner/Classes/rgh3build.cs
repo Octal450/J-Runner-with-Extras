@@ -37,7 +37,7 @@ namespace JRunner
                 return;
             }
 
-            if (sequenced) filename = Path.Combine(variables.xefolder, variables.nandflash);
+            if (sequenced) filename = Path.Combine(variables.xefolder, variables.updflash);
             else filename = variables.filename1;
 
             try
@@ -46,7 +46,7 @@ namespace JRunner
             }
             catch (Exception ex)
             {
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 Console.WriteLine("Failed: The image is either already RGH3, or an unsupported image type");
                 Console.WriteLine("");
                 return;

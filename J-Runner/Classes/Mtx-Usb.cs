@@ -33,26 +33,6 @@ namespace JRunner
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
-            if (Path.GetExtension(variables.filename1) == ".ecc")
-            {
-                Console.WriteLine("You need an .bin image");
-                return;
-            }
-
-            writeNand(16, variables.filename1, 2, 0, 80); // startblock + length (hex) for display purposes only, not required
-        }
-
-        public void writeEccAuto()
-        {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
-            if (!File.Exists(variables.filename1)) return;
-
-            if (Path.GetExtension(variables.filename1) != ".ecc")
-            {
-                Console.WriteLine("You need an .ecc image");
-                return;
-            }
-
             writeNand(16, variables.filename1, 1, 0, 80); // startblock + length (hex) for display purposes only, not required
         }
 
@@ -93,7 +73,7 @@ namespace JRunner
                 variables.nandsizex = Nandsize.S16;
                 writeNand(16, variables.filename1);
             }
-            else if (len == 1351680)
+            else if (len == 1310720 | len == 1351680)
             {
                 variables.nandsizex = Nandsize.S16;
                 writeNand(16, variables.filename1, 3);
@@ -153,16 +133,16 @@ namespace JRunner
                         success.Play();
                     }
 
-                    if (mode >= 1)
+                    if (mode == 1)
                     {
                         Thread.Sleep(500);
-                        MainForm.mainForm.afterWriteEccCleanup();
+                        MainForm.mainForm.afterWriteXeLLCleanup();
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
                 }
             });
@@ -198,7 +178,7 @@ namespace JRunner
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
                 }
             });

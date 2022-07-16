@@ -139,7 +139,7 @@ namespace JRunner.Panels
                 {
                     int driveNumber = Convert.ToInt32(info.Replace(@"PhysicalDrive", ""));
                     List<string> letter = GetLetters(driveNumber);
-                    if (variables.debugme) Console.WriteLine("{0} - {1}", info, letter.Count);
+                    if (variables.debugMode) Console.WriteLine("{0} - {1}", info, letter.Count);
                     if (letter.Count == 0)
                     {
                         ListViewItem lvi = new ListViewItem();
@@ -158,7 +158,7 @@ namespace JRunner.Panels
                         int j = 0;
                         foreach (string drive in letter)
                         {
-                            if (variables.debugme) Console.WriteLine("{0} - {1}", info, drive);
+                            if (variables.debugMode) Console.WriteLine("{0} - {1}", info, drive);
                             ListViewItem lvi = new ListViewItem();
                             lvi.Text = info;
                             DriveInfo driv = new DriveInfo(drive.Replace(@"\\.\", ""));
@@ -169,7 +169,7 @@ namespace JRunner.Panels
                                 lvi.SubItems.Add(driv.VolumeLabel);
                                 lvi.SubItems.Add(driv.DriveFormat);
                                 lvi.SubItems.Add((driv.TotalSize / (1024f) / 1024f).ToString());
-                                if (variables.debugme) Console.WriteLine("Drive is ready");
+                                if (variables.debugMode) Console.WriteLine("Drive is ready");
                             }
                             else
                             {
@@ -249,7 +249,7 @@ namespace JRunner.Panels
                 {
                     File.Delete(filename);
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); return 0; }
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); return 0; }
             }
 
             string ldrive = listView1.SelectedItems[0].SubItems[1].Text;
@@ -308,7 +308,7 @@ namespace JRunner.Panels
             buttons(false);
             if (!force) write2(variables.filename1);
             else write(variables.filename1);
-            if (variables.debugme) Console.WriteLine("changing back to old file");
+            if (variables.debugMode) Console.WriteLine("changing back to old file");
             if (Path.GetExtension(variables.filename1) == ".ecc")
             {
                 if (variables.tempfile != "")
@@ -331,7 +331,7 @@ namespace JRunner.Panels
 
             if (listView1.SelectedItems.Count == 0) return;
             string ldrive = listView1.SelectedItems[0].SubItems[0].Text;
-            if (variables.debugme) Console.WriteLine(ldrive);
+            if (variables.debugMode) Console.WriteLine(ldrive);
 
             bool successful = false;
             int intOut;
@@ -348,18 +348,18 @@ namespace JRunner.Panels
                 Console.WriteLine("");
                 return;
             }
-            if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": opened.");
+            if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": opened.");
 
             List<SafeFileHandle> lhandles = new List<SafeFileHandle>();
             List<string> lnames = new List<string>();
             int i = 0;
 
-            if (variables.debugme) Console.WriteLine(logicaldrives.Count);
+            if (variables.debugMode) Console.WriteLine(logicaldrives.Count);
             foreach (string logdrive in logicaldrives)
             {
-                if (variables.debugme) Console.WriteLine("Opening logical drives");
+                if (variables.debugMode) Console.WriteLine("Opening logical drives");
                 string ldevid = @"\\.\" + logdrive.Replace("\\", "").Replace(".", "");
-                if (variables.debugme) Console.WriteLine(ldevid);
+                if (variables.debugMode) Console.WriteLine(ldevid);
                 SafeFileHandle ldiskHandle = CreateFile(ldevid, GENERIC_WRITE, 0, IntPtr.Zero, OPEN_EXISTING, 0, IntPtr.Zero);
                 if (ldiskHandle.IsInvalid)
                 {
@@ -367,7 +367,7 @@ namespace JRunner.Panels
                     Console.WriteLine("");
                     break;
                 }
-                if (variables.debugme) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": opened.");
+                if (variables.debugMode) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": opened.");
                 lhandles.Add(ldiskHandle);
                 lnames.Add(ldevid);
 
@@ -380,7 +380,7 @@ namespace JRunner.Panels
                     break;
                 }
 
-                if (variables.debugme) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
+                if (variables.debugMode) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
 
                 successful = DeviceIoControl(ldiskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
                 if (!successful)
@@ -401,7 +401,7 @@ namespace JRunner.Panels
                 return;
             }
 
-            if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
+            if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
 
             successful = DeviceIoControl(diskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
             if (!successful)
@@ -413,7 +413,7 @@ namespace JRunner.Panels
                 return;
             }
 
-            if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unmounted.");
+            if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unmounted.");
 
             //uint numTotalSectors = 0x795FFF;//DiskSize / 512;
             //uint numTotalSectors = 0x702000;
@@ -424,7 +424,7 @@ namespace JRunner.Panels
 
             FileStream fs = new FileStream(filename, FileMode.Open);
             if (fs.Length / (track) < totaltracks) totaltracks = (int)(fs.Length / (track));
-            if (variables.debugme) Console.WriteLine(totaltracks);
+            if (variables.debugMode) Console.WriteLine(totaltracks);
             FileStream fw = new FileStream(diskHandle, FileAccess.ReadWrite);
             uint offset = 0;
 
@@ -481,7 +481,7 @@ namespace JRunner.Panels
                 successful = DeviceIoControl(sfh, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
                 if (successful)
                 {
-                    if (variables.debugme) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
+                    if (variables.debugMode) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
                 }
                 else
                 {
@@ -495,7 +495,7 @@ namespace JRunner.Panels
             successful = DeviceIoControl(diskHandle, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
             if (successful)
             {
-                if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
+                if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
             }
             else
             {
@@ -509,7 +509,7 @@ namespace JRunner.Panels
                 successful = CloseHandle(sfh);
                 if (successful)
                 {
-                    if (variables.debugme) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
+                    if (variables.debugMode) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
                 }
                 else
                 {
@@ -523,7 +523,7 @@ namespace JRunner.Panels
             successful = CloseHandle(diskHandle);
             if (successful)
             {
-                if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
+                if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
             }
             else
             {
@@ -583,7 +583,7 @@ namespace JRunner.Panels
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 Console.WriteLine("");
             }
         }
@@ -606,7 +606,7 @@ namespace JRunner.Panels
 
             if (listView1.SelectedItems.Count == 0) return;
             string ldrive = listView1.SelectedItems[0].SubItems[0].Text;
-            if (variables.debugme) Console.WriteLine(ldrive);
+            if (variables.debugMode) Console.WriteLine(ldrive);
 
             bool successful = false;
             int intOut;
@@ -621,18 +621,18 @@ namespace JRunner.Panels
                 Console.WriteLine("");
                 return;
             }
-            if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": opened.");
+            if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": opened.");
 
             List<SafeFileHandle> lhandles = new List<SafeFileHandle>();
             List<string> lnames = new List<string>();
             int i = 0;
 
-            if (variables.debugme) Console.WriteLine(logicaldrives.Count);
+            if (variables.debugMode) Console.WriteLine(logicaldrives.Count);
             foreach (string logdrive in logicaldrives)
             {
-                if (variables.debugme) Console.WriteLine("Opening logical drives");
+                if (variables.debugMode) Console.WriteLine("Opening logical drives");
                 string ldevid = @"\\.\" + logdrive.Replace("\\", "").Replace(".", "");
-                if (variables.debugme) Console.WriteLine(ldevid);
+                if (variables.debugMode) Console.WriteLine(ldevid);
                 SafeFileHandle ldiskHandle = CreateFile(ldevid, GENERIC_WRITE, 0, IntPtr.Zero, OPEN_EXISTING, 0, IntPtr.Zero);
                 if (ldiskHandle.IsInvalid)
                 {
@@ -640,7 +640,7 @@ namespace JRunner.Panels
                     Console.WriteLine("");
                     break;
                 }
-                if (variables.debugme) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": opened.");
+                if (variables.debugMode) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": opened.");
                 lhandles.Add(ldiskHandle);
                 lnames.Add(ldevid);
 
@@ -653,7 +653,7 @@ namespace JRunner.Panels
                     break;
                 }
 
-                if (variables.debugme) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
+                if (variables.debugMode) Console.WriteLine(ldevid + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
 
                 successful = DeviceIoControl(ldiskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
                 if (!successful)
@@ -674,7 +674,7 @@ namespace JRunner.Panels
                 return;
             }
 
-            if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
+            if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": locked.");
 
             successful = DeviceIoControl(diskHandle, FSCTL_DISMOUNT_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
             if (!successful)
@@ -686,7 +686,7 @@ namespace JRunner.Panels
                 return;
             }
 
-            if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unmounted.");
+            if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unmounted.");
 
             //uint numTotalSectors = 0x795FFF;//DiskSize / 512;
             //uint numTotalSectors = 0x702000;
@@ -695,7 +695,7 @@ namespace JRunner.Panels
 
             byte[] junkBytes = new byte[(int)track];
 
-            if (variables.debugme) Console.WriteLine(totaltracks);
+            if (variables.debugMode) Console.WriteLine(totaltracks);
             FileStream fw = new FileStream(diskHandle, FileAccess.ReadWrite);
             uint offset = 0;
 
@@ -750,7 +750,7 @@ namespace JRunner.Panels
                 successful = DeviceIoControl(sfh, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
                 if (successful)
                 {
-                    if (variables.debugme) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
+                    if (variables.debugMode) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
                 }
                 else
                 {
@@ -764,7 +764,7 @@ namespace JRunner.Panels
             successful = DeviceIoControl(diskHandle, FSCTL_UNLOCK_VOLUME, null, 0, null, 0, out intOut, IntPtr.Zero);
             if (successful)
             {
-                if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
+                if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": unlocked.");
             }
             else
             {
@@ -778,7 +778,7 @@ namespace JRunner.Panels
                 successful = CloseHandle(sfh);
                 if (successful)
                 {
-                    if (variables.debugme) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
+                    if (variables.debugMode) Console.WriteLine(lnames[i] + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
                 }
                 else
                 {
@@ -792,7 +792,7 @@ namespace JRunner.Panels
             successful = CloseHandle(diskHandle);
             if (successful)
             {
-                if (variables.debugme) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
+                if (variables.debugMode) Console.WriteLine(deviceId + " " + Marshal.GetHRForLastWin32Error().ToString() + ": handle closed.");
             }
             else
             {
@@ -847,7 +847,7 @@ namespace JRunner.Panels
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 Console.WriteLine("");
             }
         }
@@ -917,7 +917,7 @@ namespace JRunner.Panels
             try
             {
                 string deviceId = @"\\.\PHYSICALDRIVE" + numberofdrive;
-                if (variables.debugme) Console.WriteLine(deviceId);
+                if (variables.debugMode) Console.WriteLine(deviceId);
                 string queryString = "ASSOCIATORS OF {Win32_DiskDrive.DeviceID='" + deviceId + "'} WHERE AssocClass = Win32_DiskDriveToDiskPartition";
                 ManagementObjectSearcher diskSearcher = new ManagementObjectSearcher("root\\CIMV2", queryString);
                 ManagementObjectCollection diskMoc = diskSearcher.Get();
@@ -933,7 +933,7 @@ namespace JRunner.Panels
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return driveLetters;
         }
         private long GetSize(int drive)
@@ -943,9 +943,9 @@ namespace JRunner.Panels
             bool result = DeviceIoControl(CreateFile(@"\\.\PHYSICALDRIVE" + drive, FileAccess.Read, FileShare.ReadWrite, 0, FileMode.Open, 0, IntPtr.Zero), 0x0007405C, IntPtr.Zero, 0, buffer, sizeof(ulong), out returnedBytes, IntPtr.Zero);
             long sessionId = Marshal.ReadInt64(buffer);
             if (!result) sessionId = 0;
-            if (variables.debugme) Console.WriteLine(result);
-            if (variables.debugme) Console.WriteLine(sessionId);
-            if (variables.debugme) Console.WriteLine(returnedBytes);
+            if (variables.debugMode) Console.WriteLine(result);
+            if (variables.debugMode) Console.WriteLine(sessionId);
+            if (variables.debugMode) Console.WriteLine(returnedBytes);
             Marshal.FreeHGlobal(buffer);
             return sessionId;
         }

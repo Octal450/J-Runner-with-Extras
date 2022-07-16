@@ -27,7 +27,7 @@ namespace JRunner
                 return;
             }
 
-            filename = Path.Combine(variables.xefolder, variables.nandflash);
+            filename = Path.Combine(variables.xefolder, variables.updflash);
 
             if (board == "jasper256") board = "jasper";
             if (board == "jasper512") board = "jasper";

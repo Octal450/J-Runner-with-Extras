@@ -67,7 +67,7 @@ namespace JRunner.Forms
                 variables.IPstart = txtIPStart.Text;
                 variables.IPend = txtIPEnd.Text;
                 variables.delay = (int)sonusDelay.Value;
-                if (variables.debugme) Console.WriteLine("outfolderchanged = true\noutfolder = {0}", variables.outfolder);
+                if (variables.debugMode) Console.WriteLine("outfolderchanged = true\noutfolder = {0}", variables.outfolder);
                 variables.ip = txtIP.Text;
                 variables.playSuccess = chkPlaySuccess.Checked;
                 variables.playError = chkPlayError.Checked;
@@ -90,7 +90,7 @@ namespace JRunner.Forms
 
                 MainForm.mainForm.savesettings();
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             this.Close();
         }
 

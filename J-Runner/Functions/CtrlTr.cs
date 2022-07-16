@@ -41,9 +41,9 @@ namespace JRunner.Functions
                 if (!ReferenceEquals(wholeUsbDevice, null))
                 {
                     wholeUsbDevice.SetConfiguration(1);
-                    if (variables.debugme) Console.WriteLine("Claiming Interface...");
+                    if (variables.debugMode) Console.WriteLine("Claiming Interface...");
                     wholeUsbDevice.ClaimInterface(0);
-                    if (variables.debugme) Console.WriteLine("The Interface is ours!");
+                    if (variables.debugMode) Console.WriteLine("The Interface is ours!");
                 }
                 UsbEndpointReader reader = MyUsbDevice.OpenEndpointReader(ReadEndpointID.Ep01);
                 UsbEndpointWriter writer = MyUsbDevice.OpenEndpointWriter(WriteEndpointID.Ep01);
@@ -109,9 +109,9 @@ namespace JRunner.Functions
                 if (!ReferenceEquals(wholeUsbDevice, null))
                 {
                     wholeUsbDevice.SetConfiguration(1);
-                    if (variables.debugme) Console.WriteLine("Claiming Interface...");
+                    if (variables.debugMode) Console.WriteLine("Claiming Interface...");
                     wholeUsbDevice.ClaimInterface(0);
-                    if (variables.debugme) Console.WriteLine("The Interface is ours!");
+                    if (variables.debugMode) Console.WriteLine("The Interface is ours!");
                 }
                 UsbEndpointReader reader = MyUsbDevice.OpenEndpointReader(ReadEndpointID.Ep01);
                 UsbEndpointWriter writer = MyUsbDevice.OpenEndpointWriter(WriteEndpointID.Ep01);

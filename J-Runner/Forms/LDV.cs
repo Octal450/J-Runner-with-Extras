@@ -19,7 +19,7 @@ namespace JRunner.Forms
                 variables.highldv = Convert.ToInt32(textBox1.Text);
                 variables.changeldv = 2;
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             if (objAlphaPattern.IsMatch(textBox1.Text)) this.Close();
         }
         public void disableAdv()

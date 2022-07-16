@@ -95,9 +95,9 @@
             this.btnCreateECC.Name = "btnCreateECC";
             this.btnCreateECC.Size = new System.Drawing.Size(65, 51);
             this.btnCreateECC.TabIndex = 21;
-            this.btnCreateECC.Text = "Create\r\nECC";
-            this.toolTip1.SetToolTip(this.btnCreateECC, "Creates an ECC or XeLL from the source file, and the settings selected on the XeB" +
-        "uild panel");
+            this.btnCreateECC.Text = "Create\r\nXeLL";
+            this.toolTip1.SetToolTip(this.btnCreateECC, "Creates a XeLL image from the source file, and the settings selected on the XeBui" +
+        "ld panel");
             this.btnCreateECC.UseVisualStyleBackColor = true;
             this.btnCreateECC.Click += new System.EventHandler(this.btnCreateECC_Click);
             // 
@@ -107,9 +107,9 @@
             this.btnXeBuild.Name = "btnXeBuild";
             this.btnXeBuild.Size = new System.Drawing.Size(65, 51);
             this.btnXeBuild.TabIndex = 24;
-            this.btnXeBuild.Text = "Create\r\nXeBuild\r\nImage";
-            this.toolTip1.SetToolTip(this.btnXeBuild, "Creates an XeBuild image from the source file, and the settings selected on the X" +
-        "eBuild panel");
+            this.btnXeBuild.Text = "Create\r\nXeBuild";
+            this.toolTip1.SetToolTip(this.btnXeBuild, "Creates a Freeboot XeBuild image from the source file, and the settings selected " +
+        "on the XeBuild panel");
             this.btnXeBuild.UseVisualStyleBackColor = true;
             this.btnXeBuild.Click += new System.EventHandler(this.btnXeBuild_Click);
             // 
@@ -141,8 +141,8 @@
             this.btnWriteECC.Name = "btnWriteECC";
             this.btnWriteECC.Size = new System.Drawing.Size(65, 51);
             this.btnWriteECC.TabIndex = 23;
-            this.btnWriteECC.Text = "Write\r\nECC";
-            this.toolTip1.SetToolTip(this.btnWriteECC, "Writes ECC or XeLL to the nand");
+            this.btnWriteECC.Text = "Write\r\nXeLL";
+            this.toolTip1.SetToolTip(this.btnWriteECC, "Writes a XeLL image to the nand");
             this.btnWriteECC.UseVisualStyleBackColor = true;
             this.btnWriteECC.Click += new System.EventHandler(this.btnWriteECC_Click);
             // 

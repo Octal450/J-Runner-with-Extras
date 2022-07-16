@@ -655,7 +655,7 @@ namespace JRunner
                 if (isEccOrXell)
                 {
                     Thread.Sleep(500);
-                    MainForm.mainForm.afterWriteEccCleanup();
+                    MainForm.mainForm.afterWriteXeLLCleanup();
                 }
             });
             writerThread.Start();
@@ -850,7 +850,7 @@ namespace JRunner
                 if (isEccOrXell)
                 {
                     Thread.Sleep(500);
-                    MainForm.mainForm.afterWriteEccCleanup();
+                    MainForm.mainForm.afterWriteXeLLCleanup();
                 }
             });
             writerThread.Start();

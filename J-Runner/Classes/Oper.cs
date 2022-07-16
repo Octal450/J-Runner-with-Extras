@@ -37,8 +37,8 @@ namespace JRunner
                 infile.Close();
                 return data;
             }
-            catch (FileNotFoundException ex) { Console.WriteLine("File {0} not found!", filename); if (variables.debugme) Console.WriteLine(ex.ToString()); }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (FileNotFoundException ex) { Console.WriteLine("File {0} not found!", filename); if (variables.debugMode) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return null;
         }
 
@@ -46,7 +46,7 @@ namespace JRunner
         {
             try
             {
-                if (variables.debugme) Console.WriteLine("filename: {0} - wantedsize: {1:X} - offset: {2:X}", filename, wantedsize, offset);
+                if (variables.debugMode) Console.WriteLine("filename: {0} - wantedsize: {1:X} - offset: {2:X}", filename, wantedsize, offset);
                 FileInfo info = new FileInfo(filename);
                 if (wantedsize == 0 || wantedsize + offset > info.Length)
                 {
@@ -55,7 +55,7 @@ namespace JRunner
                 }
                 else
                     size = wantedsize;
-                if (variables.debugme) Console.WriteLine("size: {0:X}", size);
+                if (variables.debugMode) Console.WriteLine("size: {0:X}", size);
                 FileStream infile = new FileStream(filename, FileMode.Open, FileAccess.Read);
                 BinaryReader file = new BinaryReader(infile);
                 file.BaseStream.Seek(offset, SeekOrigin.Begin);
@@ -66,8 +66,8 @@ namespace JRunner
                 infile.Close();
                 return data;
             }
-            catch (FileNotFoundException ex) { Console.WriteLine("File {0} not found!", filename); if (variables.debugme) Console.WriteLine(ex.ToString()); }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (FileNotFoundException ex) { Console.WriteLine("File {0} not found!", filename); if (variables.debugMode) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return null;
         }
 
@@ -82,7 +82,7 @@ namespace JRunner
                 kvdf.Close();
                 return true;
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); return false; }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); return false; }
 
         }
 
@@ -243,7 +243,7 @@ namespace JRunner
             byte[] templist = new byte[count];
             if (offset + count > data.Length)
             {
-                if (variables.debugme) Console.WriteLine("Bigger - offset: {0:X} - count {1:X}", offset, count);
+                if (variables.debugMode) Console.WriteLine("Bigger - offset: {0:X} - count {1:X}", offset, count);
                 count = data.Length - offset;
             }
             if (count <= data.Length && count >= 0)
@@ -259,7 +259,7 @@ namespace JRunner
             byte[] templist = new byte[count];
             if (offset + count > data.Length)
             {
-                if (variables.debugme) Console.WriteLine("Bigger - offset: {0:X} - count {1:X}", offset, count);
+                if (variables.debugMode) Console.WriteLine("Bigger - offset: {0:X} - count {1:X}", offset, count);
                 count = data.Length - offset;
             }
             if (count <= data.Length && count >= 0)

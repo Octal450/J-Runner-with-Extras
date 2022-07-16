@@ -145,10 +145,10 @@ namespace JRunner
             keyvault = Nand.Nand.encryptkv_hmac(keyvault, Oper.StringToByteArray(variables.cpukey));
             if (ecc)
             {
-                if (variables.debugme) Console.WriteLine("Adding ecc to keyvault");
+                if (variables.debugMode) Console.WriteLine("Adding ecc to keyvault");
                 keyvault = Nand.Nand.addecc_v2(keyvault, true, 0x4200, layout);
-                if (variables.debugme) Console.WriteLine("Completed");
-                if (variables.debugme) Console.WriteLine("{0:X} - {1:X}", image.Length, keyvault.Length);
+                if (variables.debugMode) Console.WriteLine("Completed");
+                if (variables.debugMode) Console.WriteLine("{0:X} - {1:X}", image.Length, keyvault.Length);
 
                 image.Replace(keyvault, 0x4200, keyvault.Length);
             }
@@ -171,8 +171,8 @@ namespace JRunner
             if (data[0] == 0xFF && data[1] == 0x4F)
             {
                 Nand.Nand.getCF(data, layout == 2 ? true : false, out CF0, out CF0offset, out CF1, out CF1offset);
-                if (variables.debugme) Console.WriteLine("CF0 offset: {0:X} - CF0 size: {1:X}", CF0offset, CF0.Length);
-                if (variables.debugme) Console.WriteLine("CF1 offset: {0:X} - CF1 size: {1:X}", CF1offset, CF1.Length);
+                if (variables.debugMode) Console.WriteLine("CF0 offset: {0:X} - CF0 size: {1:X}", CF0offset, CF0.Length);
+                if (variables.debugMode) Console.WriteLine("CF1 offset: {0:X} - CF1 size: {1:X}", CF1offset, CF1.Length);
             }
             if (CF0 == null && CF1 == null)
             {
@@ -182,7 +182,7 @@ namespace JRunner
             bool ready0 = false, ready1 = false;
             if (CF0 != null && (changedCF0ldv || changedCF0pd))
             {
-                if (variables.debugme) Console.WriteLine("Performing operations on CF0");
+                if (variables.debugMode) Console.WriteLine("Performing operations on CF0");
                 CF0_dec = Nand.Nand.decrypt_CF(CF0);
                 CF0_dec[0x21F] = Convert.ToByte(txtCF0ldv.Text, 10);
                 CF0_dec[0x21C] = Convert.ToByte(txtCF0pd.Text.Substring(6, 2), 16);
@@ -193,7 +193,7 @@ namespace JRunner
             }
             if (CF1 != null && (changedCF1ldv || changedCF1pd))
             {
-                if (variables.debugme) Console.WriteLine("Performing operations on CF1");
+                if (variables.debugMode) Console.WriteLine("Performing operations on CF1");
                 CF1_dec = Nand.Nand.decrypt_CF(CF1);
                 CF1_dec[0x21F] = Convert.ToByte(txtCF1ldv.Text, 10);
                 CF1_dec[0x21C] = Convert.ToByte(txtCF1pd.Text.Substring(6, 2), 16);
@@ -204,16 +204,16 @@ namespace JRunner
             }
             if (ready0)
             {
-                if (variables.debugme) Console.WriteLine("Adding ecc on CF0");
+                if (variables.debugMode) Console.WriteLine("Adding ecc on CF0");
                 CF0 = Nand.Nand.addecc_v2(CF0, true, (CF0offset / 0x200) * 0x210, layout);
-                if (variables.debugme) Console.WriteLine("Adding CF0 to nand");
+                if (variables.debugMode) Console.WriteLine("Adding CF0 to nand");
                 Buffer.BlockCopy(CF0, 0, data, (CF0offset / 0x200) * 0x210, CF0.Length);
             }
             if (ready1)
             {
-                if (variables.debugme) Console.WriteLine("Adding ecc on CF1");
+                if (variables.debugMode) Console.WriteLine("Adding ecc on CF1");
                 CF1 = Nand.Nand.addecc_v2(CF1, true, (CF1offset / 0x200) * 0x210, layout);
-                if (variables.debugme) Console.WriteLine("Adding CF1 to nand");
+                if (variables.debugMode) Console.WriteLine("Adding CF1 to nand");
                 Buffer.BlockCopy(CF1, 0, data, (CF1offset / 0x200) * 0x210, CF1.Length);
             }
             Console.WriteLine("Bootloader Patch Successful");

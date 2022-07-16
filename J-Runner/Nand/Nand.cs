@@ -198,7 +198,7 @@ namespace JRunner.Nand
             Buffer.BlockCopy(data, 0, temp, 0, data.Length > temp.Length ? temp.Length : data.Length);
             if (!ascii.GetString(temp).Contains("Microsoft"))
             {
-                if (variables.debugme) Console.WriteLine(ascii.GetString(temp));
+                if (variables.debugMode) Console.WriteLine(ascii.GetString(temp));
                 if (temp[0] == 0x46 && temp[1] == 0x57 && temp[2] == 0x41 && temp[3] == 0x00) Console.WriteLine("DemoN FW");
                 else if (s1 != 0x40000) Console.WriteLine("Header is wrong");
             }
@@ -231,7 +231,7 @@ namespace JRunner.Nand
             if (Nand.hasecc_v2(ref image)) Nand.unecc(ref image, false);
             else noecc = true;
 
-            if (variables.debugme) Console.WriteLine("Has ecc? !{0}", noecc);
+            if (variables.debugMode) Console.WriteLine("Has ecc? !{0}", noecc);
 
             byte[] block_offset = new byte[4];
             block_offset = Oper.returnportion(image, 0x8, 4);
@@ -259,7 +259,7 @@ namespace JRunner.Nand
                 Keyvault = null;
                 #endregion
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
 
             #region blocks
             try
@@ -282,7 +282,7 @@ namespace JRunner.Nand
                     block_size += 0xF;
                     block_size &= ~0xF;
                     id = block_id & 0xF;
-                    if (variables.debugme) Console.WriteLine("Found {0}BL (build {1}) at {2}", id, block_build, Convert.ToString(block_offset_b, 16));
+                    if (variables.debugMode) Console.WriteLine("Found {0}BL (build {1}) at {2}", id, block_build, Convert.ToString(block_offset_b, 16));
                     data = new byte[block_size];
                     //data = returnportion(image, block_offset_b, block_size);
                     if (block_offset_b + block_size <= image.Length) Buffer.BlockCopy(image, block_offset_b, data, 0, block_size);
@@ -308,7 +308,7 @@ namespace JRunner.Nand
                             else cb_dec = Nand.decrypt_CB_cpukey(CB_B, Nand.decrypt_CB(CB_A), Oper.StringToByteArray(variables.cpukey));
                             if (variables.extractfiles) Oper.savefile(cb_dec, "output\\CB_B_dec.bin");
                             uf.ldv_cb = cb_dec[0x192]; // needs fixing
-                            if (variables.debugme) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
+                            if (variables.debugMode) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
                             byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
                             Array.Reverse(temppd);
                             uf.pd_cb = "0x" + Oper.ByteArrayToString(temppd);
@@ -320,7 +320,7 @@ namespace JRunner.Nand
                             if (variables.extractfiles) Oper.savefile(data, "output\\CB_A.bin");
                             if (variables.extractfiles) Oper.savefile(cb_dec, "output\\CB_A_dec.bin");
                             uf.ldv_cb = cb_dec[0x192]; // needs fixing
-                            if (variables.debugme) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
+                            if (variables.debugMode) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
                             byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
                             Array.Reverse(temppd);
                             uf.pd_cb = "0x" + Oper.ByteArrayToString(temppd);
@@ -346,7 +346,7 @@ namespace JRunner.Nand
                     if (id == 5) break;
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             #endregion
 
             #region Patch Parsing
@@ -359,8 +359,8 @@ namespace JRunner.Nand
             {
                 unpack_update(ref image, bigblock);
             }
-            catch (System.IndexOutOfRangeException ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
-            catch (System.OutOfMemoryException ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
+            catch (System.IndexOutOfRangeException ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
+            catch (System.OutOfMemoryException ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
 
         }
         void unpack_update(ref byte[] image, bool bigblock)
@@ -405,12 +405,12 @@ namespace JRunner.Nand
                     }
                     else
                     {
-                        if (variables.debugme) Console.WriteLine("block size: 0x{0:X} - offset: 0x{1:X} - image: 0x{2:X}", block_size, block_offset_b, image.Length);
+                        if (variables.debugMode) Console.WriteLine("block size: 0x{0:X} - offset: 0x{1:X} - image: 0x{2:X}", block_size, block_offset_b, image.Length);
                     }
 
                     if (id == 6 || id == 7)
                     {
-                        if (variables.debugme) Console.WriteLine("-Found {0}BL Patch {3} (build {1}) at {2:X}", id, block_build, block_offset_b, patch);
+                        if (variables.debugMode) Console.WriteLine("-Found {0}BL Patch {3} (build {1}) at {2:X}", id, block_build, block_offset_b, patch);
                         if (id == 6)
                         {
                             patch_offset = block_offset_b;
@@ -420,22 +420,22 @@ namespace JRunner.Nand
                                 CF0 = Nand.decrypt_CF(data);
                                 bl.CF_0 = block_build;
                                 uf.ldv_p0 = Nand.decrypt_CF(data)[0x21F];
-                                if (variables.debugme) Console.WriteLine("-LDV Patch {0}: {1}", patch, uf.ldv_p0);
+                                if (variables.debugMode) Console.WriteLine("-LDV Patch {0}: {1}", patch, uf.ldv_p0);
                                 byte[] temppd = (Oper.returnportion(Nand.decrypt_CF(data), 0x21C, 3));
                                 Array.Reverse(temppd);
                                 uf.pd_0 = "0x" + Oper.ByteArrayToString(temppd);
-                                if (variables.debugme) Console.WriteLine("-Pairing Data 0: {0:X}", uf.pd_0);
+                                if (variables.debugMode) Console.WriteLine("-Pairing Data 0: {0:X}", uf.pd_0);
                             }
                             else
                             {
                                 CF1 = Nand.decrypt_CF(data);
                                 bl.CF_1 = block_build;
                                 uf.ldv_p1 = Nand.decrypt_CF(data)[0x21F];
-                                if (variables.debugme) Console.WriteLine("-LDV Patch {0}: {1}", patch, uf.ldv_p1);
+                                if (variables.debugMode) Console.WriteLine("-LDV Patch {0}: {1}", patch, uf.ldv_p1);
                                 byte[] temppd = (Oper.returnportion(Nand.decrypt_CF(data), 0x21C, 3));
                                 Array.Reverse(temppd);
                                 uf.pd_1 = "0x" + Oper.ByteArrayToString(temppd);
-                                if (variables.debugme) Console.WriteLine("-Pairing Data 1: {0:X}", uf.pd_1);
+                                if (variables.debugMode) Console.WriteLine("-Pairing Data 1: {0:X}", uf.pd_1);
                             }
 
                             if (variables.extractfiles)
@@ -475,19 +475,19 @@ namespace JRunner.Nand
                     int tem6 = image[block_offset_b + block_size + 1];
                     if (patch == 1 && block_offset_b < 0x80000 && tem2 == 0x46 && tem1 == 0x43)
                     {
-                        if (variables.debugme) Console.WriteLine("2 - {0:X}", block_offset_b);
+                        if (variables.debugMode) Console.WriteLine("2 - {0:X}", block_offset_b);
                         block_offset_b = patch_offset + 0x10000;
                         continue;
                     }
                     else if (temo == 0x46 && tem0 == 0x43 && patch == 1)
                     {
-                        if (variables.debugme) Console.WriteLine("1 - {0:X}", block_offset_b);
+                        if (variables.debugMode) Console.WriteLine("1 - {0:X}", block_offset_b);
                         block_offset_b = patch_offset + blocksize;
                         continue;
                     }
                     else if (patch == 0 && tem3 == 0x43 && tem4 == 0x46 && tem5 != 0x43 && tem6 != 0x47)
                     {
-                        if (variables.debugme) Console.WriteLine("4 - {0:X}", block_offset_b);
+                        if (variables.debugMode) Console.WriteLine("4 - {0:X}", block_offset_b);
                         block_offset_b += 0x10000;
                         patch = 1;
                         continue;
@@ -495,20 +495,20 @@ namespace JRunner.Nand
 
                     else if (patch == 0 && block_offset_b > 0x80000 && patch_offset < 0x80000)
                     {
-                        if (variables.debugme) Console.WriteLine("3 - {0:X}", block_offset_b);
+                        if (variables.debugMode) Console.WriteLine("3 - {0:X}", block_offset_b);
                         patch = 1;
                         block_offset_b = 0x80000;
                         continue;
                     }
                     if (block_size == 0x10) { block_size = 0x20000; patch = 1; }
                     block_offset_b += block_size;
-                    if (variables.debugme) Console.WriteLine("5 - {0:X}", block_offset_b);
+                    if (variables.debugMode) Console.WriteLine("5 - {0:X}", block_offset_b);
                     if (temp_block_offset == block_offset_b) break;
                     if (block_offset_b > size) break;
                 }
             }
             catch (System.OverflowException) { return; }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
 
         }
         public static byte[] fill(int startoffset, int length, byte fil)
@@ -551,7 +551,7 @@ namespace JRunner.Nand
             if (Oper.allsame(Oper.returnportion(_rawkv, 0x40, 0x20), 0x00)) return true;
             if (Oper.allsame(Oper.returnportion(Nand.decryptkv(_rawkv, key), 0x40, 0x20), 0x00))
             {
-                if (variables.debugme) Console.WriteLine("cpukey verified - {0}", cpukey);
+                if (variables.debugMode) Console.WriteLine("cpukey verified - {0}", cpukey);
                 _cpukey = cpukey;
                 updatekvval();
                 return true;
@@ -655,7 +655,7 @@ namespace JRunner.Nand
 
             if (image[0x205] != 0xFF && image[0x415] != 0xFF && image[0x200] != 0xFF) return;
 
-            if (variables.debugme) Console.WriteLine("-R-Image Size: 0x{0:X} | imagesize: 0x{1:X}", image.Length, blocksize);
+            if (variables.debugMode) Console.WriteLine("-R-Image Size: 0x{0:X} | imagesize: 0x{1:X}", image.Length, blocksize);
 
             int counter;
             for (counter = 0; counter < image.Length / blocksize; counter++)
@@ -687,7 +687,7 @@ namespace JRunner.Nand
 
             int reservestartpos = reserveblockpos - 0x20;
             byte[] reserved = Oper.returnportion(image, reservedoffset * blocksize, 0x20 * blocksize);
-            if (variables.debugme) Oper.savefile(reserved, "reservedarea.bin");
+            if (variables.debugMode) Oper.savefile(reserved, "reservedarea.bin");
             image = null;
 
             remapped_blocks = JRunner.Nand.BadBlock.checkifremapped(reserved, bad_blocks, bigblock, true);
@@ -753,7 +753,7 @@ namespace JRunner.Nand
             if (corona) block_length = 0x4000;
             int offset = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(searched, found + 0x10, 8)), 16) * block_length;
             int length = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(searched, found + 0x18, 4)), 16);
-            if (variables.debugme) Console.WriteLine("Offset: {0:X} - Length {1:X} - corona: {2}", offset, length, corona);
+            if (variables.debugMode) Console.WriteLine("Offset: {0:X} - Length {1:X} - corona: {2}", offset, length, corona);
             if (corona)
             {
                 byte[] res = new byte[length];
@@ -812,7 +812,7 @@ namespace JRunner.Nand
             int fullsize;
             int block_type;
 
-            if (variables.debugme) Console.WriteLine("bigblock: {0}", bigblock);
+            if (variables.debugMode) Console.WriteLine("bigblock: {0}", bigblock);
             if (bigblock)
             {
                 blocksize = 0x21000;
@@ -854,7 +854,7 @@ namespace JRunner.Nand
 
                     if (fsseq != 0 && (blocktype & 0x3F) == block_type)
                     {
-                        if (variables.debugme) Console.WriteLine(fsseq);
+                        if (variables.debugMode) Console.WriteLine(fsseq);
                         if (fsseq > newfilesystem)
                         {
                             newfilesystem = fsseq;
@@ -934,7 +934,7 @@ namespace JRunner.Nand
                             block = getBlockOffset(block, sparedata);
                         }
                     }
-                    catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                    catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
 
                     if (image[(page * pagesize) + (i * 0x10)] != 0x05) { Files.Add(new FSFile(filename, block, length)); }
                 }
@@ -975,7 +975,7 @@ namespace JRunner.Nand
                 }
             }
             if (String.IsNullOrEmpty(fil.getFilename())) return null;
-            if (variables.debugme) Console.WriteLine("{0:X} : {1:X}", fil.getBlock(), fil.getLength());
+            if (variables.debugMode) Console.WriteLine("{0:X} : {1:X}", fil.getBlock(), fil.getLength());
             byte[] searched = new byte[fil.getLength()];
 
             if (noecc)
@@ -1064,7 +1064,7 @@ namespace JRunner.Nand
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("* unknown image found !");
+                if (variables.debugMode) Console.WriteLine("* unknown image found !");
                 return 0;
             }
         }
@@ -1073,11 +1073,11 @@ namespace JRunner.Nand
         {
             long size = 0;
             byte[] data = BadBlock.find_bad_blocks_X(Oper.openfile(filename, ref size, 0), 5);
-            if (variables.debugme) Console.WriteLine("data: {0:X}", data.Length);
+            if (variables.debugMode) Console.WriteLine("data: {0:X}", data.Length);
             byte[] Keyraw = new byte[0x4200];
             Keyraw = Oper.returnportion(data, 0x4200, 0x4200);
             if (variables.extractfiles) Oper.savefile(Keyraw, "output\\KV_raw.bin");
-            if (variables.debugme) Console.WriteLine("Keyraw: {0:X}", Keyraw.Length);
+            if (variables.debugMode) Console.WriteLine("Keyraw: {0:X}", Keyraw.Length);
             return Keyraw;
         }
 
@@ -1213,13 +1213,13 @@ namespace JRunner.Nand
                 }
                 return finalimage;
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return null;
         }
 
         public static byte[] encryptkv(byte[] kv, byte[] key)
         {
-            if (variables.debugme) Console.WriteLine(key.Length);
+            if (variables.debugMode) Console.WriteLine(key.Length);
             byte[] message = new byte[16];
             message = Oper.returnportion(kv, 0, 0x10);
             byte[] RC4_key = Oper.HMAC_SHA1(key, message);
@@ -1265,7 +1265,7 @@ namespace JRunner.Nand
             FileStream infile = new FileStream(filename, FileMode.Open, FileAccess.ReadWrite);
             BinaryWriter fileb = new BinaryWriter(infile);
 
-            if (variables.debugme) Console.WriteLine("kv length: {0:X}", rawKV.Length);
+            if (variables.debugMode) Console.WriteLine("kv length: {0:X}", rawKV.Length);
 
             fileb.BaseStream.Seek(rawKV.Length, SeekOrigin.Begin);
             fileb.Write(rawKV);
@@ -1287,7 +1287,7 @@ namespace JRunner.Nand
         public static int getcb_build(byte[] image)
         {
             if (variables.extractfiles) Oper.savefile(image, "conf.bin");
-            if (variables.debugme) Console.WriteLine("Getting CB");
+            if (variables.debugMode) Console.WriteLine("Getting CB");
             int counter;
             if (image[0x205] == 0xFF || image[0x415] == 0xFF || image[0x200] == 0xFF)
             {
@@ -1298,7 +1298,7 @@ namespace JRunner.Nand
                 }
                 image = res;
             }
-            if (variables.debugme) Console.WriteLine("Unecc'd Conf");
+            if (variables.debugMode) Console.WriteLine("Unecc'd Conf");
             byte block_id;
             int block_build = 0;
             byte[] block_build_b = new byte[2], block_size_b = new byte[4], SMC;
@@ -1307,8 +1307,8 @@ namespace JRunner.Nand
             block_build_b = Oper.returnportion(image, block_offset_b + 2, 2);
             int id = block_id & 0xF;
             if (id == 2) block_build = Convert.ToInt32(Oper.ByteArrayToString(block_build_b), 16);
-            if (variables.debugme) Console.WriteLine("Block Build: {0}", block_build);
-            if (variables.debugme) Console.WriteLine("Checking SMC");
+            if (variables.debugMode) Console.WriteLine("Block Build: {0}", block_build);
+            if (variables.debugMode) Console.WriteLine("Checking SMC");
             byte[] smc_len = new byte[4], smc_start = new byte[4];
             smc_len = Oper.returnportion(image, 0x78, 4);
             smc_start = Oper.returnportion(image, 0x7C, 4);
@@ -1316,7 +1316,7 @@ namespace JRunner.Nand
             SMC = Oper.returnportion(image, Convert.ToInt32(Oper.ByteArrayToString(smc_start), 16), Convert.ToInt32(Oper.ByteArrayToString(smc_len), 16));
             SMC = decrypt_SMC(SMC);
             variables.smcmbtype = SMC[0x100] >> 4 & 15;
-            if (variables.debugme) Console.WriteLine("SMC Type: {0}", variables.smcmbtype);
+            if (variables.debugMode) Console.WriteLine("SMC Type: {0}", variables.smcmbtype);
             SMC = null;
             return block_build;
         }
@@ -1343,7 +1343,7 @@ namespace JRunner.Nand
                         res = null;
                     }
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
 
                 try
                 {
@@ -1362,7 +1362,7 @@ namespace JRunner.Nand
                         for (block = 0; block < 10; block++)
                         {
                             block_id = image[block_offset_b + 1];
-                            if (variables.debugme) Console.WriteLine("Block ID: {0} | Block offset: {1:X}", block_id, block_offset_b);
+                            if (variables.debugMode) Console.WriteLine("Block ID: {0} | Block offset: {1:X}", block_id, block_offset_b);
                             int temp_block_offset = block_offset_b;
                             //block_build_b = returnportion(image, block_offset_b + 2, 2);
                             Buffer.BlockCopy(image, block_offset_b + 2, block_build_b, 0, 2);
@@ -1370,7 +1370,7 @@ namespace JRunner.Nand
                             Buffer.BlockCopy(image, block_offset_b + 12, block_size_b, 0, 4);
                             block_size = Convert.ToInt32(Oper.ByteArrayToString(block_size_b), 16);
                             block_build = Convert.ToInt32(Oper.ByteArrayToString(block_build_b), 16);
-                            if (variables.debugme) Console.WriteLine("Block Build {0} : Block Size {1:X}", block_build, block_size);
+                            if (variables.debugMode) Console.WriteLine("Block Build {0} : Block Size {1:X}", block_build, block_size);
                             block_size += 0xF;
                             block_size &= ~0xF;
                             id = block_id & 0xF;
@@ -1380,7 +1380,7 @@ namespace JRunner.Nand
 
                             if (id == 6 || id == 7)
                             {
-                                if (variables.debugme) Console.WriteLine("Found {0}BL Patch {3} (build {1}) at {2:X}", id, block_build, block_offset_b, patch);
+                                if (variables.debugMode) Console.WriteLine("Found {0}BL Patch {3} (build {1}) at {2:X}", id, block_build, block_offset_b, patch);
                                 if (id == 6)
                                 {
                                     patch_offset = block_offset_b;
@@ -1428,19 +1428,19 @@ namespace JRunner.Nand
                             int tem6 = image[block_offset_b + block_size + 1];
                             if (patch == 1 && block_offset_b < 0x80000 && tem2 == 0x46 && tem1 == 0x43)
                             {
-                                if (variables.debugme) Console.WriteLine("2 - {0:X}", block_offset_b);
+                                if (variables.debugMode) Console.WriteLine("2 - {0:X}", block_offset_b);
                                 block_offset_b = patch_offset + 0x10000;
                                 continue;
                             }
                             else if (temo == 0x46 && tem0 == 0x43 && patch == 1)
                             {
-                                if (variables.debugme) Console.WriteLine("1 - {0:X}", block_offset_b);
+                                if (variables.debugMode) Console.WriteLine("1 - {0:X}", block_offset_b);
                                 block_offset_b = patch_offset + blocksize;
                                 continue;
                             }
                             else if (patch == 0 && tem3 == 0x43 && tem4 == 0x46 && tem5 != 0x43 && tem6 != 0x47)
                             {
-                                if (variables.debugme) Console.WriteLine("4 - {0:X}", block_offset_b);
+                                if (variables.debugMode) Console.WriteLine("4 - {0:X}", block_offset_b);
                                 block_offset_b += 0x10000;
                                 patch = 1;
                                 continue;
@@ -1448,29 +1448,29 @@ namespace JRunner.Nand
 
                             else if (patch == 0 && block_offset_b > 0x80000 && patch_offset < 0x80000)
                             {
-                                if (variables.debugme) Console.WriteLine("3 - {0:X}", block_offset_b);
+                                if (variables.debugMode) Console.WriteLine("3 - {0:X}", block_offset_b);
                                 patch = 1;
                                 block_offset_b = 0x80000;
                                 continue;
                             }
                             if (block_size == 0x10) { block_size = 0x20000; patch = 1; }
                             block_offset_b += block_size;
-                            if (variables.debugme) Console.WriteLine("5 - {0:X}", block_offset_b);
+                            if (variables.debugMode) Console.WriteLine("5 - {0:X}", block_offset_b);
                             if (temp_block_offset == block_offset_b) break;
                             if (block_offset_b > size) break;
                         }
                     }
                     catch (System.OverflowException) { return; }
-                    catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                    catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                 }
-                catch (System.IndexOutOfRangeException ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
-                catch (System.OutOfMemoryException ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
+                catch (System.IndexOutOfRangeException ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
+                catch (System.OutOfMemoryException ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
             }
         }
 
         public static byte[] decrypt_CB(byte[] image)
         {
-            if (variables.debugme) Console.WriteLine(" * decrypting CB...");
+            if (variables.debugMode) Console.WriteLine(" * decrypting CB...");
             byte[] message = Oper.returnportion(image, 0x10, 0x10);
             byte[] RC4_key = Oper.HMAC_SHA1(secret_1bl, message);
             byte[] imfordec = Oper.returnportion(image, 0x20, image.Length - 0x20);
@@ -1494,7 +1494,7 @@ namespace JRunner.Nand
 
             if ((Oper.ByteArrayToInt(Oper.returnportion(CB_A, 0x6, 2)) & 0x1000) != 0)
             {
-                if (variables.debugme) Console.WriteLine("CB - Using new encryption scheme");
+                if (variables.debugMode) Console.WriteLine("CB - Using new encryption scheme");
                 temp = Oper.returnportion(CB_A, 0, 0x10);
                 temp[0x6] = 0x00;
                 temp[0x7] = 0x00;
@@ -1539,7 +1539,7 @@ namespace JRunner.Nand
 
         public static byte[] encrypt_CB_cpukey(byte[] image, byte[] CB_A_key, byte[] cpukey)
         {
-            if (variables.debugme) Console.WriteLine(cpukey.Length);
+            if (variables.debugMode) Console.WriteLine(cpukey.Length);
 
             byte[] secret = CB_A_key;
             byte[] crypto = Oper.returnportion(image, 0x10, 0x10);
@@ -1547,7 +1547,7 @@ namespace JRunner.Nand
 
             if ((Oper.ByteArrayToInt(Oper.returnportion(CB_A_key, 0x6, 2)) & 0x1000) != 0)
             {
-                if (variables.debugme) Console.WriteLine("Using new encryption scheme");
+                if (variables.debugMode) Console.WriteLine("Using new encryption scheme");
                 CB_A_key[0x6] = 0x00;
                 CB_A_key[0x7] = 0x00;
                 message = Oper.concatByteArrays(message, CB_A_key, message.Length, 0x10);
@@ -1555,7 +1555,7 @@ namespace JRunner.Nand
 
             byte[] RC4_key = Oper.HMAC_SHA1(secret, message);
             byte[] imfordec = Oper.returnportion(image, 0x20, image.Length - 0x20);
-            if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(RC4_key));
+            if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(RC4_key));
             Oper.RC4_v(ref imfordec, Oper.returnportion(RC4_key, 0, 0x10));
 
 
@@ -1574,14 +1574,14 @@ namespace JRunner.Nand
             byte[] finalimage = new byte[image.Length];
             try
             {
-                Console.WriteLine(" * encrypting CB...");
+                if (variables.debugMode) Console.WriteLine("Encrypting CB...");
                 byte[] RC4_key = Oper.HMAC_SHA1(secret_1bl, random);
                 //byte[] RC4_key = returnportion(image, 0x10, 0x10);
                 byte[] imfordec = Oper.returnportion(image, 0x20, image.Length - 0x20);
-                if (variables.debugme) Console.WriteLine(" CB Stage 1");
+                if (variables.debugMode) Console.WriteLine(" CB Stage 1");
                 key = Oper.returnportion(RC4_key, 0, 0x10);
                 Oper.RC4_v(ref imfordec, Oper.returnportion(RC4_key, 0, 0x10));
-                if (variables.debugme) Console.WriteLine(" CB Stage 2");
+                if (variables.debugMode) Console.WriteLine(" CB Stage 2");
 
                 for (int i = 0; i < image.Length; i++)
                 {
@@ -1589,16 +1589,16 @@ namespace JRunner.Nand
                     else if (i < 0x20) finalimage[i] = random[i - 0x10];
                     else finalimage[i] = imfordec[i - 0x20];
                 }
-                if (variables.debugme) Console.WriteLine(" * encrypted CB...");
+                if (variables.debugMode) Console.WriteLine("Encrypted CB...");
 
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return finalimage;
         }
 
         public static byte[] encrypt_CD(byte[] image, byte[] random, byte[] CB_B_key)
         {
-            Console.WriteLine(" * encrypting CD...");
+            if (variables.debugMode) Console.WriteLine("Encrypting CD...");
             byte[] RC4_key = Oper.HMAC_SHA1(CB_B_key, random);
             byte[] imfordec = Oper.returnportion(image, 0x20, image.Length - 0x20);
             Oper.RC4_v(ref imfordec, Oper.returnportion(RC4_key, 0, 0x10));
@@ -1609,13 +1609,13 @@ namespace JRunner.Nand
                 else if (i < 0x20) finalimage[i] = random[i - 0x10];
                 else finalimage[i] = imfordec[i - 0x20];
             }
-            if (variables.debugme) Console.WriteLine(" * encrypted CD...");
+            if (variables.debugMode) Console.WriteLine("Encrypted CD...");
             return finalimage;
         }
 
         public static byte[] decrypt_CF(byte[] image)
         {
-            if (variables.debugme) Console.WriteLine(" * decrypting CF...");
+            if (variables.debugMode) Console.WriteLine("Decrypting CF...");
             byte[] message = Oper.returnportion(image, 0x20, 0x10);
             byte[] RC4_key = Oper.HMAC_SHA1(secret_1bl, message);
             byte[] imfordec = Oper.returnportion(image, 0x30, image.Length - 0x30);
@@ -1633,7 +1633,7 @@ namespace JRunner.Nand
 
         public static byte[] decrypt_CG(byte[] image, byte[] CF)
         {
-            if (variables.debugme) Console.WriteLine(" * decrypting CG...");
+            if (variables.debugMode) Console.WriteLine("Decrypting CG...");
             byte[] secret = Oper.returnportion(CF, 0x330, 0x10);
             byte[] message = Oper.returnportion(image, 0x10, 0x10);
             byte[] RC4_key = Oper.HMAC_SHA1(secret, message);
@@ -1652,7 +1652,7 @@ namespace JRunner.Nand
 
         public static byte[] encrypt_CF(byte[] CF_dec, byte[] encryptedCF, byte[] cpukey)
         {
-            if (variables.debugme) Console.WriteLine(" * encrypting...");
+            if (variables.debugMode) Console.WriteLine("Encrypting...");
             byte[] message = random;
             //byte[] RC4_key = HMAC_SHA1(secret_1bl, message);
             byte[] RC4_key = Oper.returnportion(CF_dec, 0x20, 0x10);
@@ -1660,7 +1660,7 @@ namespace JRunner.Nand
             Oper.RC4_v(ref imfordec, Oper.returnportion(RC4_key, 0, 0x10));
             byte[] hash = calcCFhash(CF_dec, cpukey);
             RC4_key = Oper.HMAC_SHA1(secret_1bl, Oper.returnportion(CF_dec, 0x20, 0x10));
-            if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(RC4_key));
+            if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(RC4_key));
             byte[] finalimage = new byte[CF_dec.Length];
             for (int i = 0; i < CF_dec.Length; i++)
             {
@@ -1754,7 +1754,7 @@ namespace JRunner.Nand
             int block_offset = 0;
             byte[] data = getsmcconfig(filename, out block_offset);
             if (data == null) return null;
-            if (variables.debugme) Console.WriteLine("{0:X} - {1:X}", data.Length, block_offset);
+            if (variables.debugMode) Console.WriteLine("{0:X} - {1:X}", data.Length, block_offset);
             data.Replace(val.structure, block_offset + 0xE, 1);
             data.Replace(val.config, block_offset + 0xF, 1);
             data.Replace(val.bit, block_offset + 0x14, 1);
@@ -1827,7 +1827,7 @@ namespace JRunner.Nand
             layout = identifylayout(sparedata);
 
             if (hasecc(temp)) corona = false;
-            if (variables.debugme) Console.WriteLine("bigblock:{0} - corona: {1} - layout: {2}", bigblock, corona, layout);
+            if (variables.debugMode) Console.WriteLine("bigblock:{0} - corona: {1} - layout: {2}", bigblock, corona, layout);
 
             int smc_offset, smc_length;
             byte[] smc_len = new byte[4], smc_start = new byte[4];
@@ -1877,7 +1877,7 @@ namespace JRunner.Nand
             layout = identifylayout(sparedata);
 
             if (hasecc(temp)) corona = false;
-            if (variables.debugme) Console.WriteLine("bigblock:{0} - corona: {1} - layout: {2}", bigblock, corona, layout);
+            if (variables.debugMode) Console.WriteLine("bigblock:{0} - corona: {1} - layout: {2}", bigblock, corona, layout);
 
             int smc_config_offset, smc_config_length;
             if (!bigblock)
@@ -1930,7 +1930,7 @@ namespace JRunner.Nand
             byte[] temp = (BadBlock.find_bad_blocks_X(filename, 0x50));
             if (hasecc(temp)) corona = false;
 
-            if (variables.debugme) Console.WriteLine("bigblock:{0} - corona: {1}", bigblock, corona);
+            if (variables.debugMode) Console.WriteLine("bigblock:{0} - corona: {1}", bigblock, corona);
 
             int smc_config_offset, smc_config_length;
             if (!bigblock)
@@ -1961,7 +1961,7 @@ namespace JRunner.Nand
             file.Close();
             infile.Close();
 
-            if (variables.debugme) Console.WriteLine("length: {0:X} - offset {1:X}", smc_config_length, smc_config_offset);
+            if (variables.debugMode) Console.WriteLine("length: {0:X} - offset {1:X}", smc_config_length, smc_config_offset);
 
             if (!corona)
             {
@@ -1974,7 +1974,7 @@ namespace JRunner.Nand
 
         public static string getConsoleName(PrivateN nand, string flashconfig = "")
         {
-            if (variables.debugme) Console.WriteLine("Identifying Console");
+            if (variables.debugMode) Console.WriteLine("Identifying Console");
             int[] cons = identifyConsole(nand, flashconfig);
 
             int max = -1;
@@ -1998,7 +1998,7 @@ namespace JRunner.Nand
         }
         public static consoles getConsole(PrivateN nand, string flashconfig = "")
         {
-            if (variables.debugme) Console.WriteLine("Getting cunts");
+            if (variables.debugMode) Console.WriteLine("Getting cunts");
             int[] cons = identifyConsole(nand, flashconfig);
             // do Stuff
             int max = -1;
@@ -2298,7 +2298,7 @@ namespace JRunner.Nand
                     block_size += 0xF;
                     block_size &= ~0xF;
                     id = block_id & 0xF;
-                    if (variables.debugme) Console.WriteLine("Found {0}BL at {1}", id, block_offset_b);
+                    if (variables.debugMode) Console.WriteLine("Found {0}BL at {1}", id, block_offset_b);
                     data = new byte[block_size];
                     //data = returnportion(image, block_offset_b, block_size);
                     Buffer.BlockCopy(image, block_offset_b, data, 0x00, block_size);
@@ -2390,7 +2390,7 @@ namespace JRunner.Nand
             //checkifbadblock(returnportion(data, 0, 0x4200), 0);
             if (!ascii.GetString(data).Contains("Microsoft") && print)
             {
-                if (variables.debugme) Console.WriteLine(ascii.GetString(data));
+                if (variables.debugMode) Console.WriteLine(ascii.GetString(data));
                 if (data[0] == 0x46 && data[1] == 0x57 && data[2] == 0x41 && data[3] == 0x00) Console.WriteLine("DemoN fw");
                 else if (size != 0x40000) Console.WriteLine("Header is wrong..");
             }
@@ -2456,17 +2456,17 @@ namespace JRunner.Nand
             if (fcrt == null) return;
             try
             {
-                if (variables.debugme) Console.WriteLine(cpukey.Length);
-                if (variables.debugme) Console.WriteLine(fcrt.Length);
+                if (variables.debugMode) Console.WriteLine(cpukey.Length);
+                if (variables.debugMode) Console.WriteLine(fcrt.Length);
                 if (fcrt.Length != 0x4000) { Console.WriteLine("Wrong fcrt.bin size"); return; }
                 if (cpukey.Length != 0x10) { Console.WriteLine("Wrong CPU Key size"); return; }
                 Console.WriteLine(Environment.NewLine + "Decrypting fcrt.bin");
                 int size, offset;
                 offset = Oper.ByteArrayToInt(Oper.returnportion(fcrt, 0x11C, 4));
                 size = Oper.ByteArrayToInt(Oper.returnportion(fcrt, 0x118, 4));
-                if (variables.debugme) Console.WriteLine("offset: {0:X} - size: {1:X}", offset, size);
+                if (variables.debugMode) Console.WriteLine("offset: {0:X} - size: {1:X}", offset, size);
                 byte[] toEncryptArray = Oper.returnportion(fcrt, offset, size); // here here
-                if (variables.debugme) Console.WriteLine(toEncryptArray.Length);
+                if (variables.debugMode) Console.WriteLine(toEncryptArray.Length);
                 RijndaelManaged rDel = new RijndaelManaged();
                 rDel.IV = Oper.returnportion(fcrt, 0x100, 0x10);
                 rDel.Key = cpukey;
@@ -2474,17 +2474,17 @@ namespace JRunner.Nand
                 rDel.Padding = PaddingMode.None; // better lang support
                 ICryptoTransform cTransform = rDel.CreateDecryptor();
                 byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-                if (variables.debugme) Console.WriteLine(resultArray.Length);
+                if (variables.debugMode) Console.WriteLine(resultArray.Length);
                 Console.WriteLine("Checking hash");
                 SHA1CryptoServiceProvider sha = new SHA1CryptoServiceProvider();
                 byte[] Hash1 = sha.ComputeHash(resultArray);
-                if (variables.debugme) Console.WriteLine("{0} - {1}", Oper.ByteArrayToString(Hash1), Hash1.Length);
-                if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(Oper.returnportion(fcrt, 0x12C, 0x14)));
+                if (variables.debugMode) Console.WriteLine("{0} - {1}", Oper.ByteArrayToString(Hash1), Hash1.Length);
+                if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(Oper.returnportion(fcrt, 0x12C, 0x14)));
                 if (Oper.ByteArrayCompare(Hash1, Oper.returnportion(fcrt, 0x12C, 0x14), 0x14)) Console.WriteLine("Decrypted Successfully");
                 else Console.WriteLine("Failed");
                 Oper.savefile(Oper.concatByteArrays(Oper.returnportion(fcrt, 0, offset), resultArray, offset, resultArray.Length), Path.Combine(variables.outfolder, "fcrt_dec.bin"));
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
         }
         public static bool decrypt_fcrt(byte[] fcrt, byte[] cpukey, out byte[] fcrtd)
         {
@@ -2492,8 +2492,8 @@ namespace JRunner.Nand
             if (fcrt == null) return false;
             try
             {
-                if (variables.debugme) Console.WriteLine(cpukey.Length);
-                if (variables.debugme) Console.WriteLine(fcrt.Length);
+                if (variables.debugMode) Console.WriteLine(cpukey.Length);
+                if (variables.debugMode) Console.WriteLine(fcrt.Length);
                 if (fcrt.Length != 0x4000) { return false; }
                 if (cpukey.Length != 0x10) { return false; }
                 int size, offset;
@@ -2514,7 +2514,7 @@ namespace JRunner.Nand
                 fcrtd = (Oper.concatByteArrays(Oper.returnportion(fcrt, 0, offset), resultArray, offset, resultArray.Length));
                 return true;
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
             return false;
         }
 
@@ -2717,7 +2717,7 @@ namespace JRunner.Nand
         {
             if (!IndexOfSequence(SMC, Encoding.ASCII.GetBytes("Microsoft"), 0, 0x150))
             {
-                if (variables.debugme) Console.WriteLine("decrypting smc");
+                if (variables.debugMode) Console.WriteLine("decrypting smc");
                 SMC = Nand.decrypt_SMC(SMC);
             }
             if (Oper.allsame(Oper.returnportion(SMC, 0x2db0, 0x10), 0x00)) return false;
@@ -2881,7 +2881,7 @@ namespace JRunner.Nand
             if (corona) block_length = 0x4000;
             int fcrt_offset = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(searched, found + 0x10, 8)), 16) * block_length;
             int fcrt_length = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(searched, found + 0x18, 4)), 16);
-            if (variables.debugme) Console.WriteLine("Offset: {0:X} - Length {1:X} - corona: {2}", fcrt_offset, fcrt_length, corona);
+            if (variables.debugMode) Console.WriteLine("Offset: {0:X} - Length {1:X} - corona: {2}", fcrt_offset, fcrt_length, corona);
             if (corona)
             {
                 byte[] res = new byte[fcrt_length];
@@ -2949,7 +2949,7 @@ namespace JRunner.Nand
             if (found == -1) { Console.WriteLine("No secdata.bin was found"); return null; }
             int secdata_offset = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(searched, found + 0x10, 8)), 16) * 0x4200;
             int secdata_length = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(searched, found + 0x18, 4)), 16);
-            if (variables.debugme) Console.WriteLine("Offset: {0:X} - Length {1:X}", secdata_offset, secdata_length);
+            if (variables.debugMode) Console.WriteLine("Offset: {0:X} - Length {1:X}", secdata_offset, secdata_length);
             #region unecc
             int counter1;
             byte[] res = { };
@@ -3050,7 +3050,7 @@ namespace JRunner.Nand
                             Console.WriteLine("{0} - {1:X} - {2:X} - {3:X}", filename, currentfs, block, length);
                             Oper.savefile(Oper.returnportion_ecc(image, block * 0x4200, length), filename);
                         }
-                        catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                        catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                     }
                     if (image[(page * 0x210) + (i * 0x10)] != 0x05) { /*if (!filenames.Contains(filename)) */ filenames.Add(filename); }
                     //Console.WriteLine("{0:X}", page + (0x10 * i) + 0x20F);
@@ -3143,7 +3143,7 @@ namespace JRunner.Nand
                             Console.WriteLine("{0} - {1:X} - {2:X} - {3:X}", filename, currentfs, block, length);
                             Oper.savefile(Oper.returnportion_ecc(image, block * blocksize, length), filename);
                         }
-                        catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                        catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                     }
                     if (image[(page * 0x210) + (i * 0x10)] != 0x05) { /*if (!filenames.Contains(filename)) */ filenames.Add(filename); }
                     //Console.WriteLine("{0:X}", page + (0x10 * i) + 0x20F);
@@ -3292,7 +3292,7 @@ namespace JRunner.Nand
                     i += 0x840;
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return;
         }
         public static void sparedatatonormal(ref byte[] data)
@@ -3319,7 +3319,7 @@ namespace JRunner.Nand
                     i += 0x840;
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return;
         }
 
@@ -3383,7 +3383,7 @@ namespace JRunner.Nand
         {
             //int counter = 0;
             if (variables.extractfiles) Oper.savefile(image, "test.bin");
-            if (variables.debugme) Console.WriteLine("blockstart: {0:X}, layout: {1}", blockstart / 0x4200, layout);
+            if (variables.debugMode) Console.WriteLine("blockstart: {0:X}, layout: {1}", blockstart / 0x4200, layout);
             if (!addecc)
             {
                 if (hasecc(image)) unecc(ref image);
@@ -3429,7 +3429,7 @@ namespace JRunner.Nand
 
         private static byte[] calcecc(byte[] data)
         {
-            if (data.Length != 0x210) Console.WriteLine("Fuck");
+            if (data.Length != 0x210) Console.WriteLine("Bad data length");
             int val = 0;
             int i = 0;
             int v = 0;
@@ -3492,7 +3492,7 @@ namespace JRunner.Nand
                             sparedata[0x20] == 0xFF && sparedata[0x30] == 0xFF &&
                             !Oper.allsame(sparedata, 0xFF) && sparedata[3] == 0x00 && sparedata[4] == 0x00)
                         {
-                            if (variables.debugme) Console.WriteLine("Sparer {0:X}", i);
+                            if (variables.debugMode) Console.WriteLine("Sparer {0:X}", i);
                             return true;
                         }
                         break;
@@ -3502,7 +3502,7 @@ namespace JRunner.Nand
                         if ((sparedata[0] == 0xFF || sparedata[5] == 0xFF) && !Oper.allsame(Oper.returnportion(sparedata, 0xC, 0x4), 0xFF)
                             && !Oper.allsame(Oper.returnportion(sparedata, 0xC, 0x4), 0x00) && sparedata[3] == 0x00 && sparedata[4] == 0x00)
                         {
-                            if (variables.debugme) Console.WriteLine("Spare {0:X}", i);
+                            if (variables.debugMode) Console.WriteLine("Spare {0:X}", i);
                             return true;
                         }
                         break;
@@ -3528,7 +3528,7 @@ namespace JRunner.Nand
                             sparedata[0x20] == 0xFF && sparedata[0x30] == 0xFF &&
                             !Oper.allsame(sparedata, 0xFF) && sparedata[3] == 0x00 && sparedata[4] == 0x00)
                         {
-                            if (variables.debugme) Console.WriteLine("Sparer {0:X}", i);
+                            if (variables.debugMode) Console.WriteLine("Sparer {0:X}", i);
                             return true;
                         }
                         break;
@@ -3538,7 +3538,7 @@ namespace JRunner.Nand
                         if ((sparedata[0] == 0xFF || sparedata[5] == 0xFF) && !Oper.allsame(Oper.returnportion(sparedata, 0xC, 0x4), 0xFF)
                             && !Oper.allsame(Oper.returnportion(sparedata, 0xC, 0x4), 0x00) && sparedata[3] == 0x00 && sparedata[4] == 0x00)
                         {
-                            if (variables.debugme) Console.WriteLine("Spare {0:X}", i);
+                            if (variables.debugMode) Console.WriteLine("Spare {0:X}", i);
                             return true;
                         }
                         break;
@@ -3586,19 +3586,19 @@ namespace JRunner.Nand
                     res = null;
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
 
             return data;
         }
         public static void unecc(ref byte[] data, bool print = false)
         {
-            if (variables.debugme) Console.WriteLine("On unecc");
+            if (variables.debugMode) Console.WriteLine("On unecc");
             int counter = 0;
             try
             {
                 if (data[0x205] == 0xFF || data[0x415] == 0xFF || data[0x200] == 0xFF)
                 {
-                    if (print || variables.debugme) Console.WriteLine("ECC'ed - will unecc.");
+                    if (print || variables.debugMode) Console.WriteLine("ECC'ed - will unecc.");
                     byte[] res = new byte[(data.Length / 0x210) * 0x200];
                     for (counter = 0; counter < res.Length; counter += 0x200)
                     {
@@ -3609,7 +3609,7 @@ namespace JRunner.Nand
                 }
                 else if (data[0x800] == 0xFF && data[0x810] == 0xFF && data[0x820] == 0xFF)
                 {
-                    if (print || variables.debugme) Console.WriteLine("ECC'ed BB - will unecc.");
+                    if (print || variables.debugMode) Console.WriteLine("ECC'ed BB - will unecc.");
                     byte[] res = new byte[(data.Length / 0x840) * 0x800];
                     for (counter = 0; counter < res.Length; counter += 0x800)
                     {
@@ -3619,7 +3619,7 @@ namespace JRunner.Nand
                     res = null;
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
         }
         public static void unecc(ref byte[] data, ref ProgressBar pb, bool print = false)
         {
@@ -3628,7 +3628,7 @@ namespace JRunner.Nand
             {
                 if (data[0x205] == 0xFF || data[0x415] == 0xFF || data[0x200] == 0xFF)
                 {
-                    if (print || variables.debugme) Console.WriteLine("ECC'ed - will unecc.");
+                    if (print || variables.debugMode) Console.WriteLine("ECC'ed - will unecc.");
                     byte[] res = new byte[(data.Length / 0x210) * 0x200];
                     for (counter = 0; counter < res.Length; counter += 0x200)
                     {
@@ -3640,7 +3640,7 @@ namespace JRunner.Nand
                 }
                 else if (data[0x800] == 0xFF && data[0x810] == 0xFF && data[0x820] == 0xFF)
                 {
-                    if (print || variables.debugme) Console.WriteLine("ECC'ed BB - will unecc.");
+                    if (print || variables.debugMode) Console.WriteLine("ECC'ed BB - will unecc.");
                     byte[] res = new byte[(data.Length / 0x840) * 0x800];
                     for (counter = 0; counter < res.Length; counter += 0x800)
                     {
@@ -3651,7 +3651,7 @@ namespace JRunner.Nand
                     res = null;
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); else Console.WriteLine(ex.Message); }
         }
 
         public static bool checkecc(byte[] image, int blockstart, int blocklength)

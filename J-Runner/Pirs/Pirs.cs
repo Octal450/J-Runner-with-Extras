@@ -116,7 +116,7 @@ namespace JRunner.Pirs
                     pirs_offset = PIRS_TYPE2;
                     pirs_start = PIRS_BASE + pirs_offset;
                 }
-                if (variables.debugme) Console.WriteLine("offset: {0:X} - start: {1:X}", pirs_offset, pirs_start);
+                if (variables.debugMode) Console.WriteLine("offset: {0:X} - start: {1:X}", pirs_offset, pirs_start);
                 parse();
             }
             //br.Close();

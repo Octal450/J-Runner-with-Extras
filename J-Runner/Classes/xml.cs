@@ -29,7 +29,7 @@ namespace JRunner
                 io = new FileStream(file, FileMode.Create);
                 xw = XmlWriter.Create(io);
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         }
         public void close()
         {
@@ -38,7 +38,7 @@ namespace JRunner
                 xw.Close();
                 io.Close();
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         }
         public void start()
         {

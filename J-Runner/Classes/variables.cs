@@ -79,7 +79,7 @@ namespace JRunner
             Win81,
             W10_11
         }
-        public static string version = "3.1.5c Beta";
+        public static string version = "3.1.6 Beta";
         public static string build = "3152." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
         public const string staticversion = "3.1.5.2";
         public static int revision = 23;
@@ -97,7 +97,7 @@ namespace JRunner
         /// </summary>
         public static string cpukeypath = "cpukey.txt";
         public static string nanddump = "nanddump.bin";
-        public static string nandflash = "updflash.bin";
+        public static string updflash = "updflash.bin";
         public static string rootfolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static string currentdir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static string outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
@@ -110,7 +110,7 @@ namespace JRunner
         /// App settings
         /// </summary>
         public static bool logtofile = true;
-        public static bool debugme = false;
+        public static bool debugMode = false;
         public static bool generate = false;
         public static bool checkfiles = true, deletefiles = false, extractfiles = false;
         public static int delay = 2;
@@ -898,17 +898,6 @@ namespace JRunner
     0x6B, 0xEB, 0xEC, 0xB6, 0x26, 0x2D, 0xCE, 0xCE, 0x33, 0x46, 0xAD, 0xAD, 0x6C, 0x6C, 0xDE, 0xCE,
     0x4E, 0xB9,
                                      };
-        #endregion
-        #region Pictures
-
-
-        public static List<string> xmodel = new List<string>()
-    {
-        @"\common\Pics\Xbox360_Model_Guide.jpg",
-        @"\common\Pics\coronaguide.jpg"
-    };
-
-
         #endregion
     }
 }

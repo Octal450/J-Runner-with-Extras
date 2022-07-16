@@ -40,7 +40,7 @@ namespace JRunner.Forms
             {
                 smc_config = Nand.Nand.getConfigValues(Nand.Nand.getsmcconfig(variables.filename1, out block_offset), block_offset);
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         }
 
         private void SMCConfig_Load(object sender, EventArgs e)
@@ -314,9 +314,9 @@ namespace JRunner.Forms
                 val.reserve4 = Oper.StringToByteArray_v2(txtreserve4.Text);
                 val.reserve5 = Oper.StringToByteArray_v2(txtreserve5.Text);
 
-                if (variables.debugme) Console.WriteLine("editing");
+                if (variables.debugMode) Console.WriteLine("editing");
                 byte[] smc_conf = Nand.Nand.editConfigValues(newfile, val);
-                if (variables.debugme) Console.WriteLine("injecting");
+                if (variables.debugMode) Console.WriteLine("injecting");
                 Nand.Nand.injectSMCConf(newfile, smc_conf);
 
                 Console.WriteLine("SMC Config Patch Successful");
@@ -325,7 +325,7 @@ namespace JRunner.Forms
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                if (variables.debugme)
+                if (variables.debugMode)
                     Console.WriteLine(ex.ToString());
             }
         }

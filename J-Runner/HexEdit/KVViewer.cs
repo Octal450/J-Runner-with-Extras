@@ -55,7 +55,7 @@ namespace JRunner.HexEdit
             catch (Exception ex1)
             {
                 Console.WriteLine(ex1.Message);
-                if (variables.debugme) Console.WriteLine(ex1.ToString());
+                if (variables.debugMode) Console.WriteLine(ex1.ToString());
             }
         }
 

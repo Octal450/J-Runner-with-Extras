@@ -49,7 +49,7 @@ namespace JRunner
         /// <returns></returns>
         #region ecc creation
 
-        private void creatergh2eccinit(ref eccs dt)
+        private void creatergheccinit(ref eccs dt)
         {
             ///
             /// Paths
@@ -62,12 +62,12 @@ namespace JRunner
             // cd file
             {
                 dt.CD_plain = Oper.openfile(cdfile, ref size, 1 * 1024 * 1024);
-                Console.WriteLine("* found decrypted CD");
+                if (variables.debugMode) Console.WriteLine("Found decrypted CD");
             }
             // xell file
             {
                 byte[] data = Oper.openfile(xellfile, ref size, 1 * 1024 * 1024);
-                Console.WriteLine("* found XeLL binary, must be linked to {0}", CODE_BASE);
+                if (variables.debugMode) Console.WriteLine("Found XeLL binary, must be linked to {0}", CODE_BASE);
                 dt.Xell = Oper.padto(data, 0x00, 256 * 1024);
             }
         }
@@ -80,7 +80,7 @@ namespace JRunner
 
             int patch_offset = base_size;
 
-            Console.WriteLine(" * base size: {0}", base_size.ToString("X"));
+            if (variables.debugMode) Console.WriteLine("Base size: {0}", base_size.ToString("X"));
 
             byte[] cbyt = ascii.GetBytes(c);
             byte[] base_size_array = Oper.StringToByteArray(base_size.ToString("X"));
@@ -115,7 +115,7 @@ namespace JRunner
             cbyt = null; base_size_array = null; patch_offset_array = null;
         }
 
-        public int creatergh2ecc(string filename, string outputfolder, ref ProgressBar pb, string cpukey)
+        public int createecc(string filename, string outputfolder, ref ProgressBar pb, string cpukey)
         {
             eccs dt = new eccs();
             byte[] data;
@@ -128,7 +128,7 @@ namespace JRunner
             long size = 0;
             string imagefile = filename;
             System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-            if (variables.debugme) Console.WriteLine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            if (variables.debugMode) Console.WriteLine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
             string pathforit = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string cdrgh2file = Path.Combine(pathforit, @"common/cdxell/CDRGH2");
@@ -148,13 +148,13 @@ namespace JRunner
                     Console.WriteLine("Invalid Image");
                     return -1;
                 }
-                Console.WriteLine("* unpacking flash image, ....");
+                Console.WriteLine("Unpacking image...");
                 unpack_base_image_ecc(ref data, ref pb, ref dt);
                 dt.CB_A_crypted = dt.CB_A;
                 dt.SMC = decrypt_SMC(dt.SMC);
             }
 
-            creatergh2eccinit(ref dt);
+            creatergheccinit(ref dt);
             ///
             ///Finished Loading images
             ///
@@ -162,7 +162,6 @@ namespace JRunner
             if (dt.CD_plain == null) return -1;
             if (dt.SMC == null) return -1;
             ///
-            Console.WriteLine(" * we found the following parts: ");
             Console.WriteLine("SMC: {0}.{1}", (dt.SMC[0x101].ToString()), (dt.SMC[0x102]).ToString());
             ///
             if (dt.CB_A != null) Console.WriteLine("CB_A: {0}", Oper.ByteArrayToInt(build(dt.CB_A))); else Console.WriteLine("CB_A: missing");
@@ -182,13 +181,13 @@ namespace JRunner
             {
                 dt.CD_plain = Oper.openfile(cdrgh2file, ref size, 1 * 1024 * 1024);
                 if (dt.CD_plain == null) return -1;
-                if (dt.CD != null) Console.WriteLine("CD (image): {0}", Oper.ByteArrayToInt(build(dt.CD))); else Console.WriteLine("CD (image): missing");
-                if (dt.CD_plain != null) Console.WriteLine("CD (decrypted): {0}", Oper.ByteArrayToInt(build(dt.CD_plain))); else Console.WriteLine("CD (decrypted): missing");
+                if (dt.CD != null) Console.WriteLine("CD: {0}", Oper.ByteArrayToInt(build(dt.CD))); else Console.WriteLine("CD (image): missing");
+                if (dt.CD_plain != null) Console.WriteLine("CD: {0}", Oper.ByteArrayToInt(build(dt.CD_plain))); else Console.WriteLine("CD (decrypted): missing");
                 byte[] CB_A_img_RAND = { };
                 CB_A_img_RAND = Oper.returnportion(ref dt.CB_A_crypted, 0x10, 0x10);
                 ///
                 byte[] CB_A_img = Nand.Nand.decrypt_CB(dt.CB_A_crypted);
-                Console.WriteLine(" * checking required versions...");
+                Console.WriteLine("Checking required versions...");
 
                 int[] zephyr_builds = { 4578, 4577, 4575, 4560, 4576 };
                 int[] falcon_builds = { 5771, 5772, 5773 };
@@ -206,12 +205,12 @@ namespace JRunner
                 if (!xor_hack_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))) &&
                     !patch_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))) && String.IsNullOrEmpty(cpukey)) return -4;
 
-                Console.WriteLine("ok");
+                if (variables.debugMode) Console.WriteLine("ok");
 
-                Console.WriteLine(" * patching SMC...");
+                Console.WriteLine("Patching SMC...");
                 dt.SMC = patch_SMC(dt.SMC);
 
-                Console.WriteLine(" * Replacing CD...");
+                Console.WriteLine("Replacing CD...");
                 dt.CD = dt.CD_plain;
                 dt.CD_plain = null;
 
@@ -250,28 +249,28 @@ namespace JRunner
                 {
                     if (patch_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_B))))
                     {
-                        Console.WriteLine(" * patching CB_B...");
+                        Console.WriteLine("Patching CB_B...");
                         dt.CB_B = patch_CB(dt.CB_B);
                         dt.CB_A = dt.CB_A_crypted;
                     }
                     else if (xor_hack_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_B))))
                     {
                         Console.WriteLine();
-                        Console.WriteLine("* XOR HACK NEEDED FOR CB {0}", Oper.ByteArrayToInt(build(dt.CB_B)));
+                        Console.WriteLine("XOR HACK NEEDED FOR CB {0}", Oper.ByteArrayToInt(build(dt.CB_B)));
 
                         byte[] CB_B_plain = Oper.openfile(Path.Combine(variables.rootfolder, @"common\CB\CB_B." + Oper.ByteArrayToInt(build(dt.CB_B)) + ".bin"), ref size, 0);
                         if (CB_B_plain == null) { Console.WriteLine("Failed to open CB_B.{0}.bin", Oper.ByteArrayToInt(build(dt.CB_B))); return 5; }
 
                         byte[] CB_B_patched = Oper.openfile(cbbpath, ref size, 0);
                         if (CB_B_patched == null) { Console.WriteLine("Failed to open {0}", cbbpath); return 5; }
-                        Console.WriteLine(" * patching CB_B...");
+                        Console.WriteLine("Patching CB_B...");
 
                         CB_B_patched = patch_CB(CB_B_patched);
                         if (CB_B_patched == null) { Console.WriteLine("Failed to patch the CB_B"); return 5; }
-                        Console.WriteLine(" * Applying XOR Hack to CB_B {0}", Oper.ByteArrayToInt(build(dt.CB_B)));
+                        Console.WriteLine("Applying XOR Hack to CB_B {0}", Oper.ByteArrayToInt(build(dt.CB_B)));
 
                         dt.CB_B = xor_hack(dt.CB_B, CB_B_plain, CB_B_patched);
-                        Console.WriteLine(" * Replacing CB_A {0} with {1}", Oper.ByteArrayToInt(build(dt.CB_A)), Oper.ByteArrayToInt(build(CB_B_patched)));
+                        Console.WriteLine("Replacing CB_A {0} with {1}", Oper.ByteArrayToInt(build(dt.CB_A)), Oper.ByteArrayToInt(build(CB_B_patched)));
 
                         dt.CB_A = Oper.openfile(cbapath, ref size, 0);
                         if (dt.CB_A == null) { Console.WriteLine("Failed to open {0}", cbapath); return 5; }
@@ -287,7 +286,7 @@ namespace JRunner
                         cpukey = "";
                         goto wtf;
                     }
-                    Console.WriteLine("\n * Building new bootloader chain using cpu_key: {0}", cpukey);
+                    Console.WriteLine("\nNuilding new bootloader chain using cpu_key: {0}", cpukey);
 
                     dt.CB_A = Oper.openfile(cbapath, ref size, 0);
                     dt.CB_B = Oper.openfile(cbbpath, ref size, 0);
@@ -302,7 +301,7 @@ namespace JRunner
                 ///
                 ///
                 ///
-                Console.WriteLine(" * constructing new image...");
+                Console.WriteLine("Constructing new image...");
 
                 c = c + ", CB=" + Oper.ByteArrayToInt(build(dt.CB_A));
             }
@@ -321,7 +320,7 @@ namespace JRunner
                 ///
                 if (Oper.ByteArrayToInt(build(dt.CB_A)) >= 1888 && Oper.ByteArrayToInt(build(dt.CB_A)) <= 1940 || Oper.ByteArrayToInt(build(dt.CB_A)) == 7373 || Oper.ByteArrayToInt(build(dt.CB_A)) == 8192)
                 {
-                    Console.WriteLine(" * using donor CB");
+                    Console.WriteLine("Using donor CB");
                     dt.CB_A_crypted = null;
                     if (MessageBox.Show("There have been various reports that using a different bootloader improves the glitch speeds on xenon. Click Yes to use the 7375 Bootloader or Click No to use the 1940 one.", "Choose CB", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                     {
@@ -362,19 +361,21 @@ namespace JRunner
                     return 5;
                 }
 
-
-                if (trinity_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) Console.WriteLine(" * this image will be valid *only* for: trinity (slim)");
-                else if (corona_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) Console.WriteLine(" * this image will be valid *only* for: corona");
-                else if (zephyr_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) Console.WriteLine(" * this image will be valid *only* for: zephyr");
-                else if (falcon_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) Console.WriteLine(" * this image will be valid *only* for: falcon");
-                else if (jasper_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))))
+                if (variables.debugMode)
                 {
-                    if (donor) Console.WriteLine(" * this image will be valid *only* for: jasper (CB_6751)");
-                    else Console.WriteLine(" * this image will be valid *only* for: jasper (CB_6750)");
+                    if (trinity_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) Console.WriteLine(" * this image will be valid *only* for: trinity");
+                    else if (corona_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) Console.WriteLine(" * this image will be valid *only* for: corona");
+                    else if (zephyr_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) Console.WriteLine(" * this image will be valid *only* for: zephyr");
+                    else if (falcon_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) Console.WriteLine(" * this image will be valid *only* for: falcon");
+                    else if (jasper_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))))
+                    {
+                        if (donor) Console.WriteLine(" * this image will be valid *only* for: jasper (CB_6751)");
+                        else Console.WriteLine(" * this image will be valid *only* for: jasper (CB_6750)");
+                    }
+                    else Console.WriteLine(" * this image will be valid *only* for: xenon");
                 }
-                else Console.WriteLine(" * this image will be valid *only* for: xenon");
 
-                Console.WriteLine(" * patching SMC...");
+                Console.WriteLine("Patching SMC...");
                 dt.SMC = patch_SMC(dt.SMC);
 
                 dt.CD = dt.CD_plain;
@@ -382,14 +383,14 @@ namespace JRunner
 
                 if (dt.CB_B != null)
                 {
-                    Console.WriteLine(" * patching CB_B...");
+                    Console.WriteLine("Patching CB_B...");
                     dt.CB_B = patch_CB(dt.CB_B);
                     c = "patched CB img";
                 }
                 else
                 {
                     //Nand.savefile(CB_A, "CB_f.bin");
-                    Console.WriteLine(" * zero-pairing...");
+                    Console.WriteLine("Zero-pairing...");
                     for (int bytes = 0x20; bytes < 0x40; bytes++) dt.CB_A[bytes] = 0x00;
                     c = "zeropair image";
                 }
@@ -397,7 +398,7 @@ namespace JRunner
                 ///
                 ///
                 ///
-                Console.WriteLine(" * constructing new image...");
+                Console.WriteLine("Constructing new image...");
                 byte[] random = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
                 c = c + ", version=01, CB=" + Oper.ByteArrayToInt(build(dt.CB_A));
@@ -421,7 +422,6 @@ namespace JRunner
             byte[] newXell = dt.Xell;
             if (dt.Xell.Length <= 256 * 1024)
             {
-                Console.WriteLine(" * No separate recovery Xell available!");
                 newXell = Oper.concatByteArrays(dt.Xell, dt.Xell, dt.Xell.Length, dt.Xell.Length);
             }
             dt.Xell = null;
@@ -429,7 +429,7 @@ namespace JRunner
             /// Start of image creation
             ///
             byte[] Final = { };
-            Console.WriteLine(" * Flash Layout:");
+            if (variables.debugMode) Console.WriteLine("Flash Layout:");
             Final = addtoflash(Oper.returnportion(ref dt.Header, 0x00, 0x200), Final, "Header", 0x00, 0x200);
             Final = padto_v2(Final, 0x4000 - dt.SMC.Length);
             ///
@@ -451,27 +451,22 @@ namespace JRunner
             dt.CD = null;
             Final = padto_v2(Final, XELL_BASE_FLASH);
             ///
-            Final = addtoflash(Oper.returnportion(ref newXell, 0, 256 * 1024), Final, "Xell (backup)", Final.Length, 256 * 1024);
-            Final = addtoflash(Oper.returnportion(ref newXell, 256 * 1024, newXell.Length - (256 * 1024)), Final, "Xell (main)", Final.Length, newXell.Length - (256 * 1024));
+            Final = addtoflash(Oper.returnportion(ref newXell, 0, 256 * 1024), Final, "XeLL (backup)", Final.Length, 256 * 1024);
+            Final = addtoflash(Oper.returnportion(ref newXell, 256 * 1024, newXell.Length - (256 * 1024)), Final, "XeLL (main)", Final.Length, newXell.Length - (256 * 1024));
             newXell = null;
             ///
-            if (variables.extractfiles || variables.debugme) Oper.savefile(Final, Path.Combine(outputfolder, "image_no.ecc"));
+            if (variables.extractfiles || variables.debugMode) Oper.savefile(Final, Path.Combine(outputfolder, "image_no.ecc"));
 
             if (hasecc)
             {
-                Console.Write(" * Encoding ECC...");
+                Console.WriteLine("Recalculating ECC...");
                 Final = Nand.Nand.addecc_v2(Final, true, 0, layout);
             }
-            else
-            {
-                Console.WriteLine("NOT adding Spare Data");
-            }
 
-            Console.WriteLine("Done");
             ///
             Oper.savefile(Final, Path.Combine(outputfolder, "glitch.ecc"));
             DirectoryInfo dinfo = new DirectoryInfo(outputfolder);
-            Console.WriteLine("------------- Written into {0}\n", Path.Combine(dinfo.Name, "glitch.ecc"));
+            Console.WriteLine("XeLL image created");
             Console.WriteLine("");
             pb.Value = pb.Maximum;
             return 1;
@@ -484,14 +479,14 @@ namespace JRunner
             if (Nand.Nand.hasecc(image))
             {
                 hasecc = true;
-                Console.WriteLine("Spare Data found, will remove.");
+                if (variables.debugMode) Console.WriteLine("Spare data found, will remove");
                 Nand.Nand.unecc(ref image, ref pb);
-                Console.WriteLine("Removed");
+                if (variables.debugMode) Console.WriteLine("Removed spare data");
             }
             else
             {
                 hasecc = false;
-                Console.WriteLine("Spare data NOT found");
+                if (variables.debugMode) Console.WriteLine("Spare data NOT found");
             }
 
             try
@@ -536,7 +531,7 @@ namespace JRunner
                     block_size &= ~0xF;
                     id = block_id & 0xF;
 
-                    if (variables.debugme) Console.WriteLine("Found {0}BL (build {1}) at {2}", id, block_build, Convert.ToString(block_offset_b, 16));
+                    if (variables.debugMode) Console.WriteLine("Found {0}BL (build {1}) at {2}", id, block_build, Convert.ToString(block_offset_b, 16));
                     data = null;
                     try
                     {
@@ -544,7 +539,7 @@ namespace JRunner
                         //data = Nand.returnportion(image, block_offset_b, block_size);
                         Buffer.BlockCopy(image, block_offset_b, data, 0, block_size);
                     }
-                    catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                    catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                     if (id == 2)
                     {
                         if (semi == 0)
@@ -559,7 +554,7 @@ namespace JRunner
                             }
                             else if (block_build == 5771)
                             {
-                                if (variables.debugme) Console.WriteLine("This CB version is for a Falcon");
+                                if (variables.debugMode) Console.WriteLine("This CB version is for a Falcon");
                                 dt.CB_A = data;
                             }
                             else dt.CB_A = data;
@@ -585,7 +580,7 @@ namespace JRunner
                 }
                 #endregion
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         }
         #endregion
 
@@ -611,7 +606,7 @@ namespace JRunner
         {
             byte[] tempimage = new byte[image.Length + length];
             int i;
-            Console.WriteLine("0x{0}..0x{1} (0x{2} bytes) {3}", (lastloc + offset).ToString("X"), (offset + lastloc + length - 1).ToString("X"), (length).ToString("X"), what);
+            if (variables.debugMode) Console.WriteLine("0x{0}..0x{1} (0x{2} bytes) {3}", (lastloc + offset).ToString("X"), (offset + lastloc + length - 1).ToString("X"), (length).ToString("X"), what);
             for (i = 0; i < image.Length; i++)
             {
                 tempimage[i] = image[i];
@@ -681,7 +676,7 @@ namespace JRunner
                         CB_patches_offsets = CB_patches_offsets_13121;
                         CB_patches = CB_patches_13121;
                     }
-                    if (variables.debugme) Console.WriteLine("{0} patches selected", patchCB);
+                    if (variables.debugMode) Console.WriteLine("{0} patches selected", patchCB);
 
                     Console.WriteLine("patchset for {0} found, {1} patch(es)", patchCB, CB_patches_offsets.Length);
                     found = true;
@@ -714,7 +709,7 @@ namespace JRunner
 
             int keystream, patched;
 
-            Console.WriteLine(" *** Re-encrypting CB_B with xor keystream");
+            Console.WriteLine("Re-encrypting CB_B with XOR keystream");
             int j = 0;
             for (j = 0; j < (CB_B_patched.Length - headerlen) / 4; j++)
             {
@@ -730,7 +725,7 @@ namespace JRunner
 
                 offset += 4;
             }
-            Console.WriteLine(" *** Fixing entrypoint");
+            Console.WriteLine("Fixing entrypoint");
             CB_B = Oper.concatByteArrays(CB_B_patched, Oper.returnportion(ref CB_B, 0xC, CB_B.Length - 0xC), 0xC, CB_B.Length - 0xC);
             return CB_B;
         }
@@ -805,14 +800,14 @@ namespace JRunner
                     if ((SMC[i + 2] == 0xE5) && (SMC[i + 4] == 0xb4) && (SMC[i + 5] == 0x05))
                     {
                         found = true;
-                        Console.WriteLine("Patching {0} version {1}.{2} SMC at offset 0x{3:X}", console_types[smctype], SMC[0x101], SMC[0x102], i);
+                        if (variables.debugMode) Console.WriteLine("Patching {0} version {1}.{2} SMC at offset 0x{3:X}", console_types[smctype], SMC[0x101], SMC[0x102], i);
                         SMC[i] = 0x00; SMC[i + 1] = 0x00;
                     }
                 }
             }
             if (!found)
             {
-                Console.WriteLine(" ! Warning: can't patch this {0} type SMC!", console_types[smctype]);
+                Console.WriteLine("Warning: can't patch this {0} type SMC!", console_types[smctype]);
             }
             return SMC;
         }

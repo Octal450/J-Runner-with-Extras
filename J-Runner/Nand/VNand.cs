@@ -49,7 +49,7 @@ namespace JRunner.Nand
             if (length == 0)
             {
                 length = _console.Nsize.GetHashCode();
-                if (variables.debugme) Console.WriteLine("Length: {0:X} - size: {1}", length, _console.Nsize);
+                if (variables.debugMode) Console.WriteLine("Length: {0:X} - size: {1}", length, _console.Nsize);
             }
             Console.WriteLine("Reading Nand");
             BinaryWriter sw = new BinaryWriter(File.Open(filename, FileMode.Append, FileAccess.Write));
@@ -87,7 +87,7 @@ namespace JRunner.Nand
             if (length == 0)
             {
                 length = _console.Nsize.GetHashCode();
-                if (variables.debugme) Console.WriteLine("Length: {0:X} - size: {1}", length, _console.Nsize);
+                if (variables.debugMode) Console.WriteLine("Length: {0:X} - size: {1}", length, _console.Nsize);
             }
             Console.WriteLine("Erasing Nand");
             BinaryWriter bw = new BinaryWriter(File.Open(_filename, FileMode.Open, FileAccess.ReadWrite));
@@ -124,13 +124,13 @@ namespace JRunner.Nand
             if (length == 0)
             {
                 length = _console.Nsize.GetHashCode();
-                if (variables.debugme) Console.WriteLine("Length: {0:X} - size: {1}", length, _console.Nsize);
+                if (variables.debugMode) Console.WriteLine("Length: {0:X} - size: {1}", length, _console.Nsize);
             }
 
             long filesize;
             FileInfo fl = new FileInfo(filename);
             filesize = fl.Length / 0x4200;
-            if (variables.debugme) Console.WriteLine("FileSize: {0:X}", filesize);
+            if (variables.debugMode) Console.WriteLine("FileSize: {0:X}", filesize);
 
             if (startblock + length > filesize)
             {
@@ -142,7 +142,7 @@ namespace JRunner.Nand
             Console.WriteLine("Writing Nand");
             Console.WriteLine(Path.GetFileName(filename));
             int i = startblock;
-            if (variables.debugme) Console.WriteLine("Start: {0:X} - Length: {1:X}", startblock, length);
+            if (variables.debugMode) Console.WriteLine("Start: {0:X} - Length: {1:X}", startblock, length);
             while (i < (length + startblock) && !variables.escapeloop)
             {
                 try

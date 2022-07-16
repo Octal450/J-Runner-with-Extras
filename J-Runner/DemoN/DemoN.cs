@@ -115,7 +115,7 @@ namespace JRunner
                         success = true;
                         if (success)
                         {
-                            if (variables.debugme) Console.WriteLine("DemoN detected-174");
+                            if (variables.debugMode) Console.WriteLine("DemoN detected-174");
                             DemonDetected = true;
 
                             // Save DevicePathName so OnDeviceChange() knows which name is my device.
@@ -125,7 +125,7 @@ namespace JRunner
                         else
                         {
                             // There was a problem in retrieving the information.
-                            if (variables.debugme) Console.WriteLine("DemoN not detected-230");
+                            if (variables.debugMode) Console.WriteLine("DemoN not detected-230");
                             DemonDetected = false;
                             DeInitDemoN();
                         }
@@ -143,16 +143,16 @@ namespace JRunner
                             MainForm.mainForm.Handle,
                             winUsbDemoGuid,
                             ref DemonNotificationHandle);
-                        if (variables.debugme) Console.WriteLine("Registered for notifications {0}", success);
+                        if (variables.debugMode) Console.WriteLine("Registered for notifications {0}", success);
                     }
                     else
                     {
-                        if (variables.debugme) Console.WriteLine("DemoN not found.-211");
+                        if (variables.debugMode) Console.WriteLine("DemoN not found.-211");
                     }
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("DemoN detected.-216");
+                    if (variables.debugMode) Console.WriteLine("DemoN detected.-216");
                 }
 
 
@@ -161,14 +161,14 @@ namespace JRunner
             }
             catch (Exception ex)
             {
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 return false;
             }
         }
         public Boolean InitDemoN(string devicePathName)
         {
             if (isOpen) Thread.Sleep(10);
-            if (isOpen) { if (variables.debugme) { Console.WriteLine("Device is Already Open"); } return false; }
+            if (isOpen) { if (variables.debugMode) { Console.WriteLine("Device is Already Open"); } return false; }
             try
             {
                 System.Guid winUsbDemoGuid =
@@ -190,18 +190,18 @@ namespace JRunner
                     }
                     else
                     {
-                        if (variables.debugme) Console.WriteLine("Failed. 181");
+                        if (variables.debugMode) Console.WriteLine("Failed. 181");
                         return false;
                     }
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("No device. 187");
+                    if (variables.debugMode) Console.WriteLine("No device. 187");
                     DemonDetected = false;
                 }
                 return success;
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return false;
         }
         public static void DeInitDemoN()
@@ -212,7 +212,7 @@ namespace JRunner
                 {
                     Demon.CloseDeviceHandle();
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                 isOpen = false;
             }
         }
@@ -227,7 +227,7 @@ namespace JRunner
                 {
                     File.Delete(filename);
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                 if (!InitDemoN(DemonPathName))
                 {
                     Console.WriteLine("Failed to grab handle");
@@ -277,7 +277,7 @@ namespace JRunner
                 int blsize = getBlockSize();
                 if (length == 0) length = (int)getNumBlocks();
                 bool isBigBlock = Nands.Fdevi[devi].Bigblock;
-                if (variables.debugme) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
+                if (variables.debugMode) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
 
                 read_DemoN(filename, startblock, length, blsize, isBigBlock);
 
@@ -316,7 +316,7 @@ namespace JRunner
                     success.Play();
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
 
         }
         public void read_DemoN(string filename, long startblock, long length, long blocklength, bool bigblock)
@@ -337,15 +337,15 @@ namespace JRunner
 
                 if (!device_bulk_write(Demon, databuffer, Convert.ToUInt32(databuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send command");
+                    if (variables.debugMode) Console.WriteLine("Failed to send command");
                 }
                 if (!device_bulk_write(Demon, blockbuffer, Convert.ToUInt32(blockbuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send block");
+                    if (variables.debugMode) Console.WriteLine("Failed to send block");
                 }
                 if (!device_bulk_read(Demon, ref readBuf, (uint)blocklength))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to read");
+                    if (variables.debugMode) Console.WriteLine("Failed to read");
                 }
 
                 if (Nands.Fdevi[devi].Bigblock && convert)
@@ -419,7 +419,7 @@ namespace JRunner
                 int blsize = getBlockSize();
                 if (length == 0) length = (int)getNumBlocks();
                 bool isBigBlock = Nands.Fdevi[devi].Bigblock;
-                if (variables.debugme) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
+                if (variables.debugMode) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
 
                 write_DemoN(filename, startblock, length, blsize, isBigBlock);
 
@@ -445,7 +445,7 @@ namespace JRunner
                     success.Play();
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
         }
         public void write_DemoN(string filename, int startblock, int length, int blocklength, bool bigblock)
         {
@@ -463,7 +463,7 @@ namespace JRunner
                 length = (int)filesize - startblock;
             }
             if (length <= 0) length = 0;
-            if (variables.debugme) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
+            if (variables.debugMode) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
             Console.WriteLine("Writing Nand");
             int i = startblock;
             while (i < (length + startblock) && !variables.escapeloop)
@@ -483,25 +483,25 @@ namespace JRunner
                 databuffer[0] = (byte)Demon_Commands.COMMAND_ERASE_EXT_FLASH_BLOCK;
                 if (!device_bulk_write(Demon, databuffer, Convert.ToUInt32(databuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to erase");
+                    if (variables.debugMode) Console.WriteLine("Failed to erase");
                 }
                 if (!device_bulk_write(Demon, blockbuffer, Convert.ToUInt32(blockbuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send eblocknumber");
+                    if (variables.debugMode) Console.WriteLine("Failed to send eblocknumber");
                 }
 
                 databuffer[0] = (byte)Demon_Commands.COMMAND_PROGRAM_EXT_FLASH_BLOCK;
                 if (!device_bulk_write(Demon, databuffer, Convert.ToUInt32(databuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to program");
+                    if (variables.debugMode) Console.WriteLine("Failed to program");
                 }
                 if (!device_bulk_write(Demon, blockbuffer, Convert.ToUInt32(blockbuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send blocknumber");
+                    if (variables.debugMode) Console.WriteLine("Failed to send blocknumber");
                 }
                 if (!device_bulk_write(Demon, writeBuffer, Convert.ToUInt32(writeBuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send block");
+                    if (variables.debugMode) Console.WriteLine("Failed to send block");
                 }
 
 
@@ -571,12 +571,12 @@ namespace JRunner
                     databuffer[0] = (byte)Demon_Commands.COMMAND_ERASE_ALL_EXT_FLASH_BLOCKS;
                     if (!device_bulk_write(Demon, databuffer, Convert.ToUInt32(databuffer.Length)))
                     {
-                        if (variables.debugme) Console.WriteLine("Failed to erase");
+                        if (variables.debugMode) Console.WriteLine("Failed to erase");
                     }
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("Startblock {1:X} - Length {2:X}", startblock, length);
+                    if (variables.debugMode) Console.WriteLine("Startblock {1:X} - Length {2:X}", startblock, length);
                     erase_DemoN(startblock, length, blsize, isBigBlock);
                 }
 
@@ -602,7 +602,7 @@ namespace JRunner
                     success.Play();
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
         }
         public void erase_DemoN(int startblock, int length, int blocklength, bool bigblock)
         {
@@ -621,11 +621,11 @@ namespace JRunner
 
                 if (!device_bulk_write(Demon, databuffer, Convert.ToUInt32(databuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to erase");
+                    if (variables.debugMode) Console.WriteLine("Failed to erase");
                 }
                 if (!device_bulk_write(Demon, blockbuffer, Convert.ToUInt32(blockbuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send eblocknumber");
+                    if (variables.debugMode) Console.WriteLine("Failed to send eblocknumber");
                 }
 
                 i++;
@@ -654,7 +654,7 @@ namespace JRunner
                 FileInfo fl = new FileInfo(filename);
                 filesize = fl.Length;
                 byte[] file = new byte[filesize];
-                if (variables.debugme) Console.WriteLine("Filesize {0}", filesize);
+                if (variables.debugMode) Console.WriteLine("Filesize {0}", filesize);
                 BinaryReader rw = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
                 file = rw.ReadBytes((int)filesize);
                 rw.Close();
@@ -664,7 +664,7 @@ namespace JRunner
                 blength[3] = (byte)((filesize >> 24) & 0xFF);
                 int rem = (int)filesize % 64; // remaining bytes from size/64
                 int reps = (int)filesize / 64;
-                if (variables.debugme) Console.WriteLine("filesize 0x{0:X} - iterations 0x{1:X} - remaining 0x{2:X}", filesize, reps, rem);
+                if (variables.debugMode) Console.WriteLine("filesize 0x{0:X} - iterations 0x{1:X} - remaining 0x{2:X}", filesize, reps, rem);
                 Console.WriteLine("sending xsvf to demon...");
                 if (!InitDemoN(DemonPathName))
                 {
@@ -672,7 +672,7 @@ namespace JRunner
                     return;
                 }
                 device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_EXEC_XSVF);
-                if (variables.debugme) Console.WriteLine("blen {0}", Oper.ByteArrayToString(blength));
+                if (variables.debugMode) Console.WriteLine("blen {0}", Oper.ByteArrayToString(blength));
                 device_bulk_write(Demon, blength, 4); // send xsvf size
                 int i = 0;
                 for (i = 0; i < reps; i++)
@@ -683,7 +683,7 @@ namespace JRunner
                     device_bulk_read(Demon, ref readbuffer, 1);
                     if (readbuffer[0] != 0)
                     {
-                        if (variables.debugme) Console.WriteLine("0x{0:X}", readbuffer[0]);
+                        if (variables.debugMode) Console.WriteLine("0x{0:X}", readbuffer[0]);
                         if (XSVF_ERROR(readbuffer[0]) != "")
                         {
                             Console.WriteLine("Failed - {0}", XSVF_ERROR(readbuffer[0]));
@@ -692,7 +692,7 @@ namespace JRunner
                         break;
                     }
                 }
-                if (variables.debugme) Console.WriteLine("counter - 0x{0:X}", i);
+                if (variables.debugMode) Console.WriteLine("counter - 0x{0:X}", i);
                 if (i == reps)
                 {
                     if (rem != 0)
@@ -703,7 +703,7 @@ namespace JRunner
                     }
                     if (readbuffer[0] != 0)
                     {
-                        if (variables.debugme) Console.WriteLine("0x{0:X}", readbuffer[0]);
+                        if (variables.debugMode) Console.WriteLine("0x{0:X}", readbuffer[0]);
                         if (XSVF_ERROR(readbuffer[0]) != "")
                         {
                             Console.WriteLine("Failed - {0}", XSVF_ERROR(readbuffer[0]));
@@ -754,7 +754,7 @@ namespace JRunner
                     return;
                 }
                 byte[] demid = demon_get_id();
-                if (variables.debugme) Console.WriteLine("{0} - {1}", Oper.ByteArrayToString(demid), Oper.ByteArrayToString(product_id));
+                if (variables.debugMode) Console.WriteLine("{0} - {1}", Oper.ByteArrayToString(demid), Oper.ByteArrayToString(product_id));
                 if (product_id[0] != 0x00 && product_id[1] != 0x00)
                 {
                     if (demid[0] != product_id[1] || demid[1] != product_id[0])
@@ -809,7 +809,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
         }
         public byte[] r_DemoN()
@@ -828,7 +828,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
             return null;
         }
@@ -941,18 +941,18 @@ namespace JRunner
                     {
                         length = 0;
                         buffer = demon_read_Serial(ref length);
-                        if (variables.debugme) Console.WriteLine("{0:X} - {1:X}", buffer.Length, length);
+                        if (variables.debugMode) Console.WriteLine("{0:X} - {1:X}", buffer.Length, length);
                         if (length != 0 && length != 2) Console.WriteLine(Encoding.ASCII.GetString(buffer));
                         Thread.Sleep(500);
                     }
-                    catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                    catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                 }
                 DeInitDemoN();
                 Console.WriteLine("Done");
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
         }
 
@@ -1007,7 +1007,7 @@ namespace JRunner
                 int blsize = getBlockSize();
                 if (length == 0) length = (int)getNumBlocks();
                 bool isBigBlock = Nands.Fdevi[devi].Bigblock;
-                if (variables.debugme) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
+                if (variables.debugMode) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
 
                 write_fusion_DemoN(filename, Invalid_Blocks, startblock, length, blsize, isBigBlock);
 
@@ -1032,7 +1032,7 @@ namespace JRunner
                     success.Play();
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
         }
         public void write_fusion_DemoN(string filename, List<int> invalid_blocks, int startblock, int length, int blocklength, bool bigblock)
         {
@@ -1050,7 +1050,7 @@ namespace JRunner
                 length = (int)filesize - startblock;
             }
             if (length <= 0) length = 0;
-            if (variables.debugme) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
+            if (variables.debugMode) Console.WriteLine("filename {0}\n Startblock {1:X} - Length {2:X}", filename, startblock, length);
             Console.WriteLine("Writing Nand");
             int i = startblock;
             while (i < (length + startblock))
@@ -1069,25 +1069,25 @@ namespace JRunner
                 databuffer[0] = (byte)Demon_Commands.COMMAND_ERASE_EXT_FLASH_BLOCK;
                 if (!device_bulk_write(Demon, databuffer, Convert.ToUInt32(databuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to erase");
+                    if (variables.debugMode) Console.WriteLine("Failed to erase");
                 }
                 if (!device_bulk_write(Demon, blockbuffer, Convert.ToUInt32(blockbuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send eblocknumber");
+                    if (variables.debugMode) Console.WriteLine("Failed to send eblocknumber");
                 }
 
                 databuffer[0] = (byte)Demon_Commands.COMMAND_PROGRAM_EXT_FLASH_BLOCK;
                 if (!device_bulk_write(Demon, databuffer, Convert.ToUInt32(databuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to program");
+                    if (variables.debugMode) Console.WriteLine("Failed to program");
                 }
                 if (!device_bulk_write(Demon, blockbuffer, Convert.ToUInt32(blockbuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send blocknumber");
+                    if (variables.debugMode) Console.WriteLine("Failed to send blocknumber");
                 }
                 if (!device_bulk_write(Demon, writeBuffer, Convert.ToUInt32(writeBuffer.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send block");
+                    if (variables.debugMode) Console.WriteLine("Failed to send block");
                 }
 
 
@@ -1122,24 +1122,24 @@ namespace JRunner
 
                     if (!device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_ERASE_EXT_FLASH_BLOCK))
                     {
-                        if (variables.debugme) Console.WriteLine("Failed to erase");
+                        if (variables.debugMode) Console.WriteLine("Failed to erase");
                     }
                     if (!device_bulk_write(Demon, blockbuffer, Convert.ToUInt32(blockbuffer.Length)))
                     {
-                        if (variables.debugme) Console.WriteLine("Failed to send eblocknumber");
+                        if (variables.debugMode) Console.WriteLine("Failed to send eblocknumber");
                     }
 
                     if (!device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_PROGRAM_EXT_FLASH_BLOCK))
                     {
-                        if (variables.debugme) Console.WriteLine("Failed to program");
+                        if (variables.debugMode) Console.WriteLine("Failed to program");
                     }
                     if (!device_bulk_write(Demon, blockbuffer, Convert.ToUInt32(blockbuffer.Length)))
                     {
-                        if (variables.debugme) Console.WriteLine("Failed to send blocknumber");
+                        if (variables.debugMode) Console.WriteLine("Failed to send blocknumber");
                     }
                     if (!device_bulk_write(Demon, writeBuffer, Convert.ToUInt32(writeBuffer.Length)))
                     {
-                        if (variables.debugme) Console.WriteLine("Failed to send block");
+                        if (variables.debugMode) Console.WriteLine("Failed to send block");
                     }
                     number++;
                 }
@@ -1160,9 +1160,9 @@ namespace JRunner
         private long getNumBlocks()
         {
             long usersize = Nands.Fdevi[devi].Chipsize * 1024 * 1024;
-            if (variables.debugme) Console.WriteLine("getnumblocks - UserSize 0x{0:X}", usersize);
+            if (variables.debugMode) Console.WriteLine("getnumblocks - UserSize 0x{0:X}", usersize);
             long userblock = (Nands.Fdevi[devi].Pagesize * Nands.Fdevi[devi].PagePB);
-            if (variables.debugme) Console.WriteLine("getnumblocks - UserBlock 0x{0:X}", userblock);
+            if (variables.debugMode) Console.WriteLine("getnumblocks - UserBlock 0x{0:X}", userblock);
             return usersize / userblock;
         }
         private int getBlockSize()
@@ -1186,7 +1186,7 @@ namespace JRunner
             int i;
             manu = -1;
             devi = -1;
-            if (variables.debugme) Console.WriteLine("0x{0:X}", Oper.ByteArrayToString(flashid));
+            if (variables.debugMode) Console.WriteLine("0x{0:X}", Oper.ByteArrayToString(flashid));
             for (i = 0; manu == -1; i++)
             {
                 if (Nands.Fman[i].ID == flashid[1])
@@ -1225,10 +1225,10 @@ namespace JRunner
             bool success = false;
 
             success = device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_ASSERT_SB_RESET);
-            if (!success && variables.debugme) Console.WriteLine("Failed to assert SB");
+            if (!success && variables.debugMode) Console.WriteLine("Failed to assert SB");
 
             success = device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_ACQUIRE_EXT_FLASH);
-            if (!success && variables.debugme) Console.WriteLine("Failed to acquire flash");
+            if (!success && variables.debugMode) Console.WriteLine("Failed to acquire flash");
             return success;
         }
         private bool release_flash()
@@ -1236,10 +1236,10 @@ namespace JRunner
             bool success = false;
 
             success = device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_RELEASE_EXT_FLASH);
-            if (!success && variables.debugme) Console.WriteLine("Failed to release flash");
+            if (!success && variables.debugMode) Console.WriteLine("Failed to release flash");
 
             success = device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_DEASSERT_SB_RESET);
-            if (!success && variables.debugme) Console.WriteLine("Failed to deassert SB");
+            if (!success && variables.debugMode) Console.WriteLine("Failed to deassert SB");
             return success;
         }
 
@@ -1251,13 +1251,13 @@ namespace JRunner
                 length = device_bulk_read_once(Demon, ref buffer, 0x21000);
                 if (length != 0)
                 {
-                    if (variables.debugme) Console.WriteLine(buffer.Length);
+                    if (variables.debugMode) Console.WriteLine(buffer.Length);
                     //if (variables.debugme) Console.WriteLine(Nand.ByteArrayToString(buffer));
                     return buffer;
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("The attempt to read bulk data has failed.");
+                    if (variables.debugMode) Console.WriteLine("The attempt to read bulk data has failed.");
                 }
             }
             return null;
@@ -1276,7 +1276,7 @@ namespace JRunner
                 res = device_bulk_write(Demon, data, (uint)data.Length);
                 if (!res)
                 {
-                    if (variables.debugme) Console.WriteLine("The attempt to write bulk data has failed.");
+                    if (variables.debugMode) Console.WriteLine("The attempt to write bulk data has failed.");
                 }
             }
             return res;
@@ -1288,18 +1288,18 @@ namespace JRunner
             {
                 if (device_bulk_read(Demon, ref readbuffer, 1))
                 {
-                    if (variables.debugme) Console.WriteLine(readbuffer[0]);
+                    if (variables.debugMode) Console.WriteLine(readbuffer[0]);
                     updateMod((Demon_Modes)readbuffer[0]);
                     return readbuffer;
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("The attempt to read bulk data has failed.");
+                    if (variables.debugMode) Console.WriteLine("The attempt to read bulk data has failed.");
                 }
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Failed to get mode");
+                if (variables.debugMode) Console.WriteLine("Failed to get mode");
             }
             return null;
         }
@@ -1307,7 +1307,7 @@ namespace JRunner
         {
             if (!device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_RUN_BOOTLOADER))
             {
-                if (variables.debugme) Console.WriteLine("Failed to run Bootloader");
+                if (variables.debugMode) Console.WriteLine("Failed to run Bootloader");
             }
         }
         private byte demon_get_external_flash()
@@ -1322,10 +1322,10 @@ namespace JRunner
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("The attempt to read bulk data has failed.");
+                    if (variables.debugMode) Console.WriteLine("The attempt to read bulk data has failed.");
                 }
             }
-            else { if (variables.debugme) Console.WriteLine("Failed to get external flash"); }
+            else { if (variables.debugMode) Console.WriteLine("Failed to get external flash"); }
             return readbuffer[0];
         }
         private byte[] demon_get_id()
@@ -1357,10 +1357,10 @@ namespace JRunner
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("The attempt to read bulk data has failed.");
+                    if (variables.debugMode) Console.WriteLine("The attempt to read bulk data has failed.");
                 }
             }
-            else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+            else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
             return readbuffer;
         }
         private byte[] demon_get_external_flash_id()
@@ -1388,7 +1388,7 @@ namespace JRunner
             device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_GET_BOOTLOADER_VERSION);
             device_bulk_read(Demon, ref readbuffer, 2);
             UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
-            if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
+            if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
             return readbuffer;
         }
         private bool demon_get_Invalid_Blocks(ref List<int> Invalid_Blocks)
@@ -1401,7 +1401,7 @@ namespace JRunner
                 byte[] blocknumber = new byte[2], block = new byte[2];
                 Buffer.BlockCopy(number, 0, blocknumber, 0, 2);
                 Array.Reverse(blocknumber);
-                if (variables.debugme)
+                if (variables.debugMode)
                 {
                     Console.WriteLine("Number {0}", Oper.ByteArrayToString(number));
                     Console.WriteLine("Number {0:X}", Convert.ToInt32(Oper.ByteArrayToString(number), 16));
@@ -1427,23 +1427,23 @@ namespace JRunner
                     block = new byte[2];
                     Buffer.BlockCopy(number, 0, block, 0, 2);
                     Array.Reverse(block);
-                    if (variables.debugme)
+                    if (variables.debugMode)
                     {
                         Console.WriteLine("Block {0}", Oper.ByteArrayToString(block));
                         Console.WriteLine("Block {0:X}", Convert.ToInt32(Oper.ByteArrayToString(block), 16));
                     }
                     if (Convert.ToInt32(Oper.ByteArrayToString(blocknumber), 16) == 0x00)
                     {
-                        if (variables.debugme) Console.WriteLine("Break");
+                        if (variables.debugMode) Console.WriteLine("Break");
                         break;
                     }
                     Invalid_Blocks.Add(Convert.ToInt32(Oper.ByteArrayToString(block), 16));
                 }
-                if (variables.debugme) Console.WriteLine("Releasing Flash");
+                if (variables.debugMode) Console.WriteLine("Releasing Flash");
                 release_flash();
                 return true;
             }
-            else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+            else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
             release_flash();
             return false;
         }
@@ -1451,21 +1451,21 @@ namespace JRunner
         {
             if (!device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_BEGIN_FIRMWARE_UPDATE))
             {
-                if (variables.debugme) Console.WriteLine("Failed to begin fw update");
+                if (variables.debugMode) Console.WriteLine("Failed to begin fw update");
             }
         }
         private void demon_endFirmwareUpdate()
         {
             if (!device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_END_FIRMWARE_UPDATE))
             {
-                if (variables.debugme) Console.WriteLine("Failed to end fw update");
+                if (variables.debugMode) Console.WriteLine("Failed to end fw update");
             }
         }
         private void demon_runFirmware()
         {
             if (!device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_RUN_FIRMWARE))
             {
-                if (variables.debugme) Console.WriteLine("Failed to run fw");
+                if (variables.debugMode) Console.WriteLine("Failed to run fw");
             }
         }
 
@@ -1478,17 +1478,17 @@ namespace JRunner
                 {
                     if (!device_bulk_read(Demon, ref buffer, 256))
                     {
-                        if (variables.debugme) Console.WriteLine("Failed to get block data");
+                        if (variables.debugMode) Console.WriteLine("Failed to get block data");
                     }
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send program block");
+                    if (variables.debugMode) Console.WriteLine("Failed to send program block");
                 }
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Failed to send program command");
+                if (variables.debugMode) Console.WriteLine("Failed to send program command");
             }
             return buffer;
         }
@@ -1498,12 +1498,12 @@ namespace JRunner
             {
                 if (!device_bulk_write(Demon, page, Convert.ToUInt32(page.Length)))
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send erase block");
+                    if (variables.debugMode) Console.WriteLine("Failed to send erase block");
                 }
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Failed to send erase command");
+                if (variables.debugMode) Console.WriteLine("Failed to send erase command");
             }
         }
         private void demon_programIntFlashPage(byte[] page, byte[] buffer)
@@ -1514,17 +1514,17 @@ namespace JRunner
                 {
                     if (!device_bulk_write(Demon, buffer, 256))
                     {
-                        if (variables.debugme) Console.WriteLine("Failed to send block data");
+                        if (variables.debugMode) Console.WriteLine("Failed to send block data");
                     }
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("Failed to send program block");
+                    if (variables.debugMode) Console.WriteLine("Failed to send program block");
                 }
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Failed to send program command");
+                if (variables.debugMode) Console.WriteLine("Failed to send program command");
             }
         }
 
@@ -1534,7 +1534,7 @@ namespace JRunner
             if (DemonDetected)
             {
                 if (!InitDemoN(DemonPathName)) return;
-                if (variables.debugme) Console.WriteLine("Init");
+                if (variables.debugMode) Console.WriteLine("Init");
                 byte[] readbuffer = new byte[1];
                 if (device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_GET_EXT_FLASH))
                 {
@@ -1646,12 +1646,12 @@ namespace JRunner
                 {
                     Console.WriteLine("Power On");
                 }
-                else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+                else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
                 DeInitDemoN();
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
         }
         public void Power_Off()
@@ -1663,12 +1663,12 @@ namespace JRunner
                 {
                     Console.WriteLine("Power off");
                 }
-                else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+                else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
                 DeInitDemoN();
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
         }
         public bool get_Invalid_Blocks(ref List<int> Invalid_Blocks)
@@ -1684,7 +1684,7 @@ namespace JRunner
                     byte[] blocknumber = new byte[2], block = new byte[2];
                     Buffer.BlockCopy(number, 0, blocknumber, 0, 2);
                     Array.Reverse(blocknumber);
-                    if (variables.debugme)
+                    if (variables.debugMode)
                     {
                         Console.WriteLine("Number {0}", Oper.ByteArrayToString(number));
                         Console.WriteLine("Number {0:X}", Convert.ToInt32(Oper.ByteArrayToString(number), 16));
@@ -1712,30 +1712,30 @@ namespace JRunner
                         block = new byte[2];
                         Buffer.BlockCopy(number, 0, block, 0, 2);
                         Array.Reverse(block);
-                        if (variables.debugme)
+                        if (variables.debugMode)
                         {
                             Console.WriteLine("Block {0}", Oper.ByteArrayToString(block));
                             Console.WriteLine("Block {0:X}", Convert.ToInt32(Oper.ByteArrayToString(block), 16));
                         }
                         if (Convert.ToInt32(Oper.ByteArrayToString(blocknumber), 16) == 0x00)
                         {
-                            if (variables.debugme) Console.WriteLine("Break");
+                            if (variables.debugMode) Console.WriteLine("Break");
                             break;
                         }
                         Invalid_Blocks.Add(Convert.ToInt32(Oper.ByteArrayToString(block), 16));
                     }
-                    if (variables.debugme) Console.WriteLine("Releasing Flash");
+                    if (variables.debugMode) Console.WriteLine("Releasing Flash");
                     release_flash();
                     DeInitDemoN();
                     return true;
                 }
-                else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+                else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
                 release_flash();
                 DeInitDemoN();
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
                 return false;
             }
             return false;
@@ -1759,16 +1759,16 @@ namespace JRunner
                     }
                     else
                     {
-                        if (variables.debugme) Console.WriteLine("The attempt to read bulk data has failed.");
+                        if (variables.debugMode) Console.WriteLine("The attempt to read bulk data has failed.");
                     }
                 }
-                else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+                else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
                 DeInitDemoN();
                 return 0;
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
             return -1;
         }
@@ -1782,31 +1782,31 @@ namespace JRunner
                 {
                     if (device_bulk_read(Demon, ref readbuffer, 1))
                     {
-                        if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
-                        if (variables.debugme) Console.WriteLine("Mode: {0}", readbuffer[0]);
+                        if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
+                        if (variables.debugMode) Console.WriteLine("Mode: {0}", readbuffer[0]);
                         if (readbuffer[0] == 0x01)
                         {
-                            if (variables.debugme) Console.WriteLine("Normal");
+                            if (variables.debugMode) Console.WriteLine("Normal");
                             mode = Demon_Modes.FIRMWARE;
                         }
                         else if (readbuffer[0] == 0x00)
                         {
-                            if (variables.debugme) Console.WriteLine("Bootloader");
+                            if (variables.debugMode) Console.WriteLine("Bootloader");
                             mode = Demon_Modes.BOOTLOADER;
                         }
                         updateMod(mode);
                     }
                     else
                     {
-                        if (variables.debugme) Console.WriteLine("The attempt to read bulk data has failed.");
+                        if (variables.debugMode) Console.WriteLine("The attempt to read bulk data has failed.");
                     }
                 }
-                else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+                else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
                 DeInitDemoN();
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
         }
         public void getBootloaderVersion()
@@ -1819,22 +1819,22 @@ namespace JRunner
                 {
                     if (device_bulk_read(Demon, ref readbuffer, 2))
                     {
-                        if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
-                        if (variables.debugme) Console.WriteLine("BL Version: {0}.{1}", readbuffer[1], readbuffer[0]);
+                        if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
+                        if (variables.debugMode) Console.WriteLine("BL Version: {0}.{1}", readbuffer[1], readbuffer[0]);
                         fw = readbuffer;
                         UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
                     }
                     else
                     {
-                        if (variables.debugme) Console.WriteLine("The attempt to read bulk data has failed.");
+                        if (variables.debugMode) Console.WriteLine("The attempt to read bulk data has failed.");
                     }
                 }
-                else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+                else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
                 DeInitDemoN();
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
         }
         public void get_firmware()
@@ -1847,22 +1847,22 @@ namespace JRunner
                 {
                     if (device_bulk_read(Demon, ref readbuffer, 2))
                     {
-                        if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
-                        if (variables.debugme) Console.WriteLine("FW Version: {0}.{1}", readbuffer[1], readbuffer[0]);
+                        if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
+                        if (variables.debugMode) Console.WriteLine("FW Version: {0}.{1}", readbuffer[1], readbuffer[0]);
                         fw = readbuffer;
                         UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
                     }
                     else
                     {
-                        if (variables.debugme) Console.WriteLine("The attempt to read bulk data has failed.");
+                        if (variables.debugMode) Console.WriteLine("The attempt to read bulk data has failed.");
                     }
                 }
-                else { if (variables.debugme) Console.WriteLine("Bulk OUT transfer failed."); }
+                else { if (variables.debugMode) Console.WriteLine("Bulk OUT transfer failed."); }
                 DeInitDemoN();
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Device Not Found");
+                if (variables.debugMode) Console.WriteLine("Device Not Found");
             }
         }
         public void get_external_flash_id()
@@ -1876,7 +1876,7 @@ namespace JRunner
                 {
                     if (device_bulk_read(Demon, ref readbuffer, 2))
                     {
-                        if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
+                        if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
                         flashid = readbuffer;
                     }
                     else
@@ -1965,7 +1965,7 @@ namespace JRunner
             }
             catch (Exception ex)
             {
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 return false;
             }
         }
@@ -1983,7 +1983,7 @@ namespace JRunner
             }
             catch (Exception ex)
             {
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 return false;
             }
         }
@@ -2002,7 +2002,7 @@ namespace JRunner
             }
             catch (Exception ex)
             {
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 return false;
             }
         }
@@ -2018,7 +2018,7 @@ namespace JRunner
             }
             catch (Exception ex)
             {
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 return bytesRead;
             }
         }

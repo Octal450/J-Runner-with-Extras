@@ -129,7 +129,7 @@ namespace JRunner
                     inUse = false;
 
                     Console.WriteLine(ex.Message);
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
                 }
             });
@@ -291,7 +291,7 @@ namespace JRunner
                     if (File.Exists("common/xflasher/nand.bin")) File.Delete("common/xflasher/nand.bin");
 
                     Console.WriteLine(ex.Message);
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
                 }
             });
@@ -469,7 +469,7 @@ namespace JRunner
                     MainForm.mainForm.xFlasherBusy(0);
 
                     Console.WriteLine(ex.Message);
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
                 }
             });
@@ -594,38 +594,18 @@ namespace JRunner
                     MainForm.mainForm.xFlasherBusy(0);
 
                     Console.WriteLine(ex.Message);
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
                 }
             });
             ftdiThread.Start();
         }
 
-        // Write XeLL/ECC/Nand
+        // Write Nand
         public void writeXeLLAuto()
         {
             if (String.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
-
-            if (Path.GetExtension(variables.filename1) == ".ecc")
-            {
-                Console.WriteLine("xFlasher: You need an .bin image");
-                return;
-            }
-
-            writeNand(16, variables.filename1, 2);
-        }
-
-        public void writeEccAuto()
-        {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
-            if (!File.Exists(variables.filename1)) return;
-
-            if (Path.GetExtension(variables.filename1) != ".ecc")
-            {
-                Console.WriteLine("xFlasher: You need an .ecc image");
-                return;
-            }
 
             writeNand(16, variables.filename1, 1);
         }
@@ -667,10 +647,10 @@ namespace JRunner
                 variables.nandsizex = Nandsize.S16;
                 writeNand(16, variables.filename1);
             }
-            else if (len == 1351680)
+            else if (len == 1310720 | len == 1351680)
             {
                 variables.nandsizex = Nandsize.S16;
-                writeNand(16, variables.filename1, 3);
+                writeNand(16, variables.filename1, 2);
             }
             else
             {
@@ -774,7 +754,7 @@ namespace JRunner
 
                     Thread blocksThread = new Thread(() =>
                     {
-                        if (mode >= 1) getBlocks(0, 80);
+                        if (mode == 1 || mode == 2) getBlocks(0, 80);
                         else
                         {
                             int len = size * 64;
@@ -824,10 +804,10 @@ namespace JRunner
                             success.Play();
                         }
 
-                        if (mode >= 1)
+                        if (mode == 1)
                         {
                             Thread.Sleep(500);
-                            MainForm.mainForm.afterWriteEccCleanup();
+                            MainForm.mainForm.afterWriteXeLLCleanup();
                         }
                     }
                     else if (result == -2)
@@ -870,7 +850,7 @@ namespace JRunner
                     MainForm.mainForm.xFlasherBusy(0);
 
                     Console.WriteLine(ex.Message);
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
                 }
             });
@@ -1033,7 +1013,7 @@ namespace JRunner
                     inUse = false;
 
                     Console.WriteLine(ex.Message);
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine("");
                 }
             });

@@ -78,12 +78,12 @@ namespace JRunner
                         }
                         catch (SystemException ex)
                         {
-                            if (variables.debugme) Console.WriteLine(ex.ToString());
+                            if (variables.debugMode) Console.WriteLine(ex.ToString());
                             continue;
                         }
                         catch (Exception ex)
                         {
-                            if (variables.debugme) Console.WriteLine(ex.ToString());
+                            if (variables.debugMode) Console.WriteLine(ex.ToString());
                             continue;
                         }
                     }
@@ -183,21 +183,21 @@ namespace JRunner
         /// <param name="indexrow"></param>
         public void deletekey(int indexrow)
         {
-            if (variables.debugme) Console.WriteLine("Deleting Key");
+            if (variables.debugMode) Console.WriteLine("Deleting Key");
             lblNumber.Text = (--index).ToString();
             DataTable cputable = dataSet1.DataTable1;
             RegistryKey cpukeydb = Registry.CurrentUser.CreateSubKey("CPUKey_DB");
-            if (variables.debugme) Console.WriteLine("Index Row {0} | Index {1}", indexrow, index);
+            if (variables.debugMode) Console.WriteLine("Index Row {0} | Index {1}", indexrow, index);
             if (indexrow == index)
             {
-                if (variables.debugme) Console.WriteLine("Last one");
+                if (variables.debugMode) Console.WriteLine("Last one");
                 cpukeydb.SetValue("Index", index);
                 cpukeydb.DeleteSubKeyTree(cputable.Rows[indexrow][0].ToString());
-                if (variables.debugme) Console.WriteLine("Done");
+                if (variables.debugMode) Console.WriteLine("Done");
             }
             else
             {
-                if (variables.debugme) Console.WriteLine("Setting Deleted");
+                if (variables.debugMode) Console.WriteLine("Setting Deleted");
                 RegistryKey cpukeys = cpukeydb.CreateSubKey(cputable.Rows[indexrow][0].ToString());
                 foreach (string valueN in cpukeys.GetValueNames())
                 {
@@ -207,16 +207,16 @@ namespace JRunner
                     }
                 }
                 cpukeys.SetValue("Deleted", 1);
-                if (variables.debugme) Console.WriteLine("Done");
+                if (variables.debugMode) Console.WriteLine("Done");
             }
             cputable.Rows.Remove(cputable.Rows[indexrow]);
-            if (variables.debugme) Console.WriteLine("Finished");
+            if (variables.debugMode) Console.WriteLine("Finished");
             this.Refresh();
         }
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            if (variables.debugme) Console.WriteLine("UserDeletingRow {0}", e.Row.ToString());
+            if (variables.debugMode) Console.WriteLine("UserDeletingRow {0}", e.Row.ToString());
             //Console.WriteLine(e.Row.Index);
             deletekey(e.Row.Index);
             //cpukeydb.DeleteSubKeyTree(cputable.Rows[e.Row.Index][0].ToString(), false);
@@ -515,7 +515,7 @@ namespace JRunner
                 variables.cpukey = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 //Console.WriteLine(Path.Combine(Directory.GetParent(variables.outfolder).FullName, dataGridView1.CurrentRow.Cells[1].Value.ToString()));
                 variables.FindFolder = Path.Combine(Path.Combine(Directory.GetParent(variables.outfolder).FullName, dataGridView1.CurrentRow.Cells[1].Value.ToString()));
-                if (variables.debugme) Console.WriteLine((variables.FindFolder));
+                if (variables.debugMode) Console.WriteLine((variables.FindFolder));
                 if (Directory.Exists(variables.FindFolder))
                 {
                     Console.WriteLine("Select Load Source to open the folder: {0}", (variables.FindFolder));
@@ -523,7 +523,7 @@ namespace JRunner
                 else variables.FindFolder = "";
                 this.Close();
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         }
         #endregion
 
@@ -553,10 +553,10 @@ namespace JRunner
 
                         foreach (string nand in nandPaths)
                         {
-                            if (variables.debugme) Console.WriteLine(nand);
+                            if (variables.debugMode) Console.WriteLine(nand);
 
                             #region percent
-                            if (variables.debugme)
+                            if (variables.debugMode)
                             {
                                 Console.WriteLine("counter: {0} - i: {1}", counter, textfiles);
                                 Console.WriteLine("nandpaths.length: {0}", nandPaths.Length);
@@ -591,13 +591,13 @@ namespace JRunner
                                         if (blacklist.Contains(nand)) break;
                                         if (Nand.Nand.imageknown(nand, false))
                                         {
-                                            if (variables.debugme) Console.WriteLine("Verifying key");
+                                            if (variables.debugMode) Console.WriteLine("Verifying key");
                                             if (Nand.Nand.cpukeyverification(nand, cpukey, true)) break;
-                                            if (variables.debugme) Console.WriteLine("Key not verified");
+                                            if (variables.debugMode) Console.WriteLine("Key not verified");
                                         }
-                                        if (variables.debugme) Console.WriteLine("Image not known");
+                                        if (variables.debugMode) Console.WriteLine("Image not known");
                                     }
-                                    catch (Exception ex) { blacklist.Add(nand); if (variables.debugme) Console.WriteLine(ex.ToString()); continue; }
+                                    catch (Exception ex) { blacklist.Add(nand); if (variables.debugMode) Console.WriteLine(ex.ToString()); continue; }
                                 }
 
                                 bool sts = objAlphaPattern.IsMatch(cpukey);
@@ -610,8 +610,8 @@ namespace JRunner
                                     }
                                     catch (Exception ex)
                                     {
-                                        if (variables.debugme) Console.WriteLine(nand.ToString() + " Balls");
-                                        if (variables.debugme) Console.WriteLine(ex.ToString());
+                                        if (variables.debugMode) Console.WriteLine(nand.ToString() + " Balls");
+                                        if (variables.debugMode) Console.WriteLine(ex.ToString());
                                     }
 
                                 if (check)
@@ -646,7 +646,7 @@ namespace JRunner
                                                     }
                                                     catch (Exception ex1)
                                                     {
-                                                        if (variables.debugme) Console.WriteLine(ex1.ToString());
+                                                        if (variables.debugMode) Console.WriteLine(ex1.ToString());
                                                     }
                                                 }
                                                 found = true;
@@ -656,7 +656,7 @@ namespace JRunner
                                                 found = true;
                                             }
                                         }
-                                        if (variables.debugme) Console.WriteLine("found {0}", found);
+                                        if (variables.debugMode) Console.WriteLine("found {0}", found);
                                         if (!found)
                                         {
                                             regentries entry = new regentries();
@@ -675,15 +675,15 @@ namespace JRunner
                                         }
                                         found = false;
                                     }
-                                    catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                                    catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                                 }
-                                else if (variables.debugme) Console.WriteLine("2nd time veri failed");
+                                else if (variables.debugMode) Console.WriteLine("2nd time veri failed");
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             this.Refresh();
             Console.WriteLine("\rCompletion 100%");
             Console.WriteLine("Done");
@@ -727,7 +727,7 @@ namespace JRunner
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             this.Refresh();
             Console.WriteLine("\rCompletion 100%");
             Console.WriteLine("Done");
@@ -767,7 +767,7 @@ namespace JRunner
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             this.Refresh();
             Console.WriteLine("\rCompletion 100%");
             Console.WriteLine("Done");
@@ -852,7 +852,7 @@ namespace JRunner
                     txtosig.Text = dataSet1.DataTable1.Rows[nid][DataTableColumns.OSIG.GetHashCode()].ToString();
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         }
     }
 }

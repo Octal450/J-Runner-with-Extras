@@ -144,9 +144,9 @@ namespace JRunner
                 if (!ReferenceEquals(wholeUsbDevice, null))
                 {
                     wholeUsbDevice.SetConfiguration(1);
-                    if (variables.debugme) Console.WriteLine("Claiming Interface...");
+                    if (variables.debugMode) Console.WriteLine("Claiming Interface...");
                     wholeUsbDevice.ClaimInterface(0);
-                    if (variables.debugme) Console.WriteLine("The Interface is ours!");
+                    if (variables.debugMode) Console.WriteLine("The Interface is ours!");
                 }
                 InUse = true;
             }
@@ -201,9 +201,9 @@ namespace JRunner
                 do
                 {
                     ec = reader.Read(readBuffer, timeout, out bytesRead);
-                    if (variables.debugme) { Console.WriteLine("Bytes Read {0}", bytesRead); Console.WriteLine("Read Buffer {0}", Oper.ByteArrayToString(readBuffer)); }
-                    if (variables.debugme) Console.WriteLine(ec.ToString());
-                    if (variables.debugme) Console.WriteLine("Retry {0}", tries);
+                    if (variables.debugMode) { Console.WriteLine("Bytes Read {0}", bytesRead); Console.WriteLine("Read Buffer {0}", Oper.ByteArrayToString(readBuffer)); }
+                    if (variables.debugMode) Console.WriteLine(ec.ToString());
+                    if (variables.debugMode) Console.WriteLine("Retry {0}", tries);
                     tries++;
                 }
                 while (ec != ErrorCode.Success && tries < 5);
@@ -234,9 +234,9 @@ namespace JRunner
                 do
                 {
                     ec = reader.Read(readBuffer, timeout, out bytesRead);
-                    if (variables.debugme) { Console.WriteLine("Bytes Read {0}", bytesRead); Console.WriteLine("Read Buffer {0}", Oper.ByteArrayToString(readBuffer)); }
-                    if (variables.debugme) Console.WriteLine(ec.ToString());
-                    if (variables.debugme) Console.WriteLine("Retry {0}", tries);
+                    if (variables.debugMode) { Console.WriteLine("Bytes Read {0}", bytesRead); Console.WriteLine("Read Buffer {0}", Oper.ByteArrayToString(readBuffer)); }
+                    if (variables.debugMode) Console.WriteLine(ec.ToString());
+                    if (variables.debugMode) Console.WriteLine("Retry {0}", tries);
                     tries++;
                 }
                 while (ec != ErrorCode.Success && tries < 5);
@@ -341,7 +341,7 @@ namespace JRunner
                         readBuf = new byte[0x4200];
                         int lengthTransfered = 0;
                         bool result = read_sector(MyUsbDevice, reader, i, out readBuf, out lengthTransfered, out ec);
-                        if (variables.debugme) Console.WriteLine(result);
+                        if (variables.debugMode) Console.WriteLine(result);
                         Thread.Sleep(1);
 
                         try
@@ -541,12 +541,12 @@ namespace JRunner
                     if (length == 0)
                     {
                         length = nsize.GetHashCode();
-                        if (variables.debugme) Console.WriteLine("Length: {0:X} - size: {1}", length, nsize);
+                        if (variables.debugMode) Console.WriteLine("Length: {0:X} - size: {1}", length, nsize);
                     }
                     long filesize;
                     FileInfo fl = new FileInfo(filename);
                     filesize = fl.Length / 0x4200;
-                    if (variables.debugme) Console.WriteLine("FileSize: {0:X}", filesize);
+                    if (variables.debugMode) Console.WriteLine("FileSize: {0:X}", filesize);
                     if (startblock + length > filesize)
                     {
                         length = (int)filesize - startblock;
@@ -557,7 +557,7 @@ namespace JRunner
                     Console.WriteLine("Writing {0} to Nand", Path.GetFileName(filename));
                     variables.writing = true;
                     int i = startblock;
-                    if (variables.debugme) Console.WriteLine("Start: {0:X} - Length: {1:X}", startblock, length);
+                    if (variables.debugMode) Console.WriteLine("Start: {0:X} - Length: {1:X}", startblock, length);
                     while (i < (length + startblock) && !variables.escapeloop)
                     {
 
@@ -664,7 +664,7 @@ namespace JRunner
             packet.Request = (byte)Commands.FlashDataRead;
             if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
             {
-                if (variables.debugme) Console.WriteLine("FlashDataRead");
+                if (variables.debugMode) Console.WriteLine("FlashDataRead");
                 ec = reader.Read(readBuf, 0, 0x4200, timeout, out bytesRead);
                 if (ec != ErrorCode.Success) Console.WriteLine(ec.ToString());
                 if (bytesRead == 0) throw new Exception(string.Format("{0}:No more bytes!", ec));
@@ -674,7 +674,7 @@ namespace JRunner
             packet.Request = (byte)Commands.FlashDataStatus;
             if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
             {
-                if (variables.debugme) Console.WriteLine("FlashDataStatus");
+                if (variables.debugMode) Console.WriteLine("FlashDataStatus");
                 ec = reader.Read(readBuffer, 0, 0x4, timeout, out bytesRead);
                 if (Oper.ByteArrayToString(readBuffer) != "00020000" && Oper.ByteArrayToString(readBuffer) != "00060000")
                 {
@@ -709,7 +709,7 @@ namespace JRunner
             packet.Request = (byte)Commands.FlashDataErase;
             if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
             {
-                if (variables.debugme) Console.WriteLine("FlashDataErase");
+                if (variables.debugMode) Console.WriteLine("FlashDataErase");
                 ec = reader.Read(readBuffer, 0, 0x4, timeout, out bytesRead);
                 if (Oper.ByteArrayToString(readBuffer) != "00020000" && Oper.ByteArrayToString(readBuffer) != "00000000")
                 {
@@ -719,7 +719,7 @@ namespace JRunner
             }
             else return false;
 
-            if (variables.debugme) Console.WriteLine("FlashDataStatus");
+            if (variables.debugMode) Console.WriteLine("FlashDataStatus");
             packet.Request = (byte)Commands.FlashDataStatus;
             if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
             {
@@ -753,7 +753,7 @@ namespace JRunner
             buffer[5] = 66;
 
             packet.Request = (byte)Commands.FlashDataWrite;
-            if (variables.debugme) Console.WriteLine("FlashDataWrite");
+            if (variables.debugMode) Console.WriteLine("FlashDataWrite");
             if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
             {
                 ec = writer.Write(writeBuf, timeout, out bytesRead);
@@ -763,14 +763,14 @@ namespace JRunner
                 if (!jrp)
                 {
                     packet.Request = (byte)Commands.SPI;
-                    if (variables.debugme) Console.WriteLine("SPI");
+                    if (variables.debugMode) Console.WriteLine("SPI");
                     if (!dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered)) return false;
                 }
             }
             else return false;
             if (jrp) Thread.Sleep(variables.delay);
             packet.Request = (byte)Commands.FlashDataStatus;
-            if (variables.debugme) Console.WriteLine("FlashDataStatus");
+            if (variables.debugMode) Console.WriteLine("FlashDataStatus");
             if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
             {
                 ec = reader.Read(readBuffer, 0, 0x4, timeout, out bytesRead);
@@ -805,7 +805,7 @@ namespace JRunner
             buffer[5] = 66;
 
             packet.Request = (byte)Commands.FlashDataWrite;
-            if (variables.debugme) Console.WriteLine("FlashDataWrite");
+            if (variables.debugMode) Console.WriteLine("FlashDataWrite");
             if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
             {
                 ec = writer.Write(writeBuf, timeout, out bytesRead);
@@ -815,7 +815,7 @@ namespace JRunner
                 if (!jrp)
                 {
                     packet.Request = (byte)Commands.SPI;
-                    if (variables.debugme) Console.WriteLine("SPI");
+                    if (variables.debugMode) Console.WriteLine("SPI");
                     if (!dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered)) return false;
                 }
             }
@@ -825,7 +825,7 @@ namespace JRunner
             while (counter < 5)
             {
                 packet.Request = (byte)Commands.FlashDataStatus;
-                if (variables.debugme) Console.WriteLine("FlashDataStatus");
+                if (variables.debugMode) Console.WriteLine("FlashDataStatus");
                 if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
                 {
                     ec = reader.Read(readBuffer, 0, 0x4, 10, out bytesRead);
@@ -868,7 +868,7 @@ namespace JRunner
                 byte[] buffer = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
                 MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out LengthTransferred);
-                if (variables.debugme) Console.WriteLine("Length Transferred {0}", LengthTransferred);
+                if (variables.debugMode) Console.WriteLine("Length Transferred {0}", LengthTransferred);
                 Console.WriteLine("Power Up");
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -897,7 +897,7 @@ namespace JRunner
                 byte[] buffer = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
                 MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out LengthTransferred);
-                if (variables.debugme) Console.WriteLine("Length Transferred {0}", LengthTransferred);
+                if (variables.debugMode) Console.WriteLine("Length Transferred {0}", LengthTransferred);
                 Console.WriteLine("Shutdown");
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -926,7 +926,7 @@ namespace JRunner
                 byte[] buffer = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
                 MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out LengthTransferred);
-                if (variables.debugme) Console.WriteLine("Length Transferred {0}", LengthTransferred);
+                if (variables.debugMode) Console.WriteLine("Length Transferred {0}", LengthTransferred);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             finally
@@ -968,7 +968,7 @@ namespace JRunner
                     success.Play();
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
             return result;
         }
 
@@ -983,7 +983,7 @@ namespace JRunner
         private Errors getflashmb_JRunner(ref string flashconf)
         {
             UsbDevice MyUsbDevice = null;
-            if (variables.debugme) Console.WriteLine("Entered Get flashconfig");
+            if (variables.debugMode) Console.WriteLine("Entered Get flashconfig");
             if (InUse) return Errors.DeviceInUse;
             try
             {
@@ -1012,7 +1012,7 @@ namespace JRunner
                 Array.Reverse(readBuffer, 0, 0x4);
                 flashconf = Oper.ByteArrayToString(readBuffer);
                 Console.WriteLine("Flash Config: 0x{0}", BitConverter.ToString(readBuffer, 0, 0x4).Replace("-", ""));
-                if (variables.debugme) analyzeflashconfig(Oper.ByteArrayToInt(readBuffer));
+                if (variables.debugMode) analyzeflashconfig(Oper.ByteArrayToInt(readBuffer));
                 if (flashconf == "00000000")
                 {
                     Console.WriteLine("Console Not Found");
@@ -1035,7 +1035,7 @@ namespace JRunner
 
                 variables.conf = null;
                 byte[] temp = { };
-                if (variables.debugme) Console.WriteLine("Reading Nand\n");
+                if (variables.debugMode) Console.WriteLine("Reading Nand\n");
                 int lengthTransfered = 0;
                 for (int i = 0; i <= 3; i++)
                 {
@@ -1050,7 +1050,7 @@ namespace JRunner
             {
                 Console.WriteLine();
                 Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
             }
             finally
             {
@@ -1080,7 +1080,7 @@ namespace JRunner
                     success.Play();
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
             return result;
         }
 
@@ -1093,7 +1093,11 @@ namespace JRunner
             variables.writing = true;
             Errors result = Errors.None;
             result = write_v2(filename, nsize, true, startblock, length, remap, fixecc);
-            if (result == Errors.DeviceNotFound) { Console.WriteLine(("Device Not Found")); return Errors.DeviceNotFound; }
+            if (result == Errors.DeviceNotFound) {
+                variables.writing = false;
+                Console.WriteLine(("Device Not Found"));
+                return Errors.DeviceNotFound;
+            }
 
             try
             {
@@ -1103,7 +1107,7 @@ namespace JRunner
                     success.Play();
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); variables.writing = false; };
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); variables.writing = false; };
             variables.writing = false;
             return result;
         }
@@ -1215,15 +1219,15 @@ namespace JRunner
                     packet.Request = (byte)Commands.JTAG;
                     MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out hello);
                     ec = reader.Read(readBuffer, timeout, out bytesRead);
-                    if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(readBuffer));
+                    if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readBuffer));
 
                     buffer[4] = 0x4;
                     packet.Request = (byte)Commands.FlashDataStatus;
                     MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out hello);
                     ec = reader.Read(readBuffer, timeout, out bytesRead);
 
-                    if (variables.debugme) Console.WriteLine("FlashDataDeInit");
-                    if (variables.debugme) Console.WriteLine(Oper.ByteArrayToString(readBuffer));
+                    if (variables.debugMode) Console.WriteLine("FlashDataDeInit");
+                    if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readBuffer));
                     Array.Reverse(readBuffer);
                     if (readBuffer.toUint() != 0)
                     {
@@ -1239,7 +1243,7 @@ namespace JRunner
                 }
                 catch (Exception ex)
                 {
-                    if (variables.debugme) Console.WriteLine(ex.ToString());
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
                     Console.WriteLine(ex.Message);
                 }
             }
@@ -1408,7 +1412,7 @@ namespace JRunner
                         success.Play();
                     }
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
             }
             return Errors.None;
         }
@@ -1448,15 +1452,15 @@ namespace JRunner
                     {
                         //wholeUsbDevice.ControlTransfer(ref packet, Status, 2, out LengthTransferred);
                         MyUsbDevice.ControlTransfer(ref packet, Status, 2, out LengthTransferred); //  xsvf_poll for status
-                        if (variables.debugme) Console.WriteLine("Status[0] 0x{0:X}", Status[0]);
+                        if (variables.debugMode) Console.WriteLine("Status[0] 0x{0:X}", Status[0]);
                         Thread.Sleep(5);
                     } 												//	already on a cmd
-                    if (variables.debugme) Console.WriteLine("Status 0x{0:X}", Status[0]);
+                    if (variables.debugMode) Console.WriteLine("Status 0x{0:X}", Status[0]);
                     if (Status[0] != 0x21)															//  status != 0x21 -- xsvf_out
                         break;																			//  hang for ready from PIC
 
                     ec = writer.Write(payload, timeout, out bytesRead);
-                    if (variables.debugme) Console.WriteLine("Bytes Read {0}", bytesRead);
+                    if (variables.debugMode) Console.WriteLine("Bytes Read {0}", bytesRead);
                     if (bytesRead < 0x20)
                     {						// endpoint 0x05, payload, len 0x20, TO = 5s
                         return 0;
@@ -1501,7 +1505,7 @@ namespace JRunner
                         packet.Length = 0x2;
                         //wholeUsbDevice.ControlTransfer(ref packet, Status, 2, out LengthTransferred);
                         MyUsbDevice.ControlTransfer(ref packet, Status, 2, out LengthTransferred); //  xsvf_poll for status
-                        if (variables.debugme) Console.WriteLine("Status[0] 0x{0:X}", Status[0]);
+                        if (variables.debugMode) Console.WriteLine("Status[0] 0x{0:X}", Status[0]);
                         //	alr	//  xsvf_poll for status
                         Thread.Sleep(5);
                     }											//	already on a cmd
@@ -1537,10 +1541,10 @@ namespace JRunner
             long filesize;
             FileInfo fl = new FileInfo(filename);
             filesize = fl.Length;
-            if (variables.debugme) Console.WriteLine("Filesize {0}", filesize);
+            if (variables.debugMode) Console.WriteLine("Filesize {0}", filesize);
             int rounded = ((((int)filesize / 64) + 1) * 64);
             byte[] firstbuffer = new byte[rounded];
-            if (variables.debugme) Console.WriteLine("Rounded {0}", rounded);
+            if (variables.debugMode) Console.WriteLine("Rounded {0}", rounded);
             BinaryReader rw = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
             for (int k = 0; k < filesize; k++)
             {
@@ -1564,8 +1568,8 @@ namespace JRunner
                         packet.Length = 2;
                         MyUsbDevice.ControlTransfer(ref packet, Status, 2, out LengthTransferred);//  xsvf_poll for status
                     } 												//	already on a cmd
-                    if (variables.debugme) Console.WriteLine("Status 0x{0:X}", Status[0]);
-                    if (variables.debugme) Console.WriteLine("LengthTransferred 0x{0:X}", LengthTransferred);
+                    if (variables.debugMode) Console.WriteLine("Status 0x{0:X}", Status[0]);
+                    if (variables.debugMode) Console.WriteLine("LengthTransferred 0x{0:X}", LengthTransferred);
                     if (Status[0] != 0x21)
                         break;
 
@@ -1573,7 +1577,7 @@ namespace JRunner
 
                     writeBuffer = Oper.returnportion(firstbuffer, i, 64);
                     ec = writer.Write(writeBuffer, timeout, out bytesRead);
-                    if (variables.debugme) Console.WriteLine("Bytes Read: {0}", bytesRead);
+                    if (variables.debugMode) Console.WriteLine("Bytes Read: {0}", bytesRead);
                     if (bytesRead < 64)
                     {						// endpoint 0x05, payload, len 0x20, TO = 5s
                         return 0;
@@ -1610,7 +1614,7 @@ namespace JRunner
                 {
                     enumerate_post();
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                 try
                 {
                     MyUsbDevice = OpenDevice(true);
@@ -1657,7 +1661,7 @@ namespace JRunner
                     {
                         MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out lengthTransfered);
                         ec = reader.Read(readBuffer, timeout, out bytesRead);
-                        if (variables.debugme) Console.WriteLine("Bytes Read {0} - Read Buffer {1}", bytesRead, Oper.ByteArrayToString(readBuffer));
+                        if (variables.debugMode) Console.WriteLine("Bytes Read {0} - Read Buffer {1}", bytesRead, Oper.ByteArrayToString(readBuffer));
                         if (!dl.Contains((readBuffer)[0])) output = true;
                         if (output && !dl.Contains((readBuffer)[0]))
                         {
@@ -1674,7 +1678,7 @@ namespace JRunner
                             }
                             catch (Exception ex)
                             {
-                                if (variables.debugme) Console.WriteLine(ex.ToString());
+                                if (variables.debugMode) Console.WriteLine(ex.ToString());
                             }
                         }
                     }

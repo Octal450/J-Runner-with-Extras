@@ -189,7 +189,7 @@ namespace JRunner.Forms
             {
                 Console.WriteLine();
                 Console.WriteLine(ex.Message);
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
             }
             finally
             {
@@ -396,8 +396,8 @@ namespace JRunner.Forms
         {
             try
             {
-                if (variables.debugme) Console.WriteLine("DevNotify - {0}", e.Device.Name);
-                if (variables.debugme) Console.WriteLine("EventType - {0}", e.EventType);
+                if (variables.debugMode) Console.WriteLine("DevNotify - {0}", e.Device.Name);
+                if (variables.debugMode) Console.WriteLine("EventType - {0}", e.EventType);
                 if (e.EventType == EventType.DeviceArrival)
                 {
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001) // PicoFlasher
@@ -435,7 +435,7 @@ namespace JRunner.Forms
                     }
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -1377,7 +1377,7 @@ namespace JRunner.Forms
                     SoundPlayer success = new SoundPlayer(txtStart.Text);
                     success.Play();
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
             }
         }
 
@@ -1390,7 +1390,7 @@ namespace JRunner.Forms
                     SoundPlayer success = new SoundPlayer(txtPower.Text);
                     success.Play();
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
             }
         }
 
@@ -1403,7 +1403,7 @@ namespace JRunner.Forms
                     SoundPlayer success = new SoundPlayer(txtEject.Text);
                     success.Play();
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
             }
         }
 

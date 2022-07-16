@@ -442,16 +442,8 @@ namespace JRunner
 
         void xPanel_HackChanged()
         {
-            nTools.setbtnCreateECC("Create\nECC");
-            nTools.setbtnWriteECC("Write\nECC");
-
             if (xPanel.getRbtnGlitchChecked()) variables.ttyp = variables.hacktypes.glitch;
-            else if (xPanel.getRbtnJtagChecked())
-            {
-                variables.ttyp = variables.hacktypes.jtag;
-                nTools.setbtnCreateECC("Create\nXeLL");
-                nTools.setbtnWriteECC("Write\nXeLL");
-            }
+            else if (xPanel.getRbtnJtagChecked()) variables.ttyp = variables.hacktypes.jtag;
             else if (xPanel.getRbtnGlitch2Checked()) variables.ttyp = variables.hacktypes.glitch2;
             else if (xPanel.getRbtnGlitch2mChecked()) variables.ttyp = variables.hacktypes.glitch2m;
             else if (xPanel.getRbtnRetailChecked()) variables.ttyp = variables.hacktypes.retail;
@@ -511,17 +503,17 @@ namespace JRunner
                 MessageBox.Show("No timing selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             string file;
-            if (variables.debugme) Console.WriteLine(xsvfInfo.heResult());
+            if (variables.debugMode) Console.WriteLine(xsvfInfo.heResult());
             bool demon = xsvfInfo.deResult();
-            if (variables.debugme) Console.WriteLine("demon {0}", demon);
+            if (variables.debugMode) Console.WriteLine("demon {0}", demon);
             if (demon)
             {
-                if (variables.debugme) Console.WriteLine(variables.demon_xsvf[xsvfInfo.heResult() - 1]);
+                if (variables.debugMode) Console.WriteLine(variables.demon_xsvf[xsvfInfo.heResult() - 1]);
                 file = (variables.demon_xsvf[xsvfInfo.heResult() - 1]);
             }
             else
             {
-                if (variables.debugme) Console.WriteLine(variables.xsvf[xsvfInfo.heResult() - 1]);
+                if (variables.debugMode) Console.WriteLine(variables.xsvf[xsvfInfo.heResult() - 1]);
                 file = (variables.xsvf[xsvfInfo.heResult() - 1]);
             }
             programcr(file);
@@ -655,7 +647,7 @@ namespace JRunner
 
         public void call_lpt_player(string file, string port)
         {
-            if (variables.debugme) Console.WriteLine("File: {0} | Port: {1}", Path.GetFileName(file), port);
+            if (variables.debugMode) Console.WriteLine("File: {0} | Port: {1}", Path.GetFileName(file), port);
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = variables.AppData + @"\LPT_XSVF_Player.exe";
             pProcess.StartInfo.Arguments = "\"" + file + "\"" + " " + port;
@@ -802,14 +794,14 @@ namespace JRunner
                     }
                     else if (device == DEVICE.XFLASHER_SPI)
                     {
-                        if (recalcEcc) xflasher.writeNand(16, filename, 1, startblock, length, true);
+                        if (recalcEcc) xflasher.writeNand(size, filename, 1, startblock, length, true);
                         else xflasher.writeNand(size, filename, 0, startblock, length, true);
                     }
                     else
                     {
                         if (device == DEVICE.NAND_X && variables.mtxUsbMode)
                         {
-                            if (recalcEcc) mtx_usb.writeNand(16, filename, 1, startblock, length);
+                            if (recalcEcc) mtx_usb.writeNand(size, filename, 1, startblock, length);
                             else mtx_usb.writeNand(size, filename, 0, startblock, length);
                         }
                         else
@@ -1011,7 +1003,7 @@ namespace JRunner
                 Console.WriteLine("");
                 return error;
             }
-            if (variables.debugme) Console.WriteLine(variables.flashconfig);
+            if (variables.debugMode) Console.WriteLine(variables.flashconfig);
             if (flashconfig == "008A3020")
             {
                 variables.ctyp = variables.ctypes[6];
@@ -1050,11 +1042,11 @@ namespace JRunner
             {
                 if (!Encoding.ASCII.GetString(Oper.returnportion(variables.conf, 0, 50)).Contains("Microsoft"))
                 {
-                    if (variables.debugme) Console.WriteLine(Encoding.ASCII.GetString(Oper.returnportion(variables.conf, 0, 50)));
+                    if (variables.debugMode) Console.WriteLine(Encoding.ASCII.GetString(Oper.returnportion(variables.conf, 0, 50)));
                     error = NandX.Errors.WrongHeader;
                 }
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             getcb_v(flashconfig);
             Console.WriteLine("");
             _waitmb.Set();
@@ -1063,7 +1055,7 @@ namespace JRunner
 
         public void getcb_v(string flashconfig)
         {
-            if (variables.debugme) Console.WriteLine("\nGetting cb {0}", flashconfig);
+            if (variables.debugMode) Console.WriteLine("\nGetting cb {0}", flashconfig);
             try
             {
                 if (variables.conf != null)
@@ -1125,7 +1117,7 @@ namespace JRunner
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("No config file");
+                    if (variables.debugMode) Console.WriteLine("No config file");
                 }
             }
             catch (Exception) { }
@@ -1217,7 +1209,7 @@ namespace JRunner
             {
                 //error = getmbtype();
                 if (error != NandX.Errors.None && error != NandX.Errors.WrongHeader) return;
-                if (variables.debugme) Console.WriteLine("Read Nand");
+                if (variables.debugMode) Console.WriteLine("Read Nand");
 
                 #region nandsize
                 if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 7) && !variables.fulldump)
@@ -1230,7 +1222,7 @@ namespace JRunner
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine(variables.ctyp.ID);
+                    if (variables.debugMode) Console.WriteLine(variables.ctyp.ID);
                     variables.nandsizex = variables.ctyp.Nsize;
                 }
                 #endregion
@@ -1241,11 +1233,11 @@ namespace JRunner
             int j = 1;
             for (j = 1; j <= nTools.getNumericIterations();)
             {
-                if (variables.debugme) Console.Write(j);
+                if (variables.debugMode) Console.Write(j);
                 _waitmb.WaitOne();
                 lock (_object)
                 {
-                    if (variables.debugme) Console.WriteLine(j);
+                    if (variables.debugMode) Console.WriteLine(j);
                     _waitmb.Reset();
                     Thread.Sleep(1000);
                     if (j == 2)
@@ -1290,7 +1282,7 @@ namespace JRunner
                             }
                         }
                     }
-                    if (variables.debugme) Console.WriteLine("Starting Reading");
+                    if (variables.debugMode) Console.WriteLine("Starting Reading");
 
                     if (DemoN.DemonDetected)
                     {
@@ -1357,7 +1349,7 @@ namespace JRunner
                 //if (textBox2.Text != "008A3020" && textBox2.Text != "00AA3020") ctypeselected = 0;
 
                 double len = new FileInfo(variables.filename1).Length;
-                if (variables.debugme) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
+                if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
                 if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 7) && (len == 69206016))
                 {
                     variables.nandsizex = Nandsize.S64;
@@ -1422,14 +1414,14 @@ namespace JRunner
                         success.Play();
                     }
                 }
-                catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+                catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
             }
             else
             {
                 if (variables.ctyp.ID == -1) variables.ctyp = callConsoleTypes(ConsoleTypes.Selected.All);
                 if (variables.ctyp.ID == -1) return;
                 double len = new FileInfo(variables.filename1).Length;
-                if (variables.debugme) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
+                if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
                 if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 7) && (len == 69206016))
                 {
                     variables.nandsizex = Nandsize.S64;
@@ -1475,7 +1467,7 @@ namespace JRunner
             else
             {
                 double len = new FileInfo(variables.filename1).Length;
-                if (variables.debugme) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
+                if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
 
                 NandX.Errors result = NandX.Errors.None;
 
@@ -1514,7 +1506,7 @@ namespace JRunner
 
                     string name = Path.GetFileName(fold);
                     // if (Directory.Exists(l_dDirInfo + "\\" + fold)) Directory.Delete(l_dDirInfo + "\\" + fold);
-                    if (variables.debugme) Console.WriteLine("Moving {0}", fold);
+                    if (variables.debugMode) Console.WriteLine("Moving {0}", fold);
 
 
                     if ((fold.Contains(nand.ki.serial)) || ((variables.custname != "") && (fold.Contains(variables.custname))))
@@ -1532,7 +1524,7 @@ namespace JRunner
             }
             foreach (string file in MyFiles)
             {
-                if (variables.debugme) Console.WriteLine("Moving {0}", file);
+                if (variables.debugMode) Console.WriteLine("Moving {0}", file);
                 FileInfo mFile = new FileInfo(file);
                 if (new FileInfo(l_dDirInfo + "\\" + mFile.Name).Exists == false) //to remove name collusion
                     mFile.MoveTo(l_dDirInfo + "\\" + mFile.Name);
@@ -1582,10 +1574,10 @@ namespace JRunner
 
         private void updatecptextbox()
         {
-            if (variables.debugme) Console.WriteLine("Event wait");
+            if (variables.debugMode) Console.WriteLine("Event wait");
             _event1.WaitOne();
-            if (variables.debugme) Console.WriteLine("Event Started");
-            if (variables.debugme) Console.WriteLine(variables.cpukey);
+            if (variables.debugMode) Console.WriteLine("Event Started");
+            if (variables.debugMode) Console.WriteLine(variables.cpukey);
             txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
         }
 
@@ -1647,7 +1639,7 @@ namespace JRunner
                 tw.Close();
                 Console.WriteLine("KV Info saved to file");
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); Console.WriteLine("Failed"); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); Console.WriteLine("Failed"); }
         }
 
         void comparenands()
@@ -1683,7 +1675,7 @@ namespace JRunner
                                 success.Play();
                             }
                         }
-                        catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+                        catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
                         try
                         {
                             string md5file = Path.Combine(Directory.GetParent(variables.filename1).ToString(), "checksum.md5");
@@ -1710,7 +1702,7 @@ namespace JRunner
                                 txtFileExtra.Text = "";
                             }
                         }
-                        catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+                        catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
                     }
                     else
                     {
@@ -1722,7 +1714,7 @@ namespace JRunner
                                 error.Play();
                             }
                         }
-                        catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+                        catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
 
                         if (MessageBox.Show("Files do not match!\nShow Differences?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
@@ -2011,8 +2003,8 @@ namespace JRunner
                 {
                     long filenameKvCrc = Nand.Nand.kvcrc(variables.filename1, true);
                     
-                    if (variables.debugme) Console.WriteLine("KV CRC: {0:X}", filenameKvCrc);
-                    if (variables.debugme) Console.WriteLine("Searching Registry Entrys");
+                    if (variables.debugMode) Console.WriteLine("KV CRC: {0:X}", filenameKvCrc);
+                    if (variables.debugMode) Console.WriteLine("Searching Registry Entrys");
                     try
                     {
                         variables.cpukey = CpuKeyDB.getkey_s(filenameKvCrc, xPanel.getDashDataSet());
@@ -2033,15 +2025,15 @@ namespace JRunner
                     return;
                 }
 
-                if (variables.debugme) Console.WriteLine("N Key: {0}, V Key: {1}", nand._cpukey, variables.cpukey);
+                if (variables.debugMode) Console.WriteLine("N Key: {0}, V Key: {1}", nand._cpukey, variables.cpukey);
 
                 if (!foundKey && gotKeyFromCrc)
                 {
-                    if (variables.debugme) Console.WriteLine("Found key in registry");
+                    if (variables.debugMode) Console.WriteLine("Found key in registry");
                     nand.cpukeyverification(variables.cpukey);
-                    if (variables.debugme) Console.WriteLine("allmove ", variables.allmove);
-                    if (variables.debugme) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
-                    if (variables.debugme) Console.WriteLine(variables.filename1.Contains(variables.outfolder));
+                    if (variables.debugMode) Console.WriteLine("allmove ", variables.allmove);
+                    if (variables.debugMode) Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
+                    if (variables.debugMode) Console.WriteLine(variables.filename1.Contains(variables.outfolder));
                     if ((variables.allmove) && (!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
                     {
                         if (!movedalready && !nomove)
@@ -2055,11 +2047,11 @@ namespace JRunner
                 {
                     if (!CpuKeyDB.getkey_s(variables.cpukey, xPanel.getDashDataSet()))
                     {
-                        if (variables.debugme) Console.WriteLine("Key verification");
+                        if (variables.debugMode) Console.WriteLine("Key verification");
                         if (nand.cpukeyverification(variables.cpukey))
                         {
                             Console.WriteLine("CPU Key is Correct");
-                            if (variables.debugme) Console.WriteLine("Adding key to registry");
+                            if (variables.debugMode) Console.WriteLine("Adding key to registry");
                             CpuKeyDB.regentries entry = new CpuKeyDB.regentries();
                             entry.kvcrc = nand.kvcrc().ToString("X");
                             entry.serial = nand.ki.serial;
@@ -2072,7 +2064,7 @@ namespace JRunner
                             bool reg = CpuKeyDB.addkey_s(entry, xPanel.getDashDataSet());
                             if (variables.autoExtract && reg)
                             {
-                                if (variables.debugme) Console.WriteLine("Auto File Extraction Initiated");
+                                if (variables.debugMode) Console.WriteLine("Auto File Extraction Initiated");
                                 extractFilesFromNand();
 
                             }
@@ -2104,7 +2096,7 @@ namespace JRunner
 
                 variables.rgh1able = Nand.ntable.isGlitch1Able(nand.bl.CB_A);
 
-                if (variables.debugme) Console.WriteLine("----------------------");
+                if (variables.debugMode) Console.WriteLine("----------------------");
                 variables.ctyp = variables.ctypes[0];
                 variables.ctyp = Nand.Nand.getConsole(nand, variables.flashconfig);
                 xPanel.setMBname(variables.ctyp.Text);
@@ -2190,7 +2182,7 @@ namespace JRunner
                 }
                 catch
                 {
-                    if (variables.debugme) Console.WriteLine("Could not check for patches");
+                    if (variables.debugMode) Console.WriteLine("Could not check for patches");
                 }
                 
                 fs.Close();
@@ -2198,11 +2190,11 @@ namespace JRunner
 
                 variables.gotvalues = !String.IsNullOrEmpty(variables.cpukey);
 
-                if (variables.debugme)
+                if (variables.debugMode)
                     Console.WriteLine("allmove ", variables.allmove);
-                if (variables.debugme)
+                if (variables.debugMode)
                     Console.WriteLine(!variables.filename1.Contains(nand.ki.serial));
-                if (variables.debugme)
+                if (variables.debugMode)
                     Console.WriteLine(variables.filename1.Contains(variables.outfolder));
                 if (variables.allmove && !variables.filename1.Contains(nand.ki.serial) && variables.filename1.Contains(variables.outfolder))
                 {
@@ -2223,7 +2215,7 @@ namespace JRunner
             {
                 Console.WriteLine("Nand Initialization Failed: {0}", ex.GetType().ToString());
                 Console.WriteLine("The dump may be incomplete or corrupt");
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 Console.WriteLine("");
                 updateProgress(progressBar.Minimum);
                 return;
@@ -2232,7 +2224,125 @@ namespace JRunner
             GC.Collect();
         }
 
-        string load_ecc()
+        private void createXeLLJtag()
+        {
+            if (nand == null || !nand.ok) return;
+            variables.tempfile = variables.filename1;
+            byte[] Keyraw = Nand.Nand.getrawkv(variables.filename1);
+            long size1 = 0;
+            string xellfile;
+            if (variables.ctyp.ID == 8) xellfile = "xenon.bin";
+            else if (variables.ctyp.ID == 2)
+            {
+                if (xPanel.getAudClampChecked()) xellfile = "falcon_aud_clamp.bin";
+                else xellfile = "falcon.bin";
+            }
+            else if (variables.ctyp.ID == 3)
+            {
+                if (xPanel.getAudClampChecked()) xellfile = "zephyr_aud_clamp.bin";
+                else xellfile = "zephyr.bin";
+            }
+            else if (variables.ctyp.ID == 4 || variables.ctyp.ID == 5)
+            {
+                if (xPanel.getAudClampChecked()) xellfile = "jasper_aud_clamp.bin";
+                else xellfile = "jasper.bin";
+            }
+            else if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7)
+            {
+                if (xPanel.getAudClampChecked()) xellfile = "jasper_bb_aud_clamp.bin";
+                else xellfile = "jasper_bb.bin";
+            }
+            else return;
+            if (variables.debugMode) Console.WriteLine(xellfile);
+
+            byte[] xell = Oper.openfile(Path.Combine(variables.rootfolder, "common\\xell\\" + xellfile), ref size1, 0);
+            if (variables.debugMode) Console.WriteLine("{0} file loaded successfully", xellfile);
+            if (variables.debugMode) Console.WriteLine("{0:X} | {1:X}", xell.Length, Keyraw.Length);
+
+            Buffer.BlockCopy(Keyraw, 0, xell, 0x4200, 0x4200);
+
+            if (xPanel.getRJtagChecked())
+            {
+                int layout = 0;
+                if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7) layout = 2;
+                else if (variables.ctyp.ID == 4 || variables.ctyp.ID == 5) layout = 1;
+                byte[] SMC;
+                byte[] smc_len = new byte[4], smc_start = new byte[4];
+                Buffer.BlockCopy(xell, 0x78, smc_len, 0, 4);
+                Buffer.BlockCopy(xell, 0x7C, smc_start, 0, 4);
+                SMC = new byte[Oper.ByteArrayToInt(smc_len)];
+                Buffer.BlockCopy(Nand.Nand.unecc(xell), Oper.ByteArrayToInt(smc_start), SMC, 0, Oper.ByteArrayToInt(smc_len));
+                SMC = Nand.Nand.addecc_v2(Nand.Nand.encrypt_SMC(Nand.Nand.patch_SMC(Nand.Nand.decrypt_SMC(SMC))), true, 0, layout);
+                Buffer.BlockCopy(SMC, 0, xell, (Oper.ByteArrayToInt(smc_start) / 0x200) * 0x210, (Oper.ByteArrayToInt(smc_len) / 0x200) * 0x210);
+            }
+
+            variables.filename1 = Path.Combine(variables.outfolder, "jtag.bin");
+            if (variables.debugMode) Console.WriteLine(variables.filename1);
+            Oper.savefile(xell, variables.filename1);
+            if (variables.debugMode) Console.WriteLine("Saved Successfully");
+            txtFileSource.Text = variables.filename1;
+            Console.WriteLine("XeLL image created");
+            Console.WriteLine("");
+        }
+
+        private void createGlitchXeLL()
+        {
+            if (nand == null || !nand.ok) return;
+            variables.tempfile = variables.filename1;
+            progressBar.Value = progressBar.Minimum;
+            int result = 0;
+            try
+            {
+                bool sts = objAlphaPattern.IsMatch(txtCPUKey.Text);
+
+                ECC ecc = new ECC();
+                result = ecc.createecc(variables.filename1, variables.outfolder, ref this.progressBar, txtCPUKey.Text);
+            }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
+            if (result == 1)
+            {
+                variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
+                txtFileSource.Text = variables.filename1;
+            }
+            else if (result == 5)
+            {
+                progressBar.Value = progressBar.Maximum;
+            }
+            else
+            {
+                Console.WriteLine("Failed to create XeLL image");
+                Console.WriteLine("");
+            }
+        }
+
+        private void createGlitch2XeLL()
+        {
+            if (xPanel.getRgh3Checked() && (variables.ctyp.ID == 3 || variables.ctyp.ID == 8))
+            {
+                MessageBox.Show("RGH3 is not supported on this board type", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (nand == null || !nand.ok) return;
+            byte[] kv = new byte[0x4200];
+            if (nand.noecc) kv = nand._rawkv;
+            else
+            {
+                FileStream infile = new FileStream(nand._filename, FileMode.Open, FileAccess.Read);
+                BinaryReader file = new BinaryReader(infile);
+                file.BaseStream.Seek(0x4200, SeekOrigin.Begin);
+                file.Read(kv, 0, 0x4200);
+                infile.Close();
+            }
+            if (String.IsNullOrWhiteSpace(loadGlitch2XeLL())) return;
+            File.Copy(variables.filename1, Path.Combine(variables.outfolder, "glitch.ecc"), true);
+            variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
+            txtFileSource.Text = variables.filename1;
+            Nand.Nand.injectRawKV(variables.filename1, kv);
+            Console.WriteLine("XeLL image created");
+            Console.WriteLine("");
+        }
+
+        private string loadGlitch2XeLL()
         {
             if (Path.GetExtension(variables.filename1) == ".bin")
             {
@@ -2294,7 +2404,7 @@ namespace JRunner
                         break;
                     case 3:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_falcon + cr4 + smcp + ".ecc"); // Use Falcon
-                        if (variables.debugme) Console.WriteLine("Using Falcon type for Zephyr");
+                        if (variables.debugMode) Console.WriteLine("Using Falcon type for Zephyr");
                         break;
                     case 4:
                     case 5:
@@ -2322,139 +2432,6 @@ namespace JRunner
             return variables.filename1;
         }
 
-        void createecc_v2()
-        {
-            //Thread.CurrentThread.Join();
-
-            if (xPanel.getRbtnRetailChecked()) Console.WriteLine("You are creating an ecc image and you have selected {0}!", variables.ttyp);
-            else if (xPanel.getRbtnJtagChecked()) Console.WriteLine("You are creating an ecc image and you have selected {0}!", variables.ttyp);
-            //savedir();
-
-            if (File.Exists(variables.filename1))
-            {
-                if (variables.debugme) Console.WriteLine("Filename1 = {0}", variables.filename1);
-                if (Path.GetExtension(variables.filename1) == ".bin")
-                {
-                    variables.tempfile = variables.filename1;
-                    progressBar.Value = progressBar.Minimum;
-                    int result = 0;
-                    try
-                    {
-                        bool sts = objAlphaPattern.IsMatch(txtCPUKey.Text);
-
-                        ECC ecc = new ECC();
-                        result = ecc.creatergh2ecc(variables.filename1, variables.outfolder, ref this.progressBar, txtCPUKey.Text);
-                        /*
-                        if (comboRGH.SelectedIndex == 0)
-                        {
-                            result = Nand.createeccimage(variables.filename1, variables.outfolder, ref this.progressBar1);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Constructing an rgh2 ecc image");
-                            if (sts) result = ECC.creatergh2(variables.filename1, variables.outfolder, ref this.progressBar1, cpukeytext.Text);
-                            else result = ECC.creatergh2(variables.filename1, variables.outfolder, ref this.progressBar1);
-                        }
-                        */
-                    }
-                    catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
-                    if (result == 1)
-                    {
-                        variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
-                        txtFileSource.Text = variables.filename1;
-                    }
-                    else if (result == 5)
-                    {
-                        progressBar.Value = progressBar.Maximum;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Failed to create ecc image");
-                        Console.WriteLine("");
-                    }
-                }
-            }
-        }
-
-        void createxell()
-        {
-            if (String.IsNullOrWhiteSpace(variables.filename1))
-            {
-                loadfile(ref variables.filename1, ref this.txtFileSource, true);
-                if (String.IsNullOrWhiteSpace(variables.filename1))
-                {
-                    MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            if (variables.ctyp.ID == -1) return;
-            if (File.Exists(variables.filename1))
-            {
-                variables.tempfile = variables.filename1;
-                if (variables.debugme) Console.WriteLine("Filename1 = {0}", variables.filename1);
-                if (Path.GetExtension(variables.filename1) == ".bin")
-                {
-                    byte[] Keyraw = Nand.Nand.getrawkv(variables.filename1);
-                    long size1 = 0;
-                    string xellfile;
-                    if (variables.ctyp.ID == 1) return;
-                    else if (variables.ctyp.ID == 8) xellfile = "xenon.bin";
-                    else if (variables.ctyp.ID == 2)
-                    {
-                        if (xPanel.getAudClampChecked()) xellfile = "falcon_aud_clamp.bin";
-                        else xellfile = "falcon.bin";
-                    }
-                    else if (variables.ctyp.ID == 3)
-                    {
-                        if (xPanel.getAudClampChecked()) xellfile = "zephyr_aud_clamp.bin";
-                        else xellfile = "zephyr.bin";
-                    }
-                    else if (variables.ctyp.ID == 4 || variables.ctyp.ID == 5)
-                    {
-                        if (xPanel.getAudClampChecked()) xellfile = "jasper_aud_clamp.bin";
-                        else xellfile = "jasper.bin";
-                    }
-                    else if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7)
-                    {
-                        if (xPanel.getAudClampChecked()) xellfile = "jasper_bb_aud_clamp.bin";
-                        else xellfile = "jasper_bb.bin";
-                    }
-                    else return;
-                    if (variables.debugme) Console.WriteLine(xellfile);
-
-
-                    byte[] xellous = Oper.openfile(Path.Combine(variables.rootfolder, "common\\xell\\" + xellfile), ref size1, 0);
-                    if (variables.debugme) Console.WriteLine("{0} file loaded successfully", xellfile);
-                    if (variables.debugme) Console.WriteLine("{0:X} | {1:X}", xellous.Length, Keyraw.Length);
-
-                    Buffer.BlockCopy(Keyraw, 0, xellous, 0x4200, 0x4200);
-
-                    if (xPanel.getRJtagChecked())
-                    {
-                        int layout = 0;
-                        if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7) layout = 2;
-                        else if (variables.ctyp.ID == 4 || variables.ctyp.ID == 5) layout = 1;
-                        byte[] SMC;
-                        byte[] smc_len = new byte[4], smc_start = new byte[4];
-                        Buffer.BlockCopy(xellous, 0x78, smc_len, 0, 4);
-                        Buffer.BlockCopy(xellous, 0x7C, smc_start, 0, 4);
-                        SMC = new byte[Oper.ByteArrayToInt(smc_len)];
-                        Buffer.BlockCopy(Nand.Nand.unecc(xellous), Oper.ByteArrayToInt(smc_start), SMC, 0, Oper.ByteArrayToInt(smc_len));
-                        SMC = Nand.Nand.addecc_v2(Nand.Nand.encrypt_SMC(Nand.Nand.patch_SMC(Nand.Nand.decrypt_SMC(SMC))), true, 0, layout);
-                        Buffer.BlockCopy(SMC, 0, xellous, (Oper.ByteArrayToInt(smc_start) / 0x200) * 0x210, (Oper.ByteArrayToInt(smc_len) / 0x200) * 0x210);
-                    }
-
-                    variables.filename1 = Path.Combine(variables.outfolder, xellfile);
-                    if (variables.debugme) Console.WriteLine(variables.filename1);
-                    Oper.savefile(xellous, variables.filename1);
-                    if (variables.debugme) Console.WriteLine("Saved Successfully");
-                    txtFileSource.Text = variables.filename1;
-                    Console.WriteLine("XeLL file created successfully {0}", xellfile);
-                    Console.WriteLine("");
-                }
-            }
-        }
-
         public void deleteEcc(string file)
         {
             try
@@ -2462,7 +2439,7 @@ namespace JRunner
                 if (File.Exists(file))
                 {
                     File.Delete(file);
-                    if (variables.debugme) Console.WriteLine("Deleted ECC");
+                    if (variables.debugMode) Console.WriteLine("Deleted ECC");
                 }
             }
             catch { }
@@ -2568,7 +2545,7 @@ namespace JRunner
                             rfct[(i * 0x13) + 1] == rfct[(j * 0x13) + 1] &&
                             rfct[(i * 0x13) + 2] == rfct[(j * 0x13) + 2])
                         {
-                            if (variables.debugme) Console.WriteLine("You're FUCKED");
+                            if (variables.debugMode) Console.WriteLine("You're FUCKED");
                         }
                     }
                 }
@@ -2789,7 +2766,7 @@ namespace JRunner
             if (consoleTypes.heResult().ID == -1) return variables.ctypes[0];
             variables.fulldump = consoleTypes.fulldump();
             variables.twombread = consoleTypes.twombdump();
-            if (variables.debugme) Console.WriteLine("fulldump variable = {0}", variables.fulldump);
+            if (variables.debugMode) Console.WriteLine("fulldump variable = {0}", variables.fulldump);
             //if (variables.debugme) Console.WriteLine(myNewForm.heResult());
             xPanel.setMBname(consoleTypes.heResult().Text);
             return consoleTypes.heResult();
@@ -3393,7 +3370,7 @@ namespace JRunner
                 List<int> invalidblocks = new List<int>();
                 demon.get_Invalid_Blocks(ref invalidblocks);
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         }
 
         private void updateFwToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3518,7 +3495,12 @@ namespace JRunner
         {
             if (String.IsNullOrWhiteSpace(variables.filename1))
             {
-                MessageBox.Show("No file loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (!File.Exists(variables.filename1))
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (variables.ctyp.ID == -1)
@@ -3529,39 +3511,18 @@ namespace JRunner
 
             if (xPanel.getRbtnJtagChecked())
             {
-                createxell();
+                Thread thr = new Thread(createXeLLJtag);
+                thr.Start();
             }
             else if (xPanel.getRbtnGlitchChecked())
             {
-                Thread thr = new Thread(createecc_v2);
-                thr.IsBackground = true;
+                Thread thr = new Thread(createGlitchXeLL);
                 thr.Start();
             }
             else if (xPanel.getRbtnGlitch2Checked() || xPanel.getRbtnGlitch2mChecked())
             {
-                if (xPanel.getRgh3Checked() && (variables.ctyp.ID == 3 || variables.ctyp.ID == 8))
-                {
-                    MessageBox.Show("RGH3 is not supported on this board type", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (nand == null || !nand.ok) return;
-                byte[] kv = new byte[0x4200];
-                if (nand.noecc) kv = nand._rawkv;
-                else
-                {
-                    FileStream infile = new FileStream(nand._filename, FileMode.Open, FileAccess.Read);
-                    BinaryReader file = new BinaryReader(infile);
-                    file.BaseStream.Seek(0x4200, SeekOrigin.Begin);
-                    file.Read(kv, 0, 0x4200);
-                    infile.Close();
-                }
-                if (String.IsNullOrWhiteSpace(load_ecc())) return;
-                File.Copy(variables.filename1, Path.Combine(variables.outfolder, "glitch.ecc"), true);
-                variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
-                txtFileSource.Text = variables.filename1;
-                Nand.Nand.injectRawKV(variables.filename1, kv);
-                Console.WriteLine("ECC created");
-                Console.WriteLine("");
+                Thread thr = new Thread(createGlitch2XeLL);
+                thr.Start();
             }
             else
             {
@@ -3593,30 +3554,24 @@ namespace JRunner
         {
             if (String.IsNullOrWhiteSpace(variables.filename1))
             {
-                MessageBox.Show("No file loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No XeLL loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            double len = new FileInfo(variables.filename1).Length;
+            if (len != 1310720 & len != 1351680)
+            {
+                MessageBox.Show("XeLL is not a valid size", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (device == DEVICE.PICOFLASHER)
             {
-                picoflasher.Write(nTools.getbtnWriteECC().Contains("XeLL") ? 0 : 1, 0, 0, true);
+                picoflasher.Write(1, 0, 0, true);
             }
             else if (device == DEVICE.XFLASHER_SPI)
             {
-                if (nTools.getbtnWriteECC().Contains("XeLL"))
-                {
-                    xflasher.writeXeLLAuto();
-                }
-                else
-                {
-                    xflasher.writeEccAuto();
-                }
-            }
-            else if (nTools.getbtnWriteECC().Contains("XeLL"))
-            {
-                if (variables.debugme) Console.WriteLine("xell");
-                ThreadStart starter = delegate { writexell(); };
-                new Thread(starter).Start();
+                xflasher.writeXeLLAuto();
             }
             else if (device == DEVICE.XFLASHER_EMMC)
             {
@@ -3628,14 +3583,12 @@ namespace JRunner
             {
                 if (device == DEVICE.NAND_X && variables.mtxUsbMode)
                 {
-                    if (nTools.getbtnWriteECC().Contains("XeLL"))
-                    {
-                        mtx_usb.writeXeLLAuto();
-                    }
-                    else
-                    {
-                        mtx_usb.writeEccAuto();
-                    }
+                    mtx_usb.writeXeLLAuto();
+                }
+                else if (Path.GetExtension(variables.filename1) == ".bin")
+                {
+                    ThreadStart starter = delegate { writexell(); };
+                    new Thread(starter).Start();
                 }
                 else getconsoletype(3);
             }
@@ -3716,7 +3669,7 @@ namespace JRunner
 
             loadfile(ref variables.filename2, ref this.txtFileExtra);
             Thread.Sleep(100);
-            if (variables.debugme) Console.WriteLine("filename2/currentdir = {0}", variables.filename2);
+            if (variables.debugMode) Console.WriteLine("filename2/currentdir = {0}", variables.filename2);
         }
 
         void btnCompare_Click(object sender, System.EventArgs e)
@@ -3777,7 +3730,7 @@ namespace JRunner
         {
             ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text); };
             new Thread(starter).Start();
-            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
+            if (variables.debugMode) Console.WriteLine("-----{0}--------", variables.cpukey);
             new Thread(updatecptextbox).Start();
         }
 
@@ -3785,7 +3738,7 @@ namespace JRunner
         {
             ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text, 1); };
             new Thread(starter).Start();
-            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
+            if (variables.debugMode) Console.WriteLine("-----{0}--------", variables.cpukey);
             new Thread(updatecptextbox).Start();
         }
 
@@ -3793,7 +3746,7 @@ namespace JRunner
         {
             ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text, 2); };
             new Thread(starter).Start();
-            if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
+            if (variables.debugMode) Console.WriteLine("-----{0}--------", variables.cpukey);
             new Thread(updatecptextbox).Start();
         }
 
@@ -3807,7 +3760,7 @@ namespace JRunner
             {
                 ThreadStart starter = delegate { myIP.IPScanner(this.progressBar); };
                 new Thread(starter).Start();
-                if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
+                if (variables.debugMode) Console.WriteLine("-----{0}--------", variables.cpukey);
                 new Thread(updatecptextbox).Start();
             }
         }
@@ -3849,7 +3802,7 @@ namespace JRunner
             {
                 ThreadStart starter = delegate { myIP.IP_GetCpuKey(txtIP.Text); };
                 new Thread(starter).Start();
-                if (variables.debugme) Console.WriteLine("-----{0}--------", variables.cpukey);
+                if (variables.debugMode) Console.WriteLine("-----{0}--------", variables.cpukey);
                 new Thread(updatecptextbox).Start();
             }
         }
@@ -3948,7 +3901,7 @@ namespace JRunner
                         cpukey = objAlphaPattern.Match(line).Value;
                         break;
                     }
-                    if (variables.debugme) Console.WriteLine(objAlphaPattern.Match(line).Value);
+                    if (variables.debugMode) Console.WriteLine(objAlphaPattern.Match(line).Value);
                 }
                 txtCPUKey.Text = cpukey;
             }
@@ -3976,15 +3929,15 @@ namespace JRunner
             //}
             else if (e.KeyCode == Keys.F2 && e.Control && e.Alt)
             {
-                if (variables.debugme)
+                if (variables.debugMode)
                 {
                     Console.WriteLine("Debugging Off");
-                    variables.debugme = false;
+                    variables.debugMode = false;
                 }
                 else
                 {
                     Console.WriteLine("Debugger On");
-                    variables.debugme = true;
+                    variables.debugMode = true;
                 }
             }
             else if (e.Control && e.KeyCode == Keys.F3)
@@ -4112,7 +4065,7 @@ namespace JRunner
 
         private void showDemon(bool show) // TODO: This should be not seperate
         {
-            if (variables.debugme) Console.WriteLine("ShowDemoN {0}", show);
+            if (variables.debugMode) Console.WriteLine("ShowDemoN {0}", show);
             showingdemon = true;
             if (show)
             {
@@ -4184,8 +4137,8 @@ namespace JRunner
         {
             try
             {
-                if (variables.debugme) Console.WriteLine("DevNotify - {0}", e.Device.Name);
-                if (variables.debugme) Console.WriteLine("EventType - {0}", e.EventType);
+                if (variables.debugMode) Console.WriteLine("DevNotify - {0}", e.Device.Name);
+                if (variables.debugMode) Console.WriteLine("EventType - {0}", e.EventType);
                 if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival)
                 {
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001) // PicoFlasher
@@ -4277,7 +4230,7 @@ namespace JRunner
 
                 if (listInfo.Contains(ldInfo)) ldInfo.refreshDrives(true);
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             try // It'll fail if the thing doesn't exist
             {
                 if (updateDevice != null)
@@ -4329,12 +4282,12 @@ namespace JRunner
                         }
                         catch (SystemException ex)
                         {
-                            if (variables.debugme) Console.WriteLine(ex.ToString());
+                            if (variables.debugMode) Console.WriteLine(ex.ToString());
                             continue;
                         }
                         catch (Exception ex)
                         {
-                            if (variables.debugme) Console.WriteLine(ex.ToString());
+                            if (variables.debugMode) Console.WriteLine(ex.ToString());
                             continue;
                         }
                     }
@@ -4467,7 +4420,7 @@ namespace JRunner
 
                             if (variables.xebuilds.ContainsKey(xmd5.ToUpper()))
                             {
-                                if (variables.debugme) Console.WriteLine("Known xebuild md5 found");
+                                if (variables.debugMode) Console.WriteLine("Known xebuild md5 found");
                                 XeBuildVersion.Text = variables.xebuilds[xmd5.ToUpper()];
                                 variables.xebuild = variables.xebuilds[xmd5.ToUpper()];
                             }
@@ -4537,7 +4490,7 @@ namespace JRunner
 
                             if (variables.dls.ContainsKey(dlmd5.ToUpper()))
                             {
-                                if (variables.debugme) Console.WriteLine("Known dl md5 found");
+                                if (variables.debugMode) Console.WriteLine("Known dl md5 found");
                                 DashlaunchVersion.Text = variables.dls[dlmd5.ToUpper()];
                                 variables.dashlaunch = variables.dls[dlmd5.ToUpper()];
                             }
@@ -4672,10 +4625,10 @@ namespace JRunner
                         if (regex.IsMatch(Path.GetFileNameWithoutExtension(a))) variables.dashes_all.Add(Path.GetFileNameWithoutExtension(a));
                     }
                     variables.dashes_all.Sort((a, b) => Convert.ToInt32(a) - Convert.ToInt32(b));
-                    if (variables.debugme) Console.WriteLine("Checking dashes");
+                    if (variables.debugMode) Console.WriteLine("Checking dashes");
                     foreach (string valueName in variables.dashes_all)
                     {
-                        if (variables.debugme) Console.WriteLine(valueName);
+                        if (variables.debugMode) Console.WriteLine(valueName);
                         DataRow dashcombo = dashtable.NewRow();
                         dashcombo[0] = counter;
                         dashcombo[1] = valueName;
@@ -4726,7 +4679,7 @@ namespace JRunner
 
         #region General device interactions with UI
 
-        public void afterWriteEccCleanup()
+        public void afterWriteXeLLCleanup()
         {
             if (variables.tempfile != "")
             {

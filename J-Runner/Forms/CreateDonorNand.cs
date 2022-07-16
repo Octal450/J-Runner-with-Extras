@@ -209,7 +209,7 @@ namespace JRunner.Forms
                         cpukey = objAlphaPattern.Match(line).Value;
                         break;
                     }
-                    if (variables.debugme) Console.WriteLine(objAlphaPattern.Match(line).Value);
+                    if (variables.debugMode) Console.WriteLine(objAlphaPattern.Match(line).Value);
                 }
                 CpuKeyBox.Text = cpukey;
             }

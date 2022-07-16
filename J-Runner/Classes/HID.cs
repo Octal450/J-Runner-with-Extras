@@ -41,14 +41,14 @@ namespace JRunner
                     deviceFound = BootloaderManagement.FindDeviceFromGuid
                         (winUsbDemoGuid,
                         ref devicePathName);
-                    if (variables.debugme) Console.WriteLine("DemoN - {0}", devicePathName);
+                    if (variables.debugMode) Console.WriteLine("DemoN - {0}", devicePathName);
                     if (deviceFound == true)
                     {
                         success = Bootloader.GetDeviceHandle(devicePathName);
 
                         if (success)
                         {
-                            if (variables.debugme) Console.WriteLine("Bootloader Attached");
+                            if (variables.debugMode) Console.WriteLine("Bootloader Attached");
                             HID.BootloaderDetected = true;
 
                             // Save DevicePathName so OnDeviceChange() knows which name is my device.
@@ -69,7 +69,7 @@ namespace JRunner
 
                         // The device was detected.
                         // Register to receive notifications if the device is removed or attached.
-                        if (variables.debugme) Console.WriteLine("Bootloader attached.-106");
+                        if (variables.debugMode) Console.WriteLine("Bootloader attached.-106");
                         success = BootloaderManagement.RegisterForDeviceNotifications
                             (BootloaderPathName,
                             MainForm.mainForm.Handle,
@@ -79,26 +79,26 @@ namespace JRunner
                         {
                             if (Bootloader.InitializeDevice())
                             {
-                                if (variables.debugme) Console.WriteLine("Bootloader Attached");
+                                if (variables.debugMode) Console.WriteLine("Bootloader Attached");
                             }
                             else
                             {
-                                if (variables.debugme) Console.WriteLine("Failed 121");
+                                if (variables.debugMode) Console.WriteLine("Failed 121");
                             }
                         }
                         else
                         {
-                            if (variables.debugme) Console.WriteLine("Failed 126");
+                            if (variables.debugMode) Console.WriteLine("Failed 126");
                         }
                     }
                     else
                     {
-                        if (variables.debugme) Console.WriteLine("Bootloader Not Found.");
+                        if (variables.debugMode) Console.WriteLine("Bootloader Not Found.");
                     }
                 }
                 else
                 {
-                    if (variables.debugme) Console.WriteLine("Bootloader attached.-128");
+                    if (variables.debugMode) Console.WriteLine("Bootloader attached.-128");
                 }
 
 
@@ -107,7 +107,7 @@ namespace JRunner
             }
             catch (Exception ex)
             {
-                if (variables.debugme) Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
                 return false;
             }
         }
@@ -120,7 +120,7 @@ namespace JRunner
             Console.WriteLine("Bootloader Attached: {0:X}.{1:X}.{2:X}", version.ToString("X").Substring(0, 1), version.ToString("X").Substring(1, 1), version.ToString("X").Substring(2, 1));
             FindBootloader_WIN();
             BootloaderPathName = _selectedDevice.DevicePath;
-            if (variables.debugme) Console.WriteLine("FindBootloader() - {0}", _selectedDevice.DevicePath);
+            if (variables.debugMode) Console.WriteLine("FindBootloader() - {0}", _selectedDevice.DevicePath);
             BootloaderDetected = true;
             return true;
         }
@@ -220,11 +220,11 @@ namespace JRunner
                         {
                             Console.Write(".");
                             reTRY++;
-                            if (variables.debugme) Console.WriteLine(" Retry: " + reTRY);
+                            if (variables.debugMode) Console.WriteLine(" Retry: " + reTRY);
 
-                            if (variables.debugme) Console.WriteLine(" Command: {0:X}", Oper.ByteArrayToString(send));
-                            if (variables.debugme) Console.WriteLine(" Data: {0:X}", Oper.ByteArrayToString(write));
-                            if (variables.debugme) Console.WriteLine(" Offset: {0:X}", Oper.ByteArrayToString(offset));
+                            if (variables.debugMode) Console.WriteLine(" Command: {0:X}", Oper.ByteArrayToString(send));
+                            if (variables.debugMode) Console.WriteLine(" Data: {0:X}", Oper.ByteArrayToString(write));
+                            if (variables.debugMode) Console.WriteLine(" Offset: {0:X}", Oper.ByteArrayToString(offset));
 
                             rty = true;
                         }
@@ -290,9 +290,9 @@ namespace JRunner
                         if (!Oper.ByteArrayCompare(Oper.returnportion(returnb, 6, write.Length), write))
                         {
                             //if (comboBox1.Text == "2") Console.WriteLine("Data: {0:X}", ByteArrayToString(datab));
-                            if (variables.debugme) Console.WriteLine("Return: {0:X}", Oper.ByteArrayToString(returnb));
-                            if (variables.debugme) Console.WriteLine("Data: {0:X}", Oper.ByteArrayToString(Oper.returnportion(returnb, 6, 0x10)));
-                            if (variables.debugme) Console.WriteLine("File: {0:X}", Oper.ByteArrayToString(write));
+                            if (variables.debugMode) Console.WriteLine("Return: {0:X}", Oper.ByteArrayToString(returnb));
+                            if (variables.debugMode) Console.WriteLine("Data: {0:X}", Oper.ByteArrayToString(Oper.returnportion(returnb, 6, 0x10)));
+                            if (variables.debugMode) Console.WriteLine("File: {0:X}", Oper.ByteArrayToString(write));
                         }
                         Thread.Sleep(0x5);
                     }

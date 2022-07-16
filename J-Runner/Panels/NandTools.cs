@@ -21,18 +21,6 @@ namespace JRunner.Panels
         {
             numericIterations.Value = value;
         }
-        public void setbtnCreateECC(string text)
-        {
-            btnCreateECC.Text = text;
-        }
-        public void setbtnWriteECC(string text)
-        {
-            btnWriteECC.Text = text;
-        }
-        public string getbtnWriteECC()
-        {
-            return btnWriteECC.Text;
-        }
 
         public void setImage(Image m)
         {

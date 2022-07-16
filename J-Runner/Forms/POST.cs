@@ -208,11 +208,11 @@ namespace JRunner
                 byte[] buffer = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
                 MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out LengthTransferred);
-                if (variables.debugme) Console.WriteLine("Length Transferred {0}", LengthTransferred);
+                if (variables.debugMode) Console.WriteLine("Length Transferred {0}", LengthTransferred);
                 Console.WriteLine("Power Up");
                 btnNudge.Enabled = true;
                 ec = reader.Read(readBuffer, timeout, out bytesRead);
-                if (variables.debugme) Console.WriteLine(ec.ToString());
+                if (variables.debugMode) Console.WriteLine(ec.ToString());
                 return 0;
             }
             catch (Exception ex)
@@ -238,7 +238,7 @@ namespace JRunner
 
                 comm.ClosePort();
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             return 0;
         }
         private int ShutD(UsbEndpointReader reader)
@@ -261,18 +261,18 @@ namespace JRunner
 
                 ///Arm version
                 MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out LengthTransferred);
-                if (variables.debugme) Console.WriteLine("Length Transferred {0}", LengthTransferred);
+                if (variables.debugMode) Console.WriteLine("Length Transferred {0}", LengthTransferred);
                 Console.WriteLine("Shutdown");
                 Reset = false;
                 ec = reader.Read(readBuffer, timeout, out bytesRead);
-                if (variables.debugme) Console.WriteLine(ec.ToString());
+                if (variables.debugMode) Console.WriteLine(ec.ToString());
                 return 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine();
                 Console.WriteLine(ex.Message);
-                if (variables.debugme) { Console.WriteLine(ex.ToString()); }
+                if (variables.debugMode) { Console.WriteLine(ex.ToString()); }
             }
             return 0;
         }
@@ -312,7 +312,7 @@ namespace JRunner
             {
                 Console.WriteLine();
                 Console.WriteLine(ex.Message);
-                if (variables.debugme) { Console.WriteLine(ex.ToString()); }
+                if (variables.debugMode) { Console.WriteLine(ex.ToString()); }
             }
 
             return 0;
@@ -399,12 +399,12 @@ namespace JRunner
 
                         if (POSTd.ContainsKey(readBuffer[0]))
                         {
-                            if (variables.debugme) Console.WriteLine("Post {0} - {1}  > {2} ", psot, POSTd[readBuffer[0]], DateTime.Now.ToString("mm:ss:fff"));
+                            if (variables.debugMode) Console.WriteLine("Post {0} - {1}  > {2} ", psot, POSTd[readBuffer[0]], DateTime.Now.ToString("mm:ss:fff"));
                             else Console.WriteLine("Post {0} - {1} ", psot, POSTd[readBuffer[0]]);
                         }
                         else
                         {
-                            if (variables.debugme) Console.WriteLine("Post {0}  > {1} ", psot, DateTime.Now.ToString("mm:ss:fff"));
+                            if (variables.debugMode) Console.WriteLine("Post {0}  > {1} ", psot, DateTime.Now.ToString("mm:ss:fff"));
                             else Console.WriteLine("Post {0} ", psot);
                         }
 
@@ -531,7 +531,7 @@ namespace JRunner
                             if ((readBuffer[0]) > CurrBootVal)
                             {
                                 if ((readBuffer[0]) != 0x3B) CurrBootVal = (readBuffer[0]);
-                                if (variables.debugme) Console.WriteLine(CurrBootVal.ToString());
+                                if (variables.debugMode) Console.WriteLine(CurrBootVal.ToString());
                                 countResetValues++; // BH Added counter on booted values to prevent random values counting as a boot
                                 if (countResetValues >= 3) // BH ensure 3 out of 6 values have been shown
                                 {
@@ -542,11 +542,11 @@ namespace JRunner
                                     else if (PhatBut.Checked == true) { crashVAL[(int)crash.x1C]--; }
                                     else if (CorBut.Checked == true) { crashVAL[(int)crash.x0D]--; }
                                     else if (cr4but.Checked == true) { crashVAL[(int)crash.x0F]--; }
-                                    if (variables.debugme) Console.WriteLine("reset");
+                                    if (variables.debugMode) Console.WriteLine("reset");
 
                                     if ((counter == 0))
                                     {
-                                        if (variables.debugme) Console.WriteLine("Counter: {0}", counter.ToString());
+                                        if (variables.debugMode) Console.WriteLine("Counter: {0}", counter.ToString());
                                         counter++;
                                         globalcounter++;
                                         DisplayData(counter.ToString(), (counter - 1).ToString().Length);
@@ -564,7 +564,7 @@ namespace JRunner
                                     Thread thread = new Thread(new ThreadStart(NewThreadENough));
                                     thread.Start();
                                     countResetValues = 0; // resets counter for boot
-                                    if (variables.debugme) Console.WriteLine("Count Reset Values: {0}", countResetValues.ToString());
+                                    if (variables.debugMode) Console.WriteLine("Count Reset Values: {0}", countResetValues.ToString());
                                 }
                             }
                         }
@@ -572,11 +572,11 @@ namespace JRunner
                         {
                             if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
                             countCycleValues++; // BH - added additional counter to check for multiple D values prior to 0xD8 to count as a glitch
-                            if (variables.debugme) Console.WriteLine("Cycles {0}", countCycleValues);
+                            if (variables.debugMode) Console.WriteLine("Cycles {0}", countCycleValues);
                             if ((countCycleValues >= 3) && (readBuffer[0] == 0xD8)) // BH - prevents out of sequence 0XD8 registering a glitch
                             {
 
-                                if (variables.debugme) Console.WriteLine("Cycle values started sequence");
+                                if (variables.debugMode) Console.WriteLine("Cycle values started sequence");
                                 if (counter >= numericCap.Value && numericCap.Value != 0) { DisplayData("+, ", 0); break; }
                                 counter++;
                                 PowUp = true;
@@ -592,11 +592,11 @@ namespace JRunner
                         {
                             if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
                             countCycleValues++;
-                            if (variables.debugme) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
+                            if (variables.debugMode) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
                             if ((countCycleValues >= 5))
                             {
 
-                                if (variables.debugme) Console.WriteLine("Cycle values started sequence");
+                                if (variables.debugMode) Console.WriteLine("Cycle values started sequence");
                                 if (counter >= numericCap.Value && numericCap.Value != 0) { DisplayData("+, ", 0); break; }
                                 counter++;
                                 PowUp = true;
@@ -613,11 +613,11 @@ namespace JRunner
                             if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
 
                             countCycleValues++; // BH - added additional counter to check for multiple D values prior to 0xD8 to count as a glitch
-                            if (variables.debugme) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
+                            if (variables.debugMode) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
                             if ((countCycleValues >= 5))
                             {
 
-                                if (variables.debugme) Console.WriteLine("Cycle values started sequence");
+                                if (variables.debugMode) Console.WriteLine("Cycle values started sequence");
                                 if (counter >= numericCap.Value && numericCap.Value != 0) { DisplayData("+, ", 0); break; }
                                 counter++;
                                 PowUp = true;
@@ -633,11 +633,11 @@ namespace JRunner
                         {
                             if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
                             countCycleValues++; // BH - added additional counter to check for multiple D values prior to 0xD8 to count as a glitch
-                            if (variables.debugme) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
+                            if (variables.debugMode) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
                             if ((countCycleValues >= 5))
                             {
 
-                                if (variables.debugme) Console.WriteLine("Cycle values started sequence");
+                                if (variables.debugMode) Console.WriteLine("Cycle values started sequence");
                                 if (counter >= numericCap.Value && numericCap.Value != 0) { DisplayData("+, ", 0); break; }
                                 counter++;
                                 PowUp = true;
@@ -653,11 +653,11 @@ namespace JRunner
                         {
                             if ((readBuffer[0]) < CurrCycleVal) { countCycleValues = 0; CurrCycleVal = (readBuffer[0]); }
                             countCycleValues++; // BH - added additional counter to check for multiple D values prior to 0xD8 to count as a glitch
-                            if (variables.debugme) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
+                            if (variables.debugMode) Console.WriteLine("Count Cycle Values: {0}", countCycleValues.ToString());
                             if ((countCycleValues >= 5))
                             {
 
-                                if (variables.debugme) Console.WriteLine("Cycle values started sequence");
+                                if (variables.debugMode) Console.WriteLine("Cycle values started sequence");
                                 if (counter >= numericCap.Value && numericCap.Value != 0) { DisplayData("+, ", 0); break; }
                                 counter++;
                                 PowUp = true;
@@ -672,7 +672,7 @@ namespace JRunner
                     }
                     catch (Exception ex)
                     {
-                        if (variables.debugme) Console.WriteLine(ex.ToString());
+                        if (variables.debugMode) Console.WriteLine(ex.ToString());
                     }
                 }
                 else
@@ -686,7 +686,7 @@ namespace JRunner
 
                 if (nudge)
                 {
-                    if (variables.debugme) Console.WriteLine("Nudged");
+                    if (variables.debugMode) Console.WriteLine("Nudged");
                     if (once) DisplayData("n, ", 0); // BH - append value with "n" if it was a nudged value
                     enough = true;
                     once = false;
@@ -1321,7 +1321,7 @@ namespace JRunner
             {
                 enumerate_post();
             }
-            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
             try
             {
                 int tries = 1;
@@ -1340,9 +1340,9 @@ namespace JRunner
                 if (!ReferenceEquals(wholeUsbDevice, null))
                 {
                     wholeUsbDevice.SetConfiguration(1);
-                    if (variables.debugme) Console.WriteLine("Claiming Interface...");
+                    if (variables.debugMode) Console.WriteLine("Claiming Interface...");
                     wholeUsbDevice.ClaimInterface(0);
-                    if (variables.debugme) Console.WriteLine("The Interface is Ours!");
+                    if (variables.debugMode) Console.WriteLine("The Interface is Ours!");
                 }
 
                 buttons(false);
@@ -1368,13 +1368,13 @@ namespace JRunner
                 ///Arm version
                 MyUsbDevice.ControlTransfer(ref packet, buffer, 8, out length);
                 ec = reader.Read(readBuffer, timeout, out bytesRead);
-                if (variables.debugme) { Console.WriteLine("Bytes Read {0}", bytesRead); Console.WriteLine("Read Buffer {0}", Oper.ByteArrayToString(readBuffer)); }
+                if (variables.debugMode) { Console.WriteLine("Bytes Read {0}", bytesRead); Console.WriteLine("Read Buffer {0}", Oper.ByteArrayToString(readBuffer)); }
                 while (ec != ErrorCode.Success && tries < 5)
                 {
-                    if (variables.debugme) Console.WriteLine(ec.ToString());
-                    if (variables.debugme) Console.WriteLine("Retry {0}", tries);
+                    if (variables.debugMode) Console.WriteLine(ec.ToString());
+                    if (variables.debugMode) Console.WriteLine("Retry {0}", tries);
                     ec = reader.Read(readBuffer, timeout, out bytesRead);
-                    if (variables.debugme) { Console.WriteLine("Bytes Read {0}", bytesRead); Console.WriteLine("Read Buffer {0}", Oper.ByteArrayToString(readBuffer)); }
+                    if (variables.debugMode) { Console.WriteLine("Bytes Read {0}", bytesRead); Console.WriteLine("Read Buffer {0}", Oper.ByteArrayToString(readBuffer)); }
                     tries++;
                 }
                 Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
@@ -1400,7 +1400,7 @@ namespace JRunner
 
                     if (numericIter.Value != 0)
                     {
-                        if (variables.debugme) Console.WriteLine("Counterg: {0}  nudges: {1}", counterg, nudges);
+                        if (variables.debugMode) Console.WriteLine("Counterg: {0}  nudges: {1}", counterg, nudges);
                         if (numericIter.Value <= (counterg - nudges))
                         {
                             DisplayData(Environment.NewLine, 0);
@@ -1414,7 +1414,7 @@ namespace JRunner
                                     success.Play();
                                 }
                             }
-                            catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); };
+                            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); };
                             break;
                         }
                     }

@@ -197,7 +197,7 @@ public static class PortInterop
         {
             return NativeMethods.IsInpOutDriverOpen();
         }
-        catch (Exception ex) { if (variables.debugme) Console.WriteLine(ex.ToString()); }
+        catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
         return op;
     }
 }
