@@ -424,7 +424,7 @@
             // 
             // txtMBname
             // 
-            this.txtMBname.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMBname.BackColor = System.Drawing.SystemColors.Control;
             this.txtMBname.Location = new System.Drawing.Point(17, 73);
             this.txtMBname.Name = "txtMBname";
             this.txtMBname.ReadOnly = true;
