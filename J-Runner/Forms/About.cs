@@ -55,6 +55,7 @@ namespace JRunner.Forms
 
         private void close_Click(object sender, EventArgs e)
         {
+            MainForm.mainForm.killShade();
             this.Close();
         }
 

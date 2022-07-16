@@ -35,6 +35,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CpuKeyDB));
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cPUKeyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cRCKVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataTable1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new JRunner.DataSet1();
             this.lblSerial = new System.Windows.Forms.Label();
@@ -58,11 +63,6 @@
             this.txtosig = new System.Windows.Forms.TextBox();
             this.labelosig = new System.Windows.Forms.Label();
             this.labeldvdkey = new System.Windows.Forms.Label();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPUKeyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cRCKVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -121,6 +121,49 @@
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             this.dataGridView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseUp);
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.FillWeight = 31.46342F;
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 30;
+            // 
+            // serialDataGridViewTextBoxColumn
+            // 
+            this.serialDataGridViewTextBoxColumn.DataPropertyName = "Serial";
+            this.serialDataGridViewTextBoxColumn.FillWeight = 93.33911F;
+            this.serialDataGridViewTextBoxColumn.HeaderText = "Serial";
+            this.serialDataGridViewTextBoxColumn.Name = "serialDataGridViewTextBoxColumn";
+            this.serialDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cPUKeyDataGridViewTextBoxColumn
+            // 
+            this.cPUKeyDataGridViewTextBoxColumn.DataPropertyName = "CPU Key";
+            this.cPUKeyDataGridViewTextBoxColumn.FillWeight = 175.1975F;
+            this.cPUKeyDataGridViewTextBoxColumn.HeaderText = "CPU Key";
+            this.cPUKeyDataGridViewTextBoxColumn.MaxInputLength = 32;
+            this.cPUKeyDataGridViewTextBoxColumn.Name = "cPUKeyDataGridViewTextBoxColumn";
+            this.cPUKeyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cPUKeyDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // cRCKVDataGridViewTextBoxColumn
+            // 
+            this.cRCKVDataGridViewTextBoxColumn.DataPropertyName = "CRC KV";
+            this.cRCKVDataGridViewTextBoxColumn.HeaderText = "CRC KV";
+            this.cRCKVDataGridViewTextBoxColumn.Name = "cRCKVDataGridViewTextBoxColumn";
+            this.cRCKVDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cRCKVDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Console Type";
+            this.Comment.Name = "Comment";
+            this.Comment.ReadOnly = true;
+            this.Comment.Width = 145;
             // 
             // dataTable1BindingSource
             // 
@@ -223,7 +266,7 @@
             // rbtnSerial
             // 
             this.rbtnSerial.AutoSize = true;
-            this.rbtnSerial.Location = new System.Drawing.Point(294, 13);
+            this.rbtnSerial.Location = new System.Drawing.Point(362, 13);
             this.rbtnSerial.Name = "rbtnSerial";
             this.rbtnSerial.Size = new System.Drawing.Size(51, 17);
             this.rbtnSerial.TabIndex = 13;
@@ -235,7 +278,7 @@
             // 
             this.rbtnCPU.AutoSize = true;
             this.rbtnCPU.Checked = true;
-            this.rbtnCPU.Location = new System.Drawing.Point(345, 13);
+            this.rbtnCPU.Location = new System.Drawing.Point(294, 13);
             this.rbtnCPU.Name = "rbtnCPU";
             this.rbtnCPU.Size = new System.Drawing.Size(68, 17);
             this.rbtnCPU.TabIndex = 14;
@@ -333,49 +376,6 @@
             this.labeldvdkey.Size = new System.Drawing.Size(54, 13);
             this.labeldvdkey.TabIndex = 42;
             this.labeldvdkey.Text = "DVD Key:";
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.FillWeight = 31.46342F;
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 30;
-            // 
-            // serialDataGridViewTextBoxColumn
-            // 
-            this.serialDataGridViewTextBoxColumn.DataPropertyName = "Serial";
-            this.serialDataGridViewTextBoxColumn.FillWeight = 93.33911F;
-            this.serialDataGridViewTextBoxColumn.HeaderText = "Serial";
-            this.serialDataGridViewTextBoxColumn.Name = "serialDataGridViewTextBoxColumn";
-            this.serialDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cPUKeyDataGridViewTextBoxColumn
-            // 
-            this.cPUKeyDataGridViewTextBoxColumn.DataPropertyName = "CPU Key";
-            this.cPUKeyDataGridViewTextBoxColumn.FillWeight = 175.1975F;
-            this.cPUKeyDataGridViewTextBoxColumn.HeaderText = "CPU Key";
-            this.cPUKeyDataGridViewTextBoxColumn.MaxInputLength = 32;
-            this.cPUKeyDataGridViewTextBoxColumn.Name = "cPUKeyDataGridViewTextBoxColumn";
-            this.cPUKeyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cPUKeyDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // cRCKVDataGridViewTextBoxColumn
-            // 
-            this.cRCKVDataGridViewTextBoxColumn.DataPropertyName = "CRC KV";
-            this.cRCKVDataGridViewTextBoxColumn.HeaderText = "CRC KV";
-            this.cRCKVDataGridViewTextBoxColumn.Name = "cRCKVDataGridViewTextBoxColumn";
-            this.cRCKVDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cRCKVDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // Comment
-            // 
-            this.Comment.DataPropertyName = "Comment";
-            this.Comment.HeaderText = "Console Type";
-            this.Comment.Name = "Comment";
-            this.Comment.ReadOnly = true;
-            this.Comment.Width = 145;
             // 
             // CpuKeyDB
             // 

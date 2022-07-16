@@ -3132,6 +3132,12 @@ namespace JRunner
 
         private void convertToRGH3ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (Nand.Nand.VerifyKey(Oper.StringToByteArray(variables.cpukey)))
             {
                 if (nand.cpukeyverification(variables.cpukey))
