@@ -79,9 +79,10 @@ namespace JRunner
             Win81,
             W10_11
         }
-        public static string version = "3.1.6 Beta";
-        public static string build = "3152." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
-        public const string staticversion = "3.1.5.2";
+
+        public static string version = "3.X.X Beta";
+        public static string build = "3160." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
+        public const string staticversion = "3.1.6.0";
         public static int revision = 23;
         public static Windows currentOS = Windows.Unknown;
         public static bool iswriting;

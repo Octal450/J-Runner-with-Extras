@@ -318,34 +318,16 @@ namespace JRunner
                     CB_A_img_RAND = Oper.returnportion(ref dt.CB_A_crypted, 0x10, 0x10);
                 }
                 ///
-                if (Oper.ByteArrayToInt(build(dt.CB_A)) >= 1888 && Oper.ByteArrayToInt(build(dt.CB_A)) <= 1940 || Oper.ByteArrayToInt(build(dt.CB_A)) == 7373 || Oper.ByteArrayToInt(build(dt.CB_A)) == 8192)
-                {
-                    Console.WriteLine("Using donor CB");
-                    dt.CB_A_crypted = null;
-                    if (MessageBox.Show("There have been various reports that using a different bootloader improves the glitch speeds on xenon. Click Yes to use the 7375 Bootloader or Click No to use the 1940 one.", "Choose CB", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                    {
-                        dt.CB_A = Oper.openfile(Path.Combine(variables.rootfolder, @"common\CB\CB_A.7375.bin"), ref size, 0);
-                    }
-                    else
-                    {
-                        dt.CB_A = Oper.openfile(Path.Combine(variables.rootfolder, @"common\CB\CB_A.1940.bin"), ref size, 0);
-                    }
-                    if (dt.CB_A == null) { Console.WriteLine("Failed to open CB"); return 5; }
-                    dt.CB_B = null;
-                    dt.CD_plain = Oper.openfile(cdfile, ref size, 1 * 1024 * 1024);
-                    if (dt.CD_plain == null) return -1;
-                }
                 ///
                 ///
-                ///
-                int[] xenon_builds = { 1923, 7375 };
+                //int[] xenon_builds = { 1923, 7375 };
                 int[] zephyr_builds = { 4578, 4579, 4575 };
                 int[] falcon_builds = { 5771, 5772, 5773 };
                 //int[] jasper_builds = { 6750, 6752, 6753 };
                 int[] trinity_builds = { 9188, 9230 };
                 int[] corona_builds = { 13121, 13180 };
                 int[] slim_builds = { 9188, 9230, 13121 };
-                int[] xor_hack_builds = { 9230, 5773, 6753, 4575 };
+                //int[] xor_hack_builds = { 9230, 5773, 6753, 4575 };
 
                 if (!donor)
                 {

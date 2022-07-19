@@ -420,7 +420,7 @@ namespace JRunner.Panels
             if (board == null) board = "None";
             if (variables.rghable)
             {
-                if (board.Contains("Corona") || board.Contains("Trinity")) rbtnGlitch.Enabled = rbtnGlitch.Checked = false;
+                if (board.Contains("Corona") || board.Contains("Trinity") || board.Contains("Xenon")) rbtnGlitch.Enabled = rbtnGlitch.Checked = false;
                 else if (!variables.rgh1able) rbtnGlitch.Enabled = rbtnGlitch.Checked = false;
                 else rbtnGlitch.Enabled = true;
             }

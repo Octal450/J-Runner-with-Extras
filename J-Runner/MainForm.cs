@@ -325,7 +325,7 @@ namespace JRunner
             Console.WriteLine("=========================================================================");
             Console.WriteLine("J-Runner with Extras");
             Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("MM/dd/yyyy H:mm:ss"));
-            if (variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
+            if (variables.version.Contains("Alpha") || variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
             else Console.WriteLine("Version: {0}", variables.version);
             if (Upd.checkStatus == 0)
             {
