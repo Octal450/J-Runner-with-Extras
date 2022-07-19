@@ -313,8 +313,10 @@ namespace JRunner.Panels
             {
                 if (variables.tempfile != "")
                 {
+                    string eccFile = variables.filename1;
                     variables.filename1 = variables.tempfile;
                     UpdateSourc(variables.tempfile);
+                    MainForm.mainForm.deleteEcc(eccFile);
                 }
             }
             buttons(true);

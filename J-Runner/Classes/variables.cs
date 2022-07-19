@@ -132,10 +132,11 @@ namespace JRunner
         public static string ip = "", custname = "";
         public static bool playSuccess = true;
         public static bool playError = true;
-        public static bool autoDelEcc = true;
-        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Delay", "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "dashlaunch", "preferredDash", "KeepFiles", "WorkingDir",
+        public static bool autoDelXeLL = true;
+        public static string overrideOutputPath = "";
+        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Delay", "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "dashlaunch", "preferredDash", "KeepFiles", "OutputDirOverride",
                                             "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "TimingOnKeypress", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings",
-                                            "PlaySuccess", "PlayError", "AutoDelEcc"};
+                                            "PlaySuccess", "PlayError", "AutoDelXeLL"};
 
         public static string COMPort = "";
 

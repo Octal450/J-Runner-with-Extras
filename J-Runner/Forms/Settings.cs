@@ -10,6 +10,8 @@ namespace JRunner.Forms
 {
     public partial class Settings : Form
     {
+        private static string oldOutFolder;
+
         public Settings()
         {
             InitializeComponent();
@@ -18,11 +20,11 @@ namespace JRunner.Forms
 
         private void Settings_Load(object sender, EventArgs e)
         {
+            oldOutFolder = variables.outfolder;
             if (variables.deletefiles) chkfiles.Checked = true;
             if (String.IsNullOrEmpty(variables.IPend) || String.IsNullOrEmpty(variables.IPstart)) IP.initaddresses();
             txtIPEnd.Text = variables.IPend;
             txtIPStart.Text = variables.IPstart;
-            txtfolder.Text = variables.outfolder;
             txtIP.Text = variables.ip;
             if (variables.ip.Length == 0) chkIpDefault.Checked = txtIP.Enabled = false;
             else chkIpDefault.Checked = txtIP.Enabled = true;
@@ -31,19 +33,25 @@ namespace JRunner.Forms
             modderbut.Checked = variables.modder;
             chkPlaySuccess.Checked = variables.playSuccess;
             chkPlayError.Checked = variables.playError;
-            chkAutoDelEcc.Checked = variables.autoDelEcc;
+            chkAutoDelXeLL.Checked = variables.autoDelXeLL;
             timingOnKeypressEnable.Checked = variables.timingonkeypress;
             chkNoPatchWarnings.Checked = variables.noPatchWarnings;
             almovebut.Checked = !variables.allmove;
             if (variables.slimprefersrgh) SlimPreferSrgh.Checked = true;
             if (variables.LPTtiming) rbtnTimingLpt.Checked = true;
             txtTimingLptPort.Text = variables.LPTport;
+
+            if (!string.IsNullOrWhiteSpace(variables.overrideOutputPath))
+            {
+                txtOutputOverride.Text = variables.overrideOutputPath;
+                chkOverrideOutput.Checked = true;
+            }
         }
 
-        private void btnFolder_Click(object sender, EventArgs e)
+        private void btnOverrideOutput_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
-            openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtfolder.Text);
+            openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtOutputOverride.Text);
             openDialog.RestoreDirectory = false;
             openDialog.IsFolderPicker = true;
 
@@ -56,42 +64,66 @@ namespace JRunner.Forms
                 {
                     Directory.CreateDirectory(path);
                 }
-                txtfolder.Text = path;
+                txtOutputOverride.Text = path;
             }
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
+            bool ok = true;
+
             try
             {
                 variables.IPstart = txtIPStart.Text;
                 variables.IPend = txtIPEnd.Text;
                 variables.delay = (int)sonusDelay.Value;
-                if (variables.debugMode) Console.WriteLine("outfolderchanged = true\noutfolder = {0}", variables.outfolder);
                 variables.ip = txtIP.Text;
                 variables.playSuccess = chkPlaySuccess.Checked;
                 variables.playError = chkPlayError.Checked;
                 variables.autoExtract = AutoExtractcheckBox.Checked;
                 variables.modder = modderbut.Checked;
                 variables.allmove = !almovebut.Checked;
-                variables.autoDelEcc = chkAutoDelEcc.Checked;
+                variables.autoDelXeLL = chkAutoDelXeLL.Checked;
                 variables.LPTtiming = rbtnTimingLpt.Checked;
                 if (!String.IsNullOrWhiteSpace(txtTimingLptPort.Text)) variables.LPTport = txtTimingLptPort.Text;
                 else variables.LPTport = "378";
 
-                if (txtfolder.Text == "")
+                if (!chkOverrideOutput.Checked || String.IsNullOrWhiteSpace(txtOutputOverride.Text))
                 {
+                    variables.overrideOutputPath = "";
                     variables.outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
                 }
                 else
                 {
-                    variables.outfolder = txtfolder.Text;
+                    try
+                    {
+                        string overridePath = Path.GetFullPath(txtOutputOverride.Text);
+                        variables.outfolder = variables.overrideOutputPath = overridePath;
+                    }
+                    catch
+                    {
+                        ok = false;
+                        MessageBox.Show("Illegal path to output folder", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
 
-                MainForm.mainForm.savesettings();
+                if (ok) MainForm.mainForm.savesettings();
             }
-            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
-            this.Close();
+            catch (Exception ex)
+            {
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
+                MessageBox.Show("A critical error has occured while trying to apply settings\n\nThe application is now in an invalid state and needs to restart", "Critical", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Program.restart(); // Restart without running on exit tasks, so that we do not save settings
+            }
+
+            if (oldOutFolder != variables.outfolder)
+            {
+                MessageBox.Show("Application must be restarted in order to change the folder paths", "Change Folders", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Restart();
+            }
+
+            if (ok) this.Close();
+            else this.DialogResult = DialogResult.None;
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -99,7 +131,7 @@ namespace JRunner.Forms
             if (File.Exists(variables.settingsfile)) File.Delete(variables.settingsfile);
             if (DialogResult.Yes == MessageBox.Show("Settings will be reset when the application restarts\n\nDo you want to restart now?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
-                Program.restart(); // Restart without running on exit tasks, prevents setting from being put back
+                Program.restart(); // Restart without running on exit tasks, prevents settings from being put back
             }
         }
 
@@ -204,6 +236,21 @@ namespace JRunner.Forms
         private void chkNoPatchWarnings_Click(object sender, EventArgs e)
         {
             if (chkNoPatchWarnings.Checked) MessageBox.Show("Warnings or messages about patches will not be displayed as pop-ups\n\nConsole log messages will continue to show", "Steep Hill Ahead", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void chkOverrideOutput_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOverrideOutput.Checked)
+            {
+                txtOutputOverride.Enabled = true;
+                btnOverrideOutput.Enabled = true;
+            }
+            else
+            {
+                txtOutputOverride.Enabled = false;
+                txtOutputOverride.Text = "";
+                btnOverrideOutput.Enabled = false;
+            }
         }
     }
 }

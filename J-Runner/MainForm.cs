@@ -135,7 +135,7 @@ namespace JRunner
             }
 
             printstartuptext(true);
-
+            
             new Thread(on_load).Start();
 
             deviceinit();
@@ -377,7 +377,7 @@ namespace JRunner
 
         private void saveToLog()
         {
-            string file = Path.Combine(variables.rootfolder, "Log.txt");
+            string file = Path.Combine(variables.rootfolder, "Console.log");
             File.AppendAllText(file, "\n" + txtConsole.Text);
         }
 
@@ -1339,8 +1339,10 @@ namespace JRunner
                 {
                     if (variables.tempfile != "")
                     {
+                        string eccFile = variables.filename1;
                         variables.filename1 = variables.tempfile;
                         txtFileSource.Text = variables.tempfile;
+                        deleteEcc(eccFile);
                     }
                 }
             }
@@ -1378,8 +1380,10 @@ namespace JRunner
                     Thread.Sleep(500);
                     if (variables.tempfile != "" && result == NandX.Errors.None)
                     {
+                        string eccFile = variables.filename1;
                         variables.filename1 = variables.tempfile;
                         txtFileSource.Text = variables.tempfile;
+                        deleteEcc(eccFile);
                     }
                 }
                 else if (Path.GetExtension(variables.filename1) == ".bin")
@@ -1457,10 +1461,10 @@ namespace JRunner
                     txtFileSource.Text = "";
                     if (variables.tempfile != "")
                     {
-                        string ecc = variables.filename1;
+                        string eccFile = variables.filename1;
                         variables.filename1 = variables.tempfile;
                         txtFileSource.Text = variables.tempfile;
-                        deleteEcc(ecc);
+                        deleteEcc(eccFile);
                     }
                 }
             }
@@ -1476,10 +1480,10 @@ namespace JRunner
 
                 if (variables.tempfile != "" && result == NandX.Errors.None)
                 {
-                    string ecc = variables.filename1;
+                    string eccFile = variables.filename1;
                     variables.filename1 = variables.tempfile;
                     txtFileSource.Text = variables.tempfile;
-                    deleteEcc(ecc);
+                    deleteEcc(eccFile);
                 }
             }
         }
@@ -2434,15 +2438,18 @@ namespace JRunner
 
         public void deleteEcc(string file)
         {
-            try
+            if (variables.autoDelXeLL)
             {
-                if (File.Exists(file))
+                try
                 {
-                    File.Delete(file);
-                    if (variables.debugMode) Console.WriteLine("Deleted ECC");
+                    if (File.Exists(file))
+                    {
+                        File.Delete(file);
+                        if (variables.debugMode) Console.WriteLine("Deleted ECC");
+                    }
                 }
+                catch { }
             }
-            catch { }
         }
 
         public void extractFilesFromNand()
@@ -3813,10 +3820,10 @@ namespace JRunner
 
         private void txtConsole_DoubleClick(object sender, EventArgs e)
         {
-            File.AppendAllText(Path.Combine(variables.rootfolder, "tempLog.txt"), txtConsole.Text);
-            System.Diagnostics.Process.Start(Path.Combine(variables.rootfolder, "tempLog.txt"));
+            File.AppendAllText(Path.Combine(variables.rootfolder, "temp.log"), txtConsole.Text);
+            Process.Start(Path.Combine(variables.rootfolder, "temp.log"));
             Thread.Sleep(1000);
-            File.Delete(Path.Combine(variables.rootfolder, "tempLog.txt"));
+            File.Delete(Path.Combine(variables.rootfolder, "temp.log"));
         }
 
         #endregion
@@ -4347,8 +4354,8 @@ namespace JRunner
                         case "KeepFiles":
                             x.write(name, variables.deletefiles.ToString());
                             break;
-                        case "WorkingDir":
-                            x.write(name, variables.outfolder);
+                        case "OutputDirOverride":
+                            x.write(name, variables.overrideOutputPath);
                             break;
                         case "LPTtiming":
                             x.write(name, variables.LPTtiming.ToString());
@@ -4389,8 +4396,8 @@ namespace JRunner
                         case "PlayError":
                             x.write(name, variables.playError.ToString());
                             break;
-                        case "AutoDelEcc":
-                            x.write(name, variables.autoDelEcc.ToString());
+                        case "AutoDelXeLL":
+                            x.write(name, variables.autoDelXeLL.ToString());
                             break;
                         default:
                             break;
@@ -4508,9 +4515,10 @@ namespace JRunner
                             bool.TryParse(val, out bvalue);
                             variables.deletefiles = bvalue;
                             break;
-                        case "WorkingDir":
+                        case "OutputDirOverride":
                             if (!string.IsNullOrWhiteSpace(val))
                             {
+                                variables.overrideOutputPath = val;
                                 variables.outfolder = val;
                             }
                             break;
@@ -4589,10 +4597,10 @@ namespace JRunner
                             if (!bool.TryParse(val, out bvalue)) bvalue = true;
                             variables.playError = bvalue;
                             break;
-                        case "AutoDelEcc":
+                        case "AutoDelXeLL":
                             bvalue = true;
                             if (!bool.TryParse(val, out bvalue)) bvalue = true;
-                            variables.autoDelEcc = bvalue;
+                            variables.autoDelXeLL = bvalue;
                             break;
                         default:
                             break;
@@ -4683,10 +4691,10 @@ namespace JRunner
         {
             if (variables.tempfile != "")
             {
-                string ecc = variables.filename1;
+                string eccFile = variables.filename1;
                 variables.filename1 = variables.tempfile;
                 txtFileSource.Text = variables.tempfile;
-                deleteEcc(ecc);
+                deleteEcc(eccFile);
             }
         }
 

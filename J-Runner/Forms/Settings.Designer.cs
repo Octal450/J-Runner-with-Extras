@@ -30,10 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
-            this.btnFolder = new System.Windows.Forms.Button();
-            this.txtfolder = new System.Windows.Forms.TextBox();
+            this.btnOverrideOutput = new System.Windows.Forms.Button();
+            this.txtOutputOverride = new System.Windows.Forms.TextBox();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -72,29 +71,32 @@
             this.chkNoPatchWarnings = new System.Windows.Forms.CheckBox();
             this.chkPlaySuccess = new System.Windows.Forms.CheckBox();
             this.chkPlayError = new System.Windows.Forms.CheckBox();
-            this.chkAutoDelEcc = new System.Windows.Forms.CheckBox();
+            this.chkAutoDelXeLL = new System.Windows.Forms.CheckBox();
+            this.chkOverrideOutput = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.sonusDelay)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnFolder
+            // btnOverrideOutput
             // 
-            this.btnFolder.Location = new System.Drawing.Point(340, 27);
-            this.btnFolder.Name = "btnFolder";
-            this.btnFolder.Size = new System.Drawing.Size(29, 22);
-            this.btnFolder.TabIndex = 22;
-            this.btnFolder.Text = "...";
-            this.btnFolder.UseVisualStyleBackColor = true;
-            this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
+            this.btnOverrideOutput.Enabled = false;
+            this.btnOverrideOutput.Location = new System.Drawing.Point(340, 29);
+            this.btnOverrideOutput.Name = "btnOverrideOutput";
+            this.btnOverrideOutput.Size = new System.Drawing.Size(29, 22);
+            this.btnOverrideOutput.TabIndex = 22;
+            this.btnOverrideOutput.Text = "...";
+            this.btnOverrideOutput.UseVisualStyleBackColor = true;
+            this.btnOverrideOutput.Click += new System.EventHandler(this.btnOverrideOutput_Click);
             // 
-            // txtfolder
+            // txtOutputOverride
             // 
-            this.txtfolder.Location = new System.Drawing.Point(15, 28);
-            this.txtfolder.Name = "txtfolder";
-            this.txtfolder.Size = new System.Drawing.Size(319, 20);
-            this.txtfolder.TabIndex = 21;
+            this.txtOutputOverride.Enabled = false;
+            this.txtOutputOverride.Location = new System.Drawing.Point(15, 30);
+            this.txtOutputOverride.Name = "txtOutputOverride";
+            this.txtOutputOverride.Size = new System.Drawing.Size(319, 20);
+            this.txtOutputOverride.TabIndex = 21;
             // 
             // txtIP
             // 
@@ -104,15 +106,6 @@
             this.txtIP.Size = new System.Drawing.Size(92, 20);
             this.txtIP.TabIndex = 3;
             this.toolTip1.SetToolTip(this.txtIP, "Set a default IP for getting CPUKey\r\nover a network.");
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Output Folder:";
             // 
             // label5
             // 
@@ -126,7 +119,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOK.Location = new System.Drawing.Point(268, 311);
+            this.btnOK.Location = new System.Drawing.Point(268, 313);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 23);
             this.btnOK.TabIndex = 1;
@@ -141,7 +134,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(412, 242);
+            this.label6.Location = new System.Drawing.Point(412, 243);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 13);
             this.label6.TabIndex = 21;
@@ -151,7 +144,7 @@
             // 
             // sonusDelay
             // 
-            this.sonusDelay.Location = new System.Drawing.Point(530, 240);
+            this.sonusDelay.Location = new System.Drawing.Point(530, 241);
             this.sonusDelay.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -229,7 +222,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(392, 12);
+            this.groupBox2.Location = new System.Drawing.Point(392, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(202, 118);
             this.groupBox2.TabIndex = 35;
@@ -249,7 +242,7 @@
             // AutoExtractcheckBox
             // 
             this.AutoExtractcheckBox.AutoSize = true;
-            this.AutoExtractcheckBox.Location = new System.Drawing.Point(15, 59);
+            this.AutoExtractcheckBox.Location = new System.Drawing.Point(15, 61);
             this.AutoExtractcheckBox.Name = "AutoExtractcheckBox";
             this.AutoExtractcheckBox.Size = new System.Drawing.Size(165, 17);
             this.AutoExtractcheckBox.TabIndex = 23;
@@ -261,7 +254,7 @@
             this.almovebut.AutoSize = true;
             this.almovebut.Checked = true;
             this.almovebut.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.almovebut.Location = new System.Drawing.Point(15, 82);
+            this.almovebut.Location = new System.Drawing.Point(15, 84);
             this.almovebut.Name = "almovebut";
             this.almovebut.Size = new System.Drawing.Size(244, 17);
             this.almovebut.TabIndex = 24;
@@ -272,7 +265,7 @@
             // modderbut
             // 
             this.modderbut.AutoSize = true;
-            this.modderbut.Location = new System.Drawing.Point(15, 105);
+            this.modderbut.Location = new System.Drawing.Point(15, 107);
             this.modderbut.Name = "modderbut";
             this.modderbut.Size = new System.Drawing.Size(279, 17);
             this.modderbut.TabIndex = 25;
@@ -283,7 +276,7 @@
             // timingOnKeypressEnable
             // 
             this.timingOnKeypressEnable.AutoSize = true;
-            this.timingOnKeypressEnable.Location = new System.Drawing.Point(15, 128);
+            this.timingOnKeypressEnable.Location = new System.Drawing.Point(15, 130);
             this.timingOnKeypressEnable.Name = "timingOnKeypressEnable";
             this.timingOnKeypressEnable.Size = new System.Drawing.Size(306, 17);
             this.timingOnKeypressEnable.TabIndex = 26;
@@ -294,7 +287,7 @@
             // logBackgroundCustom
             // 
             this.logBackgroundCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logBackgroundCustom.Location = new System.Drawing.Point(242, 245);
+            this.logBackgroundCustom.Location = new System.Drawing.Point(242, 247);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
             this.logBackgroundCustom.TabIndex = 31;
@@ -307,7 +300,7 @@
             // 
             this.logBackgroundBlue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logBackgroundBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(36)))), ((int)(((byte)(86)))));
-            this.logBackgroundBlue.Location = new System.Drawing.Point(216, 245);
+            this.logBackgroundBlue.Location = new System.Drawing.Point(216, 247);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlue.TabIndex = 30;
@@ -319,7 +312,7 @@
             // 
             this.logBackgroundBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logBackgroundBlack.BackColor = System.Drawing.Color.Black;
-            this.logBackgroundBlack.Location = new System.Drawing.Point(190, 245);
+            this.logBackgroundBlack.Location = new System.Drawing.Point(190, 247);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlack.TabIndex = 29;
@@ -330,7 +323,7 @@
             // logTextCustom
             // 
             this.logTextCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logTextCustom.Location = new System.Drawing.Point(242, 271);
+            this.logTextCustom.Location = new System.Drawing.Point(242, 273);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
             this.logTextCustom.TabIndex = 34;
@@ -343,7 +336,7 @@
             // 
             this.logTextBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logTextBlack.BackColor = System.Drawing.Color.Black;
-            this.logTextBlack.Location = new System.Drawing.Point(216, 271);
+            this.logTextBlack.Location = new System.Drawing.Point(216, 273);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
             this.logTextBlack.TabIndex = 33;
@@ -355,7 +348,7 @@
             // 
             this.logTextWhite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logTextWhite.BackColor = System.Drawing.Color.White;
-            this.logTextWhite.Location = new System.Drawing.Point(190, 271);
+            this.logTextWhite.Location = new System.Drawing.Point(190, 273);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
             this.logTextWhite.TabIndex = 32;
@@ -367,7 +360,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 274);
+            this.label11.Location = new System.Drawing.Point(12, 276);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 42;
@@ -377,7 +370,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 248);
+            this.label10.Location = new System.Drawing.Point(12, 250);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 38;
@@ -386,7 +379,7 @@
             // logDefault
             // 
             this.logDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logDefault.Location = new System.Drawing.Point(134, 245);
+            this.logDefault.Location = new System.Drawing.Point(134, 247);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
             this.logDefault.TabIndex = 28;
@@ -398,7 +391,7 @@
             // 
             this.groupBox3.Controls.Add(this.SlimPreferSrgh);
             this.groupBox3.Controls.Add(this.SlimPreferRgh12);
-            this.groupBox3.Location = new System.Drawing.Point(420, 136);
+            this.groupBox3.Location = new System.Drawing.Point(420, 137);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(174, 45);
             this.groupBox3.TabIndex = 38;
@@ -433,7 +426,7 @@
             this.groupBox4.Controls.Add(this.txtTimingLptPort);
             this.groupBox4.Controls.Add(this.rbtnTimingLpt);
             this.groupBox4.Controls.Add(this.rbtnTimingUsb);
-            this.groupBox4.Location = new System.Drawing.Point(420, 187);
+            this.groupBox4.Location = new System.Drawing.Point(420, 188);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(174, 45);
             this.groupBox4.TabIndex = 39;
@@ -467,7 +460,7 @@
             // btnReset
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnReset.Location = new System.Drawing.Point(15, 311);
+            this.btnReset.Location = new System.Drawing.Point(15, 313);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(76, 23);
             this.btnReset.TabIndex = 40;
@@ -478,7 +471,7 @@
             // chkNoPatchWarnings
             // 
             this.chkNoPatchWarnings.AutoSize = true;
-            this.chkNoPatchWarnings.Location = new System.Drawing.Point(15, 151);
+            this.chkNoPatchWarnings.Location = new System.Drawing.Point(15, 153);
             this.chkNoPatchWarnings.Name = "chkNoPatchWarnings";
             this.chkNoPatchWarnings.Size = new System.Drawing.Size(206, 17);
             this.chkNoPatchWarnings.TabIndex = 27;
@@ -492,7 +485,7 @@
             this.chkPlaySuccess.AutoSize = true;
             this.chkPlaySuccess.Checked = true;
             this.chkPlaySuccess.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPlaySuccess.Location = new System.Drawing.Point(15, 197);
+            this.chkPlaySuccess.Location = new System.Drawing.Point(15, 199);
             this.chkPlaySuccess.Name = "chkPlaySuccess";
             this.chkPlaySuccess.Size = new System.Drawing.Size(157, 17);
             this.chkPlaySuccess.TabIndex = 43;
@@ -504,32 +497,44 @@
             this.chkPlayError.AutoSize = true;
             this.chkPlayError.Checked = true;
             this.chkPlayError.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPlayError.Location = new System.Drawing.Point(15, 220);
+            this.chkPlayError.Location = new System.Drawing.Point(15, 222);
             this.chkPlayError.Name = "chkPlayError";
             this.chkPlayError.Size = new System.Drawing.Size(138, 17);
             this.chkPlayError.TabIndex = 44;
             this.chkPlayError.Text = "Play error sound (oh no)";
             this.chkPlayError.UseVisualStyleBackColor = true;
             // 
-            // chkAutoDelEcc
+            // chkAutoDelXeLL
             // 
-            this.chkAutoDelEcc.AutoSize = true;
-            this.chkAutoDelEcc.Checked = true;
-            this.chkAutoDelEcc.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoDelEcc.Location = new System.Drawing.Point(15, 174);
-            this.chkAutoDelEcc.Name = "chkAutoDelEcc";
-            this.chkAutoDelEcc.Size = new System.Drawing.Size(206, 17);
-            this.chkAutoDelEcc.TabIndex = 45;
-            this.chkAutoDelEcc.Text = "Auto delete ECC after successful write";
-            this.chkAutoDelEcc.UseVisualStyleBackColor = true;
+            this.chkAutoDelXeLL.AutoSize = true;
+            this.chkAutoDelXeLL.Checked = true;
+            this.chkAutoDelXeLL.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoDelXeLL.Location = new System.Drawing.Point(15, 176);
+            this.chkAutoDelXeLL.Name = "chkAutoDelXeLL";
+            this.chkAutoDelXeLL.Size = new System.Drawing.Size(226, 17);
+            this.chkAutoDelXeLL.TabIndex = 45;
+            this.chkAutoDelXeLL.Text = "Auto delete XeLL file after successful write";
+            this.chkAutoDelXeLL.UseVisualStyleBackColor = true;
+            // 
+            // chkOverrideOutput
+            // 
+            this.chkOverrideOutput.AutoSize = true;
+            this.chkOverrideOutput.Location = new System.Drawing.Point(15, 12);
+            this.chkOverrideOutput.Name = "chkOverrideOutput";
+            this.chkOverrideOutput.Size = new System.Drawing.Size(136, 17);
+            this.chkOverrideOutput.TabIndex = 46;
+            this.chkOverrideOutput.Text = "Output Folder Override:";
+            this.chkOverrideOutput.UseVisualStyleBackColor = true;
+            this.chkOverrideOutput.CheckedChanged += new System.EventHandler(this.chkOverrideOutput_CheckedChanged);
             // 
             // Settings
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 349);
-            this.Controls.Add(this.chkAutoDelEcc);
+            this.ClientSize = new System.Drawing.Size(612, 351);
+            this.Controls.Add(this.chkOverrideOutput);
+            this.Controls.Add(this.chkAutoDelXeLL);
             this.Controls.Add(this.chkPlayError);
             this.Controls.Add(this.chkPlaySuccess);
             this.Controls.Add(this.chkNoPatchWarnings);
@@ -554,9 +559,8 @@
             this.Controls.Add(this.sonusDelay);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtfolder);
-            this.Controls.Add(this.btnFolder);
+            this.Controls.Add(this.txtOutputOverride);
+            this.Controls.Add(this.btnOverrideOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -579,12 +583,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtfolder;
+        private System.Windows.Forms.TextBox txtOutputOverride;
         private System.Windows.Forms.TextBox txtIP;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnFolder;
+        private System.Windows.Forms.Button btnOverrideOutput;
         private System.Windows.Forms.FolderBrowserDialog folderDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label6;
@@ -621,6 +624,7 @@
         private System.Windows.Forms.CheckBox chkNoPatchWarnings;
         private System.Windows.Forms.CheckBox chkPlaySuccess;
         private System.Windows.Forms.CheckBox chkPlayError;
-        private System.Windows.Forms.CheckBox chkAutoDelEcc;
+        private System.Windows.Forms.CheckBox chkAutoDelXeLL;
+        private System.Windows.Forms.CheckBox chkOverrideOutput;
     }
 }
