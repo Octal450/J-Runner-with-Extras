@@ -39,8 +39,6 @@ namespace JRunner.Panels
         public event ClickedWrite WriteClick;
         public delegate void ClickedProgramCR();
         public event ClickedProgramCR ProgramCRClick;
-        public delegate void ClickedCPUDB();
-        public event ClickedCPUDB CPUDBClick;
         public delegate void ChangedIter(int iter);
         public event ChangedIter IterChange;
 
@@ -91,7 +89,7 @@ namespace JRunner.Panels
 
         private void btnCPUDB_Click(object sender, EventArgs e)
         {
-            CPUDBClick();
+            MainForm.mainForm.openCpuKeyDb();
         }
 
         private int funCount = 0;

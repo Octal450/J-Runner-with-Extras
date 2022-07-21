@@ -226,21 +226,21 @@ namespace JRunner.Panels
         {
             if (rbtnRetail.Checked)
             {
-                if (checkDLPatches.Checked) variables.DashLaunchE = checkDLPatches.Checked;
+                if (checkDLPatches.Checked) variables.DashlaunchE = checkDLPatches.Checked;
                 checkDLPatches.Enabled = chkLaunch.Visible = false;
                 if (sender.Equals(rbtnRetail)) Console.WriteLine("Retail Selected");
             }
             else if (rbtnJtag.Checked)
             {
                 checkDLPatches.Enabled = true;
-                checkDLPatches.Checked = chkLaunch.Visible = variables.DashLaunchE;
+                checkDLPatches.Checked = chkLaunch.Visible = variables.DashlaunchE;
                 if (sender.Equals(rbtnJtag)) Console.WriteLine("JTAG Selected");
 
             }
             else if (rbtnGlitch.Checked || rbtnGlitch2.Checked || rbtnGlitch2m.Checked)
             {
                 checkDLPatches.Enabled = true;
-                checkDLPatches.Checked = chkLaunch.Visible = variables.DashLaunchE;
+                checkDLPatches.Checked = chkLaunch.Visible = variables.DashlaunchE;
                 if (rbtnGlitch.Checked && sender.Equals(rbtnGlitch)) Console.WriteLine("Glitch Selected");
                 else if (rbtnGlitch2.Checked && sender.Equals(rbtnGlitch2)) Console.WriteLine("Glitch2 Selected");
                 else if (rbtnGlitch2m.Checked && sender.Equals(rbtnGlitch2m)) Console.WriteLine("Glitch2m Selected");
@@ -248,7 +248,7 @@ namespace JRunner.Panels
             else if (rbtnDevGL.Checked)
             {
                 checkDLPatches.Enabled = true;
-                checkDLPatches.Checked = chkLaunch.Visible = variables.DashLaunchE;
+                checkDLPatches.Checked = chkLaunch.Visible = variables.DashlaunchE;
                 if (sender.Equals(rbtnDevGL)) Console.WriteLine("DEVGL Selected");
             }
 
@@ -567,7 +567,7 @@ namespace JRunner.Panels
 
         private void checkDLPatches_CheckedChanged(object sender, EventArgs e)
         {
-            variables.DashLaunchE = checkDLPatches.Checked;
+            variables.DashlaunchE = checkDLPatches.Checked;
             if (!checkDLPatches.Checked || !checkDLPatches.Enabled) { chkLaunch.Visible = false; chkLaunch.Checked = false; }
             else if (checkDLPatches.Checked && checkDLPatches.Enabled) chkLaunch.Visible = true;
         }

@@ -185,11 +185,11 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\BackupProgress.cs">
+    <Compile Include="Forms\ProgressIndeterminate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BackupProgress.Designer.cs">
-      <DependentUpon>BackupProgress.cs</DependentUpon>
+    <Compile Include="Forms\ProgressIndeterminate.Designer.cs">
+      <DependentUpon>ProgressIndeterminate.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ConsoleSelect.cs">
       <SubType>Form</SubType>
@@ -626,8 +626,8 @@
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BackupProgress.resx">
-      <DependentUpon>BackupProgress.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ProgressIndeterminate.resx">
+      <DependentUpon>ProgressIndeterminate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Comport.resx">
       <DependentUpon>Comport.cs</DependentUpon>

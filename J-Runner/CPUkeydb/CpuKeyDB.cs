@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using RenameRegistryKey;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,9 @@ namespace JRunner
                 this.Invoke(new EventHandler(cpukeydb_Load), new object[] { sender, e });
                 return;
             }
+
+            rbtnSerial.Checked = variables.cpuKeyDbSerial;
+
             DataTable cputable = dataSet1.DataTable1;
             RegistryKey cpukeydb = Registry.CurrentUser.CreateSubKey("CPUKey_DB", RegistryKeyPermissionCheck.ReadWriteSubTree);
             foreach (string valueName in cpukeydb.GetValueNames())
@@ -91,7 +95,6 @@ namespace JRunner
             }
         }
 
-
         public static bool addkey_s(regentries entry, DataSet1 hi)
         {
             if (string.IsNullOrEmpty(entry.kvcrc)) return false;
@@ -109,7 +112,6 @@ namespace JRunner
                     }
                 }
             }
-            if (!string.IsNullOrEmpty(variables.custname)) entry.extra = variables.custname;
 
             int index = Convert.ToInt32(cpukeydb.GetValue("Index")) + 1;
             cpukeydb.SetValue("Index", index);
@@ -247,6 +249,7 @@ namespace JRunner
         private void rbtnSerial_CheckedChanged(object sender, EventArgs e)
         {
             updateSearch();
+            variables.cpuKeyDbSerial = rbtnSerial.Checked;
         }
 
         private void rbtnCPU_CheckedChanged(object sender, EventArgs e)
@@ -424,7 +427,6 @@ namespace JRunner
                 if (addkey_s(entry, dataSet1)) counter++;
             }
             Console.WriteLine("Done, added {0} keys", counter);
-
         }
 
         #region Buttons
@@ -527,14 +529,21 @@ namespace JRunner
         }
         #endregion
 
-        private void CpuKeyDB_Resize(object sender, EventArgs e)
-        {
-            //dataGridView1.Height = this.ClientSize.Height - 50;
-        }
-
         private void scan(string folder)
         {
-            Console.WriteLine("Scanning Files..");
+            Forms.ProgressIndeterminate pi = new Forms.ProgressIndeterminate();
+
+            this.BeginInvoke(new Action(() =>
+            {
+                this.Hide();
+                pi.Show();
+                pi.updateTitle("Scanning");
+            }));
+            MainForm.mainForm.BeginInvoke(new Action(() => {
+                MainForm.mainForm.Enabled = false;
+            }));
+
+            Console.WriteLine("Scanning Files...");
             try
             {
                 int counter = 0, nandfiles = 0, median = 0, textfiles = 0, percent = 0, previous = 0;
@@ -669,9 +678,6 @@ namespace JRunner
                                             entry.dvdkey = nan.ki.dvdkey;
 
                                             addkey_s(entry, dataSet1);
-
-
-
                                         }
                                         found = false;
                                     }
@@ -689,11 +695,31 @@ namespace JRunner
             Console.WriteLine("Done");
             Console.WriteLine("");
 
+            MainForm.mainForm.BeginInvoke(new Action(() => {
+                MainForm.mainForm.Enabled = true;
+            }));
+            this.BeginInvoke(new Action(() =>
+            {
+                this.Show();
+                pi.Close();
+            }));
         }
 
         private void scan_cpukey(string folder, string cpukey)
         {
-            Console.WriteLine("Scanning Files..");
+            Forms.ProgressIndeterminate pi = new Forms.ProgressIndeterminate();
+
+            this.BeginInvoke(new Action(() =>
+            {
+                this.Hide();
+                pi.Show();
+                pi.updateTitle("Scanning");
+            }));
+            MainForm.mainForm.BeginInvoke(new Action(() => {
+                MainForm.mainForm.Enabled = false;
+            }));
+
+            Console.WriteLine("Scanning Files...");
             try
             {
                 int i = 0, percent = 0, previous = 0;
@@ -732,11 +758,32 @@ namespace JRunner
             Console.WriteLine("\rCompletion 100%");
             Console.WriteLine("Done");
             Console.WriteLine("");
+
+            MainForm.mainForm.BeginInvoke(new Action(() => {
+                MainForm.mainForm.Enabled = true;
+            }));
+            this.BeginInvoke(new Action(() =>
+            {
+                this.Show();
+                pi.Close();
+            }));
         }
 
         private void scan_kv(string folder, long crc)
         {
-            Console.WriteLine("Scanning Files..");
+            Forms.ProgressIndeterminate pi = new Forms.ProgressIndeterminate();
+
+            this.BeginInvoke(new Action(() =>
+            {
+                this.Hide();
+                pi.Show();
+                pi.updateTitle("Scanning");
+            }));
+            MainForm.mainForm.BeginInvoke(new Action(() => {
+                MainForm.mainForm.Enabled = false;
+            }));
+
+            Console.WriteLine("Scanning Files...");
             try
             {
                 int i = 0, percent = 0, previous = 0;
@@ -772,21 +819,33 @@ namespace JRunner
             Console.WriteLine("\rCompletion 100%");
             Console.WriteLine("Done");
             Console.WriteLine("");
+
+            MainForm.mainForm.BeginInvoke(new Action(() => {
+                MainForm.mainForm.Enabled = true;
+            }));
+            this.BeginInvoke(new Action(() =>
+            {
+                this.Show();
+                pi.Close();
+            }));
         }
 
         private void btnScan_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folder = new FolderBrowserDialog();
-            //folder.RootFolder = System.Environment.SpecialFolder.DesktopDirectory;
-            DialogResult result = folder.ShowDialog();
-            if (result == DialogResult.OK)
+            CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
+            openDialog.InitialDirectory = variables.rootfolder;
+            openDialog.RestoreDirectory = false;
+            openDialog.IsFolderPicker = true;
+
+            if (openDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                string fol = folder.SelectedPath;
+                string fol = openDialog.FileName;
                 ThreadStart readna = delegate { scan(fol); };
                 Thread readnt = new Thread(readna);
                 readnt.IsBackground = true;
                 readnt.Start();
             }
+            this.BringToFront(); // Because it goes behind?
         }
 
         private void btnreverse_Click(object sender, EventArgs e)

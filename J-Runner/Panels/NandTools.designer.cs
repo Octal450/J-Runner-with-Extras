@@ -54,7 +54,7 @@
             // 
             // btnCPUDB
             // 
-            this.btnCPUDB.Location = new System.Drawing.Point(64, 106);
+            this.btnCPUDB.Location = new System.Drawing.Point(208, 106);
             this.btnCPUDB.Name = "btnCPUDB";
             this.btnCPUDB.Size = new System.Drawing.Size(65, 51);
             this.btnCPUDB.TabIndex = 29;
@@ -198,7 +198,7 @@
             // 
             // btnExtractFiles
             // 
-            this.btnExtractFiles.Location = new System.Drawing.Point(208, 106);
+            this.btnExtractFiles.Location = new System.Drawing.Point(136, 106);
             this.btnExtractFiles.Name = "btnExtractFiles";
             this.btnExtractFiles.Size = new System.Drawing.Size(65, 51);
             this.btnExtractFiles.TabIndex = 28;
@@ -209,11 +209,11 @@
             // 
             // btnCreateDonor
             // 
-            this.btnCreateDonor.Location = new System.Drawing.Point(136, 106);
+            this.btnCreateDonor.Location = new System.Drawing.Point(64, 106);
             this.btnCreateDonor.Name = "btnCreateDonor";
             this.btnCreateDonor.Size = new System.Drawing.Size(65, 51);
             this.btnCreateDonor.TabIndex = 30;
-            this.btnCreateDonor.Text = "Create\r\nDonor\r\nNand";
+            this.btnCreateDonor.Text = "Create\r\nDonor";
             this.toolTip1.SetToolTip(this.btnCreateDonor, "Launches the Create Donor Nand Wizard");
             this.btnCreateDonor.UseVisualStyleBackColor = true;
             this.btnCreateDonor.Click += new System.EventHandler(this.btnCreateDonor_Click);

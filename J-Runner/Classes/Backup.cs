@@ -60,13 +60,14 @@ namespace JRunner
 
         public static void backupToZip(string target, string path)
         {
-            Forms.BackupProgress bp = new Forms.BackupProgress();
+            Forms.ProgressIndeterminate pi = new Forms.ProgressIndeterminate();
 
             Thread worker = new Thread(() =>
             {
                 MainForm.mainForm.BeginInvoke(new Action(() => {
                     MainForm.mainForm.Enabled = false;
-                    bp.Show();
+                    pi.Show();
+                    pi.updateTitle("Backing Up");
                 }));
 
                 try
@@ -84,7 +85,7 @@ namespace JRunner
 
                 MainForm.mainForm.BeginInvoke(new Action(() => {
                     MainForm.mainForm.Enabled = true;
-                    bp.Close();
+                    pi.Close();
                 }));
             });
             worker.Start();

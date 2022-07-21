@@ -1,7 +1,7 @@
 ﻿
 namespace JRunner.Forms
 {
-    partial class BackupProgress
+    partial class ProgressIndeterminate
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace JRunner.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupProgress));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressIndeterminate));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
@@ -41,7 +41,7 @@ namespace JRunner.Forms
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 0;
             // 
-            // BackupProgress
+            // ProgressIndeterminate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -50,9 +50,9 @@ namespace JRunner.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "BackupProgress";
+            this.Name = "ProgressIndeterminate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Backing Up...";
+            this.Text = "Working...";
             this.TopMost = true;
             this.ResumeLayout(false);
 

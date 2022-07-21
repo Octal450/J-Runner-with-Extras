@@ -115,8 +115,7 @@ namespace JRunner
         public static bool generate = false;
         public static bool checkfiles = true, deletefiles = false, extractfiles = false;
         public static string preferredDash = latest_dashboard.ToString();
-        public static bool DashLaunchE = false;
-        public static Point location = new Point(0, 0);
+        public static bool DashlaunchE = false;
         public static bool LPTtiming = false;
         public static string xebuild = "", dashlaunch = "", LPTport = "378";
         public static decimal NoReads = 0;
@@ -129,14 +128,15 @@ namespace JRunner
         public static bool noPatchWarnings = false;
         public static Color logbackground = Color.Black;
         public static Color logtext = Color.White;
-        public static string ipPrefix = "", custname = "";
+        public static string ipPrefix = "";
         public static bool playSuccess = true;
         public static bool playError = true;
         public static bool autoDelXeLL = true;
         public static string overrideRootPath = "";
-        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Delay", "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "dashlaunch", "preferredDash", "KeepFiles", "RootDirOverride",
+        public static bool cpuKeyDbSerial = false;
+        public static string[] settings = { "XeBuild", "FileChecks", "COMPort", "Delay", "DashlaunchE", "IP", "NoReads", "IPStart", "IPEnd", "Dashlaunch", "PreferredDash", "KeepFiles", "RootDirOverride",
                                             "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "TimingOnKeypress", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings",
-                                            "PlaySuccess", "PlayError", "AutoDelXeLL"};
+                                            "PlaySuccess", "PlayError", "AutoDelXeLL", "CpuKeyDbSerial"};
 
         public static string COMPort = "";
 

@@ -101,18 +101,6 @@ namespace JRunner
             _writer = new TextBoxStreamWriter(txtConsole);
             Console.SetOut(_writer);
 
-            //// BH
-            if (variables.location != new Point(0, 0))
-            {
-                this.StartPosition = FormStartPosition.Manual;
-                this.Location = variables.location;
-                if (!Screen.FromControl(this).Bounds.Contains(this.Location))
-                {
-                    this.DesktopLocation = new Point(100, 100);
-                }
-            }
-
-            // BH
             if (InvokeRequired)
             {
                 this.Invoke(new EventHandler(MainForm_Load), new object[] { sender, e });
@@ -170,7 +158,6 @@ namespace JRunner
             nTools.CreateEccClick += btnCreateECCClick;
             nTools.WriteEccClick += btnWriteECCClick;
             nTools.WriteClick += btnWriteClick;
-            nTools.CPUDBClick += btnCPUDBClick;
             nTools.ProgramCRClick += btnProgramCRClick;
             nTools.XeBuildClick += btnXeBuildClick;
             nTools.IterChange += nTools_IterChange;
@@ -1509,41 +1496,36 @@ namespace JRunner
             Thread.Sleep(100);
             variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
 
-            Console.WriteLine("Moving all files from output folder to {0}", variables.xefolder);
-            String l_sDirectoryName = variables.xefolder;
+            Console.WriteLine("Moving files to {0}", variables.xefolder);
+            string l_sDirectoryName = variables.xefolder;
             DirectoryInfo l_dDirInfo = new DirectoryInfo(l_sDirectoryName);
-            if (l_dDirInfo.Exists == false)
-                Directory.CreateDirectory(l_sDirectoryName);
+
+            if (l_dDirInfo.Exists == false) Directory.CreateDirectory(l_sDirectoryName);
+
             List<String> MyFiles = Directory.GetFiles(variables.outfolder, "*.*", SearchOption.TopDirectoryOnly).ToList();
             List<String> myfolders = Directory.GetDirectories(variables.outfolder, "*.*", SearchOption.TopDirectoryOnly).ToList();
+
             foreach (string fold in myfolders)
             {
                 try
                 {
-
-                    string name = Path.GetFileName(fold);
-                    // if (Directory.Exists(l_dDirInfo + "\\" + fold)) Directory.Delete(l_dDirInfo + "\\" + fold);
                     if (variables.debugMode) Console.WriteLine("Moving {0}", fold);
 
-
-                    if ((fold.Contains(nand.ki.serial)) || ((variables.custname != "") && (fold.Contains(variables.custname))))
+                    if (fold.Contains(nand.ki.serial))
                     {
-                        Directory.Move(fold, Path.Combine(variables.xefolder, name));
-                        variables.custname = "";
+                        Directory.Move(fold, Path.Combine(variables.xefolder, Path.GetFileName(fold)));
                     }
-
                 }
                 catch (IOException e)
                 {
                     Console.WriteLine(e.Message);
                 }
-
             }
             foreach (string file in MyFiles)
             {
                 if (variables.debugMode) Console.WriteLine("Moving {0}", file);
                 FileInfo mFile = new FileInfo(file);
-                if (new FileInfo(l_dDirInfo + "\\" + mFile.Name).Exists == false) //to remove name collusion
+                if (new FileInfo(l_dDirInfo + "\\" + mFile.Name).Exists == false) // To remove name collusion
                     mFile.MoveTo(l_dDirInfo + "\\" + mFile.Name);
                 else
                 {
@@ -1551,14 +1533,14 @@ namespace JRunner
                     int number = 1;
                     if (flname.Contains("(") && flname.Contains(")"))
                     {
-                        //Console.WriteLine(flname.Substring(0,flname.IndexOf("(")));
-                        //number = Convert.ToInt32(flname.Substring(flname.IndexOf("("), 1)) ;
                         string Nflname = flname.Substring(0, flname.IndexOf("("));
 
                         do
                         {
                             number++;
-                        } while (File.Exists(l_dDirInfo + "\\" + Nflname + "(" + number + ")" + mFile.Extension));
+                        }
+                        while (File.Exists(l_dDirInfo + "\\" + Nflname + "(" + number + ")" + mFile.Extension));
+
                         if (!File.Exists(l_dDirInfo + "\\" + Nflname + "(" + number + ")" + mFile.Extension))
                         {
                             mFile.MoveTo(l_dDirInfo + "\\" + Nflname + "(" + number + ")" + mFile.Extension);
@@ -1569,7 +1551,9 @@ namespace JRunner
                         do
                         {
                             number++;
-                        } while (File.Exists(l_dDirInfo + "\\" + Path.GetFileNameWithoutExtension(mFile.Name) + "(" + number + ")" + mFile.Extension));
+                        }
+                        while (File.Exists(l_dDirInfo + "\\" + Path.GetFileNameWithoutExtension(mFile.Name) + "(" + number + ")" + mFile.Extension));
+
                         if (!File.Exists(l_dDirInfo + "\\" + Path.GetFileNameWithoutExtension(mFile.Name) + "(" + number + ")" + mFile.Extension))
                         {
                             mFile.MoveTo(l_dDirInfo + "\\" + Path.GetFileNameWithoutExtension(mFile.Name) + "(" + number + ")" + mFile.Extension);
@@ -2795,23 +2779,6 @@ namespace JRunner
             return consoleSelect.heResult();
         }
 
-        CpuKeyDB mycpukeydb;
-        void callCpuKeyDb()
-        {
-            if (Application.OpenForms.OfType<CpuKeyDB>().Any())
-            {
-                mycpukeydb.WindowState = FormWindowState.Normal;
-                mycpukeydb.Activate();
-            }
-            else
-            {
-                mycpukeydb = new CpuKeyDB();
-                mycpukeydb.Show();
-                mycpukeydb.Location = new Point(Location.X + (Width - mycpukeydb.Width) / 2, Location.Y + (Height - mycpukeydb.Height) / 2);
-                mycpukeydb.FormClosed += new FormClosedEventHandler(mycpukeydb_FormClosed);
-            }
-        }
-
         void callDrives(string filename = "", Panels.LDrivesInfo.Function f = Panels.LDrivesInfo.Function.ReadWrite)
         {
             ldInfo.setup(f);
@@ -2819,11 +2786,6 @@ namespace JRunner
             pnlInfo.Controls.Add(ldInfo);
             if (listInfo.Contains(ldInfo)) listInfo.Remove(ldInfo);
             listInfo.Add(ldInfo);
-        }
-
-        void mycpukeydb_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            txtCPUKey.Text = variables.cpukey;
         }
 
         #endregion
@@ -2887,17 +2849,17 @@ namespace JRunner
                 "Operations:\n" +
                 "Esc - Cancel active task (if possible)\n" +
                 "F1 - New Session\n" +
+                "F2 - Get console type\n" +
                 "F9 - Try CPU Key against database\n" +
                 "CTRL+F1 - Restart\n" +
                 "ALT+F4 - Exit\n\n" +
-                "Device:\n" +
-                "F2 - Get console type\n" +
+                "Interface:\n" +
                 "F3 - Program Timing File\n" +
                 "F4 - Custom Nand/Timing File Functions\n" +
                 "F5 - Corona 4GB Read/Write\n" +
-                "F12 - Send Timing File via JTAG (if enabled)\n\n" +
-                "Interface:\n" +
                 "F6 - Timing Assistant\n" +
+                "F7 - CPU Key Database\n" +
+                "F12 - Send Timing File via JTAG (if enabled)\n" +
                 "CTRL+H - Shortcuts",
                 "Shortcuts", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
@@ -2992,12 +2954,12 @@ namespace JRunner
             }
         }
 
-        Timing timing;
         private void timingAssistantToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timingAssistant();
         }
 
+        Timing timing;
         public void timingAssistant()
         {
             if (Application.OpenForms.OfType<Timing>().Any())
@@ -3010,6 +2972,33 @@ namespace JRunner
                 timing.Show();
                 timing.Location = new Point(Location.X + (Width - timing.Width) / 2 - 175, Location.Y + 60);
             }
+        }
+
+        private void cPUKeyDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openCpuKeyDb();
+        }
+
+        CpuKeyDB mycpukeydb;
+        public void openCpuKeyDb()
+        {
+            if (Application.OpenForms.OfType<CpuKeyDB>().Any())
+            {
+                mycpukeydb.WindowState = FormWindowState.Normal;
+                mycpukeydb.Activate();
+            }
+            else
+            {
+                mycpukeydb = new CpuKeyDB();
+                mycpukeydb.Show();
+                mycpukeydb.Location = new Point(Location.X + (Width - mycpukeydb.Width) / 2, Location.Y + 10);
+                mycpukeydb.FormClosed += new FormClosedEventHandler(CpuKeyDb_FormClosed);
+            }
+        }
+
+        void CpuKeyDb_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            txtCPUKey.Text = variables.cpukey;
         }
 
         Nand.CB_Fuse cb;
@@ -3037,7 +3026,7 @@ namespace JRunner
         }
 
         CreateDonorNand cdonor;
-        private void createDonorNandToolStripMenuItem_Click(object sender, EventArgs e)
+        private void createDonorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             createDonorNand();
         }
@@ -3077,7 +3066,7 @@ namespace JRunner
             smcedit.ShowDialog();
         }
 
-        private void patchNandToolStripMenuItem_Click(object sender, EventArgs e)
+        private void patchKVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!nand.ok)
             {
@@ -3645,11 +3634,6 @@ namespace JRunner
             }
         }
 
-        private void btnCPUDBClick()
-        {
-            callCpuKeyDb();
-        }
-
         #endregion
 
         #region File Buttons
@@ -4001,9 +3985,9 @@ namespace JRunner
             //else if (e.KeyCode == Keys.F6) // Handled from WinForms Menubar
             //{
             //}
-            else if (e.KeyCode == Keys.F7)
-            {
-            }
+            //else if (e.KeyCode == Keys.F7) // Handled from WinForms Menubar
+            //{
+            //}
             else if (e.KeyCode == Keys.F8)
             {
             }
@@ -4321,20 +4305,17 @@ namespace JRunner
                 {
                     switch (name)
                     {
-                        case "xebuild":
+                        case "XeBuild":
                             x.write(name, variables.xebuild);
                             break;
                         case "FileChecks":
                             x.write(name, variables.checkfiles.ToString());
                             break;
-                        case "location":
-                            x.write(name, variables.location.ToString());
-                            break;
                         case "COMPort":
                             x.write(name, variables.COMPort);
                             break;
-                        case "DashLaunchE":
-                            x.write(name, variables.DashLaunchE.ToString());
+                        case "DashlaunchE":
+                            x.write(name, variables.DashlaunchE.ToString());
                             break;
                         case "IP":
                             x.write(name, variables.ipPrefix);
@@ -4342,10 +4323,10 @@ namespace JRunner
                         case "NoReads":
                             x.write(name, variables.NoReads.ToString());
                             break;
-                        case "dashlaunch":
+                        case "Dashlaunch":
                             x.write(name, variables.dashlaunch);
                             break;
-                        case "preferredDash":
+                        case "PreferredDash":
                             x.write(name, variables.preferredDash);
                             break;
                         case "KeepFiles":
@@ -4393,6 +4374,9 @@ namespace JRunner
                         case "AutoDelXeLL":
                             x.write(name, variables.autoDelXeLL.ToString());
                             break;
+                        case "CpuKeyDbSerial":
+                            x.write(name, variables.cpuKeyDbSerial.ToString());
+                            break;
                         default:
                             break;
                     }
@@ -4416,7 +4400,7 @@ namespace JRunner
                     bool bvalue;
                     switch (name)
                     {
-                        case "xebuild":
+                        case "XeBuild":
                             string xmd5 = Oper.GetMD5HashFromFile(variables.update_path + "xeBuild.exe").ToUpper();
 
                             if (variables.xebuilds.ContainsKey(xmd5.ToUpper()))
@@ -4436,24 +4420,13 @@ namespace JRunner
                             if (!bool.TryParse(val, out bvalue)) bvalue = true;
                             variables.checkfiles = bvalue;
                             break;
-                        case "location":
-                            int xy = 0;
-                            int y = 0;
-                            if (!string.IsNullOrWhiteSpace(val))
-                            {
-                                var g = Regex.Replace(val, @"[\{\}a-zA-Z=]", "").Split(',');
-                                int.TryParse(g[0], out xy);
-                                int.TryParse(g[1], out y);
-                            }
-                            variables.location = new Point(xy, y);
-                            break;
                         case "COMPort":
                             variables.COMPort = val;
                             break;
-                        case "DashLaunchE":
+                        case "DashlaunchE":
                             bvalue = false;
                             bool.TryParse(val, out bvalue);
-                            variables.DashLaunchE = bvalue;
+                            variables.DashlaunchE = bvalue;
                             xPanel.setDLPatches(bvalue);
                             break;
                         case "IP":
@@ -4474,7 +4447,7 @@ namespace JRunner
                             nTools.setNumericIterations(dvalue);
                             variables.NoReads = dvalue;
                             break;
-                        case "dashlaunch":
+                        case "Dashlaunch":
                             string dlmd5 = Oper.GetMD5HashFromFile(variables.update_path + "launch.xex").ToUpper();
 
                             if (variables.dls.ContainsKey(dlmd5.ToUpper()))
@@ -4489,7 +4462,7 @@ namespace JRunner
                                 variables.dashlaunch = val;
                             }
                             break;
-                        case "preferredDash":
+                        case "PreferredDash":
                             variables.preferredDash = val;
                             break;
                         case "KeepFiles":
@@ -4578,6 +4551,11 @@ namespace JRunner
                             bvalue = true;
                             if (!bool.TryParse(val, out bvalue)) bvalue = true;
                             variables.autoDelXeLL = bvalue;
+                            break;
+                        case "CpuKeyDbSerial":
+                            bvalue = false;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
+                            variables.cpuKeyDbSerial = bvalue;
                             break;
                         default:
                             break;

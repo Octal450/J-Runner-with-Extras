@@ -137,7 +137,6 @@ namespace JRunner.Forms
 
             if (openDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                string path = openDialog.FileName;
                 txtRootOverride.Text = openDialog.FileName;
                 string pathOutput = Path.Combine(openDialog.FileName, "output");
                 if (!Directory.Exists(pathOutput))

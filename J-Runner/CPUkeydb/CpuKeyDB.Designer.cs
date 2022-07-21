@@ -408,7 +408,6 @@
             this.Name = "CpuKeyDB";
             this.Text = "CPU Key Database";
             this.Load += new System.EventHandler(this.cpukeydb_Load);
-            this.Resize += new System.EventHandler(this.CpuKeyDB_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();

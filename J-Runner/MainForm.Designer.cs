@@ -99,6 +99,7 @@ namespace JRunner
             this.xboxOneHDDToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.timingAssistantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cPUKeyDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cBFuseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,11 +143,11 @@ namespace JRunner
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extractFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createDonorNandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createDonorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptKeyvaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.sMCConfigViewerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.patchNandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.patchKVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xFlasherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installDriversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -711,6 +712,7 @@ namespace JRunner
             this.xboxOneHDDToolToolStripMenuItem,
             this.toolStripMenuItem8,
             this.timingAssistantToolStripMenuItem,
+            this.cPUKeyDatabaseToolStripMenuItem,
             this.cBFuseToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
@@ -775,6 +777,14 @@ namespace JRunner
             this.timingAssistantToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.timingAssistantToolStripMenuItem.Text = "Timing Assistant";
             this.timingAssistantToolStripMenuItem.Click += new System.EventHandler(this.timingAssistantToolStripMenuItem_Click);
+            // 
+            // cPUKeyDatabaseToolStripMenuItem
+            // 
+            this.cPUKeyDatabaseToolStripMenuItem.Name = "cPUKeyDatabaseToolStripMenuItem";
+            this.cPUKeyDatabaseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.cPUKeyDatabaseToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.cPUKeyDatabaseToolStripMenuItem.Text = "CPU Key Database";
+            this.cPUKeyDatabaseToolStripMenuItem.Click += new System.EventHandler(this.cPUKeyDatabaseToolStripMenuItem_Click);
             // 
             // cBFuseToolStripMenuItem
             // 
@@ -1118,11 +1128,11 @@ namespace JRunner
             // 
             this.nandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.extractFilesToolStripMenuItem,
-            this.createDonorNandToolStripMenuItem,
+            this.createDonorToolStripMenuItem,
             this.decryptKeyvaultToolStripMenuItem,
             this.toolStripMenuItem9,
             this.sMCConfigViewerToolStripMenuItem1,
-            this.patchNandToolStripMenuItem,
+            this.patchKVToolStripMenuItem,
             this.changeLDVToolStripMenuItem});
             this.nandToolStripMenuItem.Name = "nandToolStripMenuItem";
             this.nandToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -1132,15 +1142,15 @@ namespace JRunner
             // 
             this.extractFilesToolStripMenuItem.Name = "extractFilesToolStripMenuItem";
             this.extractFilesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.extractFilesToolStripMenuItem.Text = "Extract Nand Files";
+            this.extractFilesToolStripMenuItem.Text = "Extract Files";
             this.extractFilesToolStripMenuItem.Click += new System.EventHandler(this.extractFilesToolStripMenuItem_Click);
             // 
-            // createDonorNandToolStripMenuItem
+            // createDonorToolStripMenuItem
             // 
-            this.createDonorNandToolStripMenuItem.Name = "createDonorNandToolStripMenuItem";
-            this.createDonorNandToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.createDonorNandToolStripMenuItem.Text = "Create Donor Nand…";
-            this.createDonorNandToolStripMenuItem.Click += new System.EventHandler(this.createDonorNandToolStripMenuItem_Click);
+            this.createDonorToolStripMenuItem.Name = "createDonorToolStripMenuItem";
+            this.createDonorToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.createDonorToolStripMenuItem.Text = "Create Donor…";
+            this.createDonorToolStripMenuItem.Click += new System.EventHandler(this.createDonorToolStripMenuItem_Click);
             // 
             // decryptKeyvaultToolStripMenuItem
             // 
@@ -1161,12 +1171,12 @@ namespace JRunner
             this.sMCConfigViewerToolStripMenuItem1.Text = "SMC Config Editor";
             this.sMCConfigViewerToolStripMenuItem1.Click += new System.EventHandler(this.sMCConfigViewerToolStripMenuItem1_Click);
             // 
-            // patchNandToolStripMenuItem
+            // patchKVToolStripMenuItem
             // 
-            this.patchNandToolStripMenuItem.Name = "patchNandToolStripMenuItem";
-            this.patchNandToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.patchNandToolStripMenuItem.Text = "Patch KV/Nand…";
-            this.patchNandToolStripMenuItem.Click += new System.EventHandler(this.patchNandToolStripMenuItem_Click);
+            this.patchKVToolStripMenuItem.Name = "patchKVToolStripMenuItem";
+            this.patchKVToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.patchKVToolStripMenuItem.Text = "Patch KV…";
+            this.patchKVToolStripMenuItem.Click += new System.EventHandler(this.patchKVToolStripMenuItem_Click);
             // 
             // changeLDVToolStripMenuItem
             // 
@@ -1397,11 +1407,11 @@ namespace JRunner
         private ToolStripMenuItem toolStripHexEditor;
         private ToolStripMenuItem nandToolStripMenuItem;
         private ToolStripMenuItem extractFilesToolStripMenuItem;
-        private ToolStripMenuItem createDonorNandToolStripMenuItem;
+        private ToolStripMenuItem createDonorToolStripMenuItem;
         private ToolStripMenuItem decryptKeyvaultToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem9;
         private ToolStripMenuItem sMCConfigViewerToolStripMenuItem1;
-        private ToolStripMenuItem patchNandToolStripMenuItem;
+        private ToolStripMenuItem patchKVToolStripMenuItem;
         private ToolStripMenuItem changeLDVToolStripMenuItem;
         private ToolStripMenuItem mTXUSBFirmwareUtilityToolStripMenuItem;
         private ToolStripMenuItem corona4GBToolStripMenuItem;
@@ -1426,5 +1436,6 @@ namespace JRunner
         private ContextMenuStrip backupContextMenu;
         private ToolStripMenuItem backupToZIPToolStripMenuItem;
         private ToolStripMenuItem configureBackupToolStripMenuItem;
+        private ToolStripMenuItem cPUKeyDatabaseToolStripMenuItem;
     }
 }

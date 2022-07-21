@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace JRunner.Forms
 {
-    public partial class BackupProgress : Form
+    public partial class ProgressIndeterminate : Form
     {
-        public BackupProgress()
+        public ProgressIndeterminate()
         {
             InitializeComponent();
         }
@@ -26,6 +26,11 @@ namespace JRunner.Forms
                 myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
                 return myCp;
             }
+        }
+
+        public void updateTitle(string t)
+        {
+            this.Text = t + "...";
         }
     }
 }
