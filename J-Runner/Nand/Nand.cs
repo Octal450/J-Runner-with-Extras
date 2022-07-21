@@ -546,7 +546,7 @@ namespace JRunner.Nand
 
         public bool cpukeyverification(string cpukey)
         {
-            if (String.IsNullOrWhiteSpace(cpukey)) return false;
+            if (string.IsNullOrWhiteSpace(cpukey)) return false;
             byte[] key = Oper.StringToByteArray(cpukey);
             if (Oper.allsame(Oper.returnportion(_rawkv, 0x40, 0x20), 0x00)) return true;
             if (Oper.allsame(Oper.returnportion(Nand.decryptkv(_rawkv, key), 0x40, 0x20), 0x00))
@@ -912,7 +912,7 @@ namespace JRunner.Nand
                     Buffer.BlockCopy(image, (page * pagesize) + (i * 0x10), name, 0, 0x16);
 
                     string filename = Encoding.ASCII.GetString(name).Trim('\0');
-                    if (String.IsNullOrEmpty(filename))
+                    if (string.IsNullOrEmpty(filename))
                     {
                         breakk = true;
                         break;
@@ -974,7 +974,7 @@ namespace JRunner.Nand
                     break;
                 }
             }
-            if (String.IsNullOrEmpty(fil.getFilename())) return null;
+            if (string.IsNullOrEmpty(fil.getFilename())) return null;
             if (variables.debugMode) Console.WriteLine("{0:X} : {1:X}", fil.getBlock(), fil.getLength());
             byte[] searched = new byte[fil.getLength()];
 
@@ -2081,7 +2081,7 @@ namespace JRunner.Nand
                 }
             }
             //flashconfig check
-            if (!String.IsNullOrWhiteSpace(flashconfig))
+            if (!string.IsNullOrWhiteSpace(flashconfig))
             {
                 if (flashconfig == "008A3020")
                 {
@@ -2903,7 +2903,7 @@ namespace JRunner.Nand
             }
             Oper.savefile(searched, Path.Combine(outputfolder, "fcrt_enc.bin"));
             Console.WriteLine("fcrt.bin extracted successfully");
-            if (!String.IsNullOrEmpty(cpukey)) decrypt_fcrt(searched, Oper.StringToByteArray(cpukey));
+            if (!string.IsNullOrEmpty(cpukey)) decrypt_fcrt(searched, Oper.StringToByteArray(cpukey));
         }
 
         public static byte[] getsecdata(string filename)
@@ -3035,7 +3035,7 @@ namespace JRunner.Nand
                 {
                     //Console.WriteLine("{0:X}", (page * 0x210) + (i * 0x10));
                     string filename = ascii.GetString(Oper.returnportion(image, (page * 0x210) + (i * 0x10), 0x16)).Trim('\0');
-                    if (String.IsNullOrEmpty(filename))
+                    if (string.IsNullOrEmpty(filename))
                     {
                         breakk = true;
                         break;
@@ -3128,7 +3128,7 @@ namespace JRunner.Nand
                 {
                     //Console.WriteLine("{0:X}", (page * 0x210) + (i * 0x10));
                     string filename = ascii.GetString(Oper.returnportion(image, (page * pagesize) + (i * 0x10), 0x16)).Trim('\0');
-                    if (String.IsNullOrEmpty(filename))
+                    if (string.IsNullOrEmpty(filename))
                     {
                         breakk = true;
                         break;

@@ -204,7 +204,7 @@ namespace JRunner.Pirs
             Console.WriteLine(cg_checksum);
             for (int i = 0; i < lines.Length; i++)
             {
-                if (String.IsNullOrWhiteSpace(lines[i])) continue;
+                if (string.IsNullOrWhiteSpace(lines[i])) continue;
                 string line = lines[i];
                 if (line.Contains(old_version))
                 {

@@ -152,7 +152,7 @@ namespace JRunner.Pirs
                 br.BaseStream.Seek(pirs_start + (num * 0x40), SeekOrigin.Begin);
                 PirsEntry entry = new PirsEntry();
                 entry = getEntry();
-                if (String.IsNullOrWhiteSpace(entry.Filename.Trim()))
+                if (string.IsNullOrWhiteSpace(entry.Filename.Trim()))
                 {
                     return;
                 }
@@ -173,7 +173,7 @@ namespace JRunner.Pirs
             PirsEntry entry = new PirsEntry();
             entry.Filename = readString(0x27);
             //Console.WriteLine(entry.FileName.Length);
-            if (!String.IsNullOrWhiteSpace(entry.Filename.Trim()))
+            if (!string.IsNullOrWhiteSpace(entry.Filename.Trim()))
             {
                 entry.Flags = br.ReadByte();
                 if (getBit(entry.Flags, 7)) entry.Folder = true;
@@ -336,7 +336,7 @@ namespace JRunner.Pirs
                 br.BaseStream.Seek((PIRS_BASE + pirs_offset) + (num * 0x40), SeekOrigin.Begin);
                 PirsEntry entry = new PirsEntry();
                 entry = getEntry();
-                if (String.IsNullOrWhiteSpace(entry.Filename.Trim()))
+                if (string.IsNullOrWhiteSpace(entry.Filename.Trim()))
                 {
                     //br.Close();
                     return;

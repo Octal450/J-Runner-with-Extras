@@ -18,53 +18,51 @@ namespace JRunner.Forms
             btnOK.DialogResult = DialogResult.OK;
         }
 
+        private const int CP_NOCLOSE_BUTTON = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
+        }
+
+        public void setTab(string tab)
+        {
+            if (tab == "backup")
+            {
+                tabCSettings.SelectedTab = tabBackup;
+            }
+        }
+
         private void Settings_Load(object sender, EventArgs e)
         {
             oldOutFolder = variables.outfolder;
             if (variables.deletefiles) chkfiles.Checked = true;
-            if (String.IsNullOrEmpty(variables.IPend) || String.IsNullOrEmpty(variables.IPstart)) IP.initaddresses();
-            txtIPEnd.Text = variables.IPend;
-            txtIPStart.Text = variables.IPstart;
-            txtIP.Text = variables.ip;
-            if (variables.ip.Length == 0) chkIpDefault.Checked = txtIP.Enabled = false;
-            else chkIpDefault.Checked = txtIP.Enabled = true;
-            sonusDelay.Value = variables.delay;
-            AutoExtractcheckBox.Checked = variables.autoExtract;
-            modderbut.Checked = variables.modder;
+            txtIP.Text = variables.ipPrefix;
+            if (variables.ipPrefix.Length == 0)
+            {
+                chkIPDefault.Checked = txtIP.Enabled = false;
+                txtIP.Text = "Automatic";
+            }
+            else chkIPDefault.Checked = txtIP.Enabled = true;
+            chkAutoExtract.Checked = variables.autoExtract;
             chkPlaySuccess.Checked = variables.playSuccess;
             chkPlayError.Checked = variables.playError;
             chkAutoDelXeLL.Checked = variables.autoDelXeLL;
-            timingOnKeypressEnable.Checked = variables.timingonkeypress;
+            chkUnused2.Checked = variables.timingonkeypress;
             chkNoPatchWarnings.Checked = variables.noPatchWarnings;
-            almovebut.Checked = !variables.allmove;
+            chkAllMove.Checked = !variables.allmove;
             if (variables.slimprefersrgh) SlimPreferSrgh.Checked = true;
             if (variables.LPTtiming) rbtnTimingLpt.Checked = true;
             txtTimingLptPort.Text = variables.LPTport;
 
-            if (!string.IsNullOrWhiteSpace(variables.overrideOutputPath))
+            if (!string.IsNullOrWhiteSpace(variables.overrideRootPath))
             {
-                txtOutputOverride.Text = variables.overrideOutputPath;
-                chkOverrideOutput.Checked = true;
-            }
-        }
-
-        private void btnOverrideOutput_Click(object sender, EventArgs e)
-        {
-            CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
-            openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtOutputOverride.Text);
-            openDialog.RestoreDirectory = false;
-            openDialog.IsFolderPicker = true;
-
-            if (openDialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                string path;
-                if (string.Equals(Path.GetFileName(openDialog.FileName), "output", StringComparison.OrdinalIgnoreCase)) path = openDialog.FileName;
-                else path = Path.Combine(openDialog.FileName, "output");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                txtOutputOverride.Text = path;
+                txtRootOverride.Text = variables.overrideRootPath;
+                chkRootOverride.Checked = true;
             }
         }
 
@@ -74,31 +72,35 @@ namespace JRunner.Forms
 
             try
             {
-                variables.IPstart = txtIPStart.Text;
-                variables.IPend = txtIPEnd.Text;
-                variables.delay = (int)sonusDelay.Value;
-                variables.ip = txtIP.Text;
+                if (chkIPDefault.Checked)
+                {
+                    variables.ipPrefix = txtIP.Text;
+                }
+                else variables.ipPrefix = "";
+                MainForm.mainForm.setIP();
+                IP.initaddresses();
+
                 variables.playSuccess = chkPlaySuccess.Checked;
                 variables.playError = chkPlayError.Checked;
-                variables.autoExtract = AutoExtractcheckBox.Checked;
-                variables.modder = modderbut.Checked;
-                variables.allmove = !almovebut.Checked;
+                variables.autoExtract = chkAutoExtract.Checked;
+                variables.allmove = !chkAllMove.Checked;
                 variables.autoDelXeLL = chkAutoDelXeLL.Checked;
                 variables.LPTtiming = rbtnTimingLpt.Checked;
-                if (!String.IsNullOrWhiteSpace(txtTimingLptPort.Text)) variables.LPTport = txtTimingLptPort.Text;
+                if (!string.IsNullOrWhiteSpace(txtTimingLptPort.Text)) variables.LPTport = txtTimingLptPort.Text;
                 else variables.LPTport = "378";
 
-                if (!chkOverrideOutput.Checked || String.IsNullOrWhiteSpace(txtOutputOverride.Text))
+                if (!chkRootOverride.Checked || string.IsNullOrWhiteSpace(txtRootOverride.Text))
                 {
-                    variables.overrideOutputPath = "";
+                    variables.overrideRootPath = "";
                     variables.outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
                 }
                 else
                 {
                     try
                     {
-                        string overridePath = Path.GetFullPath(txtOutputOverride.Text);
-                        variables.outfolder = variables.overrideOutputPath = overridePath;
+                        string overridePath = Path.GetFullPath(txtRootOverride.Text);
+                        variables.overrideRootPath = overridePath;
+                        variables.outfolder = Path.Combine(overridePath, "output");
                     }
                     catch
                     {
@@ -126,28 +128,42 @@ namespace JRunner.Forms
             else this.DialogResult = DialogResult.None;
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
+        private void btnRootOverride_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
+            openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtRootOverride.Text);
+            openDialog.RestoreDirectory = false;
+            openDialog.IsFolderPicker = true;
+
+            if (openDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                string path = openDialog.FileName;
+                txtRootOverride.Text = openDialog.FileName;
+                string pathOutput = Path.Combine(openDialog.FileName, "output");
+                if (!Directory.Exists(pathOutput))
+                {
+                    Directory.CreateDirectory(pathOutput);
+                }
+            }
+        }
+
+        private void btnDefaults_Click(object sender, EventArgs e)
         {
             if (File.Exists(variables.settingsfile)) File.Delete(variables.settingsfile);
-            if (DialogResult.Yes == MessageBox.Show("Settings will be reset when the application restarts\n\nDo you want to restart now?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+            if (DialogResult.Yes == MessageBox.Show("Application must be restarted in order to restore settings to defaults\n\nDo you want to restart now?", "Restore Defaults", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
                 Program.restart(); // Restart without running on exit tasks, prevents settings from being put back
             }
         }
 
-        private void almovebut_CheckedChanged(object sender, EventArgs e)
+        private void chkAllMove_CheckedChanged(object sender, EventArgs e)
         {
-            variables.allmove = !almovebut.Checked;
-        }
-
-        private void modderbut_CheckedChanged(object sender, EventArgs e)
-        {
-            variables.modder = modderbut.Checked;
+            variables.allmove = !chkAllMove.Checked;
         }
 
         private void timingOnKeypressEnable_CheckedChanged(object sender, EventArgs e)
         {
-            variables.timingonkeypress = timingOnKeypressEnable.Checked;
+            variables.timingonkeypress = chkUnused2.Checked;
         }
 
         private void logDefault_Click(object sender, EventArgs e)
@@ -208,10 +224,15 @@ namespace JRunner.Forms
             variables.slimprefersrgh = SlimPreferSrgh.Checked;
         }
 
-        private void chkIpDefault_CheckedChanged(object sender, EventArgs e)
+        private void chkIPDefault_CheckedChanged(object sender, EventArgs e)
         {
-            txtIP.Enabled = chkIpDefault.Checked;
-            if (!chkIpDefault.Checked) txtIP.Text = "";
+            txtIP.Enabled = chkIPDefault.Checked;
+            if (!chkIPDefault.Checked) txtIP.Text = "Automatic";
+            else if (txtIP.Text == "Automatic")
+            {
+                string localIP = IP.getGatewayIp();
+                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.'));
+            }
         }
 
         private void timingRbtn_CheckedChanged(object sender, EventArgs e)
@@ -238,18 +259,18 @@ namespace JRunner.Forms
             if (chkNoPatchWarnings.Checked) MessageBox.Show("Warnings or messages about patches will not be displayed as pop-ups\n\nConsole log messages will continue to show", "Steep Hill Ahead", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private void chkOverrideOutput_CheckedChanged(object sender, EventArgs e)
+        private void chkRootOverride_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkOverrideOutput.Checked)
+            if (chkRootOverride.Checked)
             {
-                txtOutputOverride.Enabled = true;
-                btnOverrideOutput.Enabled = true;
+                txtRootOverride.Enabled = true;
+                btnRootOverride.Enabled = true;
             }
             else
             {
-                txtOutputOverride.Enabled = false;
-                txtOutputOverride.Text = "";
-                btnOverrideOutput.Enabled = false;
+                txtRootOverride.Enabled = false;
+                txtRootOverride.Text = "";
+                btnRootOverride.Enabled = false;
             }
         }
     }

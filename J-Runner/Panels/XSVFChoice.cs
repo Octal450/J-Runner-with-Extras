@@ -600,7 +600,7 @@ namespace JRunner.Panels
             openFileDialog.Title = "Select a File";
             openFileDialog.RestoreDirectory = false;
             if (openFileDialog.ShowDialog() == DialogResult.OK) file = openFileDialog.FileName;
-            if (!String.IsNullOrWhiteSpace(file))
+            if (!string.IsNullOrWhiteSpace(file))
             {
                 MainForm.mainForm.nandcustom("Xsvf", file, 16, 0, 0, false);
             }

@@ -83,7 +83,7 @@ namespace JRunner
                             string location = (string)rk5.GetValue("LocationInformation");
                             RegistryKey rk6 = rk5.OpenSubKey("Device Parameters");
                             string portName = (string)rk6.GetValue("PortName");
-                            if (!String.IsNullOrEmpty(portName) && SerialPort.GetPortNames().Contains(portName))
+                            if (!string.IsNullOrEmpty(portName) && SerialPort.GetPortNames().Contains(portName))
                                 comports.Add((string)rk6.GetValue("PortName"));
                         }
                     }
@@ -542,7 +542,7 @@ namespace JRunner
 
         private void WriteNand(int fixEcc, uint start = 0, uint end = 0, bool isEccOrXell = false)
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
             if (fixEcc == 0)
@@ -778,7 +778,7 @@ namespace JRunner
 
         private void WriteEmmc(uint start = 0, uint end = 0, bool isEccOrXell = false)
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
             getFlashConfig();

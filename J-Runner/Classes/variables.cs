@@ -80,9 +80,9 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.X.X Beta";
-        public static string build = "3160." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
-        public const string staticversion = "3.1.6.0";
+        public static string version = "3.2.0 Alpha";
+        public static string build = "3200." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
+        public const string staticversion = "3.2.0.0";
         public static int revision = 23;
         public static Windows currentOS = Windows.Unknown;
         public static bool iswriting;
@@ -114,7 +114,6 @@ namespace JRunner
         public static bool debugMode = false;
         public static bool generate = false;
         public static bool checkfiles = true, deletefiles = false, extractfiles = false;
-        public static int delay = 2;
         public static string preferredDash = latest_dashboard.ToString();
         public static bool DashLaunchE = false;
         public static Point location = new Point(0, 0);
@@ -122,7 +121,7 @@ namespace JRunner
         public static string xebuild = "", dashlaunch = "", LPTport = "378";
         public static decimal NoReads = 0;
         public static string settingsfile = Path.Combine(AppData, "settings.xml");
-        public static bool escapeloop = false, exitedxe = true, autoExtract = false, allmove = false, modder = false;
+        public static bool escapeloop = false, exitedxe = true, autoExtract = false, allmove = false;
         public static bool reading = false, writing;
         public static bool timingonkeypress = false;
         public static bool slimprefersrgh = false;
@@ -130,13 +129,13 @@ namespace JRunner
         public static bool noPatchWarnings = false;
         public static Color logbackground = Color.Black;
         public static Color logtext = Color.White;
-        public static string ip = "", custname = "";
+        public static string ipPrefix = "", custname = "";
         public static bool playSuccess = true;
         public static bool playError = true;
         public static bool autoDelXeLL = true;
-        public static string overrideOutputPath = "";
-        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Delay", "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "dashlaunch", "preferredDash", "KeepFiles", "OutputDirOverride",
-                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "Modder", "TimingOnKeypress", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings",
+        public static string overrideRootPath = "";
+        public static string[] settings = { "xebuild", "FileChecks", "location", "COMPort", "Delay", "DashLaunchE", "IP", "NoReads", "IPStart", "IPEnd", "dashlaunch", "preferredDash", "KeepFiles", "RootDirOverride",
+                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "TimingOnKeypress", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings",
                                             "PlaySuccess", "PlayError", "AutoDelXeLL"};
 
         public static string COMPort = "";
@@ -144,7 +143,7 @@ namespace JRunner
         /// <summary>
         /// Internet
         /// </summary>
-        public static string IPstart = "", IPend = "";
+        public static string ipStart = "", ipEnd = "";
 
         /// <summary>
         /// Nand
@@ -299,6 +298,7 @@ namespace JRunner
         public static int iterations = 0;
         public static Nandsize nandsizex = Nandsize.S0;
         public static byte[] conf = { };
+        public static int jrpSonusDelay = 2;
         #region xor
 
         internal static byte[] xor = {

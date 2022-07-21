@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XSVFChoice));
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnProgram = new UI.SplitButton();
+            this.btnProgram = new UI.MenuButton();
             this.programMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TimingTabs = new System.Windows.Forms.TabControl();
@@ -1410,7 +1410,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnCancel;
-        private UI.SplitButton btnProgram;
+        private UI.MenuButton btnProgram;
         private System.Windows.Forms.TabControl TimingTabs;
         private System.Windows.Forms.TabPage Rgh12Timings;
         private System.Windows.Forms.TabPage SrghTimings;

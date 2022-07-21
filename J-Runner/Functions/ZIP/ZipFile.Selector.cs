@@ -653,7 +653,7 @@ namespace Ionic.Zip
                 directoryOnDisk = selectionCriteria;
                 selectionCriteria = "*.*";
             }
-            else if (String.IsNullOrEmpty(directoryOnDisk))
+            else if (string.IsNullOrEmpty(directoryOnDisk))
             {
                 directoryOnDisk = ".";
             }

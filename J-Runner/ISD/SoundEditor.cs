@@ -199,15 +199,15 @@ namespace JRunner.Forms
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtFile.Text)) loadfile();
-            if (String.IsNullOrEmpty(txtFile.Text)) return;
+            if (string.IsNullOrEmpty(txtFile.Text)) loadfile();
+            if (string.IsNullOrEmpty(txtFile.Text)) return;
             ThreadStart starter = delegate { do_stuff(ISD_Function.read, txtFile.Text); };
             new Thread(starter).Start();
         }
         private void btnVerify_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtFile.Text)) loadfile();
-            if (String.IsNullOrEmpty(txtFile.Text)) return;
+            if (string.IsNullOrEmpty(txtFile.Text)) loadfile();
+            if (string.IsNullOrEmpty(txtFile.Text)) return;
             ThreadStart starter = delegate { do_stuff(ISD_Function.verify, txtFile.Text); };
             new Thread(starter).Start();
         }

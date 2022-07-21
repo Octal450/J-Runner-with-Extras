@@ -102,7 +102,8 @@ namespace JRunner.Panels
                     if (nand.bl.CB_B != 0)
                     {
                         textBox2BLb.Text = nand.bl.CB_B.ToString();
-                        textBoxCbType.Text = "Split CB";
+                        if (textBox2BLb.Text == "15432") textBoxCbType.Text = "RGH3";
+                        else textBoxCbType.Text = "Split CB";
                         textBox2BLb.Enabled = true;
                         label2blb.Visible = true;
                         label2bla.Visible = true;
@@ -123,7 +124,7 @@ namespace JRunner.Panels
                     // KV Info
                     txtconsole.Text = name;
 
-                    if (!String.IsNullOrWhiteSpace(nand._cpukey) && nand.ki.serial.Length > 0)
+                    if (!string.IsNullOrWhiteSpace(nand._cpukey) && nand.ki.serial.Length > 0)
                     {
                         string mfrraw = nand.ki.mfdate;
                         try

@@ -482,7 +482,7 @@ namespace JRunner
 
             if (inUse || waiting) return;
 
-            if (String.IsNullOrWhiteSpace(filename)) return;
+            if (string.IsNullOrWhiteSpace(filename)) return;
 
             Thread ftdiThread = new Thread(() =>
             {
@@ -604,7 +604,7 @@ namespace JRunner
         // Write Nand
         public void writeXeLLAuto()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
             writeNand(16, variables.filename1, 1);
@@ -612,7 +612,7 @@ namespace JRunner
 
         public void writeNandAuto()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
             if (Path.GetExtension(variables.filename1) == ".ecc")
@@ -666,7 +666,7 @@ namespace JRunner
 
             if (filename != "erase")
             {
-                if (String.IsNullOrWhiteSpace(filename)) return;
+                if (string.IsNullOrWhiteSpace(filename)) return;
                 if (!File.Exists(filename)) return;
             }
 

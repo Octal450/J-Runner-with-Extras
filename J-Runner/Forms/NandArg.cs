@@ -89,7 +89,7 @@ namespace JRunner
                     file = saveFileDialog.FileName;
                     variables.currentdir = file;
                 }
-                if (!String.IsNullOrWhiteSpace(file)) this.txtFilename.Text = file;
+                if (!string.IsNullOrWhiteSpace(file)) this.txtFilename.Text = file;
             }
             else
             {
@@ -106,7 +106,7 @@ namespace JRunner
                     file = openFileDialog.FileName;
                     variables.currentdir = file;
                 }
-                if (!String.IsNullOrWhiteSpace(file)) this.txtFilename.Text = file;
+                if (!string.IsNullOrWhiteSpace(file)) this.txtFilename.Text = file;
             }
         }
 

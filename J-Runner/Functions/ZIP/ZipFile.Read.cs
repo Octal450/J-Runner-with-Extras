@@ -747,7 +747,7 @@ namespace Ionic.Zip
 
             ReadCentralDirectoryFooter(zf);
 
-            if (zf.Verbose && !String.IsNullOrEmpty(zf.Comment))
+            if (zf.Verbose && !string.IsNullOrEmpty(zf.Comment))
                 zf.StatusMessageTextWriter.WriteLine("Zip file Comment: {0}", zf.Comment);
 
             // We keep the read stream open after reading.
@@ -817,7 +817,7 @@ namespace Ionic.Zip
 
                 ReadCentralDirectoryFooter(zf);
 
-                if (zf.Verbose && !String.IsNullOrEmpty(zf.Comment))
+                if (zf.Verbose && !string.IsNullOrEmpty(zf.Comment))
                     zf.StatusMessageTextWriter.WriteLine("Zip file Comment: {0}", zf.Comment);
             }
             catch (ZipException) { }

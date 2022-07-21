@@ -123,7 +123,7 @@ namespace JRunner
             bool rgh2 = false;
 
             bool sts = objAlphaPattern.IsMatch(cpukey);
-            if (variables.rgh2 && !String.IsNullOrEmpty(cpukey) && sts) rgh2 = true;
+            if (variables.rgh2 && !string.IsNullOrEmpty(cpukey) && sts) rgh2 = true;
 
             long size = 0;
             string imagefile = filename;
@@ -203,7 +203,7 @@ namespace JRunner
                     !corona_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))) &&
                     !trinity_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A)))) return -3;
                 if (!xor_hack_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))) &&
-                    !patch_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))) && String.IsNullOrEmpty(cpukey)) return -4;
+                    !patch_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_A))) && string.IsNullOrEmpty(cpukey)) return -4;
 
                 if (variables.debugMode) Console.WriteLine("ok");
 
@@ -245,7 +245,7 @@ namespace JRunner
                 c = "RGH2 2stage CB img";
                 cpukey = "";
             wtf:
-                if (String.IsNullOrEmpty(cpukey))
+                if (string.IsNullOrEmpty(cpukey))
                 {
                     if (patch_builds.Contains(Oper.ByteArrayToInt(build(dt.CB_B))))
                     {

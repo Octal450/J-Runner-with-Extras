@@ -314,7 +314,7 @@ namespace JRunner
         }
         public static void program(ref ProgressBar pb)
         {
-            if (String.IsNullOrEmpty(variables.filename1)) { MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (string.IsNullOrEmpty(variables.filename1)) { MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (_deviceList.Count() != 0) _selectedDevice = _deviceList[0];
             else { Console.WriteLine("Device Not Found"); return; }
             if (_selectedDevice.IsConnected)
@@ -354,7 +354,7 @@ namespace JRunner
 
         public static void ver(ref ProgressBar pb)
         {
-            if (String.IsNullOrEmpty(variables.filename1)) { MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (string.IsNullOrEmpty(variables.filename1)) { MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (_deviceList.Count() != 0) _selectedDevice = _deviceList[0];
             else { Console.WriteLine("Device Not Found"); return; }
             if (_selectedDevice.IsConnected)

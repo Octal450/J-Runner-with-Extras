@@ -34,7 +34,7 @@ namespace JRunner.Nand
 
         private void btnAddBadBlock_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(txtBadBlock.Text))
+            if (!string.IsNullOrWhiteSpace(txtBadBlock.Text))
             {
                 int result = 0;
                 if (int.TryParse(txtBadBlock.Text, System.Globalization.NumberStyles.HexNumber, new CultureInfo("en-US"), out result))

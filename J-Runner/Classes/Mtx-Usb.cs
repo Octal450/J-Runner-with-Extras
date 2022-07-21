@@ -30,7 +30,7 @@ namespace JRunner
 
         public void writeXeLLAuto()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
             writeNand(16, variables.filename1, 1, 0, 80); // startblock + length (hex) for display purposes only, not required
@@ -38,7 +38,7 @@ namespace JRunner
 
         public void writeNandAuto()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
             if (Path.GetExtension(variables.filename1) == ".ecc")

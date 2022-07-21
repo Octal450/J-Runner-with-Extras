@@ -233,7 +233,7 @@ namespace JRunner.Panels
         }
         private int read(string filename)
         {
-            if (String.IsNullOrEmpty(filename)) return 0;
+            if (string.IsNullOrEmpty(filename)) return 0;
             if (listView1.SelectedItems.Count == 0) return 0;
 
             if (File.Exists(filename))
@@ -541,7 +541,7 @@ namespace JRunner.Panels
         }
         private void write2(string filename)
         {
-            if (String.IsNullOrEmpty(filename)) return;
+            if (string.IsNullOrEmpty(filename)) return;
             if (listView1.SelectedItems.Count == 0) return;
             string ldrive = listView1.SelectedItems[0].SubItems[1].Text;
             if (listView1.SelectedItems[0].SubItems[2].Text != "Removable") { Console.WriteLine("Must be a removable type"); return; }

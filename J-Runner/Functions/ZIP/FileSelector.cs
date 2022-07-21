@@ -644,7 +644,7 @@ namespace Ionic
         /// </param>
         public FileSelector(String selectionCriteria, bool traverseDirectoryReparsePoints)
         {
-            if (!String.IsNullOrEmpty(selectionCriteria))
+            if (!string.IsNullOrEmpty(selectionCriteria))
                 _Criterion = _ParseCriterion(selectionCriteria);
             TraverseReparsePoints = traverseDirectoryReparsePoints;
         }

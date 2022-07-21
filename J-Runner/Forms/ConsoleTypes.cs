@@ -90,7 +90,7 @@ namespace JRunner
         void btnOk_Click(object sender, System.EventArgs e)
         {
             string ct = this.heResult().Text;
-            if (!String.IsNullOrWhiteSpace(ct)) Console.WriteLine(ct + " Manually Selected");
+            if (!string.IsNullOrWhiteSpace(ct)) Console.WriteLine(ct + " Manually Selected");
             this.heResult();
             this.Close();
         }

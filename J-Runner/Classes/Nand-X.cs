@@ -768,7 +768,7 @@ namespace JRunner
                 }
             }
             else return false;
-            if (jrp) Thread.Sleep(variables.delay);
+            if (jrp) Thread.Sleep(variables.jrpSonusDelay);
             packet.Request = (byte)Commands.FlashDataStatus;
             if (variables.debugMode) Console.WriteLine("FlashDataStatus");
             if (dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered))
@@ -2020,7 +2020,7 @@ namespace JRunner
                    this.sizesmallblocks,
                    this.fsblocks
            );
-                if (String.IsNullOrWhiteSpace(msg)) Console.WriteLine(fmt);
+                if (string.IsNullOrWhiteSpace(msg)) Console.WriteLine(fmt);
                 else Console.WriteLine(msg);
             }
         }

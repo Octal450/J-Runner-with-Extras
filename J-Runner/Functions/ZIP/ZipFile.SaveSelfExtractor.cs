@@ -835,7 +835,7 @@ namespace Ionic.Zip
 
                         unpackedResourceDir = GenerateTempPathname(tmpDir, "tmp");
 
-                        if (String.IsNullOrEmpty(options.IconFile))
+                        if (string.IsNullOrEmpty(options.IconFile))
                         {
                             // Use the ico file that is embedded into the Ionic.Zip
                             // DLL itself.  To do this we must unpack the icon to
@@ -860,10 +860,10 @@ namespace Ionic.Zip
                         if (options.Flavor == SelfExtractorFlavor.WinFormsApplication)
                             cp.CompilerOptions += " /target:winexe";
 
-                        if (!String.IsNullOrEmpty(options.AdditionalCompilerSwitches))
+                        if (!string.IsNullOrEmpty(options.AdditionalCompilerSwitches))
                             cp.CompilerOptions += " " + options.AdditionalCompilerSwitches;
 
-                        if (String.IsNullOrEmpty(cp.CompilerOptions))
+                        if (string.IsNullOrEmpty(cp.CompilerOptions))
                             cp.CompilerOptions = null;
 
                         if ((settings.CopyThroughResources != null) && (settings.CopyThroughResources.Count != 0))
@@ -892,25 +892,25 @@ namespace Ionic.Zip
                             .Append("\n//\n// --------------------------------------------\n\n\n");
 
                         // assembly attributes
-                        if (!String.IsNullOrEmpty(options.Description))
+                        if (!string.IsNullOrEmpty(options.Description))
                             sb.Append("[assembly: System.Reflection.AssemblyTitle(\""
                                       + options.Description.Replace("\"", "")
                                       + "\")]\n");
                         else
                             sb.Append("[assembly: System.Reflection.AssemblyTitle(\"DotNetZip SFX Archive\")]\n");
 
-                        if (!String.IsNullOrEmpty(options.ProductVersion))
+                        if (!string.IsNullOrEmpty(options.ProductVersion))
                             sb.Append("[assembly: System.Reflection.AssemblyInformationalVersion(\""
                                       + options.ProductVersion.Replace("\"", "")
                                       + "\")]\n");
 
                         // workitem
                         string copyright =
-                            (String.IsNullOrEmpty(options.Copyright))
+                            (string.IsNullOrEmpty(options.Copyright))
                             ? "Extractor: Copyright © Dino Chiesa 2008-2011"
                             : options.Copyright.Replace("\"", "");
 
-                        if (!String.IsNullOrEmpty(options.ProductName))
+                        if (!string.IsNullOrEmpty(options.ProductName))
                             sb.Append("[assembly: System.Reflection.AssemblyProduct(\"")
                                 .Append(options.ProductName.Replace("\"", ""))
                                 .Append("\")]\n");
@@ -960,7 +960,7 @@ namespace Ionic.Zip
 
                                         line = line.Replace("@@REMOVE_AFTER_EXECUTE", options.RemoveUnpackedFilesAfterExecute.ToString());
                                         line = line.Replace("@@QUIET", options.Quiet.ToString());
-                                        if (!String.IsNullOrEmpty(options.SfxExeWindowTitle))
+                                        if (!string.IsNullOrEmpty(options.SfxExeWindowTitle))
 
                                             line = line.Replace("@@SFX_EXE_WINDOW_TITLE", options.SfxExeWindowTitle);
 

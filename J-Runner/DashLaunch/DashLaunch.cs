@@ -99,7 +99,7 @@ namespace JRunner
                 if (col != null)
                 {
                     tooltip = toolTip1.GetToolTip(col);
-                    if (!String.IsNullOrWhiteSpace(tooltip)) options.Add(Environment.NewLine + "; " + tooltip.Replace(Environment.NewLine, Environment.NewLine + "; "));
+                    if (!string.IsNullOrWhiteSpace(tooltip)) options.Add(Environment.NewLine + "; " + tooltip.Replace(Environment.NewLine, Environment.NewLine + "; "));
                     options.Add(col.Name + " = " + col.Text);
                 }
             }
@@ -115,7 +115,7 @@ namespace JRunner
                 if (col != null)
                 {
                     tooltip = toolTip1.GetToolTip(col);
-                    if (!String.IsNullOrWhiteSpace(tooltip)) options.Add(Environment.NewLine + "; " + tooltip.Replace(Environment.NewLine, Environment.NewLine + "; "));
+                    if (!string.IsNullOrWhiteSpace(tooltip)) options.Add(Environment.NewLine + "; " + tooltip.Replace(Environment.NewLine, Environment.NewLine + "; "));
                     options.Add(col.Name + " = " + col.Text);
                 }
             }
@@ -156,7 +156,7 @@ namespace JRunner
                 if (col != null)
                 {
                     tooltip = toolTip1.GetToolTip(col);
-                    if (!String.IsNullOrWhiteSpace(tooltip)) options.Add(Environment.NewLine + "; " + tooltip.Replace(Environment.NewLine, Environment.NewLine + "; "));
+                    if (!string.IsNullOrWhiteSpace(tooltip)) options.Add(Environment.NewLine + "; " + tooltip.Replace(Environment.NewLine, Environment.NewLine + "; "));
                     options.Add(col.Text + " = " + col.Checked);
                 }
             }
@@ -168,7 +168,7 @@ namespace JRunner
                     if (!checkBox7.Checked && col == Regio) continue;
                     else if (!checkBox18.Checked && col == hddtimer) continue;
                     tooltip = toolTip1.GetToolTip(col);
-                    if (!String.IsNullOrWhiteSpace(tooltip)) options.Add(Environment.NewLine + "; " + tooltip.Replace(Environment.NewLine, Environment.NewLine + "; "));
+                    if (!string.IsNullOrWhiteSpace(tooltip)) options.Add(Environment.NewLine + "; " + tooltip.Replace(Environment.NewLine, Environment.NewLine + "; "));
                     if (col == Regio) options.Add("region = " + col.Text);
                     else options.Add(col.Name + " = " + col.Text);
 

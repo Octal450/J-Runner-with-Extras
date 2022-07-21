@@ -1793,7 +1793,7 @@ namespace Ionic.Zip
 
         private void RemoveEntryForUpdate(string entryName)
         {
-            if (String.IsNullOrEmpty(entryName))
+            if (string.IsNullOrEmpty(entryName))
                 throw new ArgumentNullException("entryName");
 
             string directoryPathInArchive = null;

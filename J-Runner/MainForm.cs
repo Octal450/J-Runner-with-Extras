@@ -46,8 +46,8 @@ namespace JRunner
         public DEVICE device = DEVICE.NO_DEVICE;
         IP myIP = new IP();
         public static Nand.PrivateN nand = new Nand.PrivateN();
-        public PicoFlasher picoflasher = new PicoFlasher();
         public xFlasher xflasher = new xFlasher();
+        public PicoFlasher picoflasher = new PicoFlasher();
         public Mtx_Usb mtx_usb = new Mtx_Usb();
         public xdkbuild XDKbuild = new xdkbuild();
         public rgh3build rgh3Build = new rgh3build();
@@ -706,9 +706,14 @@ namespace JRunner
         #region Nand
         //////////////////////////////////////////////
 
+        public Nand.PrivateN getNand()
+        {
+            return nand;
+        }
+
         public void nandcustom(string function, string filename, int size, int startblock, int length, bool recalcEcc)
         {
-            if (String.IsNullOrWhiteSpace(filename) && function != "Erase") return;
+            if (string.IsNullOrWhiteSpace(filename) && function != "Erase") return;
             if (startblock < 0) startblock = 0;
             if (length < 0) length = 0;
 
@@ -923,7 +928,7 @@ namespace JRunner
         }
         void cnaform_RunClick(string function, string filename, int size, int startblock, int length, bool recalcEcc)
         {
-            if (String.IsNullOrWhiteSpace(filename) && function != "Erase")
+            if (string.IsNullOrWhiteSpace(filename) && function != "Erase")
             {
                 MessageBox.Show("No file path selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -1063,8 +1068,16 @@ namespace JRunner
                     int temp = Nand.Nand.getcb_build(variables.conf);
                     if (temp >= 9188 && temp <= 9250)
                     {
-                        variables.ctyp = variables.ctypes[1];
-                        xPanel.setMBname(variables.ctyp.Text);
+                        if (flashconfig == "00023010")
+                        {
+                            variables.ctyp = variables.ctypes[1];
+                            xPanel.setMBname(variables.ctyp.Text);
+                        }
+                        else if (flashconfig == "008A3020" || flashconfig == "00AA3020")
+                        {
+                            variables.ctyp = variables.ctypes[12];
+                            xPanel.setMBname(variables.ctyp.Text);
+                        }
                     }
                     else if (temp >= 4558 && temp <= 4580)
                     {
@@ -1329,8 +1342,8 @@ namespace JRunner
         /// <param name="ecc"></param>
         void writenand(bool ecc, int writelength = 0)
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
             if (DemoN.DemonDetected)
             {
@@ -1403,9 +1416,9 @@ namespace JRunner
         }
         void writefusion()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
+            if (string.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
             //if (textBox2.Text != "008A3020" && textBox2.Text != "00AA3020") ctypeselected = 0;
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
             if (DemoN.DemonDetected)
             {
@@ -1448,8 +1461,8 @@ namespace JRunner
         }
         void writexell()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
-            if (String.IsNullOrWhiteSpace(variables.filename1)) return;
+            if (string.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
+            if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
             //if (textBox2.Text != "008A3020" && textBox2.Text != "00AA3020") ctypeselected = 0;
             if (DemoN.DemonDetected)
@@ -1812,7 +1825,7 @@ namespace JRunner
             string bla;
             string blb;
             bool splitcb = true;
-            if (String.IsNullOrWhiteSpace(cbb)) splitcb = false;
+            if (string.IsNullOrWhiteSpace(cbb)) splitcb = false;
             if (!splitcb)
             {
                 if (!File.Exists(Path.Combine(variables.rootfolder, "common", "cb_" + cba + ".bin")))
@@ -1909,7 +1922,7 @@ namespace JRunner
 
         public void newSession(bool partial = false)
         {
-            if (!String.IsNullOrEmpty(variables.filename1))
+            if (!string.IsNullOrEmpty(variables.filename1))
             {
                 if (!partial)
                 {
@@ -1978,7 +1991,7 @@ namespace JRunner
             if (variables.reading || variables.writing) return;
 
             bool movedalready = false;
-            if (String.IsNullOrEmpty(variables.filename1)) return;
+            if (string.IsNullOrEmpty(variables.filename1)) return;
             if (!File.Exists(variables.filename1))
             {
                 MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2192,7 +2205,7 @@ namespace JRunner
                 fs.Close();
                 fs.Dispose();
 
-                variables.gotvalues = !String.IsNullOrEmpty(variables.cpukey);
+                variables.gotvalues = !string.IsNullOrEmpty(variables.cpukey);
 
                 if (variables.debugMode)
                     Console.WriteLine("allmove ", variables.allmove);
@@ -2232,7 +2245,7 @@ namespace JRunner
         {
             if (nand == null || !nand.ok) return;
             variables.tempfile = variables.filename1;
-            byte[] Keyraw = Nand.Nand.getrawkv(variables.filename1);
+            byte[] kvraw = Nand.Nand.getrawkv(variables.filename1);
             long size1 = 0;
             string xellfile;
             if (variables.ctyp.ID == 8) xellfile = "xenon.bin";
@@ -2261,9 +2274,9 @@ namespace JRunner
 
             byte[] xell = Oper.openfile(Path.Combine(variables.rootfolder, "common\\xell\\" + xellfile), ref size1, 0);
             if (variables.debugMode) Console.WriteLine("{0} file loaded successfully", xellfile);
-            if (variables.debugMode) Console.WriteLine("{0:X} | {1:X}", xell.Length, Keyraw.Length);
+            if (variables.debugMode) Console.WriteLine("{0:X} | {1:X}", xell.Length, kvraw.Length);
 
-            Buffer.BlockCopy(Keyraw, 0, xell, 0x4200, 0x4200);
+            Buffer.BlockCopy(kvraw, 0, xell, 0x4200, 0x4200);
 
             if (xPanel.getRJtagChecked())
             {
@@ -2337,7 +2350,7 @@ namespace JRunner
                 file.Read(kv, 0, 0x4200);
                 infile.Close();
             }
-            if (String.IsNullOrWhiteSpace(loadGlitch2XeLL())) return;
+            if (string.IsNullOrWhiteSpace(loadGlitch2XeLL())) return;
             File.Copy(variables.filename1, Path.Combine(variables.outfolder, "glitch.ecc"), true);
             variables.filename1 = Path.Combine(variables.outfolder, "glitch.ecc");
             txtFileSource.Text = variables.filename1;
@@ -2462,14 +2475,7 @@ namespace JRunner
 
             Console.WriteLine("Extracting Files...");
             string tmpout = "";
-            if (variables.modder && variables.custname != "")
-            {
-                tmpout = Path.Combine(getCurrentWorkingFolder(), "Extracts-" + variables.custname);
-            }
-            else
-            {
-                tmpout = Path.Combine(getCurrentWorkingFolder(), "Extracts-" + nand.ki.serial);
-            }
+            tmpout = Path.Combine(getCurrentWorkingFolder(), "Extracts-" + nand.ki.serial);
 
             if (Directory.Exists(tmpout) == false)
             {
@@ -2483,7 +2489,7 @@ namespace JRunner
             Console.WriteLine("Saving KV_en.bin");
             Oper.savefile(nand._rawkv, Path.Combine(tmpout, "KV_en.bin"));
 
-            if (!String.IsNullOrEmpty(nand._cpukey))
+            if (!string.IsNullOrEmpty(nand._cpukey))
             {
                 Console.WriteLine("Saving KV_dec.bin");
                 Oper.savefile(Nand.Nand.decryptkv(nand._rawkv, Oper.StringToByteArray(nand._cpukey)), Path.Combine(tmpout, "KV_dec.bin"));
@@ -2755,7 +2761,7 @@ namespace JRunner
             {
                 if (erase) erasevariables();
                 filename = openFileDialog1.FileName;
-                if (!String.IsNullOrWhiteSpace(filename)) tx.Text = filename;
+                if (!string.IsNullOrWhiteSpace(filename)) tx.Text = filename;
             }
             else return false;
             variables.currentdir = filename;
@@ -2854,7 +2860,6 @@ namespace JRunner
             shade.Show();
             shade.Location = PointToScreen(Point.Empty);
 
-            this.Text = "Press escape to return to work";
             Form about = new Forms.About();
             about.Show();
             about.Location = new Point(Location.X + (Width - about.Width) / 2, Location.Y + (Height - about.Height) / 2);
@@ -2863,7 +2868,6 @@ namespace JRunner
         public void killShade()
         {
             shade.Dispose();
-            this.Text = "J-Runner with Extras";
         }
 
         private void changelogToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -3116,7 +3120,7 @@ namespace JRunner
 
         private void convertToRGH3ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1))
+            if (string.IsNullOrWhiteSpace(variables.filename1))
             {
                 MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3182,13 +3186,13 @@ namespace JRunner
 
         private void checkSecdataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1))
+            if (string.IsNullOrWhiteSpace(variables.filename1))
             {
                 MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (nand == null || !nand.ok) return;
-            if (String.IsNullOrWhiteSpace(txtCPUKey.Text))
+            if (string.IsNullOrWhiteSpace(txtCPUKey.Text))
             {
                 MessageBox.Show("No CPU Key entered", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3439,7 +3443,7 @@ namespace JRunner
 
         public string getCurrentWorkingFolder()
         {
-            if (!String.IsNullOrWhiteSpace(nand.ki.serial))
+            if (!string.IsNullOrWhiteSpace(nand.ki.serial))
             {
                 if (variables.xefolder != null && variables.xefolder != "")
                 {
@@ -3488,19 +3492,13 @@ namespace JRunner
             }
             else
             {
-                if (variables.modder)
-                {
-                    custform CFrom = new JRunner.Forms.custform();
-
-                    CFrom.ShowDialog();
-                }
                 getconsoletype(1);
             }
         }
 
         void btnCreateECCClick()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1))
+            if (string.IsNullOrWhiteSpace(variables.filename1))
             {
                 MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3559,7 +3557,7 @@ namespace JRunner
 
         void btnWriteECCClick()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1))
+            if (string.IsNullOrWhiteSpace(variables.filename1))
             {
                 MessageBox.Show("No XeLL loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3603,7 +3601,7 @@ namespace JRunner
 
         private void btnXeBuildClick()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1))
+            if (string.IsNullOrWhiteSpace(variables.filename1))
             {
                 MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3620,7 +3618,7 @@ namespace JRunner
 
         void btnWriteClick()
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1))
+            if (string.IsNullOrWhiteSpace(variables.filename1))
             {
                 MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3645,6 +3643,11 @@ namespace JRunner
                 if (device == DEVICE.NAND_X && variables.mtxUsbMode) mtx_usb.writeNandAuto();
                 else getconsoletype(2);
             }
+        }
+
+        private void btnCPUDBClick()
+        {
+            callCpuKeyDb();
         }
 
         #endregion
@@ -3679,14 +3682,42 @@ namespace JRunner
             if (variables.debugMode) Console.WriteLine("filename2/currentdir = {0}", variables.filename2);
         }
 
-        void btnCompare_Click(object sender, System.EventArgs e)
+        private void backupToZIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(variables.filename1))
+            if (string.IsNullOrWhiteSpace(variables.filename1))
             {
                 MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (String.IsNullOrWhiteSpace(variables.filename2))
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "ZIP archives (*.zip)|*.zip";
+            sfd.Title = "Backup To ZIP";
+            sfd.FileName = Backup.getAutoBackupName();
+            sfd.RestoreDirectory = false;
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string target = Backup.getAutoBackupTarget();
+                if (!string.IsNullOrWhiteSpace(target)) Backup.backupToZip(target, sfd.FileName);
+            }
+        }
+
+        private void configureBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings mForm = new Settings();
+            mForm.setTab("backup");
+            mForm.ShowDialog();
+        }
+
+        void btnCompare_Click(object sender, System.EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(variables.filename2))
             {
                 MessageBox.Show("No nand loaded in extra", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3694,38 +3725,13 @@ namespace JRunner
             new Thread(comparenands).Start();
         }
 
-        #endregion
-
-        #region Function Buttons
-
-        private void btnWorkingFolder_Click(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrWhiteSpace(nand.ki.serial))
-            {
-                if (variables.xefolder != null && variables.xefolder != "")
-                {
-                    if (Directory.Exists(variables.xefolder)) Process.Start(variables.xefolder);
-                }
-                else if (Directory.Exists(Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial)))
-                {
-                    Process.Start(Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial));
-                }
-                else Process.Start(variables.outfolder);
-            }
-            else
-            {
-                Process.Start(variables.outfolder);
-            }
-
-        }
-
-        private void btnCPUDBClick()
-        {
-            callCpuKeyDb();
-        }
-
         private void btnInit_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             nand_init();
         }
 
@@ -4327,23 +4333,14 @@ namespace JRunner
                         case "COMPort":
                             x.write(name, variables.COMPort);
                             break;
-                        case "Delay":
-                            x.write(name, variables.delay.ToString());
-                            break;
                         case "DashLaunchE":
                             x.write(name, variables.DashLaunchE.ToString());
                             break;
                         case "IP":
-                            x.write(name, variables.ip);
+                            x.write(name, variables.ipPrefix);
                             break;
                         case "NoReads":
                             x.write(name, variables.NoReads.ToString());
-                            break;
-                        case "IPStart":
-                            x.write(name, variables.IPstart);
-                            break;
-                        case "IPEnd":
-                            x.write(name, variables.IPend);
                             break;
                         case "dashlaunch":
                             x.write(name, variables.dashlaunch);
@@ -4354,8 +4351,8 @@ namespace JRunner
                         case "KeepFiles":
                             x.write(name, variables.deletefiles.ToString());
                             break;
-                        case "OutputDirOverride":
-                            x.write(name, variables.overrideOutputPath);
+                        case "RootDirOverride":
+                            x.write(name, variables.overrideRootPath);
                             break;
                         case "LPTtiming":
                             x.write(name, variables.LPTtiming.ToString());
@@ -4368,9 +4365,6 @@ namespace JRunner
                             break;
                         case "AllMove":
                             x.write(name, variables.allmove.ToString());
-                            break;
-                        case "Modder":
-                            x.write(name, variables.modder.ToString());
                             break;
                         case "TimingOnKeypress":
                             x.write(name, variables.timingonkeypress.ToString());
@@ -4445,7 +4439,7 @@ namespace JRunner
                         case "location":
                             int xy = 0;
                             int y = 0;
-                            if (!String.IsNullOrWhiteSpace(val))
+                            if (!string.IsNullOrWhiteSpace(val))
                             {
                                 var g = Regex.Replace(val, @"[\{\}a-zA-Z=]", "").Split(',');
                                 int.TryParse(g[0], out xy);
@@ -4456,11 +4450,6 @@ namespace JRunner
                         case "COMPort":
                             variables.COMPort = val;
                             break;
-                        case "Delay":
-                            int ivalue = 0;
-                            int.TryParse(val, out ivalue);
-                            variables.delay = ivalue;
-                            break;
                         case "DashLaunchE":
                             bvalue = false;
                             bool.TryParse(val, out bvalue);
@@ -4470,13 +4459,12 @@ namespace JRunner
                         case "IP":
                             if (!string.IsNullOrWhiteSpace(val))
                             {
-                                variables.ip = val;
+                                variables.ipPrefix = val;
                                 txtIP.Text = val + ".";
                             }
                             else
                             {
-                                string localIP = IP.getGatewayIp();
-                                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.')) + ".";
+                                setIP();
                             }
                             break;
                         case "NoReads":
@@ -4485,12 +4473,6 @@ namespace JRunner
                             if (dvalue == 0) dvalue = 2;
                             nTools.setNumericIterations(dvalue);
                             variables.NoReads = dvalue;
-                            break;
-                        case "IPStart":
-                            variables.IPstart = val;
-                            break;
-                        case "IPEnd":
-                            variables.IPend = val;
                             break;
                         case "dashlaunch":
                             string dlmd5 = Oper.GetMD5HashFromFile(variables.update_path + "launch.xex").ToUpper();
@@ -4515,11 +4497,11 @@ namespace JRunner
                             bool.TryParse(val, out bvalue);
                             variables.deletefiles = bvalue;
                             break;
-                        case "OutputDirOverride":
+                        case "RootDirOverride":
                             if (!string.IsNullOrWhiteSpace(val))
                             {
-                                variables.overrideOutputPath = val;
-                                variables.outfolder = val;
+                                variables.overrideRootPath = val;
+                                variables.outfolder = Path.Combine(val, "output");
                             }
                             break;
                         case "LPTtiming":
@@ -4539,11 +4521,6 @@ namespace JRunner
                             bvalue = false;
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             variables.allmove = bvalue;
-                            break;
-                        case "Modder":
-                            bvalue = false;
-                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
-                            variables.modder = bvalue;
                             break;
                         case "TimingOnKeypress":
                             bvalue = false;
@@ -4609,13 +4586,25 @@ namespace JRunner
             }
             else
             {
-                string localIP = IP.getGatewayIp();
-                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.')) + ".";
+                setIP();
             }
             IP.initaddresses();
         }
 
-        void check_dash()
+        public void setIP()
+        {
+            if (string.IsNullOrEmpty(variables.ipPrefix))
+            {
+                string localIP = IP.getGatewayIp();
+                txtIP.Text = localIP.Remove(localIP.LastIndexOf('.')) + ".";
+            }
+            else
+            {
+                txtIP.Text = variables.ipPrefix + ".";
+            }
+        }
+
+        private void check_dash()
         {
             DataTable dashtable = xPanel.getDashDataSet().DataTable2;
             int counter = 0;
@@ -4677,7 +4666,7 @@ namespace JRunner
             catch { }
         }
 
-        void check_dashes(bool check = false)
+        private void check_dashes(bool check = false)
         {
             variables.dashes_all.Sort();
             if (check) check_dash();

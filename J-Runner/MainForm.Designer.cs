@@ -47,8 +47,8 @@ namespace JRunner
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.btnIPGetCPU = new UI.SplitButton();
-            this.getCpuKeyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnIPGetCPU = new UI.MenuButton();
+            this.getCpuKeyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.getAndSaveToWorkingFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToDesktopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelIP = new System.Windows.Forms.Label();
@@ -57,11 +57,15 @@ namespace JRunner
             this.btnInit = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnNewSession = new System.Windows.Forms.Button();
-            this.btnShowWorkingFolder = new UI.SplitButton();
+            this.btnShowWorkingFolder = new UI.MenuButton();
             this.showWorkingFolderMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showRootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showOutputFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRestart = new System.Windows.Forms.Button();
+            this.btnBackup = new UI.MenuButton();
+            this.backupContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.backupToZIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configureBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.XeBuildOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -154,8 +158,9 @@ namespace JRunner
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
-            this.getCpuKeyContextMenu.SuspendLayout();
+            this.getCpuKeyMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
+            this.backupContextMenu.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -176,11 +181,11 @@ namespace JRunner
             // 
             // btnCompare
             // 
-            this.btnCompare.Location = new System.Drawing.Point(390, 13);
+            this.btnCompare.Location = new System.Drawing.Point(390, 42);
             this.btnCompare.Name = "btnCompare";
-            this.btnCompare.Size = new System.Drawing.Size(65, 51);
+            this.btnCompare.Size = new System.Drawing.Size(65, 22);
             this.btnCompare.TabIndex = 24;
-            this.btnCompare.Text = "Nand\r\nCompare";
+            this.btnCompare.Text = "Compare";
             this.toolTip1.SetToolTip(this.btnCompare, "Compares the source and extra nands");
             this.btnCompare.UseVisualStyleBackColor = true;
             this.btnCompare.Click += new System.EventHandler(this.btnCompare_Click);
@@ -307,27 +312,28 @@ namespace JRunner
             // 
             this.btnIPGetCPU.AutoSize = true;
             this.btnIPGetCPU.BtnImage = ((System.Drawing.Image)(resources.GetObject("btnIPGetCPU.BtnImage")));
-            this.btnIPGetCPU.ContextMenuStrip = this.getCpuKeyContextMenu;
-            this.btnIPGetCPU.DropDownContextMenu = this.getCpuKeyContextMenu;
+            this.btnIPGetCPU.ContextMenuStrip = this.getCpuKeyMenu;
+            this.btnIPGetCPU.DropDownContextMenu = this.getCpuKeyMenu;
             this.btnIPGetCPU.Image = ((System.Drawing.Image)(resources.GetObject("btnIPGetCPU.Image")));
             this.btnIPGetCPU.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnIPGetCPU.Location = new System.Drawing.Point(6, 36);
             this.btnIPGetCPU.Name = "btnIPGetCPU";
             this.btnIPGetCPU.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnIPGetCPU.Size = new System.Drawing.Size(152, 26);
+            this.btnIPGetCPU.SplitButton = true;
             this.btnIPGetCPU.TabIndex = 11;
             this.btnIPGetCPU.Text = "Get CPU Key";
             this.toolTip1.SetToolTip(this.btnIPGetCPU, "Tries to retrieve the CPU Key and Fuses from XeLL using the IP above");
             this.btnIPGetCPU.UseVisualStyleBackColor = true;
             this.btnIPGetCPU.Click += new System.EventHandler(this.btnIPGetCPU_Click);
             // 
-            // getCpuKeyContextMenu
+            // getCpuKeyMenu
             // 
-            this.getCpuKeyContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getCpuKeyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.getAndSaveToWorkingFolderToolStripMenuItem,
             this.saveToDesktopToolStripMenuItem});
-            this.getCpuKeyContextMenu.Name = "contextMenuStrip1";
-            this.getCpuKeyContextMenu.Size = new System.Drawing.Size(198, 48);
+            this.getCpuKeyMenu.Name = "contextMenuStrip1";
+            this.getCpuKeyMenu.Size = new System.Drawing.Size(198, 48);
             // 
             // getAndSaveToWorkingFolderToolStripMenuItem
             // 
@@ -408,14 +414,15 @@ namespace JRunner
             // btnShowWorkingFolder
             // 
             this.btnShowWorkingFolder.AutoSize = true;
-            this.btnShowWorkingFolder.BtnImage = ((System.Drawing.Image)(resources.GetObject("btnShowWorkingFolder.BtnImage")));
+            this.btnShowWorkingFolder.BtnImage = global::JRunner.Properties.Resources.arrow_dn;
             this.btnShowWorkingFolder.ContextMenuStrip = this.showWorkingFolderMenu;
             this.btnShowWorkingFolder.DropDownContextMenu = this.showWorkingFolderMenu;
-            this.btnShowWorkingFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnShowWorkingFolder.Image")));
+            this.btnShowWorkingFolder.Image = global::JRunner.Properties.Resources.arrow_dn;
             this.btnShowWorkingFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnShowWorkingFolder.Location = new System.Drawing.Point(478, 488);
             this.btnShowWorkingFolder.Name = "btnShowWorkingFolder";
             this.btnShowWorkingFolder.Size = new System.Drawing.Size(174, 26);
+            this.btnShowWorkingFolder.SplitButton = true;
             this.btnShowWorkingFolder.TabIndex = 294;
             this.btnShowWorkingFolder.Text = "Show Working Folder";
             this.toolTip1.SetToolTip(this.btnShowWorkingFolder, "Shows the working folder in Windows Explorer");
@@ -457,6 +464,45 @@ namespace JRunner
             this.btnRestart.UseVisualStyleBackColor = true;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
+            // btnBackup
+            // 
+            this.btnBackup.BtnImage = global::JRunner.Properties.Resources.arrow_dn;
+            this.btnBackup.ContextMenuStrip = this.backupContextMenu;
+            this.btnBackup.DropDownContextMenu = this.backupContextMenu;
+            this.btnBackup.Enabled = false;
+            this.btnBackup.Image = global::JRunner.Properties.Resources.arrow_dn;
+            this.btnBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBackup.Location = new System.Drawing.Point(390, 13);
+            this.btnBackup.Name = "btnBackup";
+            this.btnBackup.Size = new System.Drawing.Size(65, 22);
+            this.btnBackup.TabIndex = 28;
+            this.btnBackup.Text = "Backup";
+            this.btnBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip1.SetToolTip(this.btnBackup, "Displays a menu of backup options");
+            this.btnBackup.UseVisualStyleBackColor = true;
+            // 
+            // backupContextMenu
+            // 
+            this.backupContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backupToZIPToolStripMenuItem,
+            this.configureBackupToolStripMenuItem});
+            this.backupContextMenu.Name = "contextMenuStrip1";
+            this.backupContextMenu.Size = new System.Drawing.Size(179, 48);
+            // 
+            // backupToZIPToolStripMenuItem
+            // 
+            this.backupToZIPToolStripMenuItem.Name = "backupToZIPToolStripMenuItem";
+            this.backupToZIPToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.backupToZIPToolStripMenuItem.Text = "Backup to ZIP";
+            this.backupToZIPToolStripMenuItem.Click += new System.EventHandler(this.backupToZIPToolStripMenuItem_Click);
+            // 
+            // configureBackupToolStripMenuItem
+            // 
+            this.configureBackupToolStripMenuItem.Name = "configureBackupToolStripMenuItem";
+            this.configureBackupToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.configureBackupToolStripMenuItem.Text = "Configure Backup…";
+            this.configureBackupToolStripMenuItem.Click += new System.EventHandler(this.configureBackupToolStripMenuItem_Click);
+            // 
             // XeBuildOptionsToolStripMenuItem
             // 
             this.XeBuildOptionsToolStripMenuItem.Name = "XeBuildOptionsToolStripMenuItem";
@@ -466,6 +512,7 @@ namespace JRunner
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupBox4.Controls.Add(this.btnBackup);
             this.groupBox4.Controls.Add(this.btnLoadExtra);
             this.groupBox4.Controls.Add(this.btnInit);
             this.groupBox4.Controls.Add(this.txtFileExtra);
@@ -1239,8 +1286,9 @@ namespace JRunner
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.getCpuKeyContextMenu.ResumeLayout(false);
+            this.getCpuKeyMenu.ResumeLayout(false);
             this.showWorkingFolderMenu.ResumeLayout(false);
+            this.backupContextMenu.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -1362,17 +1410,21 @@ namespace JRunner
         private ToolStripMenuItem nANDXToolStripMenuItem;
         private ToolStripMenuItem mtxUsbModeToolStripMenuItem;
         private ToolStripMenuItem reportIssueToolStripMenuItem;
-        private UI.SplitButton btnIPGetCPU;
-        private ContextMenuStrip getCpuKeyContextMenu;
+        private UI.MenuButton btnIPGetCPU;
+        private ContextMenuStrip getCpuKeyMenu;
         private ToolStripMenuItem getAndSaveToWorkingFolderToolStripMenuItem;
         private ToolStripMenuItem saveToDesktopToolStripMenuItem;
         private ContextMenuStrip showWorkingFolderMenu;
         private ToolStripMenuItem showRootFolderToolStripMenuItem;
         private ToolStripMenuItem showOutputFolderToolStripMenuItem;
-        private UI.SplitButton btnShowWorkingFolder;
+        private UI.MenuButton btnShowWorkingFolder;
         private ToolStripMenuItem xboxOneHDDToolToolStripMenuItem;
         private ToolStripMenuItem checkConsoleCBToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripMenuItem convertToRGH3ToolStripMenuItem;
+        private UI.MenuButton btnBackup;
+        private ContextMenuStrip backupContextMenu;
+        private ToolStripMenuItem backupToZIPToolStripMenuItem;
+        private ToolStripMenuItem configureBackupToolStripMenuItem;
     }
 }

@@ -880,11 +880,11 @@ namespace JRunner.Panels
                 return;
             }
             string arguments;
-            if (!String.IsNullOrWhiteSpace(txtOffset.Text))
+            if (!string.IsNullOrWhiteSpace(txtOffset.Text))
             {
                 arguments = "-rb " + "\"" + Path.Combine(variables.outfolder, "consoleDump.bin") + "\"";
                 arguments += " " + txtOffset.Text;
-                if (!String.IsNullOrWhiteSpace(txtLength.Text))
+                if (!string.IsNullOrWhiteSpace(txtLength.Text))
                 {
                     arguments += " " + txtLength.Text;
                 }
@@ -906,11 +906,11 @@ namespace JRunner.Panels
         private void btnWrite_Click(object sender, EventArgs e)
         {
             string arguments;
-            if (!String.IsNullOrWhiteSpace(txtOffset.Text))
+            if (!string.IsNullOrWhiteSpace(txtOffset.Text))
             {
                 arguments = "-wb " + "\"" + variables.filename1 + "\"";
                 arguments += " " + txtOffset.Text;
-                if (!String.IsNullOrWhiteSpace(txtLength.Text))
+                if (!string.IsNullOrWhiteSpace(txtLength.Text))
                 {
                     arguments += " " + txtLength.Text;
                 }
@@ -942,7 +942,7 @@ namespace JRunner.Panels
         private void btnPatches_Click(object sender, EventArgs e)
         {
             string arguments = "-p";
-            if (!String.IsNullOrWhiteSpace(variables.filename1))
+            if (!string.IsNullOrWhiteSpace(variables.filename1))
             {
                 if (MessageBox.Show("Make sure that source file is a patch file.", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel) return;
                 arguments += " \"" + variables.filename1 + "\"";
@@ -1159,10 +1159,10 @@ namespace JRunner.Panels
 
             if (!custom)
             {
-                if (String.IsNullOrWhiteSpace(variables.filename1))
+                if (string.IsNullOrWhiteSpace(variables.filename1))
                 {
                     loadFil(ref variables.filename1, true);
-                    if (String.IsNullOrWhiteSpace(variables.filename1))
+                    if (string.IsNullOrWhiteSpace(variables.filename1))
                     {
                         MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -1349,7 +1349,7 @@ namespace JRunner.Panels
             string targetkey = System.IO.Path.Combine(variables.xePath, variables.cpukeypath);
             string targetnand = System.IO.Path.Combine(variables.xePath, variables.nanddump);
             File.WriteAllText(targetkey, cpukey);
-            if (String.IsNullOrEmpty(variables.filename1)) return;
+            if (string.IsNullOrEmpty(variables.filename1)) return;
             //
             FileInfo fi = new FileInfo(variables.filename1);
             if (fi.Length == 0xE0400000)

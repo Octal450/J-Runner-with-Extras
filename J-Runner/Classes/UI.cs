@@ -25,24 +25,24 @@ namespace UI
         }
     }
 
-    public class SplitButton : Button
+    public class MenuButton : Button
     {
         ContextMenuStrip contextStrip;
         bool isHot;
         bool menuOpen;
-        bool alwaysShowMenu = false;
+        bool split = false;
 
         #region context menu
         [DefaultValue(false)]
-        public bool AlwaysShowMenu
+        public bool SplitButton
         {
             get
             {
-                return alwaysShowMenu;
+                return split;
             }
             set
             {
-                alwaysShowMenu = value;
+                split = value;
             }
         }
 
@@ -123,13 +123,16 @@ namespace UI
             if (menuOpen || Focused || hot) isHot = true;
             else isHot = false;
 
-            if (isHot)
+            if (split)
             {
-                BtnImage = JRunner.Properties.Resources.arrow_dn_hot;
-            }
-            else
-            {
-                BtnImage = JRunner.Properties.Resources.arrow_dn;
+                if (isHot)
+                {
+                    BtnImage = JRunner.Properties.Resources.arrow_dn_hot;
+                }
+                else
+                {
+                    BtnImage = JRunner.Properties.Resources.arrow_dn;
+                }
             }
         }
         #endregion
@@ -163,7 +166,7 @@ namespace UI
         {
             var clickPos = PointToClient(new Point(MousePosition.X, MousePosition.Y));
 
-            if (clickPos.X >= (Size.Width - Image.Width) || alwaysShowMenu) showMenu();
+            if (clickPos.X >= (Size.Width - Image.Width) || !split) showMenu();
             else base.OnClick(e);
         }
 

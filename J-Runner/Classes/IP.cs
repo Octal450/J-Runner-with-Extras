@@ -304,19 +304,27 @@ namespace JRunner
 
         public static void initaddresses()
         {
-            localGatewayIp = getGatewayIp();
-            if (!IsIPv4(variables.IPstart))
+            if (string.IsNullOrWhiteSpace(variables.ipPrefix))
+            {
+                localGatewayIp = getGatewayIp();
+            }
+            else
+            {
+                localGatewayIp = variables.ipPrefix + ".0";
+            }
+
+            if (!IsIPv4(variables.ipStart))
             {
                 if (localGatewayIp != "?")
                 {
-                    variables.IPstart = changelastquad(localGatewayIp, "0");
+                    variables.ipStart = changelastquad(localGatewayIp, "0");
                 }
             }
-            if (!IsIPv4(variables.IPend))
+            if (!IsIPv4(variables.ipEnd))
             {
                 if (localGatewayIp != "?")
                 {
-                    variables.IPend = changelastquad(localGatewayIp, "255");
+                    variables.ipEnd = changelastquad(localGatewayIp, "255");
                 }
             }
         }
@@ -453,7 +461,7 @@ namespace JRunner
             }
             bool use = false;
             Console.WriteLine("IP Scan Stage 1: Please wait...");
-            scanLiveHosts(variables.IPstart, variables.IPend, pb);
+            scanLiveHosts(variables.ipStart, variables.ipEnd, pb);
             Thread.Sleep(500);
             found = false;
             Console.WriteLine("IP Scan Stage 2: This will take some time...");

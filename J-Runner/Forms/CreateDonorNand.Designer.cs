@@ -272,7 +272,7 @@ namespace JRunner.Forms
             this.FcrtPage.Controls.Add(this.FcrtGroup);
             this.FcrtPage.Controls.Add(this.DonorFcrtText);
             this.FcrtPage.Name = "FcrtPage";
-            this.FcrtPage.Size = new System.Drawing.Size(507, 250);
+            this.FcrtPage.Size = new System.Drawing.Size(507, 247);
             this.FcrtPage.TabIndex = 2;
             this.FcrtPage.Text = "FCRT";
             // 
@@ -312,7 +312,7 @@ namespace JRunner.Forms
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(476, 33);
             this.label7.TabIndex = 6;
-            this.label7.Text = "It is not possible for this tool to check your supplied fcrt for validity, please" +
+            this.label7.Text = "It is not possible for this tool to check your supplied FCRT for validity, please" +
     " ensure you provide a valid decrypted FCRT";
             // 
             // DonorFcrt

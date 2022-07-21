@@ -867,7 +867,7 @@ namespace Ionic.Zip
                     throw new ZipException("Cannot rename; this is not supported in ZipOutputStream/ZipInputStream.");
 
                 // rename the entry!
-                if (String.IsNullOrEmpty(value)) throw new ZipException("The FileName must be non empty and non-null.");
+                if (string.IsNullOrEmpty(value)) throw new ZipException("The FileName must be non empty and non-null.");
 
                 var filename = ZipEntry.NameInArchive(value, null);
                 // workitem 8180
@@ -2285,7 +2285,7 @@ namespace Ionic.Zip
 
             else
             {
-                if (String.IsNullOrEmpty(directoryPathInArchive))
+                if (string.IsNullOrEmpty(directoryPathInArchive))
                 {
                     result = Path.GetFileName(filename);
                 }
@@ -2336,7 +2336,7 @@ namespace Ionic.Zip
 
         private static ZipEntry Create(string nameInArchive, ZipEntrySource source, Object arg1, Object arg2)
         {
-            if (String.IsNullOrEmpty(nameInArchive))
+            if (string.IsNullOrEmpty(nameInArchive))
                 throw new Ionic.Zip.ZipException("The entry name must be non-null and non-empty.");
 
             ZipEntry entry = new ZipEntry();
@@ -2373,7 +2373,7 @@ namespace Ionic.Zip
             {
                 String filename = (arg1 as String);   // must not be null
 
-                if (String.IsNullOrEmpty(filename))
+                if (string.IsNullOrEmpty(filename))
                     throw new Ionic.Zip.ZipException("The filename must be non-null and non-empty.");
 
                 try

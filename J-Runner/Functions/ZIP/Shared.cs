@@ -143,7 +143,7 @@ namespace Ionic.Zip
         public static string NormalizePathForUseInZipFile(string pathName)
         {
             // boundary case
-            if (String.IsNullOrEmpty(pathName)) return pathName;
+            if (string.IsNullOrEmpty(pathName)) return pathName;
 
             // trim volume if necessary
             if ((pathName.Length >= 2) && ((pathName[1] == ':') && (pathName[2] == '\\')))

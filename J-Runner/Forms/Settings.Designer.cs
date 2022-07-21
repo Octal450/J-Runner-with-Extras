@@ -30,28 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
-            this.btnOverrideOutput = new System.Windows.Forms.Button();
-            this.txtOutputOverride = new System.Windows.Forms.TextBox();
+            this.btnRootOverride = new System.Windows.Forms.Button();
+            this.txtRootOverride = new System.Windows.Forms.TextBox();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label6 = new System.Windows.Forms.Label();
-            this.sonusDelay = new System.Windows.Forms.NumericUpDown();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.txtIPStart = new System.Windows.Forms.TextBox();
-            this.txtIPEnd = new System.Windows.Forms.TextBox();
             this.txtTimingLptPort = new System.Windows.Forms.TextBox();
+            this.chkRootOverride = new System.Windows.Forms.CheckBox();
+            this.chkIPDefault = new System.Windows.Forms.CheckBox();
             this.chkfiles = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chkIpDefault = new System.Windows.Forms.CheckBox();
-            this.AutoExtractcheckBox = new System.Windows.Forms.CheckBox();
-            this.almovebut = new System.Windows.Forms.CheckBox();
-            this.modderbut = new System.Windows.Forms.CheckBox();
-            this.timingOnKeypressEnable = new System.Windows.Forms.CheckBox();
+            this.chkAutoExtract = new System.Windows.Forms.CheckBox();
+            this.chkAllMove = new System.Windows.Forms.CheckBox();
+            this.chkUnused = new System.Windows.Forms.CheckBox();
+            this.chkUnused2 = new System.Windows.Forms.CheckBox();
             this.logBackgroundCustom = new System.Windows.Forms.Button();
             this.logBackgroundBlue = new System.Windows.Forms.Button();
             this.logBackgroundBlack = new System.Windows.Forms.Button();
@@ -67,63 +61,59 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rbtnTimingLpt = new System.Windows.Forms.RadioButton();
             this.rbtnTimingUsb = new System.Windows.Forms.RadioButton();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.btnDefaults = new System.Windows.Forms.Button();
             this.chkNoPatchWarnings = new System.Windows.Forms.CheckBox();
             this.chkPlaySuccess = new System.Windows.Forms.CheckBox();
             this.chkPlayError = new System.Windows.Forms.CheckBox();
             this.chkAutoDelXeLL = new System.Windows.Forms.CheckBox();
-            this.chkOverrideOutput = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.sonusDelay)).BeginInit();
+            this.tabCSettings = new System.Windows.Forms.TabControl();
+            this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.tabBackup = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabCSettings.SuspendLayout();
+            this.tabGeneral.SuspendLayout();
+            this.tabBackup.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnOverrideOutput
+            // btnRootOverride
             // 
-            this.btnOverrideOutput.Enabled = false;
-            this.btnOverrideOutput.Location = new System.Drawing.Point(340, 29);
-            this.btnOverrideOutput.Name = "btnOverrideOutput";
-            this.btnOverrideOutput.Size = new System.Drawing.Size(29, 22);
-            this.btnOverrideOutput.TabIndex = 22;
-            this.btnOverrideOutput.Text = "...";
-            this.btnOverrideOutput.UseVisualStyleBackColor = true;
-            this.btnOverrideOutput.Click += new System.EventHandler(this.btnOverrideOutput_Click);
+            this.btnRootOverride.Enabled = false;
+            this.btnRootOverride.Location = new System.Drawing.Point(331, 23);
+            this.btnRootOverride.Name = "btnRootOverride";
+            this.btnRootOverride.Size = new System.Drawing.Size(29, 22);
+            this.btnRootOverride.TabIndex = 22;
+            this.btnRootOverride.Text = "...";
+            this.btnRootOverride.UseVisualStyleBackColor = true;
+            this.btnRootOverride.Click += new System.EventHandler(this.btnRootOverride_Click);
             // 
-            // txtOutputOverride
+            // txtRootOverride
             // 
-            this.txtOutputOverride.Enabled = false;
-            this.txtOutputOverride.Location = new System.Drawing.Point(15, 30);
-            this.txtOutputOverride.Name = "txtOutputOverride";
-            this.txtOutputOverride.Size = new System.Drawing.Size(319, 20);
-            this.txtOutputOverride.TabIndex = 21;
+            this.txtRootOverride.Enabled = false;
+            this.txtRootOverride.Location = new System.Drawing.Point(6, 24);
+            this.txtRootOverride.Name = "txtRootOverride";
+            this.txtRootOverride.Size = new System.Drawing.Size(319, 20);
+            this.txtRootOverride.TabIndex = 21;
             // 
             // txtIP
             // 
             this.txtIP.Enabled = false;
-            this.txtIP.Location = new System.Drawing.Point(99, 24);
+            this.txtIP.Location = new System.Drawing.Point(81, 14);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(92, 20);
             this.txtIP.TabIndex = 3;
             this.toolTip1.SetToolTip(this.txtIP, "Set a default IP for getting CPUKey\r\nover a network.");
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "IP Default:";
-            // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOK.Location = new System.Drawing.Point(268, 313);
+            this.btnOK.Location = new System.Drawing.Point(203, 337);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(76, 23);
+            this.btnOK.Size = new System.Drawing.Size(100, 23);
             this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = "Save and Apply";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
@@ -131,57 +121,43 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(412, 243);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 13);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Sonus360 Write Delay:";
-            this.toolTip1.SetToolTip(this.label6, "If your nand write with JR-P appears to lag (should be similar speed to read) sel" +
-        "ect this!");
-            // 
-            // sonusDelay
-            // 
-            this.sonusDelay.Location = new System.Drawing.Point(530, 241);
-            this.sonusDelay.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.sonusDelay.Name = "sonusDelay";
-            this.sonusDelay.Size = new System.Drawing.Size(64, 20);
-            this.sonusDelay.TabIndex = 36;
-            this.toolTip1.SetToolTip(this.sonusDelay, "If your nand write with JR-P appears to lag (should be similar speed to read) sel" +
-        "ect this!");
-            // 
-            // txtIPStart
-            // 
-            this.txtIPStart.Location = new System.Drawing.Point(99, 55);
-            this.txtIPStart.Name = "txtIPStart";
-            this.txtIPStart.Size = new System.Drawing.Size(92, 20);
-            this.txtIPStart.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.txtIPStart, "Set the starting IP range for\r\nScan IP range function");
-            // 
-            // txtIPEnd
-            // 
-            this.txtIPEnd.Location = new System.Drawing.Point(99, 87);
-            this.txtIPEnd.Name = "txtIPEnd";
-            this.txtIPEnd.Size = new System.Drawing.Size(92, 20);
-            this.txtIPEnd.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.txtIPEnd, "Set the end of IP range for\r\nScan IP range function");
-            // 
             // txtTimingLptPort
             // 
             this.txtTimingLptPort.Enabled = false;
-            this.txtTimingLptPort.Location = new System.Drawing.Point(108, 17);
+            this.txtTimingLptPort.Location = new System.Drawing.Point(117, 17);
             this.txtTimingLptPort.MaxLength = 5;
             this.txtTimingLptPort.Name = "txtTimingLptPort";
             this.txtTimingLptPort.Size = new System.Drawing.Size(57, 20);
             this.txtTimingLptPort.TabIndex = 52;
             this.toolTip1.SetToolTip(this.txtTimingLptPort, "determines the name given to the file\r\nproduced upon creation of a Nand\r\nImage");
             this.txtTimingLptPort.TextChanged += new System.EventHandler(this.txtTimingLptPort_TextChanged);
+            // 
+            // chkRootOverride
+            // 
+            this.chkRootOverride.AutoSize = true;
+            this.chkRootOverride.Location = new System.Drawing.Point(6, 6);
+            this.chkRootOverride.Name = "chkRootOverride";
+            this.chkRootOverride.Size = new System.Drawing.Size(127, 17);
+            this.chkRootOverride.TabIndex = 20;
+            this.chkRootOverride.Text = "Root Folder Override:";
+            this.toolTip1.SetToolTip(this.chkRootOverride, "Override the location of the output and XeBuild folders instead of the default (a" +
+        "pplication root)\r\nDo not set unless you have a specific reason to redirect folde" +
+        "rs");
+            this.chkRootOverride.UseVisualStyleBackColor = true;
+            this.chkRootOverride.CheckedChanged += new System.EventHandler(this.chkRootOverride_CheckedChanged);
+            // 
+            // chkIPDefault
+            // 
+            this.chkIPDefault.AutoSize = true;
+            this.chkIPDefault.Location = new System.Drawing.Point(10, 16);
+            this.chkIPDefault.Name = "chkIPDefault";
+            this.chkIPDefault.Size = new System.Drawing.Size(69, 17);
+            this.chkIPDefault.TabIndex = 2;
+            this.chkIPDefault.Text = "Override:";
+            this.toolTip1.SetToolTip(this.chkIPDefault, "When unchecked (default), this is fetched automatically\r\nManually set the prefix " +
+        "that appears by default in the lower right of the application");
+            this.chkIPDefault.UseVisualStyleBackColor = true;
+            this.chkIPDefault.CheckedChanged += new System.EventHandler(this.chkIPDefault_CheckedChanged);
             // 
             // chkfiles
             // 
@@ -195,102 +171,70 @@
             this.chkfiles.UseVisualStyleBackColor = true;
             this.chkfiles.Visible = false;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 58);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 13);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "IP Range Start:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 90);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 13);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "IP Range Finish:";
-            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.chkIpDefault);
-            this.groupBox2.Controls.Add(this.txtIPStart);
+            this.groupBox2.Controls.Add(this.chkIPDefault);
             this.groupBox2.Controls.Add(this.txtIP);
-            this.groupBox2.Controls.Add(this.txtIPEnd);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(392, 13);
+            this.groupBox2.Location = new System.Drawing.Point(402, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(202, 118);
-            this.groupBox2.TabIndex = 35;
+            this.groupBox2.Size = new System.Drawing.Size(183, 42);
+            this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "IP Settings";
+            this.groupBox2.Text = "XeLL IP Prefix";
             // 
-            // chkIpDefault
+            // chkAutoExtract
             // 
-            this.chkIpDefault.AutoSize = true;
-            this.chkIpDefault.Location = new System.Drawing.Point(78, 27);
-            this.chkIpDefault.Name = "chkIpDefault";
-            this.chkIpDefault.Size = new System.Drawing.Size(15, 14);
-            this.chkIpDefault.TabIndex = 2;
-            this.chkIpDefault.UseVisualStyleBackColor = true;
-            this.chkIpDefault.CheckedChanged += new System.EventHandler(this.chkIpDefault_CheckedChanged);
+            this.chkAutoExtract.AutoSize = true;
+            this.chkAutoExtract.Location = new System.Drawing.Point(6, 55);
+            this.chkAutoExtract.Name = "chkAutoExtract";
+            this.chkAutoExtract.Size = new System.Drawing.Size(165, 17);
+            this.chkAutoExtract.TabIndex = 23;
+            this.chkAutoExtract.Text = "Auto Extract Files from Nands";
+            this.chkAutoExtract.UseVisualStyleBackColor = true;
             // 
-            // AutoExtractcheckBox
+            // chkAllMove
             // 
-            this.AutoExtractcheckBox.AutoSize = true;
-            this.AutoExtractcheckBox.Location = new System.Drawing.Point(15, 61);
-            this.AutoExtractcheckBox.Name = "AutoExtractcheckBox";
-            this.AutoExtractcheckBox.Size = new System.Drawing.Size(165, 17);
-            this.AutoExtractcheckBox.TabIndex = 23;
-            this.AutoExtractcheckBox.Text = "Auto Extract Files from Nands";
-            this.AutoExtractcheckBox.UseVisualStyleBackColor = true;
+            this.chkAllMove.AutoSize = true;
+            this.chkAllMove.Checked = true;
+            this.chkAllMove.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAllMove.Location = new System.Drawing.Point(6, 78);
+            this.chkAllMove.Name = "chkAllMove";
+            this.chkAllMove.Size = new System.Drawing.Size(274, 17);
+            this.chkAllMove.TabIndex = 24;
+            this.chkAllMove.Text = "Only move to XeBuild folder upon first CPU Key entry";
+            this.chkAllMove.UseVisualStyleBackColor = true;
+            this.chkAllMove.CheckedChanged += new System.EventHandler(this.chkAllMove_CheckedChanged);
             // 
-            // almovebut
+            // chkUnused
             // 
-            this.almovebut.AutoSize = true;
-            this.almovebut.Checked = true;
-            this.almovebut.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.almovebut.Location = new System.Drawing.Point(15, 84);
-            this.almovebut.Name = "almovebut";
-            this.almovebut.Size = new System.Drawing.Size(244, 17);
-            this.almovebut.TabIndex = 24;
-            this.almovebut.Text = "Only move nand/files upon first CPU Key entry";
-            this.almovebut.UseVisualStyleBackColor = true;
-            this.almovebut.CheckedChanged += new System.EventHandler(this.almovebut_CheckedChanged);
+            this.chkUnused.AutoSize = true;
+            this.chkUnused.Enabled = false;
+            this.chkUnused.Location = new System.Drawing.Point(6, 170);
+            this.chkUnused.Name = "chkUnused";
+            this.chkUnused.Size = new System.Drawing.Size(63, 17);
+            this.chkUnused.TabIndex = 25;
+            this.chkUnused.Text = "Unused";
+            this.chkUnused.UseVisualStyleBackColor = true;
             // 
-            // modderbut
+            // chkUnused2
             // 
-            this.modderbut.AutoSize = true;
-            this.modderbut.Location = new System.Drawing.Point(15, 107);
-            this.modderbut.Name = "modderbut";
-            this.modderbut.Size = new System.Drawing.Size(279, 17);
-            this.modderbut.TabIndex = 25;
-            this.modderbut.Text = "Use unique name instead of console type in database";
-            this.modderbut.UseVisualStyleBackColor = true;
-            this.modderbut.CheckedChanged += new System.EventHandler(this.modderbut_CheckedChanged);
-            // 
-            // timingOnKeypressEnable
-            // 
-            this.timingOnKeypressEnable.AutoSize = true;
-            this.timingOnKeypressEnable.Location = new System.Drawing.Point(15, 130);
-            this.timingOnKeypressEnable.Name = "timingOnKeypressEnable";
-            this.timingOnKeypressEnable.Size = new System.Drawing.Size(306, 17);
-            this.timingOnKeypressEnable.TabIndex = 26;
-            this.timingOnKeypressEnable.Text = "F12 key programs timings when Program Timing File is open";
-            this.timingOnKeypressEnable.UseVisualStyleBackColor = true;
-            this.timingOnKeypressEnable.CheckedChanged += new System.EventHandler(this.timingOnKeypressEnable_CheckedChanged);
+            this.chkUnused2.AutoSize = true;
+            this.chkUnused2.Enabled = false;
+            this.chkUnused2.Location = new System.Drawing.Point(6, 147);
+            this.chkUnused2.Name = "chkUnused2";
+            this.chkUnused2.Size = new System.Drawing.Size(63, 17);
+            this.chkUnused2.TabIndex = 26;
+            this.chkUnused2.Text = "Unused";
+            this.chkUnused2.UseVisualStyleBackColor = true;
+            this.chkUnused2.CheckedChanged += new System.EventHandler(this.timingOnKeypressEnable_CheckedChanged);
             // 
             // logBackgroundCustom
             // 
             this.logBackgroundCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logBackgroundCustom.Location = new System.Drawing.Point(242, 247);
+            this.logBackgroundCustom.Location = new System.Drawing.Point(233, 239);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
-            this.logBackgroundCustom.TabIndex = 31;
+            this.logBackgroundCustom.TabIndex = 34;
             this.logBackgroundCustom.TabStop = false;
             this.logBackgroundCustom.Text = "Custom";
             this.logBackgroundCustom.UseVisualStyleBackColor = true;
@@ -300,10 +244,10 @@
             // 
             this.logBackgroundBlue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logBackgroundBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(36)))), ((int)(((byte)(86)))));
-            this.logBackgroundBlue.Location = new System.Drawing.Point(216, 247);
+            this.logBackgroundBlue.Location = new System.Drawing.Point(207, 239);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
-            this.logBackgroundBlue.TabIndex = 30;
+            this.logBackgroundBlue.TabIndex = 33;
             this.logBackgroundBlue.TabStop = false;
             this.logBackgroundBlue.UseVisualStyleBackColor = false;
             this.logBackgroundBlue.Click += new System.EventHandler(this.logBackgroundBlue_Click);
@@ -312,10 +256,10 @@
             // 
             this.logBackgroundBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logBackgroundBlack.BackColor = System.Drawing.Color.Black;
-            this.logBackgroundBlack.Location = new System.Drawing.Point(190, 247);
+            this.logBackgroundBlack.Location = new System.Drawing.Point(181, 239);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
-            this.logBackgroundBlack.TabIndex = 29;
+            this.logBackgroundBlack.TabIndex = 32;
             this.logBackgroundBlack.TabStop = false;
             this.logBackgroundBlack.UseVisualStyleBackColor = false;
             this.logBackgroundBlack.Click += new System.EventHandler(this.logBackgroundBlack_Click);
@@ -323,10 +267,10 @@
             // logTextCustom
             // 
             this.logTextCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logTextCustom.Location = new System.Drawing.Point(242, 273);
+            this.logTextCustom.Location = new System.Drawing.Point(233, 265);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
-            this.logTextCustom.TabIndex = 34;
+            this.logTextCustom.TabIndex = 37;
             this.logTextCustom.TabStop = false;
             this.logTextCustom.Text = "Custom";
             this.logTextCustom.UseVisualStyleBackColor = true;
@@ -336,10 +280,10 @@
             // 
             this.logTextBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logTextBlack.BackColor = System.Drawing.Color.Black;
-            this.logTextBlack.Location = new System.Drawing.Point(216, 273);
+            this.logTextBlack.Location = new System.Drawing.Point(207, 265);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
-            this.logTextBlack.TabIndex = 33;
+            this.logTextBlack.TabIndex = 36;
             this.logTextBlack.TabStop = false;
             this.logTextBlack.UseVisualStyleBackColor = false;
             this.logTextBlack.Click += new System.EventHandler(this.logTextBlack_Click);
@@ -348,10 +292,10 @@
             // 
             this.logTextWhite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logTextWhite.BackColor = System.Drawing.Color.White;
-            this.logTextWhite.Location = new System.Drawing.Point(190, 273);
+            this.logTextWhite.Location = new System.Drawing.Point(181, 265);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
-            this.logTextWhite.TabIndex = 32;
+            this.logTextWhite.TabIndex = 35;
             this.logTextWhite.TabStop = false;
             this.logTextWhite.UseVisualStyleBackColor = false;
             this.logTextWhite.Click += new System.EventHandler(this.logTextWhite_Click);
@@ -360,7 +304,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 276);
+            this.label11.Location = new System.Drawing.Point(3, 268);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 42;
@@ -370,7 +314,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 250);
+            this.label10.Location = new System.Drawing.Point(3, 242);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 38;
@@ -379,10 +323,10 @@
             // logDefault
             // 
             this.logDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logDefault.Location = new System.Drawing.Point(134, 247);
+            this.logDefault.Location = new System.Drawing.Point(125, 239);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
-            this.logDefault.TabIndex = 28;
+            this.logDefault.TabIndex = 31;
             this.logDefault.Text = "Default";
             this.logDefault.UseVisualStyleBackColor = true;
             this.logDefault.Click += new System.EventHandler(this.logDefault_Click);
@@ -391,17 +335,17 @@
             // 
             this.groupBox3.Controls.Add(this.SlimPreferSrgh);
             this.groupBox3.Controls.Add(this.SlimPreferRgh12);
-            this.groupBox3.Location = new System.Drawing.Point(420, 137);
+            this.groupBox3.Location = new System.Drawing.Point(402, 56);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(174, 45);
-            this.groupBox3.TabIndex = 38;
+            this.groupBox3.Size = new System.Drawing.Size(183, 45);
+            this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Preferred Slim Method";
             // 
             // SlimPreferSrgh
             // 
             this.SlimPreferSrgh.AutoSize = true;
-            this.SlimPreferSrgh.Location = new System.Drawing.Point(112, 18);
+            this.SlimPreferSrgh.Location = new System.Drawing.Point(121, 18);
             this.SlimPreferSrgh.Name = "SlimPreferSrgh";
             this.SlimPreferSrgh.Size = new System.Drawing.Size(59, 17);
             this.SlimPreferSrgh.TabIndex = 1;
@@ -426,17 +370,17 @@
             this.groupBox4.Controls.Add(this.txtTimingLptPort);
             this.groupBox4.Controls.Add(this.rbtnTimingLpt);
             this.groupBox4.Controls.Add(this.rbtnTimingUsb);
-            this.groupBox4.Location = new System.Drawing.Point(420, 188);
+            this.groupBox4.Location = new System.Drawing.Point(402, 108);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(174, 45);
-            this.groupBox4.TabIndex = 39;
+            this.groupBox4.Size = new System.Drawing.Size(183, 45);
+            this.groupBox4.TabIndex = 40;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Timing File Programming";
             // 
             // rbtnTimingLpt
             // 
             this.rbtnTimingLpt.AutoSize = true;
-            this.rbtnTimingLpt.Location = new System.Drawing.Point(63, 18);
+            this.rbtnTimingLpt.Location = new System.Drawing.Point(72, 18);
             this.rbtnTimingLpt.Name = "rbtnTimingLpt";
             this.rbtnTimingLpt.Size = new System.Drawing.Size(45, 17);
             this.rbtnTimingLpt.TabIndex = 1;
@@ -457,21 +401,21 @@
             this.rbtnTimingUsb.UseVisualStyleBackColor = true;
             this.rbtnTimingUsb.CheckedChanged += new System.EventHandler(this.timingRbtn_CheckedChanged);
             // 
-            // btnReset
+            // btnDefaults
             // 
-            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnReset.Location = new System.Drawing.Point(15, 313);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(76, 23);
-            this.btnReset.TabIndex = 40;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.btnDefaults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDefaults.Location = new System.Drawing.Point(309, 337);
+            this.btnDefaults.Name = "btnDefaults";
+            this.btnDefaults.Size = new System.Drawing.Size(100, 23);
+            this.btnDefaults.TabIndex = 40;
+            this.btnDefaults.Text = "Restore Defaults";
+            this.btnDefaults.UseVisualStyleBackColor = true;
+            this.btnDefaults.Click += new System.EventHandler(this.btnDefaults_Click);
             // 
             // chkNoPatchWarnings
             // 
             this.chkNoPatchWarnings.AutoSize = true;
-            this.chkNoPatchWarnings.Location = new System.Drawing.Point(15, 153);
+            this.chkNoPatchWarnings.Location = new System.Drawing.Point(6, 124);
             this.chkNoPatchWarnings.Name = "chkNoPatchWarnings";
             this.chkNoPatchWarnings.Size = new System.Drawing.Size(206, 17);
             this.chkNoPatchWarnings.TabIndex = 27;
@@ -485,10 +429,10 @@
             this.chkPlaySuccess.AutoSize = true;
             this.chkPlaySuccess.Checked = true;
             this.chkPlaySuccess.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPlaySuccess.Location = new System.Drawing.Point(15, 199);
+            this.chkPlaySuccess.Location = new System.Drawing.Point(6, 193);
             this.chkPlaySuccess.Name = "chkPlaySuccess";
             this.chkPlaySuccess.Size = new System.Drawing.Size(157, 17);
-            this.chkPlaySuccess.TabIndex = 43;
+            this.chkPlaySuccess.TabIndex = 29;
             this.chkPlaySuccess.Text = "Play success sound (chime)";
             this.chkPlaySuccess.UseVisualStyleBackColor = true;
             // 
@@ -497,10 +441,10 @@
             this.chkPlayError.AutoSize = true;
             this.chkPlayError.Checked = true;
             this.chkPlayError.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPlayError.Location = new System.Drawing.Point(15, 222);
+            this.chkPlayError.Location = new System.Drawing.Point(6, 216);
             this.chkPlayError.Name = "chkPlayError";
             this.chkPlayError.Size = new System.Drawing.Size(138, 17);
-            this.chkPlayError.TabIndex = 44;
+            this.chkPlayError.TabIndex = 30;
             this.chkPlayError.Text = "Play error sound (oh no)";
             this.chkPlayError.UseVisualStyleBackColor = true;
             // 
@@ -509,58 +453,87 @@
             this.chkAutoDelXeLL.AutoSize = true;
             this.chkAutoDelXeLL.Checked = true;
             this.chkAutoDelXeLL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoDelXeLL.Location = new System.Drawing.Point(15, 176);
+            this.chkAutoDelXeLL.Location = new System.Drawing.Point(6, 101);
             this.chkAutoDelXeLL.Name = "chkAutoDelXeLL";
             this.chkAutoDelXeLL.Size = new System.Drawing.Size(226, 17);
-            this.chkAutoDelXeLL.TabIndex = 45;
+            this.chkAutoDelXeLL.TabIndex = 28;
             this.chkAutoDelXeLL.Text = "Auto delete XeLL file after successful write";
             this.chkAutoDelXeLL.UseVisualStyleBackColor = true;
             // 
-            // chkOverrideOutput
+            // tabCSettings
             // 
-            this.chkOverrideOutput.AutoSize = true;
-            this.chkOverrideOutput.Location = new System.Drawing.Point(15, 12);
-            this.chkOverrideOutput.Name = "chkOverrideOutput";
-            this.chkOverrideOutput.Size = new System.Drawing.Size(136, 17);
-            this.chkOverrideOutput.TabIndex = 46;
-            this.chkOverrideOutput.Text = "Output Folder Override:";
-            this.chkOverrideOutput.UseVisualStyleBackColor = true;
-            this.chkOverrideOutput.CheckedChanged += new System.EventHandler(this.chkOverrideOutput_CheckedChanged);
+            this.tabCSettings.Controls.Add(this.tabGeneral);
+            this.tabCSettings.Controls.Add(this.tabBackup);
+            this.tabCSettings.Location = new System.Drawing.Point(5, 5);
+            this.tabCSettings.Name = "tabCSettings";
+            this.tabCSettings.SelectedIndex = 0;
+            this.tabCSettings.Size = new System.Drawing.Size(604, 318);
+            this.tabCSettings.TabIndex = 2;
+            // 
+            // tabGeneral
+            // 
+            this.tabGeneral.Controls.Add(this.chkRootOverride);
+            this.tabGeneral.Controls.Add(this.btnRootOverride);
+            this.tabGeneral.Controls.Add(this.chkAutoDelXeLL);
+            this.tabGeneral.Controls.Add(this.txtRootOverride);
+            this.tabGeneral.Controls.Add(this.chkPlayError);
+            this.tabGeneral.Controls.Add(this.chkPlaySuccess);
+            this.tabGeneral.Controls.Add(this.chkNoPatchWarnings);
+            this.tabGeneral.Controls.Add(this.groupBox2);
+            this.tabGeneral.Controls.Add(this.chkAutoExtract);
+            this.tabGeneral.Controls.Add(this.groupBox4);
+            this.tabGeneral.Controls.Add(this.chkAllMove);
+            this.tabGeneral.Controls.Add(this.groupBox3);
+            this.tabGeneral.Controls.Add(this.chkUnused);
+            this.tabGeneral.Controls.Add(this.logDefault);
+            this.tabGeneral.Controls.Add(this.chkUnused2);
+            this.tabGeneral.Controls.Add(this.logTextCustom);
+            this.tabGeneral.Controls.Add(this.label10);
+            this.tabGeneral.Controls.Add(this.logTextBlack);
+            this.tabGeneral.Controls.Add(this.logBackgroundBlack);
+            this.tabGeneral.Controls.Add(this.logTextWhite);
+            this.tabGeneral.Controls.Add(this.logBackgroundBlue);
+            this.tabGeneral.Controls.Add(this.label11);
+            this.tabGeneral.Controls.Add(this.logBackgroundCustom);
+            this.tabGeneral.Location = new System.Drawing.Point(4, 22);
+            this.tabGeneral.Name = "tabGeneral";
+            this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGeneral.Size = new System.Drawing.Size(596, 292);
+            this.tabGeneral.TabIndex = 0;
+            this.tabGeneral.Text = "General";
+            this.tabGeneral.UseVisualStyleBackColor = true;
+            // 
+            // tabBackup
+            // 
+            this.tabBackup.Controls.Add(this.label1);
+            this.tabBackup.Location = new System.Drawing.Point(4, 22);
+            this.tabBackup.Name = "tabBackup";
+            this.tabBackup.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBackup.Size = new System.Drawing.Size(596, 292);
+            this.tabBackup.TabIndex = 1;
+            this.tabBackup.Text = "Backup";
+            this.tabBackup.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(580, 126);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Oops, you\'ve reached a dead end\r\n\r\nPage under development";
             // 
             // Settings
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 351);
-            this.Controls.Add(this.chkOverrideOutput);
-            this.Controls.Add(this.chkAutoDelXeLL);
-            this.Controls.Add(this.chkPlayError);
-            this.Controls.Add(this.chkPlaySuccess);
-            this.Controls.Add(this.chkNoPatchWarnings);
-            this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.logDefault);
-            this.Controls.Add(this.logTextCustom);
-            this.Controls.Add(this.logTextBlack);
-            this.Controls.Add(this.logTextWhite);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.logBackgroundCustom);
-            this.Controls.Add(this.logBackgroundBlue);
-            this.Controls.Add(this.logBackgroundBlack);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.timingOnKeypressEnable);
-            this.Controls.Add(this.modderbut);
-            this.Controls.Add(this.almovebut);
-            this.Controls.Add(this.AutoExtractcheckBox);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(612, 375);
+            this.Controls.Add(this.tabCSettings);
+            this.Controls.Add(this.btnDefaults);
             this.Controls.Add(this.chkfiles);
-            this.Controls.Add(this.sonusDelay);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.txtOutputOverride);
-            this.Controls.Add(this.btnOverrideOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -570,39 +543,36 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.sonusDelay)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabCSettings.ResumeLayout(false);
+            this.tabGeneral.ResumeLayout(false);
+            this.tabGeneral.PerformLayout();
+            this.tabBackup.ResumeLayout(false);
+            this.tabBackup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtOutputOverride;
+        private System.Windows.Forms.TextBox txtRootOverride;
         private System.Windows.Forms.TextBox txtIP;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnOverrideOutput;
+        private System.Windows.Forms.Button btnRootOverride;
         private System.Windows.Forms.FolderBrowserDialog folderDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown sonusDelay;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox chkfiles;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtIPStart;
-        private System.Windows.Forms.TextBox txtIPEnd;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox AutoExtractcheckBox;
-        private System.Windows.Forms.CheckBox almovebut;
-        private System.Windows.Forms.CheckBox modderbut;
-        private System.Windows.Forms.CheckBox timingOnKeypressEnable;
+        private System.Windows.Forms.CheckBox chkAutoExtract;
+        private System.Windows.Forms.CheckBox chkAllMove;
+        private System.Windows.Forms.CheckBox chkUnused;
+        private System.Windows.Forms.CheckBox chkUnused2;
         private System.Windows.Forms.Button logBackgroundCustom;
         private System.Windows.Forms.Button logBackgroundBlue;
         private System.Windows.Forms.Button logBackgroundBlack;
@@ -615,16 +585,20 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton SlimPreferSrgh;
         private System.Windows.Forms.RadioButton SlimPreferRgh12;
-        private System.Windows.Forms.CheckBox chkIpDefault;
+        private System.Windows.Forms.CheckBox chkIPDefault;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtTimingLptPort;
         private System.Windows.Forms.RadioButton rbtnTimingLpt;
         private System.Windows.Forms.RadioButton rbtnTimingUsb;
-        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnDefaults;
         private System.Windows.Forms.CheckBox chkNoPatchWarnings;
         private System.Windows.Forms.CheckBox chkPlaySuccess;
         private System.Windows.Forms.CheckBox chkPlayError;
         private System.Windows.Forms.CheckBox chkAutoDelXeLL;
-        private System.Windows.Forms.CheckBox chkOverrideOutput;
+        private System.Windows.Forms.CheckBox chkRootOverride;
+        private System.Windows.Forms.TabControl tabCSettings;
+        private System.Windows.Forms.TabPage tabGeneral;
+        private System.Windows.Forms.TabPage tabBackup;
+        private System.Windows.Forms.Label label1;
     }
 }

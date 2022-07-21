@@ -418,7 +418,7 @@ namespace JRunner.Classes
 
         XebuildError doSomeChecks()
         {
-            if (String.IsNullOrEmpty(_cpukey)) return XebuildError.nocpukey;
+            if (string.IsNullOrEmpty(_cpukey)) return XebuildError.nocpukey;
 
             if (_ctype.ID == -1) return XebuildError.noconsole;
             if (_dash == 0) return XebuildError.nodash;

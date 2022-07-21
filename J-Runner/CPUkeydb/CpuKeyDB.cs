@@ -94,7 +94,7 @@ namespace JRunner
 
         public static bool addkey_s(regentries entry, DataSet1 hi)
         {
-            if (String.IsNullOrEmpty(entry.kvcrc)) return false;
+            if (string.IsNullOrEmpty(entry.kvcrc)) return false;
 
             DataTable cputable = hi.DataTable1;
             RegistryKey cpukeydb = Registry.CurrentUser.CreateSubKey("CPUKey_DB");
@@ -109,7 +109,7 @@ namespace JRunner
                     }
                 }
             }
-            if (!String.IsNullOrEmpty(variables.custname)) entry.extra = variables.custname;
+            if (!string.IsNullOrEmpty(variables.custname)) entry.extra = variables.custname;
 
             int index = Convert.ToInt32(cpukeydb.GetValue("Index")) + 1;
             cpukeydb.SetValue("Index", index);
@@ -417,7 +417,7 @@ namespace JRunner
             {
                 long crc;
                 if (!long.TryParse(entry.kvcrc, System.Globalization.NumberStyles.HexNumber, System.Threading.Thread.CurrentThread.CurrentCulture, out crc)) continue;
-                if (!String.IsNullOrWhiteSpace(getkey_s(crc, dataSet1))) continue;
+                if (!string.IsNullOrWhiteSpace(getkey_s(crc, dataSet1))) continue;
                 if (getkey_s(entry.cpukey, dataSet1)) continue;
 
 
@@ -623,10 +623,10 @@ namespace JRunner
                                         bool found = false;
                                         for (int c = 0; c != index; c++)
                                         {
-                                            if (!String.IsNullOrWhiteSpace(nan.ki.serial) && cputable.Rows[c]["Serial"].ToString().ToUpper().Contains(nan.ki.serial.ToUpper()))
+                                            if (!string.IsNullOrWhiteSpace(nan.ki.serial) && cputable.Rows[c]["Serial"].ToString().ToUpper().Contains(nan.ki.serial.ToUpper()))
                                             {
-                                                if (String.IsNullOrWhiteSpace(cputable.Rows[c]["Comment"].ToString()) || String.IsNullOrWhiteSpace(cputable.Rows[c]["Region"].ToString())
-                                                    || String.IsNullOrWhiteSpace(cputable.Rows[c]["DVDKey"].ToString()) || String.IsNullOrWhiteSpace(cputable.Rows[c]["OSIG"].ToString()))
+                                                if (string.IsNullOrWhiteSpace(cputable.Rows[c]["Comment"].ToString()) || string.IsNullOrWhiteSpace(cputable.Rows[c]["Region"].ToString())
+                                                    || string.IsNullOrWhiteSpace(cputable.Rows[c]["DVDKey"].ToString()) || string.IsNullOrWhiteSpace(cputable.Rows[c]["OSIG"].ToString()))
                                                 {
                                                     try
                                                     {
@@ -793,7 +793,7 @@ namespace JRunner
         {
             bool kv = false;
             long crc = 0;
-            if (String.IsNullOrWhiteSpace(txtSearch.Text))
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 if (MessageBox.Show("No cpukey in searchbox. Use a dump?", "Search", MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes) return;
                 kv = true;
