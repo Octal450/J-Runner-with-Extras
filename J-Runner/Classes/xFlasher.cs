@@ -341,9 +341,14 @@ namespace JRunner
                             {
                                 size = 64;
                             }
-                            else if (flashconf == "008A3020" || flashconf == "00AA3020" || flashconf == "008C3020" || flashconf == "00AC3020")
+                            else if (flashconf == "008A3020" || flashconf == "008C3020")
                             {
-                                MainForm.mainForm.BeginInvoke((Action)(() => MainForm.mainForm.xFlasherNandSelShow(1, true))); // Ask BB
+                                MainForm.mainForm.BeginInvoke((Action)(() => MainForm.mainForm.xFlasherNandSelShow(1, 2))); // Ask BB
+                                return;
+                            }
+                            else if (flashconf == "00AA3020" || flashconf == "00AC3020")
+                            {
+                                MainForm.mainForm.BeginInvoke((Action)(() => MainForm.mainForm.xFlasherNandSelShow(1, 3))); // Ask BB
                                 return;
                             }
                             else

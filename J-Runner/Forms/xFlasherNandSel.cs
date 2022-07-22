@@ -38,10 +38,16 @@ namespace JRunner.Forms
             this.Close();
         }
 
-        public void setGroups(bool bb)
+        public void setGroups(int bb)
         {
-            if (bb) SmallBlockGroup.Enabled = false;
+            if (bb > 0) SmallBlockGroup.Enabled = false;
             else SmallBlockGroup.Enabled = true;
+
+            if (bb == 2) btn512.Enabled = false;
+            else btn512.Enabled = true;
+
+            if (bb == 3) btn256.Enabled = false;
+            else btn256.Enabled = true;
         }
     }
 }

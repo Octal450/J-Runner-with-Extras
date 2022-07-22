@@ -203,7 +203,6 @@
             this.chkAllMove.TabIndex = 24;
             this.chkAllMove.Text = "Only move to XeBuild folder upon first CPU Key entry";
             this.chkAllMove.UseVisualStyleBackColor = true;
-            this.chkAllMove.CheckedChanged += new System.EventHandler(this.chkAllMove_CheckedChanged);
             // 
             // chkUnused
             // 
@@ -226,7 +225,6 @@
             this.chkUnused2.TabIndex = 26;
             this.chkUnused2.Text = "Unused";
             this.chkUnused2.UseVisualStyleBackColor = true;
-            this.chkUnused2.CheckedChanged += new System.EventHandler(this.timingOnKeypressEnable_CheckedChanged);
             // 
             // logBackgroundCustom
             // 
@@ -351,7 +349,6 @@
             this.SlimPreferSrgh.TabIndex = 1;
             this.SlimPreferSrgh.Text = "S-RGH";
             this.SlimPreferSrgh.UseVisualStyleBackColor = true;
-            this.SlimPreferSrgh.CheckedChanged += new System.EventHandler(this.SlimPreferSrgh_CheckedChanged);
             // 
             // SlimPreferRgh12
             // 
@@ -421,7 +418,6 @@
             this.chkNoPatchWarnings.TabIndex = 27;
             this.chkNoPatchWarnings.Text = "Do not show patch warning messages";
             this.chkNoPatchWarnings.UseVisualStyleBackColor = true;
-            this.chkNoPatchWarnings.CheckedChanged += new System.EventHandler(this.chkNoPatchWarnings_CheckedChanged);
             this.chkNoPatchWarnings.Click += new System.EventHandler(this.chkNoPatchWarnings_Click);
             // 
             // chkPlaySuccess

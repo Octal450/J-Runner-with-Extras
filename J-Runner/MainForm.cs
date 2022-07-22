@@ -287,7 +287,8 @@ namespace JRunner
 
         private void printstartuptext(bool firsttime = false)
         {
-            Console.WriteLine("=========================================================================");
+            if (Program.getScalingFactor() >= 1.375) Console.WriteLine("================================================================="); // Don't overflow, weird scaling
+            else Console.WriteLine("=========================================================================");
             Console.WriteLine("J-Runner with Extras");
             Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("MM/dd/yyyy H:mm:ss"));
             if (variables.version.Contains("Alpha") || variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
@@ -473,8 +474,8 @@ namespace JRunner
             if (variables.debugMode) Console.WriteLine("demon {0}", demon);
             if (demon)
             {
-                if (variables.debugMode) Console.WriteLine(variables.demon_xsvf[xsvfInfo.heResult() - 1]);
-                file = (variables.demon_xsvf[xsvfInfo.heResult() - 1]);
+                if (variables.debugMode) Console.WriteLine(variables.xsvf[xsvfInfo.heResult() - 1]);
+                file = (variables.xsvf[xsvfInfo.heResult() - 1]);
             }
             else
             {
@@ -1112,33 +1113,40 @@ namespace JRunner
         }
 
         /// <summary>
-        /// 1 - read, 2 write, 3 writeecc
+        /// 1 read, 2 write, 3 write xell
         /// </summary>
         /// <param name="function"></param>
         void getconsoletype(int function, int writelength = 0)
         {
-            if (device != DEVICE.NAND_X && device != DEVICE.JR_PROGRAMMER && !DemoN.DemonDetected)
+            if (variables.ctyp.ID != 11 && device != DEVICE.NAND_X && device != DEVICE.JR_PROGRAMMER && !DemoN.DemonDetected)
             {
                 variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
                 if (variables.ctyp.ID == -1) return;
             }
 
             NandX.Errors error = 0;
+
             if (variables.ctyp.ID != 11)
             {
-                ConsoleSelect.Selected sel = ConsoleSelect.Selected.All;
-                bool twombread = false;
-                bool sfulldump = false;
-                if (function == 1 && variables.ctyp.ID != 11)
+                variables.read1p28mb = false;
+                variables.fulldump = false;
+                int bb = 0;
+
+                if (function == 1)
                 {
-                    error = getmbtype(true);
+                    error = getmbtype(true); // Sets variables.ctyp, important or else big block nands are not handled correctly
                     if (error == NandX.Errors.NoFlashConfig) return;
-                    if (variables.ctyp.ID == 6 || variables.ctyp.ID == 9 || variables.ctyp.ID == 12) sel = ConsoleSelect.Selected.BigBlock;
-                    if (xPanel.getRbtnJtagChecked() || xPanel.getRbtnGlitchChecked() || xPanel.getRbtnGlitch2Checked()) twombread = true;
-                    sfulldump = true;
+
+                    if (variables.flashconfig == "008A3020" || variables.flashconfig == "008C3020") bb = 2;
+                    else if (variables.flashconfig == "008A3020" || variables.flashconfig == "008C3020") bb = 3;
                 }
 
-                // TODO: Call Nand Sel for BB?
+                if (bb > 0 && !DemoN.DemonDetected)
+                {
+                    NandSel selform = new NandSel();
+                    selform.setGroups(bb);
+                    selform.ShowDialog();
+                }
             }
 
             if (function == 1)
@@ -1197,7 +1205,7 @@ namespace JRunner
         void readnand(NandX.Errors error)
         {
             //int error = 0;
-            int twomb = 0;
+            int read1p28mb = 0;
             if (usingVNand) error = NandX.Errors.None;
             if (!DemoN.DemonDetected)
             {
@@ -1221,8 +1229,7 @@ namespace JRunner
                 }
                 #endregion
 
-                //if (getmbtype() != 0) return;
-                if (variables.twombread) twomb = 0x7C;
+                if (variables.read1p28mb) read1p28mb = 0x50;
             }
             int j = 1;
             for (j = 1; j <= nTools.getNumericIterations();)
@@ -1287,9 +1294,9 @@ namespace JRunner
                         variables.reading = true;
                         if (!usingVNand)
                         {
-                            if (nandx.read(variables.filename, variables.nandsizex, false, 0x0, twomb) != NandX.Errors.None) return;
+                            if (nandx.read(variables.filename, variables.nandsizex, false, 0x0, read1p28mb) != NandX.Errors.None) return;
                         }
-                        else vnand.read_v2(variables.filename, 0, twomb);
+                        else vnand.read_v2(variables.filename, 0, read1p28mb);
                         variables.reading = false;
                     }
                     j++;
@@ -1855,7 +1862,7 @@ namespace JRunner
                 variables.xefolder = "";
                 variables.cpukey = "";
                 variables.gotvalues = false;
-                variables.twombread = false;
+                variables.read1p28mb = false;
                 variables.fulldump = false;
                 variables.flashconfig = "";
                 variables.changeldv = 0;
@@ -1884,7 +1891,7 @@ namespace JRunner
 
         void erasevariables()
         {
-            variables.fulldump = false; variables.twombread = false;
+            variables.fulldump = false; variables.read1p28mb = false;
             variables.ctyp = variables.ctypes[0]; variables.gotvalues = false;
             variables.cpukey = "";
             //variables.outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
@@ -2296,24 +2303,22 @@ namespace JRunner
                     case 2:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_falcon + mhz + ".ecc");
                         break;
-                    case 3:
                     case 4:
                     case 5:
+                    case 6:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_jasper + mhz + ".ecc");
                         break;
-                    case 6:
-                    case 7:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_jasperBB + mhz + ".ecc");
-                        break;
-                    case 8:
                     case 9:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_trinity + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona + ".ecc");
                         break;
                     case 10:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona4GB + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona4gb + ".ecc");
+                        break;
+                    case 12:
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_trinity + ".ecc");
                         break;
                     default:
                         return "";
@@ -2343,20 +2348,22 @@ namespace JRunner
                     case 4:
                     case 5:
                     case 6:
-                    case 7:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_jasper + cr4 + smcp + ".ecc");
                         break;
                     case 8:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_xenon + ".ecc"); // No CR4 or SMC+
                         break;
                     case 9:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona + wb + cr4 + smcp + ".ecc");
                         break;
                     case 10:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona + wb + cr4 + smcp + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona4GB + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona4gb + wb + cr4 + smcp + ".ecc");
+                        break;
+                    case 12:
+                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_trinity + cr4 + smcp + ".ecc");
                         break;
                     default:
                         return "";
@@ -4605,14 +4612,13 @@ namespace JRunner
             }
         }
 
-        public void xFlasherNandSelShow(int seltype, bool bigblock = false)
+        public void xFlasherNandSelShow(int seltype, int bigblock = 0)
         {
             xflasher.selType = seltype;
             xFlasherNandSel xfselform = new xFlasherNandSel();
-            xfselform.TopMost = true;
             xfselform.SizeClick += xFlasherSizeClick;
             xfselform.setGroups(bigblock);
-            xfselform.Show();
+            xfselform.ShowDialog();
         }
 
         void xFlasherSizeClick(int size)

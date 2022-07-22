@@ -20,12 +20,11 @@ namespace JRunner
                 if (MainForm.mainForm.xPanel.getRgh3Mhz() == 10) mhz = "_10";
             }
 
-            if (board == "Corona 16MB") ecc = variables.RGH3_corona;
-            else if (board == "Corona 4GB") ecc = variables.RGH3_corona4GB;
-            else if (board == "Trinity 16MB") ecc = variables.RGH3_trinity;
-            else if (board == "Jasper 16MB" || board == "Jasper SB") ecc = variables.RGH3_jasper + mhz;
-            else if (board == "Jasper BB") ecc = variables.RGH3_jasperBB + mhz;
-            else if (board == "Falcon") ecc = variables.RGH3_falcon + mhz;
+            if (board == "Corona 4GB") ecc = variables.RGH3_corona4gb;
+            else if (board.Contains("Corona")) ecc = variables.RGH3_corona;
+            else if (board.Contains("Trinity")) ecc = variables.RGH3_trinity;
+            else if (board.Contains("Jasper")) ecc = variables.RGH3_jasper + mhz;
+            else if (board.Contains("Falcon")) ecc = variables.RGH3_falcon + mhz;
             else
             {
                 Console.WriteLine("RGH3 Failed: Unsupported Console Type");

@@ -138,7 +138,7 @@ namespace JRunner.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NandSel";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select Nand Size";
             this.SmallBlockGroup.ResumeLayout(false);
             this.BigBlockGroup.ResumeLayout(false);

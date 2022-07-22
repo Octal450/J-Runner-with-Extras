@@ -18,17 +18,6 @@ namespace JRunner.Forms
             btnOK.DialogResult = DialogResult.OK;
         }
 
-        private const int CP_NOCLOSE_BUTTON = 0x200;
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams myCp = base.CreateParams;
-                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
-                return myCp;
-            }
-        }
-
         public void setTab(string tab)
         {
             if (tab == "backup")
@@ -80,12 +69,15 @@ namespace JRunner.Forms
                 MainForm.mainForm.setIP();
                 IP.initaddresses();
 
+                variables.noPatchWarnings = chkNoPatchWarnings.Checked;
+                variables.slimprefersrgh = SlimPreferSrgh.Checked;
                 variables.playSuccess = chkPlaySuccess.Checked;
                 variables.playError = chkPlayError.Checked;
                 variables.autoExtract = chkAutoExtract.Checked;
                 variables.allmove = !chkAllMove.Checked;
                 variables.autoDelXeLL = chkAutoDelXeLL.Checked;
                 variables.LPTtiming = rbtnTimingLpt.Checked;
+
                 if (!string.IsNullOrWhiteSpace(txtTimingLptPort.Text)) variables.LPTport = txtTimingLptPort.Text;
                 else variables.LPTport = "378";
 
@@ -155,16 +147,6 @@ namespace JRunner.Forms
             }
         }
 
-        private void chkAllMove_CheckedChanged(object sender, EventArgs e)
-        {
-            variables.allmove = !chkAllMove.Checked;
-        }
-
-        private void timingOnKeypressEnable_CheckedChanged(object sender, EventArgs e)
-        {
-            variables.timingonkeypress = chkUnused2.Checked;
-        }
-
         private void logDefault_Click(object sender, EventArgs e)
         {
             variables.logbackground = Color.Black;
@@ -218,11 +200,6 @@ namespace JRunner.Forms
             }
         }
 
-        private void SlimPreferSrgh_CheckedChanged(object sender, EventArgs e)
-        {
-            variables.slimprefersrgh = SlimPreferSrgh.Checked;
-        }
-
         private void chkIPDefault_CheckedChanged(object sender, EventArgs e)
         {
             txtIP.Enabled = chkIPDefault.Checked;
@@ -246,11 +223,6 @@ namespace JRunner.Forms
                 MessageBox.Show("Port is not valid", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTimingLptPort.Text = variables.LPTport;
             }
-        }
-
-        private void chkNoPatchWarnings_CheckedChanged(object sender, EventArgs e)
-        {
-            variables.noPatchWarnings = chkNoPatchWarnings.Checked;
         }
 
         private void chkNoPatchWarnings_Click(object sender, EventArgs e)

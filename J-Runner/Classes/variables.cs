@@ -236,10 +236,9 @@ namespace JRunner
             // Corona Winbond RGH1.2: 93-109
             "rgh12_wb_60_v2", "rgh12_wb_65_v2","rgh12_wb_70_v2","rgh12_wb_75_v2", "rgh12_wb_80_v2", "rgh12_wb_85_v2","rgh12_wb_90_v2","rgh12_wb_95_v2", "rgh12_wb_100_v2", "rgh12_wb_105_v2","rgh12_wb_110_v2","rgh12_wb_115_v2", "rgh12_wb_120_v2", "rgh12_wb_125_v2","rgh12_wb_130_v2","rgh12_wb_135_v2"
         };
-        public static string[] demon_xsvf = new string[] { };
         public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
         public static string[] flashconfigs = new string[] { "00023010", "00043000", "01198010", "008A3020", "00AA3020", "008C3020", "00AC3020", "C0462002" };
-        public static bool fulldump = false, twombread = false;
+        public static bool fulldump = false, read1p28mb = false;
         public static int smcmbtype = 0x0;
         public static string flashconfig = "";
 
@@ -248,15 +247,14 @@ namespace JRunner
         public static string Glitch2_zephyr = "ZEPHYR";
         public static string Glitch2_jasper = "JASPER";
         public static string Glitch2_xenon = "XENON_V2";
-        public static string Glitch2_corona = "CORONA_16MB";
-        public static string Glitch2_corona4GB = "CORONA_4GB";
+        public static string Glitch2_corona = "CORONA";
+        public static string Glitch2_corona4gb = "CORONA_4GB";
 
         public static string RGH3_trinity = "TRINITY_RGH3";
         public static string RGH3_falcon = "FALCON_RGH3";
         public static string RGH3_jasper = "JASPER_RGH3";
-        public static string RGH3_jasperBB = "JASPER_BB_RGH3";
-        public static string RGH3_corona = "CORONA_16MB_RGH3";
-        public static string RGH3_corona4GB = "CORONA_4GB_RGH3";
+        public static string RGH3_corona = "CORONA_RGH3";
+        public static string RGH3_corona4gb = "CORONA_4GB_RGH3";
 
         /// <summary>
         /// xebuild
