@@ -1117,28 +1117,35 @@ namespace JRunner
         /// <param name="function"></param>
         void getconsoletype(int function, int writelength = 0)
         {
-            NandX.Errors error = 0;
-            ConsoleSelect.Selected sel = ConsoleSelect.Selected.All;
-            bool twombread = false;
-            bool sfulldump = false;
-            if (function == 1 && variables.ctyp.ID != 11)
+            if (device != DEVICE.NAND_X && device != DEVICE.JR_PROGRAMMER && !DemoN.DemonDetected)
             {
-                error = getmbtype(true);
-                if (error == NandX.Errors.NoFlashConfig) return;
-                if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7) sel = ConsoleSelect.Selected.BigBlock;
-                if (xPanel.getRbtnJtagChecked() || xPanel.getRbtnGlitchChecked() || xPanel.getRbtnGlitch2Checked()) twombread = true;
-                sfulldump = true;
+                variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
+                if (variables.ctyp.ID == -1) return;
             }
 
-            //if (variables.ctyp.Nsize != Nandsize.S16 && variables.ctyp.ID != 11 && !DemoN.DemonDetected) variables.ctyp = callConsoleTypes(sel, twombread, sfulldump);
+            NandX.Errors error = 0;
+            if (variables.ctyp.ID != 11)
+            {
+                ConsoleSelect.Selected sel = ConsoleSelect.Selected.All;
+                bool twombread = false;
+                bool sfulldump = false;
+                if (function == 1 && variables.ctyp.ID != 11)
+                {
+                    error = getmbtype(true);
+                    if (error == NandX.Errors.NoFlashConfig) return;
+                    if (variables.ctyp.ID == 6 || variables.ctyp.ID == 9 || variables.ctyp.ID == 12) sel = ConsoleSelect.Selected.BigBlock;
+                    if (xPanel.getRbtnJtagChecked() || xPanel.getRbtnGlitchChecked() || xPanel.getRbtnGlitch2Checked()) twombread = true;
+                    sfulldump = true;
+                }
 
-            if (variables.ctyp.ID == -1 && !DemoN.DemonDetected) return;
+                // TODO: Call Nand Sel for BB?
+            }
 
             if (function == 1)
             {
                 if (variables.ctyp.ID == 11)
                 {
-                    callDrives(variables.outfolder + "\\nanddump1.bin", Panels.LDrivesInfo.Function.Read);
+                    callDrives(Panels.LDrivesInfo.Function.Read);
                     return;
                 }
                 else
@@ -1155,7 +1162,7 @@ namespace JRunner
             {
                 if (variables.ctyp.ID == 11)
                 {
-                    callDrives(variables.filename1, Panels.LDrivesInfo.Function.Write);
+                    callDrives(Panels.LDrivesInfo.Function.Write);
                     return;
                 }
                 else
@@ -1172,7 +1179,7 @@ namespace JRunner
             {
                 if (variables.ctyp.ID == 11)
                 {
-                    callDrives(variables.filename1, Panels.LDrivesInfo.Function.Write);
+                    callDrives(Panels.LDrivesInfo.Function.Write);
                     return;
                 }
                 else
@@ -1199,7 +1206,7 @@ namespace JRunner
                 if (variables.debugMode) Console.WriteLine("Read Nand");
 
                 #region nandsize
-                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 7) && !variables.fulldump)
+                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 9 || variables.ctyp.ID == 12) && !variables.fulldump)
                 {
                     variables.nandsizex = Nandsize.S64;
                 }
@@ -1339,7 +1346,7 @@ namespace JRunner
 
                 double len = new FileInfo(variables.filename1).Length;
                 if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
-                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 7) && (len == 69206016))
+                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 9 || variables.ctyp.ID == 12) && (len == 69206016))
                 {
                     variables.nandsizex = Nandsize.S64;
                 }
@@ -1413,7 +1420,7 @@ namespace JRunner
                 if (variables.ctyp.ID == -1) return;
                 double len = new FileInfo(variables.filename1).Length;
                 if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
-                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 7) && (len == 69206016))
+                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 9 || variables.ctyp.ID == 12) && (len == 69206016))
                 {
                     variables.nandsizex = Nandsize.S64;
                 }
@@ -2174,7 +2181,7 @@ namespace JRunner
                 if (xPanel.getAudClampChecked()) xellfile = "jasper_aud_clamp.bin";
                 else xellfile = "jasper.bin";
             }
-            else if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7)
+            else if (variables.ctyp.ID == 6)
             {
                 if (xPanel.getAudClampChecked()) xellfile = "jasper_bb_aud_clamp.bin";
                 else xellfile = "jasper_bb.bin";
@@ -2191,7 +2198,7 @@ namespace JRunner
             if (xPanel.getRJtagChecked())
             {
                 int layout = 0;
-                if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7) layout = 2;
+                if (variables.ctyp.ID == 6) layout = 2;
                 else if (variables.ctyp.ID == 4 || variables.ctyp.ID == 5) layout = 1;
                 byte[] SMC;
                 byte[] smc_len = new byte[4], smc_start = new byte[4];
@@ -2688,7 +2695,7 @@ namespace JRunner
             return consoleSelect.heResult();
         }
 
-        void callDrives(string filename = "", Panels.LDrivesInfo.Function f = Panels.LDrivesInfo.Function.ReadWrite)
+        void callDrives(Panels.LDrivesInfo.Function f = Panels.LDrivesInfo.Function.ReadWrite)
         {
             ldInfo.setup(f);
             pnlInfo.Controls.Clear();
