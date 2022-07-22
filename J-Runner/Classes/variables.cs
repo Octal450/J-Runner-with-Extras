@@ -151,7 +151,6 @@ namespace JRunner
         public static bool rghable = true;
         public static int changeldv = 0, highldv;
         public static List<string> dashes_all = new List<string>();
-        public static int xfSelType = 0;
 
         /// <summary>
         /// Filenames
@@ -161,20 +160,20 @@ namespace JRunner
         /// <summary>
         /// console types
         /// </summary>
-        public static consoles[] ctypes = {
+        public static consoles[] ctypes = { // Check getConsole() and identifyConsole() in Nand.cs if modifying!
             new consoles(-1, "", "", "", -1, Nandsize.S0, -1),
-            new consoles(1, "trinity", "trinity", "Trinity", 16, Nandsize.S16, 1),
+            new consoles(1, "trinity", "trinity", "Trinity 16MB", 16, Nandsize.S16, 1),
             new consoles(2, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0),
             new consoles(3, "zephyr", "zephyr", "Zephyr", 16, Nandsize.S16, 0),
             new consoles(4, "jasper", "jasper", "Jasper 16MB", 16, Nandsize.S16, 1),
-            new consoles(5, "jaspersb", "jasper", "Jasper SB", 16, Nandsize.S16, 0),
-            new consoles(6, "jasper256", "jasper", "Jasper 256MB", 256, Nandsize.S256, 2),
-            new consoles(7, "jasper512", "jasper", "Jasper 512MB", 512, Nandsize.S512, 2),
+            new consoles(5, "jaspersb", "jasper", "Jasper 16MB (XSB)", 16, Nandsize.S16, 0),
+            new consoles(6, "jasperbb", "jasper", "Jasper BB", 64, Nandsize.S64, 2),
+            new consoles(7, "", "", "", -1, Nandsize.S0, -1),
             new consoles(8, "xenon", "xenon", "Xenon", 16, Nandsize.S16, 0),
-            new consoles(9, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0), // Previously Opus but that is stupid because Opus is Falcon
+            new consoles(9, "coronabb", "corona", "Corona BB", 64, Nandsize.S64, 2),
             new consoles(10, "corona", "corona", "Corona 16MB", 16, Nandsize.S16, 0),
             new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
-            new consoles(12, "trinitybb", "trinity", "Trinity BB", 16, Nandsize.S64, 2),
+            new consoles(12, "trinitybb", "trinity", "Trinity BB", 64, Nandsize.S64, 2),
         };
 
         public static string[] sortedConsoleNames = { "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
@@ -238,8 +237,8 @@ namespace JRunner
             "rgh12_wb_60_v2", "rgh12_wb_65_v2","rgh12_wb_70_v2","rgh12_wb_75_v2", "rgh12_wb_80_v2", "rgh12_wb_85_v2","rgh12_wb_90_v2","rgh12_wb_95_v2", "rgh12_wb_100_v2", "rgh12_wb_105_v2","rgh12_wb_110_v2","rgh12_wb_115_v2", "rgh12_wb_120_v2", "rgh12_wb_125_v2","rgh12_wb_130_v2","rgh12_wb_135_v2"
         };
         public static string[] demon_xsvf = new string[] { };
-        public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona", "Winchester" };
-        public static string[] flashconfigs = new string[] { "00023010", "01198010", "008A3020", "00AA3020", "00043000", "C0462002" };
+        public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
+        public static string[] flashconfigs = new string[] { "00023010", "00043000", "01198010", "008A3020", "00AA3020", "008C3020", "00AC3020", "C0462002" };
         public static bool fulldump = false, twombread = false;
         public static int smcmbtype = 0x0;
         public static string flashconfig = "";

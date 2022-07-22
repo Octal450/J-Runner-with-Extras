@@ -1,5 +1,5 @@
 ﻿
-namespace JRunner.Forms
+namespace JRunner
 {
     partial class ConsoleSelect
     {
@@ -32,18 +32,18 @@ namespace JRunner.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsoleSelect));
             this.btnXenon = new System.Windows.Forms.Button();
             this.phatBox = new System.Windows.Forms.GroupBox();
-            this.btnJasper512 = new System.Windows.Forms.Button();
-            this.btnJasper256 = new System.Windows.Forms.Button();
+            this.btnJasperBb = new System.Windows.Forms.Button();
             this.btnJasper = new System.Windows.Forms.Button();
             this.btnFalcon = new System.Windows.Forms.Button();
             this.btnZephyr = new System.Windows.Forms.Button();
             this.slimBox = new System.Windows.Forms.GroupBox();
-            this.btnCorona4G = new System.Windows.Forms.Button();
+            this.btnCorona4g = new System.Windows.Forms.Button();
             this.btnCorona = new System.Windows.Forms.Button();
             this.btnTrinity = new System.Windows.Forms.Button();
             this.AdvancedBox = new System.Windows.Forms.GroupBox();
+            this.btnCoronaBb = new System.Windows.Forms.Button();
             this.btnTrinityBb = new System.Windows.Forms.Button();
-            this.btnJasperSb = new System.Windows.Forms.Button();
+            this.btnJasperXsb = new System.Windows.Forms.Button();
             this.advancedChk = new System.Windows.Forms.CheckBox();
             this.phatBox.SuspendLayout();
             this.slimBox.SuspendLayout();
@@ -62,37 +62,26 @@ namespace JRunner.Forms
             // 
             // phatBox
             // 
-            this.phatBox.Controls.Add(this.btnJasper512);
-            this.phatBox.Controls.Add(this.btnJasper256);
+            this.phatBox.Controls.Add(this.btnJasperBb);
             this.phatBox.Controls.Add(this.btnJasper);
             this.phatBox.Controls.Add(this.btnFalcon);
             this.phatBox.Controls.Add(this.btnZephyr);
             this.phatBox.Controls.Add(this.btnXenon);
             this.phatBox.Location = new System.Drawing.Point(13, 7);
             this.phatBox.Name = "phatBox";
-            this.phatBox.Size = new System.Drawing.Size(222, 177);
+            this.phatBox.Size = new System.Drawing.Size(222, 150);
             this.phatBox.TabIndex = 1;
             this.phatBox.TabStop = false;
             // 
-            // btnJasper512
+            // btnJasperBb
             // 
-            this.btnJasper512.Location = new System.Drawing.Point(6, 147);
-            this.btnJasper512.Name = "btnJasper512";
-            this.btnJasper512.Size = new System.Drawing.Size(210, 23);
-            this.btnJasper512.TabIndex = 5;
-            this.btnJasper512.Text = "Jasper 512MB";
-            this.btnJasper512.UseVisualStyleBackColor = true;
-            this.btnJasper512.Click += new System.EventHandler(this.btnJasper512_Click);
-            // 
-            // btnJasper256
-            // 
-            this.btnJasper256.Location = new System.Drawing.Point(6, 120);
-            this.btnJasper256.Name = "btnJasper256";
-            this.btnJasper256.Size = new System.Drawing.Size(210, 23);
-            this.btnJasper256.TabIndex = 4;
-            this.btnJasper256.Text = "Jasper 256MB";
-            this.btnJasper256.UseVisualStyleBackColor = true;
-            this.btnJasper256.Click += new System.EventHandler(this.btnJasper256_Click);
+            this.btnJasperBb.Location = new System.Drawing.Point(6, 120);
+            this.btnJasperBb.Name = "btnJasperBb";
+            this.btnJasperBb.Size = new System.Drawing.Size(210, 23);
+            this.btnJasperBb.TabIndex = 4;
+            this.btnJasperBb.Text = "Jasper BB";
+            this.btnJasperBb.UseVisualStyleBackColor = true;
+            this.btnJasperBb.Click += new System.EventHandler(this.btnJasperBb_Click);
             // 
             // btnJasper
             // 
@@ -126,24 +115,24 @@ namespace JRunner.Forms
             // 
             // slimBox
             // 
-            this.slimBox.Controls.Add(this.btnCorona4G);
+            this.slimBox.Controls.Add(this.btnCorona4g);
             this.slimBox.Controls.Add(this.btnCorona);
             this.slimBox.Controls.Add(this.btnTrinity);
-            this.slimBox.Location = new System.Drawing.Point(13, 184);
+            this.slimBox.Location = new System.Drawing.Point(13, 157);
             this.slimBox.Name = "slimBox";
             this.slimBox.Size = new System.Drawing.Size(222, 96);
             this.slimBox.TabIndex = 6;
             this.slimBox.TabStop = false;
             // 
-            // btnCorona4G
+            // btnCorona4g
             // 
-            this.btnCorona4G.Location = new System.Drawing.Point(6, 66);
-            this.btnCorona4G.Name = "btnCorona4G";
-            this.btnCorona4G.Size = new System.Drawing.Size(210, 23);
-            this.btnCorona4G.TabIndex = 2;
-            this.btnCorona4G.Text = "Corona 4GB";
-            this.btnCorona4G.UseVisualStyleBackColor = true;
-            this.btnCorona4G.Click += new System.EventHandler(this.btnCorona4G_Click);
+            this.btnCorona4g.Location = new System.Drawing.Point(6, 66);
+            this.btnCorona4g.Name = "btnCorona4g";
+            this.btnCorona4g.Size = new System.Drawing.Size(210, 23);
+            this.btnCorona4g.TabIndex = 2;
+            this.btnCorona4g.Text = "Corona 4GB";
+            this.btnCorona4g.UseVisualStyleBackColor = true;
+            this.btnCorona4g.Click += new System.EventHandler(this.btnCorona4G_Click);
             // 
             // btnCorona
             // 
@@ -161,20 +150,31 @@ namespace JRunner.Forms
             this.btnTrinity.Name = "btnTrinity";
             this.btnTrinity.Size = new System.Drawing.Size(210, 23);
             this.btnTrinity.TabIndex = 0;
-            this.btnTrinity.Text = "Trinity";
+            this.btnTrinity.Text = "Trinity 16MB";
             this.btnTrinity.UseVisualStyleBackColor = true;
             this.btnTrinity.Click += new System.EventHandler(this.btnTrinity_Click);
             // 
             // AdvancedBox
             // 
+            this.AdvancedBox.Controls.Add(this.btnCoronaBb);
             this.AdvancedBox.Controls.Add(this.btnTrinityBb);
-            this.AdvancedBox.Controls.Add(this.btnJasperSb);
-            this.AdvancedBox.Location = new System.Drawing.Point(13, 286);
+            this.AdvancedBox.Controls.Add(this.btnJasperXsb);
+            this.AdvancedBox.Location = new System.Drawing.Point(13, 259);
             this.AdvancedBox.Name = "AdvancedBox";
-            this.AdvancedBox.Size = new System.Drawing.Size(222, 75);
+            this.AdvancedBox.Size = new System.Drawing.Size(222, 102);
             this.AdvancedBox.TabIndex = 7;
             this.AdvancedBox.TabStop = false;
             this.AdvancedBox.Visible = false;
+            // 
+            // btnCoronaBb
+            // 
+            this.btnCoronaBb.Location = new System.Drawing.Point(6, 72);
+            this.btnCoronaBb.Name = "btnCoronaBb";
+            this.btnCoronaBb.Size = new System.Drawing.Size(210, 23);
+            this.btnCoronaBb.TabIndex = 2;
+            this.btnCoronaBb.Text = "Corona BB";
+            this.btnCoronaBb.UseVisualStyleBackColor = true;
+            this.btnCoronaBb.Click += new System.EventHandler(this.btnCoronaBb_Click);
             // 
             // btnTrinityBb
             // 
@@ -186,20 +186,20 @@ namespace JRunner.Forms
             this.btnTrinityBb.UseVisualStyleBackColor = true;
             this.btnTrinityBb.Click += new System.EventHandler(this.btnTrinityBb_Click);
             // 
-            // btnJasperSb
+            // btnJasperXsb
             // 
-            this.btnJasperSb.Location = new System.Drawing.Point(6, 18);
-            this.btnJasperSb.Name = "btnJasperSb";
-            this.btnJasperSb.Size = new System.Drawing.Size(210, 23);
-            this.btnJasperSb.TabIndex = 0;
-            this.btnJasperSb.Text = "Jasper SB";
-            this.btnJasperSb.UseVisualStyleBackColor = true;
-            this.btnJasperSb.Click += new System.EventHandler(this.btnJasperSb_Click);
+            this.btnJasperXsb.Location = new System.Drawing.Point(6, 18);
+            this.btnJasperXsb.Name = "btnJasperXsb";
+            this.btnJasperXsb.Size = new System.Drawing.Size(210, 23);
+            this.btnJasperXsb.TabIndex = 0;
+            this.btnJasperXsb.Text = "Jasper 16MB (XSB)";
+            this.btnJasperXsb.UseVisualStyleBackColor = true;
+            this.btnJasperXsb.Click += new System.EventHandler(this.btnJasperXsb_Click);
             // 
             // advancedChk
             // 
             this.advancedChk.AutoSize = true;
-            this.advancedChk.Location = new System.Drawing.Point(19, 285);
+            this.advancedChk.Location = new System.Drawing.Point(19, 258);
             this.advancedChk.Name = "advancedChk";
             this.advancedChk.Size = new System.Drawing.Size(75, 17);
             this.advancedChk.TabIndex = 2;
@@ -211,7 +211,7 @@ namespace JRunner.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 318);
+            this.ClientSize = new System.Drawing.Size(248, 291);
             this.Controls.Add(this.advancedChk);
             this.Controls.Add(this.AdvancedBox);
             this.Controls.Add(this.slimBox);
@@ -236,18 +236,18 @@ namespace JRunner.Forms
 
         private System.Windows.Forms.Button btnXenon;
         private System.Windows.Forms.GroupBox phatBox;
-        private System.Windows.Forms.Button btnJasper512;
-        private System.Windows.Forms.Button btnJasper256;
+        private System.Windows.Forms.Button btnJasperBb;
         private System.Windows.Forms.Button btnJasper;
         private System.Windows.Forms.Button btnFalcon;
         private System.Windows.Forms.Button btnZephyr;
         private System.Windows.Forms.GroupBox slimBox;
-        private System.Windows.Forms.Button btnCorona4G;
+        private System.Windows.Forms.Button btnCorona4g;
         private System.Windows.Forms.Button btnCorona;
         private System.Windows.Forms.Button btnTrinity;
         private System.Windows.Forms.GroupBox AdvancedBox;
         private System.Windows.Forms.Button btnTrinityBb;
-        private System.Windows.Forms.Button btnJasperSb;
+        private System.Windows.Forms.Button btnJasperXsb;
         private System.Windows.Forms.CheckBox advancedChk;
+        private System.Windows.Forms.Button btnCoronaBb;
     }
 }

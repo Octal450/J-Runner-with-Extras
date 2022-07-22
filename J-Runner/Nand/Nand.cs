@@ -2033,25 +2033,26 @@ namespace JRunner.Nand
             else if (nand.bl.CB_A >= 13121 && nand.bl.CB_A <= 13200)
             {
                 if (nand.noecc) cons[11] += 3;
-                else cons[10] += 3;
+                else
+                {
+                    cons[10] += 3;
+                    cons[9] += 3;
+                }
             }
             else if (nand.bl.CB_A >= 6712 && nand.bl.CB_A <= 6780)
             {
                 cons[4] += 3;
                 cons[5] += 3;
                 cons[6] += 3;
-                cons[7] += 3;
             }
             else if (nand.bl.CB_A >= 4558 && nand.bl.CB_A <= 4590) cons[3] += 3;
             else if ((nand.bl.CB_A >= 1888 && nand.bl.CB_A <= 1960) || (nand.bl.CB_A >= 7373 && nand.bl.CB_A <= 7378) || nand.bl.CB_A == 8192) cons[8] += 3;
             else if (nand.bl.CB_A >= 5761 && nand.bl.CB_A <= 5780)
             {
                 cons[2] += 3;
-                cons[9] += 3;
             }
 
             // smc check
-            //console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona", "Winchester" };
             int smctype = nand._smc[0x100] >> 4 & 15;
             if (smctype < variables.console_types.Length && smctype >= 0)
             {
@@ -2060,14 +2061,12 @@ namespace JRunner.Nand
                 else if (smctype == 3)
                 {
                     cons[2] += 2;
-                    cons[9] += 2;
                 }
                 else if (smctype == 4)
                 {
                     cons[4] += 2;
                     cons[5] += 2;
                     cons[6] += 2;
-                    cons[7] += 2;
                 }
                 else if (smctype == 5)
                 {
@@ -2076,6 +2075,7 @@ namespace JRunner.Nand
                 }
                 else if (smctype == 6)
                 {
+                    cons[9] += 2;
                     cons[10] += 2;
                     cons[11] += 2;
                 }
@@ -2083,24 +2083,19 @@ namespace JRunner.Nand
             //flashconfig check
             if (!string.IsNullOrWhiteSpace(flashconfig))
             {
-                if (flashconfig == "008A3020")
+                if (flashconfig == "008A3020" || flashconfig == "00AA3020")
                 {
                     cons[6]++;
                     cons[12]++;
                 }
-                else if (flashconfig == "00AA3020")
-                {
-                    cons[7]++;
-                    cons[12]++;
-                }
+                else if (flashconfig == "008C3020" || flashconfig == "00AC3020") cons[9]++;
                 else if (flashconfig == "C0462002") cons[11]++;
-                else if (flashconfig == "01198010")
+                else if (flashconfig == "01198010" || flashconfig == "01198030")
                 {
                     cons[2]++;
                     cons[3]++;
                     cons[5]++;
                     cons[8]++;
-                    cons[9]++;
                 }
                 else if (flashconfig == "00023010")
                 {
@@ -2126,23 +2121,12 @@ namespace JRunner.Nand
                     cons[4]++;
                     cons[5]++;
                     cons[8]++;
-                    cons[9]++;
                     cons[10]++;
                 }
-                else if (length == 69206016)
+                else if (length == 69206016 || length == 276824064 || length == 553648128)
                 {
                     cons[6] += 2;
-                    cons[7] += 2;
-                    cons[12] += 2;
-                }
-                else if (length == 276824064)
-                {
-                    cons[6] += 2;
-                    cons[12] += 2;
-                }
-                else if (length == 553648128)
-                {
-                    cons[7] += 2;
+                    cons[9] += 2;
                     cons[12] += 2;
                 }
                 else cons[11]++;
@@ -2154,9 +2138,9 @@ namespace JRunner.Nand
             }
             else
             {
-                //IMAGE_LAYOUT_0: xenon, zephyr, falcon
-                //IMAGE_LAYOUT_1: jasper 16, slims
-                //IMAGE_LAYOUT_2: jasper/trinity 256/512
+                //IMAGE_LAYOUT_0: XSB
+                //IMAGE_LAYOUT_1: PSB/KSB 16MB
+                //IMAGE_LAYOUT_2: PSB/KSB 256/512MB
                 int layout = -1;
                 List<int> layouts = new List<int>();
                 byte[] file = BadBlock.find_bad_blocks_X(nand._filename, 50);
@@ -2173,7 +2157,6 @@ namespace JRunner.Nand
                     cons[3]++;
                     cons[5]++;
                     cons[8]++;
-                    cons[9]++;
                 }
                 else if (layout == 1)
                 {
@@ -2184,7 +2167,7 @@ namespace JRunner.Nand
                 else if (layout == 2)
                 {
                     cons[6]++;
-                    cons[7]++;
+                    cons[9]++;
                     cons[12]++;
                 }
             }

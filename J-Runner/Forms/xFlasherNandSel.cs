@@ -38,7 +38,7 @@ namespace JRunner.Forms
             this.Close();
         }
 
-        public void BigBlock(bool bb)
+        public void setGroups(bool bb)
         {
             if (bb) SmallBlockGroup.Enabled = false;
             else SmallBlockGroup.Enabled = true;

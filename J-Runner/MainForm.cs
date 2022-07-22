@@ -283,28 +283,6 @@ namespace JRunner
         private void on_load()
         {
             check_dash(); // configures the dashes dropdown
-
-            try
-            {
-                if (xPanel.getComboDash().Items.Count == 4)
-                {
-                    xPanel.getComboDash().SelectedIndex = 0;
-                    variables.dashversion = Convert.ToInt32(xPanel.getComboDash().Text);
-                }
-                else
-                {
-                    if (variables.dashes_all.Contains(variables.preferredDash))
-                    {
-                        xPanel.getComboDash().SelectedIndex = variables.dashes_all.IndexOf(variables.preferredDash);
-                        variables.dashversion = Convert.ToInt32(xPanel.getComboDash().Text);
-                    }
-                    else if (xPanel.getComboDash().Items.Count > 3) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = xPanel.getComboDash().Items.Count - 3));
-                }
-                xPanel.checkAvailableHackTypes();
-            }
-            catch
-            {
-            }
         }
 
         private void printstartuptext(bool firsttime = false)
@@ -424,7 +402,7 @@ namespace JRunner
 
         void xPanel_CallMB()
         {
-            variables.ctyp = callConsoleSelect(ConsoleTypes.Selected.All);
+            variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
         }
 
         void xPanel_HackChanged()
@@ -998,37 +976,43 @@ namespace JRunner
             if (variables.debugMode) Console.WriteLine(variables.flashconfig);
             if (flashconfig == "008A3020")
             {
-                variables.ctyp = variables.ctypes[6];
-                Console.WriteLine(variables.ctyp.Text);
-                xPanel.setMBname(variables.ctyp.Text);
+                Console.WriteLine("Jasper, Trinity: 256MB");
             }
             else if (flashconfig == "00AA3020")
             {
-                variables.ctyp = variables.ctypes[7];
-                Console.WriteLine(variables.ctyp.Text);
-                xPanel.setMBname(variables.ctyp.Text);
+                Console.WriteLine("Jasper, Trinity: 512MB");
+            }
+            else if (flashconfig == "008C3020")
+            {
+                Console.WriteLine("Corona: 256MB");
+            }
+            else if (flashconfig == "00AC3020")
+            {
+                Console.WriteLine("Corona: 512MB");
             }
             else if (flashconfig == "C0462002")
             {
                 error = NandX.Errors.WrongConfig;
 
-                Console.WriteLine("");
+                Console.WriteLine("Corona: 4GB");
                 MessageBox.Show("Unable to read/write eMMC type console with an SPI tool\n\nPlease use an eMMC tool", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return error;
             }
             else if (flashconfig == "01198010")
             {
-                Console.WriteLine("Xenon, Zephyr, Falcon");
+                Console.WriteLine("Xenon, Zephyr, Falcon: 16MB");
+            }
+            else if (flashconfig == "01198030")
+            {
+                Console.WriteLine("Xenon, Zephyr, Falcon: 64MB");
             }
             else if (flashconfig == "00023010")
             {
-                Console.WriteLine("Jasper 16MB, Trinity");
+                Console.WriteLine("Jasper, Trinity: 16MB");
             }
             else if (flashconfig == "00043000")
             {
-                variables.ctyp = variables.ctypes[10];
-                Console.WriteLine(variables.ctyp.Text);
-                xPanel.setMBname(variables.ctyp.Text);
+                Console.WriteLine("Corona: 16MB");
             }
             try
             {
@@ -1083,21 +1067,24 @@ namespace JRunner
                             variables.ctyp = variables.ctypes[4];
                             xPanel.setMBname(variables.ctyp.Text);
                         }
-                        else if (flashconfig == "008A3020")
+                        else if (flashconfig == "008A3020" || flashconfig == "00AA3020")
                         {
                             variables.ctyp = variables.ctypes[6];
-                            xPanel.setMBname(variables.ctyp.Text);
-                        }
-                        else if (flashconfig == "00AA3020")
-                        {
-                            variables.ctyp = variables.ctypes[7];
                             xPanel.setMBname(variables.ctyp.Text);
                         }
                     }
                     else if (temp >= 13121 && temp <= 13200)
                     {
-                        variables.ctyp = variables.ctypes[10];
-                        xPanel.setMBname(variables.ctyp.Text);
+                        if (flashconfig == "00023010")
+                        {
+                            variables.ctyp = variables.ctypes[10];
+                            xPanel.setMBname(variables.ctyp.Text);
+                        }
+                        else if (flashconfig == "008C3020" || flashconfig == "00AC3020")
+                        {
+                            variables.ctyp = variables.ctypes[9];
+                            xPanel.setMBname(variables.ctyp.Text);
+                        }
                     }
                     else if ((temp >= 1888 && temp <= 1960) || (temp >= 7373 && temp <= 7378) || temp == 8192)
                     {
@@ -1131,19 +1118,19 @@ namespace JRunner
         void getconsoletype(int function, int writelength = 0)
         {
             NandX.Errors error = 0;
-            ConsoleTypes.Selected sel = ConsoleTypes.Selected.All;
+            ConsoleSelect.Selected sel = ConsoleSelect.Selected.All;
             bool twombread = false;
             bool sfulldump = false;
             if (function == 1 && variables.ctyp.ID != 11)
             {
                 error = getmbtype(true);
                 if (error == NandX.Errors.NoFlashConfig) return;
-                if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7) sel = ConsoleTypes.Selected.BigBlock;
+                if (variables.ctyp.ID == 6 || variables.ctyp.ID == 7) sel = ConsoleSelect.Selected.BigBlock;
                 if (xPanel.getRbtnJtagChecked() || xPanel.getRbtnGlitchChecked() || xPanel.getRbtnGlitch2Checked()) twombread = true;
                 sfulldump = true;
             }
 
-            if (variables.ctyp.Nsize != Nandsize.S16 && variables.ctyp.ID != 11 && !DemoN.DemonDetected) variables.ctyp = callConsoleTypes(sel, twombread, sfulldump);
+            //if (variables.ctyp.Nsize != Nandsize.S16 && variables.ctyp.ID != 11 && !DemoN.DemonDetected) variables.ctyp = callConsoleTypes(sel, twombread, sfulldump);
 
             if (variables.ctyp.ID == -1 && !DemoN.DemonDetected) return;
 
@@ -1422,7 +1409,7 @@ namespace JRunner
             }
             else
             {
-                if (variables.ctyp.ID == -1) variables.ctyp = callConsoleTypes(ConsoleTypes.Selected.All);
+                if (variables.ctyp.ID == -1) variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
                 if (variables.ctyp.ID == -1) return;
                 double len = new FileInfo(variables.filename1).Length;
                 if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
@@ -1580,67 +1567,6 @@ namespace JRunner
             if (variables.debugMode) Console.WriteLine("Event Started");
             if (variables.debugMode) Console.WriteLine(variables.cpukey);
             txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
-        }
-
-        private static void savekvinfo(string savefile)
-        {
-            try
-            {
-                if (!nand.ok) return;
-                TextWriter tw = new StreamWriter(savefile);
-                tw.WriteLine("*******************************************");
-                tw.WriteLine("*******************************************");
-                string console_type = "";
-                if (nand.bl.CB_A >= 9188 && nand.bl.CB_A <= 9250)
-                {
-                    console_type = "Trinity";
-                }
-                else if (nand.bl.CB_A >= 13121 && nand.bl.CB_A <= 13200)
-                {
-                    console_type = "Corona";
-                    if (nand.noecc) console_type += " 4GB";
-                }
-                else if (nand.bl.CB_A >= 6712 && nand.bl.CB_A <= 6780) console_type = "Jasper";
-                else if (nand.bl.CB_A >= 4558 && nand.bl.CB_A <= 4590) console_type = "Zephyr";
-                else if ((nand.bl.CB_A >= 1888 && nand.bl.CB_A <= 1960) || nand.bl.CB_A == 7373 || nand.bl.CB_A == 8192) console_type = "Xenon";
-                else if (nand.bl.CB_A >= 5761 && nand.bl.CB_A <= 5780) console_type = "Falcon";
-                else
-                {
-                    if (variables.smcmbtype < variables.console_types.Length && variables.smcmbtype >= 0) console_type = variables.console_types[variables.smcmbtype];
-                }
-                tw.WriteLine("Console Type: {0}", console_type);
-                tw.WriteLine("");
-                tw.WriteLine("Cpu Key: {0}", variables.cpukey);
-                tw.WriteLine("");
-                tw.WriteLine("KV Type: {0}", nand.ki.kvtype.Replace("0", ""));
-                tw.WriteLine("");
-                tw.WriteLine("MFR Date: {0}", nand.ki.mfdate);
-                tw.WriteLine("");
-                tw.WriteLine("Console ID: {0}", nand.ki.consoleid);
-                tw.WriteLine("");
-                tw.WriteLine("Serial: {0}", nand.ki.serial);
-                tw.WriteLine("");
-                string region = "";
-                if (nand.ki.region == "02FE") region = "PAL/EU";
-                else if (nand.ki.region == "00FF") region = "NTSC/US";
-                else if (nand.ki.region == "01FE") region = "NTSC/JAP";
-                else if (nand.ki.region == "01FF") region = "NTSC/JAP";
-                else if (nand.ki.region == "01FC") region = "NTSC/KOR";
-                else if (nand.ki.region == "0101") region = "NTSC/HK";
-                else if (nand.ki.region == "0201") region = "PAL/AUS";
-                else if (nand.ki.region == "7FFF") region = "DEVKIT";
-                tw.WriteLine("Region: {0} | {1}", nand.ki.region, region);
-                tw.WriteLine("");
-                tw.WriteLine("Osig: {0}", nand.ki.osig);
-                tw.WriteLine("");
-                tw.WriteLine("DVD Key: {0}", nand.ki.dvdkey);
-                tw.WriteLine("");
-                tw.WriteLine("*******************************************");
-                tw.WriteLine("*******************************************");
-                tw.Close();
-                Console.WriteLine("KV Info saved to file");
-            }
-            catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); Console.WriteLine("Failed"); }
         }
 
         void comparenands()
@@ -2752,24 +2678,7 @@ namespace JRunner
             return true;
         }
 
-        consoles callConsoleTypes(ConsoleTypes.Selected selec, bool twomb = false, bool full = false)
-        {
-            ConsoleTypes consoleTypes = new ConsoleTypes();
-            consoleTypes.sel = selec;
-            consoleTypes.twombread = twomb;
-            consoleTypes.sfulldump = full;
-            consoleTypes.ShowDialog();
-            if (consoleTypes.DialogResult == DialogResult.Cancel) return variables.ctypes[0];
-            if (consoleTypes.heResult().ID == -1) return variables.ctypes[0];
-            variables.fulldump = consoleTypes.fulldump();
-            variables.twombread = consoleTypes.twombdump();
-            if (variables.debugMode) Console.WriteLine("fulldump variable = {0}", variables.fulldump);
-            //if (variables.debugme) Console.WriteLine(myNewForm.heResult());
-            xPanel.setMBname(consoleTypes.heResult().Text);
-            return consoleTypes.heResult();
-        }
-
-        consoles callConsoleSelect(ConsoleTypes.Selected selec)
+        public consoles callConsoleSelect(ConsoleSelect.Selected selec)
         {
             ConsoleSelect consoleSelect = new ConsoleSelect();
             consoleSelect.ShowDialog();
@@ -3039,7 +2948,7 @@ namespace JRunner
                 return;
             }
 
-            if (variables.ctyp.ID == -1) variables.ctyp = callConsoleSelect(ConsoleTypes.Selected.All);
+            if (variables.ctyp.ID == -1) variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
             if (variables.ctyp.ID == -1) return;
             if (Application.OpenForms.OfType<CreateDonorNand>().Any())
             {
@@ -4588,6 +4497,11 @@ namespace JRunner
             int counter = 0;
             dashtable.Rows.Clear();
             Thread.Sleep(10);
+            DataRow dashrows = dashtable.NewRow();
+            dashrows[0] = counter;
+            dashrows[1] = "-------------";
+            dashtable.Rows.Add(dashrows);
+            counter++;
             if (Directory.Exists(Path.Combine(variables.currentdir, "xeBuild")))
             {
                 try
@@ -4613,17 +4527,16 @@ namespace JRunner
                 }
                 catch (NullReferenceException) { }
             }
-            DataRow dashrows = dashtable.NewRow();
-            dashrows[0] = counter;
-            dashrows[1] = "-------------";
-            dashtable.Rows.Add(dashrows);
-            counter++;
             try
             {
-                if (xPanel.getComboDash().Items.Count == 2)
+                int xPanelCount = xPanel.getComboDash().Items.Count;
+                if (xPanelCount == 1)
+                {
+                    xPanel.checkAvailableHackTypes(); // Greys them all out
+                }
+                else if (xPanelCount == 2)
                 {
                     xPanel.getComboDash().SelectedIndex = 1;
-                    xPanel.getComboDash().SelectedIndex = 0;
                     int n = 0;
                     bool isNumeric = int.TryParse(xPanel.getComboDash().Text, out n);
                     if (isNumeric) variables.dashversion = n;
@@ -4632,12 +4545,12 @@ namespace JRunner
                 {
                     if (variables.dashes_all.Contains(variables.preferredDash))
                     {
-                        if (xPanel.getComboDash().Items.Count >= variables.dashes_all.IndexOf(variables.preferredDash)) xPanel.getComboDash().SelectedIndex = variables.dashes_all.IndexOf(variables.preferredDash);
+                        if (xPanelCount >= variables.dashes_all.IndexOf(variables.preferredDash)) xPanel.getComboDash().SelectedIndex = variables.dashes_all.IndexOf(variables.preferredDash) + 1;
                         int n = 0;
                         bool isNumeric = int.TryParse(xPanel.getComboDash().Text, out n);
                         if (isNumeric) variables.dashversion = n;
                     }
-                    else if (xPanel.getComboDash().Items.Count > 1) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = xPanel.getComboDash().Items.Count - 1));
+                    else if (xPanelCount > 1) xPanel.BeginInvoke((Action)(() => xPanel.getComboDash().SelectedIndex = xPanelCount - 1));
                 }
                 xPanel.setComboCB();
             }
@@ -4685,27 +4598,27 @@ namespace JRunner
             }
         }
 
-        public void xFlasherNandSelShow(int xfseltype, bool bigblock = false)
+        public void xFlasherNandSelShow(int seltype, bool bigblock = false)
         {
-            variables.xfSelType = xfseltype;
+            xflasher.selType = seltype;
             xFlasherNandSel xfselform = new xFlasherNandSel();
             xfselform.TopMost = true;
             xfselform.SizeClick += xFlasherSizeClick;
-            xfselform.BigBlock(bigblock);
+            xfselform.setGroups(bigblock);
             xfselform.Show();
         }
 
         void xFlasherSizeClick(int size)
         {
-            if (variables.xfSelType == 1)
+            if (xflasher.selType == 1)
             {
                 xflasher.readNandAuto(size, nTools.getNumericIterations(), true);
-                variables.xfSelType = 0;
+                xflasher.selType = 0;
             }
-            else if (variables.xfSelType == 2)
+            else if (xflasher.selType == 2)
             {
                 xflasher.writeNand(size, variables.filename1);
-                variables.xfSelType = 0;
+                xflasher.selType = 0;
             }
         }
 

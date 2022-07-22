@@ -263,27 +263,33 @@ namespace JRunner
 
             if (flashconfig != 0x00000000 && flashconfig != 0xFFFFFFFF && flashconfig != 0xC0462002)
             {
-                if (flashconfig == 0x01198010 || flashconfig == 0x01198030)
-                    Console.WriteLine("Xenon, Zephyr, Falcon");
+                if (flashconfig == 0x01198010)
+                    Console.WriteLine("Xenon, Zephyr, Falcon: 16MB");
+                else if (flashconfig == 0x01198030)
+                    Console.WriteLine("Xenon, Zephyr, Falcon: 64MB");
                 else if (flashconfig == 0x00023010)
-                    Console.WriteLine("Jasper 16MB, Trinity");
+                    Console.WriteLine("Jasper, Trinity: 16MB");
                 else if (flashconfig == 0x00043000)
-                    Console.WriteLine("Corona 16MB");
+                    Console.WriteLine("Corona: 16MB");
                 else if (flashconfig == 0x008A3020)
-                    Console.WriteLine("Jasper 256MB");
+                    Console.WriteLine("Jasper, Trinity: 256MB");
                 else if (flashconfig == 0x00AA3020)
-                    Console.WriteLine("Jasper 512MB");
+                    Console.WriteLine("Jasper, Trinity: 512MB");
+                else if (flashconfig == 0x008C3020)
+                    Console.WriteLine("Corona: 256MB");
+                else if (flashconfig == 0x00AC3020)
+                    Console.WriteLine("Corona: 512MB");
                 else
                     Console.WriteLine("Unrecongized Flash Config");
             }
             else if (emmc_det == 0 && flashconfig == 0xC0462002)
             {
-                Console.WriteLine("Corona 4GB (EMMC not connected)");
+                Console.WriteLine("Corona: 4GB (eMMC not connected)");
             }
             else if (emmc_det != 0)
             {
                 if (flashconfig == 0xC0462002)
-                    Console.WriteLine("Corona 4GB");
+                    Console.WriteLine("Corona: 4GB");
                 else if (flashconfig != 0x00000000 && flashconfig != 0xFFFFFFFF)
                     Console.WriteLine("Unrecongized Flash Config");
 
@@ -293,7 +299,7 @@ namespace JRunner
 
                 if (emmc_init_ret != 0)
                 {
-                    Console.WriteLine("EMMC init failed: " + emmc_init_ret);
+                    Console.WriteLine("eMMC init failed: " + emmc_init_ret);
                 }
                 else
                 {

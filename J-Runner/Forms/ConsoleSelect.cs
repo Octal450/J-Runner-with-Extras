@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace JRunner.Forms
+namespace JRunner
 {
     public partial class ConsoleSelect : Form
     {
@@ -25,13 +25,13 @@ namespace JRunner.Forms
             btnZephyr.DialogResult = DialogResult.OK;
             btnFalcon.DialogResult = DialogResult.OK;
             btnJasper.DialogResult = DialogResult.OK;
-            btnJasperSb.DialogResult = DialogResult.OK;
-            btnJasper256.DialogResult = DialogResult.OK;
-            btnJasper512.DialogResult = DialogResult.OK;
+            btnJasperXsb.DialogResult = DialogResult.OK;
+            btnJasperBb.DialogResult = DialogResult.OK;
             btnTrinity.DialogResult = DialogResult.OK;
             btnTrinityBb.DialogResult = DialogResult.OK;
             btnCorona.DialogResult = DialogResult.OK;
-            btnCorona4G.DialogResult = DialogResult.OK;
+            btnCoronaBb.DialogResult = DialogResult.OK;
+            btnCorona4g.DialogResult = DialogResult.OK;
         }
 
         protected override bool ProcessDialogKey(Keys keyData)
@@ -50,19 +50,18 @@ namespace JRunner.Forms
             {
                 btnFalcon.Enabled = false;
                 btnJasper.Enabled = false;
-                btnJasperSb.Enabled = false;
+                btnJasperXsb.Enabled = false;
                 btnXenon.Enabled = false;
                 btnZephyr.Enabled = false;
                 if (sel == Selected.BigBlock)
                 {
                     btnTrinity.Enabled = false;
                     btnCorona.Enabled = false;
-                    btnCorona4G.Enabled = false;
+                    btnCorona4g.Enabled = false;
                 }
                 else if (sel == Selected.Slim)
                 {
-                    btnJasper256.Enabled = false;
-                    btnJasper512.Enabled = false;
+                    btnJasperBb.Enabled = false;
                 }
             }
             else if (sel == Selected.AllX)
@@ -89,21 +88,21 @@ namespace JRunner.Forms
             {
                 hresult = variables.ctypes[4];
             }
-            else if (type == "jaspersb")
+            else if (type == "jasperxsb")
             {
                 hresult = variables.ctypes[5];
             }
-            else if (type == "jasper256")
+            else if (type == "jasperbb")
             {
                 hresult = variables.ctypes[6];
-            }
-            else if (type == "jasper512")
-            {
-                hresult = variables.ctypes[7];
             }
             else if (type == "xenon")
             {
                 hresult = variables.ctypes[8];
+            }
+            else if (type == "coronabb")
+            {
+                hresult = variables.ctypes[9];
             }
             else if (type == "corona")
             {
@@ -154,21 +153,15 @@ namespace JRunner.Forms
             setType();
         }
 
-        private void btnJasperSb_Click(object sender, EventArgs e)
+        private void btnJasperXsb_Click(object sender, EventArgs e)
         {
-            type = "jaspersb";
+            type = "jasperxsb";
             setType();
         }
 
-        private void btnJasper256_Click(object sender, EventArgs e)
+        private void btnJasperBb_Click(object sender, EventArgs e)
         {
-            type = "jasper256";
-            setType();
-        }
-
-        private void btnJasper512_Click(object sender, EventArgs e)
-        {
-            type = "jasper512";
+            type = "jasperbb";
             setType();
         }
 
@@ -190,6 +183,12 @@ namespace JRunner.Forms
             setType();
         }
 
+        private void btnCoronaBb_Click(object sender, EventArgs e)
+        {
+            type = "coronabb";
+            setType();
+        }
+
         private void btnCorona4G_Click(object sender, EventArgs e)
         {
             type = "corona4g";
@@ -201,12 +200,12 @@ namespace JRunner.Forms
             float dpi = Program.getScalingFactor();
             if (advancedChk.Checked)
             {
-                this.Height += Convert.ToInt32(55 * dpi);
+                this.Height += Convert.ToInt32(82 * dpi);
                 AdvancedBox.Visible = true;
             }
             else
             {
-                this.Height -= Convert.ToInt32(55 * dpi);
+                this.Height -= Convert.ToInt32(82 * dpi);
                 AdvancedBox.Visible = false;
             }
         }

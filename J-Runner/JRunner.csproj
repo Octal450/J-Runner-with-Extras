@@ -281,6 +281,12 @@
     <Compile Include="Forms\XB1HDD.designer.cs">
       <DependentUpon>XB1HDD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NandSel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NandSel.Designer.cs">
+      <DependentUpon>NandSel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\xFlasherNandSel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -509,12 +515,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ConsoleTypes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ConsoleTypes.Designer.cs">
-      <DependentUpon>ConsoleTypes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\patch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -678,6 +678,9 @@
     <EmbeddedResource Include="Forms\XB1HDD.resx">
       <DependentUpon>XB1HDD.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NandSel.resx">
+      <DependentUpon>NandSel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\xFlasherNandSel.resx">
       <DependentUpon>xFlasherNandSel.cs</DependentUpon>
     </EmbeddedResource>
@@ -737,10 +740,6 @@
     <EmbeddedResource Include="HexEdit\HexBox.resx" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ConsoleTypes.resx">
-      <DependentUpon>ConsoleTypes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\patch.resx">

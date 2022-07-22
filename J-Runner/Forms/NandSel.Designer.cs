@@ -1,7 +1,7 @@
 ﻿
 namespace JRunner.Forms
 {
-    partial class xFlasherNandSel
+    partial class NandSel
     {
         /// <summary>
         /// Required designer variable.
@@ -29,15 +29,18 @@ namespace JRunner.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(xFlasherNandSel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NandSel));
             this.btn16 = new System.Windows.Forms.Button();
             this.btn64 = new System.Windows.Forms.Button();
             this.SmallBlockGroup = new System.Windows.Forms.GroupBox();
             this.BigBlockGroup = new System.Windows.Forms.GroupBox();
             this.btn512 = new System.Windows.Forms.Button();
             this.btn256 = new System.Windows.Forms.Button();
+            this.AdvancedGroup = new System.Windows.Forms.GroupBox();
+            this.btn1p28 = new System.Windows.Forms.Button();
             this.SmallBlockGroup.SuspendLayout();
             this.BigBlockGroup.SuspendLayout();
+            this.AdvancedGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn16
@@ -102,22 +105,44 @@ namespace JRunner.Forms
             this.btn256.UseVisualStyleBackColor = true;
             this.btn256.Click += new System.EventHandler(this.btn256_Click);
             // 
-            // xFlasherNandSel
+            // AdvancedGroup
+            // 
+            this.AdvancedGroup.Controls.Add(this.btn1p28);
+            this.AdvancedGroup.Location = new System.Drawing.Point(397, 11);
+            this.AdvancedGroup.Name = "AdvancedGroup";
+            this.AdvancedGroup.Size = new System.Drawing.Size(87, 46);
+            this.AdvancedGroup.TabIndex = 3;
+            this.AdvancedGroup.TabStop = false;
+            this.AdvancedGroup.Text = "Advanced";
+            // 
+            // btn1p28
+            // 
+            this.btn1p28.Location = new System.Drawing.Point(6, 16);
+            this.btn1p28.Name = "btn1p28";
+            this.btn1p28.Size = new System.Drawing.Size(75, 23);
+            this.btn1p28.TabIndex = 0;
+            this.btn1p28.Text = "1.28MB";
+            this.btn1p28.UseVisualStyleBackColor = true;
+            this.btn1p28.Click += new System.EventHandler(this.btn1p28_Click);
+            // 
+            // NandSel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 69);
+            this.ClientSize = new System.Drawing.Size(497, 69);
+            this.Controls.Add(this.AdvancedGroup);
             this.Controls.Add(this.BigBlockGroup);
             this.Controls.Add(this.SmallBlockGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "xFlasherNandSel";
+            this.Name = "NandSel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "xFlasher: Select Nand Size";
+            this.Text = "Select Nand Size";
             this.SmallBlockGroup.ResumeLayout(false);
             this.BigBlockGroup.ResumeLayout(false);
+            this.AdvancedGroup.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -130,5 +155,7 @@ namespace JRunner.Forms
         private System.Windows.Forms.GroupBox BigBlockGroup;
         private System.Windows.Forms.Button btn512;
         private System.Windows.Forms.Button btn256;
+        private System.Windows.Forms.GroupBox AdvancedGroup;
+        private System.Windows.Forms.Button btn1p28;
     }
 }

@@ -318,22 +318,14 @@ namespace JRunner.Panels
 
         private void comboDash_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboDash.SelectedIndex == comboDash.Items.Count - 1)
-            {
-                checkAvailableHackTypes(); // will set all false
-            }
-            else if (comboDash.SelectedIndex >= 0)
+            if (comboDash.SelectedIndex > 0)
             {
                 variables.preferredDash = comboDash.Text;
                 variables.dashversion = Convert.ToInt32(comboDash.Text);
                 lblDash.Text = comboDash.Text;
             }
 
-            if (comboDash.SelectedIndex < comboDash.Items.Count - 1)
-            {
-                checkAvailableHackTypes();
-            }
-
+            checkAvailableHackTypes();
             checkWBXdkBuild();
             checkXLUsb();
             updateCommand();
@@ -1276,7 +1268,7 @@ namespace JRunner.Panels
                     MessageBox.Show("Wrong CPU Key");
                     return;
                 case Classes.xebuild.XebuildError.noconsole:
-                    variables.ctyp = callconsoletypes(ConsoleTypes.Selected.All);
+                    variables.ctyp = MainForm.mainForm.callConsoleSelect(ConsoleSelect.Selected.All);
                     if (variables.ctyp.ID == -1) return;
                     else
                     {
@@ -1475,22 +1467,6 @@ namespace JRunner.Panels
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-        }
-
-        consoles callconsoletypes(ConsoleTypes.Selected selec, bool twomb = false, bool full = false)
-        {
-            ConsoleTypes myNewForm = new ConsoleTypes();
-            myNewForm.sel = selec;
-            myNewForm.twombread = twomb;
-            myNewForm.sfulldump = full;
-            myNewForm.ShowDialog();
-            if (myNewForm.DialogResult == DialogResult.Cancel) return (variables.ctypes[0]);
-            if (myNewForm.heResult().ID == -1) return variables.ctypes[0];
-            variables.fulldump = myNewForm.fulldump();
-            variables.twombread = myNewForm.twombdump();
-            if (variables.debugMode) Console.WriteLine("fulldump variable = {0}", variables.fulldump);
-            setMBname(myNewForm.heResult().Text);
-            return (myNewForm.heResult());
         }
 
         public void xe_xeUExit(object sender, EventArgs e)

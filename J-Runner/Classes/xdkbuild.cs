@@ -29,9 +29,8 @@ namespace JRunner
 
             filename = Path.Combine(variables.xefolder, variables.updflash);
 
-            if (board == "jasper256") board = "jasper";
-            if (board == "jasper512") board = "jasper";
-            if (board == "corona4g") board = "corona";
+            if (board.Contains("jasper")) board = "jasper";
+            if (board.Contains("corona")) board = "corona";
 
             sc = board + ".bin";
 

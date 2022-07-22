@@ -22,9 +22,9 @@ namespace JRunner
 
             if (board == "Corona 16MB") ecc = variables.RGH3_corona;
             else if (board == "Corona 4GB") ecc = variables.RGH3_corona4GB;
-            else if (board == "Trinity") ecc = variables.RGH3_trinity;
+            else if (board == "Trinity 16MB") ecc = variables.RGH3_trinity;
             else if (board == "Jasper 16MB" || board == "Jasper SB") ecc = variables.RGH3_jasper + mhz;
-            else if (board == "Jasper 256MB" || board == "Jasper 512MB") ecc = variables.RGH3_jasperBB + mhz;
+            else if (board == "Jasper BB") ecc = variables.RGH3_jasperBB + mhz;
             else if (board == "Falcon") ecc = variables.RGH3_falcon + mhz;
             else
             {

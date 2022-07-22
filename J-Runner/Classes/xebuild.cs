@@ -520,7 +520,7 @@ namespace JRunner.Classes
 
             if (_xdkbuild)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512") // requires bigffs
+                if (boardtype == "jasperbb") // requires bigffs
                 {
                     arguments += " -c " + "jasperbigffs -i flash";
                 }
@@ -539,7 +539,7 @@ namespace JRunner.Classes
             }
             else if (_bigffs)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512")
+                if (boardtype == "jasperbb")
                 {
                     arguments += " -c " + "jasperbigffs";
                 }
@@ -659,7 +659,7 @@ namespace JRunner.Classes
 
             if (_xdkbuild)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512") // requires bigffs
+                if (boardtype == "jasperbb") // requires bigffs
                 {
                     arguments += " -c " + "jasperbigffs -i flash";
                 }
@@ -678,7 +678,7 @@ namespace JRunner.Classes
             }
             else if (_bigffs)
             {
-                if (boardtype == "jasper256" || boardtype == "jasper512")
+                if (boardtype == "jasperbb")
                 {
                     arguments += " -c " + "jasperbigffs";
                 }

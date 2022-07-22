@@ -30,6 +30,7 @@ namespace JRunner
         public bool waiting = false;
         private string flashconf = "";
         private string jtagdevice = "";
+        public int selType = 0;
 
         private static int initCount = 0;
         private static int inUseCount = 0;
@@ -161,7 +162,7 @@ namespace JRunner
 
                 if (flashconf == "C0462002")
                 {
-                    Console.WriteLine("Corona 4GB");
+                    Console.WriteLine("Corona: 4GB");
 
                     if (auto)
                     {
@@ -176,11 +177,14 @@ namespace JRunner
 
                     return 1;
                 }
-                else if (flashconf == "00023010") Console.WriteLine("Jasper 16MB, Trinity");
-                else if (flashconf == "00043000") Console.WriteLine("Corona 16MB");
-                else if (flashconf == "008A3020") Console.WriteLine("Jasper 256MB");
-                else if (flashconf == "00AA3020") Console.WriteLine("Jasper 512MB");
-                else if (flashconf == "01198010" || flashconf == "01198030") Console.WriteLine("Xenon, Zephyr, Falcon");
+                else if (flashconf == "00023010") Console.WriteLine("Jasper, Trinity: 16MB");
+                else if (flashconf == "00043000") Console.WriteLine("Corona: 16MB");
+                else if (flashconf == "008A3020") Console.WriteLine("Jasper, Trinity: 256MB");
+                else if (flashconf == "00AA3020") Console.WriteLine("Jasper, Trinity: 512MB");
+                else if (flashconf == "008C3020") Console.WriteLine("Corona: 256MB");
+                else if (flashconf == "00AC3020") Console.WriteLine("Corona: 512MB");
+                else if (flashconf == "01198010") Console.WriteLine("Xenon, Zephyr, Falcon: 16MB");
+                else if (flashconf == "01198030") Console.WriteLine("Xenon, Zephyr, Falcon: 64MB");
                 else Console.WriteLine("Unrecongized Flash Config");
 
                 Console.WriteLine("");
@@ -337,7 +341,7 @@ namespace JRunner
                             {
                                 size = 64;
                             }
-                            else if (flashconf == "008A3020" || flashconf == "00AA3020")
+                            else if (flashconf == "008A3020" || flashconf == "00AA3020" || flashconf == "008C3020" || flashconf == "00AC3020")
                             {
                                 MainForm.mainForm.BeginInvoke((Action)(() => MainForm.mainForm.xFlasherNandSelShow(1, true))); // Ask BB
                                 return;
@@ -717,11 +721,23 @@ namespace JRunner
                                 }
                             }
                         }
-                        else if (flashconf == "008A3020" || flashconf == "00AA3020")
+                        else if (flashconf == "008A3020" || flashconf == "008C3020")
                         {
-                            if (size == 16)
+                            if (size == 16 || size == 512)
                             {
-                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64/256/512MB Flash Config.\n\nAre you sure that you want to do the things?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64/256MB Flash Config.\n\nAre you sure that you want to do that?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                {
+                                    Console.WriteLine("xFlasher: Cancelled");
+                                    Console.WriteLine("");
+                                    return;
+                                }
+                            }
+                        }
+                        else if (flashconf == "00AA3020" || flashconf == "00AC3020")
+                        {
+                            if (size == 16 || size == 256)
+                            {
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64/512MB Flash Config.\n\nAre you sure that you want to do that?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                                 {
                                     Console.WriteLine("xFlasher: Cancelled");
                                     Console.WriteLine("");
