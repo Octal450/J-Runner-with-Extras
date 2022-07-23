@@ -403,7 +403,7 @@ namespace JRunner
 
         void xPanel_CallMB()
         {
-            variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
+            variables.ctype = callConsoleSelect(ConsoleSelect.Selected.All);
         }
 
         void xPanel_HackChanged()
@@ -1042,60 +1042,60 @@ namespace JRunner
                     {
                         if (flashconfig == "00023010")
                         {
-                            variables.ctyp = variables.ctypes[1];
-                            xPanel.setMBname(variables.ctyp.Text);
+                            variables.ctype = variables.ctypes[1];
+                            xPanel.setMBname(variables.ctype.Text);
                         }
                         else if (flashconfig == "008A3020" || flashconfig == "00AA3020")
                         {
-                            variables.ctyp = variables.ctypes[12];
-                            xPanel.setMBname(variables.ctyp.Text);
+                            variables.ctype = variables.ctypes[12];
+                            xPanel.setMBname(variables.ctype.Text);
                         }
                     }
                     else if (temp >= 4558 && temp <= 4580)
                     {
-                        variables.ctyp = variables.ctypes[3];
-                        xPanel.setMBname(variables.ctyp.Text);
+                        variables.ctype = variables.ctypes[3];
+                        xPanel.setMBname(variables.ctype.Text);
                     }
                     else if (temp >= 6712 && temp <= 6780)
                     {
                         if (flashconfig == "01198010")
                         {
-                            variables.ctyp = variables.ctypes[5];
-                            xPanel.setMBname(variables.ctyp.Text);
+                            variables.ctype = variables.ctypes[5];
+                            xPanel.setMBname(variables.ctype.Text);
                         }
                         else if (flashconfig == "00023010")
                         {
-                            variables.ctyp = variables.ctypes[4];
-                            xPanel.setMBname(variables.ctyp.Text);
+                            variables.ctype = variables.ctypes[4];
+                            xPanel.setMBname(variables.ctype.Text);
                         }
                         else if (flashconfig == "008A3020" || flashconfig == "00AA3020")
                         {
-                            variables.ctyp = variables.ctypes[6];
-                            xPanel.setMBname(variables.ctyp.Text);
+                            variables.ctype = variables.ctypes[6];
+                            xPanel.setMBname(variables.ctype.Text);
                         }
                     }
                     else if (temp >= 13121 && temp <= 13200)
                     {
                         if (flashconfig == "00023010")
                         {
-                            variables.ctyp = variables.ctypes[10];
-                            xPanel.setMBname(variables.ctyp.Text);
+                            variables.ctype = variables.ctypes[10];
+                            xPanel.setMBname(variables.ctype.Text);
                         }
                         else if (flashconfig == "008C3020" || flashconfig == "00AC3020")
                         {
-                            variables.ctyp = variables.ctypes[9];
-                            xPanel.setMBname(variables.ctyp.Text);
+                            variables.ctype = variables.ctypes[9];
+                            xPanel.setMBname(variables.ctype.Text);
                         }
                     }
                     else if ((temp >= 1888 && temp <= 1960) || (temp >= 7373 && temp <= 7378) || temp == 8192)
                     {
-                        variables.ctyp = variables.ctypes[8];
-                        xPanel.setMBname(variables.ctyp.Text);
+                        variables.ctype = variables.ctypes[8];
+                        xPanel.setMBname(variables.ctype.Text);
                     }
                     else if (temp >= 5761 && temp <= 5780)
                     {
-                        variables.ctyp = variables.ctypes[2];
-                        xPanel.setMBname(variables.ctyp.Text);
+                        variables.ctype = variables.ctypes[2];
+                        xPanel.setMBname(variables.ctype.Text);
                     }
                     //else
                     //{
@@ -1118,15 +1118,15 @@ namespace JRunner
         /// <param name="function"></param>
         void getconsoletype(int function, int writelength = 0)
         {
-            if (variables.ctyp.ID != 11 && device != DEVICE.NAND_X && device != DEVICE.JR_PROGRAMMER && !DemoN.DemonDetected)
+            if (variables.ctype.ID != 11 && device != DEVICE.NAND_X && device != DEVICE.JR_PROGRAMMER && !DemoN.DemonDetected)
             {
-                variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
-                if (variables.ctyp.ID == -1) return;
+                variables.ctype = callConsoleSelect(ConsoleSelect.Selected.All);
+                if (variables.ctype.ID == -1) return;
             }
 
             NandX.Errors error = 0;
 
-            if (variables.ctyp.ID != 11)
+            if (variables.ctype.ID != 11)
             {
                 variables.read1p28mb = false;
                 variables.fulldump = false;
@@ -1151,7 +1151,7 @@ namespace JRunner
 
             if (function == 1)
             {
-                if (variables.ctyp.ID == 11)
+                if (variables.ctype.ID == 11)
                 {
                     callDrives(Panels.LDrivesInfo.Function.Read);
                     return;
@@ -1168,7 +1168,7 @@ namespace JRunner
             }
             else if (function == 2)
             {
-                if (variables.ctyp.ID == 11)
+                if (variables.ctype.ID == 11)
                 {
                     callDrives(Panels.LDrivesInfo.Function.Write);
                     return;
@@ -1185,7 +1185,7 @@ namespace JRunner
             }
             else if (function == 3)
             {
-                if (variables.ctyp.ID == 11)
+                if (variables.ctype.ID == 11)
                 {
                     callDrives(Panels.LDrivesInfo.Function.Write);
                     return;
@@ -1214,18 +1214,18 @@ namespace JRunner
                 if (variables.debugMode) Console.WriteLine("Read Nand");
 
                 #region nandsize
-                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 9 || variables.ctyp.ID == 12) && !variables.fulldump)
+                if ((variables.ctype.ID == 6 || variables.ctype.ID == 9 || variables.ctype.ID == 12) && !variables.fulldump)
                 {
                     variables.nandsizex = Nandsize.S64;
                 }
-                else if (variables.ctyp.ID == 0)
+                else if (variables.ctype.ID == 0)
                 {
                     variables.nandsizex = Nandsize.S16;
                 }
                 else
                 {
-                    if (variables.debugMode) Console.WriteLine(variables.ctyp.ID);
-                    variables.nandsizex = variables.ctyp.Nsize;
+                    if (variables.debugMode) Console.WriteLine(variables.ctype.ID);
+                    variables.nandsizex = variables.ctype.Nsize;
                 }
                 #endregion
 
@@ -1353,17 +1353,17 @@ namespace JRunner
 
                 double len = new FileInfo(variables.filename1).Length;
                 if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
-                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 9 || variables.ctyp.ID == 12) && (len == 69206016))
+                if ((variables.ctype.ID == 6 || variables.ctype.ID == 9 || variables.ctype.ID == 12) && (len == 69206016))
                 {
                     variables.nandsizex = Nandsize.S64;
                 }
-                else if (variables.ctyp.ID == 0)
+                else if (variables.ctype.ID == 0)
                 {
                     variables.nandsizex = Nandsize.S16;
                 }
                 else
                 {
-                    variables.nandsizex = variables.ctyp.Nsize;
+                    variables.nandsizex = variables.ctype.Nsize;
                 }
 
                 if (Path.GetExtension(variables.filename1) == ".ecc")
@@ -1423,21 +1423,21 @@ namespace JRunner
             }
             else
             {
-                if (variables.ctyp.ID == -1) variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
-                if (variables.ctyp.ID == -1) return;
+                if (variables.ctype.ID == -1) variables.ctype = callConsoleSelect(ConsoleSelect.Selected.All);
+                if (variables.ctype.ID == -1) return;
                 double len = new FileInfo(variables.filename1).Length;
                 if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
-                if ((variables.ctyp.ID == 6 || variables.ctyp.ID == 9 || variables.ctyp.ID == 12) && (len == 69206016))
+                if ((variables.ctype.ID == 6 || variables.ctype.ID == 9 || variables.ctype.ID == 12) && (len == 69206016))
                 {
                     variables.nandsizex = Nandsize.S64;
                 }
-                else if (variables.ctyp.ID == 0)
+                else if (variables.ctype.ID == 0)
                 {
                     variables.nandsizex = Nandsize.S16;
                 }
                 else
                 {
-                    variables.nandsizex = variables.ctyp.Nsize;
+                    variables.nandsizex = variables.ctype.Nsize;
                 }
 
                 if (Path.GetExtension(variables.filename1) == ".bin")
@@ -1875,7 +1875,7 @@ namespace JRunner
             if (!partial)
             {
                 xPanel.clear();
-                variables.ctyp = variables.ctypes[0];
+                variables.ctype = variables.ctypes[0];
                 txtIP.Text = txtIP.Text.Remove(txtIP.Text.LastIndexOf('.')) + ".";
             }
 
@@ -1892,7 +1892,7 @@ namespace JRunner
         void erasevariables()
         {
             variables.fulldump = false; variables.read1p28mb = false;
-            variables.ctyp = variables.ctypes[0]; variables.gotvalues = false;
+            variables.ctype = variables.ctypes[0]; variables.gotvalues = false;
             variables.cpukey = "";
             //variables.outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
             xPanel.setMBname("");
@@ -2038,9 +2038,9 @@ namespace JRunner
                 variables.rgh1able = Nand.ntable.isGlitch1Able(nand.bl.CB_A);
 
                 if (variables.debugMode) Console.WriteLine("----------------------");
-                variables.ctyp = variables.ctypes[0];
-                variables.ctyp = Nand.Nand.getConsole(nand, variables.flashconfig);
-                xPanel.setMBname(variables.ctyp.Text);
+                variables.ctype = variables.ctypes[0];
+                variables.ctype = Nand.Nand.getConsole(nand, variables.flashconfig);
+                xPanel.setMBname(variables.ctype.Text);
                 variables.rghable = true;
 
                 /////////////////////////
@@ -2172,23 +2172,23 @@ namespace JRunner
             byte[] kvraw = Nand.Nand.getrawkv(variables.filename1);
             long size1 = 0;
             string xellfile;
-            if (variables.ctyp.ID == 8) xellfile = "xenon.bin";
-            else if (variables.ctyp.ID == 2)
+            if (variables.ctype.ID == 8) xellfile = "xenon.bin";
+            else if (variables.ctype.ID == 2)
             {
                 if (xPanel.getAudClampChecked()) xellfile = "falcon_aud_clamp.bin";
                 else xellfile = "falcon.bin";
             }
-            else if (variables.ctyp.ID == 3)
+            else if (variables.ctype.ID == 3)
             {
                 if (xPanel.getAudClampChecked()) xellfile = "zephyr_aud_clamp.bin";
                 else xellfile = "zephyr.bin";
             }
-            else if (variables.ctyp.ID == 4 || variables.ctyp.ID == 5)
+            else if (variables.ctype.ID == 4 || variables.ctype.ID == 5)
             {
                 if (xPanel.getAudClampChecked()) xellfile = "jasper_aud_clamp.bin";
                 else xellfile = "jasper.bin";
             }
-            else if (variables.ctyp.ID == 6)
+            else if (variables.ctype.ID == 6)
             {
                 if (xPanel.getAudClampChecked()) xellfile = "jasper_bb_aud_clamp.bin";
                 else xellfile = "jasper_bb.bin";
@@ -2205,8 +2205,8 @@ namespace JRunner
             if (xPanel.getRJtagChecked())
             {
                 int layout = 0;
-                if (variables.ctyp.ID == 6) layout = 2;
-                else if (variables.ctyp.ID == 4 || variables.ctyp.ID == 5) layout = 1;
+                if (variables.ctype.ID == 6) layout = 2;
+                else if (variables.ctype.ID == 4 || variables.ctype.ID == 5) layout = 1;
                 byte[] SMC;
                 byte[] smc_len = new byte[4], smc_start = new byte[4];
                 Buffer.BlockCopy(xell, 0x78, smc_len, 0, 4);
@@ -2258,7 +2258,7 @@ namespace JRunner
 
         private void createGlitch2XeLL()
         {
-            if (xPanel.getRgh3Checked() && (variables.ctyp.ID == 3 || variables.ctyp.ID == 8))
+            if (xPanel.getRgh3Checked() && (variables.ctype.ID == 3 || variables.ctype.ID == 8))
             {
                 MessageBox.Show("RGH3 is not supported on this board type", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -2295,7 +2295,7 @@ namespace JRunner
                 string mhz = "";
                 if (xPanel.getRgh3Mhz() == 10) mhz = "_10";
 
-                switch (variables.ctyp.ID)
+                switch (variables.ctype.ID)
                 {
                     case 1:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_trinity + ".ecc");
@@ -2333,7 +2333,7 @@ namespace JRunner
                 if (xPanel.getSMCPChecked()) smcp = "_SMC+";
                 else if (xPanel.getCR4Checked()) cr4 = "_CR4";
 
-                switch (variables.ctyp.ID)
+                switch (variables.ctype.ID)
                 {
                     case 1:
                         variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_trinity + cr4 + smcp + ".ecc");
@@ -2422,7 +2422,7 @@ namespace JRunner
             nand.getsmcconfig();
             Oper.savefile(nand._smc_config, Path.Combine(tmpout, "smc_config.bin"));
 
-            if (variables.ctyp.ID == 1 || variables.ctyp.ID == 10 || variables.ctyp.ID == 11)
+            if (variables.ctype.ID == 1 || variables.ctype.ID == 10 || variables.ctype.ID == 11)
             {
                 byte[] t;
                 Console.WriteLine("Working...");
@@ -2696,8 +2696,8 @@ namespace JRunner
         {
             ConsoleSelect consoleSelect = new ConsoleSelect();
             consoleSelect.ShowDialog();
-            if (consoleSelect.DialogResult == DialogResult.Cancel) return variables.ctypes[0];
-            if (consoleSelect.heResult().ID == -1) return variables.ctypes[0];
+            if (consoleSelect.DialogResult == DialogResult.Cancel) return variables.ctype;
+            if (consoleSelect.heResult().ID == -1) return variables.ctype;
             xPanel.setMBname(consoleSelect.heResult().Text);
             return consoleSelect.heResult();
         }
@@ -2962,8 +2962,8 @@ namespace JRunner
                 return;
             }
 
-            if (variables.ctyp.ID == -1) variables.ctyp = callConsoleSelect(ConsoleSelect.Selected.All);
-            if (variables.ctyp.ID == -1) return;
+            if (variables.ctype.ID == -1) variables.ctype = callConsoleSelect(ConsoleSelect.Selected.All);
+            if (variables.ctype.ID == -1) return;
             if (Application.OpenForms.OfType<CreateDonorNand>().Any())
             {
                 cdonor.WindowState = FormWindowState.Normal;
@@ -3398,7 +3398,7 @@ namespace JRunner
             }
             else if (device == DEVICE.XFLASHER_EMMC)
             {
-                variables.ctyp = variables.ctypes[11];
+                variables.ctype = variables.ctypes[11];
                 xPanel.setMBname(variables.ctypes[11].Text);
                 getconsoletype(1);
             }
@@ -3420,7 +3420,7 @@ namespace JRunner
                 MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (variables.ctyp.ID == -1)
+            if (variables.ctype.ID == -1)
             {
                 MessageBox.Show("No console type is selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3492,7 +3492,7 @@ namespace JRunner
             }
             else if (device == DEVICE.XFLASHER_EMMC)
             {
-                variables.ctyp = variables.ctypes[11];
+                variables.ctype = variables.ctypes[11];
                 xPanel.setMBname(variables.ctypes[11].Text);
                 getconsoletype(3);
             }
@@ -3518,7 +3518,7 @@ namespace JRunner
                 MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (variables.ctyp.ID == -1)
+            if (variables.ctype.ID == -1)
             {
                 MessageBox.Show("No console type is selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -3546,7 +3546,7 @@ namespace JRunner
             }
             else if (device == DEVICE.XFLASHER_EMMC)
             {
-                variables.ctyp = variables.ctypes[11];
+                variables.ctype = variables.ctypes[11];
                 xPanel.setMBname(variables.ctypes[11].Text);
                 getconsoletype(2);
             }

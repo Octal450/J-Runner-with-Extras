@@ -1144,7 +1144,7 @@ namespace JRunner.Panels
         {
             Classes.xebuild xe = new Classes.xebuild();
             xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
-                             variables.ctyp, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
+                             variables.ctype, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
                              chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, fullDataClean);
 
             string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_" + variables.ttyp + ".ini");
@@ -1233,7 +1233,7 @@ namespace JRunner.Panels
                 }
 
                 string cba = "", cbb = "";
-                string[] files = parse_ini.parselabel(ini, variables.ctyp.Ini + "bl");
+                string[] files = parse_ini.parselabel(ini, variables.ctype.Ini + "bl");
                 if (files.Length >= 2)
                 {
                     if (files[0].Contains("cb")) cba = files[0].Substring(files[0].IndexOf("_") + 1, files[0].IndexOf(".bin") - 4);
@@ -1261,20 +1261,20 @@ namespace JRunner.Panels
                     MessageBox.Show("Ini's are Missing");
                     return;
                 case Classes.xebuild.XebuildError.nobootloaders:
-                    Console.WriteLine("The specified console bootloader list ({0}) is missing from the ini ({1})", variables.ctyp.Ini + "bl", ini);
+                    Console.WriteLine("The specified console bootloader list ({0}) is missing from the ini ({1})", variables.ctype.Ini + "bl", ini);
                     Console.WriteLine("You can either add it manually or ask for it get added if its possible");
                     return;
                 case Classes.xebuild.XebuildError.wrongcpukey:
                     MessageBox.Show("Wrong CPU Key");
                     return;
                 case Classes.xebuild.XebuildError.noconsole:
-                    variables.ctyp = MainForm.mainForm.callConsoleSelect(ConsoleSelect.Selected.All);
-                    if (variables.ctyp.ID == -1) return;
+                    variables.ctype = MainForm.mainForm.callConsoleSelect(ConsoleSelect.Selected.All);
+                    if (variables.ctype.ID == -1) return;
                     else
                     {
                         Console.WriteLine((variables.hacktypes)variables.ttyp);
                         xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
-                            variables.ctyp, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
+                            variables.ctype, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked,
                             chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, fullDataClean);
                         goto Start;
@@ -1502,7 +1502,7 @@ namespace JRunner.Panels
             if (wait) Thread.Sleep(100);
             string c = "";
             c = "-t " + variables.ttyp;
-            c += " -c " + variables.ctyp.XeBuild;
+            c += " -c " + variables.ctype.XeBuild;
             foreach (String patch in patches)
             {
                 c += " " + patch;
@@ -1550,7 +1550,7 @@ namespace JRunner.Panels
                     foreach (string s in labels)
                     {
                         if (!s.Contains("bl")) continue;
-                        if (variables.ctyp.ID == -1)
+                        if (variables.ctype.ID == -1)
                         {
                             if (s.Contains("_")) cbList.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
                             else
@@ -1562,7 +1562,7 @@ namespace JRunner.Panels
                         }
                         else
                         {
-                            if (s.Contains(variables.ctyp.Ini))
+                            if (s.Contains(variables.ctype.Ini))
                             {
                                 if (s.Contains("_")) cbList.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
                                 else
