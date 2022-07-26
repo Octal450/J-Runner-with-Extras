@@ -337,6 +337,18 @@ namespace JRunner
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.FormOwnerClosing || e.CloseReason == CloseReason.UserClosing)
+            {
+                if (variables.reading || variables.writing)
+                {
+                    if (DialogResult.No == MessageBox.Show("Application is currently reading or writing\n\nAre you sure you want to exit?", "Application Is Busy", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk))
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+            }
+
             savesettings();
             saveToLog();
         }
@@ -2782,7 +2794,7 @@ namespace JRunner
                 "F5 - Corona 4GB Read/Write\n" +
                 "F6 - Timing Assistant\n" +
                 "F7 - CPU Key Database\n" +
-                "F12 - Send Timing File via JTAG (if enabled)\n" +
+                "F12 - Send Timing File via JTAG\n" +
                 "CTRL+H - Shortcuts",
                 "Shortcuts", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
@@ -3334,16 +3346,38 @@ namespace JRunner
 
         private void btnNewSession_Click(object sender, EventArgs e)
         {
+            if (variables.reading || variables.writing)
+            {
+                MessageBox.Show("It is not possible to start a new session while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             newSession();
         }
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
+            if (variables.reading || variables.writing)
+            {
+                if (DialogResult.No == MessageBox.Show("Application is currently reading or writing\n\nAre you sure you want to restart?", "Application Is Busy", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk))
+                {
+                    return;
+                }
+            }
+
             Application.Restart();
         }
 
         void btnExit_Click(object sender, EventArgs e)
         {
+            if (variables.reading || variables.writing)
+            {
+                if (DialogResult.No == MessageBox.Show("Application is currently reading or writing\n\nAre you sure you want to exit?", "Application Is Busy", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk))
+                {
+                    return;
+                }
+            }
+
             Program.exit();
         }
 
@@ -3565,7 +3599,7 @@ namespace JRunner
         {
             if (variables.reading || variables.writing)
             {
-                MessageBox.Show("Files cannot be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Files can't be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -3580,7 +3614,7 @@ namespace JRunner
         {
             if (variables.reading || variables.writing)
             {
-                MessageBox.Show("Files cannot be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Files can't be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -3747,7 +3781,7 @@ namespace JRunner
         {
             if (variables.reading || variables.writing)
             {
-                MessageBox.Show("Files cannot be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Files can't be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -3771,7 +3805,7 @@ namespace JRunner
         {
             if (variables.reading || variables.writing)
             {
-                MessageBox.Show("Files cannot be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Files can't be loaded while reading or writing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -3926,7 +3960,7 @@ namespace JRunner
             }
             else if (e.KeyCode == Keys.F12)
             {
-                if (listInfo.Contains(xsvfInfo) && variables.timingonkeypress)
+                if (listInfo.Contains(xsvfInfo))
                 {
                     xsvfInfo_ProgramCRClick();
                 }
@@ -4270,9 +4304,6 @@ namespace JRunner
                         case "AllMove":
                             x.write(name, variables.allmove.ToString());
                             break;
-                        case "TimingOnKeypress":
-                            x.write(name, variables.timingonkeypress.ToString());
-                            break;
                         case "LogBackground":
                             x.write(name, ColorTranslator.ToHtml(variables.logbackground));
                             break;
@@ -4417,11 +4448,6 @@ namespace JRunner
                             bvalue = false;
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             variables.allmove = bvalue;
-                            break;
-                        case "TimingOnKeypress":
-                            bvalue = false;
-                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
-                            variables.timingonkeypress = bvalue;
                             break;
                         case "LogBackground":
                             if (!string.IsNullOrWhiteSpace(val))

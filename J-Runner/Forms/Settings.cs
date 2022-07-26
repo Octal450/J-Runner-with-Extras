@@ -41,7 +41,6 @@ namespace JRunner.Forms
             chkPlaySuccess.Checked = variables.playSuccess;
             chkPlayError.Checked = variables.playError;
             chkAutoDelXeLL.Checked = variables.autoDelXeLL;
-            chkUnused2.Checked = variables.timingonkeypress;
             chkNoPatchWarnings.Checked = variables.noPatchWarnings;
             chkAllMove.Checked = !variables.allmove;
             if (variables.slimprefersrgh) SlimPreferSrgh.Checked = true;

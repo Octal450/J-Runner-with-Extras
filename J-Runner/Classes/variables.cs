@@ -122,7 +122,6 @@ namespace JRunner
         public static string settingsfile = Path.Combine(AppData, "settings.xml");
         public static bool escapeloop = false, exitedxe = true, autoExtract = false, allmove = false;
         public static bool reading = false, writing;
-        public static bool timingonkeypress = false;
         public static bool slimprefersrgh = false;
         public static bool mtxUsbMode = false;
         public static bool noPatchWarnings = false;
@@ -135,8 +134,8 @@ namespace JRunner
         public static string overrideRootPath = "";
         public static bool cpuKeyDbSerial = false;
         public static string[] settings = { "XeBuild", "FileChecks", "COMPort", "Delay", "DashlaunchE", "IP", "NoReads", "IPStart", "IPEnd", "Dashlaunch", "PreferredDash", "KeepFiles", "RootDirOverride",
-                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "TimingOnKeypress", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings",
-                                            "PlaySuccess", "PlayError", "AutoDelXeLL", "CpuKeyDbSerial"};
+                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings", "PlaySuccess",
+                                            "PlayError", "AutoDelXeLL", "CpuKeyDbSerial"};
 
         public static string COMPort = "";
 
