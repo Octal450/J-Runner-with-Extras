@@ -98,9 +98,9 @@
             // txtIP
             // 
             this.txtIP.Enabled = false;
-            this.txtIP.Location = new System.Drawing.Point(81, 14);
+            this.txtIP.Location = new System.Drawing.Point(80, 17);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(92, 20);
+            this.txtIP.Size = new System.Drawing.Size(96, 20);
             this.txtIP.TabIndex = 3;
             this.toolTip1.SetToolTip(this.txtIP, "Set a default IP for getting CPUKey\r\nover a network.");
             // 
@@ -122,10 +122,10 @@
             // txtTimingLptPort
             // 
             this.txtTimingLptPort.Enabled = false;
-            this.txtTimingLptPort.Location = new System.Drawing.Point(117, 17);
+            this.txtTimingLptPort.Location = new System.Drawing.Point(121, 17);
             this.txtTimingLptPort.MaxLength = 5;
             this.txtTimingLptPort.Name = "txtTimingLptPort";
-            this.txtTimingLptPort.Size = new System.Drawing.Size(57, 20);
+            this.txtTimingLptPort.Size = new System.Drawing.Size(55, 20);
             this.txtTimingLptPort.TabIndex = 52;
             this.toolTip1.SetToolTip(this.txtTimingLptPort, "determines the name given to the file\r\nproduced upon creation of a Nand\r\nImage");
             this.txtTimingLptPort.TextChanged += new System.EventHandler(this.txtTimingLptPort_TextChanged);
@@ -147,7 +147,7 @@
             // chkIPDefault
             // 
             this.chkIPDefault.AutoSize = true;
-            this.chkIPDefault.Location = new System.Drawing.Point(10, 16);
+            this.chkIPDefault.Location = new System.Drawing.Point(11, 19);
             this.chkIPDefault.Name = "chkIPDefault";
             this.chkIPDefault.Size = new System.Drawing.Size(69, 17);
             this.chkIPDefault.TabIndex = 2;
@@ -175,7 +175,7 @@
             this.groupBox2.Controls.Add(this.txtIP);
             this.groupBox2.Location = new System.Drawing.Point(402, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(183, 42);
+            this.groupBox2.Size = new System.Drawing.Size(183, 45);
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "XeLL IP Prefix";
@@ -309,7 +309,7 @@
             // 
             this.groupBox3.Controls.Add(this.SlimPreferSrgh);
             this.groupBox3.Controls.Add(this.SlimPreferRgh12);
-            this.groupBox3.Location = new System.Drawing.Point(402, 56);
+            this.groupBox3.Location = new System.Drawing.Point(402, 59);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(183, 45);
             this.groupBox3.TabIndex = 39;
@@ -343,7 +343,7 @@
             this.groupBox4.Controls.Add(this.txtTimingLptPort);
             this.groupBox4.Controls.Add(this.rbtnTimingLpt);
             this.groupBox4.Controls.Add(this.rbtnTimingUsb);
-            this.groupBox4.Location = new System.Drawing.Point(402, 108);
+            this.groupBox4.Location = new System.Drawing.Point(402, 111);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(183, 45);
             this.groupBox4.TabIndex = 40;
@@ -355,9 +355,9 @@
             this.rbtnTimingLpt.AutoSize = true;
             this.rbtnTimingLpt.Location = new System.Drawing.Point(72, 18);
             this.rbtnTimingLpt.Name = "rbtnTimingLpt";
-            this.rbtnTimingLpt.Size = new System.Drawing.Size(45, 17);
+            this.rbtnTimingLpt.Size = new System.Drawing.Size(48, 17);
             this.rbtnTimingLpt.TabIndex = 1;
-            this.rbtnTimingLpt.Text = "LPT";
+            this.rbtnTimingLpt.Text = "LPT:";
             this.rbtnTimingLpt.UseVisualStyleBackColor = true;
             this.rbtnTimingLpt.CheckedChanged += new System.EventHandler(this.timingRbtn_CheckedChanged);
             // 
@@ -479,7 +479,7 @@
             this.tabBackup.Location = new System.Drawing.Point(4, 22);
             this.tabBackup.Name = "tabBackup";
             this.tabBackup.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBackup.Size = new System.Drawing.Size(596, 292);
+            this.tabBackup.Size = new System.Drawing.Size(596, 246);
             this.tabBackup.TabIndex = 1;
             this.tabBackup.Text = "Backup";
             this.tabBackup.UseVisualStyleBackColor = true;
