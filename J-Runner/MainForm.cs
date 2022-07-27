@@ -549,7 +549,7 @@ namespace JRunner
 
         void nTools_IterChange(int iter)
         {
-            variables.NoReads = iter;
+            variables.numReads = iter;
             ldInfo.updateIter(iter);
         }
 
@@ -1510,53 +1510,49 @@ namespace JRunner
             variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
 
             Console.WriteLine("Moving files to {0}", variables.xefolder);
-            string l_sDirectoryName = variables.xefolder;
-            DirectoryInfo l_dDirInfo = new DirectoryInfo(l_sDirectoryName);
+            string xeFolder = variables.xefolder;
+            DirectoryInfo xeFolderInfo = new DirectoryInfo(xeFolder);
 
-            if (l_dDirInfo.Exists == false) Directory.CreateDirectory(l_sDirectoryName);
+            if (!xeFolderInfo.Exists) Directory.CreateDirectory(xeFolder);
 
-            List<String> MyFiles = Directory.GetFiles(variables.outfolder, "*.*", SearchOption.TopDirectoryOnly).ToList();
-            List<String> myfolders = Directory.GetDirectories(variables.outfolder, "*.*", SearchOption.TopDirectoryOnly).ToList();
+            List<string> files = Directory.GetFiles(variables.outfolder, "*.*", SearchOption.TopDirectoryOnly).ToList();
+            List<string> folders = Directory.GetDirectories(variables.outfolder, "*.*", SearchOption.TopDirectoryOnly).ToList();
 
-            foreach (string fold in myfolders)
+            foreach (string folder in folders)
             {
-                try
-                {
-                    if (variables.debugMode) Console.WriteLine("Moving {0}", fold);
+                if (variables.debugMode) Console.WriteLine("Moving {0}", folder);
 
-                    if (fold.Contains(nand.ki.serial))
-                    {
-                        Directory.Move(fold, Path.Combine(variables.xefolder, Path.GetFileName(fold)));
-                    }
-                }
-                catch (IOException e)
+                if (folder.Contains(nand.ki.serial))
                 {
-                    Console.WriteLine(e.Message);
+                    Directory.Move(folder, Path.Combine(xeFolder, Path.GetFileName(folder)));
                 }
             }
-            foreach (string file in MyFiles)
+            foreach (string file in files)
             {
                 if (variables.debugMode) Console.WriteLine("Moving {0}", file);
-                FileInfo mFile = new FileInfo(file);
-                if (new FileInfo(l_dDirInfo + "\\" + mFile.Name).Exists == false) // To remove name collusion
-                    mFile.MoveTo(l_dDirInfo + "\\" + mFile.Name);
+                FileInfo fileInfo = new FileInfo(file);
+                if (new FileInfo(xeFolderInfo + "\\" + fileInfo.Name).Exists == false) // To remove name collusion
+                {
+                    fileInfo.MoveTo(xeFolderInfo + "\\" + fileInfo.Name);
+                }
                 else
                 {
-                    string flname = Path.GetFileNameWithoutExtension(mFile.Name);
-                    int number = 1;
-                    if (flname.Contains("(") && flname.Contains(")"))
+                    string filename = Path.GetFileNameWithoutExtension(fileInfo.Name);
+                    int number = 0;
+
+                    if (filename.Contains("(") && filename.Contains(")"))
                     {
-                        string Nflname = flname.Substring(0, flname.IndexOf("("));
+                        string nfilename = filename.Substring(0, filename.IndexOf(" ("));
 
                         do
                         {
                             number++;
                         }
-                        while (File.Exists(l_dDirInfo + "\\" + Nflname + "(" + number + ")" + mFile.Extension));
+                        while (File.Exists(xeFolderInfo + "\\" + nfilename + " (" + number + ")" + fileInfo.Extension));
 
-                        if (!File.Exists(l_dDirInfo + "\\" + Nflname + "(" + number + ")" + mFile.Extension))
+                        if (!File.Exists(xeFolderInfo + "\\" + nfilename + " (" + number + ")" + fileInfo.Extension))
                         {
-                            mFile.MoveTo(l_dDirInfo + "\\" + Nflname + "(" + number + ")" + mFile.Extension);
+                            fileInfo.MoveTo(xeFolderInfo + "\\" + nfilename + " (" + number + ")" + fileInfo.Extension);
                         }
                     }
                     else
@@ -1565,19 +1561,21 @@ namespace JRunner
                         {
                             number++;
                         }
-                        while (File.Exists(l_dDirInfo + "\\" + Path.GetFileNameWithoutExtension(mFile.Name) + "(" + number + ")" + mFile.Extension));
+                        while (File.Exists(xeFolderInfo + "\\" + Path.GetFileNameWithoutExtension(fileInfo.Name) + " (" + number + ")" + fileInfo.Extension));
 
-                        if (!File.Exists(l_dDirInfo + "\\" + Path.GetFileNameWithoutExtension(mFile.Name) + "(" + number + ")" + mFile.Extension))
+                        if (!File.Exists(xeFolderInfo + "\\" + Path.GetFileNameWithoutExtension(fileInfo.Name) + " (" + number + ")" + fileInfo.Extension))
                         {
-                            mFile.MoveTo(l_dDirInfo + "\\" + Path.GetFileNameWithoutExtension(mFile.Name) + "(" + number + ")" + mFile.Extension);
+                            fileInfo.MoveTo(xeFolderInfo + "\\" + Path.GetFileNameWithoutExtension(fileInfo.Name) + " (" + number + ")" + fileInfo.Extension);
                         }
                     }
                 }
             }
 
-            variables.filename1 = variables.filename1.Replace(variables.outfolder, variables.xefolder);
-            txtFileSource.BeginInvoke(new Action(() => txtFileSource.Text = variables.filename1));            
+            variables.filename1 = variables.filename1.Replace(variables.outfolder, xeFolder);
+            txtFileSource.BeginInvoke(new Action(() => txtFileSource.Text = variables.filename1));
             nand = new Nand.PrivateN(variables.filename1, variables.cpukey); // Re-init because folder changed
+
+            if (variables.backupEn) Backup.scheduleBackup = true;
         }
 
         public void nand_init(bool nomove = false)
@@ -1927,6 +1925,7 @@ namespace JRunner
             if (variables.reading || variables.writing) return;
 
             bool movedalready = false;
+            Backup.scheduleBackup = false;
             if (string.IsNullOrEmpty(variables.filename1)) return;
             if (!File.Exists(variables.filename1))
             {
@@ -2175,6 +2174,8 @@ namespace JRunner
             }
 
             GC.Collect();
+
+            if (Backup.scheduleBackup) Backup.autoBackup();
         }
 
         private void createXeLLJtag()
@@ -3634,13 +3635,13 @@ namespace JRunner
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "ZIP archives (*.zip)|*.zip";
             sfd.Title = "Backup To ZIP";
-            sfd.FileName = Backup.getAutoBackupName();
+            sfd.FileName = Backup.getBackupName();
             sfd.RestoreDirectory = false;
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                string target = Backup.getAutoBackupTarget();
-                if (!string.IsNullOrWhiteSpace(target)) Backup.backupToZip(target, sfd.FileName);
+                string target = Backup.getBackupPath();
+                if (!string.IsNullOrWhiteSpace(target)) Backup.backupToZip(target, sfd.FileName, true);
             }
         }
 
@@ -3666,7 +3667,7 @@ namespace JRunner
             new Thread(comparenands).Start();
         }
 
-        private void btnInit_Click(object sender, EventArgs e)
+        private void btnReload_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(variables.filename1))
             {
@@ -4278,7 +4279,7 @@ namespace JRunner
                             x.write(name, variables.ipPrefix);
                             break;
                         case "NoReads":
-                            x.write(name, variables.NoReads.ToString());
+                            x.write(name, variables.numReads.ToString());
                             break;
                         case "Dashlaunch":
                             x.write(name, variables.dashlaunch);
@@ -4331,6 +4332,18 @@ namespace JRunner
                         case "CpuKeyDbSerial":
                             x.write(name, variables.cpuKeyDbSerial.ToString());
                             break;
+                        case "BackupEn":
+                            x.write(name, variables.backupEn.ToString());
+                            break;
+                        case "BackupType":
+                            x.write(name, variables.backupType.ToString());
+                            break;
+                        case "BackupNaming":
+                            x.write(name, variables.backupNaming.ToString());
+                            break;
+                        case "BackupRoot":
+                            x.write(name, variables.backupRoot);
+                            break;
                         default:
                             break;
                     }
@@ -4352,6 +4365,7 @@ namespace JRunner
                 {
                     string val = x.readsetting(name);
                     bool bvalue;
+                    int ivalue;
                     switch (name)
                     {
                         case "XeBuild":
@@ -4395,11 +4409,11 @@ namespace JRunner
                             }
                             break;
                         case "NoReads":
-                            decimal dvalue = 2;
-                            decimal.TryParse(val, out dvalue);
-                            if (dvalue == 0) dvalue = 2;
-                            nTools.setNumericIterations(dvalue);
-                            variables.NoReads = dvalue;
+                            ivalue = 2;
+                            int.TryParse(val, out ivalue);
+                            if (ivalue == 0) ivalue = 2;
+                            nTools.setNumericIterations(ivalue);
+                            variables.numReads = ivalue;
                             break;
                         case "Dashlaunch":
                             string dlmd5 = Oper.GetMD5HashFromFile(variables.update_path + "launch.xex").ToUpper();
@@ -4506,6 +4520,24 @@ namespace JRunner
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             variables.cpuKeyDbSerial = bvalue;
                             break;
+                        case "BackupEn":
+                            bvalue = false;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
+                            variables.backupEn = bvalue;
+                            break;
+                        case "BackupType":
+                            ivalue = 0;
+                            int.TryParse(val, out ivalue);
+                            variables.backupType = ivalue;
+                            break;
+                        case "BackupNaming":
+                            ivalue = 0;
+                            int.TryParse(val, out ivalue);
+                            variables.backupNaming = ivalue;
+                            break;
+                        case "BackupRoot":
+                            if (!string.IsNullOrWhiteSpace(val)) variables.backupRoot = val;
+                            break;
                         default:
                             break;
                     }
@@ -4515,7 +4547,15 @@ namespace JRunner
             {
                 setIP();
             }
+
             IP.initaddresses();
+            setBackupLabel();
+        }
+
+        public void setBackupLabel()
+        {
+            if (variables.backupEn) BackupLabel.Text = "Auto Backup: On";
+            else BackupLabel.Text = "Auto Backup: Off";
         }
 
         public void setIP()

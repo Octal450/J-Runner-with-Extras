@@ -17,7 +17,7 @@ namespace JRunner.Panels
         {
             return (int)numericIterations.Value;
         }
-        public void setNumericIterations(decimal value)
+        public void setNumericIterations(int value)
         {
             numericIterations.Value = value;
         }

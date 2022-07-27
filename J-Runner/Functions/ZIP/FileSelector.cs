@@ -1336,7 +1336,7 @@ namespace Ionic
             if (_Criterion == null)
                 throw new ArgumentException("SelectionCriteria has not been set");
 
-            var list = new List<String>();
+            var list = new List<string>();
             try
             {
                 if (Directory.Exists(directory))

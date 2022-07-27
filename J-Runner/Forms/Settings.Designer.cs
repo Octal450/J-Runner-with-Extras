@@ -67,19 +67,30 @@
             this.tabCSettings = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.tabBackup = new System.Windows.Forms.TabPage();
+            this.groupBackupNaming = new System.Windows.Forms.GroupBox();
+            this.rbtnSnOnly = new System.Windows.Forms.RadioButton();
+            this.rbtnCtypeSn = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnBackupRoot = new System.Windows.Forms.Button();
+            this.txtBackupRoot = new System.Windows.Forms.TextBox();
+            this.chkBackupEn = new System.Windows.Forms.CheckBox();
+            this.groupBackupType = new System.Windows.Forms.GroupBox();
+            this.rbtnFolder = new System.Windows.Forms.RadioButton();
+            this.rbtnZip = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabCSettings.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.tabBackup.SuspendLayout();
+            this.groupBackupNaming.SuspendLayout();
+            this.groupBackupType.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRootOverride
             // 
             this.btnRootOverride.Enabled = false;
-            this.btnRootOverride.Location = new System.Drawing.Point(331, 23);
+            this.btnRootOverride.Location = new System.Drawing.Point(331, 24);
             this.btnRootOverride.Name = "btnRootOverride";
             this.btnRootOverride.Size = new System.Drawing.Size(29, 22);
             this.btnRootOverride.TabIndex = 22;
@@ -90,7 +101,7 @@
             // txtRootOverride
             // 
             this.txtRootOverride.Enabled = false;
-            this.txtRootOverride.Location = new System.Drawing.Point(6, 24);
+            this.txtRootOverride.Location = new System.Drawing.Point(6, 25);
             this.txtRootOverride.Name = "txtRootOverride";
             this.txtRootOverride.Size = new System.Drawing.Size(319, 20);
             this.txtRootOverride.TabIndex = 21;
@@ -107,7 +118,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOK.Location = new System.Drawing.Point(203, 291);
+            this.btnOK.Location = new System.Drawing.Point(203, 290);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(100, 23);
             this.btnOK.TabIndex = 1;
@@ -133,7 +144,7 @@
             // chkRootOverride
             // 
             this.chkRootOverride.AutoSize = true;
-            this.chkRootOverride.Location = new System.Drawing.Point(6, 6);
+            this.chkRootOverride.Location = new System.Drawing.Point(6, 7);
             this.chkRootOverride.Name = "chkRootOverride";
             this.chkRootOverride.Size = new System.Drawing.Size(127, 17);
             this.chkRootOverride.TabIndex = 20;
@@ -183,11 +194,11 @@
             // chkAutoExtract
             // 
             this.chkAutoExtract.AutoSize = true;
-            this.chkAutoExtract.Location = new System.Drawing.Point(6, 55);
+            this.chkAutoExtract.Location = new System.Drawing.Point(6, 54);
             this.chkAutoExtract.Name = "chkAutoExtract";
-            this.chkAutoExtract.Size = new System.Drawing.Size(165, 17);
+            this.chkAutoExtract.Size = new System.Drawing.Size(213, 17);
             this.chkAutoExtract.TabIndex = 23;
-            this.chkAutoExtract.Text = "Auto Extract Files from Nands";
+            this.chkAutoExtract.Text = "Extract files from nand at CPU key entry";
             this.chkAutoExtract.UseVisualStyleBackColor = true;
             // 
             // chkAllMove
@@ -195,7 +206,7 @@
             this.chkAllMove.AutoSize = true;
             this.chkAllMove.Checked = true;
             this.chkAllMove.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAllMove.Location = new System.Drawing.Point(6, 78);
+            this.chkAllMove.Location = new System.Drawing.Point(6, 77);
             this.chkAllMove.Name = "chkAllMove";
             this.chkAllMove.Size = new System.Drawing.Size(274, 17);
             this.chkAllMove.TabIndex = 24;
@@ -205,7 +216,7 @@
             // logBackgroundCustom
             // 
             this.logBackgroundCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logBackgroundCustom.Location = new System.Drawing.Point(233, 193);
+            this.logBackgroundCustom.Location = new System.Drawing.Point(233, 192);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
             this.logBackgroundCustom.TabIndex = 34;
@@ -218,7 +229,7 @@
             // 
             this.logBackgroundBlue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logBackgroundBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(36)))), ((int)(((byte)(86)))));
-            this.logBackgroundBlue.Location = new System.Drawing.Point(207, 193);
+            this.logBackgroundBlue.Location = new System.Drawing.Point(207, 192);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlue.TabIndex = 33;
@@ -230,7 +241,7 @@
             // 
             this.logBackgroundBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logBackgroundBlack.BackColor = System.Drawing.Color.Black;
-            this.logBackgroundBlack.Location = new System.Drawing.Point(181, 193);
+            this.logBackgroundBlack.Location = new System.Drawing.Point(181, 192);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
             this.logBackgroundBlack.TabIndex = 32;
@@ -241,7 +252,7 @@
             // logTextCustom
             // 
             this.logTextCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logTextCustom.Location = new System.Drawing.Point(233, 219);
+            this.logTextCustom.Location = new System.Drawing.Point(233, 218);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
             this.logTextCustom.TabIndex = 37;
@@ -254,7 +265,7 @@
             // 
             this.logTextBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logTextBlack.BackColor = System.Drawing.Color.Black;
-            this.logTextBlack.Location = new System.Drawing.Point(207, 219);
+            this.logTextBlack.Location = new System.Drawing.Point(207, 218);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
             this.logTextBlack.TabIndex = 36;
@@ -266,7 +277,7 @@
             // 
             this.logTextWhite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.logTextWhite.BackColor = System.Drawing.Color.White;
-            this.logTextWhite.Location = new System.Drawing.Point(181, 219);
+            this.logTextWhite.Location = new System.Drawing.Point(181, 218);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
             this.logTextWhite.TabIndex = 35;
@@ -278,7 +289,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 222);
+            this.label11.Location = new System.Drawing.Point(3, 221);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 13);
             this.label11.TabIndex = 42;
@@ -288,7 +299,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 196);
+            this.label10.Location = new System.Drawing.Point(3, 195);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 13);
             this.label10.TabIndex = 38;
@@ -297,7 +308,7 @@
             // logDefault
             // 
             this.logDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.logDefault.Location = new System.Drawing.Point(125, 193);
+            this.logDefault.Location = new System.Drawing.Point(125, 192);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
             this.logDefault.TabIndex = 31;
@@ -377,7 +388,7 @@
             // btnDefaults
             // 
             this.btnDefaults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDefaults.Location = new System.Drawing.Point(309, 291);
+            this.btnDefaults.Location = new System.Drawing.Point(309, 290);
             this.btnDefaults.Name = "btnDefaults";
             this.btnDefaults.Size = new System.Drawing.Size(100, 23);
             this.btnDefaults.TabIndex = 40;
@@ -388,7 +399,7 @@
             // chkNoPatchWarnings
             // 
             this.chkNoPatchWarnings.AutoSize = true;
-            this.chkNoPatchWarnings.Location = new System.Drawing.Point(6, 124);
+            this.chkNoPatchWarnings.Location = new System.Drawing.Point(6, 123);
             this.chkNoPatchWarnings.Name = "chkNoPatchWarnings";
             this.chkNoPatchWarnings.Size = new System.Drawing.Size(206, 17);
             this.chkNoPatchWarnings.TabIndex = 27;
@@ -401,7 +412,7 @@
             this.chkPlaySuccess.AutoSize = true;
             this.chkPlaySuccess.Checked = true;
             this.chkPlaySuccess.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPlaySuccess.Location = new System.Drawing.Point(6, 147);
+            this.chkPlaySuccess.Location = new System.Drawing.Point(6, 146);
             this.chkPlaySuccess.Name = "chkPlaySuccess";
             this.chkPlaySuccess.Size = new System.Drawing.Size(157, 17);
             this.chkPlaySuccess.TabIndex = 29;
@@ -413,7 +424,7 @@
             this.chkPlayError.AutoSize = true;
             this.chkPlayError.Checked = true;
             this.chkPlayError.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPlayError.Location = new System.Drawing.Point(6, 170);
+            this.chkPlayError.Location = new System.Drawing.Point(6, 169);
             this.chkPlayError.Name = "chkPlayError";
             this.chkPlayError.Size = new System.Drawing.Size(138, 17);
             this.chkPlayError.TabIndex = 30;
@@ -425,7 +436,7 @@
             this.chkAutoDelXeLL.AutoSize = true;
             this.chkAutoDelXeLL.Checked = true;
             this.chkAutoDelXeLL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoDelXeLL.Location = new System.Drawing.Point(6, 101);
+            this.chkAutoDelXeLL.Location = new System.Drawing.Point(6, 100);
             this.chkAutoDelXeLL.Name = "chkAutoDelXeLL";
             this.chkAutoDelXeLL.Size = new System.Drawing.Size(226, 17);
             this.chkAutoDelXeLL.TabIndex = 28;
@@ -439,7 +450,7 @@
             this.tabCSettings.Location = new System.Drawing.Point(5, 5);
             this.tabCSettings.Name = "tabCSettings";
             this.tabCSettings.SelectedIndex = 0;
-            this.tabCSettings.Size = new System.Drawing.Size(604, 272);
+            this.tabCSettings.Size = new System.Drawing.Size(604, 271);
             this.tabCSettings.TabIndex = 2;
             // 
             // tabGeneral
@@ -468,38 +479,139 @@
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeneral.Size = new System.Drawing.Size(596, 246);
+            this.tabGeneral.Size = new System.Drawing.Size(596, 245);
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
             // tabBackup
             // 
+            this.tabBackup.Controls.Add(this.groupBackupNaming);
             this.tabBackup.Controls.Add(this.label1);
+            this.tabBackup.Controls.Add(this.btnBackupRoot);
+            this.tabBackup.Controls.Add(this.txtBackupRoot);
+            this.tabBackup.Controls.Add(this.chkBackupEn);
+            this.tabBackup.Controls.Add(this.groupBackupType);
             this.tabBackup.Location = new System.Drawing.Point(4, 22);
             this.tabBackup.Name = "tabBackup";
             this.tabBackup.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBackup.Size = new System.Drawing.Size(596, 246);
+            this.tabBackup.Size = new System.Drawing.Size(596, 245);
             this.tabBackup.TabIndex = 1;
             this.tabBackup.Text = "Backup";
             this.tabBackup.UseVisualStyleBackColor = true;
             // 
+            // groupBackupNaming
+            // 
+            this.groupBackupNaming.Controls.Add(this.rbtnSnOnly);
+            this.groupBackupNaming.Controls.Add(this.rbtnCtypeSn);
+            this.groupBackupNaming.Location = new System.Drawing.Point(6, 146);
+            this.groupBackupNaming.Name = "groupBackupNaming";
+            this.groupBackupNaming.Size = new System.Drawing.Size(354, 65);
+            this.groupBackupNaming.TabIndex = 2;
+            this.groupBackupNaming.TabStop = false;
+            this.groupBackupNaming.Text = "Naming Scheme";
+            // 
+            // rbtnSnOnly
+            // 
+            this.rbtnSnOnly.AutoSize = true;
+            this.rbtnSnOnly.Location = new System.Drawing.Point(9, 40);
+            this.rbtnSnOnly.Name = "rbtnSnOnly";
+            this.rbtnSnOnly.Size = new System.Drawing.Size(115, 17);
+            this.rbtnSnOnly.TabIndex = 1;
+            this.rbtnSnOnly.Text = "Serial Number Only\r\n";
+            this.rbtnSnOnly.UseVisualStyleBackColor = true;
+            // 
+            // rbtnCtypeSn
+            // 
+            this.rbtnCtypeSn.AutoSize = true;
+            this.rbtnCtypeSn.Checked = true;
+            this.rbtnCtypeSn.Location = new System.Drawing.Point(9, 17);
+            this.rbtnCtypeSn.Name = "rbtnCtypeSn";
+            this.rbtnCtypeSn.Size = new System.Drawing.Size(180, 17);
+            this.rbtnCtypeSn.TabIndex = 0;
+            this.rbtnCtypeSn.TabStop = true;
+            this.rbtnCtypeSn.Text = "Console Type and Serial Number\r\n";
+            this.rbtnCtypeSn.UseVisualStyleBackColor = true;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Location = new System.Drawing.Point(3, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(580, 126);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Oops, you\'ve reached a dead end\r\n\r\nPage under development";
+            this.label1.Size = new System.Drawing.Size(117, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Backup Root Location:";
+            // 
+            // btnBackupRoot
+            // 
+            this.btnBackupRoot.Enabled = false;
+            this.btnBackupRoot.Location = new System.Drawing.Point(331, 45);
+            this.btnBackupRoot.Name = "btnBackupRoot";
+            this.btnBackupRoot.Size = new System.Drawing.Size(29, 22);
+            this.btnBackupRoot.TabIndex = 24;
+            this.btnBackupRoot.Text = "...";
+            this.btnBackupRoot.UseVisualStyleBackColor = true;
+            this.btnBackupRoot.Click += new System.EventHandler(this.btnBackupRoot_Click);
+            // 
+            // txtBackupRoot
+            // 
+            this.txtBackupRoot.Enabled = false;
+            this.txtBackupRoot.Location = new System.Drawing.Point(6, 46);
+            this.txtBackupRoot.Name = "txtBackupRoot";
+            this.txtBackupRoot.Size = new System.Drawing.Size(319, 20);
+            this.txtBackupRoot.TabIndex = 23;
+            // 
+            // chkBackupEn
+            // 
+            this.chkBackupEn.AutoSize = true;
+            this.chkBackupEn.Location = new System.Drawing.Point(6, 7);
+            this.chkBackupEn.Name = "chkBackupEn";
+            this.chkBackupEn.Size = new System.Drawing.Size(246, 17);
+            this.chkBackupEn.TabIndex = 1;
+            this.chkBackupEn.Text = "Automatically back up files after CPU key entry";
+            this.chkBackupEn.UseVisualStyleBackColor = true;
+            this.chkBackupEn.CheckedChanged += new System.EventHandler(this.chkBackupEn_CheckedChanged);
+            // 
+            // groupBackupType
+            // 
+            this.groupBackupType.Controls.Add(this.rbtnFolder);
+            this.groupBackupType.Controls.Add(this.rbtnZip);
+            this.groupBackupType.Enabled = false;
+            this.groupBackupType.Location = new System.Drawing.Point(6, 74);
+            this.groupBackupType.Name = "groupBackupType";
+            this.groupBackupType.Size = new System.Drawing.Size(354, 65);
+            this.groupBackupType.TabIndex = 0;
+            this.groupBackupType.TabStop = false;
+            this.groupBackupType.Text = "Backup Type";
+            // 
+            // rbtnFolder
+            // 
+            this.rbtnFolder.AutoSize = true;
+            this.rbtnFolder.Location = new System.Drawing.Point(9, 40);
+            this.rbtnFolder.Name = "rbtnFolder";
+            this.rbtnFolder.Size = new System.Drawing.Size(251, 17);
+            this.rbtnFolder.TabIndex = 1;
+            this.rbtnFolder.Text = "Folder Copy - Copy top level files to a new folder\r\n";
+            this.rbtnFolder.UseVisualStyleBackColor = true;
+            // 
+            // rbtnZip
+            // 
+            this.rbtnZip.AutoSize = true;
+            this.rbtnZip.Checked = true;
+            this.rbtnZip.Location = new System.Drawing.Point(9, 17);
+            this.rbtnZip.Name = "rbtnZip";
+            this.rbtnZip.Size = new System.Drawing.Size(293, 17);
+            this.rbtnZip.TabIndex = 0;
+            this.rbtnZip.TabStop = true;
+            this.rbtnZip.Text = "ZIP Archive - Compresses all files and folders to a ZIP file";
+            this.rbtnZip.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 329);
+            this.ClientSize = new System.Drawing.Size(612, 328);
             this.Controls.Add(this.tabCSettings);
             this.Controls.Add(this.btnDefaults);
             this.Controls.Add(this.chkfiles);
@@ -524,6 +636,10 @@
             this.tabGeneral.PerformLayout();
             this.tabBackup.ResumeLayout(false);
             this.tabBackup.PerformLayout();
+            this.groupBackupNaming.ResumeLayout(false);
+            this.groupBackupNaming.PerformLayout();
+            this.groupBackupType.ResumeLayout(false);
+            this.groupBackupType.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -567,6 +683,15 @@
         private System.Windows.Forms.TabControl tabCSettings;
         private System.Windows.Forms.TabPage tabGeneral;
         private System.Windows.Forms.TabPage tabBackup;
+        private System.Windows.Forms.GroupBox groupBackupType;
+        private System.Windows.Forms.CheckBox chkBackupEn;
+        private System.Windows.Forms.RadioButton rbtnZip;
+        private System.Windows.Forms.RadioButton rbtnFolder;
+        private System.Windows.Forms.Button btnBackupRoot;
+        private System.Windows.Forms.TextBox txtBackupRoot;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBackupNaming;
+        private System.Windows.Forms.RadioButton rbtnSnOnly;
+        private System.Windows.Forms.RadioButton rbtnCtypeSn;
     }
 }

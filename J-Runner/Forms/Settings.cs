@@ -31,12 +31,14 @@ namespace JRunner.Forms
             oldOutFolder = variables.outfolder;
             if (variables.deletefiles) chkfiles.Checked = true;
             txtIP.Text = variables.ipPrefix;
+
             if (variables.ipPrefix.Length == 0)
             {
                 chkIPDefault.Checked = txtIP.Enabled = false;
                 txtIP.Text = "Automatic";
             }
             else chkIPDefault.Checked = txtIP.Enabled = true;
+
             chkAutoExtract.Checked = variables.autoExtract;
             chkPlaySuccess.Checked = variables.playSuccess;
             chkPlayError.Checked = variables.playError;
@@ -52,11 +54,58 @@ namespace JRunner.Forms
                 txtRootOverride.Text = variables.overrideRootPath;
                 chkRootOverride.Checked = true;
             }
+
+            chkBackupEn.Checked = variables.backupEn; // Will enable group boxes
+            txtBackupRoot.Text = variables.backupRoot;
+            if (variables.backupType == 1) rbtnFolder.Checked = true;
+            if (variables.backupNaming == 1) rbtnSnOnly.Checked = true;
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
             bool ok = true;
+
+            // Check paths before applying anything
+
+            if (chkRootOverride.Checked && !string.IsNullOrWhiteSpace(txtRootOverride.Text))
+            {
+                try
+                {
+                    string overridePath = Path.GetFullPath(txtRootOverride.Text);
+                }
+                catch
+                {
+                    ok = false;
+                    MessageBox.Show("Illegal path to output folder", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            if (chkBackupEn.Checked && !string.IsNullOrWhiteSpace(txtBackupRoot.Text))
+            {
+                string backupRootPath = "";
+                try
+                {
+                    backupRootPath = Path.GetFullPath(txtBackupRoot.Text);
+                }
+                catch
+                {
+                    ok = false;
+                    MessageBox.Show("Illegal path to backup root folder", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                if (backupRootPath.ToLower().Contains(variables.rootfolder.ToLower()))
+                {
+                    ok = false;
+                    MessageBox.Show("You can't backup to a folder that is inside the application root folder", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtBackupRoot.Text = "";
+                }
+            }
+
+            if (!ok) // Abort and do not save settings
+            {
+                this.DialogResult = DialogResult.None;
+                return;
+            }
 
             try
             {
@@ -87,20 +136,30 @@ namespace JRunner.Forms
                 }
                 else
                 {
-                    try
-                    {
-                        string overridePath = Path.GetFullPath(txtRootOverride.Text);
-                        variables.overrideRootPath = overridePath;
-                        variables.outfolder = Path.Combine(overridePath, "output");
-                    }
-                    catch
-                    {
-                        ok = false;
-                        MessageBox.Show("Illegal path to output folder", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    string overridePath = Path.GetFullPath(txtRootOverride.Text);
+                    variables.overrideRootPath = overridePath;
+                    variables.outfolder = Path.Combine(overridePath, "output");
                 }
 
-                if (ok) MainForm.mainForm.savesettings();
+                if (string.IsNullOrWhiteSpace(txtBackupRoot.Text))
+                {
+                    variables.backupEn = false;
+                    variables.backupRoot = "";
+                }
+                else
+                {
+                    variables.backupEn = chkBackupEn.Checked;
+                    variables.backupRoot = Path.GetFullPath(txtBackupRoot.Text);
+                }
+
+                if (rbtnFolder.Checked) variables.backupType = 1;
+                else variables.backupType = 0;
+
+                if (rbtnSnOnly.Checked) variables.backupNaming = 1;
+                else variables.backupNaming = 0;
+
+                MainForm.mainForm.setBackupLabel();
+                MainForm.mainForm.savesettings();
             }
             catch (Exception ex)
             {
@@ -115,8 +174,24 @@ namespace JRunner.Forms
                 Application.Restart();
             }
 
-            if (ok) this.Close();
-            else this.DialogResult = DialogResult.None;
+            this.Close();
+        }
+
+        #region General
+
+        private void chkRootOverride_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkRootOverride.Checked)
+            {
+                txtRootOverride.Enabled = true;
+                btnRootOverride.Enabled = true;
+            }
+            else
+            {
+                txtRootOverride.Enabled = false;
+                txtRootOverride.Text = "";
+                btnRootOverride.Enabled = false;
+            }
         }
 
         private void btnRootOverride_Click(object sender, EventArgs e)
@@ -229,19 +304,45 @@ namespace JRunner.Forms
             if (chkNoPatchWarnings.Checked) MessageBox.Show("Warnings or messages about patches will not be displayed as pop-ups\n\nConsole log messages will continue to show", "Steep Hill Ahead", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private void chkRootOverride_CheckedChanged(object sender, EventArgs e)
+        #endregion
+
+        #region Backup
+
+        private void chkBackupEn_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkRootOverride.Checked)
+            if (chkBackupEn.Checked)
             {
-                txtRootOverride.Enabled = true;
-                btnRootOverride.Enabled = true;
+                txtBackupRoot.Enabled = true;
+                btnBackupRoot.Enabled = true;
+                groupBackupType.Enabled = true;
             }
             else
             {
-                txtRootOverride.Enabled = false;
-                txtRootOverride.Text = "";
-                btnRootOverride.Enabled = false;
+                txtBackupRoot.Enabled = false;
+                txtBackupRoot.Text = "";
+                btnBackupRoot.Enabled = false;
+                groupBackupType.Enabled = false;
             }
         }
+
+        private void btnBackupRoot_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openDialog = new CommonOpenFileDialog();
+            openDialog.InitialDirectory = Oper.FilePickerInitialPath(txtRootOverride.Text);
+            openDialog.RestoreDirectory = false;
+            openDialog.IsFolderPicker = true;
+
+            if (openDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                if (openDialog.FileName.ToLower().Contains(variables.rootfolder.ToLower()))
+                {
+                    MessageBox.Show("You can't backup to a folder that is inside the application root folder", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtBackupRoot.Text = "";
+                }
+                else txtBackupRoot.Text = openDialog.FileName;
+            }
+        }
+
+        #endregion
     }
 }

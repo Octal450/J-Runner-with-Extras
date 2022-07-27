@@ -47,9 +47,9 @@ namespace JRunner.Classes
         private bool _noreeb;
         private bool _xlusb;
         private Nand.PrivateN _nand;
-        private List<String> _patches;
+        private List<string> _patches;
 
-        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<String> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool xlusb, bool fullDataClean)
+        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<string> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool xlusb, bool fullDataClean)
         {
             this._cpukey = cpukey;
             this._ttype = ttype;
@@ -766,7 +766,7 @@ namespace JRunner.Classes
         ////////////////////////////////////////////////
 
 
-        public void Uloadvariables(int dash, variables.hacktypes ttype, List<String> patches, bool altoptions, bool nowrite, bool noava, bool clean, bool noreeb, bool DLpatches, bool includeLaunch)
+        public void Uloadvariables(int dash, variables.hacktypes ttype, List<string> patches, bool altoptions, bool nowrite, bool noava, bool clean, bool noreeb, bool DLpatches, bool includeLaunch)
         {
             this._dash = dash;
             this._ttype = ttype;

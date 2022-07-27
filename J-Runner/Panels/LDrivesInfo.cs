@@ -204,9 +204,9 @@ namespace JRunner.Panels
         {
             buttons(false);
             variables.reading = true;
-            if (variables.NoReads != 1)
+            if (variables.numReads != 1)
             {
-                for (int i = 1; i <= variables.NoReads; i++)
+                for (int i = 1; i <= variables.numReads; i++)
                 {
                     string filename = variables.outfolder + "\\nanddump" + i + ".bin";
                     variables.reading = true;

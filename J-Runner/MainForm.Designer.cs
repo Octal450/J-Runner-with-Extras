@@ -54,7 +54,7 @@ namespace JRunner
             this.labelIP = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.btnScanner = new System.Windows.Forms.Button();
-            this.btnInit = new System.Windows.Forms.Button();
+            this.btnReload = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnNewSession = new System.Windows.Forms.Button();
             this.btnShowWorkingFolder = new UI.MenuButton();
@@ -72,9 +72,11 @@ namespace JRunner
             this.StatusBlank = new System.Windows.Forms.ToolStripStatusLabel();
             this.XeBuildLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.XeBuildVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.BlankSpace = new System.Windows.Forms.ToolStripStatusLabel();
+            this.BlankSpace1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.DashlaunchLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.DashlaunchVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.BlankSpace2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.BackupLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.ModeStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.ModeVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.FWStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -378,17 +380,17 @@ namespace JRunner
             this.btnScanner.UseVisualStyleBackColor = true;
             this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
             // 
-            // btnInit
+            // btnReload
             // 
-            this.btnInit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInit.Location = new System.Drawing.Point(390, 71);
-            this.btnInit.Name = "btnInit";
-            this.btnInit.Size = new System.Drawing.Size(65, 22);
-            this.btnInit.TabIndex = 26;
-            this.btnInit.Text = "Reload";
-            this.toolTip1.SetToolTip(this.btnInit, "Reloads and initializes the nand in source box");
-            this.btnInit.UseVisualStyleBackColor = true;
-            this.btnInit.Click += new System.EventHandler(this.btnInit_Click);
+            this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReload.Location = new System.Drawing.Point(390, 71);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(65, 22);
+            this.btnReload.TabIndex = 26;
+            this.btnReload.Text = "Reload";
+            this.toolTip1.SetToolTip(this.btnReload, "Reloads and initializes the nand in source box");
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // btnSettings
             // 
@@ -470,7 +472,6 @@ namespace JRunner
             this.btnBackup.BtnImage = global::JRunner.Properties.Resources.arrow_dn;
             this.btnBackup.ContextMenuStrip = this.backupContextMenu;
             this.btnBackup.DropDownContextMenu = this.backupContextMenu;
-            this.btnBackup.Enabled = false;
             this.btnBackup.Image = global::JRunner.Properties.Resources.arrow_dn;
             this.btnBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBackup.Location = new System.Drawing.Point(390, 13);
@@ -494,7 +495,7 @@ namespace JRunner
             // 
             this.backupToZIPToolStripMenuItem.Name = "backupToZIPToolStripMenuItem";
             this.backupToZIPToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.backupToZIPToolStripMenuItem.Text = "Backup to ZIP";
+            this.backupToZIPToolStripMenuItem.Text = "Backup to ZIP…";
             this.backupToZIPToolStripMenuItem.Click += new System.EventHandler(this.backupToZIPToolStripMenuItem_Click);
             // 
             // configureBackupToolStripMenuItem
@@ -515,7 +516,7 @@ namespace JRunner
             this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.groupBox4.Controls.Add(this.btnBackup);
             this.groupBox4.Controls.Add(this.btnLoadExtra);
-            this.groupBox4.Controls.Add(this.btnInit);
+            this.groupBox4.Controls.Add(this.btnReload);
             this.groupBox4.Controls.Add(this.txtFileExtra);
             this.groupBox4.Controls.Add(this.txtFileSource);
             this.groupBox4.Controls.Add(this.btnLoadSource);
@@ -535,9 +536,11 @@ namespace JRunner
             this.StatusBlank,
             this.XeBuildLabel,
             this.XeBuildVersion,
-            this.BlankSpace,
+            this.BlankSpace1,
             this.DashlaunchLabel,
             this.DashlaunchVersion,
+            this.BlankSpace2,
+            this.BackupLabel,
             this.ModeStatus,
             this.ModeVersion,
             this.FWStatus,
@@ -568,11 +571,11 @@ namespace JRunner
             this.XeBuildVersion.Name = "XeBuildVersion";
             this.XeBuildVersion.Size = new System.Drawing.Size(0, 17);
             // 
-            // BlankSpace
+            // BlankSpace1
             // 
-            this.BlankSpace.Name = "BlankSpace";
-            this.BlankSpace.Size = new System.Drawing.Size(10, 17);
-            this.BlankSpace.Text = " ";
+            this.BlankSpace1.Name = "BlankSpace1";
+            this.BlankSpace1.Size = new System.Drawing.Size(10, 17);
+            this.BlankSpace1.Text = " ";
             // 
             // DashlaunchLabel
             // 
@@ -585,13 +588,25 @@ namespace JRunner
             this.DashlaunchVersion.Name = "DashlaunchVersion";
             this.DashlaunchVersion.Size = new System.Drawing.Size(0, 17);
             // 
+            // BlankSpace2
+            // 
+            this.BlankSpace2.Name = "BlankSpace2";
+            this.BlankSpace2.Size = new System.Drawing.Size(10, 17);
+            this.BlankSpace2.Text = " ";
+            // 
+            // BackupLabel
+            // 
+            this.BackupLabel.Name = "BackupLabel";
+            this.BackupLabel.Size = new System.Drawing.Size(98, 17);
+            this.BackupLabel.Text = "Auto Backup: Off";
+            // 
             // ModeStatus
             // 
             this.ModeStatus.AutoSize = false;
             this.ModeStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.ModeStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.ModeStatus.Name = "ModeStatus";
-            this.ModeStatus.Size = new System.Drawing.Size(449, 17);
+            this.ModeStatus.Size = new System.Drawing.Size(341, 17);
             this.ModeStatus.Spring = true;
             this.ModeStatus.Text = "MODE: ";
             this.ModeStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1333,7 +1348,7 @@ namespace JRunner
         private ToolStripStatusLabel XeBuildVersion;
         private ToolStripStatusLabel DashlaunchVersion;
         private ToolStripStatusLabel StatusBlank;
-        private Button btnInit;
+        private Button btnReload;
         private ToolStripMenuItem XeBuildOptionsToolStripMenuItem;
         private ToolStripStatusLabel ModeVersion;
         private ToolStripStatusLabel FWStatus;
@@ -1354,7 +1369,7 @@ namespace JRunner
         private Button btnRestart;
         private ToolStripStatusLabel XeBuildLabel;
         private ToolStripStatusLabel DashlaunchLabel;
-        private ToolStripStatusLabel BlankSpace;
+        private ToolStripStatusLabel BlankSpace1;
         private ToolStripMenuItem toolsToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator11;
         private ToolStripMenuItem advancedToolStripMenuItem;
@@ -1437,5 +1452,7 @@ namespace JRunner
         private ToolStripMenuItem backupToZIPToolStripMenuItem;
         private ToolStripMenuItem configureBackupToolStripMenuItem;
         private ToolStripMenuItem cPUKeyDatabaseToolStripMenuItem;
+        private ToolStripStatusLabel BlankSpace2;
+        private ToolStripStatusLabel BackupLabel;
     }
 }
