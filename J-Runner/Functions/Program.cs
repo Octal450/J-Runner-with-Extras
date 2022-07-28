@@ -158,6 +158,20 @@ namespace JRunner
             File.AppendAllText(Path.Combine(variables.rootfolder, "Error.log"), e.ExceptionObject.ToString() + Environment.NewLine);
         }
 
+        public static float getScalingFactor()
+        {
+            float dpiX = 96;
+            try
+            {
+                using (Graphics graphics = Graphics.FromHwnd(IntPtr.Zero))
+                {
+                    dpiX = graphics.DpiX;
+                }
+            }
+            catch { }
+            return dpiX / 96;
+        }
+
         private static void checkVcredist()
         {
             if (Environment.Is64BitOperatingSystem)
@@ -180,20 +194,6 @@ namespace JRunner
                 }
                 else needVcredistx86 = true;
             }
-        }
-
-        public static float getScalingFactor()
-        {
-            float dpiX = 96;
-            try
-            {
-                using (Graphics graphics = Graphics.FromHwnd(IntPtr.Zero))
-                {
-                    dpiX = graphics.DpiX;
-                }
-            }
-            catch { }
-            return dpiX / 96;
         }
     }
 }

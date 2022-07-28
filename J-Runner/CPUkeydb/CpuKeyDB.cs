@@ -341,6 +341,18 @@ namespace JRunner
         }
         private void importReg(string regfile)
         {
+            Forms.ProgressIndeterminate pi = new Forms.ProgressIndeterminate();
+
+            this.BeginInvoke(new Action(() =>
+            {
+                this.Hide();
+                pi.Show();
+                pi.updateTitle("Importing");
+            }));
+            MainForm.mainForm.BeginInvoke(new Action(() => {
+                MainForm.mainForm.Enabled = false;
+            }));
+
             Console.WriteLine("Importing");
             string[] lines = File.ReadAllLines(regfile);
             int keystoadd = 0;
@@ -391,7 +403,7 @@ namespace JRunner
                             {
                                 tempentry.extra = (line.Substring(line.IndexOf("=\"") + 1)).Replace("\"", "");
                             }
-                            else if (line.Contains("DVDkey"))
+                            else if (line.Contains("DVDKey"))
                             {
                                 tempentry.dvdkey = (line.Substring(line.IndexOf("=\"") + 1)).Replace("\"", "");
                             }
@@ -427,6 +439,16 @@ namespace JRunner
                 if (addkey_s(entry, dataSet1)) counter++;
             }
             Console.WriteLine("Done, added {0} keys", counter);
+            Console.WriteLine("");
+
+            MainForm.mainForm.BeginInvoke(new Action(() => {
+                MainForm.mainForm.Enabled = true;
+            }));
+            this.BeginInvoke(new Action(() =>
+            {
+                this.Show();
+                pi.Close();
+            }));
         }
 
         #region Buttons
