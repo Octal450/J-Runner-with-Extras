@@ -77,6 +77,7 @@
             this.groupBackupType = new System.Windows.Forms.GroupBox();
             this.rbtnFolder = new System.Windows.Forms.RadioButton();
             this.rbtnZip = new System.Windows.Forms.RadioButton();
+            this.rbtnCtypeSnDate = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -502,11 +503,12 @@
             // 
             // groupBackupNaming
             // 
+            this.groupBackupNaming.Controls.Add(this.rbtnCtypeSnDate);
             this.groupBackupNaming.Controls.Add(this.rbtnSnOnly);
             this.groupBackupNaming.Controls.Add(this.rbtnCtypeSn);
             this.groupBackupNaming.Location = new System.Drawing.Point(6, 146);
             this.groupBackupNaming.Name = "groupBackupNaming";
-            this.groupBackupNaming.Size = new System.Drawing.Size(354, 65);
+            this.groupBackupNaming.Size = new System.Drawing.Size(354, 88);
             this.groupBackupNaming.TabIndex = 2;
             this.groupBackupNaming.TabStop = false;
             this.groupBackupNaming.Text = "Naming Scheme";
@@ -514,11 +516,11 @@
             // rbtnSnOnly
             // 
             this.rbtnSnOnly.AutoSize = true;
-            this.rbtnSnOnly.Location = new System.Drawing.Point(9, 40);
+            this.rbtnSnOnly.Location = new System.Drawing.Point(9, 63);
             this.rbtnSnOnly.Name = "rbtnSnOnly";
             this.rbtnSnOnly.Size = new System.Drawing.Size(115, 17);
             this.rbtnSnOnly.TabIndex = 1;
-            this.rbtnSnOnly.Text = "Serial Number Only\r\n";
+            this.rbtnSnOnly.Text = "Serial Number Only";
             this.rbtnSnOnly.UseVisualStyleBackColor = true;
             // 
             // rbtnCtypeSn
@@ -529,8 +531,7 @@
             this.rbtnCtypeSn.Name = "rbtnCtypeSn";
             this.rbtnCtypeSn.Size = new System.Drawing.Size(180, 17);
             this.rbtnCtypeSn.TabIndex = 0;
-            this.rbtnCtypeSn.TabStop = true;
-            this.rbtnCtypeSn.Text = "Console Type and Serial Number\r\n";
+            this.rbtnCtypeSn.Text = "Console Type and Serial Number";
             this.rbtnCtypeSn.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -605,6 +606,16 @@
             this.rbtnZip.TabStop = true;
             this.rbtnZip.Text = "ZIP Archive - Compresses all files and folders to a ZIP file";
             this.rbtnZip.UseVisualStyleBackColor = true;
+            // 
+            // rbtnCtypeSnDate
+            // 
+            this.rbtnCtypeSnDate.AutoSize = true;
+            this.rbtnCtypeSnDate.Location = new System.Drawing.Point(9, 40);
+            this.rbtnCtypeSnDate.Name = "rbtnCtypeSnDate";
+            this.rbtnCtypeSnDate.Size = new System.Drawing.Size(212, 17);
+            this.rbtnCtypeSnDate.TabIndex = 2;
+            this.rbtnCtypeSnDate.Text = "Console Type, Serial Number, and Date";
+            this.rbtnCtypeSnDate.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -693,5 +704,6 @@
         private System.Windows.Forms.GroupBox groupBackupNaming;
         private System.Windows.Forms.RadioButton rbtnSnOnly;
         private System.Windows.Forms.RadioButton rbtnCtypeSn;
+        private System.Windows.Forms.RadioButton rbtnCtypeSnDate;
     }
 }

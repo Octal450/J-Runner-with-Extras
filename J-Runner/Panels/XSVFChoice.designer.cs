@@ -171,6 +171,7 @@
             this.btnProgram.Location = new System.Drawing.Point(5, 268);
             this.btnProgram.Name = "btnProgram";
             this.btnProgram.Size = new System.Drawing.Size(137, 23);
+            this.btnProgram.SplitButton = true;
             this.btnProgram.TabIndex = 80;
             this.btnProgram.Text = "Program";
             this.btnProgram.UseVisualStyleBackColor = true;

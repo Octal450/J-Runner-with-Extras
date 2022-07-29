@@ -58,7 +58,8 @@ namespace JRunner.Forms
             chkBackupEn.Checked = variables.backupEn; // Will enable group boxes
             txtBackupRoot.Text = variables.backupRoot;
             if (variables.backupType == 1) rbtnFolder.Checked = true;
-            if (variables.backupNaming == 1) rbtnSnOnly.Checked = true;
+            if (variables.backupNaming == 1) rbtnCtypeSnDate.Checked = true;
+            else if (variables.backupNaming == 2) rbtnSnOnly.Checked = true;
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
@@ -155,7 +156,8 @@ namespace JRunner.Forms
                 if (rbtnFolder.Checked) variables.backupType = 1;
                 else variables.backupType = 0;
 
-                if (rbtnSnOnly.Checked) variables.backupNaming = 1;
+                if (rbtnCtypeSnDate.Checked) variables.backupNaming = 1;
+                else if (rbtnSnOnly.Checked) variables.backupNaming = 2;
                 else variables.backupNaming = 0;
 
                 MainForm.mainForm.setBackupLabel();

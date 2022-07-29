@@ -22,9 +22,13 @@ namespace JRunner
             if (board.Contains("Jasper")) board = "Jasper";
 
             string serial = MainForm.mainForm.getNand().ki.serial;
+
+            string date = DateTime.Now.ToString("MM-dd-yyyy");
+
             if (!string.IsNullOrWhiteSpace(serial))
             {
-                if (variables.backupNaming == 1) return serial;
+                if (variables.backupNaming == 1) return board + " " + serial + " " + date;
+                else if (variables.backupNaming == 2) return serial;
                 else return board + " " + serial;
             }
             else return "";
