@@ -1577,9 +1577,9 @@ namespace JRunner
             if (variables.backupEn) Backup.scheduleBackup = true;
         }
 
-        public void nand_init(bool nomove = false)
+        public void nand_init(bool nomove = false, bool dontUpdateHackType = false)
         {
-            ThreadStart starter = delegate { nandinit(nomove); };
+            ThreadStart starter = delegate { nandinit(nomove, dontUpdateHackType); };
             new Thread(starter).Start();
         }
 
@@ -1919,7 +1919,7 @@ namespace JRunner
             //btnCheckBadBlocks.Visible = true;
         }
 
-        void nandinit(bool nomove = false)
+        void nandinit(bool nomove = false, bool dontUpdateHackType = false)
         {
             if (variables.reading || variables.writing) return;
 
@@ -2054,27 +2054,30 @@ namespace JRunner
                 variables.rghable = true;
 
                 /////////////////////////
-                
-                switch (Nand.ntable.getHackfromCB(nand.bl.CB_A))
+
+                if (!dontUpdateHackType)
                 {
-                    case variables.hacktypes.glitch:
-                        xPanel.BeginInvoke(new Action(() => xPanel.setRbtnGlitchChecked(true)));
-                        break;
-                    case variables.hacktypes.glitch2:
-                        xPanel.BeginInvoke(new Action(() => xPanel.setRbtnGlitch2Checked(true)));
-                        break;
-                    case variables.hacktypes.jtag:
-                        xPanel.BeginInvoke(new Action(() => xPanel.setRbtnJtagChecked(true)));
-                        break;
-                    case variables.hacktypes.devgl:
-                        if (xPanel.canDevGL(variables.boardtype))
-                            xPanel.BeginInvoke(new Action(() => xPanel.setRbtnDevGLChecked(true)));
-                        else
+                    switch (Nand.ntable.getHackfromCB(nand.bl.CB_A))
+                    {
+                        case variables.hacktypes.glitch:
+                            xPanel.BeginInvoke(new Action(() => xPanel.setRbtnGlitchChecked(true)));
+                            break;
+                        case variables.hacktypes.glitch2:
+                            xPanel.BeginInvoke(new Action(() => xPanel.setRbtnGlitch2Checked(true)));
+                            break;
+                        case variables.hacktypes.jtag:
+                            xPanel.BeginInvoke(new Action(() => xPanel.setRbtnJtagChecked(true)));
+                            break;
+                        case variables.hacktypes.devgl:
+                            if (xPanel.canDevGL(variables.boardtype))
+                                xPanel.BeginInvoke(new Action(() => xPanel.setRbtnDevGLChecked(true)));
+                            else
+                                xPanel.BeginInvoke(new Action(() => xPanel.setRbtnRetailChecked(true)));
+                            break;
+                        default:
                             xPanel.BeginInvoke(new Action(() => xPanel.setRbtnRetailChecked(true)));
-                        break;
-                    default:
-                        xPanel.BeginInvoke(new Action(() => xPanel.setRbtnRetailChecked(true)));
-                        break;
+                            break;
+                    }
                 }
 
                 GC.Collect();
@@ -3755,7 +3758,7 @@ namespace JRunner
                         variables.cpukey = txtCPUKey.Text;
                         if (!variables.gotvalues && File.Exists(variables.filename1))
                         {
-                            nand_init();
+                            nand_init(false, true);
                         }
                     }
                     else Console.WriteLine("Bad CPU Key");
