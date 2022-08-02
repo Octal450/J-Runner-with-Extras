@@ -126,6 +126,13 @@
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 17</value>
   </metadata>
+  <data name="chkBackupEn.ToolTip" xml:space="preserve">
+    <value>Automatic backup (if enabled) will back up your nands and files using these options after a CPU key is entered
+
+You can also run automatic backup at any time from the Backup drop down button
+
+Manual backup to a ZIP file to any location is also available from the Backup drop down button</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -68,6 +68,7 @@
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.tabBackup = new System.Windows.Forms.TabPage();
             this.groupBackupNaming = new System.Windows.Forms.GroupBox();
+            this.rbtnCtypeSnDate = new System.Windows.Forms.RadioButton();
             this.rbtnSnOnly = new System.Windows.Forms.RadioButton();
             this.rbtnCtypeSn = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -77,7 +78,6 @@
             this.groupBackupType = new System.Windows.Forms.GroupBox();
             this.rbtnFolder = new System.Windows.Forms.RadioButton();
             this.rbtnZip = new System.Windows.Forms.RadioButton();
-            this.rbtnCtypeSnDate = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -513,6 +513,16 @@
             this.groupBackupNaming.TabStop = false;
             this.groupBackupNaming.Text = "Naming Scheme";
             // 
+            // rbtnCtypeSnDate
+            // 
+            this.rbtnCtypeSnDate.AutoSize = true;
+            this.rbtnCtypeSnDate.Location = new System.Drawing.Point(9, 40);
+            this.rbtnCtypeSnDate.Name = "rbtnCtypeSnDate";
+            this.rbtnCtypeSnDate.Size = new System.Drawing.Size(212, 17);
+            this.rbtnCtypeSnDate.TabIndex = 2;
+            this.rbtnCtypeSnDate.Text = "Console Type, Serial Number, and Date";
+            this.rbtnCtypeSnDate.UseVisualStyleBackColor = true;
+            // 
             // rbtnSnOnly
             // 
             this.rbtnSnOnly.AutoSize = true;
@@ -531,6 +541,7 @@
             this.rbtnCtypeSn.Name = "rbtnCtypeSn";
             this.rbtnCtypeSn.Size = new System.Drawing.Size(180, 17);
             this.rbtnCtypeSn.TabIndex = 0;
+            this.rbtnCtypeSn.TabStop = true;
             this.rbtnCtypeSn.Text = "Console Type and Serial Number";
             this.rbtnCtypeSn.UseVisualStyleBackColor = true;
             // 
@@ -567,9 +578,10 @@
             this.chkBackupEn.AutoSize = true;
             this.chkBackupEn.Location = new System.Drawing.Point(6, 7);
             this.chkBackupEn.Name = "chkBackupEn";
-            this.chkBackupEn.Size = new System.Drawing.Size(246, 17);
+            this.chkBackupEn.Size = new System.Drawing.Size(300, 17);
             this.chkBackupEn.TabIndex = 1;
-            this.chkBackupEn.Text = "Automatically back up files after CPU key entry";
+            this.chkBackupEn.Text = "Automatically back up nands and files after CPU Key entry";
+            this.toolTip1.SetToolTip(this.chkBackupEn, resources.GetString("chkBackupEn.ToolTip"));
             this.chkBackupEn.UseVisualStyleBackColor = true;
             this.chkBackupEn.CheckedChanged += new System.EventHandler(this.chkBackupEn_CheckedChanged);
             // 
@@ -606,16 +618,6 @@
             this.rbtnZip.TabStop = true;
             this.rbtnZip.Text = "ZIP Archive - Compresses all files and folders to a ZIP file";
             this.rbtnZip.UseVisualStyleBackColor = true;
-            // 
-            // rbtnCtypeSnDate
-            // 
-            this.rbtnCtypeSnDate.AutoSize = true;
-            this.rbtnCtypeSnDate.Location = new System.Drawing.Point(9, 40);
-            this.rbtnCtypeSnDate.Name = "rbtnCtypeSnDate";
-            this.rbtnCtypeSnDate.Size = new System.Drawing.Size(212, 17);
-            this.rbtnCtypeSnDate.TabIndex = 2;
-            this.rbtnCtypeSnDate.Text = "Console Type, Serial Number, and Date";
-            this.rbtnCtypeSnDate.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 

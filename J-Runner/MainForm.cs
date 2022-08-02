@@ -18,7 +18,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using WinUsb;
-using MessageBox = System.Windows.Forms.MessageBox;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
@@ -1531,7 +1530,7 @@ namespace JRunner
             {
                 if (variables.debugMode) Console.WriteLine("Moving {0}", file);
                 FileInfo fileInfo = new FileInfo(file);
-                if (new FileInfo(xeFolderInfo + "\\" + fileInfo.Name).Exists == false) // To remove name collusion
+                if (new FileInfo(xeFolderInfo + "\\" + fileInfo.Name).Exists == false) // To remove name conflict
                 {
                     fileInfo.MoveTo(xeFolderInfo + "\\" + fileInfo.Name);
                 }
@@ -3643,6 +3642,23 @@ namespace JRunner
                 string target = Backup.getBackupPath();
                 if (!string.IsNullOrWhiteSpace(target)) Backup.backupToZip(target, sfd.FileName, true);
             }
+        }
+
+        private void autoBackupNowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (variables.backupEn) Backup.autoBackup();
+            else MessageBox.Show("You do not have Auto Backup configured\n\nConfigure Auto Backup in Settings first", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void showLastBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Backup.showLastBackup();
         }
 
         private void configureBackupToolStripMenuItem_Click(object sender, EventArgs e)

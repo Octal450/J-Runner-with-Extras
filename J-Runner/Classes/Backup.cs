@@ -12,6 +12,26 @@ namespace JRunner
     public static class Backup
     {
         public static bool scheduleBackup = false;
+        public static string lastBackupPath = "";
+
+        public static void showLastBackup()
+        {
+            if (string.IsNullOrEmpty(lastBackupPath))
+            {
+                MessageBox.Show("No backups have been made since the application was started", "Can't", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                string argument = "/select, \"" + lastBackupPath + "\"";
+                System.Diagnostics.Process.Start("explorer.exe", argument);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The backup location could not be opened due to the following reason:\n\n" + ex.GetType(), "Can't", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         public static string getBackupName()
         {
@@ -110,7 +130,7 @@ namespace JRunner
                 {
                     if (File.Exists(path))
                     {
-                        if (delIfExist) // To remove name collusion
+                        if (delIfExist) // To remove name conflict
                         {
                             File.Delete(path);
                         }
@@ -153,6 +173,7 @@ namespace JRunner
                     }
 
                     ZipFile.CreateFromDirectory(target, path); // Assume its a directory
+                    lastBackupPath = path;
                     Console.WriteLine("ZIP Backup Saved: " + path);
                     Console.WriteLine("");
                 }
@@ -192,7 +213,7 @@ namespace JRunner
                     foreach (string file in files)
                     {
                         FileInfo fileInfo = new FileInfo(file);
-                        if (new FileInfo(pathInfo + "\\" + fileInfo.Name).Exists == false) // To remove name collusion
+                        if (new FileInfo(pathInfo + "\\" + fileInfo.Name).Exists == false) // To remove name conflict
                         {
                             fileInfo.CopyTo(pathInfo + "\\" + fileInfo.Name);
                         }
@@ -232,6 +253,7 @@ namespace JRunner
                         }
                     }
 
+                    lastBackupPath = path;
                     Console.WriteLine("Folder Backup Saved: " + path);
                     Console.WriteLine("");
                 }
