@@ -227,20 +227,20 @@ namespace JRunner.Panels
             if (rbtnRetail.Checked)
             {
                 if (checkDLPatches.Checked) variables.DashlaunchE = checkDLPatches.Checked;
-                checkDLPatches.Enabled = chkLaunch.Visible = false;
+                checkDLPatches.Enabled = chkLaunch.Enabled = false;
                 if (sender.Equals(rbtnRetail)) Console.WriteLine("Retail Selected");
             }
             else if (rbtnJtag.Checked)
             {
                 checkDLPatches.Enabled = true;
-                checkDLPatches.Checked = chkLaunch.Visible = variables.DashlaunchE;
+                checkDLPatches.Checked = chkLaunch.Enabled = variables.DashlaunchE;
                 if (sender.Equals(rbtnJtag)) Console.WriteLine("JTAG Selected");
 
             }
             else if (rbtnGlitch.Checked || rbtnGlitch2.Checked || rbtnGlitch2m.Checked)
             {
                 checkDLPatches.Enabled = true;
-                checkDLPatches.Checked = chkLaunch.Visible = variables.DashlaunchE;
+                checkDLPatches.Checked = chkLaunch.Enabled = variables.DashlaunchE;
                 if (rbtnGlitch.Checked && sender.Equals(rbtnGlitch)) Console.WriteLine("Glitch Selected");
                 else if (rbtnGlitch2.Checked && sender.Equals(rbtnGlitch2)) Console.WriteLine("Glitch2 Selected");
                 else if (rbtnGlitch2m.Checked && sender.Equals(rbtnGlitch2m)) Console.WriteLine("Glitch2m Selected");
@@ -248,7 +248,7 @@ namespace JRunner.Panels
             else if (rbtnDevGL.Checked)
             {
                 checkDLPatches.Enabled = true;
-                checkDLPatches.Checked = chkLaunch.Visible = variables.DashlaunchE;
+                checkDLPatches.Checked = chkLaunch.Enabled = variables.DashlaunchE;
                 if (sender.Equals(rbtnDevGL)) Console.WriteLine("DEVGL Selected");
             }
 
@@ -263,7 +263,7 @@ namespace JRunner.Panels
 
             checkWBXdkBuild();
             checkBigffs(variables.boardtype);
-            checkXLUsb();
+            checkXLDrive();
 
             if (!rbtnRetail.Checked && !rbtnGlitch.Checked && !rbtnGlitch2.Checked && !rbtnGlitch2m.Checked && !rbtnDevGL.Checked) chkCleanSMC.Checked = false;
 
@@ -327,7 +327,7 @@ namespace JRunner.Panels
 
             checkAvailableHackTypes();
             checkWBXdkBuild();
-            checkXLUsb();
+            checkXLDrive();
             updateCommand();
             setComboCB();
         }
@@ -481,7 +481,7 @@ namespace JRunner.Panels
             }
         }
 
-        private void checkXLUsb()
+        private void checkXLDrive()
         {
             if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\bin\xl_usb.bin")))
             {
@@ -489,6 +489,13 @@ namespace JRunner.Panels
                 else chkXLUsb.Enabled = true;
             }
             else chkXLUsb.Checked = chkXLUsb.Enabled = false;
+
+            if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\bin\xl_hdd.bin")))
+            {
+                if (rbtnRetail.Checked) chkXLHdd.Checked = chkXLHdd.Enabled = false;
+                else chkXLHdd.Enabled = true;
+            }
+            else chkXLHdd.Checked = chkXLHdd.Enabled = false;
         }
 
         bool chkWB4GVis = false;
@@ -560,8 +567,8 @@ namespace JRunner.Panels
         private void checkDLPatches_CheckedChanged(object sender, EventArgs e)
         {
             variables.DashlaunchE = checkDLPatches.Checked;
-            if (!checkDLPatches.Checked || !checkDLPatches.Enabled) { chkLaunch.Visible = false; chkLaunch.Checked = false; }
-            else if (checkDLPatches.Checked && checkDLPatches.Enabled) chkLaunch.Visible = true;
+            if (!checkDLPatches.Checked || !checkDLPatches.Enabled) { chkLaunch.Enabled = false; chkLaunch.Checked = false; }
+            else if (checkDLPatches.Checked && checkDLPatches.Enabled) chkLaunch.Enabled = true;
         }
 
         public void setDLPatches(bool checkd)
@@ -580,8 +587,8 @@ namespace JRunner.Panels
 
         private void checkDLPatches_EnabledChanged(object sender, EventArgs e)
         {
-            if (!checkDLPatches.Enabled) chkLaunch.Visible = false;
-            else if (checkDLPatches.Checked) chkLaunch.Visible = true;
+            if (!checkDLPatches.Enabled) chkLaunch.Enabled = false;
+            else if (checkDLPatches.Checked) chkLaunch.Enabled = true;
         }
 
         private void chkListBoxPatches_SelectedIndexChanged(object sender, EventArgs e)
@@ -591,7 +598,7 @@ namespace JRunner.Panels
             {
                 if (chkListBoxPatches.GetItemChecked(selected))
                 {
-                    Console.WriteLine(chkListBoxPatches.Items[selected].ToString() + " Enabled");
+                    Console.WriteLine(chkListBoxPatches.Items[selected].ToString() + " Selected");
                     if (selected == 0) patches[selected + 1] = "-a nofcrt";
                     else if (selected == 1) patches[selected + 1] = "-a noSShdd";
                     else if (selected == 2) patches[selected + 1] = "-a nointmu";
@@ -601,7 +608,7 @@ namespace JRunner.Panels
                 }
                 else
                 {
-                    Console.WriteLine(chkListBoxPatches.Items[selected].ToString() + " Disabled");
+                    Console.WriteLine(chkListBoxPatches.Items[selected].ToString() + " Deselected");
                     patches[selected + 1] = "";
                 }
             }
@@ -843,13 +850,34 @@ namespace JRunner.Panels
         {
             if (chkXLUsb.Checked)
             {
-                Console.WriteLine("XL USB (BETA) Selected");
-                if (DialogResult.Cancel == MessageBox.Show("XL USB requires HDDs to be formatted via FATXplorer, normal Xbox 360 storage devices will no longer work", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                Console.WriteLine("XL USB Selected");
+                chkXLHdd.Checked = false;
+                if (DialogResult.Cancel == MessageBox.Show("XL USB requires USBs to be formatted via FATXplorer\n\nUSBs not formatted via FATXplorer, and all USB memory units, will no longer work", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Information))
                 {
                     chkXLUsb.Checked = false;
                 }
             }
-            else Console.WriteLine("XL USB (BETA) Deselected");
+            else if (!chkXLHdd.Checked) // Don't uselessly spam the console
+            {
+                Console.WriteLine("XL USB Deselected");
+            }
+        }
+
+        private void chkXLHdd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkXLHdd.Checked)
+            {
+                Console.WriteLine("XL HDD Selected");
+                chkXLUsb.Checked = false;
+                if (DialogResult.Cancel == MessageBox.Show("XL HDD requires HDDs to be formatted via FATXplorer\n\nYou must format your HDD at least once using FATXplorer, or you will get E69 on boot", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Information))
+                {
+                    chkXLHdd.Checked = false;
+                }
+            }
+            else if (!chkXLUsb.Checked) // Don't uselessly spam the console
+            {
+                Console.WriteLine("XL HDD Deselected");
+            }
         }
 
         private void btnGetMB_Click(object sender, EventArgs e)
@@ -1145,7 +1173,7 @@ namespace JRunner.Panels
             Classes.xebuild xe = new Classes.xebuild();
             xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                              variables.ctype, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
-                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, fullDataClean);
+                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, fullDataClean);
 
             string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_" + variables.ttyp + ".ini");
 
@@ -1276,7 +1304,7 @@ namespace JRunner.Panels
                         xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                             variables.ctype, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked,
-                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, fullDataClean);
+                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, fullDataClean);
                         goto Start;
                     }
                 case Classes.xebuild.XebuildError.none:
@@ -1444,17 +1472,17 @@ namespace JRunner.Panels
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-            if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex")) && variables.copiedXLUsb)
+            if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex")) && variables.copiedXLDrive)
             {
                 try
                 {
                     File.Delete(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex"));
-                    if (variables.debugMode) Console.WriteLine("Deleted XL USB xam.xex");
+                    if (variables.debugMode) Console.WriteLine("Deleted XL Drive xam.xex");
                     if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex.tmp")))
                     {
                         File.Move(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex.tmp"), Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex"));
                     }
-                    if (variables.debugMode) Console.WriteLine("Restored non XL USB xam.xex");
+                    if (variables.debugMode) Console.WriteLine("Restored non XL Drive xam.xex");
 
                     string buildIni = Path.Combine(variables.update_path, comboDash.SelectedValue + @"\_" + variables.ttyp.ToString() + ".ini");
                     if (File.Exists(buildIni + ".tmp"))
@@ -1462,7 +1490,7 @@ namespace JRunner.Panels
                         File.Delete(buildIni);
                         File.Move(buildIni + ".tmp", buildIni);
                     }
-                    if (variables.debugMode) Console.WriteLine("Restored non XL USB ini");
+                    if (variables.debugMode) Console.WriteLine("Restored non XL Drive ini");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }

@@ -66,6 +66,7 @@ namespace JRunner
             this.backupContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.backupToZIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoBackupNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showLastBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.XeBuildOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -161,7 +162,6 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showLastBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -504,10 +504,18 @@ namespace JRunner
             // 
             // autoBackupNowToolStripMenuItem
             // 
+            this.autoBackupNowToolStripMenuItem.Enabled = false;
             this.autoBackupNowToolStripMenuItem.Name = "autoBackupNowToolStripMenuItem";
             this.autoBackupNowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.autoBackupNowToolStripMenuItem.Text = "Auto Backup Now";
             this.autoBackupNowToolStripMenuItem.Click += new System.EventHandler(this.autoBackupNowToolStripMenuItem_Click);
+            // 
+            // showLastBackupToolStripMenuItem
+            // 
+            this.showLastBackupToolStripMenuItem.Name = "showLastBackupToolStripMenuItem";
+            this.showLastBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showLastBackupToolStripMenuItem.Text = "Show Last Backup";
+            this.showLastBackupToolStripMenuItem.Click += new System.EventHandler(this.showLastBackupToolStripMenuItem_Click);
             // 
             // configureBackupToolStripMenuItem
             // 
@@ -1283,13 +1291,6 @@ namespace JRunner
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // showLastBackupToolStripMenuItem
-            // 
-            this.showLastBackupToolStripMenuItem.Name = "showLastBackupToolStripMenuItem";
-            this.showLastBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.showLastBackupToolStripMenuItem.Text = "Show Last Backup";
-            this.showLastBackupToolStripMenuItem.Click += new System.EventHandler(this.showLastBackupToolStripMenuItem_Click);
             // 
             // MainForm
             // 

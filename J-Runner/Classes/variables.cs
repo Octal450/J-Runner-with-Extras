@@ -289,7 +289,7 @@ namespace JRunner
         public static bool rgh1able = true;
         public static int dashversion = 0;
         public static bool copiedSMC = false;
-        public static bool copiedXLUsb = false;
+        public static bool copiedXLDrive = false;
         public static bool fullDataClean = false;
 
         /// <summary>

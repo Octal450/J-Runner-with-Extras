@@ -2085,17 +2085,17 @@ namespace JRunner
                 FileStream fs = new FileStream(variables.filename1, FileMode.Open);
                 try
                 {
-                    byte[] check_XL_USB = new byte[0x5B230];
+                    byte[] patchesByte = new byte[0x5B230];
                     if (nand.noecc)
                     {
                         fs.Position = 0x8BA00;
-                        fs.Read(check_XL_USB, 0, 0x58600); // 0x8BA00 - 0xE4000
+                        fs.Read(patchesByte, 0, 0x58600); // 0x8BA00 - 0xE4000
                     }
                     else
                     {
                         fs.Position = 0x8FFD0;
-                        fs.Read(check_XL_USB, 0, 0x5B230); // 0x8FFD0 - 0xEB200
-                        check_XL_USB = Nand.Nand.unecc(check_XL_USB);
+                        fs.Read(patchesByte, 0, 0x5B230); // 0x8FFD0 - 0xEB200
+                        patchesByte = Nand.Nand.unecc(patchesByte);
                     }
                     
                     byte[] patches = new byte[0x1000];
@@ -2104,14 +2104,14 @@ namespace JRunner
                     {
                         for (int i = 0; i < patches.Length; i++)
                         {
-                            patches[i] = check_XL_USB[0x54600 + 0x10 + i]; // BB, 0xE0000
+                            patches[i] = patchesByte[0x54600 + 0x10 + i]; // BB, 0xE0000
                         }
                     }
                     else
                     {
                         for (int i = 0; i < patches.Length; i++)
                         {
-                            patches[i] = check_XL_USB[0x34600 + 0x10 + i]; // 16MB, 0xC0000
+                            patches[i] = patchesByte[0x34600 + 0x10 + i]; // 16MB, 0xC0000
                         }
                     }
                     
@@ -2125,14 +2125,14 @@ namespace JRunner
                 
                         for (int i = 0; i < patches.Length; i++)
                         {
-                            patches[i] = check_XL_USB[0x59F0 + i]; // JTAG all sizes, 0x913F0
+                            patches[i] = patchesByte[0x59F0 + i]; // JTAG all sizes, 0x913F0
                         }
                 
                         patchParser.enterData(patches);
                         patchParser.parseAll();
                     }
                     
-                    check_XL_USB = null;
+                    patchesByte = null;
                 }
                 catch
                 {
@@ -4573,8 +4573,16 @@ namespace JRunner
 
         public void setBackupLabel()
         {
-            if (variables.backupEn) BackupLabel.Text = "Auto Backup: On";
-            else BackupLabel.Text = "Auto Backup: Off";
+            if (variables.backupEn)
+            {
+                BackupLabel.Text = "Auto Backup: On";
+                autoBackupNowToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                BackupLabel.Text = "Auto Backup: Off";
+                autoBackupNowToolStripMenuItem.Enabled = false;
+            }
         }
 
         public void setIP()

@@ -124,8 +124,9 @@ namespace JRunner.Nand
 
         public static _patch[] patchTable = new _patch[]
         {
-            new _patch("GonnaBlow", 0x0000C000, 0x00000000, 0x38800000, "WARNING: Fuse blowing protection patches missing!!!", "IMPORTANT:\n\nThis nand has patches that will cause fuses to be BLOWN if you run a malicious xex"),
-            new _patch("XLUSB", 0x000E3A7C, 0x00000001, 0x3CE02000, "Nand includes XL USB patches", "This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work.\n\nDevices formatted on the Xbox 360 will NOT work!\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\"")
+            new _patch("FuseBlow", 0x0000C000, 0x00000000, 0x38800000, "WARNING: Fuse blowing protection patches missing!!!", "IMPORTANT:\n\nThis nand has patches that will cause fuses to be BLOWN if you run a malicious xex"),
+            new _patch("XLUSB", 0x000E3A7C, 0x00000001, 0x3CE02000, "Nand includes XL USB patches", "This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work\n\nUSBs not formatted via FATXplorer, and all USB memory units, will no longer work\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\""),
+            new _patch("XLHDD", 0x0015D8EC, 0x00000001, 0x39401000, "Nand includes XL HDD patches", "This NAND has XL HDD patches applied, which only allows FATXplorer formatted storage devices to work\n\nYou must format your HDD at least once using FATXplorer, or you will get E69 on boot\n\nIf you don't want this, generate an image without the XL HDD checked under \"Patches/Dashlaunch\"")
         };
 
         #endregion

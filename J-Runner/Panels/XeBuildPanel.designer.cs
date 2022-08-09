@@ -65,10 +65,11 @@
             this.btnXeBuildOptions = new System.Windows.Forms.Button();
             this.chkxesettings = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkXLHdd = new System.Windows.Forms.CheckBox();
             this.chkXLUsb = new System.Windows.Forms.CheckBox();
             this.chkBigffs = new System.Windows.Forms.CheckBox();
             this.chkWB4G = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.chkLaunch = new System.Windows.Forms.CheckBox();
             this.btnLaunch = new System.Windows.Forms.Button();
             this.checkDLPatches = new System.Windows.Forms.CheckBox();
@@ -108,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dashDataSet)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabUpdate.SuspendLayout();
             this.tabClient.SuspendLayout();
             this.SuspendLayout();
@@ -502,7 +504,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(323, 110);
             this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "XB Settings";
+            this.tabPage1.Text = "Advanced";
             // 
             // txtCommand
             // 
@@ -550,10 +552,9 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.tabPage3.Controls.Add(this.chkXLUsb);
+            this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.chkBigffs);
             this.tabPage3.Controls.Add(this.chkWB4G);
-            this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.chkLaunch);
             this.tabPage3.Controls.Add(this.btnLaunch);
             this.tabPage3.Controls.Add(this.checkDLPatches);
@@ -565,27 +566,51 @@
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Patches/Dashlaunch";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkXLHdd);
+            this.groupBox1.Controls.Add(this.chkXLUsb);
+            this.groupBox1.Location = new System.Drawing.Point(97, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(102, 76);
+            this.groupBox1.TabIndex = 76;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Drive Patches";
+            // 
+            // chkXLHdd
+            // 
+            this.chkXLHdd.AutoSize = true;
+            this.chkXLHdd.Enabled = false;
+            this.chkXLHdd.Location = new System.Drawing.Point(21, 47);
+            this.chkXLHdd.Name = "chkXLHdd";
+            this.chkXLHdd.Size = new System.Drawing.Size(66, 17);
+            this.chkXLHdd.TabIndex = 1;
+            this.chkXLHdd.Text = "XL HDD";
+            this.toolTip1.SetToolTip(this.chkXLHdd, "Patches Freeboot to allow use of internal hard drives over 2TB in size \r\n");
+            this.chkXLHdd.UseVisualStyleBackColor = true;
+            this.chkXLHdd.CheckedChanged += new System.EventHandler(this.chkXLHdd_CheckedChanged);
+            // 
             // chkXLUsb
             // 
             this.chkXLUsb.AutoSize = true;
             this.chkXLUsb.Enabled = false;
-            this.chkXLUsb.Location = new System.Drawing.Point(100, 8);
+            this.chkXLUsb.Location = new System.Drawing.Point(21, 23);
             this.chkXLUsb.Name = "chkXLUsb";
-            this.chkXLUsb.Size = new System.Drawing.Size(99, 17);
+            this.chkXLUsb.Size = new System.Drawing.Size(64, 17);
             this.chkXLUsb.TabIndex = 0;
-            this.chkXLUsb.Text = "XL USB (2TB+)";
-            this.toolTip1.SetToolTip(this.chkXLUsb, "Patches Freeboot to allow use of USB hard drives over 2TB in size (BETA)");
+            this.chkXLUsb.Text = "XL USB";
+            this.toolTip1.SetToolTip(this.chkXLUsb, "Patches Freeboot to allow use of USB hard drives over 2TB in size ");
             this.chkXLUsb.UseVisualStyleBackColor = true;
             this.chkXLUsb.CheckedChanged += new System.EventHandler(this.chkXLUsb_CheckedChanged);
             // 
             // chkBigffs
             // 
             this.chkBigffs.AutoSize = true;
-            this.chkBigffs.Location = new System.Drawing.Point(205, 4);
+            this.chkBigffs.Location = new System.Drawing.Point(110, 89);
             this.chkBigffs.Name = "chkBigffs";
-            this.chkBigffs.Size = new System.Drawing.Size(51, 17);
+            this.chkBigffs.Size = new System.Drawing.Size(83, 17);
             this.chkBigffs.TabIndex = 71;
-            this.chkBigffs.Text = "bigffs";
+            this.chkBigffs.Text = "bigffs Image";
             this.toolTip1.SetToolTip(this.chkBigffs, "Only for 64MB and large NAND sizes");
             this.chkBigffs.UseVisualStyleBackColor = true;
             this.chkBigffs.CheckedChanged += new System.EventHandler(this.chkBigffs_CheckedChanged);
@@ -594,42 +619,34 @@
             // 
             this.chkWB4G.AutoSize = true;
             this.chkWB4G.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkWB4G.Location = new System.Drawing.Point(105, 88);
+            this.chkWB4G.Location = new System.Drawing.Point(205, 8);
             this.chkWB4G.Name = "chkWB4G";
-            this.chkWB4G.Size = new System.Drawing.Size(91, 17);
+            this.chkWB4G.Size = new System.Drawing.Size(114, 17);
             this.chkWB4G.TabIndex = 72;
-            this.chkWB4G.Text = "WB 2K Buffer";
-            this.toolTip1.SetToolTip(this.chkWB4G, "Check to use 13182 CBB with a buffer for Winbond 2K consoles\r\n");
+            this.chkWB4G.Text = "WB 2K Buffer (4G)";
+            this.toolTip1.SetToolTip(this.chkWB4G, "Check to use 13182 CBB with a buffer for Winbond 2K consoles\r\nLegacy option that " +
+        "should not be used except in rare cases");
             this.chkWB4G.UseVisualStyleBackColor = true;
             this.chkWB4G.CheckedChanged += new System.EventHandler(this.chkWB4G_CheckedChanged);
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(96, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 76);
-            this.label4.TabIndex = 71;
-            this.label4.Text = "Use WB 2K option\r\non XeBuild tab\r\n\r\nAdvanced Users:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // chkLaunch
             // 
             this.chkLaunch.AutoSize = true;
             this.chkLaunch.BackColor = System.Drawing.Color.Transparent;
+            this.chkLaunch.Enabled = false;
             this.chkLaunch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkLaunch.Location = new System.Drawing.Point(205, 52);
+            this.chkLaunch.Location = new System.Drawing.Point(205, 54);
             this.chkLaunch.Name = "chkLaunch";
             this.chkLaunch.Size = new System.Drawing.Size(109, 17);
             this.chkLaunch.TabIndex = 74;
             this.chkLaunch.Text = "Custom launch.ini";
             this.chkLaunch.UseVisualStyleBackColor = false;
-            this.chkLaunch.Visible = false;
             // 
             // btnLaunch
             // 
-            this.btnLaunch.Location = new System.Drawing.Point(204, 75);
+            this.btnLaunch.Location = new System.Drawing.Point(204, 77);
             this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(111, 28);
+            this.btnLaunch.Size = new System.Drawing.Size(111, 27);
             this.btnLaunch.TabIndex = 75;
             this.btnLaunch.TabStop = false;
             this.btnLaunch.Text = "Launch.ini Options";
@@ -640,12 +657,13 @@
             // 
             this.checkDLPatches.AutoSize = true;
             this.checkDLPatches.BackColor = System.Drawing.Color.Transparent;
+            this.checkDLPatches.Enabled = false;
             this.checkDLPatches.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkDLPatches.Location = new System.Drawing.Point(205, 21);
+            this.checkDLPatches.Location = new System.Drawing.Point(205, 31);
             this.checkDLPatches.Name = "checkDLPatches";
-            this.checkDLPatches.Size = new System.Drawing.Size(121, 30);
+            this.checkDLPatches.Size = new System.Drawing.Size(121, 17);
             this.checkDLPatches.TabIndex = 73;
-            this.checkDLPatches.Text = "Custom Dashlaunch\r\nPatches";
+            this.checkDLPatches.Text = "Custom Dashlaunch";
             this.checkDLPatches.UseVisualStyleBackColor = false;
             this.checkDLPatches.CheckedChanged += new System.EventHandler(this.checkDLPatches_CheckedChanged);
             this.checkDLPatches.EnabledChanged += new System.EventHandler(this.checkDLPatches_EnabledChanged);
@@ -989,6 +1007,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabUpdate.ResumeLayout(false);
             this.tabUpdate.PerformLayout();
             this.tabClient.ResumeLayout(false);
@@ -1070,6 +1090,7 @@
         private System.Windows.Forms.ComboBox Rgh3Mhz;
         private System.Windows.Forms.Label Rgh3Label2;
         private System.Windows.Forms.CheckBox chkXLUsb;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkXLHdd;
     }
 }

@@ -11,6 +11,7 @@ namespace JRunner.Forms
                                     "Balika011: PicoFlasher Support",
                                     "DaCukiMonsta: Nand Info Improvements/Bugfixes",
                                     "DrSchottky, Visual Studio, proferabg: RGH2 to 3",
+                                    "Eaton: XL USB and XL HDD Patches",
                                     "Element18592: xFlasher Hardware",
                                     "Josh/Octal450: J-Runner with Extras \nMain Development",
                                     "Mena:\nGeneral Dev, xFlasher Speedup,\nMatrix Hex Flashing, CPU Key Gen",
