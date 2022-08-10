@@ -39,6 +39,7 @@ namespace JRunner.Nand
                 string group = n.Console.Text;
                 string[] text = new string[4];
                 if (group == "Jasper 16MB") group = "Jasper";
+                if (group == "Trinity 16MB") group = "Trinity";
                 if (group == "Corona 16MB") group = "Corona";
 
                 text[0] = n.CB.ToString();
