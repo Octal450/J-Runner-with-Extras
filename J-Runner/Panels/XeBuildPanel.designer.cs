@@ -345,7 +345,7 @@
             // 
             // btnGetMB
             // 
-            this.btnGetMB.Location = new System.Drawing.Point(104, 72);
+            this.btnGetMB.Location = new System.Drawing.Point(106, 72);
             this.btnGetMB.Name = "btnGetMB";
             this.btnGetMB.Size = new System.Drawing.Size(25, 22);
             this.btnGetMB.TabIndex = 7;
