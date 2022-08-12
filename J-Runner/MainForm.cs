@@ -1087,7 +1087,7 @@ namespace JRunner
                     }
                     else if (temp >= 13121 && temp <= 13200)
                     {
-                        if (flashconfig == "00023010")
+                        if (flashconfig == "00043000")
                         {
                             variables.ctype = variables.ctypes[10];
                             xPanel.setMBname(variables.ctype.Text);
@@ -1145,11 +1145,11 @@ namespace JRunner
 
                 if (function == 1)
                 {
-                    error = getmbtype(true); // Sets variables.ctyp, important or else big block nands are not handled correctly
+                    error = getmbtype(true);
                     if (error == NandX.Errors.NoFlashConfig) return;
 
                     if (variables.flashconfig == "008A3020" || variables.flashconfig == "008C3020") bb = 2;
-                    else if (variables.flashconfig == "008A3020" || variables.flashconfig == "008C3020") bb = 3;
+                    else if (variables.flashconfig == "00AA3020" || variables.flashconfig == "00AC3020") bb = 3;
                 }
 
                 if (bb > 0 && !DemoN.DemonDetected)
@@ -1220,25 +1220,28 @@ namespace JRunner
             if (usingVNand) error = NandX.Errors.None;
             if (!DemoN.DemonDetected)
             {
-                //error = getmbtype();
                 if (error != NandX.Errors.None && error != NandX.Errors.WrongHeader) return;
                 if (variables.debugMode) Console.WriteLine("Read Nand");
 
-                #region nandsize
-                if ((variables.ctype.ID == 6 || variables.ctype.ID == 9 || variables.ctype.ID == 12) && !variables.fulldump)
+                string flashconf = variables.flashconfig; // Set by flash config check
+                if (flashconf == "008A3020" || flashconf == "008C3020")
+                {
+                    if (variables.fulldump) variables.nandsizex = Nandsize.S256;
+                    variables.nandsizex = Nandsize.S64;
+                }
+                else if (flashconf == "00AA3020" || flashconf == "00AC3020")
+                {
+                    if (variables.fulldump) variables.nandsizex = Nandsize.S512;
+                    variables.nandsizex = Nandsize.S64;
+                }
+                else if (flashconf == "01198030")
                 {
                     variables.nandsizex = Nandsize.S64;
                 }
-                else if (variables.ctype.ID == 0)
+                else
                 {
                     variables.nandsizex = Nandsize.S16;
                 }
-                else
-                {
-                    if (variables.debugMode) Console.WriteLine(variables.ctype.ID);
-                    variables.nandsizex = variables.ctype.Nsize;
-                }
-                #endregion
 
                 if (variables.read1p28mb) read1p28mb = 0x50;
             }
@@ -1311,7 +1314,6 @@ namespace JRunner
                         variables.reading = false;
                     }
                     j++;
-                    //else Console.WriteLine("Nandpro is already running");
                 }
             }
             if (j == 2)
@@ -1360,21 +1362,32 @@ namespace JRunner
             }
             else
             {
-                //if (textBox2.Text != "008A3020" && textBox2.Text != "00AA3020") ctypeselected = 0;
-
                 double len = new FileInfo(variables.filename1).Length;
-                if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
-                if ((variables.ctype.ID == 6 || variables.ctype.ID == 9 || variables.ctype.ID == 12) && (len == 69206016))
+                if (variables.debugMode) Console.WriteLine("File Length: {0}", len);
+                
+                string flashconf = variables.flashconfig; // Set by flash config check
+                if (flashconf == "008A3020" || flashconf == "008C3020")
                 {
-                    variables.nandsizex = Nandsize.S64;
+                    if (len == 553648128) variables.nandsizex = Nandsize.S512; // Just in case, but this might be bad
+                    else if (len == 276824064) variables.nandsizex = Nandsize.S256;
+                    else if (len == 69206016) variables.nandsizex = Nandsize.S64;
+                    else variables.nandsizex = Nandsize.S16;
                 }
-                else if (variables.ctype.ID == 0)
+                else if (flashconf == "00AA3020" || flashconf == "00AC3020")
                 {
-                    variables.nandsizex = Nandsize.S16;
+                    if (len == 553648128) variables.nandsizex = Nandsize.S512;
+                    else if (len == 276824064) variables.nandsizex = Nandsize.S256; // Just in case, but this might be bad
+                    else if (len == 69206016) variables.nandsizex = Nandsize.S64;
+                    else variables.nandsizex = Nandsize.S16;
+                }
+                else if (flashconf == "01198030")
+                {
+                    if (len == 69206016) variables.nandsizex = Nandsize.S64;
+                    else variables.nandsizex = Nandsize.S16;
                 }
                 else
                 {
-                    variables.nandsizex = variables.ctype.Nsize;
+                    variables.nandsizex = Nandsize.S16;
                 }
 
                 if (Path.GetExtension(variables.filename1) == ".ecc")
@@ -1416,7 +1429,6 @@ namespace JRunner
         void writefusion()
         {
             if (string.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
-            //if (textBox2.Text != "008A3020" && textBox2.Text != "00AA3020") ctypeselected = 0;
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
             if (DemoN.DemonDetected)
@@ -1437,18 +1449,31 @@ namespace JRunner
                 if (variables.ctype.ID == -1) variables.ctype = callConsoleSelect(ConsoleSelect.Selected.All);
                 if (variables.ctype.ID == -1) return;
                 double len = new FileInfo(variables.filename1).Length;
-                if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
-                if ((variables.ctype.ID == 6 || variables.ctype.ID == 9 || variables.ctype.ID == 12) && (len == 69206016))
+                if (variables.debugMode) Console.WriteLine("File Length = {0}", len);
+
+                string flashconf = variables.flashconfig; // Set by flash config check
+                if (flashconf == "008A3020" || flashconf == "008C3020")
                 {
-                    variables.nandsizex = Nandsize.S64;
+                    if (len == 553648128) variables.nandsizex = Nandsize.S512; // Just in case, but this might be bad
+                    else if (len == 276824064) variables.nandsizex = Nandsize.S256;
+                    else if (len == 69206016) variables.nandsizex = Nandsize.S64;
+                    else variables.nandsizex = Nandsize.S16;
                 }
-                else if (variables.ctype.ID == 0)
+                else if (flashconf == "00AA3020" || flashconf == "00AC3020")
                 {
-                    variables.nandsizex = Nandsize.S16;
+                    if (len == 553648128) variables.nandsizex = Nandsize.S512;
+                    else if (len == 276824064) variables.nandsizex = Nandsize.S256; // Just in case, but this might be bad
+                    else if (len == 69206016) variables.nandsizex = Nandsize.S64;
+                    else variables.nandsizex = Nandsize.S16;
+                }
+                else if (flashconf == "01198030")
+                {
+                    if (len == 69206016) variables.nandsizex = Nandsize.S64;
+                    else variables.nandsizex = Nandsize.S16;
                 }
                 else
                 {
-                    variables.nandsizex = variables.ctype.Nsize;
+                    variables.nandsizex = Nandsize.S16;
                 }
 
                 if (Path.GetExtension(variables.filename1) == ".bin")
@@ -1463,7 +1488,6 @@ namespace JRunner
             if (string.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
-            //if (textBox2.Text != "008A3020" && textBox2.Text != "00AA3020") ctypeselected = 0;
             if (DemoN.DemonDetected)
             {
                 demon.write(variables.filename1);
@@ -1483,7 +1507,7 @@ namespace JRunner
             else
             {
                 double len = new FileInfo(variables.filename1).Length;
-                if (variables.debugMode) Console.WriteLine("File Length = {0} | Expected 69206016 for a 64MB nand", len);
+                if (variables.debugMode) Console.WriteLine("File Length = {0}", len);
 
                 NandX.Errors result = NandX.Errors.None;
 
