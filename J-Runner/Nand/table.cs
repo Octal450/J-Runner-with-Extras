@@ -105,6 +105,7 @@ namespace JRunner.Nand
             new _nand(6753, "Jasper", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[4]),
             new _nand(9230, "Trinity", 14717, 14719, 3, 3, variables.hacktypes.glitch2, variables.ctypes[1]),
             new _nand(13180, "Corona", 14717, 14719, 3, 3, variables.hacktypes.glitch2, variables.ctypes[10]),
+            new _nand(1928, "Xenon", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[8]),
             new _nand(1942, "Xenon", 15572, variables.latest_dashboard, 11, 11, variables.hacktypes.glitch2, variables.ctypes[8]),
             new _nand(7378, "Xenon", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[8]),
             new _nand(4562, "Zephyr", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[3]),
