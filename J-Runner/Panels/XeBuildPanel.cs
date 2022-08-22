@@ -182,7 +182,7 @@ namespace JRunner.Panels
             else if (rbtnJtag.Checked) rbtnJtag.Checked = false;
             else if (rbtnDevGL.Checked) rbtnDevGL.Checked = false;
             checkAvailableHackTypes();
-            tabControl1.SelectedTab = Xebuild;
+            MainTabs.SelectedTab = tabXeBuild;
             for (int i = 0; i < chkListBoxPatches.Items.Count; i++)
             {
                 chkListBoxPatches.SetItemChecked(i, false);
@@ -1542,12 +1542,6 @@ namespace JRunner.Panels
             RegexOptions options = RegexOptions.None;
             Regex regex = new Regex(@"[ ]{2,}", options);
             c = regex.Replace(c, @" ");
-
-            try
-            {
-                txtCommand.Text = c;
-            }
-            catch (Exception) { }
         }
 
         private void txtMBname_TextChanged(object sender, EventArgs e)

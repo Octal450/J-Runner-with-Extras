@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Xebuild = new System.Windows.Forms.TabPage();
+            this.MainTabs = new System.Windows.Forms.TabControl();
+            this.tabXeBuild = new System.Windows.Forms.TabPage();
             this.Rgh3Label2 = new System.Windows.Forms.Label();
             this.Rgh3Label = new System.Windows.Forms.Label();
             this.Rgh3Mhz = new System.Windows.Forms.ComboBox();
@@ -59,31 +59,19 @@
             this.rbtnJtag = new System.Windows.Forms.RadioButton();
             this.rbtnGlitch2 = new System.Windows.Forms.RadioButton();
             this.rbtnGlitch = new System.Windows.Forms.RadioButton();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtCommand = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnXeBuildOptions = new System.Windows.Forms.Button();
-            this.chkxesettings = new System.Windows.Forms.CheckBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPatches = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkXLHdd = new System.Windows.Forms.CheckBox();
             this.chkXLUsb = new System.Windows.Forms.CheckBox();
-            this.chkBigffs = new System.Windows.Forms.CheckBox();
             this.chkWB4G = new System.Windows.Forms.CheckBox();
-            this.chkLaunch = new System.Windows.Forms.CheckBox();
-            this.btnLaunch = new System.Windows.Forms.Button();
-            this.checkDLPatches = new System.Windows.Forms.CheckBox();
             this.chkListBoxPatches = new System.Windows.Forms.CheckedListBox();
-            this.tabUpdate = new System.Windows.Forms.TabPage();
-            this.lblDash = new System.Windows.Forms.Label();
-            this.lblD = new System.Windows.Forms.Label();
-            this.txtIP = new System.Windows.Forms.TextBox();
-            this.chkForceIP = new System.Windows.Forms.CheckBox();
-            this.chkNoReeb = new System.Windows.Forms.CheckBox();
-            this.chkClean = new System.Windows.Forms.CheckBox();
-            this.chkNoAva = new System.Windows.Forms.CheckBox();
-            this.chkNoWrite = new System.Windows.Forms.CheckBox();
-            this.btnXEUpdate = new System.Windows.Forms.Button();
+            this.tabOptions = new System.Windows.Forms.TabPage();
+            this.btnXeBuildOptions = new System.Windows.Forms.Button();
+            this.chkBigffs = new System.Windows.Forms.CheckBox();
+            this.checkDLPatches = new System.Windows.Forms.CheckBox();
+            this.btnLaunch = new System.Windows.Forms.Button();
+            this.chkxesettings = new System.Windows.Forms.CheckBox();
+            this.chkLaunch = new System.Windows.Forms.CheckBox();
             this.tabClient = new System.Windows.Forms.TabPage();
             this.btnInfo = new System.Windows.Forms.Button();
             this.chkForceIP2 = new System.Windows.Forms.CheckBox();
@@ -100,23 +88,33 @@
             this.btnRead = new System.Windows.Forms.Button();
             this.chkReboot = new System.Windows.Forms.CheckBox();
             this.chkShutdown = new System.Windows.Forms.CheckBox();
+            this.tabUpdate = new System.Windows.Forms.TabPage();
+            this.lblDash = new System.Windows.Forms.Label();
+            this.lblD = new System.Windows.Forms.Label();
+            this.txtIP = new System.Windows.Forms.TextBox();
+            this.chkForceIP = new System.Windows.Forms.CheckBox();
+            this.chkNoReeb = new System.Windows.Forms.CheckBox();
+            this.chkClean = new System.Windows.Forms.CheckBox();
+            this.chkNoAva = new System.Windows.Forms.CheckBox();
+            this.chkNoWrite = new System.Windows.Forms.CheckBox();
+            this.btnXEUpdate = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox7.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.Xebuild.SuspendLayout();
+            this.MainTabs.SuspendLayout();
+            this.tabXeBuild.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dashDataSet)).BeginInit();
-            this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabPatches.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tabUpdate.SuspendLayout();
+            this.tabOptions.SuspendLayout();
             this.tabClient.SuspendLayout();
+            this.tabUpdate.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.tabControl1);
+            this.groupBox7.Controls.Add(this.MainTabs);
             this.groupBox7.Location = new System.Drawing.Point(0, 1);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(341, 156);
@@ -124,53 +122,53 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "XeBuild";
             // 
-            // tabControl1
+            // MainTabs
             // 
-            this.tabControl1.Controls.Add(this.Xebuild);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabUpdate);
-            this.tabControl1.Controls.Add(this.tabClient);
-            this.tabControl1.Location = new System.Drawing.Point(6, 14);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(331, 136);
-            this.tabControl1.TabIndex = 0;
+            this.MainTabs.Controls.Add(this.tabXeBuild);
+            this.MainTabs.Controls.Add(this.tabPatches);
+            this.MainTabs.Controls.Add(this.tabOptions);
+            this.MainTabs.Controls.Add(this.tabClient);
+            this.MainTabs.Controls.Add(this.tabUpdate);
+            this.MainTabs.Location = new System.Drawing.Point(6, 14);
+            this.MainTabs.Name = "MainTabs";
+            this.MainTabs.SelectedIndex = 0;
+            this.MainTabs.Size = new System.Drawing.Size(331, 136);
+            this.MainTabs.TabIndex = 0;
             // 
-            // Xebuild
+            // tabXeBuild
             // 
-            this.Xebuild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Xebuild.Controls.Add(this.Rgh3Label2);
-            this.Xebuild.Controls.Add(this.Rgh3Label);
-            this.Xebuild.Controls.Add(this.Rgh3Mhz);
-            this.Xebuild.Controls.Add(this.chkRgh3);
-            this.Xebuild.Controls.Add(this.chkWB);
-            this.Xebuild.Controls.Add(this.chkCR4);
-            this.Xebuild.Controls.Add(this.chkCleanSMC);
-            this.Xebuild.Controls.Add(this.chkXdkBuild);
-            this.Xebuild.Controls.Add(this.chk0Fuse);
-            this.Xebuild.Controls.Add(this.rbtnDevGL);
-            this.Xebuild.Controls.Add(this.chkSMCP);
-            this.Xebuild.Controls.Add(this.labelCB);
-            this.Xebuild.Controls.Add(this.comboCB);
-            this.Xebuild.Controls.Add(this.rbtnGlitch2m);
-            this.Xebuild.Controls.Add(this.btnGetMB);
-            this.Xebuild.Controls.Add(this.label2);
-            this.Xebuild.Controls.Add(this.lblDashVersion);
-            this.Xebuild.Controls.Add(this.chkAudClamp);
-            this.Xebuild.Controls.Add(this.comboDash);
-            this.Xebuild.Controls.Add(this.chkRJtag);
-            this.Xebuild.Controls.Add(this.txtMBname);
-            this.Xebuild.Controls.Add(this.rbtnRetail);
-            this.Xebuild.Controls.Add(this.rbtnJtag);
-            this.Xebuild.Controls.Add(this.rbtnGlitch2);
-            this.Xebuild.Controls.Add(this.rbtnGlitch);
-            this.Xebuild.Location = new System.Drawing.Point(4, 22);
-            this.Xebuild.Name = "Xebuild";
-            this.Xebuild.Padding = new System.Windows.Forms.Padding(3);
-            this.Xebuild.Size = new System.Drawing.Size(323, 110);
-            this.Xebuild.TabIndex = 0;
-            this.Xebuild.Text = "XeBuild";
+            this.tabXeBuild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tabXeBuild.Controls.Add(this.Rgh3Label2);
+            this.tabXeBuild.Controls.Add(this.Rgh3Label);
+            this.tabXeBuild.Controls.Add(this.Rgh3Mhz);
+            this.tabXeBuild.Controls.Add(this.chkRgh3);
+            this.tabXeBuild.Controls.Add(this.chkWB);
+            this.tabXeBuild.Controls.Add(this.chkCR4);
+            this.tabXeBuild.Controls.Add(this.chkCleanSMC);
+            this.tabXeBuild.Controls.Add(this.chkXdkBuild);
+            this.tabXeBuild.Controls.Add(this.chk0Fuse);
+            this.tabXeBuild.Controls.Add(this.rbtnDevGL);
+            this.tabXeBuild.Controls.Add(this.chkSMCP);
+            this.tabXeBuild.Controls.Add(this.labelCB);
+            this.tabXeBuild.Controls.Add(this.comboCB);
+            this.tabXeBuild.Controls.Add(this.rbtnGlitch2m);
+            this.tabXeBuild.Controls.Add(this.btnGetMB);
+            this.tabXeBuild.Controls.Add(this.label2);
+            this.tabXeBuild.Controls.Add(this.lblDashVersion);
+            this.tabXeBuild.Controls.Add(this.chkAudClamp);
+            this.tabXeBuild.Controls.Add(this.comboDash);
+            this.tabXeBuild.Controls.Add(this.chkRJtag);
+            this.tabXeBuild.Controls.Add(this.txtMBname);
+            this.tabXeBuild.Controls.Add(this.rbtnRetail);
+            this.tabXeBuild.Controls.Add(this.rbtnJtag);
+            this.tabXeBuild.Controls.Add(this.rbtnGlitch2);
+            this.tabXeBuild.Controls.Add(this.rbtnGlitch);
+            this.tabXeBuild.Location = new System.Drawing.Point(4, 22);
+            this.tabXeBuild.Name = "tabXeBuild";
+            this.tabXeBuild.Padding = new System.Windows.Forms.Padding(3);
+            this.tabXeBuild.Size = new System.Drawing.Size(323, 110);
+            this.tabXeBuild.TabIndex = 0;
+            this.tabXeBuild.Text = "XeBuild";
             // 
             // Rgh3Label2
             // 
@@ -492,79 +490,18 @@
             this.rbtnGlitch.UseVisualStyleBackColor = false;
             this.rbtnGlitch.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
             // 
-            // tabPage1
+            // tabPatches
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.tabPage1.Controls.Add(this.txtCommand);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.btnXeBuildOptions);
-            this.tabPage1.Controls.Add(this.chkxesettings);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(323, 110);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Advanced";
-            // 
-            // txtCommand
-            // 
-            this.txtCommand.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCommand.Location = new System.Drawing.Point(67, 7);
-            this.txtCommand.Name = "txtCommand";
-            this.txtCommand.ReadOnly = true;
-            this.txtCommand.Size = new System.Drawing.Size(245, 13);
-            this.txtCommand.TabIndex = 70;
-            this.txtCommand.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 69;
-            this.label1.Text = "Command: ";
-            // 
-            // btnXeBuildOptions
-            // 
-            this.btnXeBuildOptions.Location = new System.Drawing.Point(165, 51);
-            this.btnXeBuildOptions.Name = "btnXeBuildOptions";
-            this.btnXeBuildOptions.Size = new System.Drawing.Size(153, 30);
-            this.btnXeBuildOptions.TabIndex = 65;
-            this.btnXeBuildOptions.TabStop = false;
-            this.btnXeBuildOptions.Text = "Advanced XeBuild Options";
-            this.toolTip1.SetToolTip(this.btnXeBuildOptions, "Advanced Users only - this allows you many options for your Xebuild  Options");
-            this.btnXeBuildOptions.UseVisualStyleBackColor = true;
-            this.btnXeBuildOptions.Click += new System.EventHandler(this.btnXeBuildOptions_Click);
-            // 
-            // chkxesettings
-            // 
-            this.chkxesettings.AutoSize = true;
-            this.chkxesettings.Location = new System.Drawing.Point(183, 87);
-            this.chkxesettings.Name = "chkxesettings";
-            this.chkxesettings.Size = new System.Drawing.Size(117, 17);
-            this.chkxesettings.TabIndex = 66;
-            this.chkxesettings.TabStop = false;
-            this.chkxesettings.Text = "Use Edited Options";
-            this.chkxesettings.UseVisualStyleBackColor = true;
-            this.chkxesettings.CheckedChanged += new System.EventHandler(this.chkxesettings_CheckedChanged);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Controls.Add(this.chkBigffs);
-            this.tabPage3.Controls.Add(this.chkWB4G);
-            this.tabPage3.Controls.Add(this.chkLaunch);
-            this.tabPage3.Controls.Add(this.btnLaunch);
-            this.tabPage3.Controls.Add(this.checkDLPatches);
-            this.tabPage3.Controls.Add(this.chkListBoxPatches);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(323, 110);
-            this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "Patches/Dashlaunch";
+            this.tabPatches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tabPatches.Controls.Add(this.groupBox1);
+            this.tabPatches.Controls.Add(this.chkWB4G);
+            this.tabPatches.Controls.Add(this.chkListBoxPatches);
+            this.tabPatches.Location = new System.Drawing.Point(4, 22);
+            this.tabPatches.Name = "tabPatches";
+            this.tabPatches.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPatches.Size = new System.Drawing.Size(323, 110);
+            this.tabPatches.TabIndex = 3;
+            this.tabPatches.Text = "Patches";
             // 
             // groupBox1
             // 
@@ -572,7 +509,7 @@
             this.groupBox1.Controls.Add(this.chkXLUsb);
             this.groupBox1.Location = new System.Drawing.Point(97, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(102, 76);
+            this.groupBox1.Size = new System.Drawing.Size(107, 80);
             this.groupBox1.TabIndex = 76;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Drive Patches";
@@ -581,7 +518,7 @@
             // 
             this.chkXLHdd.AutoSize = true;
             this.chkXLHdd.Enabled = false;
-            this.chkXLHdd.Location = new System.Drawing.Point(21, 47);
+            this.chkXLHdd.Location = new System.Drawing.Point(24, 49);
             this.chkXLHdd.Name = "chkXLHdd";
             this.chkXLHdd.Size = new System.Drawing.Size(66, 17);
             this.chkXLHdd.TabIndex = 1;
@@ -594,7 +531,7 @@
             // 
             this.chkXLUsb.AutoSize = true;
             this.chkXLUsb.Enabled = false;
-            this.chkXLUsb.Location = new System.Drawing.Point(21, 23);
+            this.chkXLUsb.Location = new System.Drawing.Point(24, 25);
             this.chkXLUsb.Name = "chkXLUsb";
             this.chkXLUsb.Size = new System.Drawing.Size(64, 17);
             this.chkXLUsb.TabIndex = 0;
@@ -603,23 +540,11 @@
             this.chkXLUsb.UseVisualStyleBackColor = true;
             this.chkXLUsb.CheckedChanged += new System.EventHandler(this.chkXLUsb_CheckedChanged);
             // 
-            // chkBigffs
-            // 
-            this.chkBigffs.AutoSize = true;
-            this.chkBigffs.Location = new System.Drawing.Point(110, 89);
-            this.chkBigffs.Name = "chkBigffs";
-            this.chkBigffs.Size = new System.Drawing.Size(83, 17);
-            this.chkBigffs.TabIndex = 71;
-            this.chkBigffs.Text = "bigffs Image";
-            this.toolTip1.SetToolTip(this.chkBigffs, "Only for 64MB and large NAND sizes");
-            this.chkBigffs.UseVisualStyleBackColor = true;
-            this.chkBigffs.CheckedChanged += new System.EventHandler(this.chkBigffs_CheckedChanged);
-            // 
             // chkWB4G
             // 
             this.chkWB4G.AutoSize = true;
             this.chkWB4G.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkWB4G.Location = new System.Drawing.Point(205, 8);
+            this.chkWB4G.Location = new System.Drawing.Point(97, 89);
             this.chkWB4G.Name = "chkWB4G";
             this.chkWB4G.Size = new System.Drawing.Size(114, 17);
             this.chkWB4G.TabIndex = 72;
@@ -628,45 +553,6 @@
         "should not be used except in rare cases");
             this.chkWB4G.UseVisualStyleBackColor = true;
             this.chkWB4G.CheckedChanged += new System.EventHandler(this.chkWB4G_CheckedChanged);
-            // 
-            // chkLaunch
-            // 
-            this.chkLaunch.AutoSize = true;
-            this.chkLaunch.BackColor = System.Drawing.Color.Transparent;
-            this.chkLaunch.Enabled = false;
-            this.chkLaunch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkLaunch.Location = new System.Drawing.Point(205, 54);
-            this.chkLaunch.Name = "chkLaunch";
-            this.chkLaunch.Size = new System.Drawing.Size(109, 17);
-            this.chkLaunch.TabIndex = 74;
-            this.chkLaunch.Text = "Custom launch.ini";
-            this.chkLaunch.UseVisualStyleBackColor = false;
-            // 
-            // btnLaunch
-            // 
-            this.btnLaunch.Location = new System.Drawing.Point(204, 77);
-            this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(111, 27);
-            this.btnLaunch.TabIndex = 75;
-            this.btnLaunch.TabStop = false;
-            this.btnLaunch.Text = "Launch.ini Options";
-            this.btnLaunch.UseVisualStyleBackColor = true;
-            this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
-            // 
-            // checkDLPatches
-            // 
-            this.checkDLPatches.AutoSize = true;
-            this.checkDLPatches.BackColor = System.Drawing.Color.Transparent;
-            this.checkDLPatches.Enabled = false;
-            this.checkDLPatches.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkDLPatches.Location = new System.Drawing.Point(205, 31);
-            this.checkDLPatches.Name = "checkDLPatches";
-            this.checkDLPatches.Size = new System.Drawing.Size(121, 17);
-            this.checkDLPatches.TabIndex = 73;
-            this.checkDLPatches.Text = "Custom Dashlaunch";
-            this.checkDLPatches.UseVisualStyleBackColor = false;
-            this.checkDLPatches.CheckedChanged += new System.EventHandler(this.checkDLPatches_CheckedChanged);
-            this.checkDLPatches.EnabledChanged += new System.EventHandler(this.checkDLPatches_EnabledChanged);
             // 
             // chkListBoxPatches
             // 
@@ -687,6 +573,282 @@
             this.toolTip1.SetToolTip(this.chkListBoxPatches, "XeBuild Patches which can be selected");
             this.chkListBoxPatches.SelectedIndexChanged += new System.EventHandler(this.chkListBoxPatches_SelectedIndexChanged);
             // 
+            // tabOptions
+            // 
+            this.tabOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tabOptions.Controls.Add(this.btnXeBuildOptions);
+            this.tabOptions.Controls.Add(this.chkBigffs);
+            this.tabOptions.Controls.Add(this.checkDLPatches);
+            this.tabOptions.Controls.Add(this.btnLaunch);
+            this.tabOptions.Controls.Add(this.chkxesettings);
+            this.tabOptions.Controls.Add(this.chkLaunch);
+            this.tabOptions.Location = new System.Drawing.Point(4, 22);
+            this.tabOptions.Name = "tabOptions";
+            this.tabOptions.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOptions.Size = new System.Drawing.Size(323, 110);
+            this.tabOptions.TabIndex = 2;
+            this.tabOptions.Text = "Options";
+            // 
+            // btnXeBuildOptions
+            // 
+            this.btnXeBuildOptions.Location = new System.Drawing.Point(18, 18);
+            this.btnXeBuildOptions.Name = "btnXeBuildOptions";
+            this.btnXeBuildOptions.Size = new System.Drawing.Size(153, 27);
+            this.btnXeBuildOptions.TabIndex = 65;
+            this.btnXeBuildOptions.TabStop = false;
+            this.btnXeBuildOptions.Text = "Advanced XeBuild Options";
+            this.toolTip1.SetToolTip(this.btnXeBuildOptions, "Advanced Users only - this allows you many options for your Xebuild  Options");
+            this.btnXeBuildOptions.UseVisualStyleBackColor = true;
+            this.btnXeBuildOptions.Click += new System.EventHandler(this.btnXeBuildOptions_Click);
+            // 
+            // chkBigffs
+            // 
+            this.chkBigffs.AutoSize = true;
+            this.chkBigffs.Location = new System.Drawing.Point(19, 77);
+            this.chkBigffs.Name = "chkBigffs";
+            this.chkBigffs.Size = new System.Drawing.Size(83, 17);
+            this.chkBigffs.TabIndex = 71;
+            this.chkBigffs.Text = "bigffs Image";
+            this.toolTip1.SetToolTip(this.chkBigffs, "Only for 64MB and large NAND sizes");
+            this.chkBigffs.UseVisualStyleBackColor = true;
+            this.chkBigffs.CheckedChanged += new System.EventHandler(this.chkBigffs_CheckedChanged);
+            // 
+            // checkDLPatches
+            // 
+            this.checkDLPatches.AutoSize = true;
+            this.checkDLPatches.BackColor = System.Drawing.Color.Transparent;
+            this.checkDLPatches.Enabled = false;
+            this.checkDLPatches.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkDLPatches.Location = new System.Drawing.Point(191, 53);
+            this.checkDLPatches.Name = "checkDLPatches";
+            this.checkDLPatches.Size = new System.Drawing.Size(121, 17);
+            this.checkDLPatches.TabIndex = 73;
+            this.checkDLPatches.Text = "Custom Dashlaunch";
+            this.checkDLPatches.UseVisualStyleBackColor = false;
+            this.checkDLPatches.CheckedChanged += new System.EventHandler(this.checkDLPatches_CheckedChanged);
+            this.checkDLPatches.EnabledChanged += new System.EventHandler(this.checkDLPatches_EnabledChanged);
+            // 
+            // btnLaunch
+            // 
+            this.btnLaunch.Location = new System.Drawing.Point(190, 18);
+            this.btnLaunch.Name = "btnLaunch";
+            this.btnLaunch.Size = new System.Drawing.Size(115, 27);
+            this.btnLaunch.TabIndex = 75;
+            this.btnLaunch.TabStop = false;
+            this.btnLaunch.Text = "Launch.ini Options";
+            this.btnLaunch.UseVisualStyleBackColor = true;
+            this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
+            // 
+            // chkxesettings
+            // 
+            this.chkxesettings.AutoSize = true;
+            this.chkxesettings.Location = new System.Drawing.Point(19, 53);
+            this.chkxesettings.Name = "chkxesettings";
+            this.chkxesettings.Size = new System.Drawing.Size(117, 17);
+            this.chkxesettings.TabIndex = 66;
+            this.chkxesettings.TabStop = false;
+            this.chkxesettings.Text = "Use Edited Options";
+            this.chkxesettings.UseVisualStyleBackColor = true;
+            this.chkxesettings.CheckedChanged += new System.EventHandler(this.chkxesettings_CheckedChanged);
+            // 
+            // chkLaunch
+            // 
+            this.chkLaunch.AutoSize = true;
+            this.chkLaunch.BackColor = System.Drawing.Color.Transparent;
+            this.chkLaunch.Enabled = false;
+            this.chkLaunch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkLaunch.Location = new System.Drawing.Point(191, 77);
+            this.chkLaunch.Name = "chkLaunch";
+            this.chkLaunch.Size = new System.Drawing.Size(109, 17);
+            this.chkLaunch.TabIndex = 74;
+            this.chkLaunch.Text = "Custom launch.ini";
+            this.chkLaunch.UseVisualStyleBackColor = false;
+            // 
+            // tabClient
+            // 
+            this.tabClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tabClient.Controls.Add(this.btnInfo);
+            this.tabClient.Controls.Add(this.chkForceIP2);
+            this.tabClient.Controls.Add(this.txtIP2);
+            this.tabClient.Controls.Add(this.lblLength);
+            this.tabClient.Controls.Add(this.lblOffset);
+            this.tabClient.Controls.Add(this.btnErase);
+            this.tabClient.Controls.Add(this.txtOffset);
+            this.tabClient.Controls.Add(this.txtLength);
+            this.tabClient.Controls.Add(this.btnPatches);
+            this.tabClient.Controls.Add(this.btnComp);
+            this.tabClient.Controls.Add(this.btnAvatar);
+            this.tabClient.Controls.Add(this.btnWrite);
+            this.tabClient.Controls.Add(this.btnRead);
+            this.tabClient.Controls.Add(this.chkReboot);
+            this.tabClient.Controls.Add(this.chkShutdown);
+            this.tabClient.Location = new System.Drawing.Point(4, 22);
+            this.tabClient.Name = "tabClient";
+            this.tabClient.Padding = new System.Windows.Forms.Padding(3);
+            this.tabClient.Size = new System.Drawing.Size(323, 110);
+            this.tabClient.TabIndex = 5;
+            this.tabClient.Text = "Client";
+            // 
+            // btnInfo
+            // 
+            this.btnInfo.Location = new System.Drawing.Point(114, 56);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(57, 22);
+            this.btnInfo.TabIndex = 13;
+            this.btnInfo.Text = "Get Info";
+            this.toolTip1.SetToolTip(this.btnInfo, "Grab Console info and save files to output folder");
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
+            // chkForceIP2
+            // 
+            this.chkForceIP2.AutoSize = true;
+            this.chkForceIP2.Location = new System.Drawing.Point(176, 60);
+            this.chkForceIP2.Name = "chkForceIP2";
+            this.chkForceIP2.Size = new System.Drawing.Size(66, 17);
+            this.chkForceIP2.TabIndex = 14;
+            this.chkForceIP2.Text = "Force IP";
+            this.toolTip1.SetToolTip(this.chkForceIP2, "Force the Client to use IP specified in box:\r\nmust be in correct format e.g. 192." +
+        "168.1.71\r\ni.e separated with \".\" ");
+            this.chkForceIP2.UseVisualStyleBackColor = true;
+            this.chkForceIP2.CheckedChanged += new System.EventHandler(this.chkForceIP2_CheckedChanged);
+            // 
+            // txtIP2
+            // 
+            this.txtIP2.Enabled = false;
+            this.txtIP2.Location = new System.Drawing.Point(242, 57);
+            this.txtIP2.Name = "txtIP2";
+            this.txtIP2.Size = new System.Drawing.Size(75, 20);
+            this.txtIP2.TabIndex = 15;
+            this.txtIP2.Text = "Autoscan LAN";
+            this.toolTip1.SetToolTip(this.txtIP2, "Box to Enter an IP if wishing to specify one");
+            this.txtIP2.TextChanged += new System.EventHandler(this.txtIP2_TextChanged);
+            // 
+            // lblLength
+            // 
+            this.lblLength.AutoSize = true;
+            this.lblLength.Location = new System.Drawing.Point(219, 32);
+            this.lblLength.Name = "lblLength";
+            this.lblLength.Size = new System.Drawing.Size(57, 13);
+            this.lblLength.TabIndex = 11;
+            this.lblLength.Text = "Length: 0x";
+            // 
+            // lblOffset
+            // 
+            this.lblOffset.AutoSize = true;
+            this.lblOffset.Location = new System.Drawing.Point(221, 11);
+            this.lblOffset.Name = "lblOffset";
+            this.lblOffset.Size = new System.Drawing.Size(55, 13);
+            this.lblOffset.TabIndex = 10;
+            this.lblOffset.Text = " Offset: 0x";
+            // 
+            // btnErase
+            // 
+            this.btnErase.Location = new System.Drawing.Point(123, 5);
+            this.btnErase.Name = "btnErase";
+            this.btnErase.Size = new System.Drawing.Size(75, 22);
+            this.btnErase.TabIndex = 7;
+            this.btnErase.Text = "Erase Block";
+            this.toolTip1.SetToolTip(this.btnErase, "Uses LAN to erase the blocks specified by offset and length boxes");
+            this.btnErase.UseVisualStyleBackColor = true;
+            this.btnErase.Click += new System.EventHandler(this.btnErase_Click);
+            // 
+            // txtOffset
+            // 
+            this.txtOffset.Location = new System.Drawing.Point(282, 6);
+            this.txtOffset.Name = "txtOffset";
+            this.txtOffset.Size = new System.Drawing.Size(35, 20);
+            this.txtOffset.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.txtOffset, "Starting point reference for read/write/erase");
+            // 
+            // txtLength
+            // 
+            this.txtLength.Location = new System.Drawing.Point(282, 29);
+            this.txtLength.Name = "txtLength";
+            this.txtLength.Size = new System.Drawing.Size(35, 20);
+            this.txtLength.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.txtLength, "Length used in conjunction with offset");
+            // 
+            // btnPatches
+            // 
+            this.btnPatches.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnPatches.Location = new System.Drawing.Point(5, 56);
+            this.btnPatches.Name = "btnPatches";
+            this.btnPatches.Size = new System.Drawing.Size(105, 22);
+            this.btnPatches.TabIndex = 12;
+            this.btnPatches.Text = "Update Patch(es)";
+            this.toolTip1.SetToolTip(this.btnPatches, "Add specified patches from settings tab");
+            this.btnPatches.UseVisualStyleBackColor = true;
+            this.btnPatches.Click += new System.EventHandler(this.btnPatches_Click);
+            // 
+            // btnComp
+            // 
+            this.btnComp.Location = new System.Drawing.Point(145, 83);
+            this.btnComp.Name = "btnComp";
+            this.btnComp.Size = new System.Drawing.Size(173, 22);
+            this.btnComp.TabIndex = 17;
+            this.btnComp.Text = "Send XBOX Compatibility data";
+            this.toolTip1.SetToolTip(this.btnComp, "Refer to Xebuild\'s Notes");
+            this.btnComp.UseVisualStyleBackColor = true;
+            this.btnComp.Click += new System.EventHandler(this.btnComp_Click);
+            // 
+            // btnAvatar
+            // 
+            this.btnAvatar.Location = new System.Drawing.Point(5, 83);
+            this.btnAvatar.Name = "btnAvatar";
+            this.btnAvatar.Size = new System.Drawing.Size(133, 22);
+            this.btnAvatar.TabIndex = 16;
+            this.btnAvatar.Text = "Send Avatar/Kinect data";
+            this.toolTip1.SetToolTip(this.btnAvatar, "Update your Avatar and Kinect Data");
+            this.btnAvatar.UseVisualStyleBackColor = true;
+            this.btnAvatar.Click += new System.EventHandler(this.btnAvatar_Click);
+            // 
+            // btnWrite
+            // 
+            this.btnWrite.Location = new System.Drawing.Point(65, 5);
+            this.btnWrite.Name = "btnWrite";
+            this.btnWrite.Size = new System.Drawing.Size(52, 22);
+            this.btnWrite.TabIndex = 6;
+            this.btnWrite.Text = "Write";
+            this.toolTip1.SetToolTip(this.btnWrite, "Uses LAN to write the nand");
+            this.btnWrite.UseVisualStyleBackColor = true;
+            this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
+            // 
+            // btnRead
+            // 
+            this.btnRead.Location = new System.Drawing.Point(5, 5);
+            this.btnRead.Name = "btnRead";
+            this.btnRead.Size = new System.Drawing.Size(54, 22);
+            this.btnRead.TabIndex = 5;
+            this.btnRead.Text = "Read";
+            this.toolTip1.SetToolTip(this.btnRead, "Uses LAN to read the nand");
+            this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
+            // 
+            // chkReboot
+            // 
+            this.chkReboot.AutoSize = true;
+            this.chkReboot.Location = new System.Drawing.Point(86, 34);
+            this.chkReboot.Name = "chkReboot";
+            this.chkReboot.Size = new System.Drawing.Size(61, 17);
+            this.chkReboot.TabIndex = 10;
+            this.chkReboot.Text = "Reboot";
+            this.toolTip1.SetToolTip(this.chkReboot, "Reboot the console after read/write/erase/updates etc");
+            this.chkReboot.UseVisualStyleBackColor = true;
+            this.chkReboot.CheckedChanged += new System.EventHandler(this.chkReboot_CheckedChanged);
+            // 
+            // chkShutdown
+            // 
+            this.chkShutdown.AutoSize = true;
+            this.chkShutdown.Location = new System.Drawing.Point(6, 34);
+            this.chkShutdown.Name = "chkShutdown";
+            this.chkShutdown.Size = new System.Drawing.Size(74, 17);
+            this.chkShutdown.TabIndex = 9;
+            this.chkShutdown.Text = "Shutdown";
+            this.toolTip1.SetToolTip(this.chkShutdown, "Shutdown the console after read/write/erase/update etc");
+            this.chkShutdown.UseVisualStyleBackColor = true;
+            this.chkShutdown.CheckedChanged += new System.EventHandler(this.chkShutdown_CheckedChanged);
+            // 
             // tabUpdate
             // 
             this.tabUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -704,7 +866,7 @@
             this.tabUpdate.Padding = new System.Windows.Forms.Padding(3);
             this.tabUpdate.Size = new System.Drawing.Size(323, 110);
             this.tabUpdate.TabIndex = 4;
-            this.tabUpdate.Text = "Update Mode";
+            this.tabUpdate.Text = "Update";
             // 
             // lblDash
             // 
@@ -726,7 +888,7 @@
             // txtIP
             // 
             this.txtIP.Enabled = false;
-            this.txtIP.Location = new System.Drawing.Point(237, 58);
+            this.txtIP.Location = new System.Drawing.Point(230, 69);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(75, 20);
             this.txtIP.TabIndex = 11;
@@ -737,7 +899,7 @@
             // chkForceIP
             // 
             this.chkForceIP.AutoSize = true;
-            this.chkForceIP.Location = new System.Drawing.Point(246, 35);
+            this.chkForceIP.Location = new System.Drawing.Point(238, 46);
             this.chkForceIP.Name = "chkForceIP";
             this.chkForceIP.Size = new System.Drawing.Size(66, 17);
             this.chkForceIP.TabIndex = 10;
@@ -804,191 +966,6 @@
             this.btnXEUpdate.UseVisualStyleBackColor = true;
             this.btnXEUpdate.Click += new System.EventHandler(this.btnXEUpdate_Click);
             // 
-            // tabClient
-            // 
-            this.tabClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.tabClient.Controls.Add(this.btnInfo);
-            this.tabClient.Controls.Add(this.chkForceIP2);
-            this.tabClient.Controls.Add(this.txtIP2);
-            this.tabClient.Controls.Add(this.lblLength);
-            this.tabClient.Controls.Add(this.lblOffset);
-            this.tabClient.Controls.Add(this.btnErase);
-            this.tabClient.Controls.Add(this.txtOffset);
-            this.tabClient.Controls.Add(this.txtLength);
-            this.tabClient.Controls.Add(this.btnPatches);
-            this.tabClient.Controls.Add(this.btnComp);
-            this.tabClient.Controls.Add(this.btnAvatar);
-            this.tabClient.Controls.Add(this.btnWrite);
-            this.tabClient.Controls.Add(this.btnRead);
-            this.tabClient.Controls.Add(this.chkReboot);
-            this.tabClient.Controls.Add(this.chkShutdown);
-            this.tabClient.Location = new System.Drawing.Point(4, 22);
-            this.tabClient.Name = "tabClient";
-            this.tabClient.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClient.Size = new System.Drawing.Size(323, 110);
-            this.tabClient.TabIndex = 5;
-            this.tabClient.Text = "Client Mode";
-            // 
-            // btnInfo
-            // 
-            this.btnInfo.Location = new System.Drawing.Point(114, 56);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(57, 23);
-            this.btnInfo.TabIndex = 13;
-            this.btnInfo.Text = "Get Info";
-            this.toolTip1.SetToolTip(this.btnInfo, "Grab Console info and save files to output folder");
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
-            // 
-            // chkForceIP2
-            // 
-            this.chkForceIP2.AutoSize = true;
-            this.chkForceIP2.Location = new System.Drawing.Point(177, 59);
-            this.chkForceIP2.Name = "chkForceIP2";
-            this.chkForceIP2.Size = new System.Drawing.Size(66, 17);
-            this.chkForceIP2.TabIndex = 14;
-            this.chkForceIP2.Text = "Force IP";
-            this.toolTip1.SetToolTip(this.chkForceIP2, "force the Client to use IP specified in box:\r\nmust be in correct format e.g. 192." +
-        "168.1.71\r\ni.e separated with \".\" ");
-            this.chkForceIP2.UseVisualStyleBackColor = true;
-            this.chkForceIP2.CheckedChanged += new System.EventHandler(this.chkForceIP2_CheckedChanged);
-            // 
-            // txtIP2
-            // 
-            this.txtIP2.Enabled = false;
-            this.txtIP2.Location = new System.Drawing.Point(243, 57);
-            this.txtIP2.Name = "txtIP2";
-            this.txtIP2.Size = new System.Drawing.Size(75, 20);
-            this.txtIP2.TabIndex = 15;
-            this.txtIP2.Text = "Autoscan LAN";
-            this.toolTip1.SetToolTip(this.txtIP2, "Box to Enter an IP if wishing to specify one");
-            this.txtIP2.TextChanged += new System.EventHandler(this.txtIP2_TextChanged);
-            // 
-            // lblLength
-            // 
-            this.lblLength.AutoSize = true;
-            this.lblLength.Location = new System.Drawing.Point(214, 32);
-            this.lblLength.Name = "lblLength";
-            this.lblLength.Size = new System.Drawing.Size(57, 13);
-            this.lblLength.TabIndex = 11;
-            this.lblLength.Text = "Length: 0x";
-            // 
-            // lblOffset
-            // 
-            this.lblOffset.AutoSize = true;
-            this.lblOffset.Location = new System.Drawing.Point(216, 11);
-            this.lblOffset.Name = "lblOffset";
-            this.lblOffset.Size = new System.Drawing.Size(55, 13);
-            this.lblOffset.TabIndex = 10;
-            this.lblOffset.Text = " Offset: 0x";
-            // 
-            // btnErase
-            // 
-            this.btnErase.Location = new System.Drawing.Point(131, 6);
-            this.btnErase.Name = "btnErase";
-            this.btnErase.Size = new System.Drawing.Size(75, 23);
-            this.btnErase.TabIndex = 7;
-            this.btnErase.Text = "Erase Block";
-            this.toolTip1.SetToolTip(this.btnErase, "Uses LAN to erase the blocks specified by offset and length boxes");
-            this.btnErase.UseVisualStyleBackColor = true;
-            this.btnErase.Click += new System.EventHandler(this.btnErase_Click);
-            // 
-            // txtOffset
-            // 
-            this.txtOffset.Location = new System.Drawing.Point(277, 6);
-            this.txtOffset.Name = "txtOffset";
-            this.txtOffset.Size = new System.Drawing.Size(35, 20);
-            this.txtOffset.TabIndex = 8;
-            this.toolTip1.SetToolTip(this.txtOffset, "starting point reference for read/write/erase");
-            // 
-            // txtLength
-            // 
-            this.txtLength.Location = new System.Drawing.Point(277, 29);
-            this.txtLength.Name = "txtLength";
-            this.txtLength.Size = new System.Drawing.Size(35, 20);
-            this.txtLength.TabIndex = 11;
-            this.toolTip1.SetToolTip(this.txtLength, "Length used in conjunction with offset");
-            // 
-            // btnPatches
-            // 
-            this.btnPatches.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnPatches.Location = new System.Drawing.Point(3, 56);
-            this.btnPatches.Name = "btnPatches";
-            this.btnPatches.Size = new System.Drawing.Size(105, 23);
-            this.btnPatches.TabIndex = 12;
-            this.btnPatches.Text = "Update Patch(es)";
-            this.toolTip1.SetToolTip(this.btnPatches, "add specified patches from settings tab");
-            this.btnPatches.UseVisualStyleBackColor = true;
-            this.btnPatches.Click += new System.EventHandler(this.btnPatches_Click);
-            // 
-            // btnComp
-            // 
-            this.btnComp.Location = new System.Drawing.Point(145, 84);
-            this.btnComp.Name = "btnComp";
-            this.btnComp.Size = new System.Drawing.Size(173, 23);
-            this.btnComp.TabIndex = 17;
-            this.btnComp.Text = "Send XBOX Compatibility data";
-            this.toolTip1.SetToolTip(this.btnComp, "fucked if I know - Refer to Xebuild\'s Notes");
-            this.btnComp.UseVisualStyleBackColor = true;
-            this.btnComp.Click += new System.EventHandler(this.btnComp_Click);
-            // 
-            // btnAvatar
-            // 
-            this.btnAvatar.Location = new System.Drawing.Point(3, 84);
-            this.btnAvatar.Name = "btnAvatar";
-            this.btnAvatar.Size = new System.Drawing.Size(133, 23);
-            this.btnAvatar.TabIndex = 16;
-            this.btnAvatar.Text = "Send Avatar/Kinect data";
-            this.toolTip1.SetToolTip(this.btnAvatar, "update your Avatar and Kinect Data");
-            this.btnAvatar.UseVisualStyleBackColor = true;
-            this.btnAvatar.Click += new System.EventHandler(this.btnAvatar_Click);
-            // 
-            // btnWrite
-            // 
-            this.btnWrite.Location = new System.Drawing.Point(63, 6);
-            this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(52, 23);
-            this.btnWrite.TabIndex = 6;
-            this.btnWrite.Text = "Write";
-            this.toolTip1.SetToolTip(this.btnWrite, "Uses LAN to write the nand");
-            this.btnWrite.UseVisualStyleBackColor = true;
-            this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
-            // 
-            // btnRead
-            // 
-            this.btnRead.Location = new System.Drawing.Point(3, 6);
-            this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(54, 23);
-            this.btnRead.TabIndex = 5;
-            this.btnRead.Text = "Read";
-            this.toolTip1.SetToolTip(this.btnRead, "Uses LAN to read the nand");
-            this.btnRead.UseVisualStyleBackColor = true;
-            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // chkReboot
-            // 
-            this.chkReboot.AutoSize = true;
-            this.chkReboot.Location = new System.Drawing.Point(86, 35);
-            this.chkReboot.Name = "chkReboot";
-            this.chkReboot.Size = new System.Drawing.Size(61, 17);
-            this.chkReboot.TabIndex = 10;
-            this.chkReboot.Text = "Reboot";
-            this.toolTip1.SetToolTip(this.chkReboot, "Reboots the console after read/write/erase/updates etc");
-            this.chkReboot.UseVisualStyleBackColor = true;
-            this.chkReboot.CheckedChanged += new System.EventHandler(this.chkReboot_CheckedChanged);
-            // 
-            // chkShutdown
-            // 
-            this.chkShutdown.AutoSize = true;
-            this.chkShutdown.Location = new System.Drawing.Point(6, 35);
-            this.chkShutdown.Name = "chkShutdown";
-            this.chkShutdown.Size = new System.Drawing.Size(74, 17);
-            this.chkShutdown.TabIndex = 9;
-            this.chkShutdown.Text = "Shutdown";
-            this.toolTip1.SetToolTip(this.chkShutdown, "Shutsdown the console after read/write/erase/update etc");
-            this.chkShutdown.UseVisualStyleBackColor = true;
-            this.chkShutdown.CheckedChanged += new System.EventHandler(this.chkShutdown_CheckedChanged);
-            // 
             // XeBuildPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -998,21 +975,21 @@
             this.Size = new System.Drawing.Size(344, 156);
             this.Load += new System.EventHandler(this.XeBuildPanel_Load);
             this.groupBox7.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.Xebuild.ResumeLayout(false);
-            this.Xebuild.PerformLayout();
+            this.MainTabs.ResumeLayout(false);
+            this.tabXeBuild.ResumeLayout(false);
+            this.tabXeBuild.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dashDataSet)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabPatches.ResumeLayout(false);
+            this.tabPatches.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabUpdate.ResumeLayout(false);
-            this.tabUpdate.PerformLayout();
+            this.tabOptions.ResumeLayout(false);
+            this.tabOptions.PerformLayout();
             this.tabClient.ResumeLayout(false);
             this.tabClient.PerformLayout();
+            this.tabUpdate.ResumeLayout(false);
+            this.tabUpdate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1020,8 +997,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage Xebuild;
+        private System.Windows.Forms.TabControl MainTabs;
+        private System.Windows.Forms.TabPage tabXeBuild;
         private System.Windows.Forms.CheckBox chkRJtag;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblDashVersion;
@@ -1032,11 +1009,11 @@
         private System.Windows.Forms.RadioButton rbtnRetail;
         private System.Windows.Forms.RadioButton rbtnGlitch;
         private System.Windows.Forms.TextBox txtMBname;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabOptions;
         private System.Windows.Forms.Button btnXeBuildOptions;
         private System.Windows.Forms.CheckBox chkxesettings;
         private System.Windows.Forms.CheckedListBox chkListBoxPatches;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPatches;
         private System.Windows.Forms.Button btnLaunch;
         private System.Windows.Forms.CheckBox checkDLPatches;
         private System.Windows.Forms.BindingSource dashBindingSource;
@@ -1071,9 +1048,7 @@
         private System.Windows.Forms.CheckBox chkForceIP2;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.Button btnInfo;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rbtnGlitch2m;
-        private System.Windows.Forms.TextBox txtCommand;
         private System.Windows.Forms.Label labelCB;
         private System.Windows.Forms.ComboBox comboCB;
         private System.Windows.Forms.CheckBox chkSMCP;
