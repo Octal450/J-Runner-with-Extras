@@ -1356,6 +1356,7 @@ namespace JRunner
                         string eccFile = variables.filename1;
                         variables.filename1 = variables.tempfile;
                         txtFileSource.Text = variables.tempfile;
+                        variables.tempfile = "";
                         deleteEcc(eccFile);
                     }
                 }
@@ -1408,6 +1409,7 @@ namespace JRunner
                         string eccFile = variables.filename1;
                         variables.filename1 = variables.tempfile;
                         txtFileSource.Text = variables.tempfile;
+                        variables.tempfile = "";
                         deleteEcc(eccFile);
                     }
                 }
@@ -1500,6 +1502,7 @@ namespace JRunner
                         string eccFile = variables.filename1;
                         variables.filename1 = variables.tempfile;
                         txtFileSource.Text = variables.tempfile;
+                        variables.tempfile = "";
                         deleteEcc(eccFile);
                     }
                 }
@@ -1519,6 +1522,7 @@ namespace JRunner
                     string eccFile = variables.filename1;
                     variables.filename1 = variables.tempfile;
                     txtFileSource.Text = variables.tempfile;
+                    variables.tempfile = "";
                     deleteEcc(eccFile);
                 }
             }
@@ -4705,6 +4709,7 @@ namespace JRunner
                 string eccFile = variables.filename1;
                 variables.filename1 = variables.tempfile;
                 txtFileSource.Text = variables.tempfile;
+                variables.tempfile = "";
                 deleteEcc(eccFile);
             }
         }
