@@ -103,7 +103,7 @@ namespace JRunner.Panels
                     {
                         textBox2BLb.Text = nand.bl.CB_B.ToString();
                         if (textBox2BLb.Text == "15432") textBoxCbType.Text = "RGH3";
-                        else textBoxCbType.Text = "Split CB";
+                        else textBoxCbType.Text = "Split";
                         textBox2BLb.Enabled = true;
                         label2blb.Visible = true;
                         label2bla.Visible = true;
@@ -112,7 +112,7 @@ namespace JRunner.Panels
                     else
                     {
                         textBox2BLb.Enabled = false;
-                        textBoxCbType.Text = "Single CB";
+                        textBoxCbType.Text = "Single";
                         label2blb.Visible = false;
                         label2bla.Visible = false;
                         label2bl.Visible = true;

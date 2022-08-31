@@ -178,7 +178,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(200, 18);
+            this.label3.Location = new System.Drawing.Point(204, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 68;
@@ -189,7 +189,7 @@
             this.textBoxConsole.Location = new System.Drawing.Point(80, 15);
             this.textBoxConsole.Name = "textBoxConsole";
             this.textBoxConsole.ReadOnly = true;
-            this.textBoxConsole.Size = new System.Drawing.Size(74, 20);
+            this.textBoxConsole.Size = new System.Drawing.Size(79, 20);
             this.textBoxConsole.TabIndex = 67;
             this.textBoxConsole.TabStop = false;
             this.textBoxConsole.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -197,7 +197,7 @@
             // labelcon
             // 
             this.labelcon.AutoSize = true;
-            this.labelcon.Location = new System.Drawing.Point(32, 18);
+            this.labelcon.Location = new System.Drawing.Point(33, 18);
             this.labelcon.Name = "labelcon";
             this.labelcon.Size = new System.Drawing.Size(45, 13);
             this.labelcon.TabIndex = 66;
@@ -267,7 +267,7 @@
             // textBoxpd_0
             // 
             this.textBoxpd_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.textBoxpd_0.Location = new System.Drawing.Point(92, 239);
+            this.textBoxpd_0.Location = new System.Drawing.Point(97, 239);
             this.textBoxpd_0.Name = "textBoxpd_0";
             this.textBoxpd_0.ReadOnly = true;
             this.textBoxpd_0.Size = new System.Drawing.Size(62, 20);
@@ -277,7 +277,7 @@
             // labelpd_0
             // 
             this.labelpd_0.AutoSize = true;
-            this.labelpd_0.Location = new System.Drawing.Point(68, 242);
+            this.labelpd_0.Location = new System.Drawing.Point(73, 242);
             this.labelpd_0.Name = "labelpd_0";
             this.labelpd_0.Size = new System.Drawing.Size(22, 13);
             this.labelpd_0.TabIndex = 58;
@@ -305,7 +305,7 @@
             // 
             // textBoxldv_0
             // 
-            this.textBoxldv_0.Location = new System.Drawing.Point(43, 239);
+            this.textBoxldv_0.Location = new System.Drawing.Point(48, 239);
             this.textBoxldv_0.MaxLength = 2;
             this.textBoxldv_0.Name = "textBoxldv_0";
             this.textBoxldv_0.ReadOnly = true;
@@ -317,7 +317,7 @@
             // labelldv_0
             // 
             this.labelldv_0.AutoSize = true;
-            this.labelldv_0.Location = new System.Drawing.Point(13, 242);
+            this.labelldv_0.Location = new System.Drawing.Point(18, 242);
             this.labelldv_0.Name = "labelldv_0";
             this.labelldv_0.Size = new System.Drawing.Size(28, 13);
             this.labelldv_0.TabIndex = 53;
@@ -326,7 +326,7 @@
             // label6bl_p1
             // 
             this.label6bl_p1.AutoSize = true;
-            this.label6bl_p1.Location = new System.Drawing.Point(170, 178);
+            this.label6bl_p1.Location = new System.Drawing.Point(164, 178);
             this.label6bl_p1.Name = "label6bl_p1";
             this.label6bl_p1.Size = new System.Drawing.Size(88, 13);
             this.label6bl_p1.TabIndex = 49;
@@ -334,26 +334,26 @@
             // 
             // textBox6BL_p1
             // 
-            this.textBox6BL_p1.Location = new System.Drawing.Point(263, 175);
+            this.textBox6BL_p1.Location = new System.Drawing.Point(254, 175);
             this.textBox6BL_p1.Name = "textBox6BL_p1";
             this.textBox6BL_p1.ReadOnly = true;
-            this.textBox6BL_p1.Size = new System.Drawing.Size(53, 20);
+            this.textBox6BL_p1.Size = new System.Drawing.Size(62, 20);
             this.textBox6BL_p1.TabIndex = 51;
             this.textBox6BL_p1.TabStop = false;
             // 
             // textBox7BL_p1
             // 
-            this.textBox7BL_p1.Location = new System.Drawing.Point(263, 207);
+            this.textBox7BL_p1.Location = new System.Drawing.Point(254, 207);
             this.textBox7BL_p1.Name = "textBox7BL_p1";
             this.textBox7BL_p1.ReadOnly = true;
-            this.textBox7BL_p1.Size = new System.Drawing.Size(53, 20);
+            this.textBox7BL_p1.Size = new System.Drawing.Size(62, 20);
             this.textBox7BL_p1.TabIndex = 52;
             this.textBox7BL_p1.TabStop = false;
             // 
             // label7bl_p1
             // 
             this.label7bl_p1.AutoSize = true;
-            this.label7bl_p1.Location = new System.Drawing.Point(168, 210);
+            this.label7bl_p1.Location = new System.Drawing.Point(162, 210);
             this.label7bl_p1.Name = "label7bl_p1";
             this.label7bl_p1.Size = new System.Drawing.Size(90, 13);
             this.label7bl_p1.TabIndex = 50;
@@ -370,10 +370,10 @@
             // 
             // textBox4BL
             // 
-            this.textBox4BL.Location = new System.Drawing.Point(100, 111);
+            this.textBox4BL.Location = new System.Drawing.Point(97, 111);
             this.textBox4BL.Name = "textBox4BL";
             this.textBox4BL.ReadOnly = true;
-            this.textBox4BL.Size = new System.Drawing.Size(54, 20);
+            this.textBox4BL.Size = new System.Drawing.Size(62, 20);
             this.textBox4BL.TabIndex = 45;
             this.textBox4BL.TabStop = false;
             // 
@@ -415,46 +415,46 @@
             // 
             // textBox2BLb
             // 
-            this.textBox2BLb.Location = new System.Drawing.Point(100, 79);
+            this.textBox2BLb.Location = new System.Drawing.Point(97, 79);
             this.textBox2BLb.Name = "textBox2BLb";
             this.textBox2BLb.ReadOnly = true;
-            this.textBox2BLb.Size = new System.Drawing.Size(54, 20);
+            this.textBox2BLb.Size = new System.Drawing.Size(62, 20);
             this.textBox2BLb.TabIndex = 44;
             this.textBox2BLb.TabStop = false;
             // 
             // textBox5BL
             // 
-            this.textBox5BL.Location = new System.Drawing.Point(100, 143);
+            this.textBox5BL.Location = new System.Drawing.Point(97, 143);
             this.textBox5BL.Name = "textBox5BL";
             this.textBox5BL.ReadOnly = true;
-            this.textBox5BL.Size = new System.Drawing.Size(54, 20);
+            this.textBox5BL.Size = new System.Drawing.Size(62, 20);
             this.textBox5BL.TabIndex = 46;
             this.textBox5BL.TabStop = false;
             // 
             // textBox2BLa
             // 
-            this.textBox2BLa.Location = new System.Drawing.Point(100, 47);
+            this.textBox2BLa.Location = new System.Drawing.Point(97, 47);
             this.textBox2BLa.Name = "textBox2BLa";
             this.textBox2BLa.ReadOnly = true;
-            this.textBox2BLa.Size = new System.Drawing.Size(54, 20);
+            this.textBox2BLa.Size = new System.Drawing.Size(62, 20);
             this.textBox2BLa.TabIndex = 43;
             this.textBox2BLa.TabStop = false;
             // 
             // textBox6BL_p0
             // 
-            this.textBox6BL_p0.Location = new System.Drawing.Point(100, 175);
+            this.textBox6BL_p0.Location = new System.Drawing.Point(97, 175);
             this.textBox6BL_p0.Name = "textBox6BL_p0";
             this.textBox6BL_p0.ReadOnly = true;
-            this.textBox6BL_p0.Size = new System.Drawing.Size(54, 20);
+            this.textBox6BL_p0.Size = new System.Drawing.Size(62, 20);
             this.textBox6BL_p0.TabIndex = 47;
             this.textBox6BL_p0.TabStop = false;
             // 
             // textBox7BL_p0
             // 
-            this.textBox7BL_p0.Location = new System.Drawing.Point(100, 207);
+            this.textBox7BL_p0.Location = new System.Drawing.Point(97, 207);
             this.textBox7BL_p0.Name = "textBox7BL_p0";
             this.textBox7BL_p0.ReadOnly = true;
-            this.textBox7BL_p0.Size = new System.Drawing.Size(54, 20);
+            this.textBox7BL_p0.Size = new System.Drawing.Size(62, 20);
             this.textBox7BL_p0.TabIndex = 48;
             this.textBox7BL_p0.TabStop = false;
             // 
