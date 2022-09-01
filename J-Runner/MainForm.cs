@@ -2170,6 +2170,9 @@ namespace JRunner
                 fs.Close();
                 fs.Dispose();
 
+                xPanel.setCheckXLHDDchk(variables.xlhddchk);
+                xPanel.setCheckXLUSBchk(variables.xlusbchk);
+
                 variables.gotvalues = !string.IsNullOrEmpty(variables.cpukey);
 
                 if (variables.debugMode)
