@@ -167,18 +167,22 @@ namespace JRunner.Panels
             if (check && !chkCleanSMC.Enabled) return;
             chkCleanSMC.Checked = check;
         }
-
-        public void setCheckXLHDDchk(bool check)
+        public void setRgh3Checked(bool check)
+        {
+            if (check && !chkRgh3.Enabled) return;
+            chkRgh3.Checked = check;
+        }
+        public void setXLHDDChecked(bool check)
         {
             if (check && !chkXLHdd.Enabled) return;
             chkXLHdd.Checked = check;
         }
-        public void setCheckXLUSBchk(bool check)
+        public void setXLUSBChecked(bool check)
         {
             if (check && !chkXLUsb.Enabled) return;
             chkXLUsb.Checked = check;
         }
-        public void setNoFcrt(bool check)
+        public void setNoFcrtChecked(bool check)
         {
             chkListBoxPatches.SetItemChecked(0, check);
         }

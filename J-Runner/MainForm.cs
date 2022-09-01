@@ -2170,8 +2170,10 @@ namespace JRunner
                 fs.Close();
                 fs.Dispose();
 
-                xPanel.setCheckXLHDDchk(variables.xlhddchk);
-                xPanel.setCheckXLUSBchk(variables.xlusbchk);
+                // Set xPanel
+                xPanel.setRgh3Checked(nand.bl.CB_B == 15432);
+                xPanel.setXLHDDChecked(variables.xlhddchk);
+                xPanel.setXLUSBChecked(variables.xlusbchk);
 
                 variables.gotvalues = !string.IsNullOrEmpty(variables.cpukey);
 
@@ -2607,13 +2609,13 @@ namespace JRunner
                     {
                         if (fcrtPath == "donor") File.Copy(Path.Combine(variables.donorPath, "fcrt.bin"), variables.xePath + "fcrt.bin", true);
                         else File.Copy(fcrtPath, variables.xePath + "fcrt.bin", true);
-                        xPanel.setNoFcrt(nofcrt);
+                        xPanel.setNoFcrtChecked(nofcrt);
                         Console.WriteLine("Copied fcrt.bin");
                     }
                     else
                     {
                         if (File.Exists(variables.xePath + "fcrt.bin")) File.Delete(variables.xePath + "fcrt.bin");
-                        xPanel.setNoFcrt(false);
+                        xPanel.setNoFcrtChecked(false);
                     }
 
                     // Copy SMC - only needed for RGH3
