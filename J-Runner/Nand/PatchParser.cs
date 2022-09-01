@@ -113,15 +113,18 @@ namespace JRunner.Nand
                                 if (!variables.noPatchWarnings && patch.messageBox != null)
                                 {
                                     MessageBox.Show(patch.messageBox, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                                    if(patch.messageBox == "This NAND has XL HDD patches applied, which only allows FATXplorer formatted storage devices to work\n\nYou must format your HDD at least once using FATXplorer, or you will get E69 on boot\n\nIf you don't want this, generate an image without the XL HDD checked under \"Patches/Dashlaunch\"")
+
+                                    if (patch.name == "XLHDD")
                                     {
                                         variables.xlhddchk = true;
                                         variables.xlusbchk = false;
-                                    } else if(patch.messageBox == "This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work\n\nUSBs not formatted via FATXplorer, and all USB memory units, will no longer work\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\"")
+                                    }
+                                    else if(patch.name == "XLUSB")
                                     {
                                         variables.xlhddchk = false;
                                         variables.xlusbchk = true;
-                                    } else
+                                    }
+                                    else
                                     {
                                         variables.xlhddchk = false;
                                         variables.xlusbchk = false;

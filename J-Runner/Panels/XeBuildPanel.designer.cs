@@ -703,7 +703,7 @@
             // chkForceIP2
             // 
             this.chkForceIP2.AutoSize = true;
-            this.chkForceIP2.Location = new System.Drawing.Point(176, 60);
+            this.chkForceIP2.Location = new System.Drawing.Point(176, 59);
             this.chkForceIP2.Name = "chkForceIP2";
             this.chkForceIP2.Size = new System.Drawing.Size(66, 17);
             this.chkForceIP2.TabIndex = 14;

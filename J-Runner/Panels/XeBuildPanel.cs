@@ -863,10 +863,6 @@ namespace JRunner.Panels
             {
                 Console.WriteLine("XL USB Selected");
                 chkXLHdd.Checked = false;
-                if (DialogResult.Cancel == MessageBox.Show("XL USB requires USBs to be formatted via FATXplorer\n\nUSBs not formatted via FATXplorer, and all USB memory units, will no longer work", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Information))
-                {
-                    chkXLUsb.Checked = false;
-                }
             }
             else if (!chkXLHdd.Checked) // Don't uselessly spam the console
             {
@@ -880,10 +876,6 @@ namespace JRunner.Panels
             {
                 Console.WriteLine("XL HDD Selected");
                 chkXLUsb.Checked = false;
-                if (DialogResult.Cancel == MessageBox.Show("XL HDD requires HDDs to be formatted via FATXplorer\n\nYou must format your HDD at least once using FATXplorer, or you will get E69 on boot", "Information", MessageBoxButtons.OKCancel, MessageBoxIcon.Information))
-                {
-                    chkXLHdd.Checked = false;
-                }
             }
             else if (!chkXLUsb.Checked) // Don't uselessly spam the console
             {
