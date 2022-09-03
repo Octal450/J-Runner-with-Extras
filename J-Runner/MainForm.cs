@@ -2171,7 +2171,7 @@ namespace JRunner
                 fs.Dispose();
 
                 // Set xPanel
-                xPanel.setRgh3Checked(nand.bl.CB_B == 15432);
+                if (nand.bl.CB_B == 15432) xPanel.setRgh3Checked(true);
                 xPanel.setXLHDDChecked(variables.xlhddchk);
                 xPanel.setXLUSBChecked(variables.xlusbchk);
 
