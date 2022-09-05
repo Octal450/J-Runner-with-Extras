@@ -60,6 +60,23 @@ namespace JRunner.Nand
             }
         }
 
+        public struct _temptable
+        {
+            public readonly string type;
+            public readonly int targetCPU, targetGPU, targetEDRAM, criticalCPU, criticalGPU, criticalEDRAM;
+
+            public _temptable(string type, int targetCPU, int targetGPU, int targetEDRAM, int criticalCPU, int criticalGPU, int criticalEDRAM)
+            {
+                this.type = type;
+                this.targetCPU = targetCPU;
+                this.targetGPU = targetGPU;
+                this.targetEDRAM = targetEDRAM;
+                this.criticalCPU = criticalCPU;
+                this.criticalGPU = criticalGPU;
+                this.criticalEDRAM = criticalEDRAM;
+            }
+        }
+
         #region table
 
         public static _nand[] Table = new _nand[]
@@ -129,6 +146,19 @@ namespace JRunner.Nand
             new _patch("FuseBlow", 0x0000C000, 0x00000000, 0x38800000, "WARNING: Nand includes fuse blowing patches!!!", "IMPORTANT:\n\nThis nand has patches that will cause fuses to be BLOWN if you run a malicious xex"),
             new _patch("XLUSB", 0x000E3A7C, 0x00000001, 0x3CE02000, "Nand includes XL USB patches", "This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work\n\nUSBs not formatted via FATXplorer, and all USB memory units, will no longer work\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\""),
             new _patch("XLHDD", 0x0015D8EC, 0x00000001, 0x39401000, "Nand includes XL HDD patches", "This NAND has XL HDD patches applied, which only allows FATXplorer formatted storage devices to work\n\nYou must format your HDD at least once using FATXplorer, or you will get E69 on boot\n\nIf you don't want this, generate an image without the XL HDD checked under \"Patches/Dashlaunch\"")
+        };
+
+        public static _temptable[] defaultTempTable = new _temptable[]
+        {
+            new _temptable("XenonEarly", 80, 83, 85, 100, 110, 117),
+            new _temptable("XenonLate", 80, 75, 78, 100, 100, 102),
+            new _temptable("Zephyr", 80, 75, 78, 100, 100, 102),
+            new _temptable("Falcon", 80, 75, 78, 100, 100, 102),
+            new _temptable("JasperV1", 80, 71, 73, 95, 90, 92),
+            new _temptable("JasperV2", 80, 75, 77, 95, 90, 92),
+            new _temptable("Trinity", 82, 78, 76, 89, 89, 82),
+            new _temptable("Corona", 82, 78, 76, 89, 89, 82),
+            new _temptable("Winchester", 82, 78, 76, 91, 82, 91),
         };
 
         #endregion

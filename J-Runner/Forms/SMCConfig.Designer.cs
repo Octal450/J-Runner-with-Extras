@@ -74,8 +74,6 @@
             this.lblnet = new System.Windows.Forms.Label();
             this.txtversion = new System.Windows.Forms.TextBox();
             this.lblversion = new System.Windows.Forms.Label();
-            this.txtthermal = new System.Windows.Forms.TextBox();
-            this.lblthermal = new System.Windows.Forms.Label();
             this.txtana = new System.Windows.Forms.TextBox();
             this.lblana = new System.Windows.Forms.Label();
             this.txtbit = new System.Windows.Forms.TextBox();
@@ -100,6 +98,34 @@
             this.txtreserve0 = new System.Windows.Forms.TextBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnDefaultTemp = new UI.MenuButton();
+            this.defaultTempContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xenonEarlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xenonLateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zephyrToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.falconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jasperV1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jasperV2KronosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trinityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coronaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.winchesterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCustomTemp = new UI.MenuButton();
+            this.customTempContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.phatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xzColdAndLoudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xzCoolerTempsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xzQuieterFansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.falconJasperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fjColdAndLoudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fjCoolerTempsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fjQuieterFansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.slimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sColdAndLoudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sCoolerTempsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sQuieterFansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.resetNo = new System.Windows.Forms.Label();
             this.reset4 = new System.Windows.Forms.PictureBox();
@@ -112,12 +138,29 @@
             this.resetX = new System.Windows.Forms.PictureBox();
             this.resetRt = new System.Windows.Forms.PictureBox();
             this.resetLt = new System.Windows.Forms.PictureBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTempTargetEDRAM = new System.Windows.Forms.TextBox();
+            this.txtTempTargetGPU = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTempTargetCPU = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTempCriticalEDRAM = new System.Windows.Forms.TextBox();
+            this.txtTempCriticalGPU = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtTempCriticalCPU = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackGPU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackCPU)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.defaultTempContextMenu.SuspendLayout();
+            this.customTempContextMenu.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reset4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reset3)).BeginInit();
@@ -129,20 +172,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.resetX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resetRt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resetLt)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtchecksum
             // 
             this.txtchecksum.Enabled = false;
-            this.txtchecksum.Location = new System.Drawing.Point(180, 271);
+            this.txtchecksum.Location = new System.Drawing.Point(183, 273);
             this.txtchecksum.Name = "txtchecksum";
-            this.txtchecksum.Size = new System.Drawing.Size(61, 20);
+            this.txtchecksum.Size = new System.Drawing.Size(62, 20);
             this.txtchecksum.TabIndex = 0;
             // 
             // lblchecksum
             // 
             this.lblchecksum.AutoSize = true;
-            this.lblchecksum.Location = new System.Drawing.Point(247, 274);
+            this.lblchecksum.Location = new System.Drawing.Point(251, 276);
             this.lblchecksum.Name = "lblchecksum";
             this.lblchecksum.Size = new System.Drawing.Size(57, 13);
             this.lblchecksum.TabIndex = 1;
@@ -151,7 +197,7 @@
             // lblmac
             // 
             this.lblmac.AutoSize = true;
-            this.lblmac.Location = new System.Drawing.Point(177, 22);
+            this.lblmac.Location = new System.Drawing.Point(155, 23);
             this.lblmac.Name = "lblmac";
             this.lblmac.Size = new System.Drawing.Size(69, 13);
             this.lblmac.TabIndex = 3;
@@ -160,7 +206,7 @@
             // txtmac
             // 
             this.txtmac.Enabled = false;
-            this.txtmac.Location = new System.Drawing.Point(24, 19);
+            this.txtmac.Location = new System.Drawing.Point(10, 20);
             this.txtmac.MaxLength = 17;
             this.txtmac.Name = "txtmac";
             this.txtmac.Size = new System.Drawing.Size(139, 20);
@@ -169,7 +215,7 @@
             // lblboardgain
             // 
             this.lblboardgain.AutoSize = true;
-            this.lblboardgain.Location = new System.Drawing.Point(91, 181);
+            this.lblboardgain.Location = new System.Drawing.Point(78, 180);
             this.lblboardgain.Name = "lblboardgain";
             this.lblboardgain.Size = new System.Drawing.Size(60, 13);
             this.lblboardgain.TabIndex = 5;
@@ -178,16 +224,16 @@
             // txtboardgain
             // 
             this.txtboardgain.Enabled = false;
-            this.txtboardgain.Location = new System.Drawing.Point(24, 178);
+            this.txtboardgain.Location = new System.Drawing.Point(10, 177);
             this.txtboardgain.MaxLength = 4;
             this.txtboardgain.Name = "txtboardgain";
-            this.txtboardgain.Size = new System.Drawing.Size(61, 20);
+            this.txtboardgain.Size = new System.Drawing.Size(62, 20);
             this.txtboardgain.TabIndex = 4;
             // 
             // lbledramoff
             // 
             this.lbledramoff.AutoSize = true;
-            this.lbledramoff.Location = new System.Drawing.Point(247, 155);
+            this.lbledramoff.Location = new System.Drawing.Point(251, 154);
             this.lbledramoff.Name = "lbledramoff";
             this.lbledramoff.Size = new System.Drawing.Size(76, 13);
             this.lbledramoff.TabIndex = 7;
@@ -196,16 +242,16 @@
             // txtedramoff
             // 
             this.txtedramoff.Enabled = false;
-            this.txtedramoff.Location = new System.Drawing.Point(180, 152);
+            this.txtedramoff.Location = new System.Drawing.Point(183, 151);
             this.txtedramoff.MaxLength = 4;
             this.txtedramoff.Name = "txtedramoff";
-            this.txtedramoff.Size = new System.Drawing.Size(61, 20);
+            this.txtedramoff.Size = new System.Drawing.Size(62, 20);
             this.txtedramoff.TabIndex = 6;
             // 
             // lbledramgain
             // 
             this.lbledramgain.AutoSize = true;
-            this.lbledramgain.Location = new System.Drawing.Point(91, 155);
+            this.lbledramgain.Location = new System.Drawing.Point(78, 154);
             this.lbledramgain.Name = "lbledramgain";
             this.lbledramgain.Size = new System.Drawing.Size(70, 13);
             this.lbledramgain.TabIndex = 9;
@@ -214,16 +260,16 @@
             // txtedramgain
             // 
             this.txtedramgain.Enabled = false;
-            this.txtedramgain.Location = new System.Drawing.Point(24, 152);
+            this.txtedramgain.Location = new System.Drawing.Point(10, 151);
             this.txtedramgain.MaxLength = 4;
             this.txtedramgain.Name = "txtedramgain";
-            this.txtedramgain.Size = new System.Drawing.Size(61, 20);
+            this.txtedramgain.Size = new System.Drawing.Size(62, 20);
             this.txtedramgain.TabIndex = 8;
             // 
             // lblgpuoff
             // 
             this.lblgpuoff.AutoSize = true;
-            this.lblgpuoff.Location = new System.Drawing.Point(247, 129);
+            this.lblgpuoff.Location = new System.Drawing.Point(251, 128);
             this.lblgpuoff.Name = "lblgpuoff";
             this.lblgpuoff.Size = new System.Drawing.Size(61, 13);
             this.lblgpuoff.TabIndex = 11;
@@ -232,16 +278,16 @@
             // txtgpuoff
             // 
             this.txtgpuoff.Enabled = false;
-            this.txtgpuoff.Location = new System.Drawing.Point(180, 126);
+            this.txtgpuoff.Location = new System.Drawing.Point(183, 125);
             this.txtgpuoff.MaxLength = 4;
             this.txtgpuoff.Name = "txtgpuoff";
-            this.txtgpuoff.Size = new System.Drawing.Size(61, 20);
+            this.txtgpuoff.Size = new System.Drawing.Size(62, 20);
             this.txtgpuoff.TabIndex = 10;
             // 
             // lblgpugain
             // 
             this.lblgpugain.AutoSize = true;
-            this.lblgpugain.Location = new System.Drawing.Point(91, 129);
+            this.lblgpugain.Location = new System.Drawing.Point(78, 128);
             this.lblgpugain.Name = "lblgpugain";
             this.lblgpugain.Size = new System.Drawing.Size(55, 13);
             this.lblgpugain.TabIndex = 13;
@@ -250,16 +296,16 @@
             // txtgpugain
             // 
             this.txtgpugain.Enabled = false;
-            this.txtgpugain.Location = new System.Drawing.Point(24, 126);
+            this.txtgpugain.Location = new System.Drawing.Point(10, 125);
             this.txtgpugain.MaxLength = 4;
             this.txtgpugain.Name = "txtgpugain";
-            this.txtgpugain.Size = new System.Drawing.Size(61, 20);
+            this.txtgpugain.Size = new System.Drawing.Size(62, 20);
             this.txtgpugain.TabIndex = 12;
             // 
             // lblcpuoff
             // 
             this.lblcpuoff.AutoSize = true;
-            this.lblcpuoff.Location = new System.Drawing.Point(247, 103);
+            this.lblcpuoff.Location = new System.Drawing.Point(251, 102);
             this.lblcpuoff.Name = "lblcpuoff";
             this.lblcpuoff.Size = new System.Drawing.Size(60, 13);
             this.lblcpuoff.TabIndex = 15;
@@ -268,16 +314,16 @@
             // txtcpuoff
             // 
             this.txtcpuoff.Enabled = false;
-            this.txtcpuoff.Location = new System.Drawing.Point(180, 100);
+            this.txtcpuoff.Location = new System.Drawing.Point(183, 99);
             this.txtcpuoff.MaxLength = 4;
             this.txtcpuoff.Name = "txtcpuoff";
-            this.txtcpuoff.Size = new System.Drawing.Size(61, 20);
+            this.txtcpuoff.Size = new System.Drawing.Size(62, 20);
             this.txtcpuoff.TabIndex = 14;
             // 
             // lblcpugain
             // 
             this.lblcpugain.AutoSize = true;
-            this.lblcpugain.Location = new System.Drawing.Point(91, 103);
+            this.lblcpugain.Location = new System.Drawing.Point(78, 102);
             this.lblcpugain.Name = "lblcpugain";
             this.lblcpugain.Size = new System.Drawing.Size(54, 13);
             this.lblcpugain.TabIndex = 17;
@@ -286,10 +332,10 @@
             // txtcpugain
             // 
             this.txtcpugain.Enabled = false;
-            this.txtcpugain.Location = new System.Drawing.Point(24, 100);
+            this.txtcpugain.Location = new System.Drawing.Point(10, 99);
             this.txtcpugain.MaxLength = 4;
             this.txtcpugain.Name = "txtcpugain";
-            this.txtcpugain.Size = new System.Drawing.Size(61, 20);
+            this.txtcpugain.Size = new System.Drawing.Size(62, 20);
             this.txtcpugain.TabIndex = 16;
             // 
             // groupBox1
@@ -326,7 +372,7 @@
             this.groupBox1.Controls.Add(this.txtcpuoff);
             this.groupBox1.Controls.Add(this.txtgpugain);
             this.groupBox1.Controls.Add(this.lblgpugain);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(333, 305);
             this.groupBox1.TabIndex = 18;
@@ -337,10 +383,10 @@
             // 
             this.trackGPU.AutoSize = false;
             this.trackGPU.Enabled = false;
-            this.trackGPU.Location = new System.Drawing.Point(214, 71);
+            this.trackGPU.Location = new System.Drawing.Point(205, 72);
             this.trackGPU.Maximum = 100;
             this.trackGPU.Name = "trackGPU";
-            this.trackGPU.Size = new System.Drawing.Size(113, 20);
+            this.trackGPU.Size = new System.Drawing.Size(125, 20);
             this.trackGPU.TabIndex = 34;
             this.trackGPU.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackGPU.Visible = false;
@@ -350,10 +396,10 @@
             // 
             this.trackCPU.AutoSize = false;
             this.trackCPU.Enabled = false;
-            this.trackCPU.Location = new System.Drawing.Point(214, 48);
+            this.trackCPU.Location = new System.Drawing.Point(205, 48);
             this.trackCPU.Maximum = 100;
             this.trackCPU.Name = "trackCPU";
-            this.trackCPU.Size = new System.Drawing.Size(113, 20);
+            this.trackCPU.Size = new System.Drawing.Size(125, 20);
             this.trackCPU.TabIndex = 33;
             this.trackCPU.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackCPU.Visible = false;
@@ -366,7 +412,7 @@
             this.comboVideo.Items.AddRange(new object[] {
             "PAL",
             "NTSC"});
-            this.comboVideo.Location = new System.Drawing.Point(23, 271);
+            this.comboVideo.Location = new System.Drawing.Point(10, 273);
             this.comboVideo.Name = "comboVideo";
             this.comboVideo.Size = new System.Drawing.Size(62, 21);
             this.comboVideo.TabIndex = 32;
@@ -382,7 +428,7 @@
             "HK",
             "EU",
             "AUS"});
-            this.comboGame.Location = new System.Drawing.Point(24, 245);
+            this.comboGame.Location = new System.Drawing.Point(10, 246);
             this.comboGame.Name = "comboGame";
             this.comboGame.Size = new System.Drawing.Size(62, 21);
             this.comboGame.TabIndex = 31;
@@ -401,7 +447,7 @@
             "07",
             "08",
             "FREE"});
-            this.comboDVD.Location = new System.Drawing.Point(23, 219);
+            this.comboDVD.Location = new System.Drawing.Point(10, 219);
             this.comboDVD.Name = "comboDVD";
             this.comboDVD.Size = new System.Drawing.Size(62, 21);
             this.comboDVD.TabIndex = 30;
@@ -410,7 +456,7 @@
             // 
             this.chkgpufanspeed.AutoSize = true;
             this.chkgpufanspeed.Enabled = false;
-            this.chkgpufanspeed.Location = new System.Drawing.Point(23, 71);
+            this.chkgpufanspeed.Location = new System.Drawing.Point(10, 73);
             this.chkgpufanspeed.Name = "chkgpufanspeed";
             this.chkgpufanspeed.Size = new System.Drawing.Size(186, 17);
             this.chkgpufanspeed.TabIndex = 29;
@@ -422,7 +468,7 @@
             // 
             this.chkcpufanspeed.AutoSize = true;
             this.chkcpufanspeed.Enabled = false;
-            this.chkcpufanspeed.Location = new System.Drawing.Point(23, 48);
+            this.chkcpufanspeed.Location = new System.Drawing.Point(10, 49);
             this.chkcpufanspeed.Name = "chkcpufanspeed";
             this.chkcpufanspeed.Size = new System.Drawing.Size(185, 17);
             this.chkcpufanspeed.TabIndex = 28;
@@ -433,7 +479,7 @@
             // lblvideoregion
             // 
             this.lblvideoregion.AutoSize = true;
-            this.lblvideoregion.Location = new System.Drawing.Point(91, 274);
+            this.lblvideoregion.Location = new System.Drawing.Point(78, 277);
             this.lblvideoregion.Name = "lblvideoregion";
             this.lblvideoregion.Size = new System.Drawing.Size(71, 13);
             this.lblvideoregion.TabIndex = 27;
@@ -442,7 +488,7 @@
             // lblgameregion
             // 
             this.lblgameregion.AutoSize = true;
-            this.lblgameregion.Location = new System.Drawing.Point(91, 248);
+            this.lblgameregion.Location = new System.Drawing.Point(78, 250);
             this.lblgameregion.Name = "lblgameregion";
             this.lblgameregion.Size = new System.Drawing.Size(72, 13);
             this.lblgameregion.TabIndex = 25;
@@ -451,7 +497,7 @@
             // lbldvdregion
             // 
             this.lbldvdregion.AutoSize = true;
-            this.lbldvdregion.Location = new System.Drawing.Point(91, 222);
+            this.lbldvdregion.Location = new System.Drawing.Point(78, 223);
             this.lbldvdregion.Name = "lbldvdregion";
             this.lbldvdregion.Size = new System.Drawing.Size(67, 13);
             this.lbldvdregion.TabIndex = 23;
@@ -460,7 +506,7 @@
             // lblReset
             // 
             this.lblReset.AutoSize = true;
-            this.lblReset.Location = new System.Drawing.Point(247, 222);
+            this.lblReset.Location = new System.Drawing.Point(251, 222);
             this.lblReset.Name = "lblReset";
             this.lblReset.Size = new System.Drawing.Size(63, 13);
             this.lblReset.TabIndex = 21;
@@ -469,17 +515,17 @@
             // txtreset
             // 
             this.txtreset.Enabled = false;
-            this.txtreset.Location = new System.Drawing.Point(180, 219);
+            this.txtreset.Location = new System.Drawing.Point(183, 219);
             this.txtreset.MaxLength = 4;
             this.txtreset.Name = "txtreset";
-            this.txtreset.Size = new System.Drawing.Size(61, 20);
+            this.txtreset.Size = new System.Drawing.Size(62, 20);
             this.txtreset.TabIndex = 20;
             this.txtreset.Leave += new System.EventHandler(this.txtreset_Leave);
             // 
             // lblboardoff
             // 
             this.lblboardoff.AutoSize = true;
-            this.lblboardoff.Location = new System.Drawing.Point(247, 181);
+            this.lblboardoff.Location = new System.Drawing.Point(251, 180);
             this.lblboardoff.Name = "lblboardoff";
             this.lblboardoff.Size = new System.Drawing.Size(66, 13);
             this.lblboardoff.TabIndex = 19;
@@ -488,10 +534,10 @@
             // txtboardoff
             // 
             this.txtboardoff.Enabled = false;
-            this.txtboardoff.Location = new System.Drawing.Point(180, 178);
+            this.txtboardoff.Location = new System.Drawing.Point(183, 177);
             this.txtboardoff.MaxLength = 4;
             this.txtboardoff.Name = "txtboardoff";
-            this.txtboardoff.Size = new System.Drawing.Size(61, 20);
+            this.txtboardoff.Size = new System.Drawing.Size(62, 20);
             this.txtboardoff.TabIndex = 18;
             // 
             // groupBox2
@@ -506,8 +552,6 @@
             this.groupBox2.Controls.Add(this.lblnet);
             this.groupBox2.Controls.Add(this.txtversion);
             this.groupBox2.Controls.Add(this.lblversion);
-            this.groupBox2.Controls.Add(this.txtthermal);
-            this.groupBox2.Controls.Add(this.lblthermal);
             this.groupBox2.Controls.Add(this.txtana);
             this.groupBox2.Controls.Add(this.lblana);
             this.groupBox2.Controls.Add(this.txtbit);
@@ -518,9 +562,9 @@
             this.groupBox2.Controls.Add(this.lblconfig);
             this.groupBox2.Controls.Add(this.txtstructure);
             this.groupBox2.Controls.Add(this.lblstructure);
-            this.groupBox2.Location = new System.Drawing.Point(351, 12);
+            this.groupBox2.Location = new System.Drawing.Point(351, 10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(360, 175);
+            this.groupBox2.Size = new System.Drawing.Size(360, 149);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced";
@@ -528,7 +572,7 @@
             // txtpowervcs
             // 
             this.txtpowervcs.Enabled = false;
-            this.txtpowervcs.Location = new System.Drawing.Point(132, 123);
+            this.txtpowervcs.Location = new System.Drawing.Point(179, 122);
             this.txtpowervcs.MaxLength = 4;
             this.txtpowervcs.Name = "txtpowervcs";
             this.txtpowervcs.Size = new System.Drawing.Size(51, 20);
@@ -537,7 +581,7 @@
             // lblpwrvcs
             // 
             this.lblpwrvcs.AutoSize = true;
-            this.lblpwrvcs.Location = new System.Drawing.Point(189, 126);
+            this.lblpwrvcs.Location = new System.Drawing.Point(235, 125);
             this.lblpwrvcs.Name = "lblpwrvcs";
             this.lblpwrvcs.Size = new System.Drawing.Size(97, 13);
             this.lblpwrvcs.TabIndex = 47;
@@ -546,7 +590,7 @@
             // txtpwrmode
             // 
             this.txtpwrmode.Enabled = false;
-            this.txtpwrmode.Location = new System.Drawing.Point(132, 97);
+            this.txtpwrmode.Location = new System.Drawing.Point(179, 96);
             this.txtpwrmode.MaxLength = 4;
             this.txtpwrmode.Name = "txtpwrmode";
             this.txtpwrmode.Size = new System.Drawing.Size(51, 20);
@@ -555,7 +599,7 @@
             // lblpwrmode
             // 
             this.lblpwrmode.AutoSize = true;
-            this.lblpwrmode.Location = new System.Drawing.Point(189, 100);
+            this.lblpwrmode.Location = new System.Drawing.Point(235, 99);
             this.lblpwrmode.Name = "lblpwrmode";
             this.lblpwrmode.Size = new System.Drawing.Size(67, 13);
             this.lblpwrmode.TabIndex = 45;
@@ -564,7 +608,7 @@
             // txtflags
             // 
             this.txtflags.Enabled = false;
-            this.txtflags.Location = new System.Drawing.Point(132, 71);
+            this.txtflags.Location = new System.Drawing.Point(179, 70);
             this.txtflags.MaxLength = 8;
             this.txtflags.Name = "txtflags";
             this.txtflags.Size = new System.Drawing.Size(105, 20);
@@ -573,7 +617,7 @@
             // lblflags
             // 
             this.lblflags.AutoSize = true;
-            this.lblflags.Location = new System.Drawing.Point(243, 74);
+            this.lblflags.Location = new System.Drawing.Point(289, 73);
             this.lblflags.Name = "lblflags";
             this.lblflags.Size = new System.Drawing.Size(69, 13);
             this.lblflags.TabIndex = 43;
@@ -582,7 +626,7 @@
             // txtnet
             // 
             this.txtnet.Enabled = false;
-            this.txtnet.Location = new System.Drawing.Point(132, 45);
+            this.txtnet.Location = new System.Drawing.Point(179, 44);
             this.txtnet.MaxLength = 8;
             this.txtnet.Name = "txtnet";
             this.txtnet.Size = new System.Drawing.Size(105, 20);
@@ -591,7 +635,7 @@
             // lblnet
             // 
             this.lblnet.AutoSize = true;
-            this.lblnet.Location = new System.Drawing.Point(243, 49);
+            this.lblnet.Location = new System.Drawing.Point(289, 48);
             this.lblnet.Name = "lblnet";
             this.lblnet.Size = new System.Drawing.Size(61, 13);
             this.lblnet.TabIndex = 41;
@@ -600,7 +644,7 @@
             // txtversion
             // 
             this.txtversion.Enabled = false;
-            this.txtversion.Location = new System.Drawing.Point(132, 19);
+            this.txtversion.Location = new System.Drawing.Point(179, 18);
             this.txtversion.MaxLength = 8;
             this.txtversion.Name = "txtversion";
             this.txtversion.Size = new System.Drawing.Size(105, 20);
@@ -609,34 +653,16 @@
             // lblversion
             // 
             this.lblversion.AutoSize = true;
-            this.lblversion.Location = new System.Drawing.Point(244, 22);
+            this.lblversion.Location = new System.Drawing.Point(289, 21);
             this.lblversion.Name = "lblversion";
             this.lblversion.Size = new System.Drawing.Size(42, 13);
             this.lblversion.TabIndex = 39;
             this.lblversion.Text = "Version";
             // 
-            // txtthermal
-            // 
-            this.txtthermal.Enabled = false;
-            this.txtthermal.Location = new System.Drawing.Point(6, 149);
-            this.txtthermal.MaxLength = 39;
-            this.txtthermal.Name = "txtthermal";
-            this.txtthermal.Size = new System.Drawing.Size(204, 20);
-            this.txtthermal.TabIndex = 38;
-            // 
-            // lblthermal
-            // 
-            this.lblthermal.AutoSize = true;
-            this.lblthermal.Location = new System.Drawing.Point(216, 152);
-            this.lblthermal.Name = "lblthermal";
-            this.lblthermal.Size = new System.Drawing.Size(45, 13);
-            this.lblthermal.TabIndex = 37;
-            this.lblthermal.Text = "Thermal";
-            // 
             // txtana
             // 
             this.txtana.Enabled = false;
-            this.txtana.Location = new System.Drawing.Point(6, 123);
+            this.txtana.Location = new System.Drawing.Point(6, 122);
             this.txtana.MaxLength = 2;
             this.txtana.Name = "txtana";
             this.txtana.Size = new System.Drawing.Size(26, 20);
@@ -646,7 +672,7 @@
             // lblana
             // 
             this.lblana.AutoSize = true;
-            this.lblana.Location = new System.Drawing.Point(38, 126);
+            this.lblana.Location = new System.Drawing.Point(37, 125);
             this.lblana.Name = "lblana";
             this.lblana.Size = new System.Drawing.Size(85, 13);
             this.lblana.TabIndex = 35;
@@ -655,7 +681,7 @@
             // txtbit
             // 
             this.txtbit.Enabled = false;
-            this.txtbit.Location = new System.Drawing.Point(6, 97);
+            this.txtbit.Location = new System.Drawing.Point(6, 96);
             this.txtbit.MaxLength = 2;
             this.txtbit.Name = "txtbit";
             this.txtbit.Size = new System.Drawing.Size(26, 20);
@@ -665,7 +691,7 @@
             // lblbit
             // 
             this.lblbit.AutoSize = true;
-            this.lblbit.Location = new System.Drawing.Point(38, 100);
+            this.lblbit.Location = new System.Drawing.Point(37, 99);
             this.lblbit.Name = "lblbit";
             this.lblbit.Size = new System.Drawing.Size(44, 13);
             this.lblbit.TabIndex = 33;
@@ -674,7 +700,7 @@
             // txtclock
             // 
             this.txtclock.Enabled = false;
-            this.txtclock.Location = new System.Drawing.Point(6, 71);
+            this.txtclock.Location = new System.Drawing.Point(6, 70);
             this.txtclock.MaxLength = 2;
             this.txtclock.Name = "txtclock";
             this.txtclock.Size = new System.Drawing.Size(26, 20);
@@ -684,7 +710,7 @@
             // lblclock
             // 
             this.lblclock.AutoSize = true;
-            this.lblclock.Location = new System.Drawing.Point(38, 74);
+            this.lblclock.Location = new System.Drawing.Point(37, 73);
             this.lblclock.Name = "lblclock";
             this.lblclock.Size = new System.Drawing.Size(67, 13);
             this.lblclock.TabIndex = 31;
@@ -693,7 +719,7 @@
             // txtconfig
             // 
             this.txtconfig.Enabled = false;
-            this.txtconfig.Location = new System.Drawing.Point(6, 45);
+            this.txtconfig.Location = new System.Drawing.Point(6, 44);
             this.txtconfig.MaxLength = 2;
             this.txtconfig.Name = "txtconfig";
             this.txtconfig.Size = new System.Drawing.Size(26, 20);
@@ -703,7 +729,7 @@
             // lblconfig
             // 
             this.lblconfig.AutoSize = true;
-            this.lblconfig.Location = new System.Drawing.Point(38, 48);
+            this.lblconfig.Location = new System.Drawing.Point(37, 47);
             this.lblconfig.Name = "lblconfig";
             this.lblconfig.Size = new System.Drawing.Size(74, 13);
             this.lblconfig.TabIndex = 29;
@@ -712,7 +738,7 @@
             // txtstructure
             // 
             this.txtstructure.Enabled = false;
-            this.txtstructure.Location = new System.Drawing.Point(6, 19);
+            this.txtstructure.Location = new System.Drawing.Point(6, 18);
             this.txtstructure.MaxLength = 2;
             this.txtstructure.Name = "txtstructure";
             this.txtstructure.Size = new System.Drawing.Size(26, 20);
@@ -722,7 +748,7 @@
             // lblstructure
             // 
             this.lblstructure.AutoSize = true;
-            this.lblstructure.Location = new System.Drawing.Point(38, 22);
+            this.lblstructure.Location = new System.Drawing.Point(37, 21);
             this.lblstructure.Name = "lblstructure";
             this.lblstructure.Size = new System.Drawing.Size(88, 13);
             this.lblstructure.TabIndex = 0;
@@ -734,7 +760,7 @@
             this.groupBox3.Controls.Add(this.lblanabackup);
             this.groupBox3.Controls.Add(this.lblgainoff);
             this.groupBox3.Controls.Add(this.txtgainoff);
-            this.groupBox3.Location = new System.Drawing.Point(351, 193);
+            this.groupBox3.Location = new System.Drawing.Point(351, 165);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(360, 71);
             this.groupBox3.TabIndex = 20;
@@ -744,7 +770,7 @@
             // txtanabackup
             // 
             this.txtanabackup.Enabled = false;
-            this.txtanabackup.Location = new System.Drawing.Point(6, 47);
+            this.txtanabackup.Location = new System.Drawing.Point(6, 44);
             this.txtanabackup.Name = "txtanabackup";
             this.txtanabackup.Size = new System.Drawing.Size(26, 20);
             this.txtanabackup.TabIndex = 42;
@@ -753,7 +779,7 @@
             // lblanabackup
             // 
             this.lblanabackup.AutoSize = true;
-            this.lblanabackup.Location = new System.Drawing.Point(38, 50);
+            this.lblanabackup.Location = new System.Drawing.Point(37, 47);
             this.lblanabackup.Name = "lblanabackup";
             this.lblanabackup.Size = new System.Drawing.Size(82, 13);
             this.lblanabackup.TabIndex = 41;
@@ -762,7 +788,7 @@
             // lblgainoff
             // 
             this.lblgainoff.AutoSize = true;
-            this.lblgainoff.Location = new System.Drawing.Point(283, 24);
+            this.lblgainoff.Location = new System.Drawing.Point(296, 21);
             this.lblgainoff.Name = "lblgainoff";
             this.lblgainoff.Size = new System.Drawing.Size(62, 13);
             this.lblgainoff.TabIndex = 39;
@@ -771,10 +797,10 @@
             // txtgainoff
             // 
             this.txtgainoff.Enabled = false;
-            this.txtgainoff.Location = new System.Drawing.Point(6, 21);
+            this.txtgainoff.Location = new System.Drawing.Point(6, 18);
             this.txtgainoff.MaxLength = 39;
             this.txtgainoff.Name = "txtgainoff";
-            this.txtgainoff.Size = new System.Drawing.Size(271, 20);
+            this.txtgainoff.Size = new System.Drawing.Size(284, 20);
             this.txtgainoff.TabIndex = 40;
             // 
             // groupBox4
@@ -785,7 +811,7 @@
             this.groupBox4.Controls.Add(this.txtreserve2);
             this.groupBox4.Controls.Add(this.txtreserve1);
             this.groupBox4.Controls.Add(this.txtreserve0);
-            this.groupBox4.Location = new System.Drawing.Point(351, 273);
+            this.groupBox4.Location = new System.Drawing.Point(351, 242);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(360, 73);
             this.groupBox4.TabIndex = 21;
@@ -795,16 +821,16 @@
             // txtreserve5
             // 
             this.txtreserve5.Enabled = false;
-            this.txtreserve5.Location = new System.Drawing.Point(209, 47);
+            this.txtreserve5.Location = new System.Drawing.Point(209, 46);
             this.txtreserve5.MaxLength = 16;
             this.txtreserve5.Name = "txtreserve5";
-            this.txtreserve5.Size = new System.Drawing.Size(136, 20);
+            this.txtreserve5.Size = new System.Drawing.Size(145, 20);
             this.txtreserve5.TabIndex = 49;
             // 
             // txtreserve4
             // 
             this.txtreserve4.Enabled = false;
-            this.txtreserve4.Location = new System.Drawing.Point(81, 47);
+            this.txtreserve4.Location = new System.Drawing.Point(81, 46);
             this.txtreserve4.MaxLength = 10;
             this.txtreserve4.Name = "txtreserve4";
             this.txtreserve4.Size = new System.Drawing.Size(122, 20);
@@ -813,7 +839,7 @@
             // txtreserve3
             // 
             this.txtreserve3.Enabled = false;
-            this.txtreserve3.Location = new System.Drawing.Point(6, 47);
+            this.txtreserve3.Location = new System.Drawing.Point(6, 46);
             this.txtreserve3.MaxLength = 8;
             this.txtreserve3.Name = "txtreserve3";
             this.txtreserve3.Size = new System.Drawing.Size(69, 20);
@@ -822,16 +848,16 @@
             // txtreserve2
             // 
             this.txtreserve2.Enabled = false;
-            this.txtreserve2.Location = new System.Drawing.Point(162, 19);
+            this.txtreserve2.Location = new System.Drawing.Point(162, 18);
             this.txtreserve2.MaxLength = 24;
             this.txtreserve2.Name = "txtreserve2";
-            this.txtreserve2.Size = new System.Drawing.Size(183, 20);
+            this.txtreserve2.Size = new System.Drawing.Size(192, 20);
             this.txtreserve2.TabIndex = 46;
             // 
             // txtreserve1
             // 
             this.txtreserve1.Enabled = false;
-            this.txtreserve1.Location = new System.Drawing.Point(113, 19);
+            this.txtreserve1.Location = new System.Drawing.Point(112, 18);
             this.txtreserve1.MaxLength = 4;
             this.txtreserve1.Name = "txtreserve1";
             this.txtreserve1.Size = new System.Drawing.Size(43, 20);
@@ -840,7 +866,7 @@
             // txtreserve0
             // 
             this.txtreserve0.Enabled = false;
-            this.txtreserve0.Location = new System.Drawing.Point(6, 19);
+            this.txtreserve0.Location = new System.Drawing.Point(6, 18);
             this.txtreserve0.MaxLength = 12;
             this.txtreserve0.Name = "txtreserve0";
             this.txtreserve0.Size = new System.Drawing.Size(99, 20);
@@ -848,8 +874,9 @@
             // 
             // btnEdit
             // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(12, 323);
+            this.btnEdit.Location = new System.Drawing.Point(324, 463);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 22;
@@ -857,8 +884,254 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Blue;
+            this.label7.Location = new System.Drawing.Point(239, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "?";
+            this.toolTip1.SetToolTip(this.label7, "Sets the target temperatures for the CPU, GPU, and eDRAM dies\r\nThe thermal contro" +
+        "l algorithm will dynamically adjust the fans to keep temps at or below these val" +
+        "ues");
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Blue;
+            this.label8.Location = new System.Drawing.Point(239, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 42;
+            this.label8.Text = "?";
+            this.toolTip1.SetToolTip(this.label8, "Sets the critical temperatures for the CPU, GPU, and eDRAM dies\r\nThe system will " +
+        "shut down to prevent damage at these temperatures");
+            // 
+            // btnDefaultTemp
+            // 
+            this.btnDefaultTemp.BtnImage = global::JRunner.Properties.Resources.arrow_dn;
+            this.btnDefaultTemp.ContextMenuStrip = this.defaultTempContextMenu;
+            this.btnDefaultTemp.DropDownContextMenu = this.defaultTempContextMenu;
+            this.btnDefaultTemp.Enabled = false;
+            this.btnDefaultTemp.Image = global::JRunner.Properties.Resources.arrow_dn;
+            this.btnDefaultTemp.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDefaultTemp.Location = new System.Drawing.Point(8, 19);
+            this.btnDefaultTemp.Name = "btnDefaultTemp";
+            this.btnDefaultTemp.Size = new System.Drawing.Size(62, 22);
+            this.btnDefaultTemp.TabIndex = 44;
+            this.btnDefaultTemp.Text = "Default";
+            this.btnDefaultTemp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip1.SetToolTip(this.btnDefaultTemp, "Displays a menu of backup options");
+            this.btnDefaultTemp.UseVisualStyleBackColor = true;
+            // 
+            // defaultTempContextMenu
+            // 
+            this.defaultTempContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xenonEarlyToolStripMenuItem,
+            this.xenonLateToolStripMenuItem,
+            this.zephyrToolStripMenuItem,
+            this.falconToolStripMenuItem,
+            this.jasperV1ToolStripMenuItem,
+            this.jasperV2KronosToolStripMenuItem,
+            this.trinityToolStripMenuItem,
+            this.coronaToolStripMenuItem,
+            this.winchesterToolStripMenuItem});
+            this.defaultTempContextMenu.Name = "defaultTempContextMenu";
+            this.defaultTempContextMenu.Size = new System.Drawing.Size(171, 202);
+            // 
+            // xenonEarlyToolStripMenuItem
+            // 
+            this.xenonEarlyToolStripMenuItem.Name = "xenonEarlyToolStripMenuItem";
+            this.xenonEarlyToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.xenonEarlyToolStripMenuItem.Text = "Xenon (Early)";
+            this.xenonEarlyToolStripMenuItem.Click += new System.EventHandler(this.xenonEarlyToolStripMenuItem_Click);
+            // 
+            // xenonLateToolStripMenuItem
+            // 
+            this.xenonLateToolStripMenuItem.Name = "xenonLateToolStripMenuItem";
+            this.xenonLateToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.xenonLateToolStripMenuItem.Text = "Xenon (Late)";
+            this.xenonLateToolStripMenuItem.Click += new System.EventHandler(this.xenonLateToolStripMenuItem_Click);
+            // 
+            // zephyrToolStripMenuItem
+            // 
+            this.zephyrToolStripMenuItem.Name = "zephyrToolStripMenuItem";
+            this.zephyrToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.zephyrToolStripMenuItem.Text = "Zephyr";
+            this.zephyrToolStripMenuItem.Click += new System.EventHandler(this.zephyrToolStripMenuItem_Click);
+            // 
+            // falconToolStripMenuItem
+            // 
+            this.falconToolStripMenuItem.Name = "falconToolStripMenuItem";
+            this.falconToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.falconToolStripMenuItem.Text = "Falcon";
+            this.falconToolStripMenuItem.Click += new System.EventHandler(this.falconToolStripMenuItem_Click);
+            // 
+            // jasperV1ToolStripMenuItem
+            // 
+            this.jasperV1ToolStripMenuItem.Name = "jasperV1ToolStripMenuItem";
+            this.jasperV1ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.jasperV1ToolStripMenuItem.Text = "Jasper V1";
+            this.jasperV1ToolStripMenuItem.Click += new System.EventHandler(this.jasperV1ToolStripMenuItem_Click);
+            // 
+            // jasperV2KronosToolStripMenuItem
+            // 
+            this.jasperV2KronosToolStripMenuItem.Name = "jasperV2KronosToolStripMenuItem";
+            this.jasperV2KronosToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.jasperV2KronosToolStripMenuItem.Text = "Jasper V2 (Kronos)";
+            this.jasperV2KronosToolStripMenuItem.Click += new System.EventHandler(this.jasperV2KronosToolStripMenuItem_Click);
+            // 
+            // trinityToolStripMenuItem
+            // 
+            this.trinityToolStripMenuItem.Name = "trinityToolStripMenuItem";
+            this.trinityToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.trinityToolStripMenuItem.Text = "Trinity";
+            this.trinityToolStripMenuItem.Click += new System.EventHandler(this.trinityToolStripMenuItem_Click);
+            // 
+            // coronaToolStripMenuItem
+            // 
+            this.coronaToolStripMenuItem.Name = "coronaToolStripMenuItem";
+            this.coronaToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.coronaToolStripMenuItem.Text = "Corona";
+            this.coronaToolStripMenuItem.Click += new System.EventHandler(this.coronaToolStripMenuItem_Click);
+            // 
+            // winchesterToolStripMenuItem
+            // 
+            this.winchesterToolStripMenuItem.Name = "winchesterToolStripMenuItem";
+            this.winchesterToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.winchesterToolStripMenuItem.Text = "Winchester";
+            this.winchesterToolStripMenuItem.Click += new System.EventHandler(this.winchesterToolStripMenuItem_Click);
+            // 
+            // btnCustomTemp
+            // 
+            this.btnCustomTemp.BtnImage = global::JRunner.Properties.Resources.arrow_dn;
+            this.btnCustomTemp.ContextMenuStrip = this.customTempContextMenu;
+            this.btnCustomTemp.DropDownContextMenu = this.customTempContextMenu;
+            this.btnCustomTemp.Enabled = false;
+            this.btnCustomTemp.Image = global::JRunner.Properties.Resources.arrow_dn;
+            this.btnCustomTemp.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCustomTemp.Location = new System.Drawing.Point(100, 19);
+            this.btnCustomTemp.Name = "btnCustomTemp";
+            this.btnCustomTemp.Size = new System.Drawing.Size(63, 22);
+            this.btnCustomTemp.TabIndex = 45;
+            this.btnCustomTemp.Text = "Custom";
+            this.btnCustomTemp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip1.SetToolTip(this.btnCustomTemp, "Displays a menu of backup options");
+            this.btnCustomTemp.UseVisualStyleBackColor = true;
+            // 
+            // customTempContextMenu
+            // 
+            this.customTempContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.phatToolStripMenuItem,
+            this.falconJasperToolStripMenuItem,
+            this.slimToolStripMenuItem});
+            this.customTempContextMenu.Name = "customTempContextMenu";
+            this.customTempContextMenu.Size = new System.Drawing.Size(151, 70);
+            // 
+            // phatToolStripMenuItem
+            // 
+            this.phatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xzColdAndLoudToolStripMenuItem,
+            this.xzCoolerTempsToolStripMenuItem,
+            this.xzQuieterFansToolStripMenuItem});
+            this.phatToolStripMenuItem.Name = "phatToolStripMenuItem";
+            this.phatToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.phatToolStripMenuItem.Text = "Xenon/Zephyr";
+            // 
+            // xzColdAndLoudToolStripMenuItem
+            // 
+            this.xzColdAndLoudToolStripMenuItem.Name = "xzColdAndLoudToolStripMenuItem";
+            this.xzColdAndLoudToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xzColdAndLoudToolStripMenuItem.Text = "Cold and Loud";
+            // 
+            // xzCoolerTempsToolStripMenuItem
+            // 
+            this.xzCoolerTempsToolStripMenuItem.Name = "xzCoolerTempsToolStripMenuItem";
+            this.xzCoolerTempsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xzCoolerTempsToolStripMenuItem.Text = "Cooler Temps";
+            // 
+            // xzQuieterFansToolStripMenuItem
+            // 
+            this.xzQuieterFansToolStripMenuItem.Name = "xzQuieterFansToolStripMenuItem";
+            this.xzQuieterFansToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xzQuieterFansToolStripMenuItem.Text = "Quieter Fans";
+            // 
+            // falconJasperToolStripMenuItem
+            // 
+            this.falconJasperToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fjColdAndLoudToolStripMenuItem,
+            this.fjCoolerTempsToolStripMenuItem,
+            this.fjQuieterFansToolStripMenuItem});
+            this.falconJasperToolStripMenuItem.Name = "falconJasperToolStripMenuItem";
+            this.falconJasperToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.falconJasperToolStripMenuItem.Text = "Falcon/Jasper";
+            // 
+            // fjColdAndLoudToolStripMenuItem
+            // 
+            this.fjColdAndLoudToolStripMenuItem.Name = "fjColdAndLoudToolStripMenuItem";
+            this.fjColdAndLoudToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fjColdAndLoudToolStripMenuItem.Text = "Cold and Loud";
+            // 
+            // fjCoolerTempsToolStripMenuItem
+            // 
+            this.fjCoolerTempsToolStripMenuItem.Name = "fjCoolerTempsToolStripMenuItem";
+            this.fjCoolerTempsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fjCoolerTempsToolStripMenuItem.Text = "Cooler Temps";
+            // 
+            // fjQuieterFansToolStripMenuItem
+            // 
+            this.fjQuieterFansToolStripMenuItem.Name = "fjQuieterFansToolStripMenuItem";
+            this.fjQuieterFansToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fjQuieterFansToolStripMenuItem.Text = "Quieter Fans";
+            // 
+            // slimToolStripMenuItem
+            // 
+            this.slimToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sColdAndLoudToolStripMenuItem,
+            this.sCoolerTempsToolStripMenuItem,
+            this.sQuieterFansToolStripMenuItem});
+            this.slimToolStripMenuItem.Name = "slimToolStripMenuItem";
+            this.slimToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.slimToolStripMenuItem.Text = "Slim (S and E)";
+            // 
+            // sColdAndLoudToolStripMenuItem
+            // 
+            this.sColdAndLoudToolStripMenuItem.Name = "sColdAndLoudToolStripMenuItem";
+            this.sColdAndLoudToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sColdAndLoudToolStripMenuItem.Text = "Cold and Loud";
+            // 
+            // sCoolerTempsToolStripMenuItem
+            // 
+            this.sCoolerTempsToolStripMenuItem.Name = "sCoolerTempsToolStripMenuItem";
+            this.sCoolerTempsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sCoolerTempsToolStripMenuItem.Text = "Cooler Temps";
+            // 
+            // sQuieterFansToolStripMenuItem
+            // 
+            this.sQuieterFansToolStripMenuItem.Name = "sQuieterFansToolStripMenuItem";
+            this.sQuieterFansToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sQuieterFansToolStripMenuItem.Text = "Quieter Fans";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Blue;
+            this.label9.Location = new System.Drawing.Point(152, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(13, 13);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "?";
+            this.toolTip1.SetToolTip(this.label9, "Sets the critical temperatures for the CPU, GPU, and eDRAM dies\r\nThe system will " +
+        "shut down to prevent damage at these temperatures");
+            // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox5.Controls.Add(this.resetNo);
             this.groupBox5.Controls.Add(this.reset4);
             this.groupBox5.Controls.Add(this.reset3);
@@ -870,7 +1143,7 @@
             this.groupBox5.Controls.Add(this.resetX);
             this.groupBox5.Controls.Add(this.resetRt);
             this.groupBox5.Controls.Add(this.resetLt);
-            this.groupBox5.Location = new System.Drawing.Point(12, 353);
+            this.groupBox5.Location = new System.Drawing.Point(12, 369);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(699, 86);
             this.groupBox5.TabIndex = 23;
@@ -972,11 +1245,172 @@
             this.resetLt.TabIndex = 0;
             this.resetLt.TabStop = false;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label7);
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.label2);
+            this.groupBox6.Controls.Add(this.txtTempTargetEDRAM);
+            this.groupBox6.Controls.Add(this.txtTempTargetGPU);
+            this.groupBox6.Controls.Add(this.label1);
+            this.groupBox6.Controls.Add(this.txtTempTargetCPU);
+            this.groupBox6.Location = new System.Drawing.Point(12, 317);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(258, 50);
+            this.groupBox6.TabIndex = 24;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Fan Temperature Targets (Celcius)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(208, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "eDRAM";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(128, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "GPU";
+            // 
+            // txtTempTargetEDRAM
+            // 
+            this.txtTempTargetEDRAM.Enabled = false;
+            this.txtTempTargetEDRAM.Location = new System.Drawing.Point(169, 19);
+            this.txtTempTargetEDRAM.MaxLength = 3;
+            this.txtTempTargetEDRAM.Name = "txtTempTargetEDRAM";
+            this.txtTempTargetEDRAM.Size = new System.Drawing.Size(35, 20);
+            this.txtTempTargetEDRAM.TabIndex = 39;
+            this.txtTempTargetEDRAM.TextChanged += new System.EventHandler(this.txtTempTargetEDRAM_TextChanged);
+            // 
+            // txtTempTargetGPU
+            // 
+            this.txtTempTargetGPU.Enabled = false;
+            this.txtTempTargetGPU.Location = new System.Drawing.Point(89, 19);
+            this.txtTempTargetGPU.MaxLength = 3;
+            this.txtTempTargetGPU.Name = "txtTempTargetGPU";
+            this.txtTempTargetGPU.Size = new System.Drawing.Size(35, 20);
+            this.txtTempTargetGPU.TabIndex = 37;
+            this.txtTempTargetGPU.TextChanged += new System.EventHandler(this.txtTempTargetGPU_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(49, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 13);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "CPU";
+            // 
+            // txtTempTargetCPU
+            // 
+            this.txtTempTargetCPU.Enabled = false;
+            this.txtTempTargetCPU.Location = new System.Drawing.Point(10, 19);
+            this.txtTempTargetCPU.MaxLength = 3;
+            this.txtTempTargetCPU.Name = "txtTempTargetCPU";
+            this.txtTempTargetCPU.Size = new System.Drawing.Size(35, 20);
+            this.txtTempTargetCPU.TabIndex = 35;
+            this.txtTempTargetCPU.TextChanged += new System.EventHandler(this.txtTempTargetCPU_TextChanged);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label8);
+            this.groupBox7.Controls.Add(this.label4);
+            this.groupBox7.Controls.Add(this.label5);
+            this.groupBox7.Controls.Add(this.txtTempCriticalEDRAM);
+            this.groupBox7.Controls.Add(this.txtTempCriticalGPU);
+            this.groupBox7.Controls.Add(this.label6);
+            this.groupBox7.Controls.Add(this.txtTempCriticalCPU);
+            this.groupBox7.Location = new System.Drawing.Point(276, 317);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(258, 50);
+            this.groupBox7.TabIndex = 41;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Critical Temperatures (Celcius)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(208, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 40;
+            this.label4.Text = "eDRAM";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(128, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 13);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "GPU";
+            // 
+            // txtTempCriticalEDRAM
+            // 
+            this.txtTempCriticalEDRAM.Enabled = false;
+            this.txtTempCriticalEDRAM.Location = new System.Drawing.Point(169, 19);
+            this.txtTempCriticalEDRAM.MaxLength = 3;
+            this.txtTempCriticalEDRAM.Name = "txtTempCriticalEDRAM";
+            this.txtTempCriticalEDRAM.Size = new System.Drawing.Size(35, 20);
+            this.txtTempCriticalEDRAM.TabIndex = 39;
+            this.txtTempCriticalEDRAM.TextChanged += new System.EventHandler(this.txtTempCriticalEDRAM_TextChanged);
+            // 
+            // txtTempCriticalGPU
+            // 
+            this.txtTempCriticalGPU.Enabled = false;
+            this.txtTempCriticalGPU.Location = new System.Drawing.Point(89, 19);
+            this.txtTempCriticalGPU.MaxLength = 3;
+            this.txtTempCriticalGPU.Name = "txtTempCriticalGPU";
+            this.txtTempCriticalGPU.Size = new System.Drawing.Size(35, 20);
+            this.txtTempCriticalGPU.TabIndex = 37;
+            this.txtTempCriticalGPU.TextChanged += new System.EventHandler(this.txtTempCriticalGPU_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(49, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.TabIndex = 36;
+            this.label6.Text = "CPU";
+            // 
+            // txtTempCriticalCPU
+            // 
+            this.txtTempCriticalCPU.Enabled = false;
+            this.txtTempCriticalCPU.Location = new System.Drawing.Point(10, 19);
+            this.txtTempCriticalCPU.MaxLength = 3;
+            this.txtTempCriticalCPU.Name = "txtTempCriticalCPU";
+            this.txtTempCriticalCPU.Size = new System.Drawing.Size(35, 20);
+            this.txtTempCriticalCPU.TabIndex = 35;
+            this.txtTempCriticalCPU.TextChanged += new System.EventHandler(this.txtTempCriticalCPU_TextChanged);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label9);
+            this.groupBox8.Controls.Add(this.btnCustomTemp);
+            this.groupBox8.Controls.Add(this.btnDefaultTemp);
+            this.groupBox8.Location = new System.Drawing.Point(540, 317);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(171, 50);
+            this.groupBox8.TabIndex = 43;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Temperature Profiles";
+            // 
             // SMCConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(723, 446);
+            this.ClientSize = new System.Drawing.Size(723, 495);
+            this.Controls.Add(this.groupBox8);
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.groupBox4);
@@ -1001,6 +1435,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.defaultTempContextMenu.ResumeLayout(false);
+            this.customTempContextMenu.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.reset4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reset3)).EndInit();
@@ -1012,6 +1448,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.resetX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.resetRt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.resetLt)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1057,8 +1499,6 @@
         private System.Windows.Forms.Label lblnet;
         private System.Windows.Forms.TextBox txtversion;
         private System.Windows.Forms.Label lblversion;
-        private System.Windows.Forms.TextBox txtthermal;
-        private System.Windows.Forms.Label lblthermal;
         private System.Windows.Forms.TextBox txtana;
         private System.Windows.Forms.Label lblana;
         private System.Windows.Forms.TextBox txtbit;
@@ -1100,5 +1540,48 @@
         private System.Windows.Forms.PictureBox resetX;
         private System.Windows.Forms.PictureBox resetRt;
         private System.Windows.Forms.Label resetNo;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtTempTargetCPU;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtTempTargetEDRAM;
+        private System.Windows.Forms.TextBox txtTempTargetGPU;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtTempCriticalEDRAM;
+        private System.Windows.Forms.TextBox txtTempCriticalGPU;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtTempCriticalCPU;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private UI.MenuButton btnDefaultTemp;
+        private System.Windows.Forms.ContextMenuStrip defaultTempContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem xenonEarlyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xenonLateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zephyrToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem falconToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jasperV1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jasperV2KronosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem trinityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem coronaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem winchesterToolStripMenuItem;
+        private UI.MenuButton btnCustomTemp;
+        private System.Windows.Forms.ContextMenuStrip customTempContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem phatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem falconJasperToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem slimToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xzCoolerTempsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xzQuieterFansToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fjCoolerTempsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fjQuieterFansToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sCoolerTempsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sQuieterFansToolStripMenuItem;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ToolStripMenuItem xzColdAndLoudToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fjColdAndLoudToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sColdAndLoudToolStripMenuItem;
     }
 }

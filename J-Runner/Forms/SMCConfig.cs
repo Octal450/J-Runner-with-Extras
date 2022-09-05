@@ -17,6 +17,7 @@ namespace JRunner.Forms
         int block_offset;
         Encoding ascii = Encoding.ASCII;
         bool save = false;
+        bool loaded = false;
 
         enum VideoRegion
         {
@@ -45,154 +46,178 @@ namespace JRunner.Forms
 
         private void SMCConfig_Load(object sender, EventArgs e)
         {
-            if (smc_config.ok)
+            loaded = false;
+            try
             {
-                btnEdit.Enabled = true;
-
-                txtchecksum.Text = Oper.ByteArrayToString(smc_config.checksum);
-                txtstructure.Text = Oper.ByteArrayToString(smc_config.structure);
-                txtconfig.Text = Oper.ByteArrayToString(smc_config.config);
-                txtbit.Text = Oper.ByteArrayToString(smc_config.bit);
-                txtmac.Text = Regex.Replace(Oper.ByteArrayToString(smc_config.mac), @"(.{2})(.{2})(.{2})(.{2})(.{2})(.{2})", @"$1 - $2 - $3 - $4 - $5 - $6");
-                txtcpugain.Text = Oper.ByteArrayToString(smc_config.cpugain);
-                txtcpuoff.Text = Oper.ByteArrayToString(smc_config.cpuoff);
-                txtgpugain.Text = Oper.ByteArrayToString(smc_config.gpugain);
-                txtgpuoff.Text = Oper.ByteArrayToString(smc_config.gpuoff);
-                txtedramgain.Text = Oper.ByteArrayToString(smc_config.dramgain);
-                txtedramoff.Text = Oper.ByteArrayToString(smc_config.dramoff);
-                txtboardgain.Text = Oper.ByteArrayToString(smc_config.boardgain);
-                txtboardoff.Text = Oper.ByteArrayToString(smc_config.boardoff);
-                txtana.Text = Oper.ByteArrayToString(smc_config.ana);
-                txtanabackup.Text = Oper.ByteArrayToString(smc_config.anabackup);
-                txtclock.Text = Oper.ByteArrayToString(smc_config.clock);
-                txtflags.Text = Oper.ByteArrayToString(smc_config.flags);
-                txtversion.Text = Oper.ByteArrayToString(smc_config.version);
-                txtnet.Text = Oper.ByteArrayToString(smc_config.net);
-
-                txtreset.Text = ascii.GetString(smc_config.reset);
-                updateResetCode(txtreset.Text);
-
-                string thr = Oper.ByteArrayToString(smc_config.thermal);
-
-                txtthermal.Text = Convert.ToInt32(thr.Substring(0, 2), 16).ToString() + "°C;" + Convert.ToInt32(thr.Substring(2, 2), 16).ToString() + "°C;" + Convert.ToInt32(thr.Substring(4, 2), 16).ToString() + "°C - " +
-                    Convert.ToInt32(thr.Substring(6, 2), 16).ToString() + "°C;" + Convert.ToInt32(thr.Substring(8, 2), 16).ToString() + "°C;" + Convert.ToInt32(thr.Substring(10, 2), 16).ToString() + "°C;";
-                txtgainoff.Text = Regex.Replace(Oper.ByteArrayToString(smc_config.gainoff), @"(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})", @"$1;$2;$3;$4;$5;$6;$7;$8");
-
-                //txtdvdregion.Text = Oper.ByteArrayToString(smc_config.dvdregion);
-                //txtgameregion.Text = Oper.ByteArrayToString(smc_config.gameregion);
-                //txtvideoregion.Text = Oper.ByteArrayToString(smc_config.videoregion);
-                switch (smc_config.dvdregion[0])
+                if (smc_config.ok)
                 {
-                    case 0x01:
-                        comboDVD.SelectedIndex = 0;
-                        break;
-                    case 0x02:
-                        comboDVD.SelectedIndex = 1;
-                        break;
-                    case 0x03:
-                        comboDVD.SelectedIndex = 2;
-                        break;
-                    case 0x04:
-                        comboDVD.SelectedIndex = 3;
-                        break;
-                    case 0x05:
-                        comboDVD.SelectedIndex = 4;
-                        break;
-                    case 0x06:
-                        comboDVD.SelectedIndex = 5;
-                        break;
-                    case 0x07:
-                        comboDVD.SelectedIndex = 6;
-                        break;
-                    case 0x08:
-                        comboDVD.SelectedIndex = 7;
-                        break;
-                    case 0xFF:
-                        comboDVD.SelectedIndex = 8;
-                        break;
+                    btnEdit.Enabled = true;
+                    
+                    txtchecksum.Text = Oper.ByteArrayToString(smc_config.checksum);
+                    txtstructure.Text = Oper.ByteArrayToString(smc_config.structure);
+                    txtconfig.Text = Oper.ByteArrayToString(smc_config.config);
+                    txtbit.Text = Oper.ByteArrayToString(smc_config.bit);
+                    txtmac.Text = Regex.Replace(Oper.ByteArrayToString(smc_config.mac), @"(.{2})(.{2})(.{2})(.{2})(.{2})(.{2})", @"$1 - $2 - $3 - $4 - $5 - $6");
+                    txtcpugain.Text = Oper.ByteArrayToString(smc_config.cpugain);
+                    txtcpuoff.Text = Oper.ByteArrayToString(smc_config.cpuoff);
+                    txtgpugain.Text = Oper.ByteArrayToString(smc_config.gpugain);
+                    txtgpuoff.Text = Oper.ByteArrayToString(smc_config.gpuoff);
+                    txtedramgain.Text = Oper.ByteArrayToString(smc_config.dramgain);
+                    txtedramoff.Text = Oper.ByteArrayToString(smc_config.dramoff);
+                    txtboardgain.Text = Oper.ByteArrayToString(smc_config.boardgain);
+                    txtboardoff.Text = Oper.ByteArrayToString(smc_config.boardoff);
+                    txtana.Text = Oper.ByteArrayToString(smc_config.ana);
+                    txtanabackup.Text = Oper.ByteArrayToString(smc_config.anabackup);
+                    txtclock.Text = Oper.ByteArrayToString(smc_config.clock);
+                    txtflags.Text = Oper.ByteArrayToString(smc_config.flags);
+                    txtversion.Text = Oper.ByteArrayToString(smc_config.version);
+                    txtnet.Text = Oper.ByteArrayToString(smc_config.net);
+
+                    txtreset.Text = ascii.GetString(smc_config.reset);
+                    updateResetCode(txtreset.Text);
+
+                    populateTemps();
+
+                    txtgainoff.Text = Regex.Replace(Oper.ByteArrayToString(smc_config.gainoff), @"(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})", @"$1;$2;$3;$4;$5;$6;$7;$8");
+
+                    //txtdvdregion.Text = Oper.ByteArrayToString(smc_config.dvdregion);
+                    //txtgameregion.Text = Oper.ByteArrayToString(smc_config.gameregion);
+                    //txtvideoregion.Text = Oper.ByteArrayToString(smc_config.videoregion);
+                    switch (smc_config.dvdregion[0])
+                    {
+                        case 0x01:
+                            comboDVD.SelectedIndex = 0;
+                            break;
+                        case 0x02:
+                            comboDVD.SelectedIndex = 1;
+                            break;
+                        case 0x03:
+                            comboDVD.SelectedIndex = 2;
+                            break;
+                        case 0x04:
+                            comboDVD.SelectedIndex = 3;
+                            break;
+                        case 0x05:
+                            comboDVD.SelectedIndex = 4;
+                            break;
+                        case 0x06:
+                            comboDVD.SelectedIndex = 5;
+                            break;
+                        case 0x07:
+                            comboDVD.SelectedIndex = 6;
+                            break;
+                        case 0x08:
+                            comboDVD.SelectedIndex = 7;
+                            break;
+                        case 0xFF:
+                            comboDVD.SelectedIndex = 8;
+                            break;
+                    }
+
+                    switch (smc_config.gameregion[0])
+                    {
+                        case 0x00:
+                            comboVideo.SelectedIndex = (int)VideoRegion.NTSC;
+                            switch (smc_config.videoregion[0])
+                            {
+                                case 0xFF:
+                                    comboGame.SelectedIndex = (int)GameRegion.USA;
+                                    break;
+                            }
+                            break;
+                        case 0x01:
+                            comboVideo.SelectedIndex = (int)VideoRegion.NTSC;
+                            switch (smc_config.videoregion[0])
+                            {
+                                case 0x01:
+                                    comboVideo.SelectedIndex = (int)GameRegion.HK;
+                                    break;
+                                case 0xFC:
+                                    comboVideo.SelectedIndex = (int)GameRegion.KOR;
+                                    break;
+                                case 0xFE:
+                                case 0xFF:
+                                    comboVideo.SelectedIndex = (int)GameRegion.JAP;
+                                    break;
+                            }
+                            break;
+                        case 0x02:
+                            comboVideo.SelectedIndex = (int)VideoRegion.PAL;
+                            switch (smc_config.videoregion[0])
+                            {
+                                case 0x01:
+                                    comboGame.SelectedIndex = (int)GameRegion.AUS;
+                                    break;
+                                case 0xFE:
+                                    comboGame.SelectedIndex = (int)GameRegion.EU;
+                                    break;
+                            }
+                            break;
+                    }
+
+                    txtpwrmode.Text = Oper.ByteArrayToString(smc_config.pwrmode);
+                    txtpowervcs.Text = Oper.ByteArrayToString(smc_config.powervcs);
+
+                    txtreserve0.Text = Oper.ByteArrayToString(smc_config.reserve0);
+                    txtreserve1.Text = Oper.ByteArrayToString(smc_config.reserve1);
+                    txtreserve2.Text = Oper.ByteArrayToString(smc_config.reserve2);
+                    txtreserve3.Text = Oper.ByteArrayToString(smc_config.reserve3);
+                    txtreserve4.Text = Oper.ByteArrayToString(smc_config.reserve4);
+                    txtreserve5.Text = Oper.ByteArrayToString(smc_config.reserve5);
+
+                    if (Oper.ByteArrayToString(smc_config.cpufanspeed) == "7F") chkcpufanspeed.Checked = true;
+                    else if ((smc_config.cpufanspeed[0]) >= 0x80)
+                    {
+                        chkcpufanspeed.Checked = false;
+                        chkcpufanspeed.ForeColor = Color.Red;
+                        chkcpufanspeed.Text = "CPU Fan Speed        [Manual Mode]";
+                        trackCPU.Visible = true;
+                        trackCPU.Value = smc_config.cpufanspeed[0] - 0x80;
+                    }
+                    if (Oper.ByteArrayToString(smc_config.gpufanspeed) == "7F") chkgpufanspeed.Checked = true;
+                    else if ((smc_config.gpufanspeed[0]) >= 0x80)
+                    {
+                        chkgpufanspeed.Checked = false;
+                        chkcpufanspeed.ForeColor = Color.Red;
+                        chkgpufanspeed.Text = "GPU Fan Speed        [Manual Mode]";
+                        trackGPU.Enabled = true;
+                        trackGPU.Value = smc_config.gpufanspeed[0] - 0x80;
+                    }
+
+                    loaded = true;
                 }
-
-                switch (smc_config.gameregion[0])
+                else
                 {
-                    case 0x00:
-                        comboVideo.SelectedIndex = (int)VideoRegion.NTSC;
-                        switch (smc_config.videoregion[0])
-                        {
-                            case 0xFF:
-                                comboGame.SelectedIndex = (int)GameRegion.USA;
-                                break;
-                        }
-                        break;
-                    case 0x01:
-                        comboVideo.SelectedIndex = (int)VideoRegion.NTSC;
-                        switch (smc_config.videoregion[0])
-                        {
-                            case 0x01:
-                                comboVideo.SelectedIndex = (int)GameRegion.HK;
-                                break;
-                            case 0xFC:
-                                comboVideo.SelectedIndex = (int)GameRegion.KOR;
-                                break;
-                            case 0xFE:
-                            case 0xFF:
-                                comboVideo.SelectedIndex = (int)GameRegion.JAP;
-                                break;
-                        }
-                        break;
-                    case 0x02:
-                        comboVideo.SelectedIndex = (int)VideoRegion.PAL;
-                        switch (smc_config.videoregion[0])
-                        {
-                            case 0x01:
-                                comboGame.SelectedIndex = (int)GameRegion.AUS;
-                                break;
-                            case 0xFE:
-                                comboGame.SelectedIndex = (int)GameRegion.EU;
-                                break;
-                        }
-                        break;
-                }
-
-                txtpwrmode.Text = Oper.ByteArrayToString(smc_config.pwrmode);
-                txtpowervcs.Text = Oper.ByteArrayToString(smc_config.powervcs);
-
-                txtreserve0.Text = Oper.ByteArrayToString(smc_config.reserve0);
-                txtreserve1.Text = Oper.ByteArrayToString(smc_config.reserve1);
-                txtreserve2.Text = Oper.ByteArrayToString(smc_config.reserve2);
-                txtreserve3.Text = Oper.ByteArrayToString(smc_config.reserve3);
-                txtreserve4.Text = Oper.ByteArrayToString(smc_config.reserve4);
-                txtreserve5.Text = Oper.ByteArrayToString(smc_config.reserve5);
-
-                if (Oper.ByteArrayToString(smc_config.cpufanspeed) == "7F") chkcpufanspeed.Checked = true;
-                else if ((smc_config.cpufanspeed[0]) >= 0x80)
-                {
-                    chkcpufanspeed.Checked = false;
-                    chkcpufanspeed.Text = "CPU Fan Speed        [Manual Mode]";
-                    trackCPU.Visible = true;
-                    trackCPU.Value = (smc_config.cpufanspeed[0] - 0x80);
-                }
-                if (Oper.ByteArrayToString(smc_config.gpufanspeed) == "7F") chkgpufanspeed.Checked = true;
-                else if ((smc_config.gpufanspeed[0]) >= 0x80)
-                {
-                    chkgpufanspeed.Checked = false;
-                    chkgpufanspeed.Text = "GPU Fan Speed        [Manual Mode]";
-                    trackGPU.Enabled = true;
-                    trackGPU.Value = (smc_config.gpufanspeed[0] - 0x80);
+                    resetLt.Visible = false;
+                    resetRt.Visible = false;
+                    resetX.Visible = false;
+                    resetY.Visible = false;
+                    resetLb.Visible = false;
+                    resetRb.Visible = false;
+                    reset1.Visible = false;
+                    reset2.Visible = false;
+                    reset3.Visible = false;
+                    reset4.Visible = false;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                resetLt.Visible = false;
-                resetRt.Visible = false;
-                resetX.Visible = false;
-                resetY.Visible = false;
-                resetLb.Visible = false;
-                resetRb.Visible = false;
-                reset1.Visible = false;
-                reset2.Visible = false;
-                reset3.Visible = false;
-                reset4.Visible = false;
+                Console.WriteLine(ex.Message);
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
+                MessageBox.Show("SMC Config could not be loaded\n\nIt might be corrupt", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
+        }
+
+        private void populateTemps(bool overwrite = true)
+        {
+            string thr = Oper.ByteArrayToString(smc_config.thermal);
+            if (txtTempTargetCPU.Text.Length == 0 || overwrite) txtTempTargetCPU.Text = Convert.ToInt32(thr.Substring(0, 2), 16).ToString();
+            if (txtTempTargetGPU.Text.Length == 0 || overwrite) txtTempTargetGPU.Text = Convert.ToInt32(thr.Substring(2, 2), 16).ToString();
+            if (txtTempTargetEDRAM.Text.Length == 0 || overwrite) txtTempTargetEDRAM.Text = Convert.ToInt32(thr.Substring(4, 2), 16).ToString();
+            if (txtTempCriticalCPU.Text.Length == 0 || overwrite) txtTempCriticalCPU.Text = Convert.ToInt32(thr.Substring(6, 2), 16).ToString();
+            if (txtTempCriticalGPU.Text.Length == 0 || overwrite) txtTempCriticalGPU.Text = Convert.ToInt32(thr.Substring(8, 2), 16).ToString();
+            if (txtTempCriticalEDRAM.Text.Length == 0 || overwrite) txtTempCriticalEDRAM.Text = Convert.ToInt32(thr.Substring(10, 2), 16).ToString();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -244,20 +269,20 @@ namespace JRunner.Forms
                 updateResetCode(txtreset.Text);
                 string thr = Oper.ByteArrayToString(smc_config.thermal);
 
+                populateTemps(false); // That way if any are blank, we set the value from before
                 val.thermal = new byte[6];
                 try
                 {
-                    var th = txtthermal.Text.Split('C');
-                    int len = th.Length < 6 ? th.Length : 6;
-                    for (int i = 0; i < len; i++)
-                    {
-                        byte.TryParse(Regex.Replace(th[i], @"[^\d]", ""), out val.thermal[i]);
-                    }
+                    byte.TryParse(txtTempTargetCPU.Text, out val.thermal[0]);
+                    byte.TryParse(txtTempTargetGPU.Text, out val.thermal[1]);
+                    byte.TryParse(txtTempTargetEDRAM.Text, out val.thermal[2]);
+                    byte.TryParse(txtTempCriticalCPU.Text, out val.thermal[3]);
+                    byte.TryParse(txtTempCriticalGPU.Text, out val.thermal[4]);
+                    byte.TryParse(txtTempCriticalEDRAM.Text, out val.thermal[5]);
                 }
                 catch (Exception ex) { Console.WriteLine(ex.ToString()); }
 
                 val.gainoff = Oper.StringToByteArray_v2(txtgainoff.Text.Replace(";", ""));
-
                 val.dvdregion = new byte[1];
                 val.dvdregion[0] = comboDVD.SelectedIndex != 8 ? (byte)(comboDVD.SelectedIndex + 1) : (byte)0xFF;
                 val.gameregion = new byte[1];
@@ -325,29 +350,32 @@ namespace JRunner.Forms
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                if (variables.debugMode)
-                    Console.WriteLine(ex.ToString());
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
+                MessageBox.Show("SMC Config could not be saved\n\nSome values might be set incorrectly", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
 
-        private void enable(bool what)
+        private void enable(bool en)
         {
             if (smc_config.ok)
             {
                 var d = GetAll(this, typeof(TextBox));
                 foreach (TextBox txt in d)
                 {
-                    if (txt != txtchecksum) txt.Enabled = what;
+                    if (txt != txtchecksum) txt.Enabled = en;
                 }
                 d = GetAll(this, typeof(ComboBox));
                 foreach (ComboBox cm in d)
                 {
-                    cm.Enabled = what;
+                    cm.Enabled = en;
                 }
-                trackCPU.Enabled = what;
-                trackGPU.Enabled = what;
-                chkcpufanspeed.Enabled = what;
-                chkgpufanspeed.Enabled = what;
+                //btnCustomTemp.Enabled = en;
+                btnDefaultTemp.Enabled = en;
+                trackCPU.Enabled = en;
+                trackGPU.Enabled = en;
+                chkcpufanspeed.Enabled = en;
+                chkgpufanspeed.Enabled = en;
             }
         }
 
@@ -360,15 +388,51 @@ namespace JRunner.Forms
 
         private void chkcpufanspeed_CheckedChanged(object sender, EventArgs e)
         {
+            if (loaded && !chkcpufanspeed.Checked)
+            {
+                if (DialogResult.No == MessageBox.Show("Setting a fixed fan speed will prevent the SMC from being able to adjust the fan speed\n\nThis may cause SERIOUS DAMAGE to the Xbox\n\nAre you sure you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    chkcpufanspeed.Checked = true;
+                    return;
+                }
+            }
+
             trackCPU.Visible = !chkcpufanspeed.Checked;
-            if (!chkcpufanspeed.Checked) chkcpufanspeed.Text = "CPU Fan Speed        [Manual Mode]";
-            else chkcpufanspeed.Text = "CPU Fan Speed        [Auto Mode]";
+
+            if (!chkcpufanspeed.Checked)
+            {
+                chkcpufanspeed.ForeColor = Color.Red;
+                chkcpufanspeed.Text = "CPU Fan Speed        [Manual Mode]";
+            }
+            else
+            {
+                chkcpufanspeed.ForeColor = Color.Black;
+                chkcpufanspeed.Text = "CPU Fan Speed        [Auto Mode]";
+            }
         }
         private void chkgpufanspeed_CheckedChanged(object sender, EventArgs e)
         {
+            if (loaded && !chkgpufanspeed.Checked)
+            {
+                if (DialogResult.No == MessageBox.Show("Setting a fixed fan speed will prevent the SMC from being able to adjust the fan speed\n\nThis may cause SERIOUS DAMAGE to the Xbox\n\nAre you sure you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    chkgpufanspeed.Checked = true;
+                    return;
+                }
+            }
+
             trackGPU.Visible = !chkgpufanspeed.Checked;
-            if (!chkgpufanspeed.Checked) chkgpufanspeed.Text = "GPU Fan Speed        [Manual Mode]";
-            else chkgpufanspeed.Text = "GPU Fan Speed        [Auto Mode]";
+
+            if (!chkgpufanspeed.Checked)
+            {
+                chkgpufanspeed.ForeColor = Color.Red;
+                chkgpufanspeed.Text = "GPU Fan Speed        [Manual Mode]";
+            }
+            else
+            {
+                chkgpufanspeed.ForeColor = Color.Black;
+                chkgpufanspeed.Text = "GPU Fan Speed        [Auto Mode]";
+            }
         }
 
         private void trackCPU_Scroll(object sender, EventArgs e)
@@ -428,6 +492,123 @@ namespace JRunner.Forms
         {
             txtreset.Text = txtreset.Text.ToUpper();
         }
+
+        private bool checkTempValid(string s)
+        {
+            int.TryParse(s, out int val);
+
+            if (val > 127)
+            {
+                MessageBox.Show("Value must be less than 128", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else return true;
+        }
+
+        private void txtTempTargetCPU_TextChanged(object sender, EventArgs e)
+        {
+            if (!checkTempValid(txtTempTargetCPU.Text))
+            {
+                txtTempTargetCPU.Text = "";
+                populateTemps(false);
+            }
+        }
+
+        private void txtTempTargetGPU_TextChanged(object sender, EventArgs e)
+        {
+            if (!checkTempValid(txtTempTargetGPU.Text))
+            {
+                txtTempTargetGPU.Text = "";
+                populateTemps(false);
+            }
+        }
+
+        private void txtTempTargetEDRAM_TextChanged(object sender, EventArgs e)
+        {
+            if (!checkTempValid(txtTempTargetEDRAM.Text))
+            {
+                txtTempTargetEDRAM.Text = "";
+                populateTemps(false);
+            }
+        }
+
+        private void txtTempCriticalCPU_TextChanged(object sender, EventArgs e)
+        {
+            if (!checkTempValid(txtTempCriticalCPU.Text))
+            {
+                txtTempCriticalCPU.Text = "";
+                populateTemps(false);
+            }
+        }
+
+        private void txtTempCriticalGPU_TextChanged(object sender, EventArgs e)
+        {
+            if (!checkTempValid(txtTempCriticalGPU.Text))
+            {
+                txtTempCriticalGPU.Text = "";
+                populateTemps(false);
+            }
+        }
+
+        private void txtTempCriticalEDRAM_TextChanged(object sender, EventArgs e)
+        {
+            if (!checkTempValid(txtTempCriticalEDRAM.Text))
+            {
+                txtTempCriticalEDRAM.Text = "";
+                populateTemps(false);
+            }
+        }
+
+        #region Temp Defaults Menu
+
+        private void setTempTargets(Nand.ntable._temptable entry)
+        {
+            txtTempTargetCPU.Text = entry.targetCPU.ToString();
+            txtTempTargetGPU.Text = entry.targetGPU.ToString();
+            txtTempTargetEDRAM.Text = entry.targetEDRAM.ToString();
+            txtTempCriticalCPU.Text = entry.criticalCPU.ToString();
+            txtTempCriticalGPU.Text = entry.criticalGPU.ToString();
+            txtTempCriticalEDRAM.Text = entry.criticalEDRAM.ToString();
+        }
+
+        private void xenonEarlyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[0]);
+        }
+        private void xenonLateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[1]);
+        }
+        private void zephyrToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[2]);
+        }
+        private void falconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[3]);
+        }
+        private void jasperV1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[4]);
+        }
+        private void jasperV2KronosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[5]);
+        }
+        private void trinityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[6]);
+        }
+        private void coronaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[7]);
+        }
+        private void winchesterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setTempTargets(Nand.ntable.defaultTempTable[8]);
+        }
+
+        #endregion
     }
 }
 
