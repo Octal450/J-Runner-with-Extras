@@ -111,6 +111,7 @@
             this.tDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.cDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.wDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
+            this.label9 = new System.Windows.Forms.Label();
             this.customTempContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.coolButQuietToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xCoolButQuiet = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,7 +127,6 @@
             this.jMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
             this.tMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
             this.cMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.resetNo = new System.Windows.Forms.Label();
             this.reset4 = new System.Windows.Forms.PictureBox();
@@ -924,7 +924,7 @@
             this.btnDefaultTemp.Name = "btnDefaultTemp";
             this.btnDefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.btnDefaultTemp.TabIndex = 10;
-            this.btnDefaultTemp.Text = "Restore Defaults";
+            this.btnDefaultTemp.Text = "Default Profiles";
             this.toolTip1.SetToolTip(this.btnDefaultTemp, "Displays a menu of backup options");
             this.btnDefaultTemp.UseVisualStyleBackColor = true;
             // 
@@ -1005,6 +1005,19 @@
             this.wDefaultTemp.Size = new System.Drawing.Size(170, 22);
             this.wDefaultTemp.Text = "Winchester";
             this.wDefaultTemp.Click += new System.EventHandler(this.wDefaultTemp_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Blue;
+            this.label9.Location = new System.Drawing.Point(152, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(13, 13);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "?";
+            this.toolTip1.SetToolTip(this.label9, "Select the default fan profile for your console to automatically populate the val" +
+        "ues");
             // 
             // customTempContextMenu
             // 
@@ -1111,18 +1124,6 @@
             this.cMaximumCool.Name = "cMaximumCool";
             this.cMaximumCool.Size = new System.Drawing.Size(113, 22);
             this.cMaximumCool.Text = "Corona";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Blue;
-            this.label9.Location = new System.Drawing.Point(152, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(13, 13);
-            this.label9.TabIndex = 46;
-            this.label9.Text = "?";
-            this.toolTip1.SetToolTip(this.label9, "Select from either a default fan profiles to automatically populate the values");
             // 
             // groupBox5
             // 
