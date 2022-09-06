@@ -114,17 +114,10 @@
             this.btnCustomTemp = new UI.MenuButton();
             this.customTempContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.phatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xzColdAndLoudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xzCoolerTempsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xzQuieterFansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.falconJasperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fjColdAndLoudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fjCoolerTempsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fjQuieterFansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.slimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sColdAndLoudToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sCoolerTempsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sQuieterFansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sMaximumCoolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sCoolButQuietToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.resetNo = new System.Windows.Forms.Label();
@@ -153,6 +146,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtTempCriticalCPU = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.fjMaximumCoolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fjCoolButQuietToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xzMaximumCoolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xzCoolButQuietToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackGPU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackCPU)).BeginInit();
@@ -1030,91 +1027,46 @@
             this.falconJasperToolStripMenuItem,
             this.slimToolStripMenuItem});
             this.customTempContextMenu.Name = "customTempContextMenu";
-            this.customTempContextMenu.Size = new System.Drawing.Size(151, 70);
+            this.customTempContextMenu.Size = new System.Drawing.Size(181, 92);
             // 
             // phatToolStripMenuItem
             // 
             this.phatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xzColdAndLoudToolStripMenuItem,
-            this.xzCoolerTempsToolStripMenuItem,
-            this.xzQuieterFansToolStripMenuItem});
+            this.xzCoolButQuietToolStripMenuItem,
+            this.xzMaximumCoolToolStripMenuItem});
             this.phatToolStripMenuItem.Name = "phatToolStripMenuItem";
-            this.phatToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.phatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.phatToolStripMenuItem.Text = "Xenon/Zephyr";
-            // 
-            // xzColdAndLoudToolStripMenuItem
-            // 
-            this.xzColdAndLoudToolStripMenuItem.Name = "xzColdAndLoudToolStripMenuItem";
-            this.xzColdAndLoudToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xzColdAndLoudToolStripMenuItem.Text = "Cold and Loud";
-            // 
-            // xzCoolerTempsToolStripMenuItem
-            // 
-            this.xzCoolerTempsToolStripMenuItem.Name = "xzCoolerTempsToolStripMenuItem";
-            this.xzCoolerTempsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xzCoolerTempsToolStripMenuItem.Text = "Cooler Temps";
-            // 
-            // xzQuieterFansToolStripMenuItem
-            // 
-            this.xzQuieterFansToolStripMenuItem.Name = "xzQuieterFansToolStripMenuItem";
-            this.xzQuieterFansToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xzQuieterFansToolStripMenuItem.Text = "Quieter Fans";
             // 
             // falconJasperToolStripMenuItem
             // 
             this.falconJasperToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fjColdAndLoudToolStripMenuItem,
-            this.fjCoolerTempsToolStripMenuItem,
-            this.fjQuieterFansToolStripMenuItem});
+            this.fjCoolButQuietToolStripMenuItem,
+            this.fjMaximumCoolToolStripMenuItem});
             this.falconJasperToolStripMenuItem.Name = "falconJasperToolStripMenuItem";
-            this.falconJasperToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.falconJasperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.falconJasperToolStripMenuItem.Text = "Falcon/Jasper";
-            // 
-            // fjColdAndLoudToolStripMenuItem
-            // 
-            this.fjColdAndLoudToolStripMenuItem.Name = "fjColdAndLoudToolStripMenuItem";
-            this.fjColdAndLoudToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fjColdAndLoudToolStripMenuItem.Text = "Cold and Loud";
-            // 
-            // fjCoolerTempsToolStripMenuItem
-            // 
-            this.fjCoolerTempsToolStripMenuItem.Name = "fjCoolerTempsToolStripMenuItem";
-            this.fjCoolerTempsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fjCoolerTempsToolStripMenuItem.Text = "Cooler Temps";
-            // 
-            // fjQuieterFansToolStripMenuItem
-            // 
-            this.fjQuieterFansToolStripMenuItem.Name = "fjQuieterFansToolStripMenuItem";
-            this.fjQuieterFansToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fjQuieterFansToolStripMenuItem.Text = "Quieter Fans";
             // 
             // slimToolStripMenuItem
             // 
             this.slimToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sColdAndLoudToolStripMenuItem,
-            this.sCoolerTempsToolStripMenuItem,
-            this.sQuieterFansToolStripMenuItem});
+            this.sCoolButQuietToolStripMenuItem,
+            this.sMaximumCoolToolStripMenuItem});
             this.slimToolStripMenuItem.Name = "slimToolStripMenuItem";
-            this.slimToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.slimToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.slimToolStripMenuItem.Text = "Slim (S and E)";
             // 
-            // sColdAndLoudToolStripMenuItem
+            // sMaximumCoolToolStripMenuItem
             // 
-            this.sColdAndLoudToolStripMenuItem.Name = "sColdAndLoudToolStripMenuItem";
-            this.sColdAndLoudToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sColdAndLoudToolStripMenuItem.Text = "Cold and Loud";
+            this.sMaximumCoolToolStripMenuItem.Name = "sMaximumCoolToolStripMenuItem";
+            this.sMaximumCoolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sMaximumCoolToolStripMenuItem.Text = "Maximum Cool";
             // 
-            // sCoolerTempsToolStripMenuItem
+            // sCoolButQuietToolStripMenuItem
             // 
-            this.sCoolerTempsToolStripMenuItem.Name = "sCoolerTempsToolStripMenuItem";
-            this.sCoolerTempsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sCoolerTempsToolStripMenuItem.Text = "Cooler Temps";
-            // 
-            // sQuieterFansToolStripMenuItem
-            // 
-            this.sQuieterFansToolStripMenuItem.Name = "sQuieterFansToolStripMenuItem";
-            this.sQuieterFansToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sQuieterFansToolStripMenuItem.Text = "Quieter Fans";
+            this.sCoolButQuietToolStripMenuItem.Name = "sCoolButQuietToolStripMenuItem";
+            this.sCoolButQuietToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sCoolButQuietToolStripMenuItem.Text = "Cool but Quiet";
             // 
             // label9
             // 
@@ -1403,6 +1355,30 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Temperature Profiles";
             // 
+            // fjMaximumCoolToolStripMenuItem
+            // 
+            this.fjMaximumCoolToolStripMenuItem.Name = "fjMaximumCoolToolStripMenuItem";
+            this.fjMaximumCoolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fjMaximumCoolToolStripMenuItem.Text = "Maximum Cool";
+            // 
+            // fjCoolButQuietToolStripMenuItem
+            // 
+            this.fjCoolButQuietToolStripMenuItem.Name = "fjCoolButQuietToolStripMenuItem";
+            this.fjCoolButQuietToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fjCoolButQuietToolStripMenuItem.Text = "Cool but Quiet";
+            // 
+            // xzMaximumCoolToolStripMenuItem
+            // 
+            this.xzMaximumCoolToolStripMenuItem.Name = "xzMaximumCoolToolStripMenuItem";
+            this.xzMaximumCoolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xzMaximumCoolToolStripMenuItem.Text = "Maximum Cool";
+            // 
+            // xzCoolButQuietToolStripMenuItem
+            // 
+            this.xzCoolButQuietToolStripMenuItem.Name = "xzCoolButQuietToolStripMenuItem";
+            this.xzCoolButQuietToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xzCoolButQuietToolStripMenuItem.Text = "Cool but Quiet";
+            // 
             // SMCConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1573,15 +1549,12 @@
         private System.Windows.Forms.ToolStripMenuItem phatToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem falconJasperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem slimToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem xzCoolerTempsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem xzQuieterFansToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fjCoolerTempsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fjQuieterFansToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sCoolerTempsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sQuieterFansToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sCoolButQuietToolStripMenuItem;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ToolStripMenuItem xzColdAndLoudToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fjColdAndLoudToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sColdAndLoudToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sMaximumCoolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xzCoolButQuietToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xzMaximumCoolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fjCoolButQuietToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fjMaximumCoolToolStripMenuItem;
     }
 }
