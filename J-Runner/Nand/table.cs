@@ -158,7 +158,7 @@ namespace JRunner.Nand
             new _temptable("JasperV2", 80, 75, 77, 95, 90, 92),
             new _temptable("Trinity", 82, 78, 76, 89, 89, 82),
             new _temptable("Corona", 82, 78, 76, 89, 89, 82),
-            new _temptable("Winchester", 82, 78, 76, 91, 82, 91),
+            new _temptable("Winchester", 82, 78, 76, 91, 82, 91)
         };
 
         #endregion

@@ -52,7 +52,7 @@ namespace JRunner.Forms
                 if (smc_config.ok)
                 {
                     btnEdit.Enabled = true;
-                    
+
                     txtchecksum.Text = Oper.ByteArrayToString(smc_config.checksum);
                     txtstructure.Text = Oper.ByteArrayToString(smc_config.structure);
                     txtconfig.Text = Oper.ByteArrayToString(smc_config.config);
@@ -370,7 +370,6 @@ namespace JRunner.Forms
                 {
                     cm.Enabled = en;
                 }
-                //btnCustomTemp.Enabled = en;
                 btnDefaultTemp.Enabled = en;
                 trackCPU.Enabled = en;
                 trackGPU.Enabled = en;
@@ -559,9 +558,9 @@ namespace JRunner.Forms
             }
         }
 
-        #region Temp Defaults Menu
+        #region Default Temps Menu
 
-        private void setTempTargets(Nand.ntable._temptable entry)
+        private void setDefaultTempTargets(Nand.ntable._temptable entry)
         {
             txtTempTargetCPU.Text = entry.targetCPU.ToString();
             txtTempTargetGPU.Text = entry.targetGPU.ToString();
@@ -571,41 +570,41 @@ namespace JRunner.Forms
             txtTempCriticalEDRAM.Text = entry.criticalEDRAM.ToString();
         }
 
-        private void xenonEarlyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void x1DefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[0]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[0]);
         }
-        private void xenonLateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void x2DefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[1]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[1]);
         }
-        private void zephyrToolStripMenuItem_Click(object sender, EventArgs e)
+        private void zDefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[2]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[2]);
         }
-        private void falconToolStripMenuItem_Click(object sender, EventArgs e)
+        private void fDefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[3]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[3]);
         }
-        private void jasperV1ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void j1DefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[4]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[4]);
         }
-        private void jasperV2KronosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void j2DefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[5]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[5]);
         }
-        private void trinityToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tDefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[6]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[6]);
         }
-        private void coronaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cDefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[7]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[7]);
         }
-        private void winchesterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void wDefaultTemp_Click(object sender, EventArgs e)
         {
-            setTempTargets(Nand.ntable.defaultTempTable[8]);
+            setDefaultTempTargets(Nand.ntable.defaultTempTable[8]);
         }
 
         #endregion
