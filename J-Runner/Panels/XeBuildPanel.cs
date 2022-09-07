@@ -1371,11 +1371,11 @@ namespace JRunner.Panels
             variables.xefinished = false;
         }
 
-        private void copyfiles(string cpukey)
+        public void copyfiles(string cpukey = "")
         {
             string targetkey = System.IO.Path.Combine(variables.xePath, variables.cpukeypath);
             string targetnand = System.IO.Path.Combine(variables.xePath, variables.nanddump);
-            File.WriteAllText(targetkey, cpukey);
+            if (cpukey.Length > 0) File.WriteAllText(targetkey, cpukey);
             if (string.IsNullOrEmpty(variables.filename1)) return;
             //
             FileInfo fi = new FileInfo(variables.filename1);

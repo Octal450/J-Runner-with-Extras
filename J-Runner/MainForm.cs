@@ -3104,6 +3104,7 @@ namespace JRunner
             if (CX.DialogResult == DialogResult.Cancel) return;
             else if (CX.DialogResult == DialogResult.OK)
             {
+                if (File.Exists(variables.filename1)) xPanel.copyfiles();
                 Classes.xebuild xe = new Classes.xebuild();
                 xe.xeExit += xPanel.xe_xeExit;
                 ThreadStart starter = delegate { xe.build(CX.getString()); };

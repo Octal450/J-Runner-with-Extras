@@ -673,73 +673,14 @@ namespace JRunner.Classes
             }
         }
 
-        public void build(string arguments)
+        public void build(string arguments) // This takes the input from the custom command, don't apply arguments
         {
             success = false;
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = variables.rootfolder + @"\xeBuild\xeBuild.exe";
-            string boardtype = _ctype.XeBuild;
 
-            if (_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m)
-            {
-                if (boardtype == "xenon")
-                {
-                    boardtype = "falcon";
-                    Console.WriteLine("Using Falcon type for Xenon");
-                }
-                else if (boardtype == "zephyr")
-                {
-                    boardtype = "falcon";
-                    Console.WriteLine("Using Falcon type for Zephyr");
-                }
-            }
-
-            if (_xdkbuild)
-            {
-                if (boardtype == "jasperbb") // requires bigffs
-                {
-                    arguments += " -c " + "jasperbigffs -i flash";
-                }
-                else if (boardtype == "trinitybb") // requires bigffs
-                {
-                    arguments += " -c " + "trinitybigffs -i flash";
-                }
-                else if (boardtype == "corona4g")
-                {
-                    arguments += " -c " + boardtype + " -i flash";
-                }
-                else // no bigffs!
-                {
-                    arguments += " -c " + boardtype;
-                }
-            }
-            else if (_bigffs)
-            {
-                if (boardtype == "jasperbb")
-                {
-                    arguments += " -c " + "jasperbigffs";
-                }
-                else if (boardtype == "trinitybb") // requires bigffs
-                {
-                    arguments += " -c " + "trinitybigffs";
-                }
-                else
-                {
-                    arguments += " -c " + boardtype + "bigffs";
-                }
-            }
-            else
-            {
-                arguments += " -c " + boardtype;
-            }
-
-            if (_zfuse && _ttype == variables.hacktypes.devgl)
-            {
-                arguments += " -a hvfixkeys";
-            }
-
-            if (_xlusb) arguments += " -a xl_usb";
-            else if (_xlhdd) arguments += " -a xl_hdd";
+            if (!arguments.Contains("-noenter")) arguments += " -noenter";
+            if (!arguments.Contains("-p") && variables.cpukey.Length > 0) arguments += " -p " + variables.cpukey;
 
             if (variables.debugMode) Console.WriteLine(variables.rootfolder);
             if (variables.debugMode) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
@@ -750,7 +691,7 @@ namespace JRunner.Classes
             pProcess.StartInfo.RedirectStandardInput = true;
             pProcess.StartInfo.RedirectStandardOutput = true;
             pProcess.StartInfo.CreateNoWindow = true;
-            if (!_xdkbuild && !_rgh3) pProcess.Exited += new EventHandler(xeExit);
+            pProcess.Exited += new EventHandler(xeExit);
             //pProcess.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(DataReceived);
             //pProcess.Exited += new EventHandler(xe_Exited);
             //pProcess.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(process_OutputDataReceived);
@@ -781,17 +722,6 @@ namespace JRunner.Classes
                 if (pProcess.HasExited)
                 {
                     pProcess.CancelOutputRead();
-                }
-
-                if (success)
-                {
-                    if (_xdkbuild && _rgh3)
-                    {
-                        MainForm.mainForm.XDKbuild.create(boardtype, true);
-                        MainForm.mainForm.rgh3Build.create(_ctype.Text, "00000000000000000000000000000000", true);
-                    }
-                    else if (_xdkbuild) MainForm.mainForm.XDKbuild.create(boardtype);
-                    else if (_rgh3) MainForm.mainForm.rgh3Build.create(_ctype.Text, _cpukey, true);
                 }
             }
             catch (Exception objException)
