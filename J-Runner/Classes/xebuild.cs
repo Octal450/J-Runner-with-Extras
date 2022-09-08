@@ -681,6 +681,12 @@ namespace JRunner.Classes
 
             if (!arguments.Contains("-noenter")) arguments += " -noenter";
             if (!arguments.Contains("-p") && variables.cpukey.Length > 0) arguments += " -p " + variables.cpukey;
+            if (!arguments.Contains("-d")) arguments += " -d data"; // This breaks sequencing in how J-Runner wraps XeBuild
+            else
+            {
+                Console.WriteLine("Remove -d from your command and try again");
+                return;
+            }
 
             if (variables.debugMode) Console.WriteLine(variables.rootfolder);
             if (variables.debugMode) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");

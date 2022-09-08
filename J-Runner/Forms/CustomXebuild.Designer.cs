@@ -40,6 +40,7 @@
             this.txtCommand.Name = "txtCommand";
             this.txtCommand.Size = new System.Drawing.Size(319, 20);
             this.txtCommand.TabIndex = 0;
+            this.txtCommand.TextChanged += new System.EventHandler(this.txtCommand_TextChanged);
             // 
             // btnRun
             // 
@@ -66,7 +67,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "XeBuild Command";
+            this.Text = "XeBuild Command (Do not include -d)";
             this.ResumeLayout(false);
             this.PerformLayout();
 
