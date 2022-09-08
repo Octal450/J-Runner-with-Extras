@@ -2110,6 +2110,10 @@ namespace JRunner
 
                 GC.Collect();
 
+                // Reset Patch Parser found variables
+                variables.xlhddchk = false;
+                variables.xlusbchk = false;
+
                 FileStream fs = new FileStream(variables.filename1, FileMode.Open);
                 try
                 {

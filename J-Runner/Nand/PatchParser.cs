@@ -124,11 +124,6 @@ namespace JRunner.Nand
                                         variables.xlhddchk = false;
                                         variables.xlusbchk = true;
                                     }
-                                    else
-                                    {
-                                        variables.xlhddchk = false;
-                                        variables.xlusbchk = false;
-                                    }
                                 }
                             }
                         }
