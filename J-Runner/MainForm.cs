@@ -3109,7 +3109,13 @@ namespace JRunner
             if (CX.DialogResult == DialogResult.Cancel) return;
             else if (CX.DialogResult == DialogResult.OK)
             {
-                if (File.Exists(variables.filename1)) xPanel.copyfiles();
+                if (File.Exists(variables.filename1) && nand.ok)
+                {
+                    xPanel.copyfiles();
+                    variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
+                    if (!Directory.Exists(variables.xefolder)) Directory.CreateDirectory(variables.xefolder);
+                }
+
                 Classes.xebuild xe = new Classes.xebuild();
                 xe.xeExit += xPanel.xe_xeExit;
                 ThreadStart starter = delegate { xe.build(CX.getString()); };

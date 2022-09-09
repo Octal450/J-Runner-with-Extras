@@ -520,7 +520,6 @@ namespace JRunner.Classes
 
             Console.WriteLine("Kernel Selected: {0}", _dash);
 
-
             variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, _nand.ki.serial);
             if (variables.debugMode) Console.WriteLine("outfolder: {0}", variables.xefolder);
             if (!Directory.Exists(variables.xefolder)) Directory.CreateDirectory(variables.xefolder);
@@ -687,6 +686,8 @@ namespace JRunner.Classes
                 Console.WriteLine("Remove -d from your command and try again");
                 return;
             }
+            
+            arguments += " \"" + variables.xefolder + "\\" + variables.updflash + "\" ";
 
             if (variables.debugMode) Console.WriteLine(variables.rootfolder);
             if (variables.debugMode) Console.WriteLine("---" + variables.rootfolder + @"\xeBuild\xeBuild.exe");
