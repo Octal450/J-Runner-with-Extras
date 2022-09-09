@@ -40,10 +40,12 @@
             // 
             // treeView1
             // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(424, 331);
+            this.treeView1.Size = new System.Drawing.Size(350, 638);
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -51,7 +53,7 @@
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(802, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(733, 17);
             this.toolStripStatusLabel.Spring = true;
             // 
             // fileSizeToolStripStatusLabel
@@ -66,10 +68,10 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel,
             this.fileSizeToolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 332);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.statusStrip1.Size = new System.Drawing.Size(1063, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(994, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
@@ -83,7 +85,9 @@
             // hexBox1
             // 
             this.hexBox1.AllowDrop = true;
-            this.hexBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.hexBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.hexBox1.BoldFont = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hexBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             // 
@@ -97,11 +101,11 @@
             this.hexBox1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hexBox1.LineInfoForeColor = System.Drawing.Color.Empty;
             this.hexBox1.LineInfoVisible = true;
-            this.hexBox1.Location = new System.Drawing.Point(430, 0);
+            this.hexBox1.Location = new System.Drawing.Point(349, -2);
             this.hexBox1.Name = "hexBox1";
             this.hexBox1.ReadOnly = true;
             this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBox1.Size = new System.Drawing.Size(633, 331);
+            this.hexBox1.Size = new System.Drawing.Size(645, 638);
             this.hexBox1.StringViewVisible = true;
             this.hexBox1.TabIndex = 0;
             this.hexBox1.UseFixedBytesPerLine = true;
@@ -113,19 +117,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 354);
+            this.ClientSize = new System.Drawing.Size(994, 661);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.hexBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1079, 393);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1079, 393);
             this.Name = "KVViewer";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KV Viewer";
             this.Load += new System.EventHandler(this.HexViewer_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.HexViewer_KeyUp);

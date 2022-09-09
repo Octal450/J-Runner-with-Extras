@@ -61,10 +61,10 @@ namespace JRunner.Panels
             lblfcrt.Visible = false;
 
             // Bad Blocks
-            txtBadBlocks.Text = "";
+            txtBadBlocks.Text = "No Nand Loaded";
 
             // Reset Tab
-            tabControl1.SelectedTab = tabPage1;
+            tabControl1.SelectedTab = tabPageNand;
         }
 
         public void populateInfo()
@@ -237,13 +237,13 @@ namespace JRunner.Panels
             }
             else
             {
-                this.tabControl1.SelectedTab = this.tabPage2;
+                this.tabControl1.SelectedTab = this.tabPageKV;
             }
         }
 
         public void change_tab()
         {
-            this.tabControl1.BeginInvoke((Action)(() => tabControl1.SelectedTab = tabPage1));
+            this.tabControl1.BeginInvoke((Action)(() => tabControl1.SelectedTab = tabPageNand));
             this.tabControl1.BeginInvoke((Action)(() => tabControl1.Refresh()));
         }
 
@@ -267,13 +267,9 @@ namespace JRunner.Panels
                 e.Effect = DragDropEffects.None;
         }
 
-        private void btnAdvanced_Click(object sender, EventArgs e)
+        private void btnHexView_Click(object sender, EventArgs e)
         {
-            if (nand != null && nand.ok)
-            {
-                HexEdit.KVViewer k = new HexEdit.KVViewer(Nand.Nand.decryptkv(nand._rawkv, Oper.StringToByteArray(nand._cpukey)));
-                k.ShowDialog();
-            }
+            MainForm.mainForm.kVViewer();
         }
 
         private void btnConsoleId_Click(object sender, EventArgs e)

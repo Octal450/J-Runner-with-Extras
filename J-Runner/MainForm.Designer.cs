@@ -114,7 +114,8 @@ namespace JRunner
             this.convertToRGH3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomXeBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripHexEditor = new System.Windows.Forms.ToolStripMenuItem();
+            this.hexEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kVViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cPUKeyToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.checkSecdataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -493,12 +494,12 @@ namespace JRunner
             this.showLastBackupToolStripMenuItem,
             this.configureBackupToolStripMenuItem});
             this.backupContextMenu.Name = "contextMenuStrip1";
-            this.backupContextMenu.Size = new System.Drawing.Size(181, 114);
+            this.backupContextMenu.Size = new System.Drawing.Size(179, 92);
             // 
             // backupToZIPToolStripMenuItem
             // 
             this.backupToZIPToolStripMenuItem.Name = "backupToZIPToolStripMenuItem";
-            this.backupToZIPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.backupToZIPToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.backupToZIPToolStripMenuItem.Text = "Backup to ZIP…";
             this.backupToZIPToolStripMenuItem.Click += new System.EventHandler(this.backupToZIPToolStripMenuItem_Click);
             // 
@@ -506,21 +507,21 @@ namespace JRunner
             // 
             this.autoBackupNowToolStripMenuItem.Enabled = false;
             this.autoBackupNowToolStripMenuItem.Name = "autoBackupNowToolStripMenuItem";
-            this.autoBackupNowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autoBackupNowToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.autoBackupNowToolStripMenuItem.Text = "Auto Backup Now";
             this.autoBackupNowToolStripMenuItem.Click += new System.EventHandler(this.autoBackupNowToolStripMenuItem_Click);
             // 
             // showLastBackupToolStripMenuItem
             // 
             this.showLastBackupToolStripMenuItem.Name = "showLastBackupToolStripMenuItem";
-            this.showLastBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showLastBackupToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.showLastBackupToolStripMenuItem.Text = "Show Last Backup";
             this.showLastBackupToolStripMenuItem.Click += new System.EventHandler(this.showLastBackupToolStripMenuItem_Click);
             // 
             // configureBackupToolStripMenuItem
             // 
             this.configureBackupToolStripMenuItem.Name = "configureBackupToolStripMenuItem";
-            this.configureBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.configureBackupToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.configureBackupToolStripMenuItem.Text = "Configure Backup…";
             this.configureBackupToolStripMenuItem.Click += new System.EventHandler(this.configureBackupToolStripMenuItem_Click);
             // 
@@ -842,7 +843,8 @@ namespace JRunner
             this.convertToRGH3ToolStripMenuItem,
             this.CustomXeBuildMenuItem,
             this.toolStripMenuItem5,
-            this.toolStripHexEditor,
+            this.hexEditorToolStripMenuItem,
+            this.kVViewerToolStripMenuItem,
             this.cPUKeyToolsToolStripMenuItem,
             this.toolStripSeparator15,
             this.checkSecdataToolStripMenuItem,
@@ -899,12 +901,19 @@ namespace JRunner
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(237, 6);
             // 
-            // toolStripHexEditor
+            // hexEditorToolStripMenuItem
             // 
-            this.toolStripHexEditor.Name = "toolStripHexEditor";
-            this.toolStripHexEditor.Size = new System.Drawing.Size(240, 22);
-            this.toolStripHexEditor.Text = "Hex Viewer";
-            this.toolStripHexEditor.Click += new System.EventHandler(this.toolStripHexEditor_Click);
+            this.hexEditorToolStripMenuItem.Name = "hexEditorToolStripMenuItem";
+            this.hexEditorToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.hexEditorToolStripMenuItem.Text = "Hex Viewer";
+            this.hexEditorToolStripMenuItem.Click += new System.EventHandler(this.hexEditorToolStripMenuItem_Click);
+            // 
+            // kVViewerToolStripMenuItem
+            // 
+            this.kVViewerToolStripMenuItem.Name = "kVViewerToolStripMenuItem";
+            this.kVViewerToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.kVViewerToolStripMenuItem.Text = "KV Viewer";
+            this.kVViewerToolStripMenuItem.Click += new System.EventHandler(this.kVViewerToolStripMenuItem_Click);
             // 
             // cPUKeyToolsToolStripMenuItem
             // 
@@ -1438,7 +1447,7 @@ namespace JRunner
         private ToolStripMenuItem rescanDevicesToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem8;
         private ToolStripSeparator toolStripMenuItem5;
-        private ToolStripMenuItem toolStripHexEditor;
+        private ToolStripMenuItem hexEditorToolStripMenuItem;
         private ToolStripMenuItem nandToolStripMenuItem;
         private ToolStripMenuItem extractFilesToolStripMenuItem;
         private ToolStripMenuItem createDonorToolStripMenuItem;
@@ -1475,5 +1484,6 @@ namespace JRunner
         private ToolStripStatusLabel BackupLabel;
         private ToolStripMenuItem autoBackupNowToolStripMenuItem;
         private ToolStripMenuItem showLastBackupToolStripMenuItem;
+        private ToolStripMenuItem kVViewerToolStripMenuItem;
     }
 }

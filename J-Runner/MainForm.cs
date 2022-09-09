@@ -1995,6 +1995,7 @@ namespace JRunner
                 else txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
+                xPanel.change_tab();
                 nandInfo.change_tab();
                 updateProgress(progressBar.Maximum / 2);
                 nand = new Nand.PrivateN(variables.filename1, variables.cpukey);
@@ -3119,7 +3120,7 @@ namespace JRunner
         }
 
         HexEdit.HexViewer hv;
-        private void toolStripHexEditor_Click(object sender, EventArgs e)
+        private void hexEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Application.OpenForms.OfType<HexEdit.HexViewer>().Any())
             {
@@ -3130,6 +3131,35 @@ namespace JRunner
             {
                 hv = new HexEdit.HexViewer(txtFileSource.Text);
                 hv.ShowDialog();
+            }
+        }
+
+        private void kVViewerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            kVViewer();
+        }
+
+        HexEdit.KVViewer kvv;
+        public void kVViewer()
+        {
+            if (!string.IsNullOrWhiteSpace(variables.filename1) && nand != null && nand.ok)
+            {
+                if (Application.OpenForms.OfType<HexEdit.KVViewer>().Any())
+                {
+                    kvv.WindowState = FormWindowState.Normal;
+                    kvv.Activate();
+                }
+                else
+                {
+                    kvv = new HexEdit.KVViewer(Nand.Nand.decryptkv(nand._rawkv, Oper.StringToByteArray(nand._cpukey)));
+                    kvv.Show();
+                    kvv.Location = new Point(Location.X + (Width - kvv.Width) / 2, Location.Y + (Height - kvv.Height) / 2);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

@@ -187,6 +187,11 @@ namespace JRunner.Panels
             chkListBoxPatches.SetItemChecked(0, check);
         }
 
+        public void change_tab()
+        {
+            MainTabs.SelectedTab = tabXeBuild;
+        }
+
         public void clear()
         {
             txtMBname.Text = "None Selected";

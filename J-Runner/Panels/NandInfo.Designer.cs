@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageNand = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBoxCbType = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,14 +64,14 @@
             this.textBox7BL_p0 = new System.Windows.Forms.TextBox();
             this.label7bl_p0 = new System.Windows.Forms.Label();
             this.label2bl = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageKV = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnConsoleId = new System.Windows.Forms.Button();
             this.txtconsole = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textMFRdate = new System.Windows.Forms.TextBox();
-            this.btnAdvanced = new System.Windows.Forms.Button();
+            this.btnHexView = new System.Windows.Forms.Button();
             this.lblfcrt = new System.Windows.Forms.Label();
             this.txtkvtype = new System.Windows.Forms.TextBox();
             this.labelkv = new System.Windows.Forms.Label();
@@ -85,22 +85,22 @@
             this.txtSerial = new System.Windows.Forms.TextBox();
             this.labelosig = new System.Windows.Forms.Label();
             this.labeldvdkey = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPageBadBlocks = new System.Windows.Forms.TabPage();
             this.txtBadBlocks = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPageNand.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPageKV.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabPageBadBlocks.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.AllowDrop = true;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPageNand);
+            this.tabControl1.Controls.Add(this.tabPageKV);
+            this.tabControl1.Controls.Add(this.tabPageBadBlocks);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -109,16 +109,16 @@
             this.tabControl1.DragDrop += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragDrop);
             this.tabControl1.DragEnter += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragEnter);
             // 
-            // tabPage1
+            // tabPageNand
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(335, 273);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Nand Info";
+            this.tabPageNand.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageNand.Controls.Add(this.groupBox1);
+            this.tabPageNand.Location = new System.Drawing.Point(4, 22);
+            this.tabPageNand.Name = "tabPageNand";
+            this.tabPageNand.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageNand.Size = new System.Drawing.Size(335, 273);
+            this.tabPageNand.TabIndex = 0;
+            this.tabPageNand.Text = "Bootloaders/LDVs";
             // 
             // groupBox1
             // 
@@ -326,11 +326,11 @@
             // label6bl_p1
             // 
             this.label6bl_p1.AutoSize = true;
-            this.label6bl_p1.Location = new System.Drawing.Point(164, 178);
+            this.label6bl_p1.Location = new System.Drawing.Point(171, 178);
             this.label6bl_p1.Name = "label6bl_p1";
-            this.label6bl_p1.Size = new System.Drawing.Size(88, 13);
+            this.label6bl_p1.Size = new System.Drawing.Size(81, 13);
             this.label6bl_p1.TabIndex = 49;
-            this.label6bl_p1.Text = "6BL [CF] Patch 1";
+            this.label6bl_p1.Text = "CF Patch Slot 1";
             // 
             // textBox6BL_p1
             // 
@@ -353,20 +353,20 @@
             // label7bl_p1
             // 
             this.label7bl_p1.AutoSize = true;
-            this.label7bl_p1.Location = new System.Drawing.Point(162, 210);
+            this.label7bl_p1.Location = new System.Drawing.Point(169, 210);
             this.label7bl_p1.Name = "label7bl_p1";
-            this.label7bl_p1.Size = new System.Drawing.Size(90, 13);
+            this.label7bl_p1.Size = new System.Drawing.Size(83, 13);
             this.label7bl_p1.TabIndex = 50;
-            this.label7bl_p1.Text = "7BL [CG] Patch 1";
+            this.label7bl_p1.Text = "CG Patch Slot 1";
             // 
             // label2bla
             // 
             this.label2bla.AutoSize = true;
-            this.label2bla.Location = new System.Drawing.Point(32, 50);
+            this.label2bla.Location = new System.Drawing.Point(61, 50);
             this.label2bla.Name = "label2bla";
-            this.label2bla.Size = new System.Drawing.Size(62, 13);
+            this.label2bla.Size = new System.Drawing.Size(34, 13);
             this.label2bla.TabIndex = 42;
-            this.label2bla.Text = "2BL [CB_A]";
+            this.label2bla.Text = "CB_A";
             // 
             // textBox4BL
             // 
@@ -380,38 +380,38 @@
             // label5bl
             // 
             this.label5bl.AutoSize = true;
-            this.label5bl.Location = new System.Drawing.Point(45, 146);
+            this.label5bl.Location = new System.Drawing.Point(74, 146);
             this.label5bl.Name = "label5bl";
-            this.label5bl.Size = new System.Drawing.Size(49, 13);
+            this.label5bl.Size = new System.Drawing.Size(21, 13);
             this.label5bl.TabIndex = 38;
-            this.label5bl.Text = "5BL [CE]";
+            this.label5bl.Text = "CE";
             // 
             // label6bl_p0
             // 
             this.label6bl_p0.AutoSize = true;
-            this.label6bl_p0.Location = new System.Drawing.Point(6, 179);
+            this.label6bl_p0.Location = new System.Drawing.Point(14, 179);
             this.label6bl_p0.Name = "label6bl_p0";
-            this.label6bl_p0.Size = new System.Drawing.Size(88, 13);
+            this.label6bl_p0.Size = new System.Drawing.Size(81, 13);
             this.label6bl_p0.TabIndex = 39;
-            this.label6bl_p0.Text = "6BL [CF] Patch 0";
+            this.label6bl_p0.Text = "CF Patch Slot 0";
             // 
             // label4bl
             // 
             this.label4bl.AutoSize = true;
-            this.label4bl.Location = new System.Drawing.Point(44, 114);
+            this.label4bl.Location = new System.Drawing.Point(73, 114);
             this.label4bl.Name = "label4bl";
-            this.label4bl.Size = new System.Drawing.Size(50, 13);
+            this.label4bl.Size = new System.Drawing.Size(22, 13);
             this.label4bl.TabIndex = 37;
-            this.label4bl.Text = "4BL [CD]";
+            this.label4bl.Text = "CD";
             // 
             // label2blb
             // 
             this.label2blb.AutoSize = true;
-            this.label2blb.Location = new System.Drawing.Point(32, 82);
+            this.label2blb.Location = new System.Drawing.Point(61, 82);
             this.label2blb.Name = "label2blb";
-            this.label2blb.Size = new System.Drawing.Size(62, 13);
+            this.label2blb.Size = new System.Drawing.Size(34, 13);
             this.label2blb.TabIndex = 41;
-            this.label2blb.Text = "2BL [CB_B]";
+            this.label2blb.Text = "CB_B";
             // 
             // textBox2BLb
             // 
@@ -461,31 +461,31 @@
             // label7bl_p0
             // 
             this.label7bl_p0.AutoSize = true;
-            this.label7bl_p0.Location = new System.Drawing.Point(4, 210);
+            this.label7bl_p0.Location = new System.Drawing.Point(12, 210);
             this.label7bl_p0.Name = "label7bl_p0";
-            this.label7bl_p0.Size = new System.Drawing.Size(90, 13);
+            this.label7bl_p0.Size = new System.Drawing.Size(83, 13);
             this.label7bl_p0.TabIndex = 40;
-            this.label7bl_p0.Text = "7BL [CG] Patch 0";
+            this.label7bl_p0.Text = "CG Patch Slot 0";
             // 
             // label2bl
             // 
             this.label2bl.AutoSize = true;
-            this.label2bl.Location = new System.Drawing.Point(45, 49);
+            this.label2bl.Location = new System.Drawing.Point(74, 50);
             this.label2bl.Name = "label2bl";
-            this.label2bl.Size = new System.Drawing.Size(49, 13);
+            this.label2bl.Size = new System.Drawing.Size(21, 13);
             this.label2bl.TabIndex = 29;
-            this.label2bl.Text = "2BL [CB]";
+            this.label2bl.Text = "CB";
             // 
-            // tabPage2
+            // tabPageKV
             // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(335, 273);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "KV Info";
+            this.tabPageKV.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageKV.Controls.Add(this.groupBox2);
+            this.tabPageKV.Location = new System.Drawing.Point(4, 22);
+            this.tabPageKV.Name = "tabPageKV";
+            this.tabPageKV.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageKV.Size = new System.Drawing.Size(335, 273);
+            this.tabPageKV.TabIndex = 1;
+            this.tabPageKV.Text = "Keyvault";
             // 
             // groupBox2
             // 
@@ -495,7 +495,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.textMFRdate);
-            this.groupBox2.Controls.Add(this.btnAdvanced);
+            this.groupBox2.Controls.Add(this.btnHexView);
             this.groupBox2.Controls.Add(this.lblfcrt);
             this.groupBox2.Controls.Add(this.txtkvtype);
             this.groupBox2.Controls.Add(this.labelkv);
@@ -517,9 +517,9 @@
             // 
             // btnConsoleId
             // 
-            this.btnConsoleId.Location = new System.Drawing.Point(215, 78);
+            this.btnConsoleId.Location = new System.Drawing.Point(216, 78);
             this.btnConsoleId.Name = "btnConsoleId";
-            this.btnConsoleId.Size = new System.Drawing.Size(85, 22);
+            this.btnConsoleId.Size = new System.Drawing.Size(101, 22);
             this.btnConsoleId.TabIndex = 26;
             this.btnConsoleId.Text = "View: Native";
             this.btnConsoleId.UseVisualStyleBackColor = true;
@@ -530,7 +530,7 @@
             this.txtconsole.Location = new System.Drawing.Point(80, 15);
             this.txtconsole.Name = "txtconsole";
             this.txtconsole.ReadOnly = true;
-            this.txtconsole.Size = new System.Drawing.Size(74, 20);
+            this.txtconsole.Size = new System.Drawing.Size(79, 20);
             this.txtconsole.TabIndex = 71;
             this.txtconsole.TabStop = false;
             this.txtconsole.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -538,7 +538,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 18);
+            this.label2.Location = new System.Drawing.Point(33, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 70;
@@ -547,7 +547,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 242);
+            this.label1.Location = new System.Drawing.Point(22, 242);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 69;
@@ -562,20 +562,20 @@
             this.textMFRdate.TabIndex = 68;
             this.textMFRdate.TabStop = false;
             // 
-            // btnAdvanced
+            // btnHexView
             // 
-            this.btnAdvanced.Location = new System.Drawing.Point(252, 14);
-            this.btnAdvanced.Name = "btnAdvanced";
-            this.btnAdvanced.Size = new System.Drawing.Size(65, 41);
-            this.btnAdvanced.TabIndex = 25;
-            this.btnAdvanced.Text = "Advanced View";
-            this.btnAdvanced.UseVisualStyleBackColor = true;
-            this.btnAdvanced.Click += new System.EventHandler(this.btnAdvanced_Click);
+            this.btnHexView.Location = new System.Drawing.Point(216, 14);
+            this.btnHexView.Name = "btnHexView";
+            this.btnHexView.Size = new System.Drawing.Size(101, 22);
+            this.btnHexView.TabIndex = 25;
+            this.btnHexView.Text = "KV Hex View";
+            this.btnHexView.UseVisualStyleBackColor = true;
+            this.btnHexView.Click += new System.EventHandler(this.btnHexView_Click);
             // 
             // lblfcrt
             // 
             this.lblfcrt.AutoSize = true;
-            this.lblfcrt.Location = new System.Drawing.Point(126, 50);
+            this.lblfcrt.Location = new System.Drawing.Point(132, 50);
             this.lblfcrt.Name = "lblfcrt";
             this.lblfcrt.Size = new System.Drawing.Size(81, 13);
             this.lblfcrt.TabIndex = 66;
@@ -594,7 +594,7 @@
             // labelkv
             // 
             this.labelkv.AutoSize = true;
-            this.labelkv.Location = new System.Drawing.Point(26, 50);
+            this.labelkv.Location = new System.Drawing.Point(30, 50);
             this.labelkv.Name = "labelkv";
             this.labelkv.Size = new System.Drawing.Size(48, 13);
             this.labelkv.TabIndex = 41;
@@ -612,7 +612,7 @@
             // labelregion
             // 
             this.labelregion.AutoSize = true;
-            this.labelregion.Location = new System.Drawing.Point(33, 146);
+            this.labelregion.Location = new System.Drawing.Point(37, 146);
             this.labelregion.Name = "labelregion";
             this.labelregion.Size = new System.Drawing.Size(41, 13);
             this.labelregion.TabIndex = 39;
@@ -630,7 +630,7 @@
             // labelconsole
             // 
             this.labelconsole.AutoSize = true;
-            this.labelconsole.Location = new System.Drawing.Point(15, 82);
+            this.labelconsole.Location = new System.Drawing.Point(19, 82);
             this.labelconsole.Name = "labelconsole";
             this.labelconsole.Size = new System.Drawing.Size(59, 13);
             this.labelconsole.TabIndex = 37;
@@ -657,7 +657,7 @@
             // labelserial
             // 
             this.labelserial.AutoSize = true;
-            this.labelserial.Location = new System.Drawing.Point(41, 114);
+            this.labelserial.Location = new System.Drawing.Point(45, 114);
             this.labelserial.Name = "labelserial";
             this.labelserial.Size = new System.Drawing.Size(33, 13);
             this.labelserial.TabIndex = 30;
@@ -675,7 +675,7 @@
             // labelosig
             // 
             this.labelosig.AutoSize = true;
-            this.labelosig.Location = new System.Drawing.Point(41, 178);
+            this.labelosig.Location = new System.Drawing.Point(45, 178);
             this.labelosig.Name = "labelosig";
             this.labelosig.Size = new System.Drawing.Size(33, 13);
             this.labelosig.TabIndex = 31;
@@ -684,21 +684,21 @@
             // labeldvdkey
             // 
             this.labeldvdkey.AutoSize = true;
-            this.labeldvdkey.Location = new System.Drawing.Point(23, 210);
+            this.labeldvdkey.Location = new System.Drawing.Point(27, 210);
             this.labeldvdkey.Name = "labeldvdkey";
             this.labeldvdkey.Size = new System.Drawing.Size(51, 13);
             this.labeldvdkey.TabIndex = 32;
             this.labeldvdkey.Text = "DVD Key";
             // 
-            // tabPage3
+            // tabPageBadBlocks
             // 
-            this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage3.Controls.Add(this.txtBadBlocks);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(335, 273);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Bad Blocks";
+            this.tabPageBadBlocks.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageBadBlocks.Controls.Add(this.txtBadBlocks);
+            this.tabPageBadBlocks.Location = new System.Drawing.Point(4, 22);
+            this.tabPageBadBlocks.Name = "tabPageBadBlocks";
+            this.tabPageBadBlocks.Size = new System.Drawing.Size(335, 273);
+            this.tabPageBadBlocks.TabIndex = 2;
+            this.tabPageBadBlocks.Text = "Bad Blocks";
             // 
             // txtBadBlocks
             // 
@@ -711,6 +711,7 @@
             this.txtBadBlocks.Size = new System.Drawing.Size(335, 273);
             this.txtBadBlocks.TabIndex = 0;
             this.txtBadBlocks.TabStop = false;
+            this.txtBadBlocks.Text = "No Nand Loaded";
             // 
             // NandInfo
             // 
@@ -724,14 +725,14 @@
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragEnter);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabPageNand.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.tabPageKV.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabPageBadBlocks.ResumeLayout(false);
+            this.tabPageBadBlocks.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -739,7 +740,7 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPageNand;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxpd_cb;
         private System.Windows.Forms.Label labelpd_cb;
@@ -769,7 +770,7 @@
         private System.Windows.Forms.TextBox textBox7BL_p0;
         private System.Windows.Forms.Label label7bl_p0;
         private System.Windows.Forms.Label label2bl;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageKV;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblfcrt;
         private System.Windows.Forms.TextBox txtkvtype;
@@ -784,9 +785,9 @@
         private System.Windows.Forms.TextBox txtSerial;
         private System.Windows.Forms.Label labelosig;
         private System.Windows.Forms.Label labeldvdkey;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPageBadBlocks;
         private System.Windows.Forms.TextBox txtBadBlocks;
-        private System.Windows.Forms.Button btnAdvanced;
+        private System.Windows.Forms.Button btnHexView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textMFRdate;
         private System.Windows.Forms.Label label2bla;

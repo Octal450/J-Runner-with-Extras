@@ -168,7 +168,7 @@
             this.tabXeBuild.Padding = new System.Windows.Forms.Padding(3);
             this.tabXeBuild.Size = new System.Drawing.Size(323, 110);
             this.tabXeBuild.TabIndex = 0;
-            this.tabXeBuild.Text = "XeBuild";
+            this.tabXeBuild.Text = "Home";
             // 
             // Rgh3Label2
             // 
