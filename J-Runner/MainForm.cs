@@ -2595,7 +2595,7 @@ namespace JRunner
                 {
                     Console.WriteLine("Copying Files Into Place...");
 
-                    if (File.Exists(variables.xePath + "nanddump.bin")) File.Delete(variables.xePath + "nanddump.bin"); // Just in case
+                    if (File.Exists(variables.xepath + "nanddump.bin")) File.Delete(variables.xepath + "nanddump.bin"); // Just in case
 
                     // Copy KV
                     if (kvPath == "donor")
@@ -2604,34 +2604,34 @@ namespace JRunner
                         if (con.Contains("Trinity") || con.Contains("Corona")) kv = "slim_nofcrt";
                         else if (con.Contains("Xenon")) kv = "phat_t1";
                         else kv = "phat_t2";
-                        File.Copy(Path.Combine(variables.donorPath, kv + ".bin"), variables.xePath + "KV.bin", true);
+                        File.Copy(Path.Combine(variables.donorPath, kv + ".bin"), variables.xepath + "KV.bin", true);
                     }
-                    else File.Copy(kvPath, variables.xePath + "KV.bin", true);
+                    else File.Copy(kvPath, variables.xepath + "KV.bin", true);
                     Console.WriteLine("Copied KV.bin");
 
                     // Copy FCRT and set nofcrt if needed
                     if (fcrtPath != "unneeded")
                     {
-                        if (fcrtPath == "donor") File.Copy(Path.Combine(variables.donorPath, "fcrt.bin"), variables.xePath + "fcrt.bin", true);
-                        else File.Copy(fcrtPath, variables.xePath + "fcrt.bin", true);
+                        if (fcrtPath == "donor") File.Copy(Path.Combine(variables.donorPath, "fcrt.bin"), variables.xepath + "fcrt.bin", true);
+                        else File.Copy(fcrtPath, variables.xepath + "fcrt.bin", true);
                         xPanel.setNoFcrtChecked(nofcrt);
                         Console.WriteLine("Copied fcrt.bin");
                     }
                     else
                     {
-                        if (File.Exists(variables.xePath + "fcrt.bin")) File.Delete(variables.xePath + "fcrt.bin");
+                        if (File.Exists(variables.xepath + "fcrt.bin")) File.Delete(variables.xepath + "fcrt.bin");
                         xPanel.setNoFcrtChecked(false);
                     }
 
                     // Copy SMC - only needed for RGH3
                     if ((hack == "Glitch2" || hack == "Glitch2m") && smc == "RGH3")
                     {
-                        if (con.Contains("Corona")) File.Copy(variables.xePath + "CORONA_CLEAN.bin", variables.xePath + "SMC.bin", true);
-                        else if (con.Contains("Trinity")) File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
-                        else if (con.Contains("Jasper")) File.Copy(variables.xePath + "JASPER_CLEAN.bin", variables.xePath + "SMC.bin", true);
-                        else if (con.Contains("Falcon")) File.Copy(variables.xePath + "FALCON_CLEAN.bin", variables.xePath + "SMC.bin", true);
-                        else if (con.Contains("Zephyr")) File.Copy(variables.xePath + "ZEPHYR_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
-                        else if (con.Contains("Xenon")) File.Copy(variables.xePath + "XENON_CLEAN.bin", variables.xePath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        if (con.Contains("Corona")) File.Copy(variables.xepath + "CORONA_CLEAN.bin", variables.xepath + "SMC.bin", true);
+                        else if (con.Contains("Trinity")) File.Copy(variables.xepath + "TRINITY_CLEAN.bin", variables.xepath + "SMC.bin", true);
+                        else if (con.Contains("Jasper")) File.Copy(variables.xepath + "JASPER_CLEAN.bin", variables.xepath + "SMC.bin", true);
+                        else if (con.Contains("Falcon")) File.Copy(variables.xepath + "FALCON_CLEAN.bin", variables.xepath + "SMC.bin", true);
+                        else if (con.Contains("Zephyr")) File.Copy(variables.xepath + "ZEPHYR_CLEAN.bin", variables.xepath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        else if (con.Contains("Xenon")) File.Copy(variables.xepath + "XENON_CLEAN.bin", variables.xepath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
                         Console.WriteLine("Copied SMC.bin");
                     }
 
@@ -2646,9 +2646,9 @@ namespace JRunner
                         else if (con.Contains("Trinity")) smcConfig = "Trinity";
                         else smcConfig = con;
 
-                        File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xePath + "smc_config.bin", true);
+                        File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xepath + "smc_config.bin", true);
                     }
-                    else File.Copy(smcConfPath, variables.xePath + "smc_config.bin", true);
+                    else File.Copy(smcConfPath, variables.xepath + "smc_config.bin", true);
                     Console.WriteLine("Copied smc_config.bin");
 
                     // Launch XeBuild
@@ -3481,14 +3481,19 @@ namespace JRunner
             Process.Start(getCurrentWorkingFolder());
         }
 
-        private void showRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void showDataFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            Process.Start(variables.xepath);
         }
 
         private void showOutputFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(variables.outfolder);
+        }
+
+        private void showRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
         }
 
         void btnReadClick()
@@ -4456,7 +4461,7 @@ namespace JRunner
                     switch (name)
                     {
                         case "XeBuild":
-                            string xmd5 = Oper.GetMD5HashFromFile(variables.update_path + "xeBuild.exe").ToUpper();
+                            string xmd5 = Oper.GetMD5HashFromFile(variables.updatepath + "xeBuild.exe").ToUpper();
 
                             if (variables.xebuilds.ContainsKey(xmd5.ToUpper()))
                             {
@@ -4503,7 +4508,7 @@ namespace JRunner
                             variables.numReads = ivalue;
                             break;
                         case "Dashlaunch":
-                            string dlmd5 = Oper.GetMD5HashFromFile(variables.update_path + "launch.xex").ToUpper();
+                            string dlmd5 = Oper.GetMD5HashFromFile(variables.updatepath + "launch.xex").ToUpper();
 
                             if (variables.dls.ContainsKey(dlmd5.ToUpper()))
                             {

@@ -163,6 +163,7 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showDataFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -438,10 +439,11 @@ namespace JRunner
             // showWorkingFolderMenu
             // 
             this.showWorkingFolderMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showRootFolderToolStripMenuItem,
-            this.showOutputFolderToolStripMenuItem});
+            this.showDataFolderToolStripMenuItem,
+            this.showOutputFolderToolStripMenuItem,
+            this.showRootFolderToolStripMenuItem});
             this.showWorkingFolderMenu.Name = "contextMenuStrip1";
-            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 48);
+            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 92);
             // 
             // showRootFolderToolStripMenuItem
             // 
@@ -1301,6 +1303,13 @@ namespace JRunner
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // showDataFolderToolStripMenuItem
+            // 
+            this.showDataFolderToolStripMenuItem.Name = "showDataFolderToolStripMenuItem";
+            this.showDataFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showDataFolderToolStripMenuItem.Text = "Show Data Folder";
+            this.showDataFolderToolStripMenuItem.Click += new System.EventHandler(this.showDataFolderToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1485,5 +1494,6 @@ namespace JRunner
         private ToolStripMenuItem autoBackupNowToolStripMenuItem;
         private ToolStripMenuItem showLastBackupToolStripMenuItem;
         private ToolStripMenuItem kVViewerToolStripMenuItem;
+        private ToolStripMenuItem showDataFolderToolStripMenuItem;
     }
 }

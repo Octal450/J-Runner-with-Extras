@@ -80,9 +80,9 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.2.0 r2 Beta";
-        public static string build = "3201." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
-        public const string staticversion = "3.2.0.1";
+        public static string version = "3.2.x Beta";
+        public static string build = "3210." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
+        public const string staticversion = "3.2.1.0";
         public static int revision = 26;
         public static Windows currentOS = Windows.Unknown;
         public static bool iswriting;
@@ -279,10 +279,10 @@ namespace JRunner
         }
         public static consoles ctype = ctypes[0];
         public static hacktypes ttyp = hacktypes.retail;
-        public static string xePath = (Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\xeBuild\data\");
-        public static string update_path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"xeBuild\");
+        public static string xepath = (Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\xeBuild\data\");
+        public static string updatepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"xeBuild\");
         public static string launchpath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"xeBuild");
-        public static string donorPath = Path.Combine(variables.update_path, "Donor Files");
+        public static string donorPath = Path.Combine(variables.updatepath, "Donor Files");
         public static string xefolder = "";
         public static string FindFolder = "";
         public static bool rgh2 = false, xefinished = false;

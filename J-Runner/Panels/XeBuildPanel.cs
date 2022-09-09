@@ -365,8 +365,8 @@ namespace JRunner.Panels
                 return;
             }
 
-            if (variables.debugMode) Console.WriteLine(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_file.ini"));
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_glitch2.ini")))
+            if (variables.debugMode) Console.WriteLine(Path.Combine(variables.updatepath, comboDash.SelectedValue + "\\_file.ini"));
+            if (!File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + "\\_glitch2.ini")))
             {
                 rbtnGlitch2.Enabled = rbtnGlitch2.Checked = false;
             }
@@ -375,7 +375,7 @@ namespace JRunner.Panels
                 checkGlitch2(variables.boardtype);
             }
 
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_glitch2m.ini")))
+            if (!File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + "\\_glitch2m.ini")))
             {
                 rbtnGlitch2m.Enabled = rbtnGlitch2m.Checked = false;
             }
@@ -384,7 +384,7 @@ namespace JRunner.Panels
                 checkGlitch2m(variables.boardtype);
             }
 
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_glitch.ini")))
+            if (!File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + "\\_glitch.ini")))
             {
                 rbtnGlitch.Enabled = rbtnGlitch.Checked = false;
             }
@@ -393,7 +393,7 @@ namespace JRunner.Panels
                 checkGlitch(variables.boardtype);
             }
 
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_jtag.ini")))
+            if (!File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + "\\_jtag.ini")))
             {
                 rbtnJtag.Enabled = rbtnJtag.Checked = false;
             }
@@ -402,7 +402,7 @@ namespace JRunner.Panels
                 checkJtag(variables.boardtype);
             }
 
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_retail.ini")))
+            if (!File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + "\\_retail.ini")))
             {
                 rbtnRetail.Checked = rbtnRetail.Enabled = false;
             }
@@ -410,7 +410,7 @@ namespace JRunner.Panels
             {
                 rbtnRetail.Enabled = true;
             }
-            if (!File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + "\\_devgl.ini")))
+            if (!File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + "\\_devgl.ini")))
             {
                 rbtnDevGL.Enabled = rbtnDevGL.Checked = false;
             }
@@ -503,14 +503,14 @@ namespace JRunner.Panels
 
         private void checkXLDrive()
         {
-            if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\bin\xl_usb.bin")))
+            if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\xl_usb.bin")))
             {
                 if (rbtnRetail.Checked) chkXLUsb.Checked = chkXLUsb.Enabled = false;
                 else chkXLUsb.Enabled = true;
             }
             else chkXLUsb.Checked = chkXLUsb.Enabled = false;
 
-            if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\bin\xl_hdd.bin")))
+            if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\xl_hdd.bin")))
             {
                 if (rbtnRetail.Checked) chkXLHdd.Checked = chkXLHdd.Enabled = false;
                 else chkXLHdd.Enabled = true;
@@ -989,14 +989,14 @@ namespace JRunner.Panels
 
         private void btnAvatar_Click(object sender, EventArgs e)
         {
-            if (variables.debugMode) Console.WriteLine(Path.Combine(variables.update_path, comboDash.Text + @"\$systemupdate"));
-            if (Directory.Exists(Path.Combine(variables.update_path, comboDash.Text + @"\$systemupdate")))
+            if (variables.debugMode) Console.WriteLine(Path.Combine(variables.updatepath, comboDash.Text + @"\$systemupdate"));
+            if (Directory.Exists(Path.Combine(variables.updatepath, comboDash.Text + @"\$systemupdate")))
             {
                 Console.WriteLine("Starting, please wait!");
-                string upPath = Path.Combine(variables.update_path, comboDash.Text, @"\$systemupdate");
+                string upPath = Path.Combine(variables.updatepath, comboDash.Text, @"\$systemupdate");
                 //Path.Combine(upPath, @"\$systemupdate");
                 // Console.WriteLine(Path.Combine(variables.update_path, comboDash.Text + @"\$systemupdate"));
-                ThreadStart starter = delegate { xe_compatibilityAvatar(Path.Combine(variables.update_path, (comboDash.Text)), "-e "); };
+                ThreadStart starter = delegate { xe_compatibilityAvatar(Path.Combine(variables.updatepath, (comboDash.Text)), "-e "); };
                 new Thread(starter).Start();
             }
             else
@@ -1378,8 +1378,8 @@ namespace JRunner.Panels
 
         public void copyfiles(string cpukey = "")
         {
-            string targetkey = System.IO.Path.Combine(variables.xePath, variables.cpukeypath);
-            string targetnand = System.IO.Path.Combine(variables.xePath, variables.nanddump);
+            string targetkey = System.IO.Path.Combine(variables.xepath, variables.cpukeypath);
+            string targetnand = System.IO.Path.Combine(variables.xepath, variables.nanddump);
             if (cpukey.Length > 0) File.WriteAllText(targetkey, cpukey);
             if (string.IsNullOrEmpty(variables.filename1)) return;
             //
@@ -1417,20 +1417,20 @@ namespace JRunner.Panels
         }
         private void delfiles()
         {
-            if (File.Exists(variables.xePath + variables.nanddump))
+            if (File.Exists(variables.xepath + variables.nanddump))
             {
                 try
                 {
-                    File.Delete(variables.xePath + variables.nanddump);
-                    if (variables.debugMode) Console.WriteLine("Deleted {0}", variables.xePath + variables.nanddump);
+                    File.Delete(variables.xepath + variables.nanddump);
+                    if (variables.debugMode) Console.WriteLine("Deleted {0}", variables.xepath + variables.nanddump);
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-            if (File.Exists(variables.xePath + variables.cpukeypath))
+            if (File.Exists(variables.xepath + variables.cpukeypath))
             {
                 try
-                { File.Delete(variables.xePath + variables.cpukeypath); if (variables.debugMode) Console.WriteLine("Deleted {0}", variables.xePath + variables.cpukeypath); }
+                { File.Delete(variables.xepath + variables.cpukeypath); if (variables.debugMode) Console.WriteLine("Deleted {0}", variables.xepath + variables.cpukeypath); }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
@@ -1444,59 +1444,59 @@ namespace JRunner.Panels
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-            if (File.Exists(Path.Combine(variables.xePath, "SMC.bin")) && (variables.copiedSMC || variables.fullDataClean)) // Only Delete SMCs it puts there
+            if (File.Exists(Path.Combine(variables.xepath, "SMC.bin")) && (variables.copiedSMC || variables.fullDataClean)) // Only Delete SMCs it puts there
             {
                 try
                 {
-                    File.Delete(Path.Combine(variables.xePath, "SMC.bin"));
+                    File.Delete(Path.Combine(variables.xepath, "SMC.bin"));
                     if (variables.debugMode) Console.WriteLine("Deleted SMC.bin");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-            if (File.Exists(Path.Combine(variables.xePath, "KV.bin")) && variables.fullDataClean)
+            if (File.Exists(Path.Combine(variables.xepath, "KV.bin")) && variables.fullDataClean)
             {
                 try
                 {
-                    File.Delete(Path.Combine(variables.xePath, "KV.bin"));
+                    File.Delete(Path.Combine(variables.xepath, "KV.bin"));
                     if (variables.debugMode) Console.WriteLine("Deleted KV.bin");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-            if (File.Exists(Path.Combine(variables.xePath, "fcrt.bin")) && variables.fullDataClean)
+            if (File.Exists(Path.Combine(variables.xepath, "fcrt.bin")) && variables.fullDataClean)
             {
                 try
                 {
-                    File.Delete(Path.Combine(variables.xePath, "fcrt.bin"));
+                    File.Delete(Path.Combine(variables.xepath, "fcrt.bin"));
                     if (variables.debugMode) Console.WriteLine("Deleted fcrt.bin");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-            if (File.Exists(Path.Combine(variables.xePath, "smc_config.bin")) && variables.fullDataClean)
+            if (File.Exists(Path.Combine(variables.xepath, "smc_config.bin")) && variables.fullDataClean)
             {
                 try
                 {
-                    File.Delete(Path.Combine(variables.xePath, "smc_config.bin"));
+                    File.Delete(Path.Combine(variables.xepath, "smc_config.bin"));
                     if (variables.debugMode) Console.WriteLine("Deleted KV.bin");
                 }
                 catch (System.IO.IOException e)
                 { MessageBox.Show(e.Message); return; }
             }
-            if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex")) && variables.copiedXLDrive)
+            if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\xam.xex")) && variables.copiedXLDrive)
             {
                 try
                 {
-                    File.Delete(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex"));
+                    File.Delete(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\xam.xex"));
                     if (variables.debugMode) Console.WriteLine("Deleted XL Drive xam.xex");
-                    if (File.Exists(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex.tmp")))
+                    if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\xam.xex.tmp")))
                     {
-                        File.Move(Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex.tmp"), Path.Combine(variables.update_path, comboDash.SelectedValue + @"\xam.xex"));
+                        File.Move(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\xam.xex.tmp"), Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\xam.xex"));
                     }
                     if (variables.debugMode) Console.WriteLine("Restored non XL Drive xam.xex");
 
-                    string buildIni = Path.Combine(variables.update_path, comboDash.SelectedValue + @"\_" + variables.ttyp.ToString() + ".ini");
+                    string buildIni = Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\_" + variables.ttyp.ToString() + ".ini");
                     if (File.Exists(buildIni + ".tmp"))
                     {
                         File.Delete(buildIni);

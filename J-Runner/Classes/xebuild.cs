@@ -97,32 +97,32 @@ namespace JRunner.Classes
 
         void copySMC()
         {
-            if (_ttype == variables.hacktypes.jtag && !File.Exists(Path.Combine(variables.xePath, "SMC.bin")))
+            if (_ttype == variables.hacktypes.jtag && !File.Exists(Path.Combine(variables.xepath, "SMC.bin")))
             {
                 if (_ctype.ID == 2)
                 {
-                    if (_audclamp) File.Copy(variables.xePath + "SMCaud.bin", variables.xePath + "SMC.bin", true);
-                    else File.Copy(variables.xePath + "SMCfzj.bin", variables.xePath + "SMC.bin", true);
+                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
+                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
 
                 }
                 else if (_ctype.ID == 3)
                 {
-                    if (_audclamp) File.Copy(variables.xePath + "SMCaud.bin", variables.xePath + "SMC.bin", true);
-                    else File.Copy(variables.xePath + "SMCfzj.bin", variables.xePath + "SMC.bin", true);
+                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
+                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 8)
                 {
-                    File.Copy(variables.xePath + "SMCx.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "SMCx.bin", variables.xepath + "SMC.bin", true);
                 }
                 else
                 {
-                    if (_audclamp) File.Copy(variables.xePath + "SMCaud.bin", variables.xePath + "SMC.bin", true);
-                    else File.Copy(variables.xePath + "SMCfzj.bin", variables.xePath + "SMC.bin", true);
+                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
+                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
                 }
 
                 if (_rjtag)
                 {
-                    File.WriteAllBytes(variables.xePath + "SMC.bin", Nand.Nand.patch_SMC((File.ReadAllBytes(variables.xePath + "SMC.bin"))));
+                    File.WriteAllBytes(variables.xepath + "SMC.bin", Nand.Nand.patch_SMC((File.ReadAllBytes(variables.xepath + "SMC.bin"))));
                 }
                 variables.copiedSMC = true;
             }
@@ -130,27 +130,27 @@ namespace JRunner.Classes
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
-                    File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "TRINITY_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 2 || _ctype.ID == 9)
                 {
-                    File.Copy(variables.xePath + "FALCON_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "FALCON_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 3)
                 {
-                    File.Copy(variables.xePath + "ZEPHYR_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "ZEPHYR_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
                 {
-                    File.Copy(variables.xePath + "JASPER_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "JASPER_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 8)
                 {
-                    File.Copy(variables.xePath + "XENON_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "XENON_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 10 || _ctype.ID == 11)
                 {
-                    File.Copy(variables.xePath + "CORONA_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "CORONA_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 variables.copiedSMC = true;
             }
@@ -158,19 +158,19 @@ namespace JRunner.Classes
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
-                    File.Copy(variables.xePath + "TRINITY_CR4.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "TRINITY_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 9)
                 {
-                    File.Copy(variables.xePath + "FALCON_CR4.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "FALCON_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
                 {
-                    File.Copy(variables.xePath + "JASPER_CR4.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "JASPER_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 10 || _ctype.ID == 11)
                 {
-                    File.Copy(variables.xePath + "CORONA_CR4.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "CORONA_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
                 variables.copiedSMC = true;
             }
@@ -178,19 +178,19 @@ namespace JRunner.Classes
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
-                    File.Copy(variables.xePath + "TRINITY_SMC+.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "TRINITY_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 9)
                 {
-                    File.Copy(variables.xePath + "FALCON_SMC+.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "FALCON_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
                 {
-                    File.Copy(variables.xePath + "JASPER_SMC+.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "JASPER_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 10 || _ctype.ID == 11)
                 {
-                    File.Copy(variables.xePath + "CORONA_SMC+.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "CORONA_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
                 variables.copiedSMC = true;
             }
@@ -205,28 +205,28 @@ namespace JRunner.Classes
             {
                 if (_ctype.ID == 2)
                 {
-                    if (_audclamp) File.Copy(variables.xePath + "SMCaud.bin", variables.xePath + "SMC.bin", true);
-                    else File.Copy(variables.xePath + "SMCfzj.bin", variables.xePath + "SMC.bin", true);
+                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
+                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
 
                 }
                 else if (_ctype.ID == 3)
                 {
-                    if (_audclamp) File.Copy(variables.xePath + "SMCaud.bin", variables.xePath + "SMC.bin", true);
-                    else File.Copy(variables.xePath + "SMCfzj.bin", variables.xePath + "SMC.bin", true);
+                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
+                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 8)
                 {
-                    File.Copy(variables.xePath + "SMCx.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "SMCx.bin", variables.xepath + "SMC.bin", true);
                 }
                 else
                 {
-                    if (_audclamp) File.Copy(variables.xePath + "SMCaud.bin", variables.xePath + "SMC.bin", true);
-                    else File.Copy(variables.xePath + "SMCfzj.bin", variables.xePath + "SMC.bin", true);
+                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
+                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
                 }
 
                 if (_rjtag && _ctype.ID != 8)
                 {
-                    File.WriteAllBytes(variables.xePath + "SMC.bin", Nand.Nand.patch_SMC((File.ReadAllBytes(variables.xePath + "SMC.bin"))));
+                    File.WriteAllBytes(variables.xepath + "SMC.bin", Nand.Nand.patch_SMC((File.ReadAllBytes(variables.xepath + "SMC.bin"))));
                 }
                 variables.copiedSMC = true;
             }
@@ -234,27 +234,27 @@ namespace JRunner.Classes
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
-                    File.Copy(variables.xePath + "TRINITY_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "TRINITY_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 2 || _ctype.ID == 9)
                 {
-                    File.Copy(variables.xePath + "FALCON_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "FALCON_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 3)
                 {
-                    File.Copy(variables.xePath + "ZEPHYR_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "ZEPHYR_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
                 {
-                    File.Copy(variables.xePath + "JASPER_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "JASPER_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 8)
                 {
-                    File.Copy(variables.xePath + "XENON_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "XENON_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 10 || _ctype.ID == 11)
                 {
-                    File.Copy(variables.xePath + "CORONA_CLEAN.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "CORONA_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 variables.copiedSMC = true;
             }
@@ -262,19 +262,19 @@ namespace JRunner.Classes
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
-                    File.Copy(variables.xePath + "TRINITY_CR4.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "TRINITY_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 9)
                 {
-                    File.Copy(variables.xePath + "FALCON_CR4.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "FALCON_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
                 {
-                    File.Copy(variables.xePath + "JASPER_CR4.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "JASPER_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 10 || _ctype.ID == 11)
                 {
-                    File.Copy(variables.xePath + "CORONA_CR4.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "CORONA_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
                 variables.copiedSMC = true;
             }
@@ -282,19 +282,19 @@ namespace JRunner.Classes
             {
                 if (_ctype.ID == 1 || _ctype.ID == 12)
                 {
-                    File.Copy(variables.xePath + "TRINITY_SMC+.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "TRINITY_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 9)
                 {
-                    File.Copy(variables.xePath + "FALCON_SMC+.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "FALCON_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
                 {
-                    File.Copy(variables.xePath + "JASPER_SMC+.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "JASPER_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
                 else if (_ctype.ID == 10 || _ctype.ID == 11)
                 {
-                    File.Copy(variables.xePath + "CORONA_SMC+.bin", variables.xePath + "SMC.bin", true);
+                    File.Copy(variables.xepath + "CORONA_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
                 variables.copiedSMC = true;
             }
