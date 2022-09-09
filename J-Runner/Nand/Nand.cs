@@ -312,7 +312,7 @@ namespace JRunner.Nand
                             byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
                             Array.Reverse(temppd);
                             uf.pd_cb = "0x" + Oper.ByteArrayToString(temppd);
-                            //if (variables.debugme) Console.WriteLine(uf.pd_cb);
+                            if (variables.debugMode) Console.WriteLine("-Pairing Data: " + uf.pd_cb);
                         }
                         else
                         {
@@ -324,9 +324,8 @@ namespace JRunner.Nand
                             byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
                             Array.Reverse(temppd);
                             uf.pd_cb = "0x" + Oper.ByteArrayToString(temppd);
-                            //if (variables.debugme) Console.WriteLine(uf.pd_cb);
+                            if (variables.debugMode) Console.WriteLine("-Pairing Data: " + uf.pd_cb);
                         }
-
                     }
                     else if (id == 4)
                     {

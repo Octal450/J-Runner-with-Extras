@@ -212,7 +212,6 @@
             this.textBoxpd_cb.Size = new System.Drawing.Size(62, 20);
             this.textBoxpd_cb.TabIndex = 65;
             this.textBoxpd_cb.TabStop = false;
-            this.textBoxpd_cb.Visible = false;
             // 
             // labelpd_cb
             // 
@@ -222,11 +221,10 @@
             this.labelpd_cb.Size = new System.Drawing.Size(22, 13);
             this.labelpd_cb.TabIndex = 64;
             this.labelpd_cb.Text = "PD";
-            this.labelpd_cb.Visible = false;
             // 
             // textBoxldv_cb
             // 
-            this.textBoxldv_cb.Location = new System.Drawing.Point(205, 47);
+            this.textBoxldv_cb.Location = new System.Drawing.Point(204, 47);
             this.textBoxldv_cb.Name = "textBoxldv_cb";
             this.textBoxldv_cb.ReadOnly = true;
             this.textBoxldv_cb.Size = new System.Drawing.Size(23, 20);
@@ -238,7 +236,7 @@
             // labelldv_cb
             // 
             this.labelldv_cb.AutoSize = true;
-            this.labelldv_cb.Location = new System.Drawing.Point(175, 50);
+            this.labelldv_cb.Location = new System.Drawing.Point(174, 50);
             this.labelldv_cb.Name = "labelldv_cb";
             this.labelldv_cb.Size = new System.Drawing.Size(28, 13);
             this.labelldv_cb.TabIndex = 62;
@@ -285,7 +283,7 @@
             // 
             // textBoxldv_1
             // 
-            this.textBoxldv_1.Location = new System.Drawing.Point(205, 239);
+            this.textBoxldv_1.Location = new System.Drawing.Point(204, 239);
             this.textBoxldv_1.MaxLength = 2;
             this.textBoxldv_1.Name = "textBoxldv_1";
             this.textBoxldv_1.ReadOnly = true;
@@ -297,7 +295,7 @@
             // labelldv_1
             // 
             this.labelldv_1.AutoSize = true;
-            this.labelldv_1.Location = new System.Drawing.Point(175, 242);
+            this.labelldv_1.Location = new System.Drawing.Point(174, 242);
             this.labelldv_1.Name = "labelldv_1";
             this.labelldv_1.Size = new System.Drawing.Size(28, 13);
             this.labelldv_1.TabIndex = 55;
@@ -305,7 +303,7 @@
             // 
             // textBoxldv_0
             // 
-            this.textBoxldv_0.Location = new System.Drawing.Point(48, 239);
+            this.textBoxldv_0.Location = new System.Drawing.Point(47, 239);
             this.textBoxldv_0.MaxLength = 2;
             this.textBoxldv_0.Name = "textBoxldv_0";
             this.textBoxldv_0.ReadOnly = true;
@@ -317,7 +315,7 @@
             // labelldv_0
             // 
             this.labelldv_0.AutoSize = true;
-            this.labelldv_0.Location = new System.Drawing.Point(18, 242);
+            this.labelldv_0.Location = new System.Drawing.Point(17, 242);
             this.labelldv_0.Name = "labelldv_0";
             this.labelldv_0.Size = new System.Drawing.Size(28, 13);
             this.labelldv_0.TabIndex = 53;
