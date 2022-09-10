@@ -231,7 +231,6 @@
             this.textBoxldv_cb.TabIndex = 63;
             this.textBoxldv_cb.TabStop = false;
             this.textBoxldv_cb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxldv_cb.Visible = false;
             // 
             // labelldv_cb
             // 
@@ -241,7 +240,6 @@
             this.labelldv_cb.Size = new System.Drawing.Size(28, 13);
             this.labelldv_cb.TabIndex = 62;
             this.labelldv_cb.Text = "LDV";
-            this.labelldv_cb.Visible = false;
             // 
             // textBoxpd_1
             // 

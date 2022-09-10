@@ -307,7 +307,7 @@ namespace JRunner.Nand
                             if (string.IsNullOrEmpty(variables.cpukey)) cb_dec = Nand.decrypt_CB_cpukey(CB_B, Nand.decrypt_CB(CB_A), Oper.StringToByteArray("00000000000000000000000000000000")); // It just needs something, doesn't matter that its not valid
                             else cb_dec = Nand.decrypt_CB_cpukey(CB_B, Nand.decrypt_CB(CB_A), Oper.StringToByteArray(variables.cpukey));
                             if (variables.extractfiles) Oper.savefile(cb_dec, "output\\CB_B_dec.bin");
-                            uf.ldv_cb = cb_dec[0x192]; // needs fixing
+                            uf.ldv_cb = cb_dec[0x3B1];
                             if (variables.debugMode) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
                             byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
                             Array.Reverse(temppd);
@@ -319,7 +319,7 @@ namespace JRunner.Nand
                             cb_dec = Nand.decrypt_CB(CB_A);
                             if (variables.extractfiles) Oper.savefile(data, "output\\CB_A.bin");
                             if (variables.extractfiles) Oper.savefile(cb_dec, "output\\CB_A_dec.bin");
-                            uf.ldv_cb = cb_dec[0x192]; // needs fixing
+                            uf.ldv_cb = cb_dec[0x3B1];
                             if (variables.debugMode) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
                             byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
                             Array.Reverse(temppd);
