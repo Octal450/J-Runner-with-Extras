@@ -19,11 +19,8 @@ namespace JRunner.Nand
             private readonly int maxDash;
             public int maxDashVersion { get { return maxDash; } }
 
-            private readonly int minCseq;
-            public int minCsequence { get { return minCseq; } }
-
-            private readonly int maxCseq;
-            public int maxCsequence { get { return maxCseq; } }
+            private readonly int cSeq;
+            public int csequence { get { return cSeq; } }
 
             private readonly variables.hacktypes hack;
             public variables.hacktypes preferredHackType { get { return hack; } }
@@ -31,14 +28,13 @@ namespace JRunner.Nand
             private readonly consoles console;
             public consoles Console { get { return console; } }
 
-            public _nand(int cb, string mobo, int mindash, int maxdash, int mincseq, int maxcseq, variables.hacktypes ht, consoles console)
+            public _nand(int cb, string mobo, int mindash, int maxdash, int cseq, variables.hacktypes ht, consoles console)
             {
                 this.cb = cb;
                 this.mobo = mobo;
                 this.minDash = mindash;
                 this.maxDash = maxdash;
-                this.minCseq = mincseq;
-                this.maxCseq = maxcseq;
+                this.cSeq = cseq;
                 this.hack = ht;
                 this.console = console;
             }
@@ -81,64 +77,80 @@ namespace JRunner.Nand
 
         public static _nand[] Table = new _nand[]
         {
-            new _nand(1888, "Xenon", 4532, 7371, 2, 4, variables.hacktypes.jtag, variables.ctypes[8]),
-            new _nand(1902, "Xenon", 4532, 7371, 2, 4, variables.hacktypes.jtag, variables.ctypes[8]),
-            new _nand(1903, "Xenon", 4532, 7371, 2, 4, variables.hacktypes.jtag, variables.ctypes[8]),
-            new _nand(1920, "Xenon", 4532, 7371, 2, 4, variables.hacktypes.jtag, variables.ctypes[8]),
-            new _nand(1921, "Xenon", 4532, 7371, 2, 4, variables.hacktypes.jtag, variables.ctypes[8]),
-            new _nand(8192, "Xenon", 4532, 7371, 2, 4, variables.hacktypes.jtag, variables.ctypes[8]),
-            new _nand(4540, "Zephyr", 4532, 7371, 4, 5, variables.hacktypes.jtag, variables.ctypes[3]),
-            new _nand(4558, "Zephyr", 4532, 7371, 4, 5, variables.hacktypes.jtag, variables.ctypes[3]),
-            new _nand(4570, "Zephyr", 4532, 7371, 4, 5, variables.hacktypes.jtag, variables.ctypes[3]),
-            new _nand(4580, "Zephyr", 4532, 7371, 4, 5, variables.hacktypes.jtag, variables.ctypes[3]),
-            new _nand(5760, "Falcon", 4532, 7371, 4, 5, variables.hacktypes.jtag, variables.ctypes[2]),
-            new _nand(5761, "Falcon", 4532, 7371, 4, 5, variables.hacktypes.jtag, variables.ctypes[2]),
-            new _nand(5766, "Falcon", 4532, 7371, 4, 5, variables.hacktypes.jtag, variables.ctypes[2]),
-            new _nand(5770, "Falcon", 4532, 7371, 4, 5, variables.hacktypes.jtag, variables.ctypes[2]),
-            new _nand(6712, "Jasper", 4532, 7371, 5, 5, variables.hacktypes.jtag, variables.ctypes[4]),
-            new _nand(6723, "Jasper", 4532, 7371, 5, 5, variables.hacktypes.jtag, variables.ctypes[4]),
-            new _nand(1922, "Xenon", 8498, 14699, 6, 6, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(1923, "Xenon", 8498, 14699, 6, 6, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(1940, "Xenon", 8498, 14699, 6, 6, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(7373, "Xenon", 8498, 14699, 6, 6, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(7375, "Xenon", 8498, 14699, 6, 6, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(4571, "Zephyr", 8498, 14699, 7, 7, variables.hacktypes.glitch, variables.ctypes[3]),
-            new _nand(4572, "Zephyr", 8498, 14699, 7, 7, variables.hacktypes.glitch, variables.ctypes[3]),
-            new _nand(4578, "Zephyr", 8498, 14699, 7, 7, variables.hacktypes.glitch, variables.ctypes[3]),
-            new _nand(4579, "Zephyr", 8498, 14699, 7, 7, variables.hacktypes.glitch, variables.ctypes[3]),
-            new _nand(5771, "Falcon", 8498, 14699, 7, 7, variables.hacktypes.glitch, variables.ctypes[2]),
-            new _nand(6750, "Jasper", 8498, 14699, 7, 7, variables.hacktypes.glitch, variables.ctypes[4]),
-            new _nand(6751, "Jasper", 8498, 14699, 7, 7, variables.hacktypes.glitch, variables.ctypes[4]),
-            new _nand(9188, "Trinity", 8498, 14699, 1, 1, variables.hacktypes.glitch2, variables.ctypes[1]),
-            new _nand(10918, "Corona", 8498, 14699, 1, 1, variables.hacktypes.glitch2, variables.ctypes[10]),
-            new _nand(13121, "Corona", 8498, 14699, 1, 1, variables.hacktypes.glitch2, variables.ctypes[10]),
-            new _nand(1941, "Xenon", 14717, 14719, 9, 9, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(7377, "Xenon", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(4575, "Zephyr", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[3]),
-            new _nand(4576, "Zephyr", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[3]),
-            new _nand(4577, "Zephyr", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[3]),
-            new _nand(5772, "Falcon", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[2]),
-            new _nand(5773, "Falcon", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[2]),
-            new _nand(6752, "Jasper", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[4]),
-            new _nand(6753, "Jasper", 14717, 14719, 10, 10, variables.hacktypes.glitch2, variables.ctypes[4]),
-            new _nand(9230, "Trinity", 14717, 14719, 3, 3, variables.hacktypes.glitch2, variables.ctypes[1]),
-            new _nand(13180, "Corona", 14717, 14719, 3, 3, variables.hacktypes.glitch2, variables.ctypes[10]),
-            new _nand(1928, "Xenon", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(1942, "Xenon", 15572, variables.latest_dashboard, 11, 11, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(7378, "Xenon", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[8]),
-            new _nand(4562, "Zephyr", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[3]),
-            new _nand(4569, "Zephyr", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[3]),
-            new _nand(4574, "Zephyr", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[3]),
-            new _nand(5774, "Falcon", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[2]),
-            new _nand(6754, "Jasper", 15572, variables.latest_dashboard, 12, 12, variables.hacktypes.glitch2, variables.ctypes[4]),
-            new _nand(10375, "Jasper", 4532, variables.latest_dashboard, 0, 0, variables.hacktypes.devgl, variables.ctypes[4]),
-            new _nand(14352, "Jasper", 4532, variables.latest_dashboard, 0, 0, variables.hacktypes.devgl, variables.ctypes[4]),
-            new _nand(9231, "Trinity", 15572, variables.latest_dashboard, 4, 4, variables.hacktypes.glitch2, variables.ctypes[1]),
-            new _nand(10375, "Trinity", 8498, variables.latest_dashboard, 0, 0, variables.hacktypes.devgl, variables.ctypes[1]),
-            new _nand(14352, "Trinity", 8498, variables.latest_dashboard, 0, 0, variables.hacktypes.devgl, variables.ctypes[1]),
-            new _nand(13181, "Corona", 15572, variables.latest_dashboard, 4, 4, variables.hacktypes.glitch2, variables.ctypes[10]),
-            new _nand(13182, "Corona", 15572, variables.latest_dashboard, 4, 4, variables.hacktypes.glitch2, variables.ctypes[10]),
-            new _nand(14352, "Corona", 8498, variables.latest_dashboard, 0, 0, variables.hacktypes.devgl, variables.ctypes[10])
+            // CBs
+            new _nand(1888, "Xenon", 4532, 7371, 2, variables.hacktypes.jtag, variables.ctypes[8]),
+            new _nand(1902, "Xenon", 4532, 7371, 2, variables.hacktypes.jtag, variables.ctypes[8]),
+            new _nand(1903, "Xenon", 4532, 7371, 2, variables.hacktypes.jtag, variables.ctypes[8]),
+            new _nand(1920, "Xenon", 4532, 7371, 4, variables.hacktypes.jtag, variables.ctypes[8]),
+            new _nand(1921, "Xenon", 4532, 7371, 5, variables.hacktypes.jtag, variables.ctypes[8]),
+            new _nand(8192, "Xenon", 4532, 7371, 5, variables.hacktypes.jtag, variables.ctypes[8]),
+            new _nand(4540, "Zephyr", 4532, 7371, 3, variables.hacktypes.jtag, variables.ctypes[3]),
+            new _nand(4558, "Zephyr", 4532, 7371, 4, variables.hacktypes.jtag, variables.ctypes[3]),
+            new _nand(4570, "Zephyr", 4532, 7371, 4, variables.hacktypes.jtag, variables.ctypes[3]),
+            new _nand(4580, "Zephyr", 4532, 7371, 5, variables.hacktypes.jtag, variables.ctypes[3]),
+            new _nand(5760, "Falcon", 4532, 7371, 4, variables.hacktypes.jtag, variables.ctypes[2]),
+            new _nand(5761, "Falcon", 4532, 7371, 4, variables.hacktypes.jtag, variables.ctypes[2]),
+            new _nand(5766, "Falcon", 4532, 7371, 5, variables.hacktypes.jtag, variables.ctypes[2]),
+            new _nand(5770, "Falcon", 4532, 7371, 5, variables.hacktypes.jtag, variables.ctypes[2]),
+            new _nand(6712, "Jasper", 4532, 7371, 5, variables.hacktypes.jtag, variables.ctypes[4]),
+            new _nand(6723, "Jasper", 4532, 7371, 5, variables.hacktypes.jtag, variables.ctypes[4]),
+            new _nand(1922, "Xenon", 8498, 14699, 6, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(1940, "Xenon", 8498, 14699, 6, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(1923, "Xenon", 8498, 14699, 7, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(7373, "Xenon Elpis", 8498, 14699, 7, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(7375, "Xenon Elpis", 8498, 14699, 7, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(4571, "Zephyr", 8498, 14699, 6, variables.hacktypes.glitch, variables.ctypes[3]),
+            new _nand(4579, "Zephyr", 8498, 14699, 6, variables.hacktypes.glitch, variables.ctypes[3]),
+            new _nand(4572, "Zephyr", 8498, 14699, 7, variables.hacktypes.glitch, variables.ctypes[3]),
+            new _nand(4578, "Zephyr", 8498, 14699, 7, variables.hacktypes.glitch, variables.ctypes[3]),
+            new _nand(5771, "Falcon", 8498, 14699, 7, variables.hacktypes.glitch, variables.ctypes[2]),
+            new _nand(6750, "Jasper", 8498, 14699, 7, variables.hacktypes.glitch, variables.ctypes[4]),
+            new _nand(6751, "Jasper", 8498, 14699, 7, variables.hacktypes.glitch, variables.ctypes[4]),
+            new _nand(9188, "Trinity", 8498, 14699, 1, variables.hacktypes.glitch2, variables.ctypes[1]),
+            new _nand(10918, "Corona", 8498, 14699, 1, variables.hacktypes.glitch2, variables.ctypes[10]),
+            new _nand(13121, "Corona", 8498, 14699, 2, variables.hacktypes.glitch2, variables.ctypes[10]),
+            new _nand(1925, "Xenon", 14717, 14719, 9, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(1941, "Xenon", 14717, 14719, 9, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(1926, "Xenon", 14717, 14719, 10, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(7377, "Xenon Elpis", 14717, 14719, 10, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(4577, "Zephyr", 14717, 14719, 8, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(4559, "Zephyr", 14717, 14719, 9, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(4576, "Zephyr", 14717, 14719, 9, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(4560, "Zephyr", 14717, 14719, 10, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(4575, "Zephyr", 14717, 14719, 10, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(5772, "Falcon", 14717, 14719, 8, variables.hacktypes.glitch2, variables.ctypes[2]),
+            new _nand(5773, "Falcon", 14717, 14719, 10, variables.hacktypes.glitch2, variables.ctypes[2]),
+            new _nand(6752, "Jasper", 14717, 14719, 8, variables.hacktypes.glitch2, variables.ctypes[4]),
+            new _nand(6753, "Jasper", 14717, 14719, 10, variables.hacktypes.glitch2, variables.ctypes[4]),
+            new _nand(9230, "Trinity", 14717, 14719, 3, variables.hacktypes.glitch2, variables.ctypes[1]),
+            new _nand(13180, "Corona", 14717, 14719, 3, variables.hacktypes.glitch2, variables.ctypes[10]),
+            new _nand(1927, "Xenon", 15572, variables.latest_dashboard, 11, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(1942, "Xenon", 15572, variables.latest_dashboard, 11, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(1928, "Xenon", 15572, variables.latest_dashboard, 12, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(7378, "Xenon Elpis", 15572, variables.latest_dashboard, 12, variables.hacktypes.glitch2, variables.ctypes[8]),
+            new _nand(4561, "Zephyr", 15572, variables.latest_dashboard, 11, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(4574, "Zephyr", 15572, variables.latest_dashboard, 11, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(4562, "Zephyr", 15572, variables.latest_dashboard, 12, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(4569, "Zephyr", 15572, variables.latest_dashboard, 12, variables.hacktypes.glitch2, variables.ctypes[3]),
+            new _nand(5774, "Falcon", 15572, variables.latest_dashboard, 12, variables.hacktypes.glitch2, variables.ctypes[2]),
+            new _nand(6754, "Jasper", 15572, variables.latest_dashboard, 12, variables.hacktypes.glitch2, variables.ctypes[4]),
+            new _nand(9231, "Trinity", 15572, variables.latest_dashboard, 4, variables.hacktypes.glitch2, variables.ctypes[1]),
+            new _nand(13181, "Corona", 15572, variables.latest_dashboard, 4, variables.hacktypes.glitch2, variables.ctypes[10]),
+            new _nand(13182, "Corona", 15572, variables.latest_dashboard, 4, variables.hacktypes.glitch2, variables.ctypes[10]),
+
+            // SBs
+            new _nand(10375, "Xenon", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[8]),
+            new _nand(14352, "Xenon", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[8]),
+            new _nand(10375, "Zephyr", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[3]),
+            new _nand(14352, "Zephyr", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[3]),
+            new _nand(10375, "Falcon", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[2]),
+            new _nand(14352, "Falcon", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[2]),
+            new _nand(10375, "Jasper", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[4]),
+            new _nand(14352, "Jasper", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[4]),
+            new _nand(10375, "Trinity", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[1]),
+            new _nand(14352, "Trinity", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[1]),
+            new _nand(10352, "Corona", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[10]),
+            new _nand(14352, "Corona", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[10])
         };
 
         public static _patch[] patchTable = new _patch[]

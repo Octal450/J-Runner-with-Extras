@@ -22,6 +22,7 @@ namespace JRunner.Nand
             {
                 cbListView.Groups.Add(s, s);
             }
+
             //foreach (consoles c in variables.ctypes)
             //{
             //    if (c.ID == -1 || c.ID == 9 || c.ID == 11 || c.ID == 5 || c.ID == 6 || c.ID == 7) continue;
@@ -36,19 +37,14 @@ namespace JRunner.Nand
 
             foreach (ntable._nand n in ntable.Table)
             {
-                string group = n.Console.Text;
+                if (n.csequence == 0) continue;
+
+                string group = n.MotherBoard;
                 string[] text = new string[4];
-                if (group == "Jasper 16MB") group = "Jasper";
-                if (group == "Trinity 16MB") group = "Trinity";
-                if (group == "Corona 16MB") group = "Corona";
 
                 text[0] = n.CB.ToString();
-                text[1] = n.minDashVersion.ToString();
-                text[2] = n.maxDashVersion.ToString();
-                string cseq = "";
-                if (n.minCsequence == n.maxCsequence) cseq = n.minCsequence.ToString();
-                else cseq = n.minCsequence.ToString() + "-" + n.maxCsequence.ToString();
-                text[3] = cseq;
+                text[1] = n.maxDashVersion.ToString();
+                text[2] = n.csequence.ToString();
 
                 ListViewItem lvi = new ListViewItem(text, cbListView.Groups[group]);
                 litems.Add(lvi);

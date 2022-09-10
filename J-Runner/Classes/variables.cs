@@ -179,7 +179,7 @@ namespace JRunner
             new consoles(12, "trinitybb", "trinity", "Trinity BB", 64, Nandsize.S64, 2),
         };
 
-        public static string[] sortedConsoleNames = { "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
+        public static string[] sortedConsoleNames = { "Xenon", "Xenon Elpis", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
 
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
         {
