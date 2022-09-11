@@ -59,8 +59,9 @@ namespace JRunner
             this.btnNewSession = new System.Windows.Forms.Button();
             this.btnShowWorkingFolder = new UI.MenuButton();
             this.showWorkingFolderMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showRootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showDataFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showOutputFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showRootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRestart = new System.Windows.Forms.Button();
             this.btnBackup = new UI.MenuButton();
             this.backupContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -163,7 +164,8 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showDataFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -443,14 +445,14 @@ namespace JRunner
             this.showOutputFolderToolStripMenuItem,
             this.showRootFolderToolStripMenuItem});
             this.showWorkingFolderMenu.Name = "contextMenuStrip1";
-            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 92);
+            this.showWorkingFolderMenu.Size = new System.Drawing.Size(181, 70);
             // 
-            // showRootFolderToolStripMenuItem
+            // showDataFolderToolStripMenuItem
             // 
-            this.showRootFolderToolStripMenuItem.Name = "showRootFolderToolStripMenuItem";
-            this.showRootFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.showRootFolderToolStripMenuItem.Text = "Show Root Folder";
-            this.showRootFolderToolStripMenuItem.Click += new System.EventHandler(this.showRootFolderToolStripMenuItem_Click);
+            this.showDataFolderToolStripMenuItem.Name = "showDataFolderToolStripMenuItem";
+            this.showDataFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showDataFolderToolStripMenuItem.Text = "Show Data Folder";
+            this.showDataFolderToolStripMenuItem.Click += new System.EventHandler(this.showDataFolderToolStripMenuItem_Click);
             // 
             // showOutputFolderToolStripMenuItem
             // 
@@ -458,6 +460,13 @@ namespace JRunner
             this.showOutputFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showOutputFolderToolStripMenuItem.Text = "Show Output Folder";
             this.showOutputFolderToolStripMenuItem.Click += new System.EventHandler(this.showOutputFolderToolStripMenuItem_Click);
+            // 
+            // showRootFolderToolStripMenuItem
+            // 
+            this.showRootFolderToolStripMenuItem.Name = "showRootFolderToolStripMenuItem";
+            this.showRootFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showRootFolderToolStripMenuItem.Text = "Show Root Folder";
+            this.showRootFolderToolStripMenuItem.Click += new System.EventHandler(this.showRootFolderToolStripMenuItem_Click);
             // 
             // btnRestart
             // 
@@ -750,7 +759,9 @@ namespace JRunner
             this.toolStripMenuItem8,
             this.timingAssistantToolStripMenuItem,
             this.cPUKeyDatabaseToolStripMenuItem,
-            this.cBFuseToolStripMenuItem});
+            this.cBFuseToolStripMenuItem,
+            this.toolStripMenuItem10,
+            this.restoreFilesToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -1303,12 +1314,17 @@ namespace JRunner
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // showDataFolderToolStripMenuItem
+            // restoreFilesToolStripMenuItem
             // 
-            this.showDataFolderToolStripMenuItem.Name = "showDataFolderToolStripMenuItem";
-            this.showDataFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.showDataFolderToolStripMenuItem.Text = "Show Data Folder";
-            this.showDataFolderToolStripMenuItem.Click += new System.EventHandler(this.showDataFolderToolStripMenuItem_Click);
+            this.restoreFilesToolStripMenuItem.Name = "restoreFilesToolStripMenuItem";
+            this.restoreFilesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.restoreFilesToolStripMenuItem.Text = "Restore Files…";
+            this.restoreFilesToolStripMenuItem.Click += new System.EventHandler(this.restoreFilesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(205, 6);
             // 
             // MainForm
             // 
@@ -1495,5 +1511,7 @@ namespace JRunner
         private ToolStripMenuItem showLastBackupToolStripMenuItem;
         private ToolStripMenuItem kVViewerToolStripMenuItem;
         private ToolStripMenuItem showDataFolderToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem10;
+        private ToolStripMenuItem restoreFilesToolStripMenuItem;
     }
 }

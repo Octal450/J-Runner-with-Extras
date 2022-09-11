@@ -1,6 +1,7 @@
 ﻿using Ionic.Zip;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
@@ -114,7 +115,11 @@ namespace JRunner
 
             if (checkStatus == 0)
             {
-                if (variables.revision >= serverRevision) // Up to Date
+                if (Program.runFullUpdate)
+                {
+                    startFull();
+                }
+                else if (variables.revision >= serverRevision) // Up to Date
                 {
                     upToDate = true;
                     Application.Run(new MainForm());
@@ -130,42 +135,44 @@ namespace JRunner
                     }
                     else if (variables.revision >= minDeltaRevision) // Delta
                     {
-                        updateDownload = new UpdateDownload();
-
-                        Thread updateDelta = new Thread(() =>
-                        {
-                            if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
-
-                            wc = new WebClient();
-                            wc.DownloadProgressChanged += updateDownload.updateProgress;
-                            wc.DownloadFileCompleted += delta;
-                            wc.DownloadFileAsync(new Uri(deltaUrl), "delta.zip");
-                        });
-                        updateDelta.Start();
-                        Application.Run(updateDownload);
+                        startDelta();
                     }
                     else // Full
                     {
-                        updateDownload = new UpdateDownload();
-
-                        Thread updateFull = new Thread(() =>
-                        {
-                            if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
-
-                            wc = new WebClient();
-                            wc.DownloadProgressChanged += updateDownload.updateProgress;
-                            wc.DownloadFileCompleted += full;
-                            wc.DownloadFileAsync(new Uri(fullUrl), "full.zip");
-                        });
-                        updateFull.Start();
-                        Application.Run(updateDownload);
+                        startFull();
                     }
                 }
             }
             else
             {
-                Application.Run(new MainForm());
+                if (Program.runFullUpdate)
+                {
+                    if (checkStatus == 2) failedReason = "Could not connect to the update server because TLS1.2 is not enabled.";
+                    else failedReason = "Could not connect to the update server.";
+                    Application.Run(new UpdateFailed());
+                }
+                else
+                {
+                    Application.Run(new MainForm());
+                }
             }
+        }
+
+        public static void startDelta()
+        {
+            updateDownload = new UpdateDownload();
+
+            Thread updateDelta = new Thread(() =>
+            {
+                if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
+
+                wc = new WebClient();
+                wc.DownloadProgressChanged += updateDownload.updateProgress;
+                wc.DownloadFileCompleted += delta;
+                wc.DownloadFileAsync(new Uri(deltaUrl), "delta.zip");
+            });
+            updateDelta.Start();
+            Application.Run(updateDownload);
         }
 
         private static void delta(object sender, AsyncCompletedEventArgs e)
@@ -180,14 +187,31 @@ namespace JRunner
             {
                 if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
                 updateDownload.Dispose();
-                if (e.Error.ToString().Contains("SSL/TLS")) failedReason = "Could not connect to the update server because TLS1.2 is not enabled";
-                else failedReason = "Failed to download the package";
+                if (e.Error.ToString().Contains("SSL/TLS")) failedReason = "Could not connect to the update server because TLS1.2 is not enabled.";
+                else failedReason = "Failed to download the package.";
                 Application.Run(new UpdateFailed());
             }
             else
             {
                 install(true);
             }
+        }
+
+        public static void startFull()
+        {
+            updateDownload = new UpdateDownload();
+
+            Thread updateFull = new Thread(() =>
+            {
+                if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
+
+                wc = new WebClient();
+                wc.DownloadProgressChanged += updateDownload.updateProgress;
+                wc.DownloadFileCompleted += full;
+                wc.DownloadFileAsync(new Uri(fullUrl), "full.zip");
+            });
+            updateFull.Start();
+            Application.Run(updateDownload);
         }
 
         private static void full(object sender, AsyncCompletedEventArgs e)
@@ -202,8 +226,8 @@ namespace JRunner
             {
                 if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
                 updateDownload.Dispose();
-                if (e.Error.ToString().Contains("SSL/TLS")) failedReason = "Could not connect to the update server because TLS1.2 is not enabled";
-                else failedReason = "Failed to download the package";
+                if (e.Error.ToString().Contains("SSL/TLS")) failedReason = "Could not connect to the update server because TLS1.2 is not enabled.";
+                else failedReason = "Failed to download the package.";
                 Application.Run(new UpdateFailed());
             }
             else
@@ -230,7 +254,7 @@ namespace JRunner
                 {
                     if (File.Exists(filename)) File.Delete(filename);
                     updateDownload.Dispose();
-                    failedReason = "Package checksum is invalid";
+                    failedReason = "Package checksum is invalid.";
                     Application.Run(new UpdateFailed());
                     return;
                 }
@@ -254,7 +278,7 @@ namespace JRunner
                 if (File.Exists(filename)) File.Delete(filename);
                 updateDownload.Dispose();
                 File.AppendAllText("Error.log", ex.ToString() + Environment.NewLine);
-                failedReason = "Failed to extract and install the package";
+                failedReason = "Failed to extract and install the package.";
                 Application.Run(new UpdateFailed());
             }
 
@@ -289,6 +313,37 @@ namespace JRunner
             if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
             Application.ExitThread();
             Application.Exit();
+        }
+
+        public static void restoreFiles()
+        {
+            Console.WriteLine("Restoring Files...");
+            Console.WriteLine("Please Wait...");
+
+            Thread worker = new Thread(() =>
+            {
+                try
+                {
+                    if (Directory.Exists("common")) Directory.Delete("common", true);
+                    if (Directory.Exists("xeBuild")) Directory.Delete("xeBuild", true);
+
+                    Thread.Sleep(200);
+
+                    ProcessStartInfo jr = new ProcessStartInfo();
+                    jr.FileName = "JRunner.exe";
+                    jr.Arguments = "/fullupdate";
+                    jr.UseShellExecute = true;
+
+                    Process.Start(jr);
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could not restore files due to the following error:");
+                    Console.WriteLine(ex.ToString());
+                }
+            });
+            worker.Start();
         }
     }
 }

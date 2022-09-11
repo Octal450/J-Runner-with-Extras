@@ -60,7 +60,7 @@ namespace JRunner
             this.SuccessPage.IsFinishPage = true;
             this.SuccessPage.Name = "SuccessPage";
             this.SuccessPage.ShowCancel = false;
-            this.SuccessPage.Size = new System.Drawing.Size(507, 250);
+            this.SuccessPage.Size = new System.Drawing.Size(507, 247);
             this.SuccessPage.TabIndex = 0;
             this.SuccessPage.Text = "Update Successful";
             // 
@@ -69,9 +69,9 @@ namespace JRunner
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(2, 226);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(265, 15);
+            this.label2.Size = new System.Drawing.Size(268, 15);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Click Finish to restart and launch the new version";
+            this.label2.Text = "Click Finish to restart and launch the new version.";
             // 
             // pictureBox1
             // 
@@ -88,7 +88,7 @@ namespace JRunner
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(2, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(279, 15);
+            this.label1.Size = new System.Drawing.Size(280, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "J-Runner with Extras has been updated successfully!";
             // 

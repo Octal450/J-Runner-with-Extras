@@ -123,9 +123,9 @@ namespace JRunner.Forms
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(2, 226);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(231, 15);
+            this.label1.Size = new System.Drawing.Size(234, 15);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Click Next when you are ready to continue";
+            this.label1.Text = "Click Next when you are ready to continue.";
             // 
             // label8
             // 
@@ -155,9 +155,9 @@ namespace JRunner.Forms
             this.DonorKvText.AutoSize = true;
             this.DonorKvText.Location = new System.Drawing.Point(0, 213);
             this.DonorKvText.Name = "DonorKvText";
-            this.DonorKvText.Size = new System.Drawing.Size(308, 15);
+            this.DonorKvText.Size = new System.Drawing.Size(311, 15);
             this.DonorKvText.TabIndex = 1;
-            this.DonorKvText.Text = "If you don\'t have a keyvault to use, check Donor Keyvault";
+            this.DonorKvText.Text = "If you don\'t have a keyvault to use, check Donor Keyvault.";
             // 
             // RetailKvWarn
             // 
@@ -205,9 +205,9 @@ namespace JRunner.Forms
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(0, 228);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(389, 15);
+            this.label3.Size = new System.Drawing.Size(392, 15);
             this.label3.TabIndex = 2;
-            this.label3.Text = "If your keyvault requires an FCRT, you will be prompted on the next page";
+            this.label3.Text = "If your keyvault requires an FCRT, you will be prompted on the next page.";
             // 
             // KvGroup
             // 
@@ -313,7 +313,7 @@ namespace JRunner.Forms
             this.label7.Size = new System.Drawing.Size(476, 33);
             this.label7.TabIndex = 6;
             this.label7.Text = "It is not possible for this tool to check your supplied FCRT for validity, please" +
-    " ensure you provide a valid decrypted FCRT";
+    " ensure you provide a valid decrypted FCRT.";
             // 
             // DonorFcrt
             // 
@@ -372,9 +372,9 @@ namespace JRunner.Forms
             this.DonorFcrtText.AutoSize = true;
             this.DonorFcrtText.Location = new System.Drawing.Point(2, 228);
             this.DonorFcrtText.Name = "DonorFcrtText";
-            this.DonorFcrtText.Size = new System.Drawing.Size(278, 15);
+            this.DonorFcrtText.Size = new System.Drawing.Size(281, 15);
             this.DonorFcrtText.TabIndex = 5;
-            this.DonorFcrtText.Text = "If you don\'t have an FCRT to use, check Donor FCRT";
+            this.DonorFcrtText.Text = "If you don\'t have an FCRT to use, check Donor FCRT.";
             // 
             // LdvSmcConfPage
             // 
@@ -383,7 +383,7 @@ namespace JRunner.Forms
             this.LdvSmcConfPage.Controls.Add(this.label14);
             this.LdvSmcConfPage.Controls.Add(this.LdvGroup);
             this.LdvSmcConfPage.Name = "LdvSmcConfPage";
-            this.LdvSmcConfPage.Size = new System.Drawing.Size(507, 250);
+            this.LdvSmcConfPage.Size = new System.Drawing.Size(507, 247);
             this.LdvSmcConfPage.TabIndex = 5;
             this.LdvSmcConfPage.Text = "Lock Down Value and SMC Config";
             // 
@@ -502,7 +502,7 @@ namespace JRunner.Forms
             this.FinishPage.Controls.Add(this.label6);
             this.FinishPage.IsFinishPage = true;
             this.FinishPage.Name = "FinishPage";
-            this.FinishPage.Size = new System.Drawing.Size(507, 250);
+            this.FinishPage.Size = new System.Drawing.Size(507, 247);
             this.FinishPage.TabIndex = 3;
             this.FinishPage.Text = "All Set?";
             // 
@@ -598,7 +598,7 @@ namespace JRunner.Forms
             this.label6.Size = new System.Drawing.Size(476, 33);
             this.label6.TabIndex = 0;
             this.label6.Text = "The wizard is ready to create your Donor Nand. Please review the information belo" +
-    "w to ensure everything is correct, then click Finish to build the image";
+    "w to ensure everything is correct, then click Finish to build the image.";
             // 
             // CreateDonorNand
             // 

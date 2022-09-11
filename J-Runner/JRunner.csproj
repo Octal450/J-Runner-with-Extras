@@ -185,6 +185,12 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RestoreFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RestoreFiles.Designer.cs">
+      <DependentUpon>RestoreFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProgressIndeterminate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -530,7 +536,7 @@
     <Compile Include="Nand\BadBlock.cs" />
     <Compile Include="Nand\Nand.cs" />
     <Compile Include="Functions\parse_ini.cs" />
-    <Compile Include="Functions\Program.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Forms\POST.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -625,6 +631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RestoreFiles.resx">
+      <DependentUpon>RestoreFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProgressIndeterminate.resx">
       <DependentUpon>ProgressIndeterminate.cs</DependentUpon>

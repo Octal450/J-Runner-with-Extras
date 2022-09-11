@@ -80,7 +80,7 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.2.x Beta";
+        public static string version = "3.2.1 Beta";
         public static string build = "3210." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
         public const string staticversion = "3.2.1.0";
         public static int revision = 26;
@@ -279,7 +279,7 @@ namespace JRunner
         }
         public static consoles ctype = ctypes[0];
         public static hacktypes ttyp = hacktypes.retail;
-        public static string xepath = (Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\xeBuild\data\");
+        public static string xepath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\xeBuild\data\";
         public static string updatepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"xeBuild\");
         public static string launchpath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"xeBuild");
         public static string donorPath = Path.Combine(variables.updatepath, "Donor Files");

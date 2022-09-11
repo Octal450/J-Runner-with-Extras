@@ -2991,6 +2991,11 @@ namespace JRunner
                 cb.Location = new Point(Location.X + (Width - cb.Width) / 2, Location.Y + (Height - cb.Height) / 2);
             }
         }
+        private void restoreFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RestoreFiles rf = new RestoreFiles();
+            rf.ShowDialog();
+        }
 
         #endregion
 

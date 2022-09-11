@@ -87,10 +87,10 @@ namespace JRunner
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(2, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(361, 75);
+            this.label1.Size = new System.Drawing.Size(364, 75);
             this.label1.TabIndex = 1;
-            this.label1.Text = "J-Runner with Extras could not be updated\r\n\r\n\r\n\r\nCheck your network connection, o" +
-    "r download the update manually";
+            this.label1.Text = "J-Runner with Extras could not be updated.\r\n\r\n\r\n\r\nCheck your network connection, " +
+    "or download the update manually.";
             // 
             // UpdateFailed
             // 

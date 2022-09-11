@@ -216,9 +216,9 @@ namespace JRunner.Forms
 
         private void btnDefaults_Click(object sender, EventArgs e)
         {
-            if (File.Exists(variables.settingsfile)) File.Delete(variables.settingsfile);
-            if (DialogResult.Yes == MessageBox.Show("Application must be restarted in order to restore settings to defaults\n\nDo you want to restart now?", "Restore Defaults", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+            if (DialogResult.Yes == MessageBox.Show("Application must be restarted in order to restore settings to defaults\n\nDo you want to reset and restart now?", "Restore Defaults", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
+                if (File.Exists(variables.settingsfile)) File.Delete(variables.settingsfile);
                 Program.restart(); // Restart without running on exit tasks, prevents settings from being put back
             }
         }

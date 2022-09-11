@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -13,19 +14,26 @@ namespace JRunner
     {
         [DllImport("Shcore.dll")]
         static extern int SetProcessDpiAwareness(int PROCESS_DPI_AWARENESS);
-        static bool createdNew = true;
-        static Mutex mutex = new Mutex(true, "J-Runner", out createdNew);
-        static bool needVcredistx86 = false;
+
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        static bool createdNew = true;
+        static Mutex mutex = new Mutex(true, "J-Runner", out createdNew);
+        static bool needVcredistx86 = false;
         static object vcredistReg;
+
+        // Arguments
+        public static bool noVcredistChk = false;
+        public static bool noUpdateChk = false;
+        public static bool runFullUpdate = false;
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             AppDomain.CurrentDomain.UnhandledException += OnCurrentDomain_UnhandledException;
 
@@ -64,42 +72,76 @@ namespace JRunner
                     File.Delete(@"JRunner.exe.old");
                 }
 
-                checkVcredist();
-
-                if (needVcredistx86)
+                foreach (string a in args)
                 {
-                    MessageBox.Show("Microsoft Visual C++ 2010 Redistributable is required for J-Runner with Extras and some of its components to work correctly\n\nClick OK to begin the installation", "Dependency Missing", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Thread Vcredist = new Thread(() =>
+                    if (a.Contains("/novcredist"))
                     {
-                        try
-                        {
-                            ProcessStartInfo vcredistx86 = new ProcessStartInfo("common\\xflasher\\vcredist_x86.exe");
-                            vcredistx86.WorkingDirectory = Environment.CurrentDirectory;
-                            vcredistx86.UseShellExecute = true;
-                            if (Environment.OSVersion.Version.Major > 5) vcredistx86.Verb = "runas";
-                            Process vcredistx86p = Process.Start(vcredistx86);
-                            vcredistx86p.WaitForExit();
-                            checkVcredist(); // Check if install succeeded
-                            if (!needVcredistx86) Process.Start(Application.ExecutablePath); // Only start if success
-                            Environment.Exit(0);
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Dependency installer failed to launch for some reason", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Environment.Exit(0);
-                        }
-                    });
-                    Vcredist.Start();
-                    return;
+                        noVcredistChk = true;
+                    }
+                    if (a.Contains("/noupdate"))
+                    {
+                        noUpdateChk = true;
+                    }
+                    if (a.Contains("/fullupdate"))
+                    {
+                        runFullUpdate = true;
+                    }
                 }
-                else if (Control.ModifierKeys == Keys.Shift)
+
+                if (!runFullUpdate)
                 {
-                    Upd.checkStatus = 3;
-                    Application.Run(new MainForm());
+                    if (!Directory.Exists("common") || !Directory.Exists("xeBuild"))
+                    {
+                        if (MessageBox.Show("Critical support files required for correct operation are missing\n\nDo you want to download the required support files?\n\nAll files inside common and xeBuild will be deleted and replaced with clean versions!", "J-Runner with Extras", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            runFullUpdate = true;
+                        }
+                    }
+                }
+
+                if (runFullUpdate) // Only allow this
+                {
+                    Upd.check();
                 }
                 else
                 {
-                    Upd.check();
+                    checkVcredist();
+
+                    if (needVcredistx86)
+                    {
+                        MessageBox.Show("Microsoft Visual C++ 2010 Redistributable is required for J-Runner with Extras and some of its components to work correctly\n\nClick OK to begin the installation", "Dependency Missing", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Thread Vcredist = new Thread(() =>
+                        {
+                            try
+                            {
+                                ProcessStartInfo vcredistx86 = new ProcessStartInfo("common\\xflasher\\vcredist_x86.exe");
+                                vcredistx86.WorkingDirectory = Environment.CurrentDirectory;
+                                vcredistx86.UseShellExecute = true;
+                                if (Environment.OSVersion.Version.Major > 5) vcredistx86.Verb = "runas";
+                                Process vcredistx86p = Process.Start(vcredistx86);
+                                vcredistx86p.WaitForExit();
+                                checkVcredist(); // Check if install succeeded
+                                if (!needVcredistx86) Process.Start(Application.ExecutablePath); // Only start if success
+                                Environment.Exit(0);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Dependency installer failed to launch for some reason", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Environment.Exit(0);
+                            }
+                        });
+                        Vcredist.Start();
+                        return;
+                    }
+                    else if (Control.ModifierKeys == Keys.Shift || noUpdateChk)
+                    {
+                        Upd.checkStatus = 3;
+                        Application.Run(new MainForm());
+                    }
+                    else
+                    {
+                        Upd.check();
+                    }
                 }
             }
             else
@@ -174,6 +216,12 @@ namespace JRunner
 
         private static void checkVcredist()
         {
+            if (noVcredistChk)
+            {
+                needVcredistx86 = false;
+                return;
+            }
+
             if (Environment.Is64BitOperatingSystem)
             {
                 vcredistReg = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\10.0\VC\VCRedist\x86", "Installed", null);
