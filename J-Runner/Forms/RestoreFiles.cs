@@ -7,14 +7,9 @@ namespace JRunner
 {
     public partial class RestoreFiles : Form
     {
-        private readonly CheckBox resetSettings;
-
         public RestoreFiles()
         {
             InitializeComponent();
-            resetSettings = new CheckBox { Checked = true, Text = "Reset Settings" };
-            RestoreWizard.AddCommandControl(resetSettings);
-
             RestoreWizard.Cancelling += WizardCancelled;
             RestoreWizard.Finished += WizardFinished;
         }

@@ -32,6 +32,7 @@ namespace JRunner
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RestoreFiles));
             this.RestoreWizard = new AeroWizard.WizardControl();
             this.wizardPage1 = new AeroWizard.WizardPage();
+            this.resetSettings = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.RestoreButton = new UI.CommandLink();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@ namespace JRunner
             // 
             // wizardPage1
             // 
+            this.wizardPage1.Controls.Add(this.resetSettings);
             this.wizardPage1.Controls.Add(this.label2);
             this.wizardPage1.Controls.Add(this.RestoreButton);
             this.wizardPage1.Controls.Add(this.label1);
@@ -61,10 +63,22 @@ namespace JRunner
             this.wizardPage1.TabIndex = 0;
             this.wizardPage1.Text = "Restore Files";
             // 
+            // resetSettings
+            // 
+            this.resetSettings.AutoSize = true;
+            this.resetSettings.Checked = true;
+            this.resetSettings.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.resetSettings.Location = new System.Drawing.Point(5, 225);
+            this.resetSettings.Name = "resetSettings";
+            this.resetSettings.Size = new System.Drawing.Size(99, 19);
+            this.resetSettings.TabIndex = 1;
+            this.resetSettings.Text = "Reset Settings";
+            this.resetSettings.UseVisualStyleBackColor = true;
+            // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(2, 193);
+            this.label2.Location = new System.Drawing.Point(2, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(478, 50);
             this.label2.TabIndex = 3;
@@ -74,7 +88,7 @@ namespace JRunner
             // RestoreButton
             // 
             this.RestoreButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.RestoreButton.Location = new System.Drawing.Point(2, 99);
+            this.RestoreButton.Location = new System.Drawing.Point(2, 144);
             this.RestoreButton.Name = "RestoreButton";
             this.RestoreButton.Size = new System.Drawing.Size(232, 45);
             this.RestoreButton.TabIndex = 2;
@@ -107,6 +121,7 @@ namespace JRunner
             this.Text = "Restore Files";
             ((System.ComponentModel.ISupportInitialize)(this.RestoreWizard)).EndInit();
             this.wizardPage1.ResumeLayout(false);
+            this.wizardPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -118,5 +133,6 @@ namespace JRunner
         private System.Windows.Forms.Label label1;
         private UI.CommandLink RestoreButton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox resetSettings;
     }
 }

@@ -99,9 +99,9 @@ namespace JRunner
                     }
                 }
 
-                if (runFullUpdate) // Only allow this
+                if (runFullUpdate)
                 {
-                    Upd.check();
+                    Upd.check(); // Only allow this
                 }
                 else
                 {
