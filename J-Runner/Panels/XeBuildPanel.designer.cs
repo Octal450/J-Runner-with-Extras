@@ -510,7 +510,7 @@
             this.groupBox1.Location = new System.Drawing.Point(97, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(107, 80);
-            this.groupBox1.TabIndex = 76;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Drive Patches";
             // 
@@ -547,7 +547,7 @@
             this.chkWB4G.Location = new System.Drawing.Point(97, 89);
             this.chkWB4G.Name = "chkWB4G";
             this.chkWB4G.Size = new System.Drawing.Size(114, 17);
-            this.chkWB4G.TabIndex = 72;
+            this.chkWB4G.TabIndex = 7;
             this.chkWB4G.Text = "WB 2K Buffer (4G)";
             this.toolTip1.SetToolTip(this.chkWB4G, "Check to use 13182 CBB with a buffer for Winbond 2K consoles\r\nLegacy option that " +
         "should not be used except in rare cases");
@@ -569,7 +569,7 @@
             this.chkListBoxPatches.Location = new System.Drawing.Point(8, 9);
             this.chkListBoxPatches.Name = "chkListBoxPatches";
             this.chkListBoxPatches.Size = new System.Drawing.Size(83, 94);
-            this.chkListBoxPatches.TabIndex = 70;
+            this.chkListBoxPatches.TabIndex = 5;
             this.toolTip1.SetToolTip(this.chkListBoxPatches, "XeBuild Patches which can be selected");
             this.chkListBoxPatches.SelectedIndexChanged += new System.EventHandler(this.chkListBoxPatches_SelectedIndexChanged);
             // 
@@ -595,7 +595,7 @@
             this.btnShowAdvanced.Location = new System.Drawing.Point(3, 84);
             this.btnShowAdvanced.Name = "btnShowAdvanced";
             this.btnShowAdvanced.Size = new System.Drawing.Size(317, 23);
-            this.btnShowAdvanced.TabIndex = 76;
+            this.btnShowAdvanced.TabIndex = 16;
             this.btnShowAdvanced.Text = "Show Advanced Tabs";
             this.toolTip1.SetToolTip(this.btnShowAdvanced, "Show the Client and Update tabs (legacy)");
             this.btnShowAdvanced.UseVisualStyleBackColor = true;
@@ -606,8 +606,7 @@
             this.btnXeBuildOptions.Location = new System.Drawing.Point(3, 3);
             this.btnXeBuildOptions.Name = "btnXeBuildOptions";
             this.btnXeBuildOptions.Size = new System.Drawing.Size(179, 26);
-            this.btnXeBuildOptions.TabIndex = 65;
-            this.btnXeBuildOptions.TabStop = false;
+            this.btnXeBuildOptions.TabIndex = 10;
             this.btnXeBuildOptions.Text = "Advanced XeBuild Options";
             this.toolTip1.SetToolTip(this.btnXeBuildOptions, "Advanced Users Only\r\nAllows you to set many options for XeBuild");
             this.btnXeBuildOptions.UseVisualStyleBackColor = true;
@@ -619,7 +618,7 @@
             this.chkBigffs.Location = new System.Drawing.Point(4, 61);
             this.chkBigffs.Name = "chkBigffs";
             this.chkBigffs.Size = new System.Drawing.Size(83, 17);
-            this.chkBigffs.TabIndex = 71;
+            this.chkBigffs.TabIndex = 12;
             this.chkBigffs.Text = "bigffs Image";
             this.toolTip1.SetToolTip(this.chkBigffs, "Only for 64MB and large NAND sizes");
             this.chkBigffs.UseVisualStyleBackColor = true;
@@ -634,7 +633,7 @@
             this.checkDLPatches.Location = new System.Drawing.Point(189, 37);
             this.checkDLPatches.Name = "checkDLPatches";
             this.checkDLPatches.Size = new System.Drawing.Size(121, 17);
-            this.checkDLPatches.TabIndex = 73;
+            this.checkDLPatches.TabIndex = 14;
             this.checkDLPatches.Text = "Custom Dashlaunch";
             this.checkDLPatches.UseVisualStyleBackColor = false;
             this.checkDLPatches.CheckedChanged += new System.EventHandler(this.checkDLPatches_CheckedChanged);
@@ -645,21 +644,19 @@
             this.btnLaunch.Location = new System.Drawing.Point(188, 3);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(132, 26);
-            this.btnLaunch.TabIndex = 75;
-            this.btnLaunch.TabStop = false;
+            this.btnLaunch.TabIndex = 13;
             this.btnLaunch.Text = "Launch.ini Options";
             this.toolTip1.SetToolTip(this.btnLaunch, "Advanced Users Only\r\nAllows you to create a launch.ini\r\n");
             this.btnLaunch.UseVisualStyleBackColor = true;
             this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
             // 
-            // chkxesettings
+            // chkXeSettings
             // 
             this.chkXeSettings.AutoSize = true;
             this.chkXeSettings.Location = new System.Drawing.Point(4, 37);
-            this.chkXeSettings.Name = "chkxesettings";
+            this.chkXeSettings.Name = "chkXeSettings";
             this.chkXeSettings.Size = new System.Drawing.Size(117, 17);
-            this.chkXeSettings.TabIndex = 66;
-            this.chkXeSettings.TabStop = false;
+            this.chkXeSettings.TabIndex = 11;
             this.chkXeSettings.Text = "Use Edited Options";
             this.chkXeSettings.UseVisualStyleBackColor = true;
             this.chkXeSettings.CheckedChanged += new System.EventHandler(this.chkxesettings_CheckedChanged);
@@ -673,7 +670,7 @@
             this.chkLaunch.Location = new System.Drawing.Point(189, 61);
             this.chkLaunch.Name = "chkLaunch";
             this.chkLaunch.Size = new System.Drawing.Size(109, 17);
-            this.chkLaunch.TabIndex = 74;
+            this.chkLaunch.TabIndex = 15;
             this.chkLaunch.Text = "Custom launch.ini";
             this.chkLaunch.UseVisualStyleBackColor = false;
             // 

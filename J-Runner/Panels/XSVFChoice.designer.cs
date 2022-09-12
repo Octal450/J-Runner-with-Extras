@@ -36,13 +36,12 @@
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TimingTabs = new System.Windows.Forms.TabControl();
             this.Rgh12Timings = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btnMoreTimings12 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Rgh12TcSelectGroup = new System.Windows.Forms.GroupBox();
             this.Rgh12CoronaWb = new System.Windows.Forms.RadioButton();
             this.Rgh12Corona = new System.Windows.Forms.RadioButton();
             this.Rgh12Trinity = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
             this.Rgh12TcGroup = new System.Windows.Forms.GroupBox();
             this.Rgh12Tc_135 = new System.Windows.Forms.RadioButton();
             this.Rgh12Tc_130 = new System.Windows.Forms.RadioButton();
@@ -108,33 +107,31 @@
             this.Trinity600_05 = new System.Windows.Forms.RadioButton();
             this.Trinity600_03 = new System.Windows.Forms.RadioButton();
             this.MiscTimings = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnMoreTimingsExt = new System.Windows.Forms.Button();
+            this.ZephyrExtClkGroup = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Zephyr192_625_10 = new System.Windows.Forms.RadioButton();
+            this.Zephyr192_625_09 = new System.Windows.Forms.RadioButton();
+            this.label12 = new System.Windows.Forms.Label();
+            this.Zephyr96_625_10 = new System.Windows.Forms.RadioButton();
+            this.Zephyr96_625_09 = new System.Windows.Forms.RadioButton();
             this.RjtopGroup = new System.Windows.Forms.GroupBox();
             this.RjtopJasper = new System.Windows.Forms.RadioButton();
             this.RjtopFalcon = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.Rgh1Group = new System.Windows.Forms.GroupBox();
             this.Rgh1Jasper = new System.Windows.Forms.RadioButton();
             this.Rgh1Zephyr = new System.Windows.Forms.RadioButton();
             this.Rgh1Falcon = new System.Windows.Forms.RadioButton();
-            this.ZephyrRgh2Group = new System.Windows.Forms.GroupBox();
-            this.Zephyr696_06 = new System.Windows.Forms.RadioButton();
-            this.Zephyr696_05 = new System.Windows.Forms.RadioButton();
-            this.Zephyr696_03 = new System.Windows.Forms.RadioButton();
-            this.Zephyr696_02 = new System.Windows.Forms.RadioButton();
-            this.Zephyr693_06 = new System.Windows.Forms.RadioButton();
-            this.Zephyr693_05 = new System.Windows.Forms.RadioButton();
-            this.Zephyr693_03 = new System.Windows.Forms.RadioButton();
-            this.Zephyr693_02 = new System.Windows.Forms.RadioButton();
-            this.Zephyr690_06 = new System.Windows.Forms.RadioButton();
-            this.Zephyr690_05 = new System.Windows.Forms.RadioButton();
-            this.Zephyr690_03 = new System.Windows.Forms.RadioButton();
-            this.Zephyr690_02 = new System.Windows.Forms.RadioButton();
-            this.Zephyr687_06 = new System.Windows.Forms.RadioButton();
-            this.Zephyr687_05 = new System.Windows.Forms.RadioButton();
-            this.Zephyr687_03 = new System.Windows.Forms.RadioButton();
-            this.Zephyr687_02 = new System.Windows.Forms.RadioButton();
-            this.btnAss = new System.Windows.Forms.Button();
+            this.XenonExtClkGroup = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.Xenon192_594_10 = new System.Windows.Forms.RadioButton();
+            this.Xenon192_594_09 = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.Xenon96_594_10 = new System.Windows.Forms.RadioButton();
+            this.Xenon96_594_09 = new System.Windows.Forms.RadioButton();
+            this.btnAssistant = new System.Windows.Forms.Button();
             this.programMenu.SuspendLayout();
             this.TimingTabs.SuspendLayout();
             this.Rgh12Timings.SuspendLayout();
@@ -145,9 +142,10 @@
             this.CoronaSrghGroup.SuspendLayout();
             this.TrinitySrghGroup.SuspendLayout();
             this.MiscTimings.SuspendLayout();
+            this.ZephyrExtClkGroup.SuspendLayout();
             this.RjtopGroup.SuspendLayout();
             this.Rgh1Group.SuspendLayout();
-            this.ZephyrRgh2Group.SuspendLayout();
+            this.XenonExtClkGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -155,7 +153,7 @@
             this.btnCancel.Location = new System.Drawing.Point(260, 268);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(74, 23);
-            this.btnCancel.TabIndex = 81;
+            this.btnCancel.TabIndex = 82;
             this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -206,10 +204,9 @@
             // Rgh12Timings
             // 
             this.Rgh12Timings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Rgh12Timings.Controls.Add(this.label5);
+            this.Rgh12Timings.Controls.Add(this.btnMoreTimings12);
             this.Rgh12Timings.Controls.Add(this.label1);
             this.Rgh12Timings.Controls.Add(this.Rgh12TcSelectGroup);
-            this.Rgh12Timings.Controls.Add(this.label8);
             this.Rgh12Timings.Controls.Add(this.Rgh12TcGroup);
             this.Rgh12Timings.Controls.Add(this.label9);
             this.Rgh12Timings.Controls.Add(this.Rgh12FjGroup);
@@ -220,22 +217,24 @@
             this.Rgh12Timings.TabIndex = 1;
             this.Rgh12Timings.Text = "RGH1.2 V2";
             // 
-            // label5
+            // btnMoreTimings12
             // 
-            this.label5.Location = new System.Drawing.Point(213, 180);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 51);
-            this.label5.TabIndex = 93;
-            this.label5.Text = "Corona 4GB may\r\nneed higher timings\r\nthan suggested";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnMoreTimings12.Location = new System.Drawing.Point(100, 195);
+            this.btnMoreTimings12.Name = "btnMoreTimings12";
+            this.btnMoreTimings12.Size = new System.Drawing.Size(110, 23);
+            this.btnMoreTimings12.TabIndex = 3;
+            this.btnMoreTimings12.Text = "More Timings";
+            this.btnMoreTimings12.UseVisualStyleBackColor = true;
+            this.btnMoreTimings12.Click += new System.EventHandler(this.btnMoreTimings_Click);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(213, 89);
+            this.label1.Location = new System.Drawing.Point(214, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 91);
+            this.label1.Size = new System.Drawing.Size(100, 142);
             this.label1.TabIndex = 94;
-            this.label1.Text = "Timings are for\r\nRev-C or Matrix\r\nglitch chips";
+            this.label1.Text = "Timings are for\r\nRev-C or Matrix\r\n\r\nClick More Timings\r\nfor the X360ACE or Squirt" +
+    " RGH1.2 V2\r\n\r\nSuggested Timings:\r\nStandby Clock: 95\r\nOscilator: 80-110";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Rgh12TcSelectGroup
@@ -282,15 +281,6 @@
             this.Rgh12Trinity.TabStop = true;
             this.Rgh12Trinity.Text = "Trinity";
             this.Rgh12Trinity.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(100, 180);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(108, 51);
-            this.label8.TabIndex = 91;
-            this.label8.Text = "Suggested Timings:\r\nStandby Clock: 95\r\nOscilator: 80-110";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Rgh12TcGroup
             // 
@@ -498,9 +488,9 @@
             // 
             this.label9.Location = new System.Drawing.Point(6, 180);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 51);
+            this.label9.Size = new System.Drawing.Size(90, 51);
             this.label9.TabIndex = 90;
-            this.label9.Text = "Suggested Timings:\r\n18-21";
+            this.label9.Text = "Suggested\r\nTimings: 18-21";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Rgh12FjGroup
@@ -1048,34 +1038,133 @@
             // MiscTimings
             // 
             this.MiscTimings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.MiscTimings.Controls.Add(this.label4);
+            this.MiscTimings.Controls.Add(this.btnMoreTimingsExt);
+            this.MiscTimings.Controls.Add(this.ZephyrExtClkGroup);
             this.MiscTimings.Controls.Add(this.RjtopGroup);
             this.MiscTimings.Controls.Add(this.label3);
-            this.MiscTimings.Controls.Add(this.label4);
             this.MiscTimings.Controls.Add(this.Rgh1Group);
-            this.MiscTimings.Controls.Add(this.ZephyrRgh2Group);
+            this.MiscTimings.Controls.Add(this.XenonExtClkGroup);
             this.MiscTimings.Location = new System.Drawing.Point(4, 22);
             this.MiscTimings.Name = "MiscTimings";
             this.MiscTimings.Padding = new System.Windows.Forms.Padding(3);
             this.MiscTimings.Size = new System.Drawing.Size(321, 234);
             this.MiscTimings.TabIndex = 0;
-            this.MiscTimings.Text = "RGH1, RGH2, R-JTOP";
+            this.MiscTimings.Text = "EXT_CLK and Misc";
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(161, 160);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(151, 36);
+            this.label4.TabIndex = 99;
+            this.label4.Text = "Click More Timings for\r\nX360ACE EXT_CLK";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnMoreTimingsExt
+            // 
+            this.btnMoreTimingsExt.Location = new System.Drawing.Point(161, 204);
+            this.btnMoreTimingsExt.Name = "btnMoreTimingsExt";
+            this.btnMoreTimingsExt.Size = new System.Drawing.Size(153, 23);
+            this.btnMoreTimingsExt.TabIndex = 4;
+            this.btnMoreTimingsExt.Text = "More Timings";
+            this.btnMoreTimingsExt.UseVisualStyleBackColor = true;
+            this.btnMoreTimingsExt.Click += new System.EventHandler(this.btnMoreTimings_Click);
+            // 
+            // ZephyrExtClkGroup
+            // 
+            this.ZephyrExtClkGroup.Controls.Add(this.label11);
+            this.ZephyrExtClkGroup.Controls.Add(this.Zephyr192_625_10);
+            this.ZephyrExtClkGroup.Controls.Add(this.Zephyr192_625_09);
+            this.ZephyrExtClkGroup.Controls.Add(this.label12);
+            this.ZephyrExtClkGroup.Controls.Add(this.Zephyr96_625_10);
+            this.ZephyrExtClkGroup.Controls.Add(this.Zephyr96_625_09);
+            this.ZephyrExtClkGroup.Location = new System.Drawing.Point(6, 83);
+            this.ZephyrExtClkGroup.Name = "ZephyrExtClkGroup";
+            this.ZephyrExtClkGroup.Size = new System.Drawing.Size(151, 79);
+            this.ZephyrExtClkGroup.TabIndex = 1;
+            this.ZephyrExtClkGroup.TabStop = false;
+            this.ZephyrExtClkGroup.Text = "Zephyr EXT_CLK";
+            this.ZephyrExtClkGroup.Enter += new System.EventHandler(this.enterZephyrExtClk);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(81, 16);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(50, 13);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "192 MHz";
+            // 
+            // Zephyr192_625_10
+            // 
+            this.Zephyr192_625_10.AutoSize = true;
+            this.Zephyr192_625_10.Location = new System.Drawing.Point(84, 55);
+            this.Zephyr192_625_10.Name = "Zephyr192_625_10";
+            this.Zephyr192_625_10.Size = new System.Drawing.Size(64, 17);
+            this.Zephyr192_625_10.TabIndex = 3;
+            this.Zephyr192_625_10.TabStop = true;
+            this.Zephyr192_625_10.Text = "62.5 1.0";
+            this.Zephyr192_625_10.UseVisualStyleBackColor = true;
+            // 
+            // Zephyr192_625_09
+            // 
+            this.Zephyr192_625_09.AutoSize = true;
+            this.Zephyr192_625_09.Location = new System.Drawing.Point(84, 32);
+            this.Zephyr192_625_09.Name = "Zephyr192_625_09";
+            this.Zephyr192_625_09.Size = new System.Drawing.Size(64, 17);
+            this.Zephyr192_625_09.TabIndex = 2;
+            this.Zephyr192_625_09.TabStop = true;
+            this.Zephyr192_625_09.Text = "62.5 0.9";
+            this.Zephyr192_625_09.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "96 MHz";
+            // 
+            // Zephyr96_625_10
+            // 
+            this.Zephyr96_625_10.AutoSize = true;
+            this.Zephyr96_625_10.Location = new System.Drawing.Point(8, 55);
+            this.Zephyr96_625_10.Name = "Zephyr96_625_10";
+            this.Zephyr96_625_10.Size = new System.Drawing.Size(64, 17);
+            this.Zephyr96_625_10.TabIndex = 1;
+            this.Zephyr96_625_10.TabStop = true;
+            this.Zephyr96_625_10.Text = "62.5 1.0";
+            this.Zephyr96_625_10.UseVisualStyleBackColor = true;
+            // 
+            // Zephyr96_625_09
+            // 
+            this.Zephyr96_625_09.AutoSize = true;
+            this.Zephyr96_625_09.Location = new System.Drawing.Point(8, 32);
+            this.Zephyr96_625_09.Name = "Zephyr96_625_09";
+            this.Zephyr96_625_09.Size = new System.Drawing.Size(64, 17);
+            this.Zephyr96_625_09.TabIndex = 0;
+            this.Zephyr96_625_09.TabStop = true;
+            this.Zephyr96_625_09.Text = "62.5 0.9";
+            this.Zephyr96_625_09.UseVisualStyleBackColor = true;
             // 
             // RjtopGroup
             // 
             this.RjtopGroup.Controls.Add(this.RjtopJasper);
             this.RjtopGroup.Controls.Add(this.RjtopFalcon);
-            this.RjtopGroup.Location = new System.Drawing.Point(162, 93);
+            this.RjtopGroup.Location = new System.Drawing.Point(162, 90);
             this.RjtopGroup.Name = "RjtopGroup";
-            this.RjtopGroup.Size = new System.Drawing.Size(151, 66);
-            this.RjtopGroup.TabIndex = 2;
+            this.RjtopGroup.Size = new System.Drawing.Size(151, 63);
+            this.RjtopGroup.TabIndex = 3;
             this.RjtopGroup.TabStop = false;
-            this.RjtopGroup.Text = "R-JTOP Rev-C/Matrix";
+            this.RjtopGroup.Text = "R-JTOP";
             this.RjtopGroup.Enter += new System.EventHandler(this.enterRjtop);
             // 
             // RjtopJasper
             // 
             this.RjtopJasper.AutoSize = true;
-            this.RjtopJasper.Location = new System.Drawing.Point(8, 42);
+            this.RjtopJasper.Location = new System.Drawing.Point(8, 39);
             this.RjtopJasper.Name = "RjtopJasper";
             this.RjtopJasper.Size = new System.Drawing.Size(56, 17);
             this.RjtopJasper.TabIndex = 1;
@@ -1086,7 +1175,7 @@
             // RjtopFalcon
             // 
             this.RjtopFalcon.AutoSize = true;
-            this.RjtopFalcon.Location = new System.Drawing.Point(8, 19);
+            this.RjtopFalcon.Location = new System.Drawing.Point(8, 16);
             this.RjtopFalcon.Name = "RjtopFalcon";
             this.RjtopFalcon.Size = new System.Drawing.Size(57, 17);
             this.RjtopFalcon.TabIndex = 0;
@@ -1096,22 +1185,13 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(6, 180);
+            this.label3.Location = new System.Drawing.Point(6, 164);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 51);
+            this.label3.Size = new System.Drawing.Size(151, 67);
             this.label3.TabIndex = 97;
-            this.label3.Text = "Suggested Timings:\r\n69.3 0.3,  69.3 0.5,  69.3 0.6";
+            this.label3.Text = "Timings for Rev-C and Matrix\r\n\r\nBoth 96 MHz and 192 MHz\r\nrequire STBY_CLK connect" +
+    "ed";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(162, 158);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(151, 72);
-            this.label4.TabIndex = 98;
-            this.label4.Text = "Zephyr RGH2 uses Falcon\r\nbootloaders, automatically\r\nswitched when building\r\n\r\nR-" +
-    "JTOP requires JTAG wiring";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Rgh1Group
             // 
@@ -1120,16 +1200,16 @@
             this.Rgh1Group.Controls.Add(this.Rgh1Falcon);
             this.Rgh1Group.Location = new System.Drawing.Point(162, 3);
             this.Rgh1Group.Name = "Rgh1Group";
-            this.Rgh1Group.Size = new System.Drawing.Size(151, 89);
-            this.Rgh1Group.TabIndex = 1;
+            this.Rgh1Group.Size = new System.Drawing.Size(151, 86);
+            this.Rgh1Group.TabIndex = 2;
             this.Rgh1Group.TabStop = false;
-            this.Rgh1Group.Text = "RGH1 Rev-C/Matrix";
+            this.Rgh1Group.Text = "RGH1";
             this.Rgh1Group.Enter += new System.EventHandler(this.enterRgh1);
             // 
             // Rgh1Jasper
             // 
             this.Rgh1Jasper.AutoSize = true;
-            this.Rgh1Jasper.Location = new System.Drawing.Point(8, 65);
+            this.Rgh1Jasper.Location = new System.Drawing.Point(8, 62);
             this.Rgh1Jasper.Name = "Rgh1Jasper";
             this.Rgh1Jasper.Size = new System.Drawing.Size(56, 17);
             this.Rgh1Jasper.TabIndex = 2;
@@ -1140,7 +1220,7 @@
             // Rgh1Zephyr
             // 
             this.Rgh1Zephyr.AutoSize = true;
-            this.Rgh1Zephyr.Location = new System.Drawing.Point(8, 19);
+            this.Rgh1Zephyr.Location = new System.Drawing.Point(8, 16);
             this.Rgh1Zephyr.Name = "Rgh1Zephyr";
             this.Rgh1Zephyr.Size = new System.Drawing.Size(58, 17);
             this.Rgh1Zephyr.TabIndex = 0;
@@ -1151,7 +1231,7 @@
             // Rgh1Falcon
             // 
             this.Rgh1Falcon.AutoSize = true;
-            this.Rgh1Falcon.Location = new System.Drawing.Point(8, 42);
+            this.Rgh1Falcon.Location = new System.Drawing.Point(8, 39);
             this.Rgh1Falcon.Name = "Rgh1Falcon";
             this.Rgh1Falcon.Size = new System.Drawing.Size(57, 17);
             this.Rgh1Falcon.TabIndex = 1;
@@ -1159,217 +1239,93 @@
             this.Rgh1Falcon.Text = "Falcon";
             this.Rgh1Falcon.UseVisualStyleBackColor = true;
             // 
-            // ZephyrRgh2Group
+            // XenonExtClkGroup
             // 
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr696_06);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr696_05);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr696_03);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr696_02);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr693_06);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr693_05);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr693_03);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr693_02);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr690_06);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr690_05);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr690_03);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr690_02);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr687_06);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr687_05);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr687_03);
-            this.ZephyrRgh2Group.Controls.Add(this.Zephyr687_02);
-            this.ZephyrRgh2Group.Location = new System.Drawing.Point(6, 3);
-            this.ZephyrRgh2Group.Name = "ZephyrRgh2Group";
-            this.ZephyrRgh2Group.Size = new System.Drawing.Size(151, 177);
-            this.ZephyrRgh2Group.TabIndex = 0;
-            this.ZephyrRgh2Group.TabStop = false;
-            this.ZephyrRgh2Group.Text = "Zephyr RGH2 X360ACE";
-            this.ZephyrRgh2Group.Enter += new System.EventHandler(this.enterZephyrRgh2);
+            this.XenonExtClkGroup.Controls.Add(this.label10);
+            this.XenonExtClkGroup.Controls.Add(this.Xenon192_594_10);
+            this.XenonExtClkGroup.Controls.Add(this.Xenon192_594_09);
+            this.XenonExtClkGroup.Controls.Add(this.label6);
+            this.XenonExtClkGroup.Controls.Add(this.Xenon96_594_10);
+            this.XenonExtClkGroup.Controls.Add(this.Xenon96_594_09);
+            this.XenonExtClkGroup.Location = new System.Drawing.Point(6, 3);
+            this.XenonExtClkGroup.Name = "XenonExtClkGroup";
+            this.XenonExtClkGroup.Size = new System.Drawing.Size(151, 79);
+            this.XenonExtClkGroup.TabIndex = 0;
+            this.XenonExtClkGroup.TabStop = false;
+            this.XenonExtClkGroup.Text = "Xenon EXT_CLK";
+            this.XenonExtClkGroup.Enter += new System.EventHandler(this.enterXenonExtClk);
             // 
-            // Zephyr696_06
+            // label10
             // 
-            this.Zephyr696_06.AutoSize = true;
-            this.Zephyr696_06.Location = new System.Drawing.Point(84, 154);
-            this.Zephyr696_06.Name = "Zephyr696_06";
-            this.Zephyr696_06.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr696_06.TabIndex = 15;
-            this.Zephyr696_06.TabStop = true;
-            this.Zephyr696_06.Text = "69.6 0.6";
-            this.Zephyr696_06.UseVisualStyleBackColor = true;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(81, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "192 MHz";
             // 
-            // Zephyr696_05
+            // Xenon192_594_10
             // 
-            this.Zephyr696_05.AutoSize = true;
-            this.Zephyr696_05.Location = new System.Drawing.Point(84, 135);
-            this.Zephyr696_05.Name = "Zephyr696_05";
-            this.Zephyr696_05.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr696_05.TabIndex = 14;
-            this.Zephyr696_05.TabStop = true;
-            this.Zephyr696_05.Text = "69.6 0.5";
-            this.Zephyr696_05.UseVisualStyleBackColor = true;
+            this.Xenon192_594_10.AutoSize = true;
+            this.Xenon192_594_10.Location = new System.Drawing.Point(84, 55);
+            this.Xenon192_594_10.Name = "Xenon192_594_10";
+            this.Xenon192_594_10.Size = new System.Drawing.Size(64, 17);
+            this.Xenon192_594_10.TabIndex = 3;
+            this.Xenon192_594_10.TabStop = true;
+            this.Xenon192_594_10.Text = "59.4 1.0";
+            this.Xenon192_594_10.UseVisualStyleBackColor = true;
             // 
-            // Zephyr696_03
+            // Xenon192_594_09
             // 
-            this.Zephyr696_03.AutoSize = true;
-            this.Zephyr696_03.Location = new System.Drawing.Point(84, 116);
-            this.Zephyr696_03.Name = "Zephyr696_03";
-            this.Zephyr696_03.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr696_03.TabIndex = 13;
-            this.Zephyr696_03.TabStop = true;
-            this.Zephyr696_03.Text = "69.6 0.3";
-            this.Zephyr696_03.UseVisualStyleBackColor = true;
+            this.Xenon192_594_09.AutoSize = true;
+            this.Xenon192_594_09.Location = new System.Drawing.Point(84, 32);
+            this.Xenon192_594_09.Name = "Xenon192_594_09";
+            this.Xenon192_594_09.Size = new System.Drawing.Size(64, 17);
+            this.Xenon192_594_09.TabIndex = 2;
+            this.Xenon192_594_09.TabStop = true;
+            this.Xenon192_594_09.Text = "59.4 0.9";
+            this.Xenon192_594_09.UseVisualStyleBackColor = true;
             // 
-            // Zephyr696_02
+            // label6
             // 
-            this.Zephyr696_02.AutoSize = true;
-            this.Zephyr696_02.Location = new System.Drawing.Point(84, 97);
-            this.Zephyr696_02.Name = "Zephyr696_02";
-            this.Zephyr696_02.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr696_02.TabIndex = 12;
-            this.Zephyr696_02.TabStop = true;
-            this.Zephyr696_02.Text = "69.6 0.2";
-            this.Zephyr696_02.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "96 MHz";
             // 
-            // Zephyr693_06
+            // Xenon96_594_10
             // 
-            this.Zephyr693_06.AutoSize = true;
-            this.Zephyr693_06.Location = new System.Drawing.Point(84, 71);
-            this.Zephyr693_06.Name = "Zephyr693_06";
-            this.Zephyr693_06.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr693_06.TabIndex = 11;
-            this.Zephyr693_06.TabStop = true;
-            this.Zephyr693_06.Text = "69.3 0.6";
-            this.Zephyr693_06.UseVisualStyleBackColor = true;
+            this.Xenon96_594_10.AutoSize = true;
+            this.Xenon96_594_10.Location = new System.Drawing.Point(8, 55);
+            this.Xenon96_594_10.Name = "Xenon96_594_10";
+            this.Xenon96_594_10.Size = new System.Drawing.Size(64, 17);
+            this.Xenon96_594_10.TabIndex = 1;
+            this.Xenon96_594_10.TabStop = true;
+            this.Xenon96_594_10.Text = "59.4 1.0";
+            this.Xenon96_594_10.UseVisualStyleBackColor = true;
             // 
-            // Zephyr693_05
+            // Xenon96_594_09
             // 
-            this.Zephyr693_05.AutoSize = true;
-            this.Zephyr693_05.Location = new System.Drawing.Point(84, 52);
-            this.Zephyr693_05.Name = "Zephyr693_05";
-            this.Zephyr693_05.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr693_05.TabIndex = 10;
-            this.Zephyr693_05.TabStop = true;
-            this.Zephyr693_05.Text = "69.3 0.5";
-            this.Zephyr693_05.UseVisualStyleBackColor = true;
+            this.Xenon96_594_09.AutoSize = true;
+            this.Xenon96_594_09.Location = new System.Drawing.Point(8, 32);
+            this.Xenon96_594_09.Name = "Xenon96_594_09";
+            this.Xenon96_594_09.Size = new System.Drawing.Size(64, 17);
+            this.Xenon96_594_09.TabIndex = 0;
+            this.Xenon96_594_09.TabStop = true;
+            this.Xenon96_594_09.Text = "59.4 0.9";
+            this.Xenon96_594_09.UseVisualStyleBackColor = true;
             // 
-            // Zephyr693_03
+            // btnAssistant
             // 
-            this.Zephyr693_03.AutoSize = true;
-            this.Zephyr693_03.Location = new System.Drawing.Point(84, 33);
-            this.Zephyr693_03.Name = "Zephyr693_03";
-            this.Zephyr693_03.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr693_03.TabIndex = 9;
-            this.Zephyr693_03.TabStop = true;
-            this.Zephyr693_03.Text = "69.3 0.3";
-            this.Zephyr693_03.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr693_02
-            // 
-            this.Zephyr693_02.AutoSize = true;
-            this.Zephyr693_02.Location = new System.Drawing.Point(84, 14);
-            this.Zephyr693_02.Name = "Zephyr693_02";
-            this.Zephyr693_02.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr693_02.TabIndex = 8;
-            this.Zephyr693_02.TabStop = true;
-            this.Zephyr693_02.Text = "69.3 0.2";
-            this.Zephyr693_02.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr690_06
-            // 
-            this.Zephyr690_06.AutoSize = true;
-            this.Zephyr690_06.Location = new System.Drawing.Point(8, 154);
-            this.Zephyr690_06.Name = "Zephyr690_06";
-            this.Zephyr690_06.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr690_06.TabIndex = 7;
-            this.Zephyr690_06.TabStop = true;
-            this.Zephyr690_06.Text = "69.0 0.6";
-            this.Zephyr690_06.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr690_05
-            // 
-            this.Zephyr690_05.AutoSize = true;
-            this.Zephyr690_05.Location = new System.Drawing.Point(8, 135);
-            this.Zephyr690_05.Name = "Zephyr690_05";
-            this.Zephyr690_05.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr690_05.TabIndex = 6;
-            this.Zephyr690_05.TabStop = true;
-            this.Zephyr690_05.Text = "69.0 0.5";
-            this.Zephyr690_05.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr690_03
-            // 
-            this.Zephyr690_03.AutoSize = true;
-            this.Zephyr690_03.Location = new System.Drawing.Point(8, 116);
-            this.Zephyr690_03.Name = "Zephyr690_03";
-            this.Zephyr690_03.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr690_03.TabIndex = 5;
-            this.Zephyr690_03.TabStop = true;
-            this.Zephyr690_03.Text = "69.0 0.3";
-            this.Zephyr690_03.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr690_02
-            // 
-            this.Zephyr690_02.AutoSize = true;
-            this.Zephyr690_02.Location = new System.Drawing.Point(8, 97);
-            this.Zephyr690_02.Name = "Zephyr690_02";
-            this.Zephyr690_02.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr690_02.TabIndex = 4;
-            this.Zephyr690_02.TabStop = true;
-            this.Zephyr690_02.Text = "69.0 0.2";
-            this.Zephyr690_02.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr687_06
-            // 
-            this.Zephyr687_06.AutoSize = true;
-            this.Zephyr687_06.Location = new System.Drawing.Point(8, 71);
-            this.Zephyr687_06.Name = "Zephyr687_06";
-            this.Zephyr687_06.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr687_06.TabIndex = 3;
-            this.Zephyr687_06.TabStop = true;
-            this.Zephyr687_06.Text = "68.7 0.6";
-            this.Zephyr687_06.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr687_05
-            // 
-            this.Zephyr687_05.AutoSize = true;
-            this.Zephyr687_05.Location = new System.Drawing.Point(8, 52);
-            this.Zephyr687_05.Name = "Zephyr687_05";
-            this.Zephyr687_05.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr687_05.TabIndex = 2;
-            this.Zephyr687_05.TabStop = true;
-            this.Zephyr687_05.Text = "68.7 0.5";
-            this.Zephyr687_05.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr687_03
-            // 
-            this.Zephyr687_03.AutoSize = true;
-            this.Zephyr687_03.Location = new System.Drawing.Point(8, 33);
-            this.Zephyr687_03.Name = "Zephyr687_03";
-            this.Zephyr687_03.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr687_03.TabIndex = 1;
-            this.Zephyr687_03.TabStop = true;
-            this.Zephyr687_03.Text = "68.7 0.3";
-            this.Zephyr687_03.UseVisualStyleBackColor = true;
-            // 
-            // Zephyr687_02
-            // 
-            this.Zephyr687_02.AutoSize = true;
-            this.Zephyr687_02.Location = new System.Drawing.Point(8, 14);
-            this.Zephyr687_02.Name = "Zephyr687_02";
-            this.Zephyr687_02.Size = new System.Drawing.Size(64, 17);
-            this.Zephyr687_02.TabIndex = 0;
-            this.Zephyr687_02.TabStop = true;
-            this.Zephyr687_02.Text = "68.7 0.2";
-            this.Zephyr687_02.UseVisualStyleBackColor = true;
-            // 
-            // btnAss
-            // 
-            this.btnAss.Location = new System.Drawing.Point(148, 268);
-            this.btnAss.Name = "btnAss";
-            this.btnAss.Size = new System.Drawing.Size(106, 23);
-            this.btnAss.TabIndex = 82;
-            this.btnAss.Text = "Timing Assistant";
-            this.btnAss.UseVisualStyleBackColor = true;
-            this.btnAss.Click += new System.EventHandler(this.btnAss_Click);
+            this.btnAssistant.Location = new System.Drawing.Point(148, 268);
+            this.btnAssistant.Name = "btnAssistant";
+            this.btnAssistant.Size = new System.Drawing.Size(106, 23);
+            this.btnAssistant.TabIndex = 81;
+            this.btnAssistant.Text = "Timing Assistant";
+            this.btnAssistant.UseVisualStyleBackColor = true;
+            this.btnAssistant.Click += new System.EventHandler(this.btnAssistant_Click);
             // 
             // XSVFChoice
             // 
@@ -1377,7 +1333,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.btnAss);
+            this.Controls.Add(this.btnAssistant);
             this.Controls.Add(this.TimingTabs);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnProgram);
@@ -1398,12 +1354,14 @@
             this.TrinitySrghGroup.ResumeLayout(false);
             this.TrinitySrghGroup.PerformLayout();
             this.MiscTimings.ResumeLayout(false);
+            this.ZephyrExtClkGroup.ResumeLayout(false);
+            this.ZephyrExtClkGroup.PerformLayout();
             this.RjtopGroup.ResumeLayout(false);
             this.RjtopGroup.PerformLayout();
             this.Rgh1Group.ResumeLayout(false);
             this.Rgh1Group.PerformLayout();
-            this.ZephyrRgh2Group.ResumeLayout(false);
-            this.ZephyrRgh2Group.PerformLayout();
+            this.XenonExtClkGroup.ResumeLayout(false);
+            this.XenonExtClkGroup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1433,26 +1391,10 @@
         private System.Windows.Forms.RadioButton Trinity600_06;
         private System.Windows.Forms.RadioButton Trinity600_05;
         private System.Windows.Forms.RadioButton Trinity600_03;
-        private System.Windows.Forms.GroupBox ZephyrRgh2Group;
-        private System.Windows.Forms.RadioButton Zephyr696_06;
-        private System.Windows.Forms.RadioButton Zephyr696_05;
-        private System.Windows.Forms.RadioButton Zephyr696_03;
-        private System.Windows.Forms.RadioButton Zephyr696_02;
-        private System.Windows.Forms.RadioButton Zephyr693_06;
-        private System.Windows.Forms.RadioButton Zephyr693_05;
-        private System.Windows.Forms.RadioButton Zephyr693_03;
-        private System.Windows.Forms.RadioButton Zephyr693_02;
-        private System.Windows.Forms.RadioButton Zephyr690_06;
-        private System.Windows.Forms.RadioButton Zephyr690_05;
-        private System.Windows.Forms.RadioButton Zephyr690_03;
-        private System.Windows.Forms.RadioButton Zephyr690_02;
-        private System.Windows.Forms.RadioButton Zephyr687_06;
-        private System.Windows.Forms.RadioButton Zephyr687_05;
-        private System.Windows.Forms.RadioButton Zephyr687_03;
-        private System.Windows.Forms.RadioButton Zephyr687_02;
+        private System.Windows.Forms.GroupBox XenonExtClkGroup;
+        private System.Windows.Forms.RadioButton Xenon96_594_10;
+        private System.Windows.Forms.RadioButton Xenon96_594_09;
         private System.Windows.Forms.RadioButton Rgh1Zephyr;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox Rgh12FjGroup;
@@ -1464,7 +1406,6 @@
         private System.Windows.Forms.RadioButton Rgh12Fj_19;
         private System.Windows.Forms.RadioButton Rgh12Fj_18;
         private System.Windows.Forms.RadioButton Rgh12Fj_17;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox Rgh12TcGroup;
         private System.Windows.Forms.RadioButton Rgh12Tc_135;
         private System.Windows.Forms.RadioButton Rgh12Tc_130;
@@ -1511,9 +1452,23 @@
         private System.Windows.Forms.RadioButton Corona545_03;
         private System.Windows.Forms.RadioButton Corona545_02;
         private System.Windows.Forms.GroupBox Rgh1Group;
-        private System.Windows.Forms.Button btnAss;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnAssistant;
         private System.Windows.Forms.ContextMenuStrip programMenu;
         private System.Windows.Forms.ToolStripMenuItem selectFileToolStripMenuItem;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.RadioButton Xenon192_594_10;
+        private System.Windows.Forms.RadioButton Xenon192_594_09;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox ZephyrExtClkGroup;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RadioButton Zephyr192_625_10;
+        private System.Windows.Forms.RadioButton Zephyr192_625_09;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.RadioButton Zephyr96_625_10;
+        private System.Windows.Forms.RadioButton Zephyr96_625_09;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnMoreTimings12;
+        private System.Windows.Forms.Button btnMoreTimingsExt;
+        private System.Windows.Forms.Label label4;
     }
 }

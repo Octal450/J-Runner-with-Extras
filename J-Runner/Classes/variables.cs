@@ -231,14 +231,16 @@ namespace JRunner
             "TR_L_0.3_T_60.0_DU", "TR_L_0.5_T_60.0_DU", "TR_L_0.6_T_60.0_DU", "TR_L_0.8_T_60.0_DU", "TR_L_0.3_T_60.3_DU", "TR_L_0.5_T_60.3_DU", "TR_L_0.6_T_60.3_DU", "TR_L_0.8_T_60.3_DU", "TR_L_0.3_T_60.6_DU", "TR_L_0.5_T_60.6_DU", "TR_L_0.6_T_60.6_DU", "TR_L_0.8_T_60.6_DU", "TR_L_0.3_T_60.9_DU", "TR_L_0.5_T_60.9_DU", "TR_L_0.6_T_60.9_DU", "TR_L_0.8_T_60.9_DU",
             // Corona S-RGH: 30-45
             "CO_L_0.2_T_54.5_PRO_DU", "CO_L_0.3_T_54.5_PRO_DU", "CO_L_0.5_T_54.5_PRO_DU", "CO_L_0.6_T_54.5_PRO_DU", "CO_L_0.2_T_54.8_PRO_DU", "CO_L_0.3_T_54.8_PRO_DU", "CO_L_0.5_T_54.8_PRO_DU", "CO_L_0.6_T_54.8_PRO_DU", "CO_L_0.2_T_55.2_PRO_DU", "CO_L_0.3_T_55.2_PRO_DU", "CO_L_0.5_T_55.2_PRO_DU", "CO_L_0.6_T_55.2_PRO_DU", "CO_L_0.2_T_55.5_PRO_DU", "CO_L_0.3_T_55.5_PRO_DU", "CO_L_0.5_T_55.5_PRO_DU", "CO_L_0.6_T_55.5_PRO_DU",
-            // Zephyr RGH2: 46-61
-            "ZE_L_0.2_T_68.7", "ZE_L_0.3_T_68.7", "ZE_L_0.5_T_68.7", "ZE_L_0.6_T_68.7", "ZE_L_0.2_T_69.0", "ZE_L_0.3_T_69.0", "ZE_L_0.5_T_69.0", "ZE_L_0.6_T_69.0", "ZE_L_0.2_T_69.3", "ZE_L_0.3_T_69.3", "ZE_L_0.5_T_69.3", "ZE_L_0.6_T_69.3", "ZE_L_0.2_T_69.6", "ZE_L_0.3_T_69.6", "ZE_L_0.5_T_69.6", "ZE_L_0.6_T_69.6",
-            // Trinity RGH1.2: 62-77
+            // Trinity RGH1.2: 46-61
             "rgh12_tr_60_v2", "rgh12_tr_65_v2","rgh12_tr_70_v2","rgh12_tr_75_v2", "rgh12_tr_80_v2", "rgh12_tr_85_v2","rgh12_tr_90_v2","rgh12_tr_95_v2", "rgh12_tr_100_v2", "rgh12_tr_105_v2","rgh12_tr_110_v2","rgh12_tr_115_v2", "rgh12_tr_120_v2", "rgh12_tr_125_v2","rgh12_tr_130_v2","rgh12_tr_135_v2",
-            // Corona RGH1.2: 78-93
+            // Corona RGH1.2: 62-77
             "rgh12_co_60_v2", "rgh12_co_65_v2","rgh12_co_70_v2","rgh12_co_75_v2", "rgh12_co_80_v2", "rgh12_co_85_v2","rgh12_co_90_v2","rgh12_co_95_v2", "rgh12_co_100_v2", "rgh12_co_105_v2","rgh12_co_110_v2","rgh12_co_115_v2", "rgh12_co_120_v2", "rgh12_co_125_v2","rgh12_co_130_v2","rgh12_co_135_v2",
-            // Corona Winbond RGH1.2: 93-109
-            "rgh12_wb_60_v2", "rgh12_wb_65_v2","rgh12_wb_70_v2","rgh12_wb_75_v2", "rgh12_wb_80_v2", "rgh12_wb_85_v2","rgh12_wb_90_v2","rgh12_wb_95_v2", "rgh12_wb_100_v2", "rgh12_wb_105_v2","rgh12_wb_110_v2","rgh12_wb_115_v2", "rgh12_wb_120_v2", "rgh12_wb_125_v2","rgh12_wb_130_v2","rgh12_wb_135_v2"
+            // Corona Winbond RGH1.2: 78-93
+            "rgh12_wb_60_v2", "rgh12_wb_65_v2","rgh12_wb_70_v2","rgh12_wb_75_v2", "rgh12_wb_80_v2", "rgh12_wb_85_v2","rgh12_wb_90_v2","rgh12_wb_95_v2", "rgh12_wb_100_v2", "rgh12_wb_105_v2","rgh12_wb_110_v2","rgh12_wb_115_v2", "rgh12_wb_120_v2", "rgh12_wb_125_v2","rgh12_wb_130_v2","rgh12_wb_135_v2",
+            // Xenon EXT_CLK: 94-97
+            "XE_96_L_0.9_T_59.4", "XE_96_L_1.0_T_59.4", "XE_192_L_0.9_T_59.4", "XE_192_L_1.0_T_59.4",
+            // Zephyr EXT_CLK: 98-101
+            "ZE_96_L_0.9_T_62.5", "ZE_96_L_1.0_T_62.5", "ZE_192_L_0.9_T_62.5", "ZE_192_L_1.0_T_62.5"
         };
         public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
         public static string[] flashconfigs = new string[] { "00023010", "00043000", "01198010", "008A3020", "00AA3020", "008C3020", "00AC3020", "C0462002" };
