@@ -22,6 +22,7 @@ namespace JRunner
         static int minDeltaRevision = 0;
         static string expectedDeltaMd5 = "";
         static string expectedFullMd5 = "";
+        public static bool deleteFolders = false;
         static WebClient wc = null;
         static UpdateDownload updateDownload = null;
         static XmlTextReader xml = null;
@@ -205,6 +206,24 @@ namespace JRunner
             {
                 if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
 
+                if (deleteFolders)
+                {
+                    Thread.Sleep(500); // Make sure all files are released
+
+                    try
+                    {
+                        if (Directory.Exists("common")) Directory.Delete("common", true);
+                        if (Directory.Exists("xeBuild")) Directory.Delete("xeBuild", true);
+                    }
+                    catch
+                    {
+                        updateDownload.Dispose();
+                        failedReason = "Failed to cleanup the filesystem.";
+                        Application.Run(new UpdateFailed());
+                        return;
+                    }
+                }
+
                 wc = new WebClient();
                 wc.DownloadProgressChanged += updateDownload.updateProgress;
                 wc.DownloadFileCompleted += full;
@@ -317,21 +336,13 @@ namespace JRunner
 
         public static void restoreFiles()
         {
-            Console.WriteLine("Restoring Files...");
-            Console.WriteLine("Please Wait...");
-
             Thread worker = new Thread(() =>
             {
                 try
                 {
-                    if (Directory.Exists("common")) Directory.Delete("common", true);
-                    if (Directory.Exists("xeBuild")) Directory.Delete("xeBuild", true);
-
-                    Thread.Sleep(200);
-
                     ProcessStartInfo jr = new ProcessStartInfo();
                     jr.FileName = "JRunner.exe";
-                    jr.Arguments = "/fullupdate";
+                    jr.Arguments = "/restorefiles";
                     jr.UseShellExecute = true;
 
                     Process.Start(jr);

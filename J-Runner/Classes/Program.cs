@@ -86,13 +86,18 @@ namespace JRunner
                     {
                         runFullUpdate = true;
                     }
+                    if (a.Contains("/restorefiles"))
+                    {
+                        runFullUpdate = true;
+                        Upd.deleteFolders = true;
+                    }
                 }
 
                 if (!runFullUpdate)
                 {
                     if (!Directory.Exists("common") || !Directory.Exists("xeBuild"))
                     {
-                        if (MessageBox.Show("Critical support files required for correct operation are missing\n\nDo you want to download the required support files?\n\nAll files inside common and xeBuild will be deleted and replaced with clean versions!", "J-Runner with Extras", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        if (MessageBox.Show("Critical support files required for correct operation are missing\n\nDo you want to download the required support files?\n\nAll files inside common and xeBuild will be deleted and replaced with clean versions!", "Missing Files", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
                             runFullUpdate = true;
                         }

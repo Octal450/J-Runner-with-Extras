@@ -31,49 +31,71 @@ namespace JRunner
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RestoreFiles));
             this.RestoreWizard = new AeroWizard.WizardControl();
-            this.wizardPage1 = new AeroWizard.WizardPage();
-            this.resetSettings = new System.Windows.Forms.CheckBox();
+            this.RestorePage = new AeroWizard.WizardPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
-            this.RestoreButton = new UI.CommandLink();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RestoreWizard)).BeginInit();
-            this.wizardPage1.SuspendLayout();
+            this.RestorePage.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // RestoreWizard
             // 
+            this.RestoreWizard.FinishButtonText = "&Next";
             this.RestoreWizard.Location = new System.Drawing.Point(0, 0);
             this.RestoreWizard.Name = "RestoreWizard";
-            this.RestoreWizard.Pages.Add(this.wizardPage1);
+            this.RestoreWizard.Pages.Add(this.RestorePage);
             this.RestoreWizard.Size = new System.Drawing.Size(554, 401);
             this.RestoreWizard.TabIndex = 0;
             this.RestoreWizard.Title = "Restore Files";
             this.RestoreWizard.TitleIcon = ((System.Drawing.Icon)(resources.GetObject("RestoreWizard.TitleIcon")));
             // 
-            // wizardPage1
+            // RestorePage
             // 
-            this.wizardPage1.Controls.Add(this.resetSettings);
-            this.wizardPage1.Controls.Add(this.label2);
-            this.wizardPage1.Controls.Add(this.RestoreButton);
-            this.wizardPage1.Controls.Add(this.label1);
-            this.wizardPage1.IsFinishPage = true;
-            this.wizardPage1.Name = "wizardPage1";
-            this.wizardPage1.ShowNext = false;
-            this.wizardPage1.Size = new System.Drawing.Size(507, 247);
-            this.wizardPage1.TabIndex = 0;
-            this.wizardPage1.Text = "Restore Files";
+            this.RestorePage.Controls.Add(this.groupBox1);
+            this.RestorePage.Controls.Add(this.label2);
+            this.RestorePage.Controls.Add(this.label1);
+            this.RestorePage.Name = "RestorePage";
+            this.RestorePage.Size = new System.Drawing.Size(507, 247);
+            this.RestorePage.TabIndex = 0;
+            this.RestorePage.Text = "Restore Files";
             // 
-            // resetSettings
+            // groupBox1
             // 
-            this.resetSettings.AutoSize = true;
-            this.resetSettings.Checked = true;
-            this.resetSettings.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.resetSettings.Location = new System.Drawing.Point(5, 225);
-            this.resetSettings.Name = "resetSettings";
-            this.resetSettings.Size = new System.Drawing.Size(99, 19);
-            this.resetSettings.TabIndex = 1;
-            this.resetSettings.Text = "Reset Settings";
-            this.resetSettings.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(151, 159);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(176, 43);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Save Downloaded Package";
+            this.groupBox1.Visible = false;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(132, 17);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(41, 19);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "No";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(9, 17);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(42, 19);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.Text = "Yes";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -84,17 +106,6 @@ namespace JRunner
             this.label2.TabIndex = 3;
             this.label2.Text = "An internet connection is required for this feature to operate.\r\n\r\nAll files insi" +
     "de common and xeBuild will be deleted and replaced with clean versions!";
-            // 
-            // RestoreButton
-            // 
-            this.RestoreButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.RestoreButton.Location = new System.Drawing.Point(2, 144);
-            this.RestoreButton.Name = "RestoreButton";
-            this.RestoreButton.Size = new System.Drawing.Size(232, 45);
-            this.RestoreButton.TabIndex = 2;
-            this.RestoreButton.Text = "Restore Files";
-            this.RestoreButton.UseVisualStyleBackColor = true;
-            this.RestoreButton.Click += new System.EventHandler(this.RestoreButton_Click);
             // 
             // label1
             // 
@@ -120,8 +131,9 @@ namespace JRunner
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Restore Files";
             ((System.ComponentModel.ISupportInitialize)(this.RestoreWizard)).EndInit();
-            this.wizardPage1.ResumeLayout(false);
-            this.wizardPage1.PerformLayout();
+            this.RestorePage.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -129,10 +141,11 @@ namespace JRunner
         #endregion
 
         private AeroWizard.WizardControl RestoreWizard;
-        private AeroWizard.WizardPage wizardPage1;
+        private AeroWizard.WizardPage RestorePage;
         private System.Windows.Forms.Label label1;
-        private UI.CommandLink RestoreButton;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox resetSettings;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

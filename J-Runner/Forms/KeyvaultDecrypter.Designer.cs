@@ -45,6 +45,7 @@ namespace JRunner.Forms
             // 
             // DecryptWizard
             // 
+            this.DecryptWizard.FinishButtonText = "&Decypt";
             this.DecryptWizard.Location = new System.Drawing.Point(0, 0);
             this.DecryptWizard.Name = "DecryptWizard";
             this.DecryptWizard.Pages.Add(this.DecryptPage);
@@ -59,7 +60,7 @@ namespace JRunner.Forms
             this.DecryptPage.Controls.Add(this.KvGroup);
             this.DecryptPage.IsFinishPage = true;
             this.DecryptPage.Name = "DecryptPage";
-            this.DecryptPage.Size = new System.Drawing.Size(507, 250);
+            this.DecryptPage.Size = new System.Drawing.Size(507, 247);
             this.DecryptPage.TabIndex = 0;
             this.DecryptPage.Text = "Insert CPU Key and Keyvault";
             // 
