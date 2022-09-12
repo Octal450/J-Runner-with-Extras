@@ -66,11 +66,12 @@
             this.chkWB4G = new System.Windows.Forms.CheckBox();
             this.chkListBoxPatches = new System.Windows.Forms.CheckedListBox();
             this.tabOptions = new System.Windows.Forms.TabPage();
+            this.btnShowAdvanced = new System.Windows.Forms.Button();
             this.btnXeBuildOptions = new System.Windows.Forms.Button();
             this.chkBigffs = new System.Windows.Forms.CheckBox();
             this.checkDLPatches = new System.Windows.Forms.CheckBox();
             this.btnLaunch = new System.Windows.Forms.Button();
-            this.chkxesettings = new System.Windows.Forms.CheckBox();
+            this.chkXeSettings = new System.Windows.Forms.CheckBox();
             this.chkLaunch = new System.Windows.Forms.CheckBox();
             this.tabClient = new System.Windows.Forms.TabPage();
             this.btnInfo = new System.Windows.Forms.Button();
@@ -99,7 +100,6 @@
             this.chkNoWrite = new System.Windows.Forms.CheckBox();
             this.btnXEUpdate = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox7.SuspendLayout();
             this.MainTabs.SuspendLayout();
             this.tabXeBuild.SuspendLayout();
@@ -576,11 +576,12 @@
             // tabOptions
             // 
             this.tabOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tabOptions.Controls.Add(this.btnShowAdvanced);
             this.tabOptions.Controls.Add(this.btnXeBuildOptions);
             this.tabOptions.Controls.Add(this.chkBigffs);
             this.tabOptions.Controls.Add(this.checkDLPatches);
             this.tabOptions.Controls.Add(this.btnLaunch);
-            this.tabOptions.Controls.Add(this.chkxesettings);
+            this.tabOptions.Controls.Add(this.chkXeSettings);
             this.tabOptions.Controls.Add(this.chkLaunch);
             this.tabOptions.Location = new System.Drawing.Point(4, 22);
             this.tabOptions.Name = "tabOptions";
@@ -589,22 +590,33 @@
             this.tabOptions.TabIndex = 2;
             this.tabOptions.Text = "Options";
             // 
+            // btnShowAdvanced
+            // 
+            this.btnShowAdvanced.Location = new System.Drawing.Point(3, 84);
+            this.btnShowAdvanced.Name = "btnShowAdvanced";
+            this.btnShowAdvanced.Size = new System.Drawing.Size(317, 23);
+            this.btnShowAdvanced.TabIndex = 76;
+            this.btnShowAdvanced.Text = "Show Advanced Tabs";
+            this.toolTip1.SetToolTip(this.btnShowAdvanced, "Show the Client and Update tabs (legacy)");
+            this.btnShowAdvanced.UseVisualStyleBackColor = true;
+            this.btnShowAdvanced.Click += new System.EventHandler(this.btnShowAdvanced_Click);
+            // 
             // btnXeBuildOptions
             // 
-            this.btnXeBuildOptions.Location = new System.Drawing.Point(18, 18);
+            this.btnXeBuildOptions.Location = new System.Drawing.Point(3, 3);
             this.btnXeBuildOptions.Name = "btnXeBuildOptions";
-            this.btnXeBuildOptions.Size = new System.Drawing.Size(153, 27);
+            this.btnXeBuildOptions.Size = new System.Drawing.Size(179, 26);
             this.btnXeBuildOptions.TabIndex = 65;
             this.btnXeBuildOptions.TabStop = false;
             this.btnXeBuildOptions.Text = "Advanced XeBuild Options";
-            this.toolTip1.SetToolTip(this.btnXeBuildOptions, "Advanced Users only - this allows you many options for your Xebuild  Options");
+            this.toolTip1.SetToolTip(this.btnXeBuildOptions, "Advanced Users Only\r\nAllows you to set many options for XeBuild");
             this.btnXeBuildOptions.UseVisualStyleBackColor = true;
             this.btnXeBuildOptions.Click += new System.EventHandler(this.btnXeBuildOptions_Click);
             // 
             // chkBigffs
             // 
             this.chkBigffs.AutoSize = true;
-            this.chkBigffs.Location = new System.Drawing.Point(19, 77);
+            this.chkBigffs.Location = new System.Drawing.Point(4, 61);
             this.chkBigffs.Name = "chkBigffs";
             this.chkBigffs.Size = new System.Drawing.Size(83, 17);
             this.chkBigffs.TabIndex = 71;
@@ -619,7 +631,7 @@
             this.checkDLPatches.BackColor = System.Drawing.Color.Transparent;
             this.checkDLPatches.Enabled = false;
             this.checkDLPatches.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkDLPatches.Location = new System.Drawing.Point(191, 53);
+            this.checkDLPatches.Location = new System.Drawing.Point(189, 37);
             this.checkDLPatches.Name = "checkDLPatches";
             this.checkDLPatches.Size = new System.Drawing.Size(121, 17);
             this.checkDLPatches.TabIndex = 73;
@@ -630,26 +642,27 @@
             // 
             // btnLaunch
             // 
-            this.btnLaunch.Location = new System.Drawing.Point(190, 18);
+            this.btnLaunch.Location = new System.Drawing.Point(188, 3);
             this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(115, 27);
+            this.btnLaunch.Size = new System.Drawing.Size(132, 26);
             this.btnLaunch.TabIndex = 75;
             this.btnLaunch.TabStop = false;
             this.btnLaunch.Text = "Launch.ini Options";
+            this.toolTip1.SetToolTip(this.btnLaunch, "Advanced Users Only\r\nAllows you to create a launch.ini\r\n");
             this.btnLaunch.UseVisualStyleBackColor = true;
             this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
             // 
             // chkxesettings
             // 
-            this.chkxesettings.AutoSize = true;
-            this.chkxesettings.Location = new System.Drawing.Point(19, 53);
-            this.chkxesettings.Name = "chkxesettings";
-            this.chkxesettings.Size = new System.Drawing.Size(117, 17);
-            this.chkxesettings.TabIndex = 66;
-            this.chkxesettings.TabStop = false;
-            this.chkxesettings.Text = "Use Edited Options";
-            this.chkxesettings.UseVisualStyleBackColor = true;
-            this.chkxesettings.CheckedChanged += new System.EventHandler(this.chkxesettings_CheckedChanged);
+            this.chkXeSettings.AutoSize = true;
+            this.chkXeSettings.Location = new System.Drawing.Point(4, 37);
+            this.chkXeSettings.Name = "chkxesettings";
+            this.chkXeSettings.Size = new System.Drawing.Size(117, 17);
+            this.chkXeSettings.TabIndex = 66;
+            this.chkXeSettings.TabStop = false;
+            this.chkXeSettings.Text = "Use Edited Options";
+            this.chkXeSettings.UseVisualStyleBackColor = true;
+            this.chkXeSettings.CheckedChanged += new System.EventHandler(this.chkxesettings_CheckedChanged);
             // 
             // chkLaunch
             // 
@@ -657,7 +670,7 @@
             this.chkLaunch.BackColor = System.Drawing.Color.Transparent;
             this.chkLaunch.Enabled = false;
             this.chkLaunch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkLaunch.Location = new System.Drawing.Point(191, 77);
+            this.chkLaunch.Location = new System.Drawing.Point(189, 61);
             this.chkLaunch.Name = "chkLaunch";
             this.chkLaunch.Size = new System.Drawing.Size(109, 17);
             this.chkLaunch.TabIndex = 74;
@@ -703,7 +716,7 @@
             // chkForceIP2
             // 
             this.chkForceIP2.AutoSize = true;
-            this.chkForceIP2.Location = new System.Drawing.Point(176, 59);
+            this.chkForceIP2.Location = new System.Drawing.Point(176, 60);
             this.chkForceIP2.Name = "chkForceIP2";
             this.chkForceIP2.Size = new System.Drawing.Size(66, 17);
             this.chkForceIP2.TabIndex = 14;
@@ -783,11 +796,11 @@
             // 
             // btnComp
             // 
-            this.btnComp.Location = new System.Drawing.Point(145, 83);
+            this.btnComp.Location = new System.Drawing.Point(149, 83);
             this.btnComp.Name = "btnComp";
-            this.btnComp.Size = new System.Drawing.Size(173, 22);
+            this.btnComp.Size = new System.Drawing.Size(169, 22);
             this.btnComp.TabIndex = 17;
-            this.btnComp.Text = "Send XBOX Compatibility data";
+            this.btnComp.Text = "Send Xbox Compatibility Data";
             this.toolTip1.SetToolTip(this.btnComp, "Refer to Xebuild\'s Notes");
             this.btnComp.UseVisualStyleBackColor = true;
             this.btnComp.Click += new System.EventHandler(this.btnComp_Click);
@@ -796,9 +809,9 @@
             // 
             this.btnAvatar.Location = new System.Drawing.Point(5, 83);
             this.btnAvatar.Name = "btnAvatar";
-            this.btnAvatar.Size = new System.Drawing.Size(133, 22);
+            this.btnAvatar.Size = new System.Drawing.Size(140, 22);
             this.btnAvatar.TabIndex = 16;
-            this.btnAvatar.Text = "Send Avatar/Kinect data";
+            this.btnAvatar.Text = "Send Avatar/Kinect Data";
             this.toolTip1.SetToolTip(this.btnAvatar, "Update your Avatar and Kinect Data");
             this.btnAvatar.UseVisualStyleBackColor = true;
             this.btnAvatar.Click += new System.EventHandler(this.btnAvatar_Click);
@@ -1011,7 +1024,7 @@
         private System.Windows.Forms.TextBox txtMBname;
         private System.Windows.Forms.TabPage tabOptions;
         private System.Windows.Forms.Button btnXeBuildOptions;
-        private System.Windows.Forms.CheckBox chkxesettings;
+        private System.Windows.Forms.CheckBox chkXeSettings;
         private System.Windows.Forms.CheckedListBox chkListBoxPatches;
         private System.Windows.Forms.TabPage tabPatches;
         private System.Windows.Forms.Button btnLaunch;
@@ -1046,7 +1059,6 @@
         private System.Windows.Forms.Label lblOffset;
         private System.Windows.Forms.TextBox txtIP2;
         private System.Windows.Forms.CheckBox chkForceIP2;
-        private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.RadioButton rbtnGlitch2m;
         private System.Windows.Forms.Label labelCB;
@@ -1067,5 +1079,6 @@
         private System.Windows.Forms.CheckBox chkXLUsb;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkXLHdd;
+        private System.Windows.Forms.Button btnShowAdvanced;
     }
 }

@@ -130,22 +130,6 @@ namespace JRunner
                                     rbtnBlank2.Checked = true;
                                 }
                             }
-                            else if (option.Substring(0, option.IndexOf('=')) == "cpufan")
-                            {
-                                try
-                                {
-                                    trackBar1.Value = Convert.ToInt32(option.Substring(option.IndexOf("=") + 1));
-                                }
-                                catch (Exception) { }
-                            }
-                            else if (option.Substring(0, option.IndexOf('=')) == "gpufan")
-                            {
-                                try
-                                {
-                                    trackBar2.Value = Convert.ToInt32(option.Substring(option.IndexOf("=") + 1));
-                                }
-                                catch (Exception) { }
-                            }
                         }
                     }
                 }
@@ -154,7 +138,7 @@ namespace JRunner
 
         private void btnaccept_Click(object sender, EventArgs e)
         {
-            if (!chksettings.Checked)
+            if (!chkResetSettings.Checked)
             {
                 List<string> options = new List<string>();
 
@@ -168,7 +152,7 @@ namespace JRunner
                 c.Reverse();
                 foreach (CheckBox col in c)
                 {
-                    if (col != chksettings)
+                    if (col != chkResetSettings)
                     {
                         if (col != null)
                             if (col.Checked)
@@ -179,12 +163,15 @@ namespace JRunner
                 }
                 File.Copy(file, filename, true);
                 parse_ini.edit_ini(filename, options.ToArray(), delete);
+                Console.WriteLine("Options.ini saved successfully");
+                MainForm.mainForm.xPanel.setXeSettingsChecked(true);
             }
             else
             {
                 File.Copy(file, filename, true);
+                Console.WriteLine("Options.ini reset successfully");
+                MainForm.mainForm.xPanel.setXeSettingsChecked(false);
             }
-            Console.WriteLine("Options.ini saved successfully");
             this.Close();
         }
 
@@ -300,17 +287,6 @@ namespace JRunner
             xellbutton2.Text = "";
         }
         #endregion
-
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
-        {
-            cpufan.Text = trackBar1.Value.ToString();
-        }
-
-        private void trackBar2_ValueChanged(object sender, EventArgs e)
-        {
-            gpufan.Text = trackBar2.Value.ToString();
-        }
-
 
     }
 }

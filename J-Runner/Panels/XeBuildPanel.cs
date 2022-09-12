@@ -24,6 +24,8 @@ namespace JRunner.Panels
         {
             InitializeComponent();
             checkDevGL("None");
+            MainTabs.TabPages.Remove(tabClient);
+            MainTabs.TabPages.Remove(tabUpdate);
         }
 
         #region delegates
@@ -124,6 +126,11 @@ namespace JRunner.Panels
             if (check && !rbtnDevGL.Enabled) return;
             rbtnDevGL.Checked = check;
         }
+        public void setXeSettingsChecked(bool check)
+        {
+            if (check && !chkXeSettings.Enabled) return;
+            chkXeSettings.Checked = check;
+        }
 
         // Checkbox Getters
         public bool getCleanSMCChecked()
@@ -207,7 +214,7 @@ namespace JRunner.Panels
             {
                 chkListBoxPatches.SetItemChecked(i, false);
             }
-            chkxesettings.Checked = false;
+            chkXeSettings.Checked = false;
         }
 
         public void setMBname(string txt)
@@ -322,7 +329,6 @@ namespace JRunner.Panels
         {
             XBOptions xb = new XBOptions();
             xb.ShowDialog();
-            chkxesettings.Checked = true;
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
@@ -1115,8 +1121,24 @@ namespace JRunner.Panels
 
         private void chkxesettings_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkxesettings.Checked) Console.WriteLine("Use Edited Options Selected");
+            if (chkXeSettings.Checked) Console.WriteLine("Use Edited Options Selected");
             else Console.WriteLine("Use Edited Options Deselected");
+        }
+
+        private void btnShowAdvanced_Click(object sender, EventArgs e)
+        {
+            if (btnShowAdvanced.Text == "Show Advanced Tabs")
+            {
+                MainTabs.TabPages.Add(tabClient);
+                MainTabs.TabPages.Add(tabUpdate);
+                btnShowAdvanced.Text = "Hide Advanced Tabs";
+            }
+            else
+            {
+                MainTabs.TabPages.Remove(tabClient);
+                MainTabs.TabPages.Remove(tabUpdate);
+                btnShowAdvanced.Text = "Show Advanced Tabs";
+            }
         }
 
         #endregion
@@ -1126,7 +1148,7 @@ namespace JRunner.Panels
         void xe_update()
         {
             Classes.xebuild xe = new Classes.xebuild();
-            xe.Uloadvariables(variables.dashversion, (variables.hacktypes)variables.ttyp, patches, chkxesettings.Checked, chkNoWrite.Checked, chkNoAva.Checked, chkClean.Checked, chkNoReeb.Checked, checkDLPatches.Checked,
+            xe.Uloadvariables(variables.dashversion, (variables.hacktypes)variables.ttyp, patches, chkXeSettings.Checked, chkNoWrite.Checked, chkNoAva.Checked, chkClean.Checked, chkNoReeb.Checked, checkDLPatches.Checked,
                 chkLaunch.Checked);
             File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin"));
             try
@@ -1184,7 +1206,7 @@ namespace JRunner.Panels
         {
             Classes.xebuild xe = new Classes.xebuild();
             xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
-                             variables.ctype, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
+                             variables.ctype, patches, nand, chkXeSettings.Checked, checkDLPatches.Checked,
                              chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, fullDataClean);
 
             string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_" + variables.ttyp + ".ini");
@@ -1314,7 +1336,7 @@ namespace JRunner.Panels
                     {
                         Console.WriteLine((variables.hacktypes)variables.ttyp);
                         xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
-                            variables.ctype, patches, nand, chkxesettings.Checked, checkDLPatches.Checked,
+                            variables.ctype, patches, nand, chkXeSettings.Checked, checkDLPatches.Checked,
                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked,
                             chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, fullDataClean);
                         goto Start;
@@ -1343,7 +1365,7 @@ namespace JRunner.Panels
             try
             {
                 File.Copy(Path.Combine(variables.rootfolder, @"xebuild\options.ini"), Path.Combine(variables.rootfolder, @"xebuild\data\options.ini"), true);
-                chkxesettings.Checked = false;
+                chkXeSettings.Checked = false;
                 File.Move(Path.Combine(variables.xefolder, variables.updflash + ".log"), Path.Combine(variables.xefolder, variables.updflash.Substring(0, variables.updflash.IndexOf(".")) + "(" + DateTime.Now.ToString("ddMMyyyyHHmm") + ").bin.log"));
             }
             catch (Exception ex) { if (variables.debugMode) Console.WriteLine(ex.ToString()); }
