@@ -136,10 +136,11 @@ namespace JRunner
         public static bool backupEn = false;
         public static int backupType = 0;
         public static int backupNaming = 0;
+        public static bool showAdvancedTabs = false;
         public static string backupRoot = "";
         public static string[] settings = { "XeBuild", "FileChecks", "COMPort", "Delay", "DashlaunchE", "IP", "NoReads", "IPStart", "IPEnd", "Dashlaunch", "PreferredDash", "KeepFiles", "RootDirOverride",
                                             "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings", "PlaySuccess",
-                                            "PlayError", "AutoDelXeLL", "CpuKeyDbSerial", "BackupEn", "BackupType", "BackupNaming", "BackupRoot"};
+                                            "PlayError", "AutoDelXeLL", "CpuKeyDbSerial", "BackupEn", "BackupType", "BackupNaming", "BackupRoot", "ShowAdvancedTabs"};
 
         public static string COMPort = "";
 

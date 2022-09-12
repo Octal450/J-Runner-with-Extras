@@ -24,8 +24,6 @@ namespace JRunner.Panels
         {
             InitializeComponent();
             checkDevGL("None");
-            MainTabs.TabPages.Remove(tabClient);
-            MainTabs.TabPages.Remove(tabUpdate);
         }
 
         #region delegates
@@ -197,6 +195,19 @@ namespace JRunner.Panels
         public void change_tab()
         {
             MainTabs.SelectedTab = tabXeBuild;
+        }
+
+        public void initTabs() // Only call once after settings load
+        {
+            if (variables.showAdvancedTabs)
+            {
+                btnShowAdvanced.Text = "Hide Advanced Tabs";
+            }
+            else
+            {
+                MainTabs.TabPages.Remove(tabClient);
+                MainTabs.TabPages.Remove(tabUpdate);
+            }
         }
 
         public void clear()
@@ -1132,12 +1143,14 @@ namespace JRunner.Panels
                 MainTabs.TabPages.Add(tabClient);
                 MainTabs.TabPages.Add(tabUpdate);
                 btnShowAdvanced.Text = "Hide Advanced Tabs";
+                variables.showAdvancedTabs = true;
             }
             else
             {
                 MainTabs.TabPages.Remove(tabClient);
                 MainTabs.TabPages.Remove(tabUpdate);
                 btnShowAdvanced.Text = "Show Advanced Tabs";
+                variables.showAdvancedTabs = false;
             }
         }
 

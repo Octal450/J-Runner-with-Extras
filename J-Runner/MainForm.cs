@@ -107,6 +107,7 @@ namespace JRunner
             }
 
             loadsettings();
+            xPanel.initTabs();
 
             if (!Directory.Exists(variables.outfolder))
             {
@@ -426,19 +427,6 @@ namespace JRunner
             else if (xPanel.getRbtnRetailChecked()) variables.ttyp = variables.hacktypes.retail;
             else if (xPanel.getRbtnDevGLChecked()) variables.ttyp = variables.hacktypes.devgl;
             else variables.ttyp = variables.hacktypes.nothing;
-        }
-
-        void xPanel_AddedDash()
-        {
-            ThreadStart starte = delegate { check_dashes(true); };
-            Thread th = new Thread(starte);
-            th.IsBackground = true;
-            th.Start();
-        }
-
-        void xPanel_DeletedDash()
-        {
-            check_dash();
         }
 
         void xPanel_getmb()
@@ -4447,6 +4435,9 @@ namespace JRunner
                         case "BackupRoot":
                             x.write(name, variables.backupRoot);
                             break;
+                        case "ShowAdvancedTabs":
+                            x.write(name, variables.showAdvancedTabs.ToString());
+                            break;
                         default:
                             break;
                     }
@@ -4640,6 +4631,11 @@ namespace JRunner
                             break;
                         case "BackupRoot":
                             if (!string.IsNullOrWhiteSpace(val)) variables.backupRoot = val;
+                            break;
+                        case "ShowAdvancedTabs":
+                            bvalue = false;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
+                            variables.showAdvancedTabs = bvalue;
                             break;
                         default:
                             break;
