@@ -76,7 +76,7 @@ namespace JRunner
             else
             {
                 initTimer.Stop();
-                if (!inUse) MainForm.mainForm.xFlasherBusy(-1);
+                if (!inUse && MainForm.mainForm.getProgressBarStyle() == ProgressBarStyle.Marquee) MainForm.mainForm.xFlasherBusy(-1);
                 waiting = false;
                 ready = true; // Last
             }

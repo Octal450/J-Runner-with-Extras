@@ -106,6 +106,8 @@ namespace JRunner
             this.timingAssistantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cPUKeyDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cBFuseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.restoreFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customNandProCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -164,8 +166,6 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restoreFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -841,6 +841,18 @@ namespace JRunner
             this.cBFuseToolStripMenuItem.Text = "CB Fuse Table";
             this.cBFuseToolStripMenuItem.Click += new System.EventHandler(this.cBFuseToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(205, 6);
+            // 
+            // restoreFilesToolStripMenuItem
+            // 
+            this.restoreFilesToolStripMenuItem.Name = "restoreFilesToolStripMenuItem";
+            this.restoreFilesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.restoreFilesToolStripMenuItem.Text = "Restore Files…";
+            this.restoreFilesToolStripMenuItem.Click += new System.EventHandler(this.restoreFilesToolStripMenuItem_Click);
+            // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
@@ -1313,18 +1325,6 @@ namespace JRunner
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // restoreFilesToolStripMenuItem
-            // 
-            this.restoreFilesToolStripMenuItem.Name = "restoreFilesToolStripMenuItem";
-            this.restoreFilesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.restoreFilesToolStripMenuItem.Text = "Restore Files…";
-            this.restoreFilesToolStripMenuItem.Click += new System.EventHandler(this.restoreFilesToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem10
-            // 
-            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(205, 6);
             // 
             // MainForm
             // 

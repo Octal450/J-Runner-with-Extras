@@ -2758,14 +2758,19 @@ namespace JRunner
 
         #region UI
 
-        void updateProgress(int progress)
+        public void updateProgress(int progress)
         {
             progressBar.BeginInvoke((Action)(() => progressBar.Value = progress));
         }
 
-        void updateBlocks(String progress)
+        public void updateBlocks(String progress)
         {
             txtBlocks.BeginInvoke((Action)(() => txtBlocks.Text = progress));
+        }
+
+        public ProgressBarStyle getProgressBarStyle()
+        {
+            return progressBar.Style;
         }
 
         #region Menu Bar
@@ -4742,12 +4747,6 @@ namespace JRunner
                 xPanel.setComboCB();
             }
             catch { }
-        }
-
-        private void check_dashes(bool check = false)
-        {
-            variables.dashes_all.Sort();
-            if (check) check_dash();
         }
 
         #endregion
