@@ -79,6 +79,7 @@ namespace JRunner.Nand
         {
             // CBs
             new _nand(1888, "Xenon", 4532, 7371, 2, variables.hacktypes.jtag, variables.ctypes[8]),
+            new _nand(1897, "Xenon", 4532, 7371, 2, variables.hacktypes.jtag, variables.ctypes[8]),
             new _nand(1902, "Xenon", 4532, 7371, 2, variables.hacktypes.jtag, variables.ctypes[8]),
             new _nand(1903, "Xenon", 4532, 7371, 2, variables.hacktypes.jtag, variables.ctypes[8]),
             new _nand(1920, "Xenon", 4532, 7371, 4, variables.hacktypes.jtag, variables.ctypes[8]),

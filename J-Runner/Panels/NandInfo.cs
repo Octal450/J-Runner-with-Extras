@@ -20,6 +20,7 @@ namespace JRunner.Panels
         {
             InitializeComponent();
             lblfcrt.Visible = false;
+            lblhashed.Visible = false;
             label2bl.Visible = false;
             setNand(Nand);
         }
@@ -59,6 +60,7 @@ namespace JRunner.Panels
             txtregion.Text = "";
             textMFRdate.Text = "";
             lblfcrt.Visible = false;
+            lblhashed.Visible = false;
 
             // Bad Blocks
             txtBadBlocks.Text = "No Nand Loaded";
@@ -102,8 +104,8 @@ namespace JRunner.Panels
                     if (nand.bl.CB_B != 0)
                     {
                         textBox2BLb.Text = nand.bl.CB_B.ToString();
-                        if (textBox2BLb.Text == "15432") textBoxCbType.Text = "RGH3";
-                        else textBoxCbType.Text = "Split";
+                        if (textBox2BLb.Text == "15432") textBoxCbType.Text = "RGH3 CB";
+                        else textBoxCbType.Text = "Split CB";
                         textBox2BLb.Enabled = true;
                         label2blb.Visible = true;
                         label2bla.Visible = true;
@@ -112,7 +114,7 @@ namespace JRunner.Panels
                     else
                     {
                         textBox2BLb.Enabled = false;
-                        textBoxCbType.Text = "Single";
+                        textBoxCbType.Text = "Single CB";
                         label2blb.Visible = false;
                         label2bla.Visible = false;
                         label2bl.Visible = true;
@@ -149,6 +151,7 @@ namespace JRunner.Panels
                         txtosig.Text = nand.ki.osig;
                         txtSerial.Text = nand.ki.serial;
                         txtkvtype.Text = nand.ki.kvtype.Replace("0", " ");
+                        lblhashed.Visible = txtkvtype.Text == "2";
                         txtregion.Text = "0x" + nand.ki.region + "   |   ";
                         if (nand.ki.region == "02FE") txtregion.Text += "PAL/EU";
                         else if (nand.ki.region == "00FF") txtregion.Text += "NTSC/US";
@@ -170,6 +173,7 @@ namespace JRunner.Panels
                         txtregion.Text = "";
                         textMFRdate.Text = "";
                         lblfcrt.Visible = false;
+                        lblhashed.Visible = false;
                     }
                 }));
 
@@ -250,6 +254,7 @@ namespace JRunner.Panels
         private void NandInfo_Load(object sender, EventArgs e)
         {
             lblfcrt.Visible = false;
+            lblhashed.Visible = false;
             label2bl.Visible = false;
         }
 
@@ -265,11 +270,6 @@ namespace JRunner.Panels
                 e.Effect = DragDropEffects.All;
             else
                 e.Effect = DragDropEffects.None;
-        }
-
-        private void btnHexView_Click(object sender, EventArgs e)
-        {
-            MainForm.mainForm.kVViewer();
         }
 
         private void btnConsoleId_Click(object sender, EventArgs e)
