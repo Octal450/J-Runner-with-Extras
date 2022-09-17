@@ -202,9 +202,8 @@ namespace JRunner.Forms
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 if (variables.debugMode) Console.WriteLine(ex.ToString());
-                MessageBox.Show("SMC Config could not be loaded\n\nIt might be corrupt", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("SMC Config could not be loaded\n\nIt might be corrupt\n\n" + ex.GetType(), "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
         }
@@ -498,7 +497,7 @@ namespace JRunner.Forms
 
             if (val > 127)
             {
-                MessageBox.Show("Value must be less than 128", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Temp value must be less than 128", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else return true;
@@ -506,6 +505,8 @@ namespace JRunner.Forms
 
         private void txtTempTargetCPU_TextChanged(object sender, EventArgs e)
         {
+            if (!save) return;
+
             if (!checkTempValid(txtTempTargetCPU.Text))
             {
                 txtTempTargetCPU.Text = "";
@@ -515,6 +516,8 @@ namespace JRunner.Forms
 
         private void txtTempTargetGPU_TextChanged(object sender, EventArgs e)
         {
+            if (!save) return;
+
             if (!checkTempValid(txtTempTargetGPU.Text))
             {
                 txtTempTargetGPU.Text = "";
@@ -524,6 +527,8 @@ namespace JRunner.Forms
 
         private void txtTempTargetEDRAM_TextChanged(object sender, EventArgs e)
         {
+            if (!save) return;
+
             if (!checkTempValid(txtTempTargetEDRAM.Text))
             {
                 txtTempTargetEDRAM.Text = "";
@@ -533,6 +538,8 @@ namespace JRunner.Forms
 
         private void txtTempCriticalCPU_TextChanged(object sender, EventArgs e)
         {
+            if (!save) return;
+
             if (!checkTempValid(txtTempCriticalCPU.Text))
             {
                 txtTempCriticalCPU.Text = "";
@@ -542,6 +549,8 @@ namespace JRunner.Forms
 
         private void txtTempCriticalGPU_TextChanged(object sender, EventArgs e)
         {
+            if (!save) return;
+
             if (!checkTempValid(txtTempCriticalGPU.Text))
             {
                 txtTempCriticalGPU.Text = "";
@@ -551,6 +560,8 @@ namespace JRunner.Forms
 
         private void txtTempCriticalEDRAM_TextChanged(object sender, EventArgs e)
         {
+            if (!save) return;
+
             if (!checkTempValid(txtTempCriticalEDRAM.Text))
             {
                 txtTempCriticalEDRAM.Text = "";
