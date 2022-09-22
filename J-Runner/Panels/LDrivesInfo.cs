@@ -1045,5 +1045,12 @@ namespace JRunner.Panels
 
         #endregion
 
+        private void chkFullDump_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkFullDump.Checked)
+            {
+                MessageBox.Show("Warning: This function is for advanced users only\n\nYou should not do a full dump unless you have a specific reason", "Steep Hill Ahead", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

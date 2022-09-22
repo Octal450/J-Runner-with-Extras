@@ -146,6 +146,7 @@
             this.chkFullDump.TabIndex = 15;
             this.chkFullDump.Text = "Full Dump";
             this.chkFullDump.UseVisualStyleBackColor = true;
+            this.chkFullDump.CheckedChanged += new System.EventHandler(this.chkFullDump_CheckedChanged);
             // 
             // btnRead
             // 
