@@ -463,14 +463,6 @@ namespace JRunner.Classes
 
             return XebuildError.none;
         }
-        void moveXell()
-        {
-            if (_ttype != variables.hacktypes.retail)
-            {
-                File.Copy(Path.Combine(variables.rootfolder, @"common\xell\xell-2f.bin"), Path.Combine(variables.rootfolder, @"xebuild\data\xell-2f.bin"), true);
-                File.Copy(Path.Combine(variables.rootfolder, @"common\xell\xell-gggggg.bin"), Path.Combine(variables.rootfolder, @"xebuild\data\xell-gggggg.bin"), true);
-            }
-        }
         void moveOptions()
         {
             if (_altoptions)
@@ -489,7 +481,6 @@ namespace JRunner.Classes
             XebuildError result = XebuildError.none;
             result = doSomeChecks();
             if (result != XebuildError.none) return result;
-            moveXell();
             moveOptions();
             if (variables.changeldv != 0)
             {
@@ -760,8 +751,6 @@ namespace JRunner.Classes
             XebuildError result = XebuildError.none;
             if (_dash == 0) result = XebuildError.nodash;
             if (result != XebuildError.none) return result;
-            //File.Copy(Path.Combine(variables.pathforit, @"common\xell\xell-2f.bin"), Path.Combine(variables.pathforit, @"xeBuild\xell-2f.bin"), true);
-            //File.Copy(Path.Combine(variables.pathforit, @"common\xell\xell-gggggg.bin"), Path.Combine(variables.pathforit, @"xeBuild\xell-gggggg.bin"), true);
             moveOptions();
 
             Console.WriteLine("Load Files Initiliazation Finished");

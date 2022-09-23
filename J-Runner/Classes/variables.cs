@@ -80,9 +80,9 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.2.1";
-        public static string build = "3210." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
-        public const string staticversion = "3.2.1.0";
+        public static string version = "3.2.1 r2";
+        public static string build = "3211." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
+        public const string staticversion = "3.2.1.1";
         public static int revision = 27;
         public static Windows currentOS = Windows.Unknown;
         public static bool iswriting;
@@ -138,11 +138,10 @@ namespace JRunner
         public static int backupNaming = 0;
         public static bool showAdvancedTabs = false;
         public static string backupRoot = "";
+        public static string COMPort = "";
         public static string[] settings = { "XeBuild", "FileChecks", "COMPort", "Delay", "DashlaunchE", "IP", "NoReads", "IPStart", "IPEnd", "Dashlaunch", "PreferredDash", "KeepFiles", "RootDirOverride",
                                             "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings", "PlaySuccess",
                                             "PlayError", "AutoDelXeLL", "CpuKeyDbSerial", "BackupEn", "BackupType", "BackupNaming", "BackupRoot", "ShowAdvancedTabs"};
-
-        public static string COMPort = "";
 
         /// <summary>
         /// Internet
@@ -242,6 +241,7 @@ namespace JRunner
             // Zephyr EXT_CLK: 98-101
             "ZE_96_L_0.9_T_62.5", "ZE_96_L_1.0_T_62.5", "ZE_192_L_0.9_T_62.5", "ZE_192_L_1.0_T_62.5"
         };
+
         public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
         public static string[] flashconfigs = new string[] { "00023010", "00043000", "01198010", "008A3020", "00AA3020", "008C3020", "00AC3020", "C0462002" };
         public static bool fulldump = false, read1p28mb = false;
@@ -280,6 +280,7 @@ namespace JRunner
             testkit,
             testkit16
         }
+
         public static consoles ctype = ctypes[0];
         public static hacktypes ttyp = hacktypes.retail;
         public static string xepath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\xeBuild\data\";
