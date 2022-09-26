@@ -122,9 +122,12 @@ namespace JRunner
                 }
             }
 
+            Thread cleanupThread = new Thread(cleanupFiles);
+            cleanupThread.Start();
+
             printstartuptext(true);
             
-            new Thread(on_load).Start();
+            new Thread(check_dash).Start();
 
             deviceinit();
             
@@ -203,6 +206,36 @@ namespace JRunner
             return false;
         }
 
+        private void cleanupFiles() // Removes files that should not be there
+        {
+            string path;
+            List<string> xeBuildDataList = new List<string>() { "cpukey.txt", "fcrt.bin", "KV.bin", "nanddump.bin", "SMC.bin", "SMC_Config.bin" };
+
+            try
+            {
+                // Delete deprecated files
+                if (Directory.Exists(@"common\ECC")) Directory.Delete(@"common\ECC", true);
+                if (Directory.Exists(@"common\xell")) Directory.Delete(@"common\xell", true);
+                if (File.Exists(@"common\xflasher\FTDI2SPI.dll")) File.Delete(@"common\xflasher\FTDI2SPI.dll");
+                if (File.Exists(@"xeBuild\xell-2f.bin")) File.Delete(@"xeBuild\xell-2f.bin");
+                if (File.Exists(@"xeBuild\xell-gggggg.bin")) File.Delete(@"xeBuild\xell-gggggg.bin");
+
+                foreach (string file in xeBuildDataList) // Cleanup temporary files placed in xeBuild\data
+                {
+                    path = Path.Combine(variables.xepath, file);
+                    if (File.Exists(path))
+                    {
+                        File.Delete(path);
+                        if (variables.debugMode) Console.WriteLine("Deleted File: {0}", path);
+                    }
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Failed to cleanup the directories");
+            }
+        }
+
         private void deviceinit()
         {
             devNotifier = DeviceNotifier.OpenDeviceNotifier();
@@ -278,11 +311,6 @@ namespace JRunner
             {
                 // Do nothing
             }
-        }
-
-        private void on_load()
-        {
-            check_dash(); // configures the dashes dropdown
         }
 
         private void printstartuptext(bool firsttime = false)
@@ -465,7 +493,7 @@ namespace JRunner
         {
             if (xsvfInfo.heResult() == -1)
             {
-                MessageBox.Show("No timing selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("I have absolutely no idea what timing you want me to program\n\nSelect a timing and try again", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             string file;
             if (variables.debugMode) Console.WriteLine(xsvfInfo.heResult());
@@ -1418,7 +1446,6 @@ namespace JRunner
         }
         void writefusion()
         {
-            if (string.IsNullOrWhiteSpace(variables.filename1)) loadfile(ref variables.filename1, ref this.txtFileSource, true);
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
             if (DemoN.DemonDetected)
@@ -2237,7 +2264,7 @@ namespace JRunner
             else return;
             if (variables.debugMode) Console.WriteLine(xellfile);
 
-            byte[] xell = Oper.openfile(Path.Combine(variables.rootfolder, "common\\xell\\" + xellfile), ref size1, 0);
+            byte[] xell = Oper.openfile(Path.Combine(variables.rootfolder, @"common\xell-images\jtag", xellfile), ref size1, 0);
             if (variables.debugMode) Console.WriteLine("{0} file loaded successfully", xellfile);
             if (variables.debugMode) Console.WriteLine("{0:X} | {1:X}", xell.Length, kvraw.Length);
 
@@ -2339,27 +2366,27 @@ namespace JRunner
                 switch (variables.ctype.ID)
                 {
                     case 1:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_trinity + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.RGH3_trinity + ".ecc");
                         break;
                     case 2:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_falcon + mhz + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.RGH3_falcon + mhz + ".ecc");
                         break;
                     case 4:
                     case 5:
                     case 6:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_jasper + mhz + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.RGH3_jasper + mhz + ".ecc");
                         break;
                     case 9:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.RGH3_corona + ".ecc");
                         break;
                     case 10:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.RGH3_corona + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_corona4gb + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.RGH3_corona4gb + ".ecc");
                         break;
                     case 12:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.RGH3_trinity + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.RGH3_trinity + ".ecc");
                         break;
                     default:
                         return "";
@@ -2377,34 +2404,34 @@ namespace JRunner
                 switch (variables.ctype.ID)
                 {
                     case 1:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_trinity + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_trinity + cr4 + smcp + ".ecc");
                         break;
                     case 2:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_falcon + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_falcon + cr4 + smcp + ".ecc");
                         break;
                     case 3:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_falcon + cr4 + smcp + ".ecc"); // Use Falcon
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_falcon + cr4 + smcp + ".ecc"); // Use Falcon
                         if (variables.debugMode) Console.WriteLine("Using Falcon type for Zephyr");
                         break;
                     case 4:
                     case 5:
                     case 6:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_jasper + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_jasper + cr4 + smcp + ".ecc");
                         break;
                     case 8:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_xenon + ".ecc"); // No CR4 or SMC+
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_xenon + ".ecc"); // No CR4 or SMC+
                         break;
                     case 9:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_corona + wb + cr4 + smcp + ".ecc");
                         break;
                     case 10:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_corona + wb + cr4 + smcp + ".ecc");
                         break;
                     case 11:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_corona4gb + wb + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_corona4gb + wb + cr4 + smcp + ".ecc");
                         break;
                     case 12:
-                        variables.filename1 = Path.Combine(variables.rootfolder, "common", "ECC", variables.Glitch2_trinity + cr4 + smcp + ".ecc");
+                        variables.filename1 = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", variables.Glitch2_trinity + cr4 + smcp + ".ecc");
                         break;
                     default:
                         return "";
@@ -3034,6 +3061,34 @@ namespace JRunner
             dk.ShowDialog();
         }
 
+        private void loadGlitch2XeLLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "XeLL files (*.bin;*.ecc)|*.bin;*.ecc|All files (*.*)|*.*";
+            ofd.Title = "Select XeLL File";
+            ofd.InitialDirectory = Path.Combine(variables.rootfolder, @"common\xell-images\glitch2");
+            ofd.RestoreDirectory = false;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                txtFileSource.Text = variables.filename1 = ofd.FileName;
+            }
+        }
+
+        private void loadJTAGXeLLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "XeLL files (*.bin;*.ecc)|*.bin;*.ecc|All files (*.*)|*.*";
+            ofd.Title = "Select XeLL File";
+            ofd.InitialDirectory = Path.Combine(variables.rootfolder, @"common\xell-images\jtag");
+            ofd.RestoreDirectory = false;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                txtFileSource.Text = variables.filename1 = ofd.FileName;
+            }
+        }
+
         private void sMCConfigViewerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SMCConfig smcedit = new SMCConfig();
@@ -3077,6 +3132,12 @@ namespace JRunner
 
         private void writeFusionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(variables.filename1))
+            {
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             ThreadStart starter = delegate { writefusion(); };
             new Thread(starter).Start();
         }
@@ -3126,15 +3187,23 @@ namespace JRunner
         HexEdit.HexViewer hv;
         private void hexEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Application.OpenForms.OfType<HexEdit.HexViewer>().Any())
+            if (!string.IsNullOrWhiteSpace(variables.filename1))
             {
-                hv.WindowState = FormWindowState.Normal;
-                hv.Activate();
+                if (Application.OpenForms.OfType<HexEdit.HexViewer>().Any())
+                {
+                    hv.WindowState = FormWindowState.Normal;
+                    hv.Activate();
+                }
+                else
+                {
+                    hv = new HexEdit.HexViewer(txtFileSource.Text);
+                    hv.ShowDialog();
+                }
             }
             else
             {
-                hv = new HexEdit.HexViewer(txtFileSource.Text);
-                hv.ShowDialog();
+                MessageBox.Show("No nand loaded in source", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
@@ -3245,7 +3314,7 @@ namespace JRunner
 
         private void installDriversToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!xflasher.osCheck()) return;
+            if (!xflasher.systemCheck()) return;
 
             Thread xFlasherDrivers = new Thread(() =>
             {
@@ -3675,7 +3744,7 @@ namespace JRunner
 
         #region File Buttons
 
-        void btnLoadSource_Click(object sender, System.EventArgs e)
+        void btnLoadSource_Click(object sender, EventArgs e)
         {
             if (variables.reading || variables.writing)
             {
@@ -3683,14 +3752,14 @@ namespace JRunner
                 return;
             }
 
-            if (loadfile(ref variables.filename1, ref this.txtFileSource, true))
+            if (loadfile(ref variables.filename1, ref txtFileSource, true))
             {
                 Thread.Sleep(100);
                 nand_init();
             }
         }
 
-        void btnLoadExtra_Click(object sender, System.EventArgs e)
+        void btnLoadExtra_Click(object sender, EventArgs e)
         {
             if (variables.reading || variables.writing)
             {
@@ -3698,7 +3767,7 @@ namespace JRunner
                 return;
             }
 
-            loadfile(ref variables.filename2, ref this.txtFileExtra);
+            loadfile(ref variables.filename2, ref txtFileExtra);
             Thread.Sleep(100);
             if (variables.debugMode) Console.WriteLine("filename2/currentdir = {0}", variables.filename2);
         }

@@ -307,19 +307,29 @@ namespace JRunner.Nand
                             if (string.IsNullOrEmpty(variables.cpukey)) cb_dec = Nand.decrypt_CB_cpukey(CB_B, Nand.decrypt_CB(CB_A), Oper.StringToByteArray("00000000000000000000000000000000")); // It just needs something, doesn't matter that its not valid
                             else cb_dec = Nand.decrypt_CB_cpukey(CB_B, Nand.decrypt_CB(CB_A), Oper.StringToByteArray(variables.cpukey));
                             if (variables.extractfiles) Oper.savefile(cb_dec, "output\\CB_B_dec.bin");
-                            uf.ldv_cb = cb_dec[0x3B1];
-                            if (variables.debugMode) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
-                            byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
-                            Array.Reverse(temppd);
-                            uf.pd_cb = "0x" + Oper.ByteArrayToString(temppd);
-                            if (variables.debugMode) Console.WriteLine("-Pairing Data: " + uf.pd_cb);
+
+                            // Encrypted CB_Bs introduce problems parsing this data
+                            if (cb_dec[0xA0] == 0 && cb_dec[0xA7] == 0 && cb_dec[0xAF] == 0)
+                            {
+                                if (cb_dec[0x02] == 0x3C && cb_dec[0x03] == 0x48) uf.ldv_cb = 0;
+                                else if (cb_dec[0x3B1] <= 16) uf.ldv_cb = cb_dec[0x3B1];
+
+                                if (variables.debugMode) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
+
+                                byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
+                                Array.Reverse(temppd);
+                                uf.pd_cb = "0x" + Oper.ByteArrayToString(temppd);
+                                if (variables.debugMode) Console.WriteLine("-Pairing Data: " + uf.pd_cb);
+                            }
                         }
                         else
                         {
                             cb_dec = Nand.decrypt_CB(CB_A);
                             if (variables.extractfiles) Oper.savefile(data, "output\\CB_A.bin");
                             if (variables.extractfiles) Oper.savefile(cb_dec, "output\\CB_A_dec.bin");
-                            uf.ldv_cb = cb_dec[0x3B1];
+
+                            if (cb_dec[0x3B1] <= 16) uf.ldv_cb = cb_dec[0x3B1];
+
                             if (variables.debugMode) Console.WriteLine("LDV CB: {0}", uf.ldv_cb.ToString());
                             byte[] temppd = (Oper.returnportion(cb_dec, 0x20, 3));
                             Array.Reverse(temppd);

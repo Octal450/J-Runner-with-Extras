@@ -388,7 +388,7 @@ namespace JRunner.Forms
         {
             if (loaded && !chkcpufanspeed.Checked)
             {
-                if (DialogResult.No == MessageBox.Show("Setting a fixed fan speed will prevent the SMC from being able to adjust the fan speed\n\nThis may cause SERIOUS DAMAGE to the Xbox\n\nAre you sure you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                if (DialogResult.No == MessageBox.Show("Setting a fixed fan speed will prevent the SMC from being able to adjust the fan speed\n\nThis may cause SERIOUS DAMAGE to the Xbox\n\nIf you absolutely must, it is STRONGLY suggested to simply lower the fan targets (below) instead\n\nAre you sure you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     chkcpufanspeed.Checked = true;
                     return;
@@ -412,7 +412,7 @@ namespace JRunner.Forms
         {
             if (loaded && !chkgpufanspeed.Checked)
             {
-                if (DialogResult.No == MessageBox.Show("Setting a fixed fan speed will prevent the SMC from being able to adjust the fan speed\n\nThis may cause SERIOUS DAMAGE to the Xbox\n\nAre you sure you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                if (DialogResult.No == MessageBox.Show("Setting a fixed fan speed will prevent the SMC from being able to adjust the fan speed\n\nThis may cause SERIOUS DAMAGE to the Xbox\n\nIf you absolutely must, it is STRONGLY suggested to simply lower the fan targets (below) instead\n\nAre you sure you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     chkgpufanspeed.Checked = true;
                     return;
@@ -619,6 +619,27 @@ namespace JRunner.Forms
         }
 
         #endregion
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (save)
+            {
+                DialogResult mbr = MessageBox.Show("Do you want to save changes to the SMC Config?", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                
+                if (mbr == DialogResult.Yes)
+                {
+                    save = false;
+                    config_edit();
+                    enable(false);
+                    this.Close();
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            else this.Close();
+        }
     }
 }
 

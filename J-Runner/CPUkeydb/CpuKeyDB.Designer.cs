@@ -205,7 +205,8 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(611, 40);
+            this.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnAdd.Location = new System.Drawing.Point(611, 39);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(98, 23);
             this.btnAdd.TabIndex = 9;
@@ -215,7 +216,8 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(611, 156);
+            this.btnExport.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExport.Location = new System.Drawing.Point(611, 155);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(98, 23);
             this.btnExport.TabIndex = 11;
@@ -225,7 +227,8 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(611, 227);
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(611, 228);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(98, 23);
             this.btnClose.TabIndex = 12;
@@ -289,7 +292,7 @@
             // 
             // btnScan
             // 
-            this.btnScan.Location = new System.Drawing.Point(611, 69);
+            this.btnScan.Location = new System.Drawing.Point(611, 68);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(98, 23);
             this.btnScan.TabIndex = 16;
@@ -299,7 +302,7 @@
             // 
             // btnreverse
             // 
-            this.btnreverse.Location = new System.Drawing.Point(611, 98);
+            this.btnreverse.Location = new System.Drawing.Point(611, 97);
             this.btnreverse.Name = "btnreverse";
             this.btnreverse.Size = new System.Drawing.Size(98, 23);
             this.btnreverse.TabIndex = 17;
@@ -309,7 +312,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(611, 127);
+            this.btnImport.Location = new System.Drawing.Point(611, 126);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(98, 23);
             this.btnImport.TabIndex = 18;
@@ -381,6 +384,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(724, 301);
             this.Controls.Add(this.txtregion);
             this.Controls.Add(this.labelregion);

@@ -97,26 +97,39 @@ namespace JRunner.Panels
         {
             if (funCount == 5)
             {
-                MessageBox.Show("Wtf are you doing!?!?!", "Confusion!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show("WTF are you DOING?!?!?", "Confusion!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             else if (funCount == 8)
             {
-                MessageBox.Show("#%&@ Stop doing that!!!!!", "#%&@", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Stop doing that!!!!!", "You're annoying!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (funCount == 10)
             {
-                MessageBox.Show("Cut that shit out!!!!!", "You're Annoying!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cut that #$@!% out!!!!!", "Stop Plz!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (funCount == 12)
             {
-                MessageBox.Show("CLICK ME AGAIN!\nI DARE YOU!", "You Gon Get It", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("CLICK ME AGAIN!\nI DARE YOU!", "You Gon Get It!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (funCount == 13)
             {
-                SoundPlayer goodbye = new SoundPlayer(Properties.Resources.goodbye);
-                goodbye.Play();
-                Thread.Sleep(1000);
-                Application.Exit();
+                if (variables.reading || variables.writing)
+                {
+                    MessageBox.Show("The easter egg rudely tried to interrupt your nand read/write and needs a timeout\n\nTry again later", "Hypervisor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    funCount = 0;
+                }
+                else
+                {
+                    SoundPlayer goodbye = new SoundPlayer(Properties.Resources.goodbye);
+                    goodbye.Play();
+                    Thread goodbyeThread = new Thread(() =>
+                    {
+                        Thread.Sleep(1000);
+                        Application.Exit();
+                    });
+                    goodbyeThread.Start();
+                    MessageBox.Show("I warned ya!", ":/", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             funCount += 1;
         }

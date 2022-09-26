@@ -154,6 +154,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtTempCriticalCPU = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackGPU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackCPU)).BeginInit();
@@ -877,7 +878,7 @@
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(324, 463);
+            this.btnEdit.Location = new System.Drawing.Point(283, 463);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 50;
@@ -916,6 +917,7 @@
             // 
             this.btnDefaultTemp.BtnImage = global::JRunner.Properties.Resources.arrow_dn;
             this.btnDefaultTemp.ContextMenuStrip = this.defaultTempContextMenu;
+            this.btnDefaultTemp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnDefaultTemp.DropDownContextMenu = this.defaultTempContextMenu;
             this.btnDefaultTemp.Enabled = false;
             this.btnDefaultTemp.Image = global::JRunner.Properties.Resources.arrow_dn;
@@ -1398,11 +1400,25 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Temperature Profiles";
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(364, 463);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 51;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // SMCConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(723, 495);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -1579,5 +1595,6 @@
         private System.Windows.Forms.ToolStripMenuItem jMaximumCool;
         private System.Windows.Forms.ToolStripMenuItem tMaximumCool;
         private System.Windows.Forms.ToolStripMenuItem cMaximumCool;
+        private System.Windows.Forms.Button btnClose;
     }
 }

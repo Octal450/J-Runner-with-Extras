@@ -80,7 +80,6 @@ namespace JRunner
                         foreach (String s2 in rk4.GetSubKeyNames())
                         {
                             RegistryKey rk5 = rk4.OpenSubKey(s2);
-                            string location = (string)rk5.GetValue("LocationInformation");
                             RegistryKey rk6 = rk5.OpenSubKey("Device Parameters");
                             string portName = (string)rk6.GetValue("PortName");
                             if (!string.IsNullOrEmpty(portName) && SerialPort.GetPortNames().Contains(portName))
@@ -98,43 +97,48 @@ namespace JRunner
                 return null;
 
             List<string> ports = null;
+            SerialPort serial = new SerialPort();
+
             try
             {
                 ports = ComPortNames("600D", "7001");
-            }
-            catch { } // No crash if it fails
 
-            if (ports.Count <= 0)
+                if (ports.Count <= 0)
+                {
+                    MessageBox.Show("Can't find PicoFlasher COM port\n\nUpdate the PicoFlasher firmware and check your drivers", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+                serial.PortName = ports[0];
+                serial.ReadTimeout = 5000;
+                serial.WriteTimeout = 5000;
+
+                serial.Open();
+
+                CMD cmd = new CMD();
+                cmd.cmd = COMMANDS.GET_VERSION;
+                cmd.lba = 0;
+
+                SendCmd(serial, cmd);
+
+                UInt32 version = RecvUInt32(serial);
+
+                if (version != 3)
+                {
+                    serial.Close();
+                    MessageBox.Show("PicoFlasher firmware is too old\n\nUpdate the PicoFlasher firmware to continue", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+
+                InUse = true;
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Can't find PicoFlasher COM port\n\nUpdate the PicoFlasher firmware and check your drivers", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                if (variables.debugMode) Console.WriteLine(ex.ToString());
+                else Console.WriteLine(ex.GetType());
+
+                MessageBox.Show("PicoFlasher COM port could not be found\n\nYou may need to update the PicoFlasher firmware or check your connections to continue", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            SerialPort serial = new SerialPort();
-
-            serial.PortName = ports[0];
-
-            serial.ReadTimeout = 5000;
-            serial.WriteTimeout = 5000;
-
-            serial.Open();
-
-            CMD cmd = new CMD();
-            cmd.cmd = COMMANDS.GET_VERSION;
-            cmd.lba = 0;
-
-            SendCmd(serial, cmd);
-
-            UInt32 version = RecvUInt32(serial);
-
-            if (version != 3)
-            {
-                serial.Close();
-                MessageBox.Show("PicoFlasher firmware is too old\n\nUpdate the PicoFlasher firmware to continue", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-
-            InUse = true;
 
             return serial;
         }
@@ -181,6 +185,7 @@ namespace JRunner
 
         private uint getFlashConfig(SerialPort serial)
         {
+            Console.WriteLine("Checking Console...");
             CMD cmd = new CMD();
             cmd.cmd = COMMANDS.GET_FLASH_CONFIG;
             cmd.lba = 0;
@@ -188,6 +193,7 @@ namespace JRunner
             SendCmd(serial, cmd);
 
             UInt32 flashconfig = RecvUInt32(serial);
+            Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
 
             if (flashconfig == 0x00000000 || flashconfig == 0xFFFFFFFF)
             {
@@ -219,7 +225,7 @@ namespace JRunner
                     else
                         size = 16;
                 }
-                else if (minor == 2 || minor == 3) // Jasper 256MB / 512MB, Trinity 512MB (XDK)
+                else if (minor == 2 || minor == 3) // Jasper, Trinity, Corona, 256MB/512MB
                     size = (uint)(8 << (int)(((flash_config >> 19) & 0x3) + ((flash_config >> 21) & 0xF)));
             }
             else // Xenon, Zephyr, Falcon
@@ -255,7 +261,7 @@ namespace JRunner
             cmd.lba = 0;
             SendCmd(serial, cmd);
             UInt32 flashconfig = RecvUInt32(serial);
-            Console.WriteLine("0x" + flashconfig.ToString("X8"));
+            Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
 
             cmd.cmd = COMMANDS.EMMC_DETECT;
             SendCmd(serial, cmd);
@@ -327,16 +333,19 @@ namespace JRunner
                     while (got < CSD.Length)
                         got += serial.Read(ext_csd, got, ext_csd.Length - got);
 
-                    Console.Write("CID: ");
-                    for (int i = 0; i < CID.Length; i++)
-                        Console.Write(CID[i].ToString("X2"));
-                    Console.WriteLine("");
+                    if (variables.debugMode)
+                    {
+                        Console.Write("CID: ");
+                        for (int i = 0; i < CID.Length; i++)
+                            Console.Write(CID[i].ToString("X2"));
+                        Console.WriteLine("");
 
-                    Console.Write("CSD: ");
-                    for (int i = 0; i < CSD.Length; i++)
-                        Console.Write(CSD[i].ToString("X2"));
-                    Console.WriteLine("");
-
+                        Console.Write("CSD: ");
+                        for (int i = 0; i < CSD.Length; i++)
+                            Console.Write(CSD[i].ToString("X2"));
+                        Console.WriteLine("");
+                    }
+                    
                     UInt32[] csd = new UInt32[4];
                     Buffer.BlockCopy(CSD, 0, csd, 0, CSD.Length);
 
@@ -347,24 +356,32 @@ namespace JRunner
                         csd[i] = BitConverter.ToUInt32(bytes, 0);
                     }
 
-                    Console.WriteLine("CSD_STRUCTURE: " + UNSTUFF_BITS(csd, 126, 2).ToString("X"));
-                    Console.WriteLine("TAAC: " + UNSTUFF_BITS(csd, 112, 8).ToString("X"));
-                    Console.WriteLine("TRAN_SPEED: " + UNSTUFF_BITS(csd, 96, 8).ToString("X"));
-                    Console.WriteLine("READ_BL_LEN: " + UNSTUFF_BITS(csd, 80, 4).ToString("X"));
-                    Console.WriteLine("READ_BL_PARTIAL: " + UNSTUFF_BITS(csd, 79, 1).ToString("X"));
-                    Console.WriteLine("C_SIZE: " + UNSTUFF_BITS(csd, 62, 12).ToString("X"));
-                    Console.WriteLine("C_SIZE_MULT: " + UNSTUFF_BITS(csd, 47, 3).ToString("X"));
-                    Console.WriteLine("ERASE_GRP_SIZE: " + UNSTUFF_BITS(csd, 42, 5).ToString("X"));
+                    if (variables.debugMode)
+                    {
+                        Console.WriteLine("CSD_STRUCTURE: " + UNSTUFF_BITS(csd, 126, 2).ToString("X"));
+                        Console.WriteLine("TAAC: " + UNSTUFF_BITS(csd, 112, 8).ToString("X"));
+                        Console.WriteLine("TRAN_SPEED: " + UNSTUFF_BITS(csd, 96, 8).ToString("X"));
+                        Console.WriteLine("READ_BL_LEN: " + UNSTUFF_BITS(csd, 80, 4).ToString("X"));
+                        Console.WriteLine("READ_BL_PARTIAL: " + UNSTUFF_BITS(csd, 79, 1).ToString("X"));
+                        Console.WriteLine("C_SIZE: " + UNSTUFF_BITS(csd, 62, 12).ToString("X"));
+                        Console.WriteLine("C_SIZE_MULT: " + UNSTUFF_BITS(csd, 47, 3).ToString("X"));
+                        Console.WriteLine("ERASE_GRP_SIZE: " + UNSTUFF_BITS(csd, 42, 5).ToString("X"));
 
-                    Console.WriteLine("Extended CSD V1." + ext_csd[194].ToString()); // EXT_CSD_STRUCTURE
-                    Console.WriteLine(" Spec Version:  " + UNSTUFF_BITS(csd, 122, 4).ToString("X2"));
-                    Console.WriteLine(" Extended Rev:  1." + ext_csd[192].ToString()); // EXT_CSD_REV
+                        Console.WriteLine("Extended CSD V1." + ext_csd[194].ToString()); // EXT_CSD_STRUCTURE
+                        Console.WriteLine(" Spec Version:  " + UNSTUFF_BITS(csd, 122, 4).ToString("X2"));
+                        Console.WriteLine(" Extended Rev:  1." + ext_csd[192].ToString()); // EXT_CSD_REV
+                    }
 
                     byte[] devver = new byte[4];
                     Buffer.BlockCopy(ext_csd, 262, devver, 0, 2); // EXT_CSD_DEVICE_VERSION
-                    Console.WriteLine(" Dev Version:   " + BitConverter.ToUInt32(devver, 0).ToString());
-                    Console.WriteLine(" Cmd Classes:   " + UNSTUFF_BITS(csd, 84, 12).ToString("X2"));
-                    Console.WriteLine(" Capacity:      " + ((UNSTUFF_BITS(csd, 62, 12) == 0xfff && UNSTUFF_BITS(csd, 47, 3) == 7) ? "High" : "Low"));
+
+                    if (variables.debugMode)
+                    {
+                        Console.WriteLine(" Dev Version:   " + BitConverter.ToUInt32(devver, 0).ToString());
+                        Console.WriteLine(" Cmd Classes:   " + UNSTUFF_BITS(csd, 84, 12).ToString("X2"));
+                        Console.WriteLine(" Capacity:      " + ((UNSTUFF_BITS(csd, 62, 12) == 0xfff && UNSTUFF_BITS(csd, 47, 3) == 7) ? "High" : "Low"));
+                    }
+
                     byte card_type = ext_csd[196]; // EXT_CSD_CARD_TYPE
                     int speed = 0;
                     if ((card_type & (1 << 0)) != 0) // EXT_CSD_CARD_TYPE_HS_26
@@ -377,21 +394,24 @@ namespace JRunner
                         speed = (200 << 16) | 200;
                     if ((card_type & (1 << 6)) != 0) // EXT_CSD_CARD_TYPE_HS400_1_8V
                         speed = (200 << 16) | 400;
-                    Console.WriteLine(" Max Rate:      " + (speed & 0xFFFF).ToString() + " MB/s (" + ((speed >> 16) & 0xFFFF).ToString() + " MHz)");
-                    Console.Write(" Type Support:  ");
-                    if ((card_type & (1 << 0)) != 0) // EXT_CSD_CARD_TYPE_HS_26
-                        Console.Write("HS26");
-                    if ((card_type & (1 << 1)) != 0) // EXT_CSD_CARD_TYPE_HS_52
-                        Console.Write(", HS52");
-                    if ((card_type & (1 << 2)) != 0) // EXT_CSD_CARD_TYPE_DDR_1_8V
-                        Console.Write(", DDR52_1.8V");
-                    if ((card_type & (1 << 4)) != 0) // EXT_CSD_CARD_TYPE_HS200_1_8V
-                        Console.Write(", HS200_1.8V");
-                    if ((card_type & (1 << 6)) != 0) // EXT_CSD_CARD_TYPE_HS400_1_8V
-                        Console.Write(", HS400_1.8V");
-                    Console.WriteLine("");
-                }
 
+                    if (variables.debugMode)
+                    {
+                        Console.WriteLine(" Max Rate:      " + (speed & 0xFFFF).ToString() + " MB/s (" + ((speed >> 16) & 0xFFFF).ToString() + " MHz)");
+                        Console.Write(" Type Support:  ");
+                        if ((card_type & (1 << 0)) != 0) // EXT_CSD_CARD_TYPE_HS_26
+                            Console.Write("HS26");
+                        if ((card_type & (1 << 1)) != 0) // EXT_CSD_CARD_TYPE_HS_52
+                            Console.Write(", HS52");
+                        if ((card_type & (1 << 2)) != 0) // EXT_CSD_CARD_TYPE_DDR_1_8V
+                            Console.Write(", DDR52_1.8V");
+                        if ((card_type & (1 << 4)) != 0) // EXT_CSD_CARD_TYPE_HS200_1_8V
+                            Console.Write(", HS200_1.8V");
+                        if ((card_type & (1 << 6)) != 0) // EXT_CSD_CARD_TYPE_HS400_1_8V
+                            Console.Write(", HS400_1.8V");
+                        Console.WriteLine("");
+                    }
+                }
             }
             else
             {
@@ -577,8 +597,6 @@ namespace JRunner
                 uint flashconfig = getFlashConfig(serial);
                 if (flashconfig == 0)
                 {
-                    Console.WriteLine("Console Not Found");
-                    Console.WriteLine("");
                     CloseSerial(serial);
                     return;
                 }

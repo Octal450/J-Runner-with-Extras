@@ -166,6 +166,9 @@ namespace JRunner
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadGlitch2XeLLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
+            this.loadJTAGXeLLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -1198,6 +1201,9 @@ namespace JRunner
             this.extractFilesToolStripMenuItem,
             this.createDonorToolStripMenuItem,
             this.decryptKeyvaultToolStripMenuItem,
+            this.toolStripMenuItem11,
+            this.loadGlitch2XeLLToolStripMenuItem,
+            this.loadJTAGXeLLToolStripMenuItem,
             this.toolStripMenuItem9,
             this.sMCConfigViewerToolStripMenuItem1,
             this.patchKVToolStripMenuItem,
@@ -1325,6 +1331,25 @@ namespace JRunner
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "Version";
             this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // loadGlitch2XeLLToolStripMenuItem
+            // 
+            this.loadGlitch2XeLLToolStripMenuItem.Name = "loadGlitch2XeLLToolStripMenuItem";
+            this.loadGlitch2XeLLToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.loadGlitch2XeLLToolStripMenuItem.Text = "Load Glitch2 XeLL...";
+            this.loadGlitch2XeLLToolStripMenuItem.Click += new System.EventHandler(this.loadGlitch2XeLLToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(214, 6);
+            // 
+            // loadJTAGXeLLToolStripMenuItem
+            // 
+            this.loadJTAGXeLLToolStripMenuItem.Name = "loadJTAGXeLLToolStripMenuItem";
+            this.loadJTAGXeLLToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.loadJTAGXeLLToolStripMenuItem.Text = "Load JTAG XeLL...";
+            this.loadJTAGXeLLToolStripMenuItem.Click += new System.EventHandler(this.loadJTAGXeLLToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1513,5 +1538,8 @@ namespace JRunner
         private ToolStripMenuItem showDataFolderToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem10;
         private ToolStripMenuItem restoreFilesToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem11;
+        private ToolStripMenuItem loadGlitch2XeLLToolStripMenuItem;
+        private ToolStripMenuItem loadJTAGXeLLToolStripMenuItem;
     }
 }

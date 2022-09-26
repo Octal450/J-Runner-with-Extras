@@ -41,7 +41,7 @@ namespace JRunner
 
             try
             {
-                Classes.RGH2to3.ConvertRgh2ToRgh3(Path.Combine(variables.rootfolder, "common", "ECC", ecc + ".ecc"), filename, cpuKey, filename);
+                Classes.RGH2to3.ConvertRgh2ToRgh3(Path.Combine(variables.rootfolder, @"common\xell-images\glitch2", ecc + ".ecc"), filename, cpuKey, filename);
             }
             catch (Exception ex)
             {

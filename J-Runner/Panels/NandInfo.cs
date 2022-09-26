@@ -97,9 +97,6 @@ namespace JRunner.Panels
                     else textBoxldv_1.Text = "";
                     textBoxpd_0.Text = nand.uf.pd_0;
                     textBoxpd_1.Text = nand.uf.pd_1;
-                    if (nand.bl.CB_A > 0 || nand.bl.CB_B > 0) textBoxldv_cb.Text = nand.uf.ldv_cb.ToString();
-                    else textBoxldv_cb.Text = "";
-                    textBoxpd_cb.Text = nand.uf.pd_cb;
 
                     if (nand.bl.CB_B != 0)
                     {
@@ -118,6 +115,19 @@ namespace JRunner.Panels
                         label2blb.Visible = false;
                         label2bla.Visible = false;
                         label2bl.Visible = true;
+                    }
+
+                    if (textBox2BLb.Text == "15432") // It's not currently possible to properly parse the triple CB setup in RGH3
+                    {
+                        textBoxldv_cb.Text = textBoxpd_cb.Text = "";
+                    }
+                    else
+                    {
+                        if (nand.bl.CB_A > 0 || nand.bl.CB_B > 0) textBoxldv_cb.Text = nand.uf.ldv_cb.ToString();
+                        else textBoxldv_cb.Text = "";
+
+                        if (nand.uf.pd_cb == "0x000000") textBoxpd_cb.Text = "";
+                        else textBoxpd_cb.Text = nand.uf.pd_cb;
                     }
 
                     string name = Nand.Nand.getConsoleName(nand, variables.flashconfig);

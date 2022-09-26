@@ -80,7 +80,7 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.2.1 r2";
+        public static string version = "3.2.1 r2 Beta";
         public static string build = "3211." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
         public const string staticversion = "3.2.1.1";
         public static int revision = 27;
@@ -144,7 +144,7 @@ namespace JRunner
                                             "PlayError", "AutoDelXeLL", "CpuKeyDbSerial", "BackupEn", "BackupType", "BackupNaming", "BackupRoot", "ShowAdvancedTabs"};
 
         /// <summary>
-        /// Internet
+        /// Network
         /// </summary>
         public static string ipStart = "", ipEnd = "";
 
@@ -161,7 +161,7 @@ namespace JRunner
         public static string filename, filename1 = "", filename2 = "";
 
         /// <summary>
-        /// console types
+        /// Console Types
         /// </summary>
         public static consoles[] ctypes = { // Check getConsole() and identifyConsole() in Nand.cs if modifying!
             new consoles(-1, "", "", "", -1, Nandsize.S0, -1),
@@ -252,7 +252,7 @@ namespace JRunner
         public static string Glitch2_falcon = "FALCON";
         public static string Glitch2_zephyr = "ZEPHYR";
         public static string Glitch2_jasper = "JASPER";
-        public static string Glitch2_xenon = "XENON_V2";
+        public static string Glitch2_xenon = "XENON";
         public static string Glitch2_corona = "CORONA";
         public static string Glitch2_corona4gb = "CORONA_4GB";
 
@@ -263,7 +263,7 @@ namespace JRunner
         public static string RGH3_corona4gb = "CORONA_4GB_RGH3";
 
         /// <summary>
-        /// xebuild
+        /// XeBuild
         /// </summary>
         public enum hacktypes
         {

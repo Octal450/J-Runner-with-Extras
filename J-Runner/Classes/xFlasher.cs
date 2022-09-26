@@ -10,20 +10,20 @@ namespace JRunner
 {
     public class xFlasher
     {
-        [DllImport(@"common\\xflasher\\FTDI2SPI.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        [DllImport(@"common\xflasher\xFlasher.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern int spi(int mode, int size, string file, int startblock = 0, int length = 0);
 
-        [DllImport(@"common\\xflasher\\FTDI2SPI.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        [DllImport(@"common\xflasher\xFlasher.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern int spiGetBlocks();
 
-        [DllImport(@"common\\xflasher\\FTDI2SPI.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        [DllImport(@"common\xflasher\xFlasher.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern int spiGetConfig();
 
-        [DllImport(@"common\\xflasher\\FTDI2SPI.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        [DllImport(@"common\xflasher\xFlasher.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern void spiStop();
 
-        public string svfPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Octal450\\TimingSvfTemp.svf");
-        public string svfRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Octal450");
+        public string svfPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Octal450\TimingSvfTemp.svf");
+        public string svfRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Octal450");
 
         public bool ready = false;
         public bool inUse = false;
@@ -39,7 +39,7 @@ namespace JRunner
         System.Timers.Timer inUseTimer;
 
         // Libraries
-        public bool osCheck()
+        public bool systemCheck()
         {
             if (variables.currentOS != variables.Windows.XP)
             {
@@ -104,7 +104,7 @@ namespace JRunner
         // Flash Config
         public void getFlashConfig()
         {
-            if (!osCheck()) return;
+            if (!systemCheck()) return;
 
             if (inUse || waiting) return;
 
@@ -206,7 +206,7 @@ namespace JRunner
 
         public void getConsoleCb()
         {
-            if (!osCheck()) return;
+            if (!systemCheck()) return;
 
             if (inUse || waiting) return;
 
@@ -305,7 +305,7 @@ namespace JRunner
         // Read Nand
         public void readNandAuto(int size, int iterations, bool skipboardcheck = false) // Automated read, do not use for any special/custom read
         {
-            if (!osCheck()) return;
+            if (!systemCheck()) return;
 
             if (inUse || waiting) return;
 
@@ -487,7 +487,7 @@ namespace JRunner
 
         public void readNand(int size, string filename, int startblock = 0, int length = 0)
         {
-            if (!osCheck()) return;
+            if (!systemCheck()) return;
 
             if (inUse || waiting) return;
 
@@ -669,7 +669,7 @@ namespace JRunner
 
         public void writeNand(int size, string filename, int mode = 0, int startblock = 0, int length = 0, bool skipboardcheck = false)
         {
-            if (!osCheck()) return;
+            if (!systemCheck()) return;
 
             if (inUse || waiting) return;
 
@@ -901,7 +901,7 @@ namespace JRunner
         // SVF Flashing
         public void flashSvf(string filename)
         {
-            if (!osCheck()) return;
+            if (!systemCheck()) return;
 
             if (inUse || waiting) return;
 
