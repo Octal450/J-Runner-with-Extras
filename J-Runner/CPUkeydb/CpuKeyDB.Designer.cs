@@ -45,7 +45,6 @@
             this.lblSerial = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
             this.lblNumber = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -203,25 +202,14 @@
             this.lblNumber.TabIndex = 8;
             this.lblNumber.Text = "0";
             // 
-            // btnAdd
-            // 
-            this.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnAdd.Location = new System.Drawing.Point(611, 39);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(98, 23);
-            this.btnAdd.TabIndex = 9;
-            this.btnAdd.Text = "Add Value";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // btnExport
             // 
             this.btnExport.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExport.Location = new System.Drawing.Point(611, 155);
+            this.btnExport.Location = new System.Drawing.Point(611, 126);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(98, 23);
             this.btnExport.TabIndex = 11;
-            this.btnExport.Text = "Export DB";
+            this.btnExport.Text = "Export Table";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -292,7 +280,7 @@
             // 
             // btnScan
             // 
-            this.btnScan.Location = new System.Drawing.Point(611, 68);
+            this.btnScan.Location = new System.Drawing.Point(611, 39);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(98, 23);
             this.btnScan.TabIndex = 16;
@@ -302,7 +290,7 @@
             // 
             // btnreverse
             // 
-            this.btnreverse.Location = new System.Drawing.Point(611, 97);
+            this.btnreverse.Location = new System.Drawing.Point(611, 68);
             this.btnreverse.Name = "btnreverse";
             this.btnreverse.Size = new System.Drawing.Size(98, 23);
             this.btnreverse.TabIndex = 17;
@@ -312,11 +300,11 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(611, 126);
+            this.btnImport.Location = new System.Drawing.Point(611, 97);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(98, 23);
             this.btnImport.TabIndex = 18;
-            this.btnImport.Text = "Import DB";
+            this.btnImport.Text = "Import Table";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
@@ -399,7 +387,6 @@
             this.Controls.Add(this.rbtnSerial);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnExport);
-            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblNumber);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblSerial);
@@ -430,7 +417,6 @@
         private System.Windows.Forms.Label lblSerial;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Label lblNumber;
-        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

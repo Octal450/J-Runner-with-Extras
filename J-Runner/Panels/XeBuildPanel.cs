@@ -1231,13 +1231,13 @@ namespace JRunner.Panels
                     loadFil(ref variables.filename1, true);
                     if (string.IsNullOrWhiteSpace(variables.filename1))
                     {
-                        MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No file was selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
                 if (!File.Exists(variables.filename1))
                 {
-                    MessageBox.Show("File is missing. Ensure it wasn't moved and app can access it.", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("File is missing\n\nEnsure that it was not moved and the program can access it", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (Path.GetExtension(variables.filename1) != ".bin")

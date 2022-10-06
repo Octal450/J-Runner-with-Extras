@@ -428,12 +428,6 @@
     </Compile>
     <Compile Include="Nand\ECC.cs" />
     <Compile Include="DemoN\Nands.cs" />
-    <Compile Include="CPUkeydb\AddCpuKey.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CPUkeydb\AddCpuKey.Designer.cs">
-      <DependentUpon>AddCpuKey.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Comport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -619,10 +613,6 @@
     <Compile Include="WinUSB\WinUsbDeviceApi.cs" />
     <EmbeddedResource Include="CPUkeydb\EditMobo.resx">
       <DependentUpon>EditMobo.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CPUkeydb\AddCpuKey.resx">
-      <DependentUpon>AddCpuKey.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CPUkeydb\CpuKeyDB.resx">

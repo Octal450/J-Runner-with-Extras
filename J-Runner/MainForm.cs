@@ -1971,7 +1971,7 @@ namespace JRunner
             if (string.IsNullOrEmpty(variables.filename1)) return;
             if (!File.Exists(variables.filename1))
             {
-                MessageBox.Show("No file was selected!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No file was selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -2975,20 +2975,29 @@ namespace JRunner
             openCpuKeyDb();
         }
 
-        CpuKeyDB mycpukeydb;
+        public CpuKeyDB cpukeydb;
         public void openCpuKeyDb()
         {
             if (Application.OpenForms.OfType<CpuKeyDB>().Any())
             {
-                mycpukeydb.WindowState = FormWindowState.Normal;
-                mycpukeydb.Activate();
+                cpukeydb.WindowState = FormWindowState.Normal;
+                cpukeydb.Activate();
             }
             else
             {
-                mycpukeydb = new CpuKeyDB();
-                mycpukeydb.Show();
-                mycpukeydb.Location = new Point(Location.X + (Width - mycpukeydb.Width) / 2, Location.Y + 10);
-                mycpukeydb.FormClosed += new FormClosedEventHandler(CpuKeyDb_FormClosed);
+                cpukeydb = new CpuKeyDB();
+                cpukeydb.Show();
+                cpukeydb.Location = new Point(Location.X + (Width - cpukeydb.Width) / 2, Location.Y + 10);
+                cpukeydb.FormClosed += new FormClosedEventHandler(CpuKeyDb_FormClosed);
+            }
+        }
+
+        public void restartCpuKeyDb()
+        {
+            if (Application.OpenForms.OfType<CpuKeyDB>().Any())
+            {
+                cpukeydb.Close();
+                openCpuKeyDb();
             }
         }
 

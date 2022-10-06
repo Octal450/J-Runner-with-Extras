@@ -1094,12 +1094,10 @@ namespace JRunner.Nand
         {
             byte[] Keyvault = null;
 
-
             long size = 0;
             byte[] data;
             if (fast) data = Oper.openfile(filename, ref size, 0x4200 * 3);
             else data = Oper.returnportion(BadBlock.find_bad_blocks_X(filename, 2), 0, 40 * 1024); //2 * 0x4200);
-
             byte[] key = Oper.StringToByteArray(key_s);
 
             if (data[0] == 0xFF && data[1] == 0x4F)
@@ -2383,8 +2381,8 @@ namespace JRunner.Nand
             if (!ascii.GetString(data).Contains("Microsoft") && print)
             {
                 if (variables.debugMode) Console.WriteLine(ascii.GetString(data));
-                if (data[0] == 0x46 && data[1] == 0x57 && data[2] == 0x41 && data[3] == 0x00) Console.WriteLine("DemoN fw");
-                else if (size != 0x40000) Console.WriteLine("Header is wrong..");
+                if (data[0] == 0x46 && data[1] == 0x57 && data[2] == 0x41 && data[3] == 0x00) Console.WriteLine("DemoN FW");
+                else if (size != 0x40000) Console.WriteLine("Header is wrong");
             }
             if (data[0] == 0xFF && data[1] == 0x4F)
             {
