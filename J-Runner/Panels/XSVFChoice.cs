@@ -41,12 +41,7 @@ namespace JRunner.Panels
                 else Rgh12Trinity.Checked = true;
 
                 if (board.Contains("Xenon") || board.Contains("Zephyr")) TimingTabs.SelectedTab = MiscTimings;
-                if (board.Contains("Falcon") || board.Contains("Jasper")) TimingTabs.SelectedTab = Rgh12Timings;
-                else if (board.Contains("Trinity") || board.Contains("Corona"))
-                {
-                    if (variables.slimprefersrgh) TimingTabs.SelectedTab = SrghTimings;
-                    else TimingTabs.SelectedTab = Rgh12Timings;
-                }
+                else TimingTabs.SelectedTab = Rgh12Timings;
             }
         }
 

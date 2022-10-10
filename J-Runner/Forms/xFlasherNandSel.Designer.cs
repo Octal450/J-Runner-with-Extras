@@ -77,7 +77,7 @@ namespace JRunner.Forms
             this.BigBlockGroup.Controls.Add(this.btn64);
             this.BigBlockGroup.Location = new System.Drawing.Point(106, 11);
             this.BigBlockGroup.Name = "BigBlockGroup";
-            this.BigBlockGroup.Size = new System.Drawing.Size(285, 46);
+            this.BigBlockGroup.Size = new System.Drawing.Size(284, 46);
             this.BigBlockGroup.TabIndex = 3;
             this.BigBlockGroup.TabStop = false;
             this.BigBlockGroup.Text = "Big Block - Only 64MB Needed";
@@ -106,7 +106,7 @@ namespace JRunner.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 69);
+            this.ClientSize = new System.Drawing.Size(403, 69);
             this.Controls.Add(this.BigBlockGroup);
             this.Controls.Add(this.SmallBlockGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

@@ -14,6 +14,7 @@ namespace JRunner.Forms
         {
             variables.fulldump = false;
             variables.read1p28mb = false;
+            variables.nandabort = false;
             this.Close();
         }
 
@@ -21,6 +22,7 @@ namespace JRunner.Forms
         {
             variables.fulldump = false;
             variables.read1p28mb = false;
+            variables.nandabort = false;
             this.Close();
         }
 
@@ -28,6 +30,7 @@ namespace JRunner.Forms
         {
             variables.fulldump = true;
             variables.read1p28mb = false;
+            variables.nandabort = false;
             this.Close();
         }
 
@@ -35,6 +38,7 @@ namespace JRunner.Forms
         {
             variables.fulldump = true;
             variables.read1p28mb = false;
+            variables.nandabort = false;
             this.Close();
         }
 
@@ -42,6 +46,7 @@ namespace JRunner.Forms
         {
             variables.fulldump = false;
             variables.read1p28mb = true;
+            variables.nandabort = false;
             this.Close();
         }
 

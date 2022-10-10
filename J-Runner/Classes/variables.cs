@@ -122,7 +122,6 @@ namespace JRunner
         public static string settingsfile = Path.Combine(AppData, "settings.xml");
         public static bool escapeloop = false, exitedxe = true, autoExtract = false, allmove = false;
         public static bool reading = false, writing;
-        public static bool slimprefersrgh = false;
         public static bool mtxUsbMode = false;
         public static bool noPatchWarnings = false;
         public static Color logbackground = Color.Black;
@@ -140,8 +139,8 @@ namespace JRunner
         public static string backupRoot = "";
         public static string COMPort = "";
         public static string[] settings = { "XeBuild", "FileChecks", "COMPort", "Delay", "DashlaunchE", "IP", "NoReads", "IPStart", "IPEnd", "Dashlaunch", "PreferredDash", "KeepFiles", "RootDirOverride",
-                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "LogBackground", "LogText", "SlimPreferSrgh", "MtxUsbMode", "NoPatchWarnings", "PlaySuccess",
-                                            "PlayError", "AutoDelXeLL", "CpuKeyDbSerial", "BackupEn", "BackupType", "BackupNaming", "BackupRoot", "ShowAdvancedTabs"};
+                                            "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "LogBackground", "LogText", "MtxUsbMode", "NoPatchWarnings", "PlaySuccess", "PlayError", "AutoDelXeLL",
+                                            "CpuKeyDbSerial", "BackupEn", "BackupType", "BackupNaming", "BackupRoot", "ShowAdvancedTabs"};
 
         /// <summary>
         /// Network
@@ -244,7 +243,7 @@ namespace JRunner
 
         public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
         public static string[] flashconfigs = new string[] { "00023010", "00043000", "01198010", "008A3020", "00AA3020", "008C3020", "00AC3020", "C0462002" };
-        public static bool fulldump = false, read1p28mb = false;
+        public static bool fulldump = false, read1p28mb = false, nandabort = false;
         public static int smcmbtype = 0x0;
         public static string flashconfig = "";
 

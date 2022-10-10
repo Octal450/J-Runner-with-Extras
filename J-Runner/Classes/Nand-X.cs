@@ -260,8 +260,6 @@ namespace JRunner
             return dev.ControlTransfer(ref packet, buffer, 8, out lengthTransfered);
         }
 
-
-
         private Errors read_v2(string filename, Nandsize nsize, bool print = true, int startblock = 0, int length = 0)
         {
             lock (MainForm._object)
@@ -283,6 +281,8 @@ namespace JRunner
                     byte[] readBuf = new byte[0x4200];
                     int bytesRead;
 
+                    if (print) Console.WriteLine("Checking Console...");
+
                     ///Arm Version
                     if (!ArmVersion(MyUsbDevice, reader, out readBuffer, out ec, out bytesRead)) return Errors.FailedGetVersion; //1;
                     if (print) Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
@@ -301,7 +301,7 @@ namespace JRunner
                     if (print) Console.WriteLine("Flash Config: 0x" + BitConverter.ToString(readBuffer, 0, 0x4).Replace("-", ""));
                     if (Oper.ByteArrayToString(readBuffer) == "00000000")
                     {
-                        Console.WriteLine("Can Not Continue");
+                        Console.WriteLine("Console Not Found");
                         Console.WriteLine("");
                         return Errors.NoFlashConfig;// 2;
                     }
@@ -330,7 +330,10 @@ namespace JRunner
                     {
                         length = nsize.GetHashCode();
                     }
+
+                    if (print) Console.WriteLine("");
                     Console.WriteLine("Reading Nand to {0}", filename);
+
                     BinaryWriter sw = new BinaryWriter(File.Open(filename, FileMode.Append, FileAccess.Write));
                     int i = startblock;
                     while (i < (length + startblock) && !variables.escapeloop)
@@ -394,6 +397,8 @@ namespace JRunner
                     byte[] readBuffer = new byte[4];
                     int bytesRead;
 
+                    if (print) Console.WriteLine("Checking Console...");
+
                     ///Arm Version
                     if (!ArmVersion(MyUsbDevice, reader, out readBuffer, out ec, out bytesRead)) return Errors.FailedGetVersion; //1;
                     if (print) Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
@@ -410,12 +415,6 @@ namespace JRunner
                     if (!FlashConfig(MyUsbDevice, reader, out readBuffer, out ec, out bytesRead)) return Errors.FailedGetConfig; //1;
                     Array.Reverse(readBuffer, 0, 0x4);
                     if (print) Console.WriteLine("Flash Config: 0x" + BitConverter.ToString(readBuffer, 0, 0x4).Replace("-", ""));
-                    //if (Oper.ByteArrayToString(readBuffer) == "00000000")
-                    {
-                        //Console.WriteLine("Can not Continue");
-                        //Console.WriteLine("");
-                        //return Errors.NoFlashConfig;// 2;
-                    }
                     bool found = false;
                     foreach (string fconf in variables.flashconfigs)
                     {
@@ -439,6 +438,8 @@ namespace JRunner
                     {
                         length = nsize.GetHashCode();
                     }
+
+                    Console.WriteLine("");
                     Console.WriteLine("Erasing Nand");
 
                     int i = startblock;
@@ -493,6 +494,8 @@ namespace JRunner
                     byte[] readBuffer = new byte[4];
                     int bytesRead;
 
+                    if (print) Console.WriteLine("Checking Console...");
+
                     ///Arm Version
                     if (!ArmVersion(MyUsbDevice, reader, out readBuffer, out ec, out bytesRead)) return Errors.FailedGetVersion; //1;
                     if (print) Console.WriteLine("Version: {0}", Oper.ByteArrayToString(readBuffer).Substring(0, 2));
@@ -511,7 +514,7 @@ namespace JRunner
                     if (print) Console.WriteLine("Flash Config: 0x" + BitConverter.ToString(readBuffer, 0, 0x4).Replace("-", ""));
                     if (Oper.ByteArrayToString(readBuffer) == "00000000")
                     {
-                        Console.WriteLine("Can not Continue");
+                        Console.WriteLine("Console Not Found");
                         Console.WriteLine("");
                         return Errors.NoFlashConfig;// 2;
                     }
@@ -534,6 +537,8 @@ namespace JRunner
                     if (flashconfig == "00AA3020" || flashconfig == "008A3020") layout = 2;
                     else if (flashconfig == "01198010") layout = 0;
                     else layout = 1;
+
+                    Console.WriteLine("");
 
                     byte[] writeBuffer = new byte[0x4200];
                     BinaryReader rw = new BinaryReader(File.Open(filename, FileMode.Open, FileAccess.Read));
@@ -972,11 +977,11 @@ namespace JRunner
             return result;
         }
 
-        public Errors getflashmb(ref string flashconf, bool stealth)
+        public Errors getflashmb(ref string flashconf)
         {
             Errors result = Errors.None;
             result = getflashmb_JRunner(ref flashconf);
-            if (result == Errors.DeviceNotFound) { if (!stealth) Console.WriteLine(("Device Not Found")); }
+            if (result == Errors.DeviceNotFound) { Console.WriteLine("Device Not Found"); }
             return result;
         }
 

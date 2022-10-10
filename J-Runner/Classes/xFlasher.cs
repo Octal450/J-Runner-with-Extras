@@ -155,7 +155,6 @@ namespace JRunner
                 if (flashconf == "00000000" || flashconf == "FFFFFFFF")
                 {
                     Console.WriteLine("xFlasher: Console Not Found");
-                    if (auto) Console.WriteLine("xFlasher: Can Not Continue");
                     Console.WriteLine("");
                     return 1;
                 }

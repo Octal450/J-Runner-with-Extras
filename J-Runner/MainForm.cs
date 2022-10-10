@@ -157,6 +157,7 @@ namespace JRunner
             demon.updateFlas += demon_updateFlas;
             demon.updateMod += demon_updateMod;
             demon.UpdateVer += demon_UpdateVer;
+
             nTools.ReadClick += btnReadClick;
             nTools.CreateEccClick += btnCreateECCClick;
             nTools.WriteEccClick += btnWriteECCClick;
@@ -164,16 +165,19 @@ namespace JRunner
             nTools.ProgramCRClick += btnProgramCRClick;
             nTools.XeBuildClick += btnXeBuildClick;
             nTools.IterChange += nTools_IterChange;
+
             xsvfInfo.CloseCRClick += xsvfInfo_CloseCRClick;
             xsvfInfo.ProgramCRClick += xsvfInfo_ProgramCRClick;
+
             xPanel.HackChanged += xPanel_HackChanged;
             xPanel.CallMB += xPanel_CallMB;
             xPanel.loadFil += xPanel_loadFil;
             xPanel.updateSourc += xPanel_updateSourc;
             xPanel.UpdateProgres += updateProgress;
-
             xPanel.Getmb += xPanel_getmb;
+
             nandInfo.DragDropChanged += nandInfo_DragDropChanged;
+
             nandx.UpdateProgres += updateProgress;
             nandx.UpdateBloc += updateBlocks;
 
@@ -467,9 +471,14 @@ namespace JRunner
             {
                 xflasher.getFlashConfig();
             }
-            else
+            else if (device == DEVICE.NAND_X || device == DEVICE.JR_PROGRAMMER || DemoN.DemonDetected)
             {
                 getmbtype();
+            }
+            else
+            {
+                Console.WriteLine("Device Not Found");
+                Console.WriteLine("");
             }
         }
 
@@ -989,12 +998,12 @@ namespace JRunner
             }
         }
         //////////////////////////////////////////////
-        NandX.Errors getmbtype(bool stealth = false)
+        NandX.Errors getmbtype()
         {
-            if (!stealth) Console.WriteLine("Checking Console...");
+            Console.WriteLine("Checking Console...");
             string flashconfig = "";
             NandX.Errors error = NandX.Errors.None;
-            error = nandx.getflashmb(ref flashconfig, stealth);
+            error = nandx.getflashmb(ref flashconfig);
             variables.flashconfig = flashconfig;
             if (error != NandX.Errors.None)
             {
@@ -1149,6 +1158,12 @@ namespace JRunner
             {
                 variables.ctype = callConsoleSelect(ConsoleSelect.Selected.All);
                 if (variables.ctype.ID == -1) return;
+                else if (variables.ctype.ID != 11)
+                {
+                    Console.WriteLine("Device Not Found");
+                    Console.WriteLine("");
+                    return;
+                };
             }
 
             NandX.Errors error = 0;
@@ -1161,7 +1176,7 @@ namespace JRunner
 
                 if (function == 1)
                 {
-                    error = getmbtype(true);
+                    error = getmbtype();
                     if (error == NandX.Errors.NoFlashConfig) return;
 
                     if (variables.flashconfig == "008A3020" || variables.flashconfig == "008C3020") bb = 2;
@@ -1170,11 +1185,14 @@ namespace JRunner
 
                 if (bb > 0 && !DemoN.DemonDetected)
                 {
+                    variables.nandabort = true;
                     NandSel selform = new NandSel();
                     selform.setGroups(bb);
                     selform.ShowDialog();
                 }
             }
+
+            if (variables.nandabort) return;
 
             if (function == 1)
             {
@@ -1275,7 +1293,7 @@ namespace JRunner
                     {
                         if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                         {
-                            this.txtFileSource.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename1);
+                            this.txtFileSource.Text = Path.Combine(variables.rootfolder, variables.filename1);
                             Thread.Sleep(1000);
                             nand_init(true);
                             Thread.Sleep(1000);
@@ -1285,7 +1303,7 @@ namespace JRunner
                     {
                         if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                         {
-                            this.txtFileExtra.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename2);
+                            this.txtFileExtra.Text = Path.Combine(variables.rootfolder, variables.filename2);
                             new Thread(comparenands).Start();
                         }
                     }
@@ -4074,11 +4092,6 @@ namespace JRunner
                 if (!variables.extractfiles) { variables.extractfiles = true; Console.WriteLine("Extract Files On"); }
                 else { variables.extractfiles = false; Console.WriteLine("Extract Files Off"); }
             }
-            else if (e.Control && e.KeyCode == Keys.S)
-            {
-                ThreadStart starter = delegate { demon.Read_Serial_Port(); };
-                new Thread(starter).Start();
-            }
             else if (e.Control && e.KeyCode == Keys.F8)
             {
                 if (variables.filename1 == null || variables.filename2 == null) return;
@@ -4268,7 +4281,7 @@ namespace JRunner
             {
                 if (variables.debugMode) Console.WriteLine("DevNotify - {0}", e.Device.Name);
                 if (variables.debugMode) Console.WriteLine("EventType - {0}", e.EventType);
-                if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival)
+                if (e.EventType == EventType.DeviceArrival)
                 {
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001) // PicoFlasher
                     {
@@ -4320,7 +4333,7 @@ namespace JRunner
                         device = DEVICE.XFLASHER_EMMC;
                     }
                 }
-                else if (e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceRemoveComplete)
+                else if (e.EventType == EventType.DeviceRemoveComplete)
                 {
                     if (e.Device.IdVendor == 0x600D && e.Device.IdProduct == 0x7001)
                     {
@@ -4484,9 +4497,6 @@ namespace JRunner
                             break;
                         case "LogText":
                             x.write(name, ColorTranslator.ToHtml(variables.logtext));
-                            break;
-                        case "SlimPreferSrgh":
-                            x.write(name, variables.slimprefersrgh.ToString());
                             break;
                         case "MtxUsbMode":
                             x.write(name, variables.mtxUsbMode.ToString());
@@ -4661,11 +4671,6 @@ namespace JRunner
                                 }
                                 catch { }
                             }
-                            break;
-                        case "SlimPreferSrgh":
-                            bvalue = false;
-                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
-                            variables.slimprefersrgh = bvalue;
                             break;
                         case "MtxUsbMode":
                             bvalue = false;

@@ -40,6 +40,7 @@
             this.txtTimingLptPort = new System.Windows.Forms.TextBox();
             this.chkRootOverride = new System.Windows.Forms.CheckBox();
             this.chkIPDefault = new System.Windows.Forms.CheckBox();
+            this.chkBackupEn = new System.Windows.Forms.CheckBox();
             this.chkfiles = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkAutoExtract = new System.Windows.Forms.CheckBox();
@@ -53,9 +54,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.logDefault = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.SlimPreferSrgh = new System.Windows.Forms.RadioButton();
-            this.SlimPreferRgh12 = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rbtnTimingLpt = new System.Windows.Forms.RadioButton();
             this.rbtnTimingUsb = new System.Windows.Forms.RadioButton();
@@ -74,12 +72,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnBackupRoot = new System.Windows.Forms.Button();
             this.txtBackupRoot = new System.Windows.Forms.TextBox();
-            this.chkBackupEn = new System.Windows.Forms.CheckBox();
             this.groupBackupType = new System.Windows.Forms.GroupBox();
             this.rbtnFolder = new System.Windows.Forms.RadioButton();
             this.rbtnZip = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabCSettings.SuspendLayout();
             this.tabGeneral.SuspendLayout();
@@ -168,6 +164,18 @@
         "that appears by default in the lower right of the application");
             this.chkIPDefault.UseVisualStyleBackColor = true;
             this.chkIPDefault.CheckedChanged += new System.EventHandler(this.chkIPDefault_CheckedChanged);
+            // 
+            // chkBackupEn
+            // 
+            this.chkBackupEn.AutoSize = true;
+            this.chkBackupEn.Location = new System.Drawing.Point(6, 7);
+            this.chkBackupEn.Name = "chkBackupEn";
+            this.chkBackupEn.Size = new System.Drawing.Size(300, 17);
+            this.chkBackupEn.TabIndex = 1;
+            this.chkBackupEn.Text = "Automatically back up nands and files after CPU Key entry";
+            this.toolTip1.SetToolTip(this.chkBackupEn, resources.GetString("chkBackupEn.ToolTip"));
+            this.chkBackupEn.UseVisualStyleBackColor = true;
+            this.chkBackupEn.CheckedChanged += new System.EventHandler(this.chkBackupEn_CheckedChanged);
             // 
             // chkfiles
             // 
@@ -317,45 +325,12 @@
             this.logDefault.UseVisualStyleBackColor = true;
             this.logDefault.Click += new System.EventHandler(this.logDefault_Click);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.SlimPreferSrgh);
-            this.groupBox3.Controls.Add(this.SlimPreferRgh12);
-            this.groupBox3.Location = new System.Drawing.Point(402, 59);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(183, 45);
-            this.groupBox3.TabIndex = 39;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Preferred Slim Method";
-            // 
-            // SlimPreferSrgh
-            // 
-            this.SlimPreferSrgh.AutoSize = true;
-            this.SlimPreferSrgh.Location = new System.Drawing.Point(121, 18);
-            this.SlimPreferSrgh.Name = "SlimPreferSrgh";
-            this.SlimPreferSrgh.Size = new System.Drawing.Size(59, 17);
-            this.SlimPreferSrgh.TabIndex = 1;
-            this.SlimPreferSrgh.Text = "S-RGH";
-            this.SlimPreferSrgh.UseVisualStyleBackColor = true;
-            // 
-            // SlimPreferRgh12
-            // 
-            this.SlimPreferRgh12.AutoSize = true;
-            this.SlimPreferRgh12.Checked = true;
-            this.SlimPreferRgh12.Location = new System.Drawing.Point(9, 18);
-            this.SlimPreferRgh12.Name = "SlimPreferRgh12";
-            this.SlimPreferRgh12.Size = new System.Drawing.Size(94, 17);
-            this.SlimPreferRgh12.TabIndex = 0;
-            this.SlimPreferRgh12.TabStop = true;
-            this.SlimPreferRgh12.Text = "RGH1.2 (Best)";
-            this.SlimPreferRgh12.UseVisualStyleBackColor = true;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtTimingLptPort);
             this.groupBox4.Controls.Add(this.rbtnTimingLpt);
             this.groupBox4.Controls.Add(this.rbtnTimingUsb);
-            this.groupBox4.Location = new System.Drawing.Point(402, 111);
+            this.groupBox4.Location = new System.Drawing.Point(402, 59);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(183, 45);
             this.groupBox4.TabIndex = 40;
@@ -467,7 +442,6 @@
             this.tabGeneral.Controls.Add(this.chkAutoExtract);
             this.tabGeneral.Controls.Add(this.groupBox4);
             this.tabGeneral.Controls.Add(this.chkAllMove);
-            this.tabGeneral.Controls.Add(this.groupBox3);
             this.tabGeneral.Controls.Add(this.logDefault);
             this.tabGeneral.Controls.Add(this.logTextCustom);
             this.tabGeneral.Controls.Add(this.label10);
@@ -573,18 +547,6 @@
             this.txtBackupRoot.Size = new System.Drawing.Size(319, 20);
             this.txtBackupRoot.TabIndex = 23;
             // 
-            // chkBackupEn
-            // 
-            this.chkBackupEn.AutoSize = true;
-            this.chkBackupEn.Location = new System.Drawing.Point(6, 7);
-            this.chkBackupEn.Name = "chkBackupEn";
-            this.chkBackupEn.Size = new System.Drawing.Size(300, 17);
-            this.chkBackupEn.TabIndex = 1;
-            this.chkBackupEn.Text = "Automatically back up nands and files after CPU Key entry";
-            this.toolTip1.SetToolTip(this.chkBackupEn, resources.GetString("chkBackupEn.ToolTip"));
-            this.chkBackupEn.UseVisualStyleBackColor = true;
-            this.chkBackupEn.CheckedChanged += new System.EventHandler(this.chkBackupEn_CheckedChanged);
-            // 
             // groupBackupType
             // 
             this.groupBackupType.Controls.Add(this.rbtnFolder);
@@ -640,8 +602,6 @@
             this.Load += new System.EventHandler(this.Settings_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabCSettings.ResumeLayout(false);
@@ -679,9 +639,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button logDefault;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton SlimPreferSrgh;
-        private System.Windows.Forms.RadioButton SlimPreferRgh12;
         private System.Windows.Forms.CheckBox chkIPDefault;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtTimingLptPort;

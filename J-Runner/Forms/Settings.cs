@@ -45,7 +45,6 @@ namespace JRunner.Forms
             chkAutoDelXeLL.Checked = variables.autoDelXeLL;
             chkNoPatchWarnings.Checked = variables.noPatchWarnings;
             chkAllMove.Checked = !variables.allmove;
-            if (variables.slimprefersrgh) SlimPreferSrgh.Checked = true;
             if (variables.LPTtiming) rbtnTimingLpt.Checked = true;
             txtTimingLptPort.Text = variables.LPTport;
 
@@ -119,7 +118,6 @@ namespace JRunner.Forms
                 IP.initaddresses();
 
                 variables.noPatchWarnings = chkNoPatchWarnings.Checked;
-                variables.slimprefersrgh = SlimPreferSrgh.Checked;
                 variables.playSuccess = chkPlaySuccess.Checked;
                 variables.playError = chkPlayError.Checked;
                 variables.autoExtract = chkAutoExtract.Checked;

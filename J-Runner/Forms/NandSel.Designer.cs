@@ -80,7 +80,7 @@ namespace JRunner.Forms
             this.BigBlockGroup.Controls.Add(this.btn64);
             this.BigBlockGroup.Location = new System.Drawing.Point(106, 11);
             this.BigBlockGroup.Name = "BigBlockGroup";
-            this.BigBlockGroup.Size = new System.Drawing.Size(285, 46);
+            this.BigBlockGroup.Size = new System.Drawing.Size(284, 46);
             this.BigBlockGroup.TabIndex = 3;
             this.BigBlockGroup.TabStop = false;
             this.BigBlockGroup.Text = "Big Block - Only 64MB Needed";
@@ -108,10 +108,10 @@ namespace JRunner.Forms
             // AdvancedGroup
             // 
             this.AdvancedGroup.Controls.Add(this.btn1p28);
-            this.AdvancedGroup.Location = new System.Drawing.Point(397, 11);
+            this.AdvancedGroup.Location = new System.Drawing.Point(396, 11);
             this.AdvancedGroup.Name = "AdvancedGroup";
             this.AdvancedGroup.Size = new System.Drawing.Size(87, 46);
-            this.AdvancedGroup.TabIndex = 3;
+            this.AdvancedGroup.TabIndex = 4;
             this.AdvancedGroup.TabStop = false;
             this.AdvancedGroup.Text = "Advanced";
             // 
@@ -120,7 +120,7 @@ namespace JRunner.Forms
             this.btn1p28.Location = new System.Drawing.Point(6, 16);
             this.btn1p28.Name = "btn1p28";
             this.btn1p28.Size = new System.Drawing.Size(75, 23);
-            this.btn1p28.TabIndex = 0;
+            this.btn1p28.TabIndex = 4;
             this.btn1p28.Text = "1.28MB";
             this.btn1p28.UseVisualStyleBackColor = true;
             this.btn1p28.Click += new System.EventHandler(this.btn1p28_Click);
@@ -129,7 +129,7 @@ namespace JRunner.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 69);
+            this.ClientSize = new System.Drawing.Size(496, 69);
             this.Controls.Add(this.AdvancedGroup);
             this.Controls.Add(this.BigBlockGroup);
             this.Controls.Add(this.SmallBlockGroup);
