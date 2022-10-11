@@ -1,6 +1,6 @@
 ﻿namespace JRunner
 {
-    partial class NandProArg
+    partial class NandTimingFunctions
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NandProArg));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NandTimingFunctions));
             this.btnRun = new System.Windows.Forms.Button();
             this.txtStart = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();

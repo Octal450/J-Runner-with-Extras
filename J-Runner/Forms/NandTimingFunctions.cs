@@ -3,16 +3,13 @@ using System.Windows.Forms;
 
 namespace JRunner
 {
-    public partial class NandProArg : Form
+    public partial class NandTimingFunctions : Form
     {
-        public delegate void ClickedRun(string function, string filename, int size, int startblock, int length, bool recalcEcc);
-        public event ClickedRun RunClick;
-
         public string ComFunc = "Read";
         public string SizeFunc = "16";
         private int timingType = 0;
 
-        public NandProArg()
+        public NandTimingFunctions()
         {
             InitializeComponent();
             this.AcceptButton = btnRun;
@@ -30,7 +27,7 @@ namespace JRunner
             this.getStart();
             this.getSize();
             this.getFunction();
-            RunClick(getFunction(), getFilename(), getSize(), getStart(), getLength(), getRecalcEcc());
+            MainForm.mainForm.nandTimingFunctionsRun(getFunction(), getFilename(), getSize(), getStart(), getLength(), getRecalcEcc());
         }
         public string getFilename()
         {

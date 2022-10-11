@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace JRunner.Forms
 {
-    public partial class CustomXebuild : Form
+    public partial class CustomXeBuild : Form
     {
-        public CustomXebuild()
+        public CustomXeBuild()
         {
             InitializeComponent();
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;

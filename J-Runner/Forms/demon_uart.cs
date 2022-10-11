@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace JRunner.Forms
 {
-    public partial class demon_uart : Form
+    public partial class DemoN_Uart : Form
     {
 
         public static TextWriter _writer = null;
-        public demon_uart()
+        public DemoN_Uart()
         {
             InitializeComponent();
         }

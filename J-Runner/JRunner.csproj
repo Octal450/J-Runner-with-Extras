@@ -209,17 +209,11 @@
     <Compile Include="Forms\CreateDonorNand.Designer.cs">
       <DependentUpon>CreateDonorNand.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\customCB.cs">
+    <Compile Include="Forms\CustomXeBuild.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\customCB.Designer.cs">
-      <DependentUpon>customCB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\CustomXebuild.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CustomXebuild.Designer.cs">
-      <DependentUpon>CustomXebuild.cs</DependentUpon>
+    <Compile Include="Forms\CustomXeBuild.Designer.cs">
+      <DependentUpon>CustomXeBuild.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DemonCom.cs">
       <SubType>Form</SubType>
@@ -227,11 +221,11 @@
     <Compile Include="Forms\DemonCom.Designer.cs">
       <DependentUpon>DemonCom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\demon_uart.cs">
+    <Compile Include="Forms\DemoN_Uart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\demon_uart.Designer.cs">
-      <DependentUpon>demon_uart.cs</DependentUpon>
+    <Compile Include="Forms\DemoN_Uart.Designer.cs">
+      <DependentUpon>DemoN_Uart.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CPUKeyGen.cs">
       <SubType>Form</SubType>
@@ -250,12 +244,6 @@
     </Compile>
     <Compile Include="Forms\KeyvaultDecrypter.Designer.cs">
       <DependentUpon>KeyvaultDecrypter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ShowPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ShowPanel.Designer.cs">
-      <DependentUpon>ShowPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Splash.cs">
       <SubType>Form</SubType>
@@ -298,12 +286,6 @@
     </Compile>
     <Compile Include="Forms\xFlasherNandSel.Designer.cs">
       <DependentUpon>xFlasherNandSel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\XValue.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\XValue.Designer.cs">
-      <DependentUpon>XValue.cs</DependentUpon>
     </Compile>
     <Compile Include="Functions\Copy.cs">
       <SubType>Form</SubType>
@@ -446,11 +428,11 @@
     <Compile Include="Forms\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SMCConfig.cs">
+    <Compile Include="Forms\SMCConfigEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SMCConfig.Designer.cs">
-      <DependentUpon>SMCConfig.cs</DependentUpon>
+    <Compile Include="Forms\SMCConfigEditor.Designer.cs">
+      <DependentUpon>SMCConfigEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="ISD\SoundEditor.cs">
       <SubType>Form</SubType>
@@ -473,11 +455,11 @@
       <DependentUpon>CpuKeyDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Functions\CRC32.cs" />
-    <Compile Include="Forms\NandArg.cs">
+    <Compile Include="Forms\NandTimingFunctions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NandArg.Designer.cs">
-      <DependentUpon>NandArg.cs</DependentUpon>
+    <Compile Include="Forms\NandTimingFunctions.Designer.cs">
+      <DependentUpon>NandTimingFunctions.cs</DependentUpon>
     </Compile>
     <Compile Include="DashLaunch\DashLaunch.cs">
       <SubType>Form</SubType>
@@ -515,17 +497,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\patch.cs">
+    <Compile Include="Forms\PatchKV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\patch.Designer.cs">
-      <DependentUpon>patch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Images\PictureViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Images\PictureViewer.Designer.cs">
-      <DependentUpon>PictureViewer.cs</DependentUpon>
+    <Compile Include="Forms\PatchKV.Designer.cs">
+      <DependentUpon>PatchKV.cs</DependentUpon>
     </Compile>
     <Compile Include="Nand\BadBlock.cs" />
     <Compile Include="Nand\Nand.cs" />
@@ -539,13 +515,6 @@
     </Compile>
     <Compile Include="Nand\PatchParser.cs" />
     <Compile Include="Nand\table.cs" />
-    <Compile Include="Nand\VNand.cs" />
-    <Compile Include="Nand\VNandForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Nand\VNandForm.Designer.cs">
-      <DependentUpon>VNandForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Panels\DiskManagement.cs" />
     <Compile Include="Panels\LDrivesInfo.cs">
       <SubType>UserControl</SubType>
@@ -577,13 +546,6 @@
     <Compile Include="Panels\XSVFChoice.designer.cs">
       <DependentUpon>XSVFChoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pirs\Pirs.cs" />
-    <Compile Include="Pirs\STFS.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Pirs\STFS.Designer.cs">
-      <DependentUpon>STFS.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Functions\RegistryUtilities.cs" />
     <Compile Include="Classes\Nand-X.cs" />
@@ -592,7 +554,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StaticVersion.cs" />
+    <Compile Include="Classes\StaticVersion.cs" />
     <Compile Include="Classes\variables.cs" />
     <Compile Include="Forms\UpdateSuccess.cs">
       <SubType>Form</SubType>
@@ -638,17 +600,14 @@
     <EmbeddedResource Include="Forms\CreateDonorNand.resx">
       <DependentUpon>CreateDonorNand.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\customCB.resx">
-      <DependentUpon>customCB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CustomXebuild.resx">
-      <DependentUpon>CustomXebuild.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CustomXeBuild.resx">
+      <DependentUpon>CustomXeBuild.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DemonCom.resx">
       <DependentUpon>DemonCom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\demon_uart.resx">
-      <DependentUpon>demon_uart.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DemoN_Uart.resx">
+      <DependentUpon>DemoN_Uart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CPUKeyGen.resx">
       <DependentUpon>CPUKeyGen.cs</DependentUpon>
@@ -658,9 +617,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\KeyvaultDecrypter.resx">
       <DependentUpon>KeyvaultDecrypter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ShowPanel.resx">
-      <DependentUpon>ShowPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Splash.resx">
       <DependentUpon>Splash.cs</DependentUpon>
@@ -682,9 +638,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\xFlasherNandSel.resx">
       <DependentUpon>xFlasherNandSel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\XValue.resx">
-      <DependentUpon>XValue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Functions\Copy.resx">
       <DependentUpon>Copy.cs</DependentUpon>
@@ -711,14 +664,14 @@
       <DependentUpon>Settings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SMCConfig.resx">
-      <DependentUpon>SMCConfig.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SMCConfigEditor.resx">
+      <DependentUpon>SMCConfigEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ISD\SoundEditor.resx">
       <DependentUpon>SoundEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NandArg.resx">
-      <DependentUpon>NandArg.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\NandTimingFunctions.resx">
+      <DependentUpon>NandTimingFunctions.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DashLaunch\DashLaunch.resx">
@@ -741,19 +694,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\patch.resx">
-      <DependentUpon>patch.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Images\PictureViewer.resx">
-      <DependentUpon>PictureViewer.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PatchKV.resx">
+      <DependentUpon>PatchKV.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Nand\CB_Fuse.resx">
       <DependentUpon>CB_Fuse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Nand\VNandForm.resx">
-      <DependentUpon>VNandForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\LDrivesInfo.resx">
       <DependentUpon>LDrivesInfo.cs</DependentUpon>
@@ -769,9 +715,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\XSVFChoice.resx">
       <DependentUpon>XSVFChoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pirs\STFS.resx">
-      <DependentUpon>STFS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,4 +1,5 @@
 ﻿using JRunner.Forms;
+using JRunner.Nand;
 using LibUsbDotNet.DeviceNotify;
 using Microsoft.Win32;
 using RenameRegistryKey;
@@ -63,8 +64,6 @@ namespace JRunner
         public static EventWaitHandle _waitmb = new AutoResetEvent(true);
         public static readonly object _object = new object();
         public static AutoResetEvent _event1 = new AutoResetEvent(false);
-        public static Nand.VNand vnand;
-        public static bool usingVNand = false;
         Regex objAlphaPattern = new Regex("[a-fA-F0-9]{32}$");
         #endregion
 
@@ -450,7 +449,7 @@ namespace JRunner
 
         #region XSVF Panel
 
-        public void xsvfChoice_ProgramCRClick()
+        public void xsvfChoice_ProgramClick()
         {
             if (xsvfChoice.heResult() == -1)
             {
@@ -470,7 +469,7 @@ namespace JRunner
                 if (variables.debugMode) Console.WriteLine(variables.xsvf[xsvfChoice.heResult() - 1]);
                 file = (variables.xsvf[xsvfChoice.heResult() - 1]);
             }
-            programcr(file);
+            programTimingFile(file);
 
         }
 
@@ -647,14 +646,13 @@ namespace JRunner
         }
 
         #region Nand
-        //////////////////////////////////////////////
-
+        
         public Nand.PrivateN getNand()
         {
             return nand;
         }
 
-        public void nandcustom(string function, string filename, int size, int startblock, int length, bool recalcEcc)
+        public void nandTimingFunctionsExecute(string function, string filename, int size, int startblock, int length, bool recalcEcc)
         {
             if (string.IsNullOrWhiteSpace(filename) && function != "Erase") return;
             if (startblock < 0) startblock = 0;
@@ -677,14 +675,7 @@ namespace JRunner
             {
                 if (function == "Read")
                 {
-                    if (usingVNand)
-                    {
-                        starter = delegate
-                        {
-                            vnand.read_v2(filename, startblock, length);
-                        };
-                    }
-                    else if (device == DEVICE.PICOFLASHER)
+                    if (device == DEVICE.PICOFLASHER)
                     {
                         picoflasher.Read(1, (uint) startblock, (uint) (startblock + length)); // TODO: respect filename
                     }
@@ -702,14 +693,7 @@ namespace JRunner
                 }
                 else if (function == "Erase")
                 {
-                    if (usingVNand)
-                    {
-                        starter = delegate
-                        {
-                            vnand.erase_v2(startblock, length);
-                        };
-                    }
-                    else if (device == DEVICE.PICOFLASHER)
+                    if (device == DEVICE.PICOFLASHER)
                     {
                         MessageBox.Show("PicoFlasher can't erase", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -728,15 +712,7 @@ namespace JRunner
                 }
                 else if (function == "Write")
                 {
-                    if (usingVNand)
-                    {
-                        starter = delegate
-                        {
-                            if (recalcEcc) vnand.write_v2(filename, startblock, length, true, true);
-                            else vnand.write_v2(filename, startblock, length);
-                        };
-                    }
-                    else if (device == DEVICE.PICOFLASHER)
+                    if (device == DEVICE.PICOFLASHER)
                     {
                         picoflasher.Write(recalcEcc ? 1 : 0, (uint)startblock, (uint)(startblock + length)); // TODO: respect filename
                     }
@@ -846,13 +822,6 @@ namespace JRunner
             }
         }
 
-        void nandcustom()
-        {
-            NandProArg cnaform = new NandProArg();
-            cnaform.RunClick += cnaform_RunClick;
-            cnaform.Show();
-            cnaform.Location = new Point(Location.X + (Width - cnaform.Width) / 2, Location.Y + 105);
-        }
         public string FindTextBetween(string text, string left, string right)
         {
             // TODO: Validate input arguments
@@ -869,7 +838,8 @@ namespace JRunner
 
             return text.Substring(beginIndex, endIndex - beginIndex).Trim();
         }
-        void cnaform_RunClick(string function, string filename, int size, int startblock, int length, bool recalcEcc)
+
+        public void nandTimingFunctionsRun(string function, string filename, int size, int startblock, int length, bool recalcEcc)
         {
             if (string.IsNullOrWhiteSpace(filename) && function != "Erase")
             {
@@ -881,10 +851,10 @@ namespace JRunner
                 MessageBox.Show("No size selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            nandcustom(function, filename, size, startblock, length, recalcEcc);
+            nandTimingFunctionsExecute(function, filename, size, startblock, length, recalcEcc);
         }
-        //////////////////////////////////////////////
-        void programcr(string filex)
+                
+        private void programTimingFile(string filex)
         {
             string file = "";
             if (filex == "") return;
@@ -930,16 +900,14 @@ namespace JRunner
                 }
                 else
                 {
-                    unpack_lpt(); //changed
-                    //ThreadStart starter = delegate { LPT_XSVF.lxsvf(file, txtLPTPort.Text, true); };
-                    //new Thread(starter).Start();
+                    unpack_lpt();
                     ThreadStart starter = delegate { call_lpt_player(file, variables.LPTport); };
                     new Thread(starter).Start();
                 }
             }
         }
-        //////////////////////////////////////////////
-        NandX.Errors getmbtype()
+        
+        private NandX.Errors getmbtype()
         {
             Console.WriteLine("Checking Console...");
             string flashconfig = "";
@@ -1192,7 +1160,6 @@ namespace JRunner
         {
             //int error = 0;
             int read1p28mb = 0;
-            if (usingVNand) error = NandX.Errors.None;
             if (!DemoN.DemonDetected)
             {
                 if (error != NandX.Errors.None && error != NandX.Errors.WrongHeader) return;
@@ -1281,11 +1248,7 @@ namespace JRunner
                     else
                     {
                         variables.reading = true;
-                        if (!usingVNand)
-                        {
-                            if (nandx.read(variables.filename, variables.nandsizex, false, 0x0, read1p28mb) != NandX.Errors.None) return;
-                        }
-                        else vnand.read_v2(variables.filename, 0, read1p28mb);
+                        if (nandx.read(variables.filename, variables.nandsizex, false, 0x0, read1p28mb) != NandX.Errors.None) return;
                         variables.reading = false;
                     }
                     j++;
@@ -1373,10 +1336,9 @@ namespace JRunner
                         Console.WriteLine("You need an .bin image");
                         return;
                     }
-                    NandX.Errors result = NandX.Errors.None;
 
-                    if (!usingVNand) result = nandx.write(variables.filename1, variables.nandsizex, 0, 0x50, true, true);
-                    else vnand.write_v2(variables.filename1, 0, 0x50, true, true);
+                    NandX.Errors result = NandX.Errors.None;
+                    result = nandx.write(variables.filename1, variables.nandsizex, 0, 0x50, true, true);
 
                     Thread.Sleep(500);
                     if (variables.tempfile != "" && result == NandX.Errors.None)
@@ -1396,10 +1358,7 @@ namespace JRunner
                         return;
                     }
 
-                    if (!usingVNand) nandx.write(variables.filename1, variables.nandsizex, 0, writelength);
-                    else vnand.write_v2(variables.filename1, 0, writelength);
-
-                    //NandX.write(ref txtBlocks, ref progressBar1, variables.filename1, variables.nandsizex, 0, 0);
+                    nandx.write(variables.filename1, variables.nandsizex, 0, writelength);
                 }
             }
         }
@@ -1454,8 +1413,7 @@ namespace JRunner
 
                 if (Path.GetExtension(variables.filename1) == ".bin")
                 {
-                    if (!usingVNand) nandx.write(variables.filename1, variables.nandsizex, 0, 0, true, false);
-                    else vnand.write_v2(variables.filename1, 0, 0, true, false);
+                    nandx.write(variables.filename1, variables.nandsizex, 0, 0, true, false);
                 }
             }
         }
@@ -1487,9 +1445,7 @@ namespace JRunner
                 if (variables.debugMode) Console.WriteLine("File Length = {0}", len);
 
                 NandX.Errors result = NandX.Errors.None;
-
-                if (!usingVNand) result = nandx.write(variables.filename1, Nandsize.S16, 0, 0x50);
-                else vnand.write_v2(variables.filename1, 0, 0x50);
+                result = nandx.write(variables.filename1, Nandsize.S16, 0, 0x50);
 
                 if (variables.tempfile != "" && result == NandX.Errors.None)
                 {
@@ -3059,7 +3015,7 @@ namespace JRunner
 
         private void sMCConfigViewerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SMCConfig smcedit = new SMCConfig();
+            SMCConfigEditor smcedit = new SMCConfigEditor();
             smcedit.ShowDialog();
         }
 
@@ -3072,8 +3028,7 @@ namespace JRunner
             }
 
             variables.cpukey = txtCPUKey.Text;
-            patch patchform = new patch();
-            patchform.frm1 = this;
+            PatchKV patchform = new PatchKV();
             patchform.ShowDialog();
         }
 
@@ -3088,9 +3043,11 @@ namespace JRunner
 
         #region Advanced
 
-        private void customNandProCommandToolStripMenuItem_Click(object sender, EventArgs e)
+        private void nandTimingFunctionsMenuItem_Click(object sender, EventArgs e)
         {
-            nandcustom();
+            NandTimingFunctions cnaform = new NandTimingFunctions();
+            cnaform.Show();
+            cnaform.Location = new Point(Location.X + (Width - cnaform.Width) / 2, Location.Y + 105);
         }
 
         private void corona4GBToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3131,7 +3088,7 @@ namespace JRunner
 
         private void CustomXeBuildMenuItem_Click(object sender, EventArgs e)
         {
-            CustomXebuild CX = new CustomXebuild();
+            CustomXeBuild CX = new CustomXeBuild();
             CX.ShowDialog();
             if (CX.DialogResult == DialogResult.Cancel) return;
             else if (CX.DialogResult == DialogResult.OK)
@@ -3237,44 +3194,6 @@ namespace JRunner
             byte[] secdata = nand.exctractFSfile("secdata.bin");
             Nand.Nand.DecryptSecData(secdata, Oper.StringToByteArray(txtCPUKey.Text));
         }
-
-        private void xValueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.XValue x = new Forms.XValue();
-            x.ShowDialog();
-        }
-
-        //private void toolStripMenuItemVNand_Click(object sender, EventArgs e)
-        //{
-        //    Nand.VNandForm f = new Nand.VNandForm();
-        //    if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-        //    {
-        //        if (f.filename == null)
-        //        {
-        //            MessageBox.Show("You did not select anything", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            return;
-        //        }
-        //        vnand = new Nand.VNand(f.filename, f.console, f.flashconfig, f.BadBlocks);
-        //        vnand.create();
-        //        usingVNand = true;
-        //    }
-        //}
-
-        //Pirs.STFS p;
-        //private void pirsToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    if (Application.OpenForms.OfType<Pirs.STFS>().Any())
-        //    {
-        //        p.WindowState = FormWindowState.Normal;
-        //        p.Activate();
-        //    }
-        //    else
-        //    {
-        //        p = new Pirs.STFS(txtFilePath1.Text, txtFilePath2.Text);
-        //        p.Show();
-        //        p.Location = new Point(Location.X + (Width - p.Width) / 2, Location.Y + (Height - p.Height) / 2);
-        //    }
-        //}
 
         #endregion
 
@@ -3406,7 +3325,7 @@ namespace JRunner
 
         private void connectToUARTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            demon_uart demon_uart_frm = new demon_uart();
+            DemoN_Uart demon_uart_frm = new DemoN_Uart();
             demon_uart_frm.Show();
         }
 
@@ -4076,7 +3995,7 @@ namespace JRunner
             {
                 if (listInfo.Contains(xsvfChoice))
                 {
-                    xsvfChoice_ProgramCRClick();
+                    xsvfChoice_ProgramClick();
                 }
             }
         }

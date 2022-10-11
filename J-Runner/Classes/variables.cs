@@ -85,7 +85,6 @@ namespace JRunner
         public const string staticversion = "3.2.1.2";
         public static int revision = 28;
         public static Windows currentOS = Windows.Unknown;
-        public static bool iswriting;
         public static bool isscanningip = false;
         public static JR_MODE current_mode = JR_MODE.MODEJR;
         public const string DEMON_GUID_STRING = "{667FDEE3-5049-5F51-E600-B9240B372D25}";

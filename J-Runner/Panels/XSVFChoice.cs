@@ -554,7 +554,7 @@ namespace JRunner.Panels
         {
             try
             {
-                MainForm.mainForm.xsvfChoice_ProgramCRClick();
+                MainForm.mainForm.xsvfChoice_ProgramClick();
             }
             catch (Exception) { }
         }
@@ -577,7 +577,7 @@ namespace JRunner.Panels
             if (openFileDialog.ShowDialog() == DialogResult.OK) file = openFileDialog.FileName;
             if (!string.IsNullOrWhiteSpace(file))
             {
-                MainForm.mainForm.nandcustom("Xsvf", file, 16, 0, 0, false);
+                MainForm.mainForm.nandTimingFunctionsExecute("Xsvf", file, 16, 0, 0, false);
             }
         }
 

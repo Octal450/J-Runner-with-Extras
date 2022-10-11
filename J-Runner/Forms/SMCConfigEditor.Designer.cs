@@ -1,6 +1,6 @@
 ﻿namespace JRunner.Forms
 {
-    partial class SMCConfig
+    partial class SMCConfigEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SMCConfig));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SMCConfigEditor));
             this.txtchecksum = new System.Windows.Forms.TextBox();
             this.lblchecksum = new System.Windows.Forms.Label();
             this.lblmac = new System.Windows.Forms.Label();

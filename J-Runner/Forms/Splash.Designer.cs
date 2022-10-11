@@ -43,6 +43,7 @@ namespace JRunner
             this.logo.Location = new System.Drawing.Point(12, 12);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(239, 131);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
             // 

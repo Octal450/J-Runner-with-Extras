@@ -1,6 +1,6 @@
 ﻿namespace JRunner.Forms
 {
-    partial class CustomXebuild
+    partial class CustomXeBuild
     {
         /// <summary>
         /// Required designer variable.

@@ -2658,9 +2658,9 @@ namespace JRunner.Nand
 
             int xval_h = BitConverter.ToInt32(xval, 0);
             int xval_l = BitConverter.ToInt32(xval, 4);
-            if (xval_h == 0 && xval_l == 0) Console.WriteLine("Secdata is clean");
+            if (xval_h == 0 && xval_l == 0) Console.WriteLine("SecData is clean");
             else if (xval_h == 0xFFFF && xval_l == 0xFFFF) Console.WriteLine("Secdata is invalid");
-            else if (xval_h != 0 && xval_l != 0) Console.WriteLine("Secdata decryption error");
+            else if (xval_h != 0 && xval_l != 0) Console.WriteLine("SecData decryption error");
             else
             {
                 if ((xval_l & FLAG_SSB_AUTH_EX_FAILURE) != 0)
@@ -3711,6 +3711,65 @@ namespace JRunner.Nand
         {
             return !Oper.allsame(Oper.returnportion(kv, 0x40, 0x20), 0x00);
         }
+
+        //private static byte[] ChangeLDVs(ref byte[] data, int layout)
+        //{
+        //    Console.WriteLine("Processing CF...");
+        //    byte[] CF0 = null, CF1 = null;
+        //    byte[] CF0_dec = null, CF1_dec = null;
+        //    int CF0offset = 0, CF1offset = 0;
+        //
+        //    if (data[0] == 0xFF && data[1] == 0x4F)
+        //    {
+        //        Nand.Nand.getCF(data, layout == 2 ? true : false, out CF0, out CF0offset, out CF1, out CF1offset);
+        //        if (variables.debugMode) Console.WriteLine("CF0 offset: {0:X} - CF0 size: {1:X}", CF0offset, CF0.Length);
+        //        if (variables.debugMode) Console.WriteLine("CF1 offset: {0:X} - CF1 size: {1:X}", CF1offset, CF1.Length);
+        //    }
+        //    if (CF0 == null && CF1 == null)
+        //    {
+        //        Console.WriteLine("Failed");
+        //        this.Close();
+        //    }
+        //    bool ready0 = false, ready1 = false;
+        //    if (CF0 != null && (changedCF0ldv || changedCF0pd))
+        //    {
+        //        if (variables.debugMode) Console.WriteLine("Performing operations on CF0");
+        //        CF0_dec = Nand.Nand.decrypt_CF(CF0);
+        //        CF0_dec[0x21F] = Convert.ToByte(txtCF0ldv.Text, 10);
+        //        CF0_dec[0x21C] = Convert.ToByte(txtCF0pd.Text.Substring(6, 2), 16);
+        //        CF0_dec[0x21D] = Convert.ToByte(txtCF0pd.Text.Substring(4, 2), 16);
+        //        CF0_dec[0x21E] = Convert.ToByte(txtCF0pd.Text.Substring(2, 2), 16);
+        //        CF0 = Nand.Nand.encrypt_CF(CF0_dec, CF0, Oper.StringToByteArray(variables.cpukey));
+        //        ready0 = true;
+        //    }
+        //    if (CF1 != null && (changedCF1ldv || changedCF1pd))
+        //    {
+        //        if (variables.debugMode) Console.WriteLine("Performing operations on CF1");
+        //        CF1_dec = Nand.Nand.decrypt_CF(CF1);
+        //        CF1_dec[0x21F] = Convert.ToByte(txtCF1ldv.Text, 10);
+        //        CF1_dec[0x21C] = Convert.ToByte(txtCF1pd.Text.Substring(6, 2), 16);
+        //        CF1_dec[0x21D] = Convert.ToByte(txtCF1pd.Text.Substring(4, 2), 16);
+        //        CF1_dec[0x21E] = Convert.ToByte(txtCF1pd.Text.Substring(2, 2), 16);
+        //        CF1 = Nand.Nand.encrypt_CF(CF1_dec, CF1, Oper.StringToByteArray(variables.cpukey));
+        //        ready1 = true;
+        //    }
+        //    if (ready0)
+        //    {
+        //        if (variables.debugMode) Console.WriteLine("Adding ecc on CF0");
+        //        CF0 = Nand.Nand.addecc_v2(CF0, true, (CF0offset / 0x200) * 0x210, layout);
+        //        if (variables.debugMode) Console.WriteLine("Adding CF0 to nand");
+        //        Buffer.BlockCopy(CF0, 0, data, (CF0offset / 0x200) * 0x210, CF0.Length);
+        //    }
+        //    if (ready1)
+        //    {
+        //        if (variables.debugMode) Console.WriteLine("Adding ecc on CF1");
+        //        CF1 = Nand.Nand.addecc_v2(CF1, true, (CF1offset / 0x200) * 0x210, layout);
+        //        if (variables.debugMode) Console.WriteLine("Adding CF1 to nand");
+        //        Buffer.BlockCopy(CF1, 0, data, (CF1offset / 0x200) * 0x210, CF1.Length);
+        //    }
+        //    Console.WriteLine("Bootloader Patch Successful");
+        //    return data;
+        //}
 
         #endregion
 

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace JRunner.Forms
 {
-    public partial class SMCConfig : Form
+    public partial class SMCConfigEditor : Form
     {
         Nand.SMCConfig smc_config;
         int block_offset;
@@ -34,7 +34,7 @@ namespace JRunner.Forms
             AUS
         }
 
-        public SMCConfig()
+        public SMCConfigEditor()
         {
             InitializeComponent();
             try
