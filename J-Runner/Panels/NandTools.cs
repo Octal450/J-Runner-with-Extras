@@ -27,54 +27,39 @@ namespace JRunner.Panels
             pBoxDevice.Image = m;
         }
 
-        public delegate void ClickedRead();
-        public event ClickedRead ReadClick;
-        public delegate void ClickedCreateECC();
-        public event ClickedCreateECC CreateEccClick;
-        public delegate void ClickedWriteECC();
-        public event ClickedWriteECC WriteEccClick;
-        public delegate void ClickedXeBuild();
-        public event ClickedXeBuild XeBuildClick;
-        public delegate void ClickedWrite();
-        public event ClickedWrite WriteClick;
-        public delegate void ClickedProgramCR();
-        public event ClickedProgramCR ProgramCRClick;
-        public delegate void ChangedIter(int iter);
-        public event ChangedIter IterChange;
-
         private void btnRead_Click(object sender, EventArgs e)
         {
-            ReadClick();
+            MainForm.mainForm.btnReadClick();
         }
 
         private void btnCreateECC_Click(object sender, EventArgs e)
         {
-            CreateEccClick();
+            MainForm.mainForm.btnCreateECCClick();
         }
 
         private void btnWriteECC_Click(object sender, EventArgs e)
         {
-            WriteEccClick();
+            MainForm.mainForm.btnWriteECCClick();
         }
 
         private void btnXeBuild_Click(object sender, EventArgs e)
         {
-            XeBuildClick();
+            MainForm.mainForm.btnXeBuildClick();
         }
 
         private void btnWrite_Click(object sender, EventArgs e)
         {
-            WriteClick();
+            MainForm.mainForm.btnWriteClick();
         }
 
         private void btnProgramCR_Click(object sender, EventArgs e)
         {
-            ProgramCRClick();
+            MainForm.mainForm.openXsvfInfo(true);
         }
 
         private void numericIterations_ValueChanged(object sender, EventArgs e)
         {
-            IterChange((int)numericIterations.Value);
+            MainForm.mainForm.nTools_IterChange((int)numericIterations.Value);
         }
 
         private void btnExtractFiles_Click(object sender, EventArgs e)

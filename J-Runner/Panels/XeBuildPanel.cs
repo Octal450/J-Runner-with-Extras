@@ -27,18 +27,6 @@ namespace JRunner.Panels
         }
 
         #region delegates
-        public delegate void ClickedGetMB();
-        public event ClickedGetMB Getmb;
-        public delegate void ChangedHack();
-        public event ChangedHack HackChanged;
-        public delegate void CallMotherboards();
-        public event CallMotherboards CallMB;
-        public delegate void loadFile(ref string filename, bool erase = false);
-        public event loadFile loadFil;
-        public delegate void updateProgress(int progress);
-        public event updateProgress UpdateProgres;
-        public delegate void updateSource(string filename);
-        public event updateSource updateSourc;
         public delegate void ModeDrive();
         public event ModeDrive DriveMode;
         #endregion
@@ -328,7 +316,7 @@ namespace JRunner.Panels
 
             try
             {
-                HackChanged();
+                MainForm.mainForm.xPanel_HackChanged();
             }
             catch (Exception) { }
 
@@ -350,7 +338,7 @@ namespace JRunner.Panels
 
         private void txtMBname_Click(object sender, EventArgs e)
         {
-            CallMB();
+            variables.ctype = MainForm.mainForm.callConsoleSelect(ConsoleSelect.Selected.All);
         }
 
         private void comboDash_SelectedIndexChanged(object sender, EventArgs e)
@@ -912,7 +900,7 @@ namespace JRunner.Panels
         private void btnGetMB_Click(object sender, EventArgs e)
         {
             if ((ModifierKeys & Keys.Shift) == Keys.Shift && MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_SPI) MainForm.mainForm.xflasher.getConsoleCb();
-            else Getmb();
+            else MainForm.mainForm.xPanel_getmb();
         }
 
         private void btnXEUpdate_Click(object sender, EventArgs e)
@@ -1228,7 +1216,7 @@ namespace JRunner.Panels
             {
                 if (string.IsNullOrWhiteSpace(variables.filename1))
                 {
-                    loadFil(ref variables.filename1, true);
+                    MainForm.mainForm.xPanel_loadFile(ref variables.filename1, true);
                     if (string.IsNullOrWhiteSpace(variables.filename1))
                     {
                         MessageBox.Show("No file was selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1373,7 +1361,7 @@ namespace JRunner.Panels
         public void xeExitActual()
         {
             variables.changeldv = 0;
-            UpdateProgres(100);
+            MainForm.mainForm.updateProgress(100);
 
             try
             {
@@ -1394,7 +1382,7 @@ namespace JRunner.Panels
                 Console.WriteLine("Saved to {0}", variables.xefolder);
                 Console.WriteLine("Image is Ready");
                 variables.filename1 = Path.Combine(variables.xefolder, variables.updflash);
-                updateSourc(variables.filename1);
+                MainForm.mainForm.xPanel_updateSource(variables.filename1);
                 //Process.Start(variables.xefolder);
             }
             else
@@ -1547,15 +1535,14 @@ namespace JRunner.Panels
         public void xe_xeUExit(object sender, EventArgs e)
         {
             variables.changeldv = 0;
-            UpdateProgres(100);
+            MainForm.mainForm.updateProgress(100);
 
             if (variables.xefinished)
             {
                 Console.WriteLine("Saved to {0}", variables.xefolder);
                 Console.WriteLine("Image is Ready");
                 variables.filename1 = Path.Combine(variables.xefolder, variables.updflash);
-                updateSourc(variables.filename1);
-                //Process.Start(variables.xefolder);
+                MainForm.mainForm.xPanel_updateSource(variables.filename1);
             }
             else
             {

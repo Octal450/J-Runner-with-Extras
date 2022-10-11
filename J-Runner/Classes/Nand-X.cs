@@ -26,11 +26,6 @@ namespace JRunner
         private bool jrp = false;
         public static bool InUse = false;
 
-        public delegate void updateProgress(int progress);
-        public event updateProgress UpdateProgres;
-        public delegate void updateBlock(string block);
-        public event updateBlock UpdateBloc;
-
         enum Commands : byte
         {
             /// <summary>
@@ -121,6 +116,16 @@ namespace JRunner
             GeneralError,
             NoFile,
             WrongFile
+        }
+
+        private void UpdateProgress(int p)
+        {
+            MainForm.mainForm.updateProgress(p);
+        }
+
+        private void UpdateBlock(string s)
+        {
+            MainForm.mainForm.updateBlock(s);
         }
 
         private UsbDevice OpenDevice(bool jrponly = false)
@@ -338,8 +343,8 @@ namespace JRunner
                     int i = startblock;
                     while (i < (length + startblock) && !variables.escapeloop)
                     {
-                        UpdateProgres((i * 100) / (length + startblock - 1));
-                        UpdateBloc(i.ToString("X"));
+                        UpdateProgress((i * 100) / (length + startblock - 1));
+                        UpdateBlock(i.ToString("X"));
 
                         readBuf = new byte[0x4200];
                         int lengthTransfered = 0;
@@ -361,7 +366,7 @@ namespace JRunner
                     DeInit(MyUsbDevice);
 
                     stopwatch.Stop();
-                    UpdateBloc("");
+                    UpdateBlock("");
                     Console.WriteLine("Read Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                     Console.WriteLine("");
                     return Errors.None;
@@ -445,8 +450,8 @@ namespace JRunner
                     int i = startblock;
                     while (i < (length + startblock) && !variables.escapeloop)
                     {
-                        UpdateProgres((i * 100) / (length + startblock - 1));
-                        UpdateBloc(i.ToString("X"));
+                        UpdateProgress((i * 100) / (length + startblock - 1));
+                        UpdateBlock(i.ToString("X"));
 
                         erase_sector(MyUsbDevice, reader, i, out ec);
 
@@ -457,7 +462,7 @@ namespace JRunner
                     DeInit(MyUsbDevice);
 
                     stopwatch.Stop();
-                    UpdateBloc("");
+                    UpdateBlock("");
                     Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                     Console.WriteLine("");
                     return Errors.None;
@@ -573,8 +578,8 @@ namespace JRunner
                         catch (Exception ex) { Console.WriteLine(ex.Message); }
 
                         if (fixecc) writeBuffer = Nand.Nand.addecc_v2(writeBuffer, false, i * 0x4200, layout);
-                        if (length + startblock - 1 != 0) UpdateProgres((i * 100) / (length + startblock - 1));
-                        UpdateBloc(i.ToString("X"));
+                        if (length + startblock - 1 != 0) UpdateProgress((i * 100) / (length + startblock - 1));
+                        UpdateBlock(i.ToString("X"));
                         int lengthTransfered = 0;
                         readBuffer = new byte[4];
                         if (!write_sector_v2(MyUsbDevice, reader, writer, i, ref writeBuffer, out readBuffer, out lengthTransfered, out ec)) Console.WriteLine("Failed to write 0x{0:X} block", i);
@@ -627,7 +632,7 @@ namespace JRunner
                     DeInit(MyUsbDevice);
 
                     stopwatch.Stop();
-                    UpdateBloc("");
+                    UpdateBlock("");
                     variables.writing = false;
                     Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                     Console.WriteLine("");
@@ -1587,18 +1592,18 @@ namespace JRunner
                     {						// endpoint 0x05, payload, len 0x20, TO = 5s
                         return 0;
                     }
-                    UpdateProgres(((i / 64) * 100 / ((int)filesize / 64)));
-                    UpdateBloc((i / 64).ToString());
+                    UpdateProgress(((i / 64) * 100 / ((int)filesize / 64)));
+                    UpdateBlock((i / 64).ToString());
                     i += 64;
                 }										//	already on a cmd
                 if (Status[0] == 0x22) // status = 0x22  xsvf_ok  good!
                 {
-                    UpdateBloc("");
+                    UpdateBlock("");
                     return 1;
                 }
 
             }
-            UpdateBloc("");
+            UpdateBlock("");
             return 0;
         }
 

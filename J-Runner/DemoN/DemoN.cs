@@ -25,16 +25,10 @@ namespace JRunner
         private int devi = -1, manu = -1;
         private bool convert = true;
 
-        public delegate void updateProgress(int progress);
-        public event updateProgress UpdateProgres;
-        public delegate void updateBlock(string block);
-        public event updateBlock UpdateBloc;
-        public delegate void updateMode(Demon_Modes mode);
-        public event updateMode updateMod;
-        public delegate void updateFlash(Demon_Switch flash);
-        public event updateFlash updateFlas;
-        public delegate void updateVersion(string version);
-        public event updateVersion UpdateVer;
+        public delegate void UpdateMode(Demon_Modes mode);
+        public event UpdateMode updateMode;
+        public delegate void UpdateFlash(Demon_Switch flash);
+        public event UpdateFlash updateFlash;
 
         public enum Demon_Modes : byte
         {
@@ -284,7 +278,7 @@ namespace JRunner
                 release_flash();
                 DeInitDemoN();
                 stopwatch.Stop();
-                UpdateProgres(100);
+                MainForm.mainForm.updateProgress(100);
                 Console.WriteLine("Read Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
             }
@@ -330,8 +324,8 @@ namespace JRunner
             databuffer[0] = ((byte)Demon_Commands.COMMAND_READ_EXT_FLASH_BLOCK);
             while (i < (length + startblock) && !variables.escapeloop)
             {
-                UpdateBloc(i.ToString("X"));
-                UpdateProgres((int)((100 * i) / (length + startblock)));
+                MainForm.mainForm.updateBlock(i.ToString("X"));
+                MainForm.mainForm.updateProgress((int)((100 * i) / (length + startblock)));
                 blockbuffer[0] = (byte)(i & 0xFF);
                 blockbuffer[1] = (byte)((i & 0xFF00) / 255);
 
@@ -361,7 +355,7 @@ namespace JRunner
                 i++;
             }
             readBuf = null;
-            UpdateBloc("");
+            MainForm.mainForm.updateBlock("");
             sw.Close();
         }
 
@@ -426,7 +420,7 @@ namespace JRunner
                 release_flash();
                 DeInitDemoN();
                 stopwatch.Stop();
-                UpdateProgres(100);
+                MainForm.mainForm.updateProgress(100);
                 Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
             }
@@ -468,8 +462,8 @@ namespace JRunner
             int i = startblock;
             while (i < (length + startblock) && !variables.escapeloop)
             {
-                UpdateBloc(i.ToString("X"));
-                UpdateProgres((100 * i) / (length + startblock));
+                MainForm.mainForm.updateBlock(i.ToString("X"));
+                MainForm.mainForm.updateProgress((100 * i) / (length + startblock));
                 blockbuffer[0] = (byte)(i & 0xFF);
                 blockbuffer[1] = (byte)((i & 0xFF00) / 255);
 
@@ -508,7 +502,7 @@ namespace JRunner
                 i++;
             }
             rw.Close();
-            UpdateBloc("");
+            MainForm.mainForm.updateBlock("");
             writeBuffer = null;
         }
 
@@ -583,7 +577,7 @@ namespace JRunner
                 release_flash();
                 DeInitDemoN();
                 stopwatch.Stop();
-                UpdateProgres(100);
+                MainForm.mainForm.updateProgress(100);
                 Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
             }
@@ -614,8 +608,8 @@ namespace JRunner
             databuffer[0] = (byte)Demon_Commands.COMMAND_ERASE_EXT_FLASH_BLOCK;
             while (i < (length + startblock))
             {
-                UpdateBloc(i.ToString("X"));
-                UpdateProgres((100 * i) / (length + startblock));
+                MainForm.mainForm.updateBlock(i.ToString("X"));
+                MainForm.mainForm.updateProgress((100 * i) / (length + startblock));
                 blockbuffer[0] = (byte)(i & 0xFF);
                 blockbuffer[1] = (byte)((i & 0xFF00) / 255);
 
@@ -630,7 +624,7 @@ namespace JRunner
 
                 i++;
             }
-            UpdateBloc("");
+            MainForm.mainForm.updateBlock("");
         }
 
         public void xsvf(string filename)
@@ -677,7 +671,7 @@ namespace JRunner
                 int i = 0;
                 for (i = 0; i < reps; i++)
                 {
-                    UpdateProgres((i * 100) / reps);
+                    MainForm.mainForm.updateProgress((i * 100) / reps);
                     writeBuffer = Oper.returnportion(file, i * 64, 64);
                     device_bulk_write(Demon, writeBuffer, 64);
                     device_bulk_read(Demon, ref readbuffer, 1);
@@ -712,7 +706,7 @@ namespace JRunner
                     }
                     else Console.WriteLine("Done");
                 }
-                UpdateProgres(100);
+                MainForm.mainForm.updateProgress(100);
                 DeInitDemoN();
             }
             else
@@ -861,7 +855,7 @@ namespace JRunner
             byte[] data = new byte[256 * 256];
             for (int i = 0; i < 256; i++)
             {
-                UpdateProgres((100 * i) / 223);
+                MainForm.mainForm.updateProgress((100 * i) / 223);
                 page[0] = (byte)i;
                 byte[] buffer = demon_readIntFlashPage(page);
                 Buffer.BlockCopy(buffer, 0, data, i * 256, 256);
@@ -902,7 +896,7 @@ namespace JRunner
             byte[] buffer = new byte[256];
             for (int i = 0; i < 224; i++)
             {
-                UpdateProgres((100 * i) / 223);
+                MainForm.mainForm.updateProgress((100 * i) / 223);
                 page[0] = (byte)i;
                 demon_eraseIntFlashPage(page);
                 buffer = Oper.returnportion(data, i * 256, 256);
@@ -1055,8 +1049,8 @@ namespace JRunner
             int i = startblock;
             while (i < (length + startblock))
             {
-                UpdateBloc(i.ToString("X"));
-                UpdateProgres((100 * i) / (length + startblock));
+                MainForm.mainForm.updateBlock(i.ToString("X"));
+                MainForm.mainForm.updateProgress((100 * i) / (length + startblock));
                 blockbuffer[0] = (byte)(i & 0xFF);
                 blockbuffer[1] = (byte)((i & 0xFF00) / 255);
 
@@ -1145,7 +1139,7 @@ namespace JRunner
                 }
             }
             rw.Close();
-            UpdateBloc("");
+            MainForm.mainForm.updateBlock("");
             writeBuffer = null;
         }
 
@@ -1289,7 +1283,7 @@ namespace JRunner
                 if (device_bulk_read(Demon, ref readbuffer, 1))
                 {
                     if (variables.debugMode) Console.WriteLine(readbuffer[0]);
-                    updateMod((Demon_Modes)readbuffer[0]);
+                    updateMode((Demon_Modes)readbuffer[0]);
                     return readbuffer;
                 }
                 else
@@ -1317,7 +1311,7 @@ namespace JRunner
             {
                 if (device_bulk_read(Demon, ref readbuffer, 1))
                 {
-                    updateFlas((Demon_Switch)readbuffer[0]);
+                    updateFlash((Demon_Switch)readbuffer[0]);
                     return readbuffer[0];
                 }
                 else
@@ -1352,7 +1346,7 @@ namespace JRunner
             {
                 if (device_bulk_read(Demon, ref readbuffer, 2))
                 {
-                    UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
+                    MainForm.mainForm.demon_UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
                     return readbuffer;
                 }
                 else
@@ -1387,7 +1381,7 @@ namespace JRunner
             byte[] readbuffer = new byte[2];
             device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_GET_BOOTLOADER_VERSION);
             device_bulk_read(Demon, ref readbuffer, 2);
-            UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
+            MainForm.mainForm.demon_UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
             if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
             return readbuffer;
         }
@@ -1562,7 +1556,7 @@ namespace JRunner
                         }
                         else Console.WriteLine("Failed");
 
-                        updateFlas(((Demon_Switch)readbuffer[0]));
+                        updateFlash(((Demon_Switch)readbuffer[0]));
                     }
                     else
                     {
@@ -1621,7 +1615,7 @@ namespace JRunner
                             device_bulk_write(Demon, (byte)Demon_Commands.COMMAND_DEASSERT_SB_RESET);
                         }
 
-                        updateFlas((Demon_Switch)readbuffer[0]);
+                        updateFlash((Demon_Switch)readbuffer[0]);
 
                     }
                     else
@@ -1755,7 +1749,7 @@ namespace JRunner
                         flash = (Demon_Switch)readbuffer[0];
 
                         nand = readbuffer;
-                        updateFlas(flash);
+                        updateFlash(flash);
                     }
                     else
                     {
@@ -1794,7 +1788,7 @@ namespace JRunner
                             if (variables.debugMode) Console.WriteLine("Bootloader");
                             mode = Demon_Modes.BOOTLOADER;
                         }
-                        updateMod(mode);
+                        updateMode(mode);
                     }
                     else
                     {
@@ -1822,7 +1816,7 @@ namespace JRunner
                         if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
                         if (variables.debugMode) Console.WriteLine("BL Version: {0}.{1}", readbuffer[1], readbuffer[0]);
                         fw = readbuffer;
-                        UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
+                        MainForm.mainForm.demon_UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
                     }
                     else
                     {
@@ -1850,7 +1844,7 @@ namespace JRunner
                         if (variables.debugMode) Console.WriteLine(Oper.ByteArrayToString(readbuffer));
                         if (variables.debugMode) Console.WriteLine("FW Version: {0}.{1}", readbuffer[1], readbuffer[0]);
                         fw = readbuffer;
-                        UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
+                        MainForm.mainForm.demon_UpdateVer(readbuffer[1].ToString() + "." + readbuffer[0].ToString());
                     }
                     else
                     {

@@ -334,7 +334,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Xenon EXT_CLK Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("xenon_extclk");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("xenon_extclk");
                 //Activate(); // Keep us on top
             }
         }
@@ -351,7 +351,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Zephyr RGH1 Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("zephyr_rgh1");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("zephyr_rgh1");
                 //Activate(); // Keep us on top
             }
             else if (btn == 4)
@@ -364,7 +364,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Zephyr EXT_CLK Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("zephyr_extclk");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("zephyr_extclk");
                 //Activate(); // Keep us on top
             }
         }
@@ -382,7 +382,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Falcon RGH1 Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("falcon_rgh1");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("falcon_rgh1");
                 //Activate(); // Keep us on top
             }
             else if (btn == 3)
@@ -396,7 +396,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Falcon RGH1.2 Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("falconjasper_rgh12");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("falconjasper_rgh12");
                 //Activate(); // Keep us on top
             }
             else if (btn == 5)
@@ -410,7 +410,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Falcon R-JTOP Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("falcon_rjtop");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("falcon_rjtop");
                 //Activate(); // Keep us on top
             }
         }
@@ -428,7 +428,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Jasper RGH1 Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("jasper_rgh1");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("jasper_rgh1");
                 //Activate(); // Keep us on top
             }
             else if (btn == 3)
@@ -442,7 +442,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Jasper RGH1.2 Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("falconjasper_rgh12");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("falconjasper_rgh12");
                 //Activate(); // Keep us on top
             }
             else if (btn == 5)
@@ -456,7 +456,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Jasper R-JTOP Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("jasper_rjtop");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("jasper_rjtop");
                 //Activate(); // Keep us on top
             }
         }
@@ -473,7 +473,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Trinity RGH1.2 Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("trinity_rgh12");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("trinity_rgh12");
                 //Activate(); // Keep us on top
             }
             else if (btn == 4)
@@ -486,7 +486,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Trinity S-RGH X360ACE/DGX";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("trinity_srgh");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("trinity_srgh");
                 //Activate(); // Keep us on top
             }
         }
@@ -503,7 +503,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Corona RGH1.2 Coolrunner/Matrix";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("corona_rgh12");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("corona_rgh12");
                 //Activate(); // Keep us on top
             }
             else if (btn == 4)
@@ -516,7 +516,7 @@ namespace JRunner.Forms
                 topLabel.Text = "Corona S-RGH X360ACE/DGX";
                 // Now open the panel and set the timing
                 MainForm.mainForm.openXsvfInfo();
-                MainForm.mainForm.xsvfInfo.setTimingFromAssistant("corona_srgh");
+                MainForm.mainForm.xsvfChoice.setTimingFromAssistant("corona_srgh");
                 //Activate(); // Keep us on top
             }
         }

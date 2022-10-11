@@ -7,8 +7,6 @@ namespace JRunner.Panels
     public partial class NandInfo : UserControl
     {
         private Nand.PrivateN nand;
-        public delegate void DragDropC(string filename);
-        public event DragDropC DragDropChanged;
         private DateTime mfr;
 
         public NandInfo()
@@ -271,7 +269,7 @@ namespace JRunner.Panels
         private void NandInfo_DragDrop(object sender, DragEventArgs e)
         {
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            DragDropChanged(s[0]);
+            MainForm.mainForm.txtFileSource_DragName(s[0]);
         }
 
         private void NandInfo_DragEnter(object sender, DragEventArgs e)

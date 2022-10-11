@@ -58,26 +58,11 @@ namespace JRunner.Panels
             else if (fu == Function.Write) btnRead.Enabled = btnErase.Enabled = false;
         }
 
-        public delegate void ClickedCloseLD();
-        public event ClickedCloseLD CloseLDClick;
-
-        public delegate void UpdateProgress(int progress);
-        public event UpdateProgress UpdateProgres;
-        public delegate void UpdateBlock(string block);
-        public event UpdateBlock UpdateBloc;
-        public delegate void UpdateFile(string file);
-        public event UpdateFile UpdateSourc;
-
-        public delegate void UpdateAddit(string file);
-        public event UpdateAddit UpdateAdditional;
-        public delegate void doCompare();
-        public event doCompare doCompar;
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
             {
-                CloseLDClick();
+                MainForm.mainForm.ldInfo_CloseLDClick();
             }
             catch (Exception) { }
         }
@@ -109,7 +94,7 @@ namespace JRunner.Panels
             enumThread.Start();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void chkShowAll_CheckedChanged(object sender, EventArgs e)
         {
             showall = chkShowAll.Checked;
             Thread enumThread = new Thread(() => enumerate());
@@ -181,12 +166,12 @@ namespace JRunner.Panels
                             }
                             if (driv.DriveType == DriveType.Removable || showall) listView1.Items.Add(lvi);
                             j++;
-                            UpdateProgres(((i + j) * 100) / (pdrives.Count * letter.Count));
+                            MainForm.mainForm.updateProgress(((i + j) * 100) / (pdrives.Count * letter.Count));
                         }
                     }
                     //lvi.SubItems.Add(string.Join("", getletters(Convert.ToInt32(info[info.Length -1].ToString()))));
                     i++;
-                    UpdateProgres((i * 100) / pdrives.Count);
+                    MainForm.mainForm.updateProgress((i * 100) / pdrives.Count);
                 }
                 enumearting = false;
             }
@@ -214,11 +199,11 @@ namespace JRunner.Panels
                     variables.reading = false;
                     if (result == 0) break;
                     Thread.Sleep(1000);
-                    if (i == 1) UpdateSourc(filename);
+                    if (i == 1) MainForm.mainForm.xPanel_updateSource(filename);
                     else
                     {
-                        UpdateAdditional(filename);
-                        doCompar();
+                        MainForm.mainForm.ldInfo_UpdateAdditional(filename);
+                        MainForm.mainForm.compareNands();
                     }
                     Thread.Sleep(1000);
                 }
@@ -227,7 +212,7 @@ namespace JRunner.Panels
             {
                 read(variables.outfolder + "\\nanddump1.bin");
                 variables.reading = false;
-                UpdateSourc(variables.outfolder + "\\nanddump1.bin");
+                MainForm.mainForm.xPanel_updateSource(variables.outfolder + "\\nanddump1.bin");
             }
             buttons(true);
         }
@@ -278,16 +263,16 @@ namespace JRunner.Panels
                 byte[] temp = new byte[track];
                 while (i < tracks && !variables.escapeloop)
                 {
-                    UpdateProgres((int)((i * 100) / tracks));
-                    UpdateBloc(((i * track) / 1024 / 1024).ToString("F0") + "MB");
+                    MainForm.mainForm.updateProgress((int)((i * 100) / tracks));
+                    MainForm.mainForm.updateBlock(((i * track) / 1024 / 1024).ToString("F0") + "MB");
                     i++;
                     fs.Read(temp, 0, (int)track);
                     fw.Write(temp, 0, (int)track);
                 }
                 fs.Close();
                 fw.Close();
-                UpdateBloc("");
-                UpdateProgres(100);
+                MainForm.mainForm.updateBlock("");
+                MainForm.mainForm.updateProgress(100);
                 stopwatch.Stop();
                 Console.WriteLine("Read Successful! Time Elapsed: {0}:{1:D2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds);
                 Console.WriteLine("");
@@ -437,7 +422,7 @@ namespace JRunner.Panels
                     offset++;
                     int value = (int)((offset * 100) / totaltracks);
                     //if (offset % 1000 == 0) Console.WriteLine(offset + " " + value);
-                    UpdateProgres(value);
+                    MainForm.mainForm.updateProgress(value);
                 }
                 catch (Exception ex) { Console.WriteLine("{0} - {1} - {2}", offset, sectorNum, ex.ToString()); break; }
 
@@ -558,14 +543,14 @@ namespace JRunner.Panels
                 byte[] temp = new byte[track];
                 while (i < tracks && !variables.escapeloop)
                 {
-                    UpdateProgres((int)((i * 100) / tracks));
+                    MainForm.mainForm.updateProgress((int)((i * 100) / tracks));
                     i++;
                     fw.Read(temp, 0, (int)track);
                     fs.Write(temp, 0, (int)track);
                 }
                 fs.Close();
                 fw.Close();
-                UpdateProgres(100);
+                MainForm.mainForm.updateProgress(100);
                 stopwatch.Stop();
                 Console.WriteLine("Write Successful! Time Elapsed: {0}:{1:D2}:{2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
                 Console.WriteLine("");
@@ -707,7 +692,7 @@ namespace JRunner.Panels
                     offset++;
                     int value = (int)((offset * 100) / totaltracks);
                     //if (offset % 1000 == 0) Console.WriteLine(offset + " " + value);
-                    UpdateProgres(value);
+                    MainForm.mainForm.updateProgress(value);
                 }
                 catch (Exception ex) { Console.WriteLine("{0} - {1} - {2}", offset, sectorNum, ex.ToString()); break; }
 
@@ -824,12 +809,12 @@ namespace JRunner.Panels
                 byte[] temp = new byte[track];
                 while (i < tracks && !variables.escapeloop)
                 {
-                    UpdateProgres((int)((i * 100) / tracks));
+                    MainForm.mainForm.updateProgress((int)((i * 100) / tracks));
                     i++;
                     fs.Write(temp, 0, (int)track);
                 }
                 fs.Close();
-                UpdateProgres(100);
+                MainForm.mainForm.updateProgress(100);
                 stopwatch.Stop();
                 Console.WriteLine("Erase Successful! Time Elapsed: {0}:{1:D2}:{2}", stopwatch.Elapsed.Minutes + (stopwatch.Elapsed.Hours * 60), stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
                 Console.WriteLine("");

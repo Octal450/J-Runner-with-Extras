@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XSVFChoice));
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.btnProgram = new UI.MenuButton();
             this.programMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -148,15 +148,15 @@
             this.XenonExtClkGroup.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnCancel
+            // btnClose
             // 
-            this.btnCancel.Location = new System.Drawing.Point(260, 268);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(74, 23);
-            this.btnCancel.TabIndex = 82;
-            this.btnCancel.Text = "Close";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnClose.Location = new System.Drawing.Point(260, 268);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(74, 23);
+            this.btnClose.TabIndex = 82;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnProgram
             // 
@@ -1335,7 +1335,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.btnAssistant);
             this.Controls.Add(this.TimingTabs);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnProgram);
             this.Name = "XSVFChoice";
             this.Size = new System.Drawing.Size(341, 298);
@@ -1368,7 +1368,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnClose;
         private UI.MenuButton btnProgram;
         private System.Windows.Forms.TabControl TimingTabs;
         private System.Windows.Forms.TabPage Rgh12Timings;

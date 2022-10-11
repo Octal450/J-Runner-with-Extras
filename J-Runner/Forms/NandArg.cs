@@ -196,12 +196,6 @@ namespace JRunner
             SizeFunc = "512";
         }
 
-        private void ProgramCRButton_Click(object sender, EventArgs e)
-        {
-            MainForm.mainForm.openXsvfInfo();
-            NandProArg.ActiveForm.Hide();
-        }
-
         public void UpdateDevice()
         {
             timingType = MainForm.mainForm.getTimingType();

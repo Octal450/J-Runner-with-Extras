@@ -56,7 +56,7 @@ namespace JRunner
         private Panels.NandTools nTools = new Panels.NandTools();
         public Panels.XeBuildPanel xPanel = new Panels.XeBuildPanel();
         private Panels.LDrivesInfo ldInfo = new Panels.LDrivesInfo();
-        public Panels.XSVFChoice xsvfInfo = new Panels.XSVFChoice();
+        public Panels.XSVFChoice xsvfChoice = new Panels.XSVFChoice();
         List<Control> listInfo = new List<Control>();
         List<Control> listTools = new List<Control>();
         List<Control> listExtra = new List<Control>();
@@ -83,7 +83,8 @@ namespace JRunner
             xflasher.initTimerSetup();
             xflasher.inUseTimerSetup();
             mtx_usb.inUseTimerSetup();
-            setUp();
+            demon.updateFlash += demon_updateFlash;
+            demon.updateMode += demon_updateMode;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -148,45 +149,6 @@ namespace JRunner
             TopMost = top; // Set it back
 
             Activate();
-        }
-
-        void setUp()
-        {
-            demon.UpdateBloc += updateBlocks;
-            demon.UpdateProgres += updateProgress;
-            demon.updateFlas += demon_updateFlas;
-            demon.updateMod += demon_updateMod;
-            demon.UpdateVer += demon_UpdateVer;
-
-            nTools.ReadClick += btnReadClick;
-            nTools.CreateEccClick += btnCreateECCClick;
-            nTools.WriteEccClick += btnWriteECCClick;
-            nTools.WriteClick += btnWriteClick;
-            nTools.ProgramCRClick += btnProgramCRClick;
-            nTools.XeBuildClick += btnXeBuildClick;
-            nTools.IterChange += nTools_IterChange;
-
-            xsvfInfo.CloseCRClick += xsvfInfo_CloseCRClick;
-            xsvfInfo.ProgramCRClick += xsvfInfo_ProgramCRClick;
-
-            xPanel.HackChanged += xPanel_HackChanged;
-            xPanel.CallMB += xPanel_CallMB;
-            xPanel.loadFil += xPanel_loadFil;
-            xPanel.updateSourc += xPanel_updateSourc;
-            xPanel.UpdateProgres += updateProgress;
-            xPanel.Getmb += xPanel_getmb;
-
-            nandInfo.DragDropChanged += nandInfo_DragDropChanged;
-
-            nandx.UpdateProgres += updateProgress;
-            nandx.UpdateBloc += updateBlocks;
-
-            ldInfo.UpdateProgres += updateProgress;
-            ldInfo.UpdateBloc += updateBlocks;
-            ldInfo.UpdateSourc += xPanel_updateSourc;
-            ldInfo.CloseLDClick += ldInfo_CloseLDClick;
-            ldInfo.doCompar += ldInfo_doCompar;
-            ldInfo.UpdateAdditional += ldInfo_UpdateAdditional;
         }
 
         public delegate void UpdatedDevice();
@@ -395,18 +357,18 @@ namespace JRunner
 
         #region Panels
 
-        void demon_UpdateVer(string version)
+        public void demon_UpdateVer(string version)
         {
             FWVersion.Text = version;
         }
 
-        void demon_updateMod(DemoN.Demon_Modes mode)
+        private void demon_updateMode(DemoN.Demon_Modes mode)
         {
             if (mode == DemoN.Demon_Modes.FIRMWARE)
             {
                 FlashStatus.Visible = true;
                 FlashVersion.Visible = true;
-                FWStatus.Text = "FW: "; // fuck :)
+                FWStatus.Text = "FW: ";
             }
             else
             {
@@ -416,41 +378,31 @@ namespace JRunner
             ModeVersion.Text = mode.ToString();
         }
 
-        void demon_updateFlas(DemoN.Demon_Switch flash)
+        private void demon_updateFlash(DemoN.Demon_Switch flash)
         {
             FlashVersion.Text = flash.ToString();
         }
 
         #region LDrivesPanel
 
-        void ldInfo_CloseLDClick()
+        public void ldInfo_CloseLDClick()
         {
             listInfo.Remove(ldInfo);
             pnlInfo.Controls.Remove(ldInfo);
             pnlInfo.Controls.Add(listInfo[listInfo.Count - 1]);
         }
 
-        void ldInfo_UpdateAdditional(string file)
+        public void ldInfo_UpdateAdditional(string file)
         {
             txtFileExtra.Text = file;
             variables.filename2 = file;
-        }
-
-        void ldInfo_doCompar()
-        {
-            comparenands();
         }
 
         #endregion
 
         #region xebuild Panel
 
-        void xPanel_CallMB()
-        {
-            variables.ctype = callConsoleSelect(ConsoleSelect.Selected.All);
-        }
-
-        void xPanel_HackChanged()
+        public void xPanel_HackChanged()
         {
             if (xPanel.getRbtnGlitchChecked()) variables.ttyp = variables.hacktypes.glitch;
             else if (xPanel.getRbtnJtagChecked()) variables.ttyp = variables.hacktypes.jtag;
@@ -461,7 +413,7 @@ namespace JRunner
             else variables.ttyp = variables.hacktypes.nothing;
         }
 
-        void xPanel_getmb()
+        public void xPanel_getmb()
         {
             if (device == DEVICE.PICOFLASHER)
             {
@@ -482,14 +434,14 @@ namespace JRunner
             }
         }
 
-        void xPanel_updateSourc(string filename)
+        public void xPanel_updateSource(string filename)
         {
             txtFileSource.Text = filename;
             variables.filename1 = filename;
             nand_init();
         }
 
-        void xPanel_loadFil(ref string filename, bool erase = false)
+        public void xPanel_loadFile(ref string filename, bool erase = false)
         {
             loadfile(ref filename, ref txtFileSource, erase);
         }
@@ -498,34 +450,34 @@ namespace JRunner
 
         #region XSVF Panel
 
-        void xsvfInfo_ProgramCRClick()
+        public void xsvfChoice_ProgramCRClick()
         {
-            if (xsvfInfo.heResult() == -1)
+            if (xsvfChoice.heResult() == -1)
             {
                 MessageBox.Show("I have absolutely no idea what timing you want me to program\n\nSelect a timing and try again", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             string file;
-            if (variables.debugMode) Console.WriteLine(xsvfInfo.heResult());
-            bool demon = xsvfInfo.deResult();
+            if (variables.debugMode) Console.WriteLine(xsvfChoice.heResult());
+            bool demon = xsvfChoice.deResult();
             if (variables.debugMode) Console.WriteLine("demon {0}", demon);
             if (demon)
             {
-                if (variables.debugMode) Console.WriteLine(variables.xsvf[xsvfInfo.heResult() - 1]);
-                file = (variables.xsvf[xsvfInfo.heResult() - 1]);
+                if (variables.debugMode) Console.WriteLine(variables.xsvf[xsvfChoice.heResult() - 1]);
+                file = (variables.xsvf[xsvfChoice.heResult() - 1]);
             }
             else
             {
-                if (variables.debugMode) Console.WriteLine(variables.xsvf[xsvfInfo.heResult() - 1]);
-                file = (variables.xsvf[xsvfInfo.heResult() - 1]);
+                if (variables.debugMode) Console.WriteLine(variables.xsvf[xsvfChoice.heResult() - 1]);
+                file = (variables.xsvf[xsvfChoice.heResult() - 1]);
             }
             programcr(file);
 
         }
 
-        void xsvfInfo_CloseCRClick()
+        public void xsvfChoice_CloseCRClick()
         {
-            listInfo.Remove(xsvfInfo);
-            pnlInfo.Controls.Remove(xsvfInfo);
+            listInfo.Remove(xsvfChoice);
+            pnlInfo.Controls.Remove(xsvfChoice);
             pnlInfo.Controls.Add(listInfo[listInfo.Count - 1]);
             pnlTools.Enabled = true;
         }
@@ -571,21 +523,10 @@ namespace JRunner
             }
         }
 
-        void nTools_IterChange(int iter)
+        public void nTools_IterChange(int iter)
         {
             variables.numReads = iter;
             ldInfo.updateIter(iter);
-        }
-
-        void nandInfo_DragDropChanged(string filename)
-        {
-            this.txtFileSource.Text = filename;
-            variables.filename1 = filename;
-            erasevariables();
-            if (Path.GetExtension(filename) == ".bin")
-            {
-                nand_init();
-            }
         }
         #endregion
 
@@ -1304,7 +1245,7 @@ namespace JRunner
                         if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                         {
                             this.txtFileExtra.Text = Path.Combine(variables.rootfolder, variables.filename2);
-                            new Thread(comparenands).Start();
+                            new Thread(compareNands).Start();
                         }
                     }
 
@@ -1365,7 +1306,7 @@ namespace JRunner
                 if (File.Exists(Path.Combine(variables.rootfolder, variables.filename)))
                 {
                     this.txtFileExtra.BeginInvoke((Action)(() => txtFileExtra.Text = System.IO.Path.Combine(variables.rootfolder, variables.filename)));
-                    new Thread(comparenands).Start();
+                    new Thread(compareNands).Start();
                 }
 
             }
@@ -1653,7 +1594,7 @@ namespace JRunner
             txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
         }
 
-        void comparenands()
+        public void compareNands()
         {
             if (variables.filename1 == null || variables.filename2 == null) { MessageBox.Show("Input all Files"); return; }
             if (!File.Exists(variables.filename1) || !File.Exists(variables.filename2)) return;
@@ -2808,7 +2749,7 @@ namespace JRunner
             progressBar.BeginInvoke((Action)(() => progressBar.Value = progress));
         }
 
-        public void updateBlocks(String progress)
+        public void updateBlock(string progress)
         {
             txtBlocks.BeginInvoke((Action)(() => txtBlocks.Text = progress));
         }
@@ -3596,7 +3537,7 @@ namespace JRunner
             Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
         }
 
-        void btnReadClick()
+        public void btnReadClick()
         {
             if (device == DEVICE.PICOFLASHER)
             {
@@ -3618,7 +3559,7 @@ namespace JRunner
             }
         }
 
-        void btnCreateECCClick()
+        public void btnCreateECCClick()
         {
             if (string.IsNullOrWhiteSpace(variables.filename1))
             {
@@ -3658,26 +3599,7 @@ namespace JRunner
             }
         }
 
-        void btnProgramCRClick()
-        {
-            pnlInfo.Controls.Clear();
-            pnlInfo.Controls.Add(xsvfInfo);
-            if (listInfo.Contains(xsvfInfo)) listInfo.Remove(xsvfInfo);
-            listInfo.Add(xsvfInfo);
-            pnlTools.Enabled = false;
-            xsvfInfo.boardCheck(variables.boardtype);
-        }
-
-        public void openXsvfInfo()
-        {
-            pnlInfo.Controls.Clear();
-            pnlInfo.Controls.Add(xsvfInfo);
-            if (listInfo.Contains(xsvfInfo)) listInfo.Remove(xsvfInfo);
-            listInfo.Add(xsvfInfo);
-            pnlTools.Enabled = false;
-        }
-
-        void btnWriteECCClick()
+        public void btnWriteECCClick()
         {
             if (string.IsNullOrWhiteSpace(variables.filename1))
             {
@@ -3721,7 +3643,7 @@ namespace JRunner
             }
         }
 
-        private void btnXeBuildClick()
+        public void btnXeBuildClick()
         {
             if (string.IsNullOrWhiteSpace(variables.filename1))
             {
@@ -3738,7 +3660,7 @@ namespace JRunner
             new Thread(starter).Start();
         }
 
-        void btnWriteClick()
+        public void btnWriteClick()
         {
             if (string.IsNullOrWhiteSpace(variables.filename1))
             {
@@ -3765,6 +3687,16 @@ namespace JRunner
                 if (device == DEVICE.NAND_X && variables.mtxUsbMode) mtx_usb.writeNandAuto();
                 else getconsoletype(2);
             }
+        }
+
+        public void openXsvfInfo(bool boardcheck = false)
+        {
+            pnlInfo.Controls.Clear();
+            pnlInfo.Controls.Add(xsvfChoice);
+            if (listInfo.Contains(xsvfChoice)) listInfo.Remove(xsvfChoice);
+            listInfo.Add(xsvfChoice);
+            pnlTools.Enabled = false;
+            if (boardcheck) xsvfChoice.boardCheck(variables.boardtype);
         }
 
         #endregion
@@ -3856,7 +3788,7 @@ namespace JRunner
                 MessageBox.Show("No nand loaded in extra", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            new Thread(comparenands).Start();
+            new Thread(compareNands).Start();
         }
 
         private void btnReload_Click(object sender, EventArgs e)
@@ -3970,7 +3902,19 @@ namespace JRunner
 
         #region Drag & Drops
 
-        void txtFileSource_DragDrop(object sender, DragEventArgs e)
+        private void txtFileSource_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            txtFileSource_DragName(s[0]);
+        }
+        private void txtFileSource_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+        public void txtFileSource_DragName(string filename)
         {
             if (variables.reading || variables.writing)
             {
@@ -3978,23 +3922,16 @@ namespace JRunner
                 return;
             }
 
-            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            this.txtFileSource.Text = s[0];
-            variables.filename1 = s[0];
+            this.txtFileSource.Text = filename;
+            variables.filename1 = filename;
             if (variables.current_mode != variables.JR_MODE.MODEFW) erasevariables();
-            if (Path.GetExtension(s[0]) == ".bin")
+            if (Path.GetExtension(filename) == ".bin")
             {
                 nand_init();
             }
         }
-        void txtFileSource_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-                e.Effect = DragDropEffects.All;
-            else
-                e.Effect = DragDropEffects.None;
-        }
-        void txtFileExtra_DragDrop(object sender, DragEventArgs e)
+
+        private void txtFileExtra_DragDrop(object sender, DragEventArgs e)
         {
             if (variables.reading || variables.writing)
             {
@@ -4007,14 +3944,15 @@ namespace JRunner
             this.txtFileExtra.Text = s[0];
             variables.filename2 = s[0];
         }
-        void txtFileExtra_DragEnter(object sender, DragEventArgs e)
+        private void txtFileExtra_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.All;
             else
                 e.Effect = DragDropEffects.None;
         }
-        void txtCPUKey_DragDrop(object sender, DragEventArgs e)
+
+        private void txtCPUKey_DragDrop(object sender, DragEventArgs e)
         {
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             if (File.Exists(s[0]))
@@ -4053,7 +3991,7 @@ namespace JRunner
                 txtCPUKey.Text = cpukey;
             }
         }
-        void txtCPUKey_DragEnter(object sender, DragEventArgs e)
+        private void txtCPUKey_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.All;
@@ -4103,23 +4041,11 @@ namespace JRunner
             }
             else if (e.KeyCode == Keys.F2)
             {
-                if (device == DEVICE.PICOFLASHER)
-                {
-                    picoflasher.getFlashConfig();
-                }
-                else if (device == DEVICE.XFLASHER_SPI)
-                {
-                    if (e.Shift) xflasher.getConsoleCb();
-                    else xflasher.getFlashConfig();
-                }
-                else
-                {
-                    getmbtype();
-                }
+                xPanel_getmb();
             }
             else if (e.KeyCode == Keys.F3)
             {
-                btnProgramCRClick();
+                openXsvfInfo(true);
             }
             //else if (e.KeyCode == Keys.F4) // Handled from WinForms Menubar
             //{
@@ -4148,9 +4074,9 @@ namespace JRunner
             }
             else if (e.KeyCode == Keys.F12)
             {
-                if (listInfo.Contains(xsvfInfo))
+                if (listInfo.Contains(xsvfChoice))
                 {
-                    xsvfInfo_ProgramCRClick();
+                    xsvfChoice_ProgramCRClick();
                 }
             }
         }
@@ -4864,7 +4790,7 @@ namespace JRunner
             {
                 txtFileExtra.BeginInvoke((Action)(() => txtFileExtra.Text = Path.Combine(variables.filename)));
                 variables.filename2 = variables.filename;
-                new Thread(comparenands).Start();
+                new Thread(compareNands).Start();
             }
         }
 
@@ -4951,7 +4877,7 @@ namespace JRunner
             {
                 txtFileExtra.BeginInvoke((Action)(() => txtFileExtra.Text = Path.Combine(variables.filename)));
                 variables.filename2 = variables.filename;
-                new Thread(comparenands).Start();
+                new Thread(compareNands).Start();
             }
         }
 

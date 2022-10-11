@@ -115,7 +115,7 @@
             this.chkShowAll.TabIndex = 11;
             this.chkShowAll.Text = "Show All Devices";
             this.chkShowAll.UseVisualStyleBackColor = true;
-            this.chkShowAll.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.chkShowAll.CheckedChanged += new System.EventHandler(this.chkShowAll_CheckedChanged);
             // 
             // btnErase
             // 

@@ -12,16 +12,11 @@ namespace JRunner.Panels
         bool demon = false;
         private List<RadioButton> _radioButtonGroup = new List<RadioButton>();
 
-        public delegate void ClickedProgramCR();
-        public event ClickedProgramCR ProgramCRClick;
-        public delegate void ClickedCloseCR();
-        public event ClickedCloseCR CloseCRClick;
-
         public XSVFChoice()
         {
             InitializeComponent();
             btnProgram.DialogResult = DialogResult.OK;
-            btnCancel.DialogResult = DialogResult.Cancel;
+            btnClose.DialogResult = DialogResult.Cancel;
             var d = GetAll(this, typeof(RadioButton));
             foreach (RadioButton a in d)
             {
@@ -546,11 +541,11 @@ namespace JRunner.Panels
             return controls.SelectMany(ctrl => GetAll(ctrl, type)).Concat(controls).Where(c => c.GetType() == type);
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             try
             {
-                CloseCRClick();
+                MainForm.mainForm.xsvfChoice_CloseCRClick();
             }
             catch (Exception) { }
         }
@@ -559,7 +554,7 @@ namespace JRunner.Panels
         {
             try
             {
-                ProgramCRClick();
+                MainForm.mainForm.xsvfChoice_ProgramCRClick();
             }
             catch (Exception) { }
         }
