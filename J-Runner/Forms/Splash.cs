@@ -22,5 +22,15 @@ namespace JRunner
             InitializeComponent();
             Region = Region.FromHrgn(RoundCorner(0, 0, Width, Height, 21, 21));
         }
+
+        private void Splash_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            Program.exit();
+        }
     }
 }

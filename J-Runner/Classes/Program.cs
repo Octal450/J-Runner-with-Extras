@@ -26,8 +26,6 @@ namespace JRunner
 
         // Arguments
         public static bool noVcredistChk = false;
-        public static bool noUpdateChk = false;
-        public static bool runFullUpdate = false;
 
         /// <summary>
         /// The main entry point for the application.
@@ -80,33 +78,33 @@ namespace JRunner
                     }
                     if (a.Contains("/noupdate"))
                     {
-                        noUpdateChk = true;
+                        Upd.noUpdateChk = true;
                     }
                     if (a.Contains("/fullupdate"))
                     {
-                        runFullUpdate = true;
+                        Upd.runFullUpdate = true;
                     }
                     if (a.Contains("/restorefiles"))
                     {
-                        runFullUpdate = true;
+                        Upd.runFullUpdate = true;
                         Upd.deleteFolders = true;
                     }
                 }
 
-                if (!runFullUpdate)
+                if (!Upd.runFullUpdate)
                 {
                     if (!Directory.Exists("common") || !Directory.Exists("xeBuild"))
                     {
                         if (MessageBox.Show("Critical support files required for correct operation are missing\n\nDo you want to download the required support files?\n\nAll files inside common and xeBuild will be deleted and replaced with clean versions!", "Missing Files", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            runFullUpdate = true;
+                            Upd.runFullUpdate = true;
                         }
                     }
                 }
 
-                if (runFullUpdate)
+                if (Upd.runFullUpdate)
                 {
-                    Upd.check(); // Only allow this
+                    Application.Run(new MainForm()); // Updater takes it from here
                 }
                 else
                 {
@@ -138,14 +136,9 @@ namespace JRunner
                         Vcredist.Start();
                         return;
                     }
-                    else if (Control.ModifierKeys == Keys.Shift || noUpdateChk)
-                    {
-                        Upd.checkStatus = 3;
-                        Application.Run(new MainForm());
-                    }
                     else
                     {
-                        Upd.check();
+                        Application.Run(new MainForm());
                     }
                 }
             }

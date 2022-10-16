@@ -1,7 +1,7 @@
 ﻿
 namespace JRunner
 {
-    partial class UpdateDownload
+    partial class UpdChangelog
     {
         /// <summary>
         /// Required designer variable.
@@ -29,20 +29,24 @@ namespace JRunner
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateDownload));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdChangelog));
             this.UpdateWizard = new AeroWizard.WizardControl();
             this.UpdatePage = new AeroWizard.WizardPage();
-            this.updateProgressBar = new System.Windows.Forms.ProgressBar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtChangeLog = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateWizard)).BeginInit();
             this.UpdatePage.SuspendLayout();
             this.SuspendLayout();
             // 
             // UpdateWizard
             // 
+            this.UpdateWizard.CancelButtonText = "&Remind Me Later";
+            this.UpdateWizard.FinishButtonText = "&Download and Install";
             this.UpdateWizard.Location = new System.Drawing.Point(0, 0);
             this.UpdateWizard.Name = "UpdateWizard";
+            this.UpdateWizard.NextButtonText = "&Download and Install";
             this.UpdateWizard.Pages.Add(this.UpdatePage);
-            this.UpdateWizard.Size = new System.Drawing.Size(554, 401);
+            this.UpdateWizard.Size = new System.Drawing.Size(649, 471);
             this.UpdateWizard.TabIndex = 2;
             this.UpdateWizard.Title = "J-Runner with Extras";
             this.UpdateWizard.TitleIcon = ((System.Drawing.Icon)(resources.GetObject("UpdateWizard.TitleIcon")));
@@ -50,39 +54,48 @@ namespace JRunner
             // UpdatePage
             // 
             this.UpdatePage.AllowBack = false;
-            this.UpdatePage.AllowNext = false;
-            this.UpdatePage.Controls.Add(this.updateProgressBar);
+            this.UpdatePage.Controls.Add(this.label2);
+            this.UpdatePage.Controls.Add(this.txtChangeLog);
             this.UpdatePage.IsFinishPage = true;
             this.UpdatePage.Name = "UpdatePage";
-            this.UpdatePage.ShowNext = false;
-            this.UpdatePage.Size = new System.Drawing.Size(507, 247);
+            this.UpdatePage.Size = new System.Drawing.Size(602, 317);
             this.UpdatePage.TabIndex = 0;
-            this.UpdatePage.Text = "Downloading Update...";
+            this.UpdatePage.Text = "Update Available";
             // 
-            // updateProgressBar
+            // label2
             // 
-            this.updateProgressBar.Location = new System.Drawing.Point(4, 4);
-            this.updateProgressBar.MarqueeAnimationSpeed = 50;
-            this.updateProgressBar.Name = "updateProgressBar";
-            this.updateProgressBar.Size = new System.Drawing.Size(470, 23);
-            this.updateProgressBar.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(2, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 15);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Changelog:";
             // 
-            // UpdateDownload
+            // txtChangeLog
+            // 
+            this.txtChangeLog.Location = new System.Drawing.Point(3, 20);
+            this.txtChangeLog.Multiline = true;
+            this.txtChangeLog.Name = "txtChangeLog";
+            this.txtChangeLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtChangeLog.Size = new System.Drawing.Size(569, 294);
+            this.txtChangeLog.TabIndex = 3;
+            // 
+            // UpdChangelog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 401);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(649, 471);
             this.Controls.Add(this.UpdateWizard);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "UpdateDownload";
+            this.Name = "UpdChangelog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "J-Runner with Extras";
             ((System.ComponentModel.ISupportInitialize)(this.UpdateWizard)).EndInit();
             this.UpdatePage.ResumeLayout(false);
+            this.UpdatePage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -91,6 +104,7 @@ namespace JRunner
 
         private AeroWizard.WizardControl UpdateWizard;
         private AeroWizard.WizardPage UpdatePage;
-        private System.Windows.Forms.ProgressBar updateProgressBar;
+        private System.Windows.Forms.TextBox txtChangeLog;
+        private System.Windows.Forms.Label label2;
     }
 }

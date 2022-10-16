@@ -1,8 +1,10 @@
 ﻿using Ionic.Zip;
+using JRunner.Forms;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Threading;
@@ -16,22 +18,22 @@ namespace JRunner
         public static int checkStatus = 0; // Default success
         public static bool upToDate = true; // Default true
         public static string failedReason = "Unknown";
-        static string changelog = "Could not retrieve changelog for some reason!"; // Overwritten if successful
-        static string deltaUrl, fullUrl;
-        static int serverRevision = 0;
-        static int minDeltaRevision = 0;
-        static string expectedDeltaMd5 = "";
-        static string expectedFullMd5 = "";
+        public static string changelog = "Could not retrieve changelog for some reason!"; // Overwritten if successful
+        private static string deltaUrl, fullUrl;
+        private static int serverRevision = 0;
+        public static int minDeltaRevision = 0;
+        private static string expectedDeltaMd5 = "";
+        private static string expectedFullMd5 = "";
         public static bool deleteFolders = false;
-        static WebClient wc = null;
-        static UpdateDownload updateDownload = null;
-        static XmlTextReader xml = null;
+        public static bool noUpdateChk = false;
+        public static bool runFullUpdate = false;
+        private static WebClient wc = null;
+        private static UpdUI updUI = null;
+        private static XmlTextReader xml = null;
 
         public static void check()
         {
             ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12; // Enable TLS1.2 to connect to GitHub
-            UpdateCheck updateCheck = new UpdateCheck();
-            updateCheck.Show();
 
             try
             {
@@ -68,7 +70,7 @@ namespace JRunner
                                         throw new Exception(); // Cancel the rest and go to catch
                                     }
                                 }
-                                else if (key == "changelog")
+                                else if (key == "changelog-multi")
                                 {
                                     changelog = xml.Value;
                                 }
@@ -112,68 +114,63 @@ namespace JRunner
             }
 
             Thread.Sleep(100);
-            updateCheck.Dispose();
+            MainForm.mainForm.splash.BeginInvoke(new Action(() =>
+            {
+                MainForm.mainForm.splash.Hide();
+            }));
+            updUI = new UpdUI();
 
             if (checkStatus == 0)
             {
-                if (Program.runFullUpdate)
+                if (runFullUpdate)
                 {
                     startFull();
                 }
                 else if (variables.revision >= serverRevision) // Up to Date
                 {
                     upToDate = true;
-                    Application.Run(new MainForm());
+                    MainForm.mainForm.startMainForm(true);
                 }
                 else
                 {
                     upToDate = false;
 
-                    if (MessageBox.Show("Updates are available for J-Runner with Extras\n\n" + changelog + "\n\nWould you like to download and install the update?", "J-Runner with Extras", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
+                    MainForm.mainForm.splash.BeginInvoke(new Action(() =>
                     {
-                        // Do nothing and launch as normal
-                        Application.Run(new MainForm());
-                    }
-                    else if (variables.revision >= minDeltaRevision) // Delta
-                    {
-                        startDelta();
-                    }
-                    else // Full
-                    {
-                        startFull();
-                    }
+                        UpdChangelog updChg = new UpdChangelog();
+                        updChg.Show();
+                        updChg.showChangelog(changelog);
+                    }));
                 }
             }
             else
             {
-                if (Program.runFullUpdate)
+                if (runFullUpdate)
                 {
                     if (checkStatus == 2) failedReason = "Could not connect to the update server because TLS1.2 is not enabled.";
                     else failedReason = "Could not connect to the update server.";
-                    Application.Run(new UpdateFailed());
+                    showUpdUI(1);
                 }
                 else
                 {
-                    Application.Run(new MainForm());
+                    MainForm.mainForm.startMainForm(true);
                 }
             }
         }
 
         public static void startDelta()
         {
-            updateDownload = new UpdateDownload();
-
             Thread updateDelta = new Thread(() =>
             {
                 if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
 
                 wc = new WebClient();
-                wc.DownloadProgressChanged += updateDownload.updateProgress;
+                wc.DownloadProgressChanged += updUI.updateProgress;
                 wc.DownloadFileCompleted += delta;
                 wc.DownloadFileAsync(new Uri(deltaUrl), "delta.zip");
             });
+            showUpdUI();
             updateDelta.Start();
-            Application.Run(updateDownload);
         }
 
         private static void delta(object sender, AsyncCompletedEventArgs e)
@@ -187,10 +184,9 @@ namespace JRunner
             else if (e.Error != null)
             {
                 if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
-                updateDownload.Dispose();
                 if (e.Error.ToString().Contains("SSL/TLS")) failedReason = "Could not connect to the update server because TLS1.2 is not enabled.";
                 else failedReason = "Failed to download the package.";
-                Application.Run(new UpdateFailed());
+                setUpdUIPage(1);
             }
             else
             {
@@ -200,8 +196,6 @@ namespace JRunner
 
         public static void startFull()
         {
-            updateDownload = new UpdateDownload();
-
             Thread updateFull = new Thread(() =>
             {
                 if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
@@ -217,20 +211,18 @@ namespace JRunner
                     }
                     catch
                     {
-                        updateDownload.Dispose();
                         failedReason = "Failed to cleanup the filesystem.";
-                        Application.Run(new UpdateFailed());
-                        return;
+                        setUpdUIPage(1);
                     }
                 }
 
                 wc = new WebClient();
-                wc.DownloadProgressChanged += updateDownload.updateProgress;
+                wc.DownloadProgressChanged += updUI.updateProgress;
                 wc.DownloadFileCompleted += full;
                 wc.DownloadFileAsync(new Uri(fullUrl), "full.zip");
             });
+            showUpdUI();
             updateFull.Start();
-            Application.Run(updateDownload);
         }
 
         private static void full(object sender, AsyncCompletedEventArgs e)
@@ -244,10 +236,9 @@ namespace JRunner
             else if (e.Error != null)
             {
                 if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
-                updateDownload.Dispose();
                 if (e.Error.ToString().Contains("SSL/TLS")) failedReason = "Could not connect to the update server because TLS1.2 is not enabled.";
                 else failedReason = "Failed to download the package.";
-                Application.Run(new UpdateFailed());
+                setUpdUIPage(1);
             }
             else
             {
@@ -267,14 +258,13 @@ namespace JRunner
 
             try
             {
-                updateDownload.installMode();
+                updUI.installMode();
 
                 if (simpleCheckMD5(filename) != expectedMd5)
                 {
                     if (File.Exists(filename)) File.Delete(filename);
-                    updateDownload.Dispose();
                     failedReason = "Package checksum is invalid.";
-                    Application.Run(new UpdateFailed());
+                    setUpdUIPage(1);
                     return;
                 }
 
@@ -291,18 +281,16 @@ namespace JRunner
                 {
                     if (File.Exists("JRunner.exe")) File.Move("JRunner.exe", AppDomain.CurrentDomain.FriendlyName);
                 }
+
+                setUpdUIPage(0);
             }
             catch (Exception ex)
             {
                 if (File.Exists(filename)) File.Delete(filename);
-                updateDownload.Dispose();
                 File.AppendAllText("Error.log", ex.ToString() + Environment.NewLine);
                 failedReason = "Failed to extract and install the package.";
-                Application.Run(new UpdateFailed());
+                setUpdUIPage(1);
             }
-
-            updateDownload.Dispose();
-            Application.Run(new UpdateSuccess());
         }
 
         private static string simpleByteArrayToString(byte[] ba)
@@ -326,10 +314,21 @@ namespace JRunner
 
         public static void cancel()
         {
-            wc.CancelAsync();
+            try
+            {
+                wc.CancelAsync();
+            }
+            catch { }
+
             Thread.Sleep(100);
-            if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
-            if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
+
+            try
+            {
+                if (File.Exists(@"delta.zip")) File.Delete(@"delta.zip");
+                if (File.Exists(@"full.zip")) File.Delete(@"full.zip");
+            }
+            catch { }
+
             Application.ExitThread();
             Application.Exit();
         }
@@ -355,6 +354,33 @@ namespace JRunner
                 }
             });
             worker.Start();
+        }
+
+        private static void showUpdUI(int type = 0)
+        {
+            MainForm.mainForm.splash.BeginInvoke(new Action(() =>
+            {
+                updUI.Show();
+                if (type == 1) updUI.showFailed();
+                MainForm.mainForm.splash.Dispose();
+            }));
+        }
+
+        private static void setUpdUIPage(int type)
+        {
+            updUI.BeginInvoke(new Action(() =>
+            {
+                try
+                {
+                    if (type == 0) updUI.showSuccess();
+                    else if (type == 1) updUI.showFailed();
+                }
+                catch
+                {
+                    MessageBox.Show("A critical error has occurred!\n\nUpdate UI operation out of sequence\n\nPlease report this to the developers", "Something happened!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cancel();
+                }
+            }));
         }
     }
 }

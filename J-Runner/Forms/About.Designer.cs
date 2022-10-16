@@ -118,6 +118,7 @@ namespace JRunner.Forms
             // 
             // close
             // 
+            this.close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.close.AutoSize = true;
             this.close.ForeColor = System.Drawing.Color.White;
             this.close.Location = new System.Drawing.Point(282, 4);

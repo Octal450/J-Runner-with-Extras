@@ -13,6 +13,7 @@ using System.Linq;
 using System.Management;
 using System.Media;
 using System.Reflection;
+using System.Security.Permissions;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -29,6 +30,7 @@ namespace JRunner
     public partial class MainForm : Form
     {
         #region Variables
+
         public enum DEVICE
         {
             JR_PROGRAMMER_BOOTLOADER = -1,
@@ -65,6 +67,9 @@ namespace JRunner
         public static readonly object _object = new object();
         public static AutoResetEvent _event1 = new AutoResetEvent(false);
         Regex objAlphaPattern = new Regex("[a-fA-F0-9]{32}$");
+        private bool allowVisible = false;
+        public Splash splash;
+
         #endregion
 
         #region Initialization
@@ -84,11 +89,48 @@ namespace JRunner
             mtx_usb.inUseTimerSetup();
             demon.updateFlash += demon_updateFlash;
             demon.updateMode += demon_updateMode;
+            mainForm = this;
+
+            if (ModifierKeys == Keys.Shift || Upd.noUpdateChk)
+            {
+                Upd.checkStatus = 3;
+                startMainForm(false);
+            }
+            else
+            {
+                splash = new Splash();
+                splash.Show();
+                Thread updateThread = new Thread(Upd.check);
+                updateThread.Start();
+            }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        protected override void SetVisibleCore(bool value) // Prevent Application.Run from showing the form until we're ready
         {
-            mainForm = this;
+            base.SetVisibleCore(allowVisible ? value : allowVisible);
+        }
+
+        public void startMainForm(bool splashInvoke)
+        {
+            if (splashInvoke)
+            {
+                splash.BeginInvoke(new Action(() =>
+                {
+                    allowVisible = true;
+                    this.Visible = true;
+                    if (splash != null) splash.Dispose();
+                }));
+            }
+            else
+            {
+                allowVisible = true;
+                this.Visible = true;
+                if (splash != null) splash.Dispose();
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e) // Will not run until the form is shown for the first time
+        {
             versionToolStripMenuItem.Text = "V" + variables.version;
 
             // Make sure we're on top
@@ -3354,15 +3396,6 @@ namespace JRunner
             ThreadStart starter = delegate { demon.Update_DemoN(variables.filename1); };
             Thread start = new Thread(starter);
             start.Start();
-        }
-
-        #endregion
-
-        #region Update
-
-        private void updateAvailableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
         }
 
         #endregion

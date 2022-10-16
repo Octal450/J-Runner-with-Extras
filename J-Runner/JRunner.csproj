@@ -257,17 +257,11 @@
     <Compile Include="Forms\Timing.Designer.cs">
       <DependentUpon>Timing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UpdateCheck.cs">
+    <Compile Include="Forms\UpdChangelog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\UpdateCheck.Designer.cs">
-      <DependentUpon>UpdateCheck.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UpdateFailed.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UpdateFailed.Designer.cs">
-      <DependentUpon>UpdateFailed.cs</DependentUpon>
+    <Compile Include="Forms\UpdChangelog.Designer.cs">
+      <DependentUpon>UpdChangelog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\XB1HDD.cs">
       <SubType>Form</SubType>
@@ -556,17 +550,11 @@
     </Compile>
     <Compile Include="Classes\StaticVersion.cs" />
     <Compile Include="Classes\variables.cs" />
-    <Compile Include="Forms\UpdateSuccess.cs">
+    <Compile Include="Forms\UpdUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\UpdateSuccess.Designer.cs">
-      <DependentUpon>UpdateSuccess.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\UpdateDownload.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UpdateDownload.Designer.cs">
-      <DependentUpon>UpdateDownload.cs</DependentUpon>
+    <Compile Include="Forms\UpdUI.Designer.cs">
+      <DependentUpon>UpdUI.cs</DependentUpon>
     </Compile>
     <Compile Include="WinUSB\DeviceManagement.cs" />
     <Compile Include="WinUSB\DeviceManagementApi.cs" />
@@ -624,11 +612,8 @@
     <EmbeddedResource Include="Forms\Timing.resx">
       <DependentUpon>Timing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UpdateCheck.resx">
-      <DependentUpon>UpdateCheck.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UpdateFailed.resx">
-      <DependentUpon>UpdateFailed.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\UpdChangelog.resx">
+      <DependentUpon>UpdChangelog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\XB1HDD.resx">
       <DependentUpon>XB1HDD.cs</DependentUpon>
@@ -721,11 +706,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UpdateSuccess.resx">
-      <DependentUpon>UpdateSuccess.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UpdateDownload.resx">
-      <DependentUpon>UpdateDownload.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\UpdUI.resx">
+      <DependentUpon>UpdUI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
@@ -808,6 +790,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Project3.ico" />
+    <None Include="Resources\jrunner.png" />
+    <None Include="Resources\jrunner2.png" />
+    <None Include="Resources\update.png" />
+    <None Include="Resources\JR2.png" />
+    <None Include="Resources\rederror.png" />
     <None Include="Resources\picoflasher.png" />
     <None Include="Resources\key_U.png" />
     <None Include="Resources\key_R.png" />
@@ -850,6 +837,7 @@
     <None Include="Resources\arrow_dn.png" />
     <None Include="Resources\arrow_dn_hot.png" />
     <Content Include="Resources\Build.txt" />
+    <None Include="Resources\error.png" />
     <Content Include="Resources\hourglass_clock.png" />
     <None Include="Resources\sonuslogo.png" />
     <EmbeddedResource Include="Resources\LPT_XSVF_Player.exe" />
