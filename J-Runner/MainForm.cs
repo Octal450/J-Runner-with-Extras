@@ -1,5 +1,4 @@
 ﻿using JRunner.Forms;
-using JRunner.Nand;
 using LibUsbDotNet.DeviceNotify;
 using Microsoft.Win32;
 using RenameRegistryKey;
@@ -13,7 +12,6 @@ using System.Linq;
 using System.Management;
 using System.Media;
 using System.Reflection;
-using System.Security.Permissions;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
