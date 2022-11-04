@@ -571,23 +571,6 @@ namespace JRunner
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
-            if (fixEcc == 0)
-            {
-                if (Path.GetExtension(variables.filename1) == ".ecc")
-                {
-                    Console.WriteLine("You need an .bin image");
-                    return;
-                }
-            }
-            else
-            {
-                if (Path.GetExtension(variables.filename1) != ".ecc")
-                {
-                    Console.WriteLine("You need an .ecc image");
-                    return;
-                }
-            }
-
             Thread writerThread = new Thread(() =>
             {
                 SerialPort serial = OpenSerial();
@@ -604,7 +587,7 @@ namespace JRunner
                 uint flashsize = getFlashSize(flashconfig);
                 if (flashsize == 0)
                 {
-                    Console.WriteLine("Unknown Flash Size!");
+                    Console.WriteLine("Unknown Flash Size");
                     Console.WriteLine("");
                     CloseSerial(serial);
                     return;
