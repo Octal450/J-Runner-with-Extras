@@ -623,12 +623,6 @@ namespace JRunner
             if (string.IsNullOrWhiteSpace(variables.filename1)) return;
             if (!File.Exists(variables.filename1)) return;
 
-            if (Path.GetExtension(variables.filename1) == ".ecc")
-            {
-                Console.WriteLine("xFlasher: You need an .bin image");
-                return;
-            }
-
             double len = new FileInfo(variables.filename1).Length;
             if (len == 50331648)
             {
