@@ -81,7 +81,7 @@ namespace JRunner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10-16-2022 01:42:44.
+        ///   Looks up a localized string similar to 11-05-2022 21:37:57.
         /// </summary>
         internal static string Build {
             get {
@@ -292,6 +292,16 @@ namespace JRunner.Properties {
         internal static System.Drawing.Bitmap key_Y {
             get {
                 object obj = ResourceManager.GetObject("key_Y", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu {
+            get {
+                object obj = ResourceManager.GetObject("menu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

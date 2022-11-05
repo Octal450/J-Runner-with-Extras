@@ -333,7 +333,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "Suggested Timing: 59.4 0.9 96 MHz\n\nFor 59.4 0.9, 59.4 is the timing, 0.9 is the pulse length\n\nIf the light stays on at the end of a cycle, pulse length is probably too long\n\nIf the light goes off at the end of a cycle but no boot, pulse length is probably too short";
                 topLabel.Text = "Xenon EXT_CLK Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("xenon_extclk");
                 //Activate(); // Keep us on top
             }
@@ -350,7 +350,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "RGH1 only has one timing per board";
                 topLabel.Text = "Zephyr RGH1 Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("zephyr_rgh1");
                 //Activate(); // Keep us on top
             }
@@ -363,7 +363,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "Suggested Timing: 62.5 0.9 96 MHz\n\nFor 62.5 0.9, 62.5 is the timing, 0.9 is the pulse length\n\nIf the light stays on at the end of a cycle, pulse length is probably too long\n\nIf the light goes off at the end of a cycle but no boot, pulse length is probably too short";
                 topLabel.Text = "Zephyr EXT_CLK Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("zephyr_extclk");
                 //Activate(); // Keep us on top
             }
@@ -381,7 +381,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "RGH1 only has one timing per board";
                 topLabel.Text = "Falcon RGH1 Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("falcon_rgh1");
                 //Activate(); // Keep us on top
             }
@@ -395,7 +395,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "Suggested Timings: 18-21, start with 21\n\nIf the light stays on at the end of a cycle, timing is probably too low\n\nIf the light goes off at the end of a cycle but no boot, timing is probably too high or far too low";
                 topLabel.Text = "Falcon RGH1.2 Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("falconjasper_rgh12");
                 //Activate(); // Keep us on top
             }
@@ -409,7 +409,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "R-JTOP only has one timing for Falcon";
                 topLabel.Text = "Falcon R-JTOP Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("falcon_rjtop");
                 //Activate(); // Keep us on top
             }
@@ -427,7 +427,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "RGH1 only has one timing per board\n\nIf results are inconsistent, bridge CAP/add 68-100nf cap from PLL to GND";
                 topLabel.Text = "Jasper RGH1 Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("jasper_rgh1");
                 //Activate(); // Keep us on top
             }
@@ -441,7 +441,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "Suggested Timings: 18-21, start with 21\n\nIf results are inconsistent, bridge CAP/add 68-100nf cap from PLL to GND\n\nIf the light stays on at the end of a cycle, timing is probably too low\n\nIf the light goes off at the end of a cycle but no boot, timing is probably too high or far too low";
                 topLabel.Text = "Jasper RGH1.2 Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("falconjasper_rgh12");
                 //Activate(); // Keep us on top
             }
@@ -455,7 +455,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "R-JTOP only has one timing for Jasper\n\nIf results are inconsistent, bridge CAP/add 68-100nf cap from PLL to GND";
                 topLabel.Text = "Jasper R-JTOP Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("jasper_rjtop");
                 //Activate(); // Keep us on top
             }
@@ -472,7 +472,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "Suggested Timings: 80-110, start with 95\n\nIf using an oscilator, best timing depends on the oscilator of your chip\nUsually near the middle of the working range of files is the best\n\n.....##...##...................##............\nTiming too low\n\n.....##...##...................##############\nTiming too high or far too low";
                 topLabel.Text = "Trinity RGH1.2 Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("trinity_rgh12");
                 //Activate(); // Keep us on top
             }
@@ -485,7 +485,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "Suggested Timings: 60.3 0.5, 60.6 0.5, 60.3 0.3, 60.6 0.6\n\nFor 60.3 0.5, 60.3 is the timing, 0.5 is the pulse length\n\n.....##...##...................##............\nTiming too low or pulse length too large\n\n.....##...##...................##############\nTiming too high or pulse length too small";
                 topLabel.Text = "Trinity S-RGH X360ACE/DGX";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("trinity_srgh");
                 //Activate(); // Keep us on top
             }
@@ -502,7 +502,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "Suggested Timings: 80-110, start with 95\n\nBest timing depends on the oscilator of your chip\nUsually near the middle of the working range of files is the best\n\n.....##...##...................##............\nTiming too low\n\n.....##...##...................##############\nTiming too high or far too low";
                 topLabel.Text = "Corona RGH1.2 Coolrunner/Matrix";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("corona_rgh12");
                 //Activate(); // Keep us on top
             }
@@ -515,7 +515,7 @@ namespace JRunner.Forms
                 instructionLabel.Text = "Suggested Timings: 54.8 0.2, 55.2 0.3\n\nFor 54.8 0.2, 54.8 is the timing, 0.2 is the pulse length\n\n.....##...##...................##............\nTiming too low or pulse length too large\n\n.....##...##...................##############\nTiming too high or pulse length too small";
                 topLabel.Text = "Corona S-RGH X360ACE/DGX";
                 // Now open the panel and set the timing
-                MainForm.mainForm.openXsvfInfo();
+                MainForm.mainForm.openXsvfChoice();
                 MainForm.mainForm.xsvfChoice.setTimingFromAssistant("corona_srgh");
                 //Activate(); // Keep us on top
             }

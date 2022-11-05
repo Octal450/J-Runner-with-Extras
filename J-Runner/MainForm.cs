@@ -518,7 +518,6 @@ namespace JRunner
             listInfo.Remove(xsvfChoice);
             pnlInfo.Controls.Remove(xsvfChoice);
             pnlInfo.Controls.Add(listInfo[listInfo.Count - 1]);
-            pnlTools.Enabled = true;
         }
 
         public int getTimingType()
@@ -538,29 +537,6 @@ namespace JRunner
         }
 
         #endregion
-
-        delegate void SaveFileCallback(byte[] temp, string name, string filter);
-        void saveFile(byte[] temp, string name, string filter)
-        {
-            SaveFileCallback d = new SaveFileCallback(jf_SaveFileDialog);
-            this.Invoke(d, new object[] { temp, name, filter });
-        }
-
-        void jf_SaveFileDialog(byte[] temp, string name, string filter)
-        {
-            if (temp != null)
-            {
-                SaveFileDialog savefile = new SaveFileDialog();
-                savefile.FileName = name;
-                savefile.Filter = filter;
-                if (savefile.ShowDialog() == DialogResult.OK)
-                {
-                    File.WriteAllBytes(savefile.FileName, temp);
-                    variables.filename1 = savefile.FileName;
-                    txtFileSource.Text = variables.filename1;
-                }
-            }
-        }
 
         public void nTools_IterChange(int iter)
         {
@@ -1901,20 +1877,10 @@ namespace JRunner
             variables.fulldump = false; variables.read1p28mb = false;
             variables.ctype = variables.ctypes[0]; variables.gotvalues = false;
             variables.cpukey = "";
-            //variables.outfolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output");
             xPanel.setMBname("");
             txtCPUKey.Text = "";
             variables.flashconfig = "";
-            /*if (variables.changeldv != 0)
-            {
-                string cfldv = "cfldv=";
-                string[] edit = { cfldv };
-                string[] delete = { };
-                parse_ini.edit_ini(Path.Combine(variables.pathforit, @"xeBuild\data\options.ini"), edit, delete);
-             * */
             variables.changeldv = 0;
-            //}
-            //btnCheckBadBlocks.Visible = true;
         }
 
         void nandinit(bool nomove = false, bool dontUpdateHackType = false)
@@ -1966,6 +1932,7 @@ namespace JRunner
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
                 xPanel.change_tab();
+                if (listInfo.Contains(xsvfChoice)) xsvfChoice_CloseCRClick();
                 nandInfo.change_tab();
                 updateProgress(progressBar.Maximum / 2);
                 nand = new Nand.PrivateN(variables.filename1, variables.cpukey);
@@ -3639,14 +3606,20 @@ namespace JRunner
             }
         }
 
-        public void openXsvfInfo(bool boardcheck = false)
+        public void openXsvfChoice(bool boardcheck = false)
         {
-            pnlInfo.Controls.Clear();
-            pnlInfo.Controls.Add(xsvfChoice);
-            if (listInfo.Contains(xsvfChoice)) listInfo.Remove(xsvfChoice);
-            listInfo.Add(xsvfChoice);
-            pnlTools.Enabled = false;
-            if (boardcheck) xsvfChoice.boardCheck(variables.boardtype);
+            if (listInfo.Contains(xsvfChoice))
+            {
+                xsvfChoice_CloseCRClick();
+            }
+            else
+            {
+                pnlInfo.Controls.Clear();
+                pnlInfo.Controls.Add(xsvfChoice);
+                if (listInfo.Contains(xsvfChoice)) listInfo.Remove(xsvfChoice);
+                listInfo.Add(xsvfChoice);
+                if (boardcheck) xsvfChoice.boardCheck(variables.boardtype);
+            }
         }
 
         #endregion
@@ -3995,7 +3968,7 @@ namespace JRunner
             }
             else if (e.KeyCode == Keys.F3)
             {
-                openXsvfInfo(true);
+                openXsvfChoice(true);
             }
             //else if (e.KeyCode == Keys.F4) // Handled from WinForms Menubar
             //{
