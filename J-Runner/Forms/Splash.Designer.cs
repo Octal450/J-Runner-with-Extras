@@ -111,6 +111,7 @@ namespace JRunner
             this.MinimizeBox = false;
             this.Name = "Splash";
             this.Opacity = 0.9D;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "J-Runner with Extras";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Splash_FormClosing);
