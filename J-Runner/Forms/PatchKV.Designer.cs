@@ -247,7 +247,7 @@
             this.Name = "PatchKV";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Patch KV";
+            this.Text = "Patch KV Data";
             this.Load += new System.EventHandler(this.patch_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

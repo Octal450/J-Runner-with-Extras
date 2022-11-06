@@ -790,6 +790,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Project3.ico" />
+    <None Include="Resources\settings.png" />
     <None Include="Resources\menu.png" />
     <None Include="Resources\jrunner.png" />
     <None Include="Resources\jrunner2.png" />
@@ -839,6 +840,7 @@
     <None Include="Resources\arrow_dn_hot.png" />
     <Content Include="Resources\Build.txt" />
     <None Include="Resources\error.png" />
+    <None Include="Resources\greenchecksmall.png" />
     <Content Include="Resources\hourglass_clock.png" />
     <None Include="Resources\sonuslogo.png" />
     <EmbeddedResource Include="Resources\LPT_XSVF_Player.exe" />

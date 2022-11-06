@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnCPUDB = new System.Windows.Forms.Button();
+            this.btnPatchKv = new System.Windows.Forms.Button();
             this.btnProgramCR = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCreateECC = new System.Windows.Forms.Button();
@@ -52,16 +52,16 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnCPUDB
+            // btnPatchKv
             // 
-            this.btnCPUDB.Location = new System.Drawing.Point(208, 106);
-            this.btnCPUDB.Name = "btnCPUDB";
-            this.btnCPUDB.Size = new System.Drawing.Size(65, 51);
-            this.btnCPUDB.TabIndex = 29;
-            this.btnCPUDB.Text = "CPU Key\r\nDatabase";
-            this.toolTip1.SetToolTip(this.btnCPUDB, "Database of CPU Keys and Serial Numbers");
-            this.btnCPUDB.UseVisualStyleBackColor = true;
-            this.btnCPUDB.Click += new System.EventHandler(this.btnCPUDB_Click);
+            this.btnPatchKv.Location = new System.Drawing.Point(208, 106);
+            this.btnPatchKv.Name = "btnPatchKv";
+            this.btnPatchKv.Size = new System.Drawing.Size(65, 51);
+            this.btnPatchKv.TabIndex = 29;
+            this.btnPatchKv.Text = "Patch\r\nKV Data";
+            this.toolTip1.SetToolTip(this.btnPatchKv, "Launches the KV Patcher");
+            this.btnPatchKv.UseVisualStyleBackColor = true;
+            this.btnPatchKv.Click += new System.EventHandler(this.btnPatchKv_Click);
             // 
             // btnProgramCR
             // 
@@ -245,7 +245,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnExtractFiles);
             this.Controls.Add(this.btnCreateDonor);
-            this.Controls.Add(this.btnCPUDB);
+            this.Controls.Add(this.btnPatchKv);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pBoxDevice);
@@ -265,7 +265,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pBoxDevice;
-        private System.Windows.Forms.Button btnCPUDB;
+        private System.Windows.Forms.Button btnPatchKv;
         private System.Windows.Forms.Button btnProgramCR;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnCreateECC;

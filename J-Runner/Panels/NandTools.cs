@@ -72,9 +72,9 @@ namespace JRunner.Panels
             MainForm.mainForm.createDonorNand();
         }
 
-        private void btnCPUDB_Click(object sender, EventArgs e)
+        private void btnPatchKv_Click(object sender, EventArgs e)
         {
-            MainForm.mainForm.openCpuKeyDb();
+            MainForm.mainForm.openPatchKv();
         }
 
         private int funCount = 0;

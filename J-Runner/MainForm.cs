@@ -129,7 +129,7 @@ namespace JRunner
 
         private void MainForm_Load(object sender, EventArgs e) // Will not run until the form is shown for the first time
         {
-            versionToolStripMenuItem.Text = "V" + variables.version;
+            VersionLabel.Text = "V" + variables.version;
 
             // Make sure we're on top
             bool top = TopMost;
@@ -326,11 +326,11 @@ namespace JRunner
             Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("MM/dd/yyyy H:mm:ss"));
             if (variables.version.Contains("Alpha") || variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
             else Console.WriteLine("Version: {0}", variables.version);
+
             if (Upd.checkStatus == 0)
             {
                 if (Upd.upToDate == true)
                 {
-                    updateAvailableToolStripMenuItem.Visible = false;
                     Console.WriteLine("Status: Up to date");
                 }
                 else
@@ -2755,12 +2755,6 @@ namespace JRunner
             Process.Start("notepad.exe", Path.Combine(variables.rootfolder, "Changelog.txt"));
         }
 
-        private void reportIssueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Issues issues = new Issues();
-            issues.ShowDialog();
-        }
-
         private void shortcutsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("J-Runner with Extras has several shortcut keybinds:\n\n" +
@@ -2779,7 +2773,18 @@ namespace JRunner
                 "F7 - CPU Key Database\n" +
                 "F12 - Send Timing File via JTAG\n" +
                 "CTRL+H - Shortcuts",
-                "Shortcuts", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                "Key Shortcuts", MessageBoxButtons.OK, MessageBoxIcon.Question);
+        }
+
+        private void reportIssueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Issues issues = new Issues();
+            issues.ShowDialog();
+        }
+        private void restoreFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RestoreFiles rf = new RestoreFiles();
+            rf.ShowDialog();
         }
 
         #endregion
@@ -2942,11 +2947,6 @@ namespace JRunner
                 cb.Location = new Point(Location.X + (Width - cb.Width) / 2, Location.Y + (Height - cb.Height) / 2);
             }
         }
-        private void restoreFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RestoreFiles rf = new RestoreFiles();
-            rf.ShowDialog();
-        }
 
         #endregion
 
@@ -3027,6 +3027,11 @@ namespace JRunner
         }
 
         private void patchKVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openPatchKv();
+        }
+
+        public void openPatchKv()
         {
             if (!nand.ok)
             {
@@ -3292,7 +3297,7 @@ namespace JRunner
             new Thread(starter).Start();
         }
 
-        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void updateJRPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "HEX files (*.hex)|*.hex|All files (*.*)|*.*";
@@ -3365,6 +3370,12 @@ namespace JRunner
 
         #endregion
 
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings mForm = new Settings();
+            mForm.ShowDialog();
+        }
+
         #endregion
 
         #endregion
@@ -3382,6 +3393,11 @@ namespace JRunner
             }
 
             newSession();
+        }
+
+        private void btnCpuKeyDatabase_Click(object sender, EventArgs e)
+        {
+            openCpuKeyDb();
         }
 
         private void btnRestart_Click(object sender, EventArgs e)
@@ -3412,8 +3428,7 @@ namespace JRunner
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            Settings mForm = new Settings();
-            mForm.ShowDialog();
+
         }
 
         public string getCurrentWorkingFolder()
@@ -4410,12 +4425,10 @@ namespace JRunner
                             if (variables.xebuilds.ContainsKey(xmd5.ToUpper()))
                             {
                                 if (variables.debugMode) Console.WriteLine("Known xebuild md5 found");
-                                XeBuildVersion.Text = variables.xebuilds[xmd5.ToUpper()];
                                 variables.xebuild = variables.xebuilds[xmd5.ToUpper()];
                             }
                             else
                             {
-                                XeBuildVersion.Text = val;
                                 variables.xebuild = val;
                             }
                             break;
@@ -4457,12 +4470,10 @@ namespace JRunner
                             if (variables.dls.ContainsKey(dlmd5.ToUpper()))
                             {
                                 if (variables.debugMode) Console.WriteLine("Known dl md5 found");
-                                DashlaunchVersion.Text = variables.dls[dlmd5.ToUpper()];
                                 variables.dashlaunch = variables.dls[dlmd5.ToUpper()];
                             }
                             else
                             {
-                                DashlaunchVersion.Text = val;
                                 variables.dashlaunch = val;
                             }
                             break;
