@@ -40,6 +40,7 @@ namespace JRunner.Forms
             this.txtGenKey.Location = new System.Drawing.Point(67, 9);
             this.txtGenKey.Margin = new System.Windows.Forms.Padding(2);
             this.txtGenKey.Name = "txtGenKey";
+            this.txtGenKey.ReadOnly = true;
             this.txtGenKey.Size = new System.Drawing.Size(219, 20);
             this.txtGenKey.TabIndex = 0;
             // 
