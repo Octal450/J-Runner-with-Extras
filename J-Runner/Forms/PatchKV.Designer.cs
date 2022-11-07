@@ -67,7 +67,7 @@
             this.groupBox2.Size = new System.Drawing.Size(353, 158);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Key Vault";
+            this.groupBox2.Text = "Keyvault";
             // 
             // txtConsoleID
             // 
@@ -247,7 +247,7 @@
             this.Name = "PatchKV";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Patch KV Data";
+            this.Text = "Patch Keyvault";
             this.Load += new System.EventHandler(this.patch_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

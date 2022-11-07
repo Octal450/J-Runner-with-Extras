@@ -610,7 +610,7 @@ namespace JRunner
             this.ModeStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.ModeStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.ModeStatus.Name = "ModeStatus";
-            this.ModeStatus.Size = new System.Drawing.Size(397, 17);
+            this.ModeStatus.Size = new System.Drawing.Size(428, 17);
             this.ModeStatus.Spring = true;
             this.ModeStatus.Text = "MODE: ";
             this.ModeStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1224,7 +1224,7 @@ namespace JRunner
             // 
             this.patchKVToolStripMenuItem.Name = "patchKVToolStripMenuItem";
             this.patchKVToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.patchKVToolStripMenuItem.Text = "Patch KV Data…";
+            this.patchKVToolStripMenuItem.Text = "Patch Keyvault…";
             this.patchKVToolStripMenuItem.Click += new System.EventHandler(this.patchKVToolStripMenuItem_Click);
             // 
             // changeLDVToolStripMenuItem

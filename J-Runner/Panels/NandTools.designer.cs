@@ -58,7 +58,7 @@
             this.btnPatchKv.Name = "btnPatchKv";
             this.btnPatchKv.Size = new System.Drawing.Size(65, 51);
             this.btnPatchKv.TabIndex = 29;
-            this.btnPatchKv.Text = "Patch\r\nKV Data";
+            this.btnPatchKv.Text = "Patch\r\nKeyvault";
             this.toolTip1.SetToolTip(this.btnPatchKv, "Launches the KV Patcher");
             this.btnPatchKv.UseVisualStyleBackColor = true;
             this.btnPatchKv.Click += new System.EventHandler(this.btnPatchKv_Click);
