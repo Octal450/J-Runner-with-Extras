@@ -397,7 +397,7 @@
             this.MaximumSize = new System.Drawing.Size(740, 2160);
             this.MinimumSize = new System.Drawing.Size(740, 337);
             this.Name = "CpuKeyDB";
-            this.Text = "CPU Key Database";
+            this.Text = "Key Database";
             this.Load += new System.EventHandler(this.cpukeydb_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();

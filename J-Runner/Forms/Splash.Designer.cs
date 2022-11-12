@@ -85,10 +85,11 @@ namespace JRunner
             // 
             this.close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.close.AutoSize = true;
+            this.close.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.close.ForeColor = System.Drawing.Color.White;
-            this.close.Location = new System.Drawing.Point(282, 4);
+            this.close.Location = new System.Drawing.Point(276, 8);
             this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(14, 13);
+            this.close.Size = new System.Drawing.Size(16, 15);
             this.close.TabIndex = 9;
             this.close.Text = "X";
             this.close.Click += new System.EventHandler(this.close_Click);

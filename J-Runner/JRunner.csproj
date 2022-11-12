@@ -790,6 +790,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Project3.ico" />
+    <None Include="Resources\key.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\menu.png" />
     <None Include="Resources\jrunner.png" />

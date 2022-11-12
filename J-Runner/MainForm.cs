@@ -2832,15 +2832,6 @@ namespace JRunner
             }
         }
 
-        private void rescanDevicesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            progressBar.Value = progressBar.Minimum;
-            deviceinit();
-            Thread.Sleep(100);
-            if (listInfo.Contains(ldInfo)) ldInfo.refreshDrives(true);
-            else progressBar.Value = progressBar.Maximum;
-        }
-
         private void mTXUSBFirmwareUtilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process[] processes = Process.GetProcessesByName("mtx-utility");
@@ -2895,42 +2886,6 @@ namespace JRunner
                 timing.Show();
                 timing.Location = new Point(Location.X + (Width - timing.Width) / 2 - 175, Location.Y + 60);
             }
-        }
-
-        private void cPUKeyDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openCpuKeyDb();
-        }
-
-        public CpuKeyDB cpukeydb;
-        public void openCpuKeyDb()
-        {
-            if (Application.OpenForms.OfType<CpuKeyDB>().Any())
-            {
-                cpukeydb.WindowState = FormWindowState.Normal;
-                cpukeydb.Activate();
-            }
-            else
-            {
-                cpukeydb = new CpuKeyDB();
-                cpukeydb.Show();
-                cpukeydb.Location = new Point(Location.X + (Width - cpukeydb.Width) / 2, Location.Y + 10);
-                cpukeydb.FormClosed += new FormClosedEventHandler(CpuKeyDb_FormClosed);
-            }
-        }
-
-        public void restartCpuKeyDb()
-        {
-            if (Application.OpenForms.OfType<CpuKeyDB>().Any())
-            {
-                cpukeydb.Close();
-                openCpuKeyDb();
-            }
-        }
-
-        void CpuKeyDb_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            txtCPUKey.Text = variables.cpukey;
         }
 
         Nand.CB_Fuse cb;
@@ -3370,6 +3325,42 @@ namespace JRunner
 
         #endregion
 
+        private void keyDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openCpuKeyDb();
+        }
+
+        public CpuKeyDB cpukeydb;
+        public void openCpuKeyDb()
+        {
+            if (Application.OpenForms.OfType<CpuKeyDB>().Any())
+            {
+                cpukeydb.WindowState = FormWindowState.Normal;
+                cpukeydb.Activate();
+            }
+            else
+            {
+                cpukeydb = new CpuKeyDB();
+                cpukeydb.Show();
+                cpukeydb.Location = new Point(Location.X + (Width - cpukeydb.Width) / 2, Location.Y + 10);
+                cpukeydb.FormClosed += new FormClosedEventHandler(CpuKeyDb_FormClosed);
+            }
+        }
+
+        public void restartCpuKeyDb()
+        {
+            if (Application.OpenForms.OfType<CpuKeyDB>().Any())
+            {
+                cpukeydb.Close();
+                openCpuKeyDb();
+            }
+        }
+
+        void CpuKeyDb_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            txtCPUKey.Text = variables.cpukey;
+        }
+
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings mForm = new Settings();
@@ -3395,9 +3386,13 @@ namespace JRunner
             newSession();
         }
 
-        private void btnCpuKeyDatabase_Click(object sender, EventArgs e)
+        private void btnScanDevices_Click(object sender, EventArgs e)
         {
-            openCpuKeyDb();
+            progressBar.Value = progressBar.Minimum;
+            deviceinit();
+            Thread.Sleep(100);
+            if (listInfo.Contains(ldInfo)) ldInfo.refreshDrives(true);
+            else progressBar.Value = progressBar.Maximum;
         }
 
         private void btnRestart_Click(object sender, EventArgs e)

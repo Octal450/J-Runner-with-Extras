@@ -68,7 +68,7 @@ namespace JRunner
             this.autoBackupNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showLastBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnCpuKeyDatabase = new System.Windows.Forms.Button();
+            this.btnScanDevices = new System.Windows.Forms.Button();
             this.XeBuildOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -100,7 +100,6 @@ namespace JRunner
             this.xboxOneHDDToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.timingAssistantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cPUKeyDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cBFuseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -163,6 +162,7 @@ namespace JRunner
             this.mtxUsbModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jRPBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateJRPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keyDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox8.SuspendLayout();
             this.getCpuKeyMenu.SuspendLayout();
             this.showWorkingFolderMenu.SuspendLayout();
@@ -522,16 +522,18 @@ namespace JRunner
             this.configureBackupToolStripMenuItem.Text = "Configure Backup…";
             this.configureBackupToolStripMenuItem.Click += new System.EventHandler(this.configureBackupToolStripMenuItem_Click);
             // 
-            // btnCpuKeyDatabase
+            // btnScanDevices
             // 
-            this.btnCpuKeyDatabase.Location = new System.Drawing.Point(567, 519);
-            this.btnCpuKeyDatabase.Name = "btnCpuKeyDatabase";
-            this.btnCpuKeyDatabase.Size = new System.Drawing.Size(85, 26);
-            this.btnCpuKeyDatabase.TabIndex = 301;
-            this.btnCpuKeyDatabase.Text = "CPU Keys";
-            this.toolTip1.SetToolTip(this.btnCpuKeyDatabase, "Launches the CPU Key Database");
-            this.btnCpuKeyDatabase.UseVisualStyleBackColor = true;
-            this.btnCpuKeyDatabase.Click += new System.EventHandler(this.btnCpuKeyDatabase_Click);
+            this.btnScanDevices.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnScanDevices.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnScanDevices.Location = new System.Drawing.Point(567, 519);
+            this.btnScanDevices.Name = "btnScanDevices";
+            this.btnScanDevices.Size = new System.Drawing.Size(85, 26);
+            this.btnScanDevices.TabIndex = 301;
+            this.btnScanDevices.Text = "Scan Devices";
+            this.toolTip1.SetToolTip(this.btnScanDevices, "Scans USB ports for programmers and other devices");
+            this.btnScanDevices.UseVisualStyleBackColor = true;
+            this.btnScanDevices.Click += new System.EventHandler(this.btnScanDevices_Click);
             // 
             // XeBuildOptionsToolStripMenuItem
             // 
@@ -731,7 +733,6 @@ namespace JRunner
             this.xboxOneHDDToolToolStripMenuItem,
             this.toolStripMenuItem8,
             this.timingAssistantToolStripMenuItem,
-            this.cPUKeyDatabaseToolStripMenuItem,
             this.cBFuseToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
@@ -767,8 +768,8 @@ namespace JRunner
             // 
             this.rescanDevicesToolStripMenuItem.Name = "rescanDevicesToolStripMenuItem";
             this.rescanDevicesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.rescanDevicesToolStripMenuItem.Text = "Re-Scan Devices";
-            this.rescanDevicesToolStripMenuItem.Click += new System.EventHandler(this.rescanDevicesToolStripMenuItem_Click);
+            this.rescanDevicesToolStripMenuItem.Text = "Scan Devices";
+            this.rescanDevicesToolStripMenuItem.Click += new System.EventHandler(this.btnScanDevices_Click);
             // 
             // mTXUSBFirmwareUtilityToolStripMenuItem
             // 
@@ -796,14 +797,6 @@ namespace JRunner
             this.timingAssistantToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.timingAssistantToolStripMenuItem.Text = "Timing Assistant";
             this.timingAssistantToolStripMenuItem.Click += new System.EventHandler(this.timingAssistantToolStripMenuItem_Click);
-            // 
-            // cPUKeyDatabaseToolStripMenuItem
-            // 
-            this.cPUKeyDatabaseToolStripMenuItem.Name = "cPUKeyDatabaseToolStripMenuItem";
-            this.cPUKeyDatabaseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.cPUKeyDatabaseToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.cPUKeyDatabaseToolStripMenuItem.Text = "CPU Key Database";
-            this.cPUKeyDatabaseToolStripMenuItem.Click += new System.EventHandler(this.cPUKeyDatabaseToolStripMenuItem_Click);
             // 
             // cBFuseToolStripMenuItem
             // 
@@ -1053,6 +1046,7 @@ namespace JRunner
             this.jRPToolStripMenuItem,
             this.jRPBLToolStripMenuItem,
             this.demoNToolStripMenuItem,
+            this.keyDatabaseToolStripMenuItem,
             this.updateAvailableToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -1274,6 +1268,7 @@ namespace JRunner
             this.flashOpenXeniumToolStripMenuItem.Name = "flashOpenXeniumToolStripMenuItem";
             this.flashOpenXeniumToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.flashOpenXeniumToolStripMenuItem.Text = "Program OpenXenium";
+            this.flashOpenXeniumToolStripMenuItem.Visible = false;
             this.flashOpenXeniumToolStripMenuItem.Click += new System.EventHandler(this.flashOpenXeniumToolStripMenuItem_Click);
             // 
             // nANDXToolStripMenuItem
@@ -1308,6 +1303,17 @@ namespace JRunner
             this.updateJRPToolStripMenuItem.Text = "Update JR-P Firmware…";
             this.updateJRPToolStripMenuItem.Click += new System.EventHandler(this.updateJRPToolStripMenuItem_Click);
             // 
+            // keyDatabaseToolStripMenuItem
+            // 
+            this.keyDatabaseToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.keyDatabaseToolStripMenuItem.Image = global::JRunner.Properties.Resources.key;
+            this.keyDatabaseToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.keyDatabaseToolStripMenuItem.Name = "keyDatabaseToolStripMenuItem";
+            this.keyDatabaseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.keyDatabaseToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
+            this.keyDatabaseToolStripMenuItem.Text = "Key Database";
+            this.keyDatabaseToolStripMenuItem.Click += new System.EventHandler(this.keyDatabaseToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1315,7 +1321,7 @@ namespace JRunner
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.ClientSize = new System.Drawing.Size(832, 600);
-            this.Controls.Add(this.btnCpuKeyDatabase);
+            this.Controls.Add(this.btnScanDevices);
             this.Controls.Add(this.btnScanner);
             this.Controls.Add(this.btnNewSession);
             this.Controls.Add(this.btnRestart);
@@ -1444,7 +1450,6 @@ namespace JRunner
         private ToolStripSeparator toolStripMenuItem6;
         private ToolStripMenuItem timingAssistantToolStripMenuItem;
         private ToolStripMenuItem installDriversToolStripMenuItem;
-        private ToolStripMenuItem rescanDevicesToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem8;
         private ToolStripSeparator toolStripMenuItem5;
         private ToolStripMenuItem hexEditorToolStripMenuItem;
@@ -1479,7 +1484,6 @@ namespace JRunner
         private ContextMenuStrip backupContextMenu;
         private ToolStripMenuItem backupToZIPToolStripMenuItem;
         private ToolStripMenuItem configureBackupToolStripMenuItem;
-        private ToolStripMenuItem cPUKeyDatabaseToolStripMenuItem;
         private ToolStripStatusLabel BackupLabel;
         private ToolStripMenuItem autoBackupNowToolStripMenuItem;
         private ToolStripMenuItem showLastBackupToolStripMenuItem;
@@ -1491,6 +1495,8 @@ namespace JRunner
         private ToolStripSeparator toolStripMenuItem10;
         private ToolStripMenuItem restoreFilesToolStripMenuItem;
         private ToolStripMenuItem settingsToolStripMenuItem;
-        private Button btnCpuKeyDatabase;
+        private ToolStripMenuItem keyDatabaseToolStripMenuItem;
+        private Button btnScanDevices;
+        private ToolStripMenuItem rescanDevicesToolStripMenuItem;
     }
 }
