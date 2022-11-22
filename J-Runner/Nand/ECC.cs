@@ -55,8 +55,8 @@ namespace JRunner
             /// Paths
             ///
             string pathforit = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string xellfile = Path.Combine(pathforit, @"common/xell/xell-gggggg.bin");
-            string cdfile = Path.Combine(pathforit, @"common/cdxell/CD");
+            string xellfile = Path.Combine(pathforit, @"xeBuild\data\xell-gggggg.bin");
+            string cdfile = Path.Combine(pathforit, @"common\cdxell\CD");
 
             long size = 0;
             // cd file
@@ -447,7 +447,6 @@ namespace JRunner
 
             ///
             Oper.savefile(Final, Path.Combine(outputfolder, "glitch.ecc"));
-            DirectoryInfo dinfo = new DirectoryInfo(outputfolder);
             Console.WriteLine("XeLL image created");
             Console.WriteLine("");
             pb.Value = pb.Maximum;
