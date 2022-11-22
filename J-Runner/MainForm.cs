@@ -1319,31 +1319,11 @@ namespace JRunner
             {
                 double len = new FileInfo(variables.filename1).Length;
                 if (variables.debugMode) Console.WriteLine("File Length: {0}", len);
-                
-                string flashconf = variables.flashconfig; // Set by flash config check
-                if (flashconf == "008A3020" || flashconf == "008C3020")
-                {
-                    if (len == 553648128) variables.nandsizex = Nandsize.S512; // Just in case, but this might be bad
-                    else if (len == 276824064) variables.nandsizex = Nandsize.S256;
-                    else if (len == 69206016) variables.nandsizex = Nandsize.S64;
-                    else variables.nandsizex = Nandsize.S16;
-                }
-                else if (flashconf == "00AA3020" || flashconf == "00AC3020")
-                {
-                    if (len == 553648128) variables.nandsizex = Nandsize.S512;
-                    else if (len == 276824064) variables.nandsizex = Nandsize.S256; // Just in case, but this might be bad
-                    else if (len == 69206016) variables.nandsizex = Nandsize.S64;
-                    else variables.nandsizex = Nandsize.S16;
-                }
-                else if (flashconf == "01198030")
-                {
-                    if (len == 69206016) variables.nandsizex = Nandsize.S64;
-                    else variables.nandsizex = Nandsize.S16;
-                }
-                else
-                {
-                    variables.nandsizex = Nandsize.S16;
-                }
+
+                if (len == 553648128) variables.nandsizex = Nandsize.S512;
+                else if (len == 276824064) variables.nandsizex = Nandsize.S256;
+                else if (len == 69206016) variables.nandsizex = Nandsize.S64;
+                else variables.nandsizex = Nandsize.S16;
 
                 if (Path.GetExtension(variables.filename1) == ".ecc")
                 {

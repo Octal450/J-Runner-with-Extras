@@ -539,7 +539,7 @@ namespace JRunner
                     string flashconfig = BitConverter.ToString(readBuffer, 0, 0x4).Replace("-", "");
 
                     int layout = 1;
-                    if (flashconfig == "00AA3020" || flashconfig == "008A3020") layout = 2;
+                    if (flashconfig == "00AA3020" || flashconfig == "008A3020" || flashconfig == "00AC3020" || flashconfig == "008C3020") layout = 2;
                     else if (flashconfig == "01198010") layout = 0;
                     else layout = 1;
 
@@ -605,7 +605,7 @@ namespace JRunner
 
                             if (fixecc) writeBuffer = Nand.Nand.addecc_v2(writeBuffer, false, i * 0x4200, layout);
 
-                            if (flashconfig == "00AA3020" || flashconfig == "008A3020")
+                            if (flashconfig == "00AA3020" || flashconfig == "008A3020" || flashconfig == "00AC3020" || flashconfig == "008C3020")
                             {
                                 reserveblockpos = 0x1FF;
                             }
