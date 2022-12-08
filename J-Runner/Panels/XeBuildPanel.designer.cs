@@ -920,24 +920,23 @@
             // chkNoReeb
             // 
             this.chkNoReeb.AutoSize = true;
-            this.chkNoReeb.Location = new System.Drawing.Point(18, 76);
+            this.chkNoReeb.Location = new System.Drawing.Point(18, 57);
             this.chkNoReeb.Name = "chkNoReeb";
-            this.chkNoReeb.Size = new System.Drawing.Size(59, 17);
+            this.chkNoReeb.Size = new System.Drawing.Size(78, 17);
             this.chkNoReeb.TabIndex = 8;
-            this.chkNoReeb.Text = "noreeb";
-            this.toolTip1.SetToolTip(this.chkNoReeb, "do not automatically reboot console after writes are completed");
+            this.chkNoReeb.Text = "No Reboot";
+            this.toolTip1.SetToolTip(this.chkNoReeb, "\r\n");
             this.chkNoReeb.UseVisualStyleBackColor = true;
             this.chkNoReeb.CheckedChanged += new System.EventHandler(this.chkNoReeb_CheckedChanged);
             // 
             // chkClean
             // 
             this.chkClean.AutoSize = true;
-            this.chkClean.Location = new System.Drawing.Point(18, 57);
+            this.chkClean.Location = new System.Drawing.Point(18, 76);
             this.chkClean.Name = "chkClean";
-            this.chkClean.Size = new System.Drawing.Size(52, 17);
+            this.chkClean.Size = new System.Drawing.Size(53, 17);
             this.chkClean.TabIndex = 7;
-            this.chkClean.Text = "clean";
-            this.toolTip1.SetToolTip(this.chkClean, "secdata, extended and statistics will not be retrieved from consol");
+            this.chkClean.Text = "Clean";
             this.chkClean.UseVisualStyleBackColor = true;
             this.chkClean.CheckedChanged += new System.EventHandler(this.chkClean_CheckedChanged);
             // 
@@ -946,10 +945,9 @@
             this.chkNoAva.AutoSize = true;
             this.chkNoAva.Location = new System.Drawing.Point(18, 37);
             this.chkNoAva.Name = "chkNoAva";
-            this.chkNoAva.Size = new System.Drawing.Size(56, 17);
+            this.chkNoAva.Size = new System.Drawing.Size(74, 17);
             this.chkNoAva.TabIndex = 6;
-            this.chkNoAva.Text = "noava";
-            this.toolTip1.SetToolTip(this.chkNoAva, "will not send avatar data if available and HDD present");
+            this.chkNoAva.Text = "No Avatar";
             this.chkNoAva.UseVisualStyleBackColor = true;
             this.chkNoAva.CheckedChanged += new System.EventHandler(this.chkNoAva_CheckedChanged);
             // 
@@ -958,11 +956,9 @@
             this.chkNoWrite.AutoSize = true;
             this.chkNoWrite.Location = new System.Drawing.Point(18, 17);
             this.chkNoWrite.Name = "chkNoWrite";
-            this.chkNoWrite.Size = new System.Drawing.Size(60, 17);
+            this.chkNoWrite.Size = new System.Drawing.Size(68, 17);
             this.chkNoWrite.TabIndex = 5;
-            this.chkNoWrite.Text = "nowrite";
-            this.toolTip1.SetToolTip(this.chkNoWrite, "will not write anything to console flash or HDD\r\nwithout -d results of update are" +
-        " not kept anywhere");
+            this.chkNoWrite.Text = "No Write";
             this.chkNoWrite.UseVisualStyleBackColor = true;
             this.chkNoWrite.CheckedChanged += new System.EventHandler(this.chkNoWrite_CheckedChanged);
             // 
