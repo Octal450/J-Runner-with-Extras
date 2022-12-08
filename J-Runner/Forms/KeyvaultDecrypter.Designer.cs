@@ -89,6 +89,7 @@ namespace JRunner.Forms
             // CpuKeyBox
             // 
             this.CpuKeyBox.AllowDrop = true;
+            this.CpuKeyBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.CpuKeyBox.Location = new System.Drawing.Point(67, 15);
             this.CpuKeyBox.MaxLength = 32;
             this.CpuKeyBox.Name = "CpuKeyBox";

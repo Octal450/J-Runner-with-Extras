@@ -4370,6 +4370,9 @@ namespace JRunner
                         case "ShowAdvancedTabs":
                             x.write(name, variables.showAdvancedTabs.ToString());
                             break;
+                        case "NandTimingAlwaysOnTop":
+                            x.write(name, variables.nandTimingAlwaysOnTop.ToString());
+                            break;
                         default:
                             break;
                     }
@@ -4559,6 +4562,11 @@ namespace JRunner
                             bvalue = false;
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             variables.showAdvancedTabs = bvalue;
+                            break;
+                        case "NandTimingAlwaysOnTop":
+                            bvalue = false;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
+                            variables.nandTimingAlwaysOnTop = bvalue;
                             break;
                         default:
                             break;

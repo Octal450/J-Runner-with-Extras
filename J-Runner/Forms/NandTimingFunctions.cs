@@ -20,6 +20,11 @@ namespace JRunner
             UpdateDevice();
         }
 
+        private void NandTimingFunctions_Load(object sender, EventArgs e)
+        {
+            chkAlwaysOnTop.Checked = variables.nandTimingAlwaysOnTop; // Causes the handler to set this.TopMost, no need to set again
+        }
+
         private void btnRun_Click(object sender, EventArgs e)
         {
             this.getFilename();
@@ -231,6 +236,11 @@ namespace JRunner
                 if (txtLength.TextLength > 0) txtLength.Text = "";
                 if (txtStart.TextLength > 0) txtStart.Text = "";
             }
+        }
+
+        private void chkAlwaysOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            variables.nandTimingAlwaysOnTop = this.TopMost = chkAlwaysOnTop.Checked;
         }
     }
 }

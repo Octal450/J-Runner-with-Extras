@@ -52,6 +52,7 @@
             this.chkOptional = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.chkRecalcEcc = new System.Windows.Forms.CheckBox();
+            this.chkAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.Commandgrp.SuspendLayout();
             this.sizebox.SuspendLayout();
             this.optionalbox.SuspendLayout();
@@ -274,7 +275,7 @@
             // chkRecalcEcc
             // 
             this.chkRecalcEcc.AutoSize = true;
-            this.chkRecalcEcc.Location = new System.Drawing.Point(300, 87);
+            this.chkRecalcEcc.Location = new System.Drawing.Point(300, 60);
             this.chkRecalcEcc.Name = "chkRecalcEcc";
             this.chkRecalcEcc.Size = new System.Drawing.Size(110, 17);
             this.chkRecalcEcc.TabIndex = 9;
@@ -282,11 +283,23 @@
             this.chkRecalcEcc.UseVisualStyleBackColor = true;
             this.chkRecalcEcc.Visible = false;
             // 
-            // NandProArg
+            // chkAlwaysOnTop
+            // 
+            this.chkAlwaysOnTop.AutoSize = true;
+            this.chkAlwaysOnTop.Location = new System.Drawing.Point(300, 85);
+            this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
+            this.chkAlwaysOnTop.Size = new System.Drawing.Size(98, 17);
+            this.chkAlwaysOnTop.TabIndex = 10;
+            this.chkAlwaysOnTop.Text = "Always On Top";
+            this.chkAlwaysOnTop.UseVisualStyleBackColor = true;
+            this.chkAlwaysOnTop.CheckedChanged += new System.EventHandler(this.chkAlwaysOnTop_CheckedChanged);
+            // 
+            // NandTimingFunctions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 146);
+            this.Controls.Add(this.chkAlwaysOnTop);
             this.Controls.Add(this.chkRecalcEcc);
             this.Controls.Add(this.optionalbox);
             this.Controls.Add(this.sizebox);
@@ -298,9 +311,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "NandProArg";
+            this.Name = "NandTimingFunctions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nand/Timing File Functions";
+            this.Load += new System.EventHandler(this.NandTimingFunctions_Load);
             this.Commandgrp.ResumeLayout(false);
             this.Commandgrp.PerformLayout();
             this.sizebox.ResumeLayout(false);
@@ -336,5 +350,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox chkOptional;
         private System.Windows.Forms.CheckBox chkRecalcEcc;
+        private System.Windows.Forms.CheckBox chkAlwaysOnTop;
     }
 }

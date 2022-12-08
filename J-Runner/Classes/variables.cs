@@ -137,9 +137,10 @@ namespace JRunner
         public static bool showAdvancedTabs = false;
         public static string backupRoot = "";
         public static string COMPort = "";
+        public static bool nandTimingAlwaysOnTop = false;
         public static string[] settings = { "XeBuild", "FileChecks", "COMPort", "Delay", "DashlaunchE", "IP", "NoReads", "IPStart", "IPEnd", "Dashlaunch", "PreferredDash", "KeepFiles", "RootDirOverride",
                                             "LPTtiming", "LPTport", "Server", "AutoExtract", "AllMove", "LogBackground", "LogText", "MtxUsbMode", "NoPatchWarnings", "PlaySuccess", "PlayError", "AutoDelXeLL",
-                                            "CpuKeyDbSerial", "BackupEn", "BackupType", "BackupNaming", "BackupRoot", "ShowAdvancedTabs"};
+                                            "CpuKeyDbSerial", "BackupEn", "BackupType", "BackupNaming", "BackupRoot", "ShowAdvancedTabs", "NandTimingAlwaysOnTop"};
 
         /// <summary>
         /// Network
