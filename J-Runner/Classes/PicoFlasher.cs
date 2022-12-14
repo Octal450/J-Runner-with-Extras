@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +22,8 @@ namespace JRunner
         public event log_t log;
 
         public bool InUse = false;
+
+        public int Version = 0;
 
         enum COMMANDS : byte
         {
@@ -121,13 +123,17 @@ namespace JRunner
 
                 SendCmd(serial, cmd);
 
-                UInt32 version = RecvUInt32(serial);
+                Version = (int)RecvUInt32(serial);
 
-                if (version != 3)
+                if (Version < 2)
                 {
                     serial.Close();
                     MessageBox.Show("PicoFlasher firmware is too old\n\nUpdate the PicoFlasher firmware to continue", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
+                }
+
+                if (Version < 3) {
+                    Console.WriteLine("Old PicoFlasher v" + Version + " doesn't support eMMC, update firmware if this is needed.");
                 }
 
                 InUse = true;
@@ -263,9 +269,12 @@ namespace JRunner
             UInt32 flashconfig = RecvUInt32(serial);
             Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
 
-            cmd.cmd = COMMANDS.EMMC_DETECT;
-            SendCmd(serial, cmd);
-            byte emmc_det = RecvUInt8(serial);
+            byte emmc_det = 0;
+            if (Version >= 3) {
+                cmd.cmd = COMMANDS.EMMC_DETECT;
+                SendCmd(serial, cmd);
+                emmc_det = RecvUInt8(serial);
+            }
 
             if (flashconfig != 0x00000000 && flashconfig != 0xFFFFFFFF && flashconfig != 0xC0462002)
             {
@@ -869,11 +878,14 @@ namespace JRunner
             if (serial == null)
                 return;
 
-            CMD cmd = new CMD();
-            cmd.cmd = COMMANDS.EMMC_DETECT;
-            cmd.lba = 0;
-            SendCmd(serial, cmd);
-            byte emmc_det = RecvUInt8(serial);
+            byte emmc_det = 0;
+            if (Version >= 3) {
+                CMD cmd = new CMD();
+                cmd.cmd = COMMANDS.EMMC_DETECT;
+                cmd.lba = 0;
+                SendCmd(serial, cmd);
+                emmc_det = RecvUInt8(serial);
+            }
 
             CloseSerial(serial);
 
@@ -889,11 +901,14 @@ namespace JRunner
             if (serial == null)
                 return;
 
-            CMD cmd = new CMD();
-            cmd.cmd = COMMANDS.EMMC_DETECT;
-            cmd.lba = 0;
-            SendCmd(serial, cmd);
-            byte emmc_det = RecvUInt8(serial);
+            byte emmc_det = 0;
+            if (Version >= 3) {
+                CMD cmd = new CMD();
+                cmd.cmd = COMMANDS.EMMC_DETECT;
+                cmd.lba = 0;
+                SendCmd(serial, cmd);
+                emmc_det = RecvUInt8(serial);
+            }
 
             CloseSerial(serial);
 
