@@ -91,16 +91,17 @@ namespace JRunner
             this.pnlTools = new System.Windows.Forms.Panel();
             this.pnlExtra = new System.Windows.Forms.Panel();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rescanDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.pOSTMonitorRATERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMMonitorAdvancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.soundEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.rescanDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+            this.cBFuseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timingAssistantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.mTXUSBFirmwareUtilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xboxOneHDDToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
-            this.timingAssistantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cBFuseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nandTimingFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -724,19 +725,32 @@ namespace JRunner
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rescanDevicesToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.pOSTMonitorRATERToolStripMenuItem,
             this.cOMMonitorAdvancedToolStripMenuItem,
             this.soundEditorToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.rescanDevicesToolStripMenuItem,
-            this.mTXUSBFirmwareUtilityToolStripMenuItem,
-            this.xboxOneHDDToolToolStripMenuItem,
             this.toolStripMenuItem8,
+            this.cBFuseToolStripMenuItem,
             this.timingAssistantToolStripMenuItem,
-            this.cBFuseToolStripMenuItem});
+            this.toolStripMenuItem12,
+            this.mTXUSBFirmwareUtilityToolStripMenuItem,
+            this.xboxOneHDDToolToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // rescanDevicesToolStripMenuItem
+            // 
+            this.rescanDevicesToolStripMenuItem.Name = "rescanDevicesToolStripMenuItem";
+            this.rescanDevicesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.rescanDevicesToolStripMenuItem.Text = "Scan Devices";
+            this.rescanDevicesToolStripMenuItem.Click += new System.EventHandler(this.btnScanDevices_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(205, 6);
             // 
             // pOSTMonitorRATERToolStripMenuItem
             // 
@@ -759,17 +773,30 @@ namespace JRunner
             this.soundEditorToolStripMenuItem.Text = "ISD Sound Editor";
             this.soundEditorToolStripMenuItem.Click += new System.EventHandler(this.soundEditorToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem3
+            // toolStripMenuItem8
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(205, 6);
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(205, 6);
             // 
-            // rescanDevicesToolStripMenuItem
+            // cBFuseToolStripMenuItem
             // 
-            this.rescanDevicesToolStripMenuItem.Name = "rescanDevicesToolStripMenuItem";
-            this.rescanDevicesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.rescanDevicesToolStripMenuItem.Text = "Scan Devices";
-            this.rescanDevicesToolStripMenuItem.Click += new System.EventHandler(this.btnScanDevices_Click);
+            this.cBFuseToolStripMenuItem.Name = "cBFuseToolStripMenuItem";
+            this.cBFuseToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.cBFuseToolStripMenuItem.Text = "CB Fuse Table";
+            this.cBFuseToolStripMenuItem.Click += new System.EventHandler(this.cBFuseToolStripMenuItem_Click);
+            // 
+            // timingAssistantToolStripMenuItem
+            // 
+            this.timingAssistantToolStripMenuItem.Name = "timingAssistantToolStripMenuItem";
+            this.timingAssistantToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.timingAssistantToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.timingAssistantToolStripMenuItem.Text = "Timing Assistant";
+            this.timingAssistantToolStripMenuItem.Click += new System.EventHandler(this.timingAssistantToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(205, 6);
             // 
             // mTXUSBFirmwareUtilityToolStripMenuItem
             // 
@@ -784,26 +811,6 @@ namespace JRunner
             this.xboxOneHDDToolToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.xboxOneHDDToolToolStripMenuItem.Text = "Xbox One HDD Tool";
             this.xboxOneHDDToolToolStripMenuItem.Click += new System.EventHandler(this.xboxOneHDDToolToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem8
-            // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(205, 6);
-            // 
-            // timingAssistantToolStripMenuItem
-            // 
-            this.timingAssistantToolStripMenuItem.Name = "timingAssistantToolStripMenuItem";
-            this.timingAssistantToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.timingAssistantToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.timingAssistantToolStripMenuItem.Text = "Timing Assistant";
-            this.timingAssistantToolStripMenuItem.Click += new System.EventHandler(this.timingAssistantToolStripMenuItem_Click);
-            // 
-            // cBFuseToolStripMenuItem
-            // 
-            this.cBFuseToolStripMenuItem.Name = "cBFuseToolStripMenuItem";
-            this.cBFuseToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.cBFuseToolStripMenuItem.Text = "CB Fuse Table";
-            this.cBFuseToolStripMenuItem.Click += new System.EventHandler(this.cBFuseToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -920,33 +927,33 @@ namespace JRunner
             // powerOnToolStripMenuItem
             // 
             this.powerOnToolStripMenuItem.Name = "powerOnToolStripMenuItem";
-            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.powerOnToolStripMenuItem.Text = "Power On";
             this.powerOnToolStripMenuItem.Click += new System.EventHandler(this.powerOnToolStripMenuItem_Click);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.shutdownToolStripMenuItem.Text = "Shut Down";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // bootloaderModeToolStripMenuItem
             // 
             this.bootloaderModeToolStripMenuItem.Name = "bootloaderModeToolStripMenuItem";
-            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.bootloaderModeToolStripMenuItem.Text = "Bootloader Mode";
             this.bootloaderModeToolStripMenuItem.Click += new System.EventHandler(this.bootloaderModeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(163, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // logPostToolStripMenuItem
             // 
             this.logPostToolStripMenuItem.Name = "logPostToolStripMenuItem";
-            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logPostToolStripMenuItem.Text = "Monitor POST";
             this.logPostToolStripMenuItem.Click += new System.EventHandler(this.logPostToolStripMenuItem_Click);
             // 
@@ -1252,23 +1259,22 @@ namespace JRunner
             // installDriversToolStripMenuItem
             // 
             this.installDriversToolStripMenuItem.Name = "installDriversToolStripMenuItem";
-            this.installDriversToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.installDriversToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.installDriversToolStripMenuItem.Text = "Install Drivers…";
             this.installDriversToolStripMenuItem.Click += new System.EventHandler(this.installDriversToolStripMenuItem_Click);
             // 
             // checkConsoleCBToolStripMenuItem
             // 
             this.checkConsoleCBToolStripMenuItem.Name = "checkConsoleCBToolStripMenuItem";
-            this.checkConsoleCBToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.checkConsoleCBToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.checkConsoleCBToolStripMenuItem.Text = "Check Console CB";
             this.checkConsoleCBToolStripMenuItem.Click += new System.EventHandler(this.checkConsoleCBToolStripMenuItem_Click);
             // 
             // flashOpenXeniumToolStripMenuItem
             // 
             this.flashOpenXeniumToolStripMenuItem.Name = "flashOpenXeniumToolStripMenuItem";
-            this.flashOpenXeniumToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.flashOpenXeniumToolStripMenuItem.Text = "Program OpenXenium";
-            this.flashOpenXeniumToolStripMenuItem.Visible = false;
+            this.flashOpenXeniumToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.flashOpenXeniumToolStripMenuItem.Text = "Program OpenXenium…";
             this.flashOpenXeniumToolStripMenuItem.Click += new System.EventHandler(this.flashOpenXeniumToolStripMenuItem_Click);
             // 
             // nANDXToolStripMenuItem
@@ -1429,7 +1435,6 @@ namespace JRunner
         private ToolStripMenuItem xFlasherToolStripMenuItem;
         private ToolStripMenuItem cPUKeyToolsToolStripMenuItem;
         private ToolStripMenuItem cBFuseToolStripMenuItem;
-        private ToolStripMenuItem flashOpenXeniumToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripMenuItem logPostToolStripMenuItem;
         private ToolStripMenuItem pOSTMonitorRATERToolStripMenuItem;
@@ -1498,5 +1503,7 @@ namespace JRunner
         private ToolStripMenuItem keyDatabaseToolStripMenuItem;
         private Button btnScanDevices;
         private ToolStripMenuItem rescanDevicesToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem12;
+        private ToolStripMenuItem flashOpenXeniumToolStripMenuItem;
     }
 }

@@ -172,17 +172,20 @@
   <data name="xflash_spi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\xflash_spi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="usboff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\usboff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sonuslogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sonuslogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="picoflasher" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\picoflasher.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="JR2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\JR2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key_LB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_LB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Project3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Project3.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,8 +199,11 @@
   <data name="demon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\demon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="key_LB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_LB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="rederror" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rederror.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="picoflasher" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\picoflasher.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="key_R" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\key_R.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,17 +214,14 @@
   <data name="arrow_dn_hot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_dn_hot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="JRP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Project4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="key_L" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\key_L.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Build" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Build.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="rederror" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rederror.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="JRP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Project4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="jrunner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jrunner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,7 +235,7 @@
   <data name="key_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\key_D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="key" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="openxenium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\openxenium.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

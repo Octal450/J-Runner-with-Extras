@@ -185,6 +185,12 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\OpenXenium.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OpenXenium.Designer.cs">
+      <DependentUpon>OpenXenium.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RestoreFiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -572,6 +578,9 @@
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OpenXenium.resx">
+      <DependentUpon>OpenXenium.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\RestoreFiles.resx">
       <DependentUpon>RestoreFiles.cs</DependentUpon>
     </EmbeddedResource>
@@ -790,6 +799,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Project3.ico" />
+    <None Include="Resources\openxenium.png" />
     <None Include="Resources\key.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\menu.png" />

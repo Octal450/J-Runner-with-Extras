@@ -760,7 +760,7 @@ namespace JRunner
                     {
                         if (device == DEVICE.PICOFLASHER)
                         {
-                            MessageBox.Show("PicoFlasher can't write timing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("PicoFlasher can't program timing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                         else if (device == DEVICE.XFLASHER_SPI)
@@ -769,7 +769,7 @@ namespace JRunner
                         }
                         else if (device == DEVICE.XFLASHER_EMMC)
                         {
-                            MessageBox.Show("Unable to write timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Unable to program timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                         else if (device == DEVICE.NAND_X && variables.mtxUsbMode)
@@ -891,7 +891,7 @@ namespace JRunner
                 {
                     if (device == DEVICE.PICOFLASHER)
                     {
-                        MessageBox.Show("PicoFlasher can't to write timing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("PicoFlasher can't to program timing", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else if(device == DEVICE.XFLASHER_SPI)
@@ -900,7 +900,7 @@ namespace JRunner
                     }
                     else if (device == DEVICE.XFLASHER_EMMC)
                     {
-                        MessageBox.Show("Unable to write timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Unable to program timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else if (device == DEVICE.NAND_X && variables.mtxUsbMode)
@@ -2848,6 +2848,12 @@ namespace JRunner
             }
         }
 
+        private void flashOpenXeniumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenXenium ox = new OpenXenium();
+            ox.ShowDialog();
+        }
+
         private void timingAssistantToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timingAssistant();
@@ -3171,19 +3177,6 @@ namespace JRunner
         private void checkConsoleCBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             xflasher.getConsoleCb();
-        }
-
-        private void flashOpenXeniumToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (device == DEVICE.XFLASHER_SPI)
-            {
-                MessageBox.Show("Connect OpenXenium and press OK", "Connect Device", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                xflasher.flashSvf(variables.rootfolder + @"\common\svf\openxenium.svf");
-            }
-            else
-            {
-                MessageBox.Show("This only works with xFlasher in SPI Mode!", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         #endregion

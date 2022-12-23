@@ -133,7 +133,7 @@ namespace JRunner
                 }
 
                 if (Version < 3) {
-                    Console.WriteLine("Old PicoFlasher v" + Version + " doesn't support eMMC, update firmware if this is needed.");
+                    Console.WriteLine("PicoFlasher: v" + Version + " firmware doesn't support eMMC, only SPI mode is available");
                 }
 
                 InUse = true;
@@ -603,7 +603,7 @@ namespace JRunner
                 }
 
                 int layout = 1;
-                if (flashconfig == 0xAA3020 || flashconfig == 0x8A3020)
+                if (flashconfig == 0xAA3020 || flashconfig == 0x8A3020 || flashconfig == 0xAC3020 || flashconfig == 0x8C3020)
                     layout = 2;
                 else if (flashconfig == 0x1198010)
                     layout = 0;
