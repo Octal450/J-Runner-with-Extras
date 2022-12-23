@@ -379,7 +379,7 @@ namespace JRunner
             this.btnScanner.Name = "btnScanner";
             this.btnScanner.Size = new System.Drawing.Size(152, 26);
             this.btnScanner.TabIndex = 300;
-            this.btnScanner.Text = "Scan IP";
+            this.btnScanner.Text = "Scan IP Range";
             this.toolTip1.SetToolTip(this.btnScanner, "Scans the IP range looking for XeLL to retrieve the CPU Key and Fuses");
             this.btnScanner.UseVisualStyleBackColor = true;
             this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
@@ -927,33 +927,33 @@ namespace JRunner
             // powerOnToolStripMenuItem
             // 
             this.powerOnToolStripMenuItem.Name = "powerOnToolStripMenuItem";
-            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powerOnToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.powerOnToolStripMenuItem.Text = "Power On";
             this.powerOnToolStripMenuItem.Click += new System.EventHandler(this.powerOnToolStripMenuItem_Click);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.shutdownToolStripMenuItem.Text = "Shut Down";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // bootloaderModeToolStripMenuItem
             // 
             this.bootloaderModeToolStripMenuItem.Name = "bootloaderModeToolStripMenuItem";
-            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bootloaderModeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.bootloaderModeToolStripMenuItem.Text = "Bootloader Mode";
             this.bootloaderModeToolStripMenuItem.Click += new System.EventHandler(this.bootloaderModeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(163, 6);
             // 
             // logPostToolStripMenuItem
             // 
             this.logPostToolStripMenuItem.Name = "logPostToolStripMenuItem";
-            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logPostToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.logPostToolStripMenuItem.Text = "Monitor POST";
             this.logPostToolStripMenuItem.Click += new System.EventHandler(this.logPostToolStripMenuItem_Click);
             // 

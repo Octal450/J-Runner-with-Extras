@@ -118,7 +118,7 @@
             this.tabPageNand.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageNand.Size = new System.Drawing.Size(335, 273);
             this.tabPageNand.TabIndex = 0;
-            this.tabPageNand.Text = "Bootloaders/LDVs";
+            this.tabPageNand.Text = "Bootloaders";
             // 
             // groupBox1
             // 

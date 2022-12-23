@@ -80,7 +80,7 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.2.2 Alpha";
+        public static string version = "3.2.2 Beta";
         public static string build = "3220." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
         public const string staticversion = "3.2.2.0";
         public static int revision = 29;
