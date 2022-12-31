@@ -21,7 +21,7 @@ using WinUsb;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
-// Copyright (c) 2022 J-Runner with Extras Development Team
+// Copyright (c) 2020-2023 J-Runner with Extras Development Team
 
 namespace JRunner
 {

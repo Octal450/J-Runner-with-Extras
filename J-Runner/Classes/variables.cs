@@ -80,10 +80,10 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.2.2 Beta";
+        public static string version = "3.2.2";
         public static string build = "3220." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
         public const string staticversion = "3.2.2.0";
-        public static int revision = 29;
+        public static int revision = 30;
         public static Windows currentOS = Windows.Unknown;
         public static bool isscanningip = false;
         public static JR_MODE current_mode = JR_MODE.MODEJR;
