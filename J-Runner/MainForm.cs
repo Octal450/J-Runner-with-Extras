@@ -1236,7 +1236,7 @@ namespace JRunner
                     variables.iterations = j;
                     if (File.Exists(variables.filename))
                     {
-                        if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                        if (DialogResult.Cancel == MessageBox.Show("A nand dump already exists!\n\nContinuing will cause the contents to be overwritten!", "File Conflict", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
                         {
                             Console.WriteLine("Cancelled");
                             Console.WriteLine("");
@@ -1246,7 +1246,7 @@ namespace JRunner
                         {
                             if (error == NandX.Errors.WrongHeader)
                             {
-                                if (DialogResult.Cancel == MessageBox.Show("Header seems to be wrong! This shouldnt happen for stock image! Are you really sure you want to overwrite your previously dumped image???", "Wrong Header", MessageBoxButtons.OKCancel, MessageBoxIcon.Error))
+                                if (DialogResult.Cancel == MessageBox.Show("Header seems to be wrong! This shouldnt happen for stock image!\n\nAre you really sure you want to overwrite your previously dumped image?", "Wrong Header", MessageBoxButtons.OKCancel, MessageBoxIcon.Error))
                                 {
                                     Console.WriteLine("Cancelled");
                                     Console.WriteLine("");

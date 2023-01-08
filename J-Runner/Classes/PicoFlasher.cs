@@ -267,7 +267,6 @@ namespace JRunner
             cmd.lba = 0;
             SendCmd(serial, cmd);
             UInt32 flashconfig = RecvUInt32(serial);
-            Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
 
             byte emmc_det = 0;
             if (Version >= 3) {
@@ -278,6 +277,7 @@ namespace JRunner
 
             if (flashconfig != 0x00000000 && flashconfig != 0xFFFFFFFF && flashconfig != 0xC0462002)
             {
+                Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
                 if (flashconfig == 0x01198010)
                     Console.WriteLine("Xenon, Zephyr, Falcon: 16MB");
                 else if (flashconfig == 0x01198030)
@@ -299,14 +299,12 @@ namespace JRunner
             }
             else if (emmc_det == 0 && flashconfig == 0xC0462002)
             {
+                Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
                 Console.WriteLine("Corona: 4GB (eMMC not connected)");
             }
             else if (emmc_det != 0)
             {
-                if (flashconfig == 0xC0462002)
-                    Console.WriteLine("Corona: 4GB");
-                else if (flashconfig != 0x00000000 && flashconfig != 0xFFFFFFFF)
-                    Console.WriteLine("Unrecongized Flash Config");
+                Console.WriteLine("Corona: 4GB (eMMC connected)");
 
                 cmd.cmd = COMMANDS.EMMC_INIT;
                 SendCmd(serial, cmd);
@@ -424,6 +422,7 @@ namespace JRunner
             }
             else
             {
+                Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
                 Console.WriteLine("Console Not Found");
             }
 
@@ -461,7 +460,7 @@ namespace JRunner
                 if (flashsize == 268435456 || flashsize == 536870912)
                 {
                     DialogResult bbdr = MessageBox.Show("A big block nand has been detected\n\nDo you want to dump only the system partition? (recommended)", "Nand Dump Size", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                    
+
                     if (bbdr == DialogResult.Cancel)
                     {
                         CloseSerial(serial);
@@ -478,15 +477,19 @@ namespace JRunner
                     variables.filename = variables.outfolder + "\\nanddump" + (i + 1) + ".bin";
                     if (File.Exists(variables.filename))
                     {
-                        if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                        if (DialogResult.Cancel == MessageBox.Show("A nand dump already exists!\n\nContinuing will cause the contents to be overwritten!", "File Conflict", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
                         {
                             Console.WriteLine("Cancelled");
                             Console.WriteLine("");
+                            CloseSerial(serial);
                             return;
                         };
                     }
 
+                    variables.reading = true;
                     MainForm.mainForm.PicoFlasherBusy(1);
+
+                    Console.WriteLine("");
                     Console.WriteLine("Reading Nand to {0}", variables.filename);
 					
                     BinaryWriter bw = new BinaryWriter(File.Open(variables.filename, FileMode.Create, FileAccess.Write));
@@ -501,6 +504,12 @@ namespace JRunner
 
                         for (uint j = 0; j < flashsize / 512; j++)
                         {
+                            if (variables.escapeloop)
+                            {
+                                i = iterations + 1;
+                                break;
+                            }
+
                             UInt32 ret = RecvUInt32(serial);
 
                             if (ret != 0)
@@ -525,6 +534,12 @@ namespace JRunner
                     {
                         for (uint j = (start * 0x20); j < (end * 0x20); j++)
                         {
+                            if (variables.escapeloop)
+                            {
+                                i = iterations + 1;
+                                break;
+                            }
+
                             CMD cmd = new CMD();
                             cmd.cmd = COMMANDS.READ_FLASH;
                             cmd.lba = j;
@@ -554,6 +569,7 @@ namespace JRunner
 
                     bw.Close();
 
+                    variables.reading = false;
                     MainForm.mainForm.PicoFlasherBusy(0);
 
                     Console.WriteLine("Read Successful!");
@@ -612,7 +628,10 @@ namespace JRunner
                 else if (flashconfig == 0x1198010)
                     layout = 0;
 
+                variables.writing = true;
                 MainForm.mainForm.PicoFlasherBusy(2);
+
+                Console.WriteLine("");
                 Console.WriteLine("Writing {0} to Nand", Path.GetFileName(variables.filename1));
 
                 BinaryReader br = new BinaryReader(File.Open(variables.filename1, FileMode.Open, FileAccess.Read));
@@ -632,6 +651,8 @@ namespace JRunner
 
                     for (uint k = 0; k < read.Length / 0x210; k++)
                     {
+                        if (variables.escapeloop) break;
+
                         CMD cmd = new CMD();
                         cmd.cmd = COMMANDS.WRITE_FLASH;
                         cmd.lba = j * 8 + k;
@@ -659,6 +680,7 @@ namespace JRunner
 
                 br.Close();
 
+                variables.writing = false;
                 MainForm.mainForm.PicoFlasherBusy(0);
 
                 CloseSerial(serial);
@@ -698,15 +720,18 @@ namespace JRunner
                     variables.filename = variables.outfolder + "\\nanddump" + (i + 1) + ".bin";
                     if (File.Exists(variables.filename))
                     {
-                        if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                        if (DialogResult.Cancel == MessageBox.Show("A nand dump already exists!\n\nContinuing will cause the contents to be overwritten!", "File Conflict", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
                         {
                             Console.WriteLine("Cancelled");
                             Console.WriteLine("");
+                            CloseSerial(serial);
                             return;
                         };
                     }
 
+                    variables.reading = true;
                     MainForm.mainForm.PicoFlasherBusy(1);
+                    Console.WriteLine("Reading Nand to {0}", variables.filename);
 
                     BinaryWriter bw = new BinaryWriter(File.Open(variables.filename, FileMode.Create, FileAccess.Write));
 
@@ -720,6 +745,12 @@ namespace JRunner
 
                         for (uint j = 0; j < flashsize / 512; j++)
                         {
+                            if (variables.escapeloop)
+                            {
+                                i = iterations + 1;
+                                break;
+                            }
+
                             UInt32 ret = RecvUInt32(serial);
 
                             if (ret != 0)
@@ -744,6 +775,12 @@ namespace JRunner
                     {
                         for (uint j = (start * 0x20); j < (end * 0x20); j++)
                         {
+                            if (variables.escapeloop)
+                            {
+                                i = iterations + 1;
+                                break;
+                            }
+
                             CMD cmd = new CMD();
                             cmd.cmd = COMMANDS.EMMC_READ;
                             cmd.lba = j;
@@ -773,6 +810,7 @@ namespace JRunner
 
                     bw.Close();
 
+                    variables.reading = false;
                     MainForm.mainForm.PicoFlasherBusy(0);
 
                     Console.WriteLine("Read Successful!");
@@ -811,7 +849,9 @@ namespace JRunner
 
                 uint flashsize = 48 * 1024 * 1024; // On EMMC we only need the first 48MB
 
+                variables.writing = true;
                 MainForm.mainForm.PicoFlasherBusy(2);
+                Console.WriteLine("Writing {0} to Nand", Path.GetFileName(variables.filename1));
 
                 BinaryReader br = new BinaryReader(File.Open(variables.filename1, FileMode.Open, FileAccess.Read));
 
@@ -827,6 +867,8 @@ namespace JRunner
 
                     for (uint k = 0; k < read.Length / 0x200; k++)
                     {
+                        if (variables.escapeloop) break;
+
                         CMD cmd = new CMD();
                         cmd.cmd = COMMANDS.EMMC_WRITE;
                         cmd.lba = j * 8 + k;
@@ -854,6 +896,7 @@ namespace JRunner
 
                 br.Close();
 
+                variables.writing = false;
                 MainForm.mainForm.PicoFlasherBusy(0);
 
                 CloseSerial(serial);
@@ -1024,7 +1067,7 @@ namespace JRunner
 
             if (File.Exists(filename))
             {
-                if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                if (DialogResult.Cancel == MessageBox.Show("A nand dump already exists!\n\nContinuing will cause the contents to be overwritten!", "File Conflict", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
                 {
                     Console.WriteLine("Cancelled");
                     Console.WriteLine("");

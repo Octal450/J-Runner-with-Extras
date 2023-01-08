@@ -383,7 +383,7 @@ namespace JRunner
                         variables.filename = variables.outfolder + "\\nanddump" + i + ".bin";
                         if (File.Exists(variables.filename))
                         {
-                            if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                            if (DialogResult.Cancel == MessageBox.Show("A nand dump already exists!\n\nContinuing will cause the contents to be overwritten!", "File Conflict", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
                             {
                                 Console.WriteLine("xFlasher: Cancelled");
                                 Console.WriteLine("");
@@ -515,7 +515,7 @@ namespace JRunner
 
                     if (File.Exists(filename))
                     {
-                        if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "About to overwrite a nanddump", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
+                        if (DialogResult.Cancel == MessageBox.Show("A nand dump already exists!\n\nContinuing will cause the contents to be overwritten!", "File Conflict", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning))
                         {
                             Console.WriteLine("xFlasher: Cancelled");
                             Console.WriteLine("");

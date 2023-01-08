@@ -157,12 +157,12 @@ namespace JRunner.Panels
         // Checkbox Setters
         public void setCleanSMCChecked(bool check)
         {
-            if (check && !chkCleanSMC.Enabled) return;
+            if (check && (!chkCleanSMC.Enabled || !chkCleanSMC.Visible)) return;
             chkCleanSMC.Checked = check;
         }
         public void setRgh3Checked(bool check)
         {
-            if (check && !chkRgh3.Enabled) return;
+            if (check && (!chkRgh3.Enabled || !chkRgh3.Visible)) return;
             chkRgh3.Checked = check;
         }
         public void setXLHDDChecked(bool check)

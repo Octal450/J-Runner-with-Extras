@@ -222,7 +222,7 @@ namespace JRunner.Panels
 
             if (File.Exists(filename))
             {
-                if (DialogResult.Cancel == MessageBox.Show("File already exists, it will be DELETED! Press OK to continue", "File Already Exists", MessageBoxButtons.OKCancel, MessageBoxIcon.Information))
+                if (DialogResult.Cancel == MessageBox.Show("A nand dump already exists!\n\nContinuing will cause the contents to be overwritten!", "File Conflict", MessageBoxButtons.OKCancel, MessageBoxIcon.Information))
                 {
                     Console.WriteLine("Cancelled");
                     Console.WriteLine("");
