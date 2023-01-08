@@ -199,7 +199,7 @@ namespace JRunner
             SendCmd(serial, cmd);
 
             UInt32 flashconfig = RecvUInt32(serial);
-            Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
+            if (flashconfig != 0x00000000 && flashconfig != 0xFFFFFFFF) Console.WriteLine("Flash Config: 0x" + flashconfig.ToString("X8"));
 
             if (flashconfig == 0x00000000 || flashconfig == 0xFFFFFFFF)
             {
@@ -442,6 +442,8 @@ namespace JRunner
                 uint flashconfig = getFlashConfig(serial);
                 if (flashconfig == 0)
                 {
+                    Console.WriteLine("Console Not Found");
+                    Console.WriteLine("");
                     CloseSerial(serial);
                     return;
                 }
@@ -589,6 +591,8 @@ namespace JRunner
                 uint flashconfig = getFlashConfig(serial);
                 if (flashconfig == 0)
                 {
+                    Console.WriteLine("Console Not Found");
+                    Console.WriteLine("");
                     CloseSerial(serial);
                     return;
                 }
