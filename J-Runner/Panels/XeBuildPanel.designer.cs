@@ -60,6 +60,8 @@
             this.rbtnGlitch2 = new System.Windows.Forms.RadioButton();
             this.rbtnGlitch = new System.Windows.Forms.RadioButton();
             this.tabPatches = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkUsbdSec = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkXLHdd = new System.Windows.Forms.CheckBox();
             this.chkXLUsb = new System.Windows.Forms.CheckBox();
@@ -106,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dashBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dashDataSet)).BeginInit();
             this.tabPatches.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.tabClient.SuspendLayout();
@@ -493,6 +496,7 @@
             // tabPatches
             // 
             this.tabPatches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tabPatches.Controls.Add(this.groupBox2);
             this.tabPatches.Controls.Add(this.groupBox1);
             this.tabPatches.Controls.Add(this.chkWB4G);
             this.tabPatches.Controls.Add(this.chkListBoxPatches);
@@ -502,6 +506,29 @@
             this.tabPatches.Size = new System.Drawing.Size(323, 110);
             this.tabPatches.TabIndex = 3;
             this.tabPatches.Text = "Patches";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.chkUsbdSec);
+            this.groupBox2.Location = new System.Drawing.Point(210, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(104, 56);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Other Patches";
+            // 
+            // chkUsbdSec
+            // 
+            this.chkUsbdSec.AutoSize = true;
+            this.chkUsbdSec.Enabled = false;
+            this.chkUsbdSec.Location = new System.Drawing.Point(21, 25);
+            this.chkUsbdSec.Name = "chkUsbdSec";
+            this.chkUsbdSec.Size = new System.Drawing.Size(70, 17);
+            this.chkUsbdSec.TabIndex = 0;
+            this.chkUsbdSec.Text = "UsbdSec";
+            this.toolTip1.SetToolTip(this.chkUsbdSec, "Patches Freeboot to allow use of custom USB peripherals, like controllers");
+            this.chkUsbdSec.UseVisualStyleBackColor = true;
+            this.chkUsbdSec.CheckedChanged += new System.EventHandler(this.chkUsbdSec_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -988,6 +1015,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dashDataSet)).EndInit();
             this.tabPatches.ResumeLayout(false);
             this.tabPatches.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabOptions.ResumeLayout(false);
@@ -1073,5 +1102,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkXLHdd;
         private System.Windows.Forms.Button btnShowAdvanced;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox chkUsbdSec;
     }
 }

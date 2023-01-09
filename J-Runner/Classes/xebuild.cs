@@ -47,10 +47,11 @@ namespace JRunner.Classes
         private bool _noreeb;
         private bool _xlusb;
         private bool _xlhdd;
+        private bool _usbdsec;
         private Nand.PrivateN _nand;
         private List<string> _patches;
 
-        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<string> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool xlusb, bool xlhdd, bool fullDataClean)
+        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<string> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool xlusb, bool xlhdd, bool usbdsec, bool fullDataClean)
         {
             this._cpukey = cpukey;
             this._ttype = ttype;
@@ -72,6 +73,7 @@ namespace JRunner.Classes
             this._xdkbuild = xdkbuild;
             this._xlusb = xlusb;
             this._xlhdd = xlhdd;
+            this._usbdsec = usbdsec;
             this._fullDataClean = fullDataClean;
         }
 
@@ -590,6 +592,8 @@ namespace JRunner.Classes
 
             if (_xlusb) arguments += " -a xl_usb";
             else if (_xlhdd) arguments += " -a xl_hdd";
+
+            if (_usbdsec) arguments += " -a usbdsec";
 
             foreach (String patch in _patches)
             {

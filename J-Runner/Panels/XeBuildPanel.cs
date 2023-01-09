@@ -289,7 +289,7 @@ namespace JRunner.Panels
 
             checkWBXdkBuild();
             checkBigffs(variables.boardtype);
-            checkXLDrive();
+            checkDashSpecificPatches();
 
             if (!rbtnRetail.Checked && !rbtnGlitch.Checked && !rbtnGlitch2.Checked && !rbtnGlitch2m.Checked && !rbtnDevGL.Checked) chkCleanSMC.Checked = false;
 
@@ -352,7 +352,7 @@ namespace JRunner.Panels
 
             checkAvailableHackTypes();
             checkWBXdkBuild();
-            checkXLDrive();
+            checkDashSpecificPatches();
             updateCommand();
             setComboCB();
         }
@@ -506,7 +506,7 @@ namespace JRunner.Panels
             }
         }
 
-        private void checkXLDrive()
+        private void checkDashSpecificPatches()
         {
             if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\xl_usb.bin")))
             {
@@ -521,6 +521,13 @@ namespace JRunner.Panels
                 else chkXLHdd.Enabled = true;
             }
             else chkXLHdd.Checked = chkXLHdd.Enabled = false;
+
+            if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\usbdsec.bin")))
+            {
+                if (rbtnRetail.Checked) chkUsbdSec.Checked = chkUsbdSec.Enabled = false;
+                else chkUsbdSec.Enabled = true;
+            }
+            else chkUsbdSec.Checked = chkUsbdSec.Enabled = false;
         }
 
         bool chkWB4GVis = false;
@@ -897,6 +904,16 @@ namespace JRunner.Panels
             }
         }
 
+        private void chkUsbdSec_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkUsbdSec.Checked)
+            {
+                Console.WriteLine("UsbdSec Selected");
+                chkXLHdd.Checked = false;
+            }
+            else Console.WriteLine("UsbdSec Deselected");
+        }
+
         private void btnGetMB_Click(object sender, EventArgs e)
         {
             if ((ModifierKeys & Keys.Shift) == Keys.Shift && MainForm.mainForm.device == MainForm.DEVICE.XFLASHER_SPI) MainForm.mainForm.xflasher.getConsoleCb();
@@ -1208,7 +1225,7 @@ namespace JRunner.Panels
             Classes.xebuild xe = new Classes.xebuild();
             xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                              variables.ctype, patches, nand, chkXeSettings.Checked, checkDLPatches.Checked,
-                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, fullDataClean);
+                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkUsbdSec.Checked, fullDataClean);
 
             string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_" + variables.ttyp + ".ini");
 
@@ -1339,7 +1356,7 @@ namespace JRunner.Panels
                         xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                             variables.ctype, patches, nand, chkXeSettings.Checked, checkDLPatches.Checked,
                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked,
-                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, fullDataClean);
+                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkUsbdSec.Checked, fullDataClean);
                         goto Start;
                     }
                 case Classes.xebuild.XebuildError.none:
