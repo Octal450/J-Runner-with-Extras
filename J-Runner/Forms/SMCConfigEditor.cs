@@ -597,11 +597,11 @@ namespace JRunner.Forms
         {
             setDefaultTempTargets(Nand.ntable.defaultTempTable[3]);
         }
-        private void j1DefaultTemp_Click(object sender, EventArgs e)
+        private void jDefaultTemp_Click(object sender, EventArgs e)
         {
             setDefaultTempTargets(Nand.ntable.defaultTempTable[4]);
         }
-        private void j2DefaultTemp_Click(object sender, EventArgs e)
+        private void jtDefaultTemp_Click(object sender, EventArgs e)
         {
             setDefaultTempTargets(Nand.ntable.defaultTempTable[5]);
         }

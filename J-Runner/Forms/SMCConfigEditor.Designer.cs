@@ -100,33 +100,18 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnDefaultTemp = new UI.MenuButton();
             this.defaultTempContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.x1DefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.x2DefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.zDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.fDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
-            this.j1DefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
-            this.j2DefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
+            this.jDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
+            this.jtDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.tDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.cDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.wDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
-            this.label9 = new System.Windows.Forms.Label();
-            this.customTempContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.coolButQuietToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xCoolButQuiet = new System.Windows.Forms.ToolStripMenuItem();
-            this.zCoolButQuiet = new System.Windows.Forms.ToolStripMenuItem();
-            this.fCoolButQuiet = new System.Windows.Forms.ToolStripMenuItem();
-            this.jCoolButQuiet = new System.Windows.Forms.ToolStripMenuItem();
-            this.tCoolButQuiet = new System.Windows.Forms.ToolStripMenuItem();
-            this.cCoolButQuiet = new System.Windows.Forms.ToolStripMenuItem();
-            this.maximumCoolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
-            this.zMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
-            this.fMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
-            this.jMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
-            this.tMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
-            this.cMaximumCool = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.resetNo = new System.Windows.Forms.Label();
             this.reset4 = new System.Windows.Forms.PictureBox();
@@ -162,7 +147,6 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.defaultTempContextMenu.SuspendLayout();
-            this.customTempContextMenu.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reset4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reset3)).BeginInit();
@@ -913,6 +897,19 @@
             this.toolTip1.SetToolTip(this.label8, "Sets the critical temperatures for the CPU, GPU, and eDRAM dies\r\nThe system will " +
         "shut down to prevent damage at these temperatures");
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Blue;
+            this.label9.Location = new System.Drawing.Point(152, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(13, 13);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "?";
+            this.toolTip1.SetToolTip(this.label9, "Select the default fan profile for your console to automatically populate the val" +
+        "ues");
+            // 
             // btnDefaultTemp
             // 
             this.btnDefaultTemp.BtnImage = global::JRunner.Properties.Resources.arrow_dn;
@@ -936,195 +933,76 @@
             this.x2DefaultTemp,
             this.zDefaultTemp,
             this.fDefaultTemp,
-            this.j1DefaultTemp,
-            this.j2DefaultTemp,
+            this.jDefaultTemp,
+            this.jtDefaultTemp,
             this.tDefaultTemp,
             this.cDefaultTemp,
             this.wDefaultTemp});
             this.defaultTempContextMenu.Name = "defaultTempContextMenu";
-            this.defaultTempContextMenu.Size = new System.Drawing.Size(171, 202);
+            this.defaultTempContextMenu.Size = new System.Drawing.Size(181, 224);
             // 
             // x1DefaultTemp
             // 
             this.x1DefaultTemp.Name = "x1DefaultTemp";
-            this.x1DefaultTemp.Size = new System.Drawing.Size(170, 22);
+            this.x1DefaultTemp.Size = new System.Drawing.Size(180, 22);
             this.x1DefaultTemp.Text = "Xenon (Early)";
             this.x1DefaultTemp.Click += new System.EventHandler(this.x1DefaultTemp_Click);
             // 
             // x2DefaultTemp
             // 
             this.x2DefaultTemp.Name = "x2DefaultTemp";
-            this.x2DefaultTemp.Size = new System.Drawing.Size(170, 22);
+            this.x2DefaultTemp.Size = new System.Drawing.Size(180, 22);
             this.x2DefaultTemp.Text = "Xenon (Late)";
             this.x2DefaultTemp.Click += new System.EventHandler(this.x2DefaultTemp_Click);
             // 
             // zDefaultTemp
             // 
             this.zDefaultTemp.Name = "zDefaultTemp";
-            this.zDefaultTemp.Size = new System.Drawing.Size(170, 22);
+            this.zDefaultTemp.Size = new System.Drawing.Size(180, 22);
             this.zDefaultTemp.Text = "Zephyr";
             this.zDefaultTemp.Click += new System.EventHandler(this.zDefaultTemp_Click);
             // 
             // fDefaultTemp
             // 
             this.fDefaultTemp.Name = "fDefaultTemp";
-            this.fDefaultTemp.Size = new System.Drawing.Size(170, 22);
+            this.fDefaultTemp.Size = new System.Drawing.Size(180, 22);
             this.fDefaultTemp.Text = "Falcon";
             this.fDefaultTemp.Click += new System.EventHandler(this.fDefaultTemp_Click);
             // 
-            // j1DefaultTemp
+            // jDefaultTemp
             // 
-            this.j1DefaultTemp.Name = "j1DefaultTemp";
-            this.j1DefaultTemp.Size = new System.Drawing.Size(170, 22);
-            this.j1DefaultTemp.Text = "Jasper V1";
-            this.j1DefaultTemp.Click += new System.EventHandler(this.j1DefaultTemp_Click);
+            this.jDefaultTemp.Name = "jDefaultTemp";
+            this.jDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.jDefaultTemp.Text = "Jasper";
+            this.jDefaultTemp.Click += new System.EventHandler(this.jDefaultTemp_Click);
             // 
-            // j2DefaultTemp
+            // jtDefaultTemp
             // 
-            this.j2DefaultTemp.Name = "j2DefaultTemp";
-            this.j2DefaultTemp.Size = new System.Drawing.Size(170, 22);
-            this.j2DefaultTemp.Text = "Jasper V2 (Kronos)";
-            this.j2DefaultTemp.Click += new System.EventHandler(this.j2DefaultTemp_Click);
+            this.jtDefaultTemp.Name = "jtDefaultTemp";
+            this.jtDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.jtDefaultTemp.Text = "Jasper Tonasket";
+            this.jtDefaultTemp.Click += new System.EventHandler(this.jtDefaultTemp_Click);
             // 
             // tDefaultTemp
             // 
             this.tDefaultTemp.Name = "tDefaultTemp";
-            this.tDefaultTemp.Size = new System.Drawing.Size(170, 22);
+            this.tDefaultTemp.Size = new System.Drawing.Size(180, 22);
             this.tDefaultTemp.Text = "Trinity";
             this.tDefaultTemp.Click += new System.EventHandler(this.tDefaultTemp_Click);
             // 
             // cDefaultTemp
             // 
             this.cDefaultTemp.Name = "cDefaultTemp";
-            this.cDefaultTemp.Size = new System.Drawing.Size(170, 22);
+            this.cDefaultTemp.Size = new System.Drawing.Size(180, 22);
             this.cDefaultTemp.Text = "Corona";
             this.cDefaultTemp.Click += new System.EventHandler(this.cDefaultTemp_Click);
             // 
             // wDefaultTemp
             // 
             this.wDefaultTemp.Name = "wDefaultTemp";
-            this.wDefaultTemp.Size = new System.Drawing.Size(170, 22);
+            this.wDefaultTemp.Size = new System.Drawing.Size(180, 22);
             this.wDefaultTemp.Text = "Winchester";
             this.wDefaultTemp.Click += new System.EventHandler(this.wDefaultTemp_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Blue;
-            this.label9.Location = new System.Drawing.Point(152, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(13, 13);
-            this.label9.TabIndex = 46;
-            this.label9.Text = "?";
-            this.toolTip1.SetToolTip(this.label9, "Select the default fan profile for your console to automatically populate the val" +
-        "ues");
-            // 
-            // customTempContextMenu
-            // 
-            this.customTempContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.coolButQuietToolStripMenuItem,
-            this.maximumCoolToolStripMenuItem});
-            this.customTempContextMenu.Name = "customTempContextMenu";
-            this.customTempContextMenu.Size = new System.Drawing.Size(158, 48);
-            // 
-            // coolButQuietToolStripMenuItem
-            // 
-            this.coolButQuietToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xCoolButQuiet,
-            this.zCoolButQuiet,
-            this.fCoolButQuiet,
-            this.jCoolButQuiet,
-            this.tCoolButQuiet,
-            this.cCoolButQuiet});
-            this.coolButQuietToolStripMenuItem.Name = "coolButQuietToolStripMenuItem";
-            this.coolButQuietToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.coolButQuietToolStripMenuItem.Text = "Cool but Quiet";
-            // 
-            // xCoolButQuiet
-            // 
-            this.xCoolButQuiet.Name = "xCoolButQuiet";
-            this.xCoolButQuiet.Size = new System.Drawing.Size(113, 22);
-            this.xCoolButQuiet.Text = "Xenon";
-            // 
-            // zCoolButQuiet
-            // 
-            this.zCoolButQuiet.Name = "zCoolButQuiet";
-            this.zCoolButQuiet.Size = new System.Drawing.Size(113, 22);
-            this.zCoolButQuiet.Text = "Zephyr";
-            // 
-            // fCoolButQuiet
-            // 
-            this.fCoolButQuiet.Name = "fCoolButQuiet";
-            this.fCoolButQuiet.Size = new System.Drawing.Size(113, 22);
-            this.fCoolButQuiet.Text = "Falcon";
-            // 
-            // jCoolButQuiet
-            // 
-            this.jCoolButQuiet.Name = "jCoolButQuiet";
-            this.jCoolButQuiet.Size = new System.Drawing.Size(113, 22);
-            this.jCoolButQuiet.Text = "Jasper";
-            // 
-            // tCoolButQuiet
-            // 
-            this.tCoolButQuiet.Name = "tCoolButQuiet";
-            this.tCoolButQuiet.Size = new System.Drawing.Size(113, 22);
-            this.tCoolButQuiet.Text = "Trinity";
-            // 
-            // cCoolButQuiet
-            // 
-            this.cCoolButQuiet.Name = "cCoolButQuiet";
-            this.cCoolButQuiet.Size = new System.Drawing.Size(113, 22);
-            this.cCoolButQuiet.Text = "Corona";
-            // 
-            // maximumCoolToolStripMenuItem
-            // 
-            this.maximumCoolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xMaximumCool,
-            this.zMaximumCool,
-            this.fMaximumCool,
-            this.jMaximumCool,
-            this.tMaximumCool,
-            this.cMaximumCool});
-            this.maximumCoolToolStripMenuItem.Name = "maximumCoolToolStripMenuItem";
-            this.maximumCoolToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.maximumCoolToolStripMenuItem.Text = "Maximum Cool";
-            // 
-            // xMaximumCool
-            // 
-            this.xMaximumCool.Name = "xMaximumCool";
-            this.xMaximumCool.Size = new System.Drawing.Size(113, 22);
-            this.xMaximumCool.Text = "Xenon";
-            // 
-            // zMaximumCool
-            // 
-            this.zMaximumCool.Name = "zMaximumCool";
-            this.zMaximumCool.Size = new System.Drawing.Size(113, 22);
-            this.zMaximumCool.Text = "Zephyr";
-            // 
-            // fMaximumCool
-            // 
-            this.fMaximumCool.Name = "fMaximumCool";
-            this.fMaximumCool.Size = new System.Drawing.Size(113, 22);
-            this.fMaximumCool.Text = "Falcon";
-            // 
-            // jMaximumCool
-            // 
-            this.jMaximumCool.Name = "jMaximumCool";
-            this.jMaximumCool.Size = new System.Drawing.Size(113, 22);
-            this.jMaximumCool.Text = "Jasper";
-            // 
-            // tMaximumCool
-            // 
-            this.tMaximumCool.Name = "tMaximumCool";
-            this.tMaximumCool.Size = new System.Drawing.Size(113, 22);
-            this.tMaximumCool.Text = "Trinity";
-            // 
-            // cMaximumCool
-            // 
-            this.cMaximumCool.Name = "cMaximumCool";
-            this.cMaximumCool.Size = new System.Drawing.Size(113, 22);
-            this.cMaximumCool.Text = "Corona";
             // 
             // groupBox5
             // 
@@ -1446,7 +1324,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.defaultTempContextMenu.ResumeLayout(false);
-            this.customTempContextMenu.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.reset4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reset3)).EndInit();
@@ -1573,27 +1450,12 @@
         private System.Windows.Forms.ToolStripMenuItem x2DefaultTemp;
         private System.Windows.Forms.ToolStripMenuItem zDefaultTemp;
         private System.Windows.Forms.ToolStripMenuItem fDefaultTemp;
-        private System.Windows.Forms.ToolStripMenuItem j1DefaultTemp;
-        private System.Windows.Forms.ToolStripMenuItem j2DefaultTemp;
+        private System.Windows.Forms.ToolStripMenuItem jDefaultTemp;
+        private System.Windows.Forms.ToolStripMenuItem jtDefaultTemp;
         private System.Windows.Forms.ToolStripMenuItem tDefaultTemp;
         private System.Windows.Forms.ToolStripMenuItem cDefaultTemp;
         private System.Windows.Forms.ToolStripMenuItem wDefaultTemp;
-        private System.Windows.Forms.ContextMenuStrip customTempContextMenu;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ToolStripMenuItem coolButQuietToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem xCoolButQuiet;
-        private System.Windows.Forms.ToolStripMenuItem zCoolButQuiet;
-        private System.Windows.Forms.ToolStripMenuItem fCoolButQuiet;
-        private System.Windows.Forms.ToolStripMenuItem jCoolButQuiet;
-        private System.Windows.Forms.ToolStripMenuItem tCoolButQuiet;
-        private System.Windows.Forms.ToolStripMenuItem cCoolButQuiet;
-        private System.Windows.Forms.ToolStripMenuItem maximumCoolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem xMaximumCool;
-        private System.Windows.Forms.ToolStripMenuItem zMaximumCool;
-        private System.Windows.Forms.ToolStripMenuItem fMaximumCool;
-        private System.Windows.Forms.ToolStripMenuItem jMaximumCool;
-        private System.Windows.Forms.ToolStripMenuItem tMaximumCool;
-        private System.Windows.Forms.ToolStripMenuItem cMaximumCool;
         private System.Windows.Forms.Button btnClose;
     }
 }
