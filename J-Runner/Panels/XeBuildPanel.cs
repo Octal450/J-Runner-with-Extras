@@ -1620,12 +1620,16 @@ namespace JRunner.Panels
                     List<string> cbs = new List<string>();
                     parse_ini.getLabelsandCBs(ini, ref labels, ref cbs);
                     string defaultCB = null;
+
                     foreach (string s in labels)
                     {
                         if (!s.Contains("bl")) continue;
                         if (variables.ctype.ID == -1)
                         {
-                            if (s.Contains("_")) cbList.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
+                            if (s.Contains("_"))
+                            {
+                                cbList.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
+                            }
                             else
                             {
                                 string cb = cbs[labels.IndexOf(s)];
@@ -1637,7 +1641,10 @@ namespace JRunner.Panels
                         {
                             if (s.Contains(variables.ctype.Ini))
                             {
-                                if (s.Contains("_")) cbList.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
+                                if (s.Contains("_"))
+                                {
+                                    cbList.Add(new CB(s.Substring(s.IndexOf("_") + 1), true));
+                                }
                                 else
                                 {
                                     string cb = cbs[labels.IndexOf(s)];
@@ -1648,7 +1655,7 @@ namespace JRunner.Panels
                         }
                     }
 
-                    cbList.Sort((a, b) => Convert.ToInt32(a.Version) - Convert.ToInt32(b.Version));
+                    //cbList.Sort((a, b) => Convert.ToInt32(a.Version) - Convert.ToInt32(b.Version));
 
                     int defaultIndex = 0; // Fallback
                     foreach (CB cb in cbList)

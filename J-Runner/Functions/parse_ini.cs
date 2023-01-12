@@ -224,9 +224,17 @@ namespace JRunner
                     {
                         cbs.Add(temp.Substring(temp.IndexOf("cb_") + 3, temp.IndexOf(".bin") - 3));
                     }
+                    else if (temp.Contains("cb."))
+                    {
+                        cbs.Add(temp.Substring(temp.IndexOf("cb.") + 3, temp.IndexOf(".bin") - 3));
+                    }
                     else if (temp.Contains("cbb_"))
                     {
                         cbs.Add(temp.Substring(temp.IndexOf("cbb_") + 4, temp.IndexOf(".bin") - 4));
+                    }
+                    else if (temp.Contains("cbb."))
+                    {
+                        cbs.Add(temp.Substring(temp.IndexOf("cbb.") + 4, temp.IndexOf(".bin") - 4));
                     }
                 }
             }
