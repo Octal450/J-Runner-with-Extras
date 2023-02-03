@@ -440,7 +440,8 @@ namespace JRunner
             {
                 CloseSerial(serial);
 
-                Console.WriteLine("PicoFlasher has encountered an error\n\nTry to unplug and replug the device");
+                Console.WriteLine("PicoFlasher has encountered an error");
+                Console.WriteLine("Try to unplug and replug the device");
                 if (variables.debugMode) Console.WriteLine(ex.ToString());
                 else Console.WriteLine(ex.GetType());
                 Console.WriteLine("");
@@ -614,7 +615,8 @@ namespace JRunner
                 {
                     CloseSerial(serial);
 
-                    Console.WriteLine("PicoFlasher has encountered an error\n\nTry to unplug and replug the device");
+                    Console.WriteLine("PicoFlasher has encountered an error");
+                    Console.WriteLine("Try to unplug and replug the device");
                     if (variables.debugMode) Console.WriteLine(ex.ToString());
                     else Console.WriteLine(ex.GetType());
                     Console.WriteLine("");
@@ -737,7 +739,8 @@ namespace JRunner
                 {
                     CloseSerial(serial);
 
-                    Console.WriteLine("PicoFlasher has encountered an error\n\nTry to unplug and replug the device");
+                    Console.WriteLine("PicoFlasher has encountered an error");
+                    Console.WriteLine("Try to unplug and replug the device");
                     if (variables.debugMode) Console.WriteLine(ex.ToString());
                     else Console.WriteLine(ex.GetType());
                     Console.WriteLine("");
@@ -881,7 +884,8 @@ namespace JRunner
                 {
                     CloseSerial(serial);
 
-                    Console.WriteLine("PicoFlasher has encountered an error\n\nTry to unplug and replug the device");
+                    Console.WriteLine("PicoFlasher has encountered an error");
+                    Console.WriteLine("Try to unplug and replug the device");
                     if (variables.debugMode) Console.WriteLine(ex.ToString());
                     else Console.WriteLine(ex.GetType());
                     Console.WriteLine("");
@@ -979,7 +983,8 @@ namespace JRunner
                 {
                     CloseSerial(serial);
 
-                    Console.WriteLine("PicoFlasher has encountered an error\n\nTry to unplug and replug the device");
+                    Console.WriteLine("PicoFlasher has encountered an error");
+                    Console.WriteLine("Try to unplug and replug the device");
                     if (variables.debugMode) Console.WriteLine(ex.ToString());
                     else Console.WriteLine(ex.GetType());
                     Console.WriteLine("");
