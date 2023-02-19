@@ -41,7 +41,7 @@ namespace JRunner
                 {
                     foreach (CheckBox col in c)
                     {
-                        if (option.Substring(0, option.IndexOf('=')) == (col.Text))
+                        if (option.Substring(0, option.IndexOf('=')) == (string)col.Tag)
                         {
                             if (option.Contains("true")) col.Checked = true;
                             else if (option.Contains("false")) col.Checked = false;
@@ -156,20 +156,20 @@ namespace JRunner
                     {
                         if (col != null)
                             if (col.Checked)
-                                options.Add(col.Text + " = true");
+                                options.Add(col.Tag + " = true");
                             else
-                                options.Add(col.Text + " = false");
+                                options.Add(col.Tag + " = false");
                     }
                 }
                 File.Copy(file, filename, true);
                 parse_ini.edit_ini(filename, options.ToArray(), delete);
-                Console.WriteLine("Options.ini saved successfully");
+                Console.WriteLine("Advanced XeBuild Options Applied");
                 MainForm.mainForm.xPanel.setXeSettingsChecked(true);
             }
             else
             {
                 File.Copy(file, filename, true);
-                Console.WriteLine("Options.ini reset successfully");
+                Console.WriteLine("Advanced XeBuild Options Reset");
                 MainForm.mainForm.xPanel.setXeSettingsChecked(false);
             }
             this.Close();
@@ -196,7 +196,8 @@ namespace JRunner
         };
 
 
-        #region shit
+        #region UI
+
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             xellbutton.Text = buttons.power.ToString();
@@ -286,7 +287,22 @@ namespace JRunner
         {
             xellbutton2.Text = "";
         }
-        #endregion
 
+        private void noremap_CheckedChanged(object sender, EventArgs e)
+        {
+            noecdremap.Enabled = noremap.Checked;
+        }
+
+        private void olddvd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (olddvd.Checked && nodvd.Checked) nodvd.Checked = false;
+        }
+
+        private void nodvd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (nodvd.Checked && olddvd.Checked) olddvd.Checked = false;
+        }
+
+        #endregion
     }
 }

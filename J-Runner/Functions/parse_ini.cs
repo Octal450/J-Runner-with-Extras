@@ -120,7 +120,7 @@ namespace JRunner
                         }
                         else
                         {
-                            if (line == (tochange))
+                            if (line == tochange)
                             {
                                 //Console.WriteLine("{0} - {1} || 4", line, (tochange));
                                 found = true;

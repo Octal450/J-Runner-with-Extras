@@ -117,34 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label4.Text" xml:space="preserve">
-    <value>valid buttons are:
-power (console power button), 
-eject (DVD eject button), 
-remopower (IR power button), 
-remox (IR X button),  
-winbutton (IR windows button), 
-wirelessx (wireless controller X button), 
-wiredx (wired controller X button), 
-kiosk (debug kiosk pin)</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>sets which power on button causes core to 
-send !SWITCH signal to UART, by default 
-it's set to nothing note this setting will have 
-no effect on single NAND systems, and will 
-be ignored if set to the same as xellbutton.
-</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>if a Big Block nand image is provided and nandmu is set to TRUE, blocks 0x10
- through 0x15B (inclusive) will be copied from the dump (true/false) to the 
-final image, when NAND MU data is detected only, to attempt to preserve 
-NAND MU content that is present in the first 64M if the dump is provided as a 
-full 256M or 512M dump, the remaining 192M/448M will be copied onto the 
-end of the new image as well and flashig this full image will increase the changes 
-of keeping the MU contents intact</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
