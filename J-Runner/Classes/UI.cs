@@ -33,6 +33,7 @@ namespace UI
         bool split = false;
 
         #region context menu
+
         [DefaultValue(false)]
         public bool SplitButton
         {
@@ -102,9 +103,11 @@ namespace UI
                 contextStrip.Show(this, new Point(0, Height), ToolStripDropDownDirection.BelowRight);
             }
         }
+
         #endregion
 
         #region appearance
+
         public Image BtnImage
         {
             get
@@ -138,6 +141,7 @@ namespace UI
         #endregion
 
         #region overrides
+
         protected override void OnGotFocus(EventArgs e)
         {
             base.OnGotFocus(e);
@@ -185,6 +189,7 @@ namespace UI
             
             base.OnKeyDown(e);
         }
+
         #endregion
     }
 }

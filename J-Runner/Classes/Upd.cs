@@ -1,10 +1,8 @@
 ﻿using Ionic.Zip;
-using JRunner.Forms;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Threading;
