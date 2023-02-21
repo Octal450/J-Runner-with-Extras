@@ -4178,13 +4178,13 @@ namespace JRunner
                         HID.BootloaderDetected = false;
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         jRPBLToolStripMenuItem.Visible = false;
-                        device = 0;
+                        device = DEVICE.NO_DEVICE;
                     }
                     else if (e.Device.IdVendor == 0xFFFF && e.Device.IdProduct == 0x004)
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         nANDXToolStripMenuItem.Visible = false;
-                        device = 0;
+                        device = DEVICE.NO_DEVICE;
                     }
                     else if (e.Device.IdVendor == 0x11d4 && e.Device.IdProduct == 0x8338)
                     {
@@ -4193,8 +4193,8 @@ namespace JRunner
                         device = DEVICE.NO_DEVICE;
                     }
                     else if ((e.Device.IdVendor == 0x0403 && e.Device.IdProduct == 0x6010) ||
-                        (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751) ||
-                         (e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816))
+                            (e.Device.IdVendor == 0x05E3 && e.Device.IdProduct == 0x0751) ||
+                            (e.Device.IdVendor == 0xAAAA && e.Device.IdProduct == 0x8816))
                     {
                         if (!DemoN.DemonDetected) nTools.setImage(null);
                         xFlasherToolStripMenuItem.Visible = false;
