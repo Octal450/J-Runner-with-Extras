@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("J-Runner with Extras")]
-[assembly: AssemblyDescription("The Ultimate RGH/JTAG App with Extras")]
+[assembly: AssemblyDescription("The Ultimate RGH/JTAG App")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("J-Runner with Extras")]
 [assembly: AssemblyProduct("J-Runner with Extras")]
-[assembly: AssemblyCopyright("Copyright © J-Runner Developers 2012-2022")]
+[assembly: AssemblyCopyright("Copyright © J-Runner with Extras Developers 2012-2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
