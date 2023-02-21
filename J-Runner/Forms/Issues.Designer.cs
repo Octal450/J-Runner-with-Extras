@@ -65,7 +65,7 @@ namespace JRunner
             // CreateButton
             // 
             this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.CreateButton.Location = new System.Drawing.Point(1, 132);
+            this.CreateButton.Location = new System.Drawing.Point(2, 132);
             this.CreateButton.Name = "CreateButton";
             this.CreateButton.Size = new System.Drawing.Size(232, 45);
             this.CreateButton.TabIndex = 3;
