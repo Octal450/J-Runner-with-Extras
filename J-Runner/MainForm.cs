@@ -170,12 +170,6 @@ namespace JRunner
             new Thread(check_dash).Start();
 
             deviceinit();
-
-            if (variables.isWinXP)
-            {
-                xflasher.svfPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"..\..\SVF\TimingSvfTemp.svf");
-                xflasher.svfRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"..\..\SVF");
-            }
             
             try
             {

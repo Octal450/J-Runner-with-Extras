@@ -134,7 +134,7 @@
             this.txtTimingLptPort.MaxLength = 5;
             this.txtTimingLptPort.Name = "txtTimingLptPort";
             this.txtTimingLptPort.Size = new System.Drawing.Size(55, 20);
-            this.txtTimingLptPort.TabIndex = 52;
+            this.txtTimingLptPort.TabIndex = 4;
             this.toolTip1.SetToolTip(this.txtTimingLptPort, "determines the name given to the file\r\nproduced upon creation of a Nand\r\nImage");
             this.txtTimingLptPort.TextChanged += new System.EventHandler(this.txtTimingLptPort_TextChanged);
             // 
@@ -171,7 +171,7 @@
             this.chkBackupEn.Location = new System.Drawing.Point(6, 7);
             this.chkBackupEn.Name = "chkBackupEn";
             this.chkBackupEn.Size = new System.Drawing.Size(300, 17);
-            this.chkBackupEn.TabIndex = 1;
+            this.chkBackupEn.TabIndex = 20;
             this.chkBackupEn.Text = "Automatically back up nands and files after CPU Key entry";
             this.toolTip1.SetToolTip(this.chkBackupEn, resources.GetString("chkBackupEn.ToolTip"));
             this.chkBackupEn.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@
             this.groupBox2.Location = new System.Drawing.Point(402, 7);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(183, 45);
-            this.groupBox2.TabIndex = 38;
+            this.groupBox2.TabIndex = 36;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "XeLL IP Prefix";
             // 
@@ -228,7 +228,7 @@
             this.logBackgroundCustom.Location = new System.Drawing.Point(233, 192);
             this.logBackgroundCustom.Name = "logBackgroundCustom";
             this.logBackgroundCustom.Size = new System.Drawing.Size(50, 20);
-            this.logBackgroundCustom.TabIndex = 34;
+            this.logBackgroundCustom.TabIndex = 32;
             this.logBackgroundCustom.TabStop = false;
             this.logBackgroundCustom.Text = "Custom";
             this.logBackgroundCustom.UseVisualStyleBackColor = true;
@@ -241,7 +241,7 @@
             this.logBackgroundBlue.Location = new System.Drawing.Point(207, 192);
             this.logBackgroundBlue.Name = "logBackgroundBlue";
             this.logBackgroundBlue.Size = new System.Drawing.Size(20, 20);
-            this.logBackgroundBlue.TabIndex = 33;
+            this.logBackgroundBlue.TabIndex = 31;
             this.logBackgroundBlue.TabStop = false;
             this.logBackgroundBlue.UseVisualStyleBackColor = false;
             this.logBackgroundBlue.Click += new System.EventHandler(this.logBackgroundBlue_Click);
@@ -253,7 +253,7 @@
             this.logBackgroundBlack.Location = new System.Drawing.Point(181, 192);
             this.logBackgroundBlack.Name = "logBackgroundBlack";
             this.logBackgroundBlack.Size = new System.Drawing.Size(20, 20);
-            this.logBackgroundBlack.TabIndex = 32;
+            this.logBackgroundBlack.TabIndex = 30;
             this.logBackgroundBlack.TabStop = false;
             this.logBackgroundBlack.UseVisualStyleBackColor = false;
             this.logBackgroundBlack.Click += new System.EventHandler(this.logBackgroundBlack_Click);
@@ -264,7 +264,7 @@
             this.logTextCustom.Location = new System.Drawing.Point(233, 218);
             this.logTextCustom.Name = "logTextCustom";
             this.logTextCustom.Size = new System.Drawing.Size(50, 20);
-            this.logTextCustom.TabIndex = 37;
+            this.logTextCustom.TabIndex = 35;
             this.logTextCustom.TabStop = false;
             this.logTextCustom.Text = "Custom";
             this.logTextCustom.UseVisualStyleBackColor = true;
@@ -277,7 +277,7 @@
             this.logTextBlack.Location = new System.Drawing.Point(207, 218);
             this.logTextBlack.Name = "logTextBlack";
             this.logTextBlack.Size = new System.Drawing.Size(20, 20);
-            this.logTextBlack.TabIndex = 36;
+            this.logTextBlack.TabIndex = 34;
             this.logTextBlack.TabStop = false;
             this.logTextBlack.UseVisualStyleBackColor = false;
             this.logTextBlack.Click += new System.EventHandler(this.logTextBlack_Click);
@@ -289,7 +289,7 @@
             this.logTextWhite.Location = new System.Drawing.Point(181, 218);
             this.logTextWhite.Name = "logTextWhite";
             this.logTextWhite.Size = new System.Drawing.Size(20, 20);
-            this.logTextWhite.TabIndex = 35;
+            this.logTextWhite.TabIndex = 33;
             this.logTextWhite.TabStop = false;
             this.logTextWhite.UseVisualStyleBackColor = false;
             this.logTextWhite.Click += new System.EventHandler(this.logTextWhite_Click);
@@ -320,7 +320,7 @@
             this.logDefault.Location = new System.Drawing.Point(125, 192);
             this.logDefault.Name = "logDefault";
             this.logDefault.Size = new System.Drawing.Size(50, 46);
-            this.logDefault.TabIndex = 31;
+            this.logDefault.TabIndex = 29;
             this.logDefault.Text = "Default";
             this.logDefault.UseVisualStyleBackColor = true;
             this.logDefault.Click += new System.EventHandler(this.logDefault_Click);
@@ -333,7 +333,7 @@
             this.groupBox4.Location = new System.Drawing.Point(402, 59);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(183, 45);
-            this.groupBox4.TabIndex = 40;
+            this.groupBox4.TabIndex = 37;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Timing File Programming";
             // 
@@ -343,7 +343,7 @@
             this.rbtnTimingLpt.Location = new System.Drawing.Point(72, 18);
             this.rbtnTimingLpt.Name = "rbtnTimingLpt";
             this.rbtnTimingLpt.Size = new System.Drawing.Size(48, 17);
-            this.rbtnTimingLpt.TabIndex = 1;
+            this.rbtnTimingLpt.TabIndex = 3;
             this.rbtnTimingLpt.Text = "LPT:";
             this.rbtnTimingLpt.UseVisualStyleBackColor = true;
             this.rbtnTimingLpt.CheckedChanged += new System.EventHandler(this.timingRbtn_CheckedChanged);
@@ -355,7 +355,7 @@
             this.rbtnTimingUsb.Location = new System.Drawing.Point(9, 18);
             this.rbtnTimingUsb.Name = "rbtnTimingUsb";
             this.rbtnTimingUsb.Size = new System.Drawing.Size(47, 17);
-            this.rbtnTimingUsb.TabIndex = 0;
+            this.rbtnTimingUsb.TabIndex = 2;
             this.rbtnTimingUsb.TabStop = true;
             this.rbtnTimingUsb.Text = "USB";
             this.rbtnTimingUsb.UseVisualStyleBackColor = true;
@@ -378,7 +378,7 @@
             this.chkNoPatchWarnings.Location = new System.Drawing.Point(6, 123);
             this.chkNoPatchWarnings.Name = "chkNoPatchWarnings";
             this.chkNoPatchWarnings.Size = new System.Drawing.Size(206, 17);
-            this.chkNoPatchWarnings.TabIndex = 27;
+            this.chkNoPatchWarnings.TabIndex = 26;
             this.chkNoPatchWarnings.Text = "Do not show patch warning messages";
             this.chkNoPatchWarnings.UseVisualStyleBackColor = true;
             this.chkNoPatchWarnings.Click += new System.EventHandler(this.chkNoPatchWarnings_Click);
@@ -391,7 +391,7 @@
             this.chkPlaySuccess.Location = new System.Drawing.Point(6, 146);
             this.chkPlaySuccess.Name = "chkPlaySuccess";
             this.chkPlaySuccess.Size = new System.Drawing.Size(157, 17);
-            this.chkPlaySuccess.TabIndex = 29;
+            this.chkPlaySuccess.TabIndex = 27;
             this.chkPlaySuccess.Text = "Play success sound (chime)";
             this.chkPlaySuccess.UseVisualStyleBackColor = true;
             // 
@@ -403,7 +403,7 @@
             this.chkPlayError.Location = new System.Drawing.Point(6, 169);
             this.chkPlayError.Name = "chkPlayError";
             this.chkPlayError.Size = new System.Drawing.Size(138, 17);
-            this.chkPlayError.TabIndex = 30;
+            this.chkPlayError.TabIndex = 28;
             this.chkPlayError.Text = "Play error sound (oh no)";
             this.chkPlayError.UseVisualStyleBackColor = true;
             // 
@@ -415,7 +415,7 @@
             this.chkAutoDelXeLL.Location = new System.Drawing.Point(6, 100);
             this.chkAutoDelXeLL.Name = "chkAutoDelXeLL";
             this.chkAutoDelXeLL.Size = new System.Drawing.Size(226, 17);
-            this.chkAutoDelXeLL.TabIndex = 28;
+            this.chkAutoDelXeLL.TabIndex = 25;
             this.chkAutoDelXeLL.Text = "Auto delete XeLL file after successful write";
             this.chkAutoDelXeLL.UseVisualStyleBackColor = true;
             // 
@@ -483,7 +483,7 @@
             this.groupBackupNaming.Location = new System.Drawing.Point(6, 146);
             this.groupBackupNaming.Name = "groupBackupNaming";
             this.groupBackupNaming.Size = new System.Drawing.Size(354, 88);
-            this.groupBackupNaming.TabIndex = 2;
+            this.groupBackupNaming.TabIndex = 24;
             this.groupBackupNaming.TabStop = false;
             this.groupBackupNaming.Text = "Naming Scheme";
             // 
@@ -493,7 +493,7 @@
             this.rbtnCtypeSnDate.Location = new System.Drawing.Point(9, 40);
             this.rbtnCtypeSnDate.Name = "rbtnCtypeSnDate";
             this.rbtnCtypeSnDate.Size = new System.Drawing.Size(212, 17);
-            this.rbtnCtypeSnDate.TabIndex = 2;
+            this.rbtnCtypeSnDate.TabIndex = 3;
             this.rbtnCtypeSnDate.Text = "Console Type, Serial Number, and Date";
             this.rbtnCtypeSnDate.UseVisualStyleBackColor = true;
             // 
@@ -503,7 +503,7 @@
             this.rbtnSnOnly.Location = new System.Drawing.Point(9, 63);
             this.rbtnSnOnly.Name = "rbtnSnOnly";
             this.rbtnSnOnly.Size = new System.Drawing.Size(115, 17);
-            this.rbtnSnOnly.TabIndex = 1;
+            this.rbtnSnOnly.TabIndex = 4;
             this.rbtnSnOnly.Text = "Serial Number Only";
             this.rbtnSnOnly.UseVisualStyleBackColor = true;
             // 
@@ -514,7 +514,7 @@
             this.rbtnCtypeSn.Location = new System.Drawing.Point(9, 17);
             this.rbtnCtypeSn.Name = "rbtnCtypeSn";
             this.rbtnCtypeSn.Size = new System.Drawing.Size(180, 17);
-            this.rbtnCtypeSn.TabIndex = 0;
+            this.rbtnCtypeSn.TabIndex = 2;
             this.rbtnCtypeSn.TabStop = true;
             this.rbtnCtypeSn.Text = "Console Type and Serial Number";
             this.rbtnCtypeSn.UseVisualStyleBackColor = true;
@@ -534,7 +534,7 @@
             this.btnBackupRoot.Location = new System.Drawing.Point(331, 45);
             this.btnBackupRoot.Name = "btnBackupRoot";
             this.btnBackupRoot.Size = new System.Drawing.Size(29, 22);
-            this.btnBackupRoot.TabIndex = 24;
+            this.btnBackupRoot.TabIndex = 22;
             this.btnBackupRoot.Text = "...";
             this.btnBackupRoot.UseVisualStyleBackColor = true;
             this.btnBackupRoot.Click += new System.EventHandler(this.btnBackupRoot_Click);
@@ -545,7 +545,7 @@
             this.txtBackupRoot.Location = new System.Drawing.Point(6, 46);
             this.txtBackupRoot.Name = "txtBackupRoot";
             this.txtBackupRoot.Size = new System.Drawing.Size(319, 20);
-            this.txtBackupRoot.TabIndex = 23;
+            this.txtBackupRoot.TabIndex = 21;
             // 
             // groupBackupType
             // 
@@ -555,7 +555,7 @@
             this.groupBackupType.Location = new System.Drawing.Point(6, 74);
             this.groupBackupType.Name = "groupBackupType";
             this.groupBackupType.Size = new System.Drawing.Size(354, 65);
-            this.groupBackupType.TabIndex = 0;
+            this.groupBackupType.TabIndex = 23;
             this.groupBackupType.TabStop = false;
             this.groupBackupType.Text = "Backup Type";
             // 
@@ -565,7 +565,7 @@
             this.rbtnFolder.Location = new System.Drawing.Point(9, 40);
             this.rbtnFolder.Name = "rbtnFolder";
             this.rbtnFolder.Size = new System.Drawing.Size(251, 17);
-            this.rbtnFolder.TabIndex = 1;
+            this.rbtnFolder.TabIndex = 3;
             this.rbtnFolder.Text = "Folder Copy - Copy top level files to a new folder\r\n";
             this.rbtnFolder.UseVisualStyleBackColor = true;
             // 
@@ -576,7 +576,7 @@
             this.rbtnZip.Location = new System.Drawing.Point(9, 17);
             this.rbtnZip.Name = "rbtnZip";
             this.rbtnZip.Size = new System.Drawing.Size(293, 17);
-            this.rbtnZip.TabIndex = 0;
+            this.rbtnZip.TabIndex = 2;
             this.rbtnZip.TabStop = true;
             this.rbtnZip.Text = "ZIP Archive - Compresses all files and folders to a ZIP file";
             this.rbtnZip.UseVisualStyleBackColor = true;

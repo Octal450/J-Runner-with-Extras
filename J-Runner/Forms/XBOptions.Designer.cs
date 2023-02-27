@@ -103,7 +103,7 @@
             this.btnaccept.Location = new System.Drawing.Point(264, 418);
             this.btnaccept.Name = "btnaccept";
             this.btnaccept.Size = new System.Drawing.Size(75, 23);
-            this.btnaccept.TabIndex = 37;
+            this.btnaccept.TabIndex = 1;
             this.btnaccept.Text = "OK";
             this.btnaccept.UseVisualStyleBackColor = true;
             this.btnaccept.Click += new System.EventHandler(this.btnaccept_Click);
@@ -115,7 +115,7 @@
             this.chkResetSettings.Location = new System.Drawing.Point(493, 422);
             this.chkResetSettings.Name = "chkResetSettings";
             this.chkResetSettings.Size = new System.Drawing.Size(95, 17);
-            this.chkResetSettings.TabIndex = 41;
+            this.chkResetSettings.TabIndex = 99;
             this.chkResetSettings.Text = "Reset Settings";
             this.chkResetSettings.UseVisualStyleBackColor = true;
             // 
@@ -407,7 +407,7 @@
             this.cygnos.Location = new System.Drawing.Point(292, 137);
             this.cygnos.Name = "cygnos";
             this.cygnos.Size = new System.Drawing.Size(188, 17);
-            this.cygnos.TabIndex = 16;
+            this.cygnos.TabIndex = 21;
             this.cygnos.Tag = "cygnos";
             this.cygnos.Text = "Cygnos Compatible UART Speeds";
             this.cygnos.UseVisualStyleBackColor = true;
@@ -418,7 +418,7 @@
             this.demon.Location = new System.Drawing.Point(292, 114);
             this.demon.Name = "demon";
             this.demon.Size = new System.Drawing.Size(189, 17);
-            this.demon.TabIndex = 27;
+            this.demon.TabIndex = 20;
             this.demon.Tag = "demon";
             this.demon.Text = "DemoN Compatible UART Speeds";
             this.demon.UseVisualStyleBackColor = true;
@@ -429,7 +429,7 @@
             this.smcnoeject.Location = new System.Drawing.Point(292, 68);
             this.smcnoeject.Name = "smcnoeject";
             this.smcnoeject.Size = new System.Drawing.Size(182, 17);
-            this.smcnoeject.TabIndex = 30;
+            this.smcnoeject.TabIndex = 18;
             this.smcnoeject.Tag = "smcnoeject";
             this.smcnoeject.Text = "smcnoeject: Disable Eject Button";
             this.smcnoeject.UseVisualStyleBackColor = true;
@@ -440,7 +440,7 @@
             this.smcnoblink.Location = new System.Drawing.Point(292, 91);
             this.smcnoblink.Name = "smcnoblink";
             this.smcnoblink.Size = new System.Drawing.Size(217, 17);
-            this.smcnoblink.TabIndex = 31;
+            this.smcnoblink.TabIndex = 19;
             this.smcnoblink.Tag = "smcnoblink";
             this.smcnoblink.Text = "smcnoblink: Disable Power LED Blinking";
             this.smcnoblink.UseVisualStyleBackColor = true;
@@ -473,7 +473,7 @@
             this.groupBox4.Location = new System.Drawing.Point(9, 196);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(554, 169);
-            this.groupBox4.TabIndex = 49;
+            this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Options";
             // 
@@ -484,7 +484,7 @@
             this.noecdremap.Location = new System.Drawing.Point(17, 68);
             this.noecdremap.Name = "noecdremap";
             this.noecdremap.Size = new System.Drawing.Size(240, 17);
-            this.noecdremap.TabIndex = 2;
+            this.noecdremap.TabIndex = 12;
             this.noecdremap.Tag = "noecdremap";
             this.noecdremap.Text = "noecdremap: Skip ECD Sum Mismatch Rmap";
             this.noecdremap.UseVisualStyleBackColor = true;
@@ -495,7 +495,7 @@
             this.noremap.Location = new System.Drawing.Point(17, 45);
             this.noremap.Name = "noremap";
             this.noremap.Size = new System.Drawing.Size(183, 17);
-            this.noremap.TabIndex = 1;
+            this.noremap.TabIndex = 11;
             this.noremap.Tag = "noremap";
             this.noremap.Text = "noremap: Skip Bad Block Remap";
             this.noremap.UseVisualStyleBackColor = true;
@@ -507,7 +507,7 @@
             this.nosusecurity.Location = new System.Drawing.Point(17, 114);
             this.nosusecurity.Name = "nosusecurity";
             this.nosusecurity.Size = new System.Drawing.Size(194, 17);
-            this.nosusecurity.TabIndex = 44;
+            this.nosusecurity.TabIndex = 14;
             this.nosusecurity.Tag = "nosusecurity";
             this.nosusecurity.Text = "nosusecurity: Skip Security in su file";
             this.nosusecurity.UseVisualStyleBackColor = true;
@@ -518,7 +518,7 @@
             this.nodvd.Location = new System.Drawing.Point(292, 45);
             this.nodvd.Name = "nodvd";
             this.nodvd.Size = new System.Drawing.Size(239, 17);
-            this.nodvd.TabIndex = 47;
+            this.nodvd.TabIndex = 17;
             this.nodvd.Tag = "nodvd";
             this.nodvd.Text = "nodvd: Disable Tray Status Check from iBuild";
             this.nodvd.UseVisualStyleBackColor = true;
@@ -530,7 +530,7 @@
             this.olddvd.Location = new System.Drawing.Point(292, 22);
             this.olddvd.Name = "olddvd";
             this.olddvd.Size = new System.Drawing.Size(252, 17);
-            this.olddvd.TabIndex = 48;
+            this.olddvd.TabIndex = 16;
             this.olddvd.Tag = "olddvd";
             this.olddvd.Text = "olddvd: Disable Tray Status Check from FBBuild";
             this.olddvd.UseVisualStyleBackColor = true;
@@ -542,7 +542,7 @@
             this.nomobile.Location = new System.Drawing.Point(17, 22);
             this.nomobile.Name = "nomobile";
             this.nomobile.Size = new System.Drawing.Size(233, 17);
-            this.nomobile.TabIndex = 0;
+            this.nomobile.TabIndex = 10;
             this.nomobile.Tag = "nomobile";
             this.nomobile.Text = "nomobile: Skip mobile*.dat (Resets Settings)";
             this.nomobile.UseVisualStyleBackColor = true;
@@ -553,7 +553,7 @@
             this.nandmu.Location = new System.Drawing.Point(17, 137);
             this.nandmu.Name = "nandmu";
             this.nandmu.Size = new System.Drawing.Size(228, 17);
-            this.nandmu.TabIndex = 3;
+            this.nandmu.TabIndex = 15;
             this.nandmu.Tag = "nandmu";
             this.nandmu.Text = "nandmu: Attempt Big Block MU Data Save";
             this.nandmu.UseVisualStyleBackColor = true;
@@ -564,7 +564,7 @@
             this.nosecurity.Location = new System.Drawing.Point(17, 91);
             this.nosecurity.Name = "nosecurity";
             this.nosecurity.Size = new System.Drawing.Size(225, 17);
-            this.nosecurity.TabIndex = 4;
+            this.nosecurity.TabIndex = 13;
             this.nosecurity.Tag = "nosecurity";
             this.nosecurity.Text = "nosecurity: Skip Security in Nanddump.bin";
             this.nosecurity.UseVisualStyleBackColor = true;
@@ -591,7 +591,7 @@
             this.groupBox3.Location = new System.Drawing.Point(9, 7);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(554, 183);
-            this.groupBox3.TabIndex = 48;
+            this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Overrides";
             // 
@@ -645,7 +645,7 @@
             this.macid.Location = new System.Drawing.Point(183, 149);
             this.macid.Name = "macid";
             this.macid.Size = new System.Drawing.Size(122, 20);
-            this.macid.TabIndex = 36;
+            this.macid.TabIndex = 15;
             // 
             // lblmacid
             // 
@@ -688,14 +688,14 @@
             this.dvdregion.Location = new System.Drawing.Point(183, 123);
             this.dvdregion.Name = "dvdregion";
             this.dvdregion.Size = new System.Drawing.Size(56, 20);
-            this.dvdregion.TabIndex = 34;
+            this.dvdregion.TabIndex = 14;
             // 
             // gameregion
             // 
             this.gameregion.Location = new System.Drawing.Point(183, 97);
             this.gameregion.Name = "gameregion";
             this.gameregion.Size = new System.Drawing.Size(56, 20);
-            this.gameregion.TabIndex = 32;
+            this.gameregion.TabIndex = 13;
             // 
             // lblgameregion
             // 
@@ -712,7 +712,7 @@
             this.dvdkey.MaxLength = 32;
             this.dvdkey.Name = "dvdkey";
             this.dvdkey.Size = new System.Drawing.Size(239, 20);
-            this.dvdkey.TabIndex = 8;
+            this.dvdkey.TabIndex = 10;
             // 
             // lblavregion
             // 
@@ -729,14 +729,14 @@
             this.rev.MaxLength = 5;
             this.rev.Name = "rev";
             this.rev.Size = new System.Drawing.Size(67, 20);
-            this.rev.TabIndex = 46;
+            this.rev.TabIndex = 11;
             // 
             // avregion
             // 
             this.avregion.Location = new System.Drawing.Point(183, 71);
             this.avregion.Name = "avregion";
             this.avregion.Size = new System.Drawing.Size(56, 20);
-            this.avregion.TabIndex = 30;
+            this.avregion.TabIndex = 12;
             // 
             // tabControl1
             // 
