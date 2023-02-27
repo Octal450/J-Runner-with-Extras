@@ -155,7 +155,7 @@ namespace JRunner
                 {
                     Directory.CreateDirectory(variables.outfolder);
                 }
-                catch (System.IO.DirectoryNotFoundException)
+                catch (DirectoryNotFoundException)
                 {
                     variables.outfolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                     Directory.CreateDirectory(variables.outfolder);
@@ -170,6 +170,12 @@ namespace JRunner
             new Thread(check_dash).Start();
 
             deviceinit();
+
+            if (variables.isWinXP)
+            {
+                xflasher.svfPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"..\..\SVF\TimingSvfTemp.svf");
+                xflasher.svfRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"..\..\SVF");
+            }
             
             try
             {
@@ -3154,8 +3160,6 @@ namespace JRunner
 
         private void installDriversToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!xflasher.systemCheck()) return;
-
             Thread xFlasherDrivers = new Thread(() =>
             {
                 try
@@ -3163,7 +3167,7 @@ namespace JRunner
                     ProcessStartInfo xflasherdrivers = new ProcessStartInfo("common\\drivers\\xFlasher-Drivers.exe");
                     xflasherdrivers.WorkingDirectory = Environment.CurrentDirectory;
                     xflasherdrivers.UseShellExecute = true;
-                    xflasherdrivers.Verb = "runas";
+                    if (!variables.isWinXP) xflasherdrivers.Verb = "runas";
                     Process.Start(xflasherdrivers);
                 }
                 catch

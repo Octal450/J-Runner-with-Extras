@@ -54,6 +54,7 @@ namespace JRunner
 
                 if (variables.currentOS == variables.Windows.XP)
                 {
+                    variables.isWinXP = true;
                     MessageBox.Show("This version of Windows is not supported\n\nJ-Runner with Extras requires Microsoft Windows Vista or later", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -119,7 +120,7 @@ namespace JRunner
                                 ProcessStartInfo vcredistx86 = new ProcessStartInfo("common\\xflasher\\vcredist_x86.exe");
                                 vcredistx86.WorkingDirectory = Environment.CurrentDirectory;
                                 vcredistx86.UseShellExecute = true;
-                                if (Environment.OSVersion.Version.Major > 5) vcredistx86.Verb = "runas";
+                                if (!variables.isWinXP) vcredistx86.Verb = "runas";
                                 Process vcredistx86p = Process.Start(vcredistx86);
                                 vcredistx86p.WaitForExit();
                                 checkVcredist(); // Check if install succeeded

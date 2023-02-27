@@ -22,8 +22,8 @@ namespace JRunner
         [DllImport(@"common\xflasher\xFlasher.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern void spiStop();
 
-        public string svfPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Octal450\TimingSvfTemp.svf");
-        public string svfRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Octal450");
+        public string svfPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"SVF\TimingSvfTemp.svf");
+        public string svfRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"SVF");
 
         public bool ready = false;
         public bool inUse = false;
@@ -39,19 +39,6 @@ namespace JRunner
         System.Timers.Timer inUseTimer;
 
         // Libraries
-        public bool systemCheck()
-        {
-            if (variables.currentOS != variables.Windows.XP)
-            {
-                return true;
-            }
-            else
-            {
-                MessageBox.Show("This version of Windows is not supported\n\nxFlasher requires Microsoft Windows Vista Service Pack 2 or later", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
         public void initTimerSetup()
         {
             initTimer = new System.Windows.Threading.DispatcherTimer();
@@ -104,8 +91,6 @@ namespace JRunner
         // Flash Config
         public void getFlashConfig()
         {
-            if (!systemCheck()) return;
-
             if (inUse || waiting) return;
 
             Thread ftdiThread = new Thread(() =>
@@ -205,8 +190,6 @@ namespace JRunner
 
         public void getConsoleCb()
         {
-            if (!systemCheck()) return;
-
             if (inUse || waiting) return;
 
             Thread ftdiThread = new Thread(() =>
@@ -304,8 +287,6 @@ namespace JRunner
         // Read Nand
         public void readNandAuto(int size, int iterations, bool skipboardcheck = false) // Automated read, do not use for any special/custom read
         {
-            if (!systemCheck()) return;
-
             if (inUse || waiting) return;
 
             Thread ftdiThread = new Thread(() =>
@@ -486,8 +467,6 @@ namespace JRunner
 
         public void readNand(int size, string filename, int startblock = 0, int length = 0)
         {
-            if (!systemCheck()) return;
-
             if (inUse || waiting) return;
 
             if (string.IsNullOrWhiteSpace(filename)) return;
@@ -662,8 +641,6 @@ namespace JRunner
 
         public void writeNand(int size, string filename, int mode = 0, int startblock = 0, int length = 0, bool skipboardcheck = false)
         {
-            if (!systemCheck()) return;
-
             if (inUse || waiting) return;
 
             if (filename != "erase")
@@ -894,8 +871,6 @@ namespace JRunner
         // SVF Flashing
         public void flashSvf(string filename)
         {
-            if (!systemCheck()) return;
-
             if (inUse || waiting) return;
 
             if (Process.GetProcessesByName("jtag").Length > 0)
