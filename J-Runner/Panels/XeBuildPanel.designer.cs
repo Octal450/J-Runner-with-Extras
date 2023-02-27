@@ -733,7 +733,6 @@
             this.btnInfo.Size = new System.Drawing.Size(57, 22);
             this.btnInfo.TabIndex = 13;
             this.btnInfo.Text = "Get Info";
-            this.toolTip1.SetToolTip(this.btnInfo, "Grab Console info and save files to output folder");
             this.btnInfo.UseVisualStyleBackColor = true;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
@@ -745,8 +744,6 @@
             this.chkForceIP2.Size = new System.Drawing.Size(66, 17);
             this.chkForceIP2.TabIndex = 14;
             this.chkForceIP2.Text = "Force IP";
-            this.toolTip1.SetToolTip(this.chkForceIP2, "Force the Client to use IP specified in box:\r\nmust be in correct format e.g. 192." +
-        "168.1.71\r\ni.e separated with \".\" ");
             this.chkForceIP2.UseVisualStyleBackColor = true;
             this.chkForceIP2.CheckedChanged += new System.EventHandler(this.chkForceIP2_CheckedChanged);
             // 
@@ -758,7 +755,6 @@
             this.txtIP2.Size = new System.Drawing.Size(75, 20);
             this.txtIP2.TabIndex = 15;
             this.txtIP2.Text = "Autoscan LAN";
-            this.toolTip1.SetToolTip(this.txtIP2, "Box to Enter an IP if wishing to specify one");
             this.txtIP2.TextChanged += new System.EventHandler(this.txtIP2_TextChanged);
             // 
             // lblLength
@@ -786,7 +782,6 @@
             this.btnErase.Size = new System.Drawing.Size(75, 22);
             this.btnErase.TabIndex = 7;
             this.btnErase.Text = "Erase Block";
-            this.toolTip1.SetToolTip(this.btnErase, "Uses LAN to erase the blocks specified by offset and length boxes");
             this.btnErase.UseVisualStyleBackColor = true;
             this.btnErase.Click += new System.EventHandler(this.btnErase_Click);
             // 
@@ -796,7 +791,6 @@
             this.txtOffset.Name = "txtOffset";
             this.txtOffset.Size = new System.Drawing.Size(35, 20);
             this.txtOffset.TabIndex = 8;
-            this.toolTip1.SetToolTip(this.txtOffset, "Starting point reference for read/write/erase");
             // 
             // txtLength
             // 
@@ -804,7 +798,6 @@
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(35, 20);
             this.txtLength.TabIndex = 11;
-            this.toolTip1.SetToolTip(this.txtLength, "Length used in conjunction with offset");
             // 
             // btnPatches
             // 
@@ -814,7 +807,6 @@
             this.btnPatches.Size = new System.Drawing.Size(105, 22);
             this.btnPatches.TabIndex = 12;
             this.btnPatches.Text = "Update Patch(es)";
-            this.toolTip1.SetToolTip(this.btnPatches, "Add specified patches from settings tab");
             this.btnPatches.UseVisualStyleBackColor = true;
             this.btnPatches.Click += new System.EventHandler(this.btnPatches_Click);
             // 
@@ -825,7 +817,6 @@
             this.btnComp.Size = new System.Drawing.Size(169, 22);
             this.btnComp.TabIndex = 17;
             this.btnComp.Text = "Send Xbox Compatibility Data";
-            this.toolTip1.SetToolTip(this.btnComp, "Refer to Xebuild\'s Notes");
             this.btnComp.UseVisualStyleBackColor = true;
             this.btnComp.Click += new System.EventHandler(this.btnComp_Click);
             // 
@@ -836,7 +827,6 @@
             this.btnAvatar.Size = new System.Drawing.Size(140, 22);
             this.btnAvatar.TabIndex = 16;
             this.btnAvatar.Text = "Send Avatar/Kinect Data";
-            this.toolTip1.SetToolTip(this.btnAvatar, "Update your Avatar and Kinect Data");
             this.btnAvatar.UseVisualStyleBackColor = true;
             this.btnAvatar.Click += new System.EventHandler(this.btnAvatar_Click);
             // 
@@ -847,7 +837,6 @@
             this.btnWrite.Size = new System.Drawing.Size(52, 22);
             this.btnWrite.TabIndex = 6;
             this.btnWrite.Text = "Write";
-            this.toolTip1.SetToolTip(this.btnWrite, "Uses LAN to write the nand");
             this.btnWrite.UseVisualStyleBackColor = true;
             this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
             // 
@@ -858,7 +847,6 @@
             this.btnRead.Size = new System.Drawing.Size(54, 22);
             this.btnRead.TabIndex = 5;
             this.btnRead.Text = "Read";
-            this.toolTip1.SetToolTip(this.btnRead, "Uses LAN to read the nand");
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
@@ -870,7 +858,6 @@
             this.chkReboot.Size = new System.Drawing.Size(61, 17);
             this.chkReboot.TabIndex = 10;
             this.chkReboot.Text = "Reboot";
-            this.toolTip1.SetToolTip(this.chkReboot, "Reboot the console after read/write/erase/updates etc");
             this.chkReboot.UseVisualStyleBackColor = true;
             this.chkReboot.CheckedChanged += new System.EventHandler(this.chkReboot_CheckedChanged);
             // 
@@ -882,7 +869,6 @@
             this.chkShutdown.Size = new System.Drawing.Size(74, 17);
             this.chkShutdown.TabIndex = 9;
             this.chkShutdown.Text = "Shutdown";
-            this.toolTip1.SetToolTip(this.chkShutdown, "Shutdown the console after read/write/erase/update etc");
             this.chkShutdown.UseVisualStyleBackColor = true;
             this.chkShutdown.CheckedChanged += new System.EventHandler(this.chkShutdown_CheckedChanged);
             // 
@@ -918,18 +904,16 @@
             this.lblD.AutoSize = true;
             this.lblD.Location = new System.Drawing.Point(116, 28);
             this.lblD.Name = "lblD";
-            this.lblD.Size = new System.Drawing.Size(35, 13);
+            this.lblD.Size = new System.Drawing.Size(0, 13);
             this.lblD.TabIndex = 9;
-            this.lblD.Text = "Dash:";
             // 
             // txtIP
             // 
             this.txtIP.Enabled = false;
-            this.txtIP.Location = new System.Drawing.Point(230, 69);
+            this.txtIP.Location = new System.Drawing.Point(230, 68);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(75, 20);
             this.txtIP.TabIndex = 11;
-            this.txtIP.Text = "Autoscan LAN";
             this.txtIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIP.TextChanged += new System.EventHandler(this.txtIP_TextChanged);
             // 
@@ -1055,16 +1039,6 @@
         private DataSet1 dashDataSet;
         private System.Windows.Forms.CheckBox chkLaunch;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.TabPage tabUpdate;
-        private System.Windows.Forms.Label lblD;
-        private System.Windows.Forms.TextBox txtIP;
-        private System.Windows.Forms.CheckBox chkForceIP;
-        private System.Windows.Forms.CheckBox chkNoReeb;
-        private System.Windows.Forms.CheckBox chkClean;
-        private System.Windows.Forms.CheckBox chkNoAva;
-        private System.Windows.Forms.CheckBox chkNoWrite;
-        private System.Windows.Forms.Button btnXEUpdate;
-        private System.Windows.Forms.Label lblDash;
         private System.Windows.Forms.Button btnGetMB;
         private System.Windows.Forms.TabPage tabClient;
         private System.Windows.Forms.TextBox txtOffset;
@@ -1104,5 +1078,15 @@
         private System.Windows.Forms.Button btnShowAdvanced;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox chkUsbdSec;
+        private System.Windows.Forms.TabPage tabUpdate;
+        private System.Windows.Forms.Label lblDash;
+        private System.Windows.Forms.Label lblD;
+        private System.Windows.Forms.TextBox txtIP;
+        private System.Windows.Forms.CheckBox chkForceIP;
+        private System.Windows.Forms.CheckBox chkNoReeb;
+        private System.Windows.Forms.CheckBox chkClean;
+        private System.Windows.Forms.CheckBox chkNoAva;
+        private System.Windows.Forms.CheckBox chkNoWrite;
+        private System.Windows.Forms.Button btnXEUpdate;
     }
 }
