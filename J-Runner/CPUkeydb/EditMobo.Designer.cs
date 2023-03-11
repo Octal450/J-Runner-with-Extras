@@ -43,63 +43,54 @@
             // 
             // SerialTB
             // 
-            this.SerialTB.Enabled = false;
-            this.SerialTB.ForeColor = System.Drawing.Color.Red;
             this.SerialTB.Location = new System.Drawing.Point(64, 45);
             this.SerialTB.Name = "SerialTB";
-            this.SerialTB.Size = new System.Drawing.Size(157, 20);
-            this.SerialTB.TabIndex = 0;
-            this.SerialTB.TabStop = false;
-            this.SerialTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SerialTB.ReadOnly = true;
+            this.SerialTB.Size = new System.Drawing.Size(91, 20);
+            this.SerialTB.TabIndex = 6;
             // 
             // CpukeyTB
             // 
-            this.CpukeyTB.Enabled = false;
-            this.CpukeyTB.ForeColor = System.Drawing.Color.Red;
             this.CpukeyTB.Location = new System.Drawing.Point(64, 78);
             this.CpukeyTB.Name = "CpukeyTB";
-            this.CpukeyTB.Size = new System.Drawing.Size(213, 20);
-            this.CpukeyTB.TabIndex = 1;
-            this.CpukeyTB.TabStop = false;
-            this.CpukeyTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.CpukeyTB.ReadOnly = true;
+            this.CpukeyTB.Size = new System.Drawing.Size(218, 20);
+            this.CpukeyTB.TabIndex = 7;
             // 
             // ConsTypeTB
             // 
             this.ConsTypeTB.Location = new System.Drawing.Point(64, 111);
             this.ConsTypeTB.Name = "ConsTypeTB";
-            this.ConsTypeTB.Size = new System.Drawing.Size(157, 20);
-            this.ConsTypeTB.TabIndex = 0;
-            this.ConsTypeTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ConsTypeTB.Size = new System.Drawing.Size(145, 20);
+            this.ConsTypeTB.TabIndex = 8;
             // 
             // EditOKBut
             // 
             this.EditOKBut.Location = new System.Drawing.Point(63, 143);
             this.EditOKBut.Name = "EditOKBut";
-            this.EditOKBut.Size = new System.Drawing.Size(75, 23);
-            this.EditOKBut.TabIndex = 3;
+            this.EditOKBut.Size = new System.Drawing.Size(76, 23);
+            this.EditOKBut.TabIndex = 0;
             this.EditOKBut.Text = "Save";
             this.EditOKBut.UseVisualStyleBackColor = true;
             this.EditOKBut.Click += new System.EventHandler(this.EditOKBut_Click);
             // 
             // CancelBut
             // 
-            this.CancelBut.Location = new System.Drawing.Point(153, 143);
+            this.CancelBut.Location = new System.Drawing.Point(155, 143);
             this.CancelBut.Name = "CancelBut";
-            this.CancelBut.Size = new System.Drawing.Size(75, 23);
-            this.CancelBut.TabIndex = 4;
+            this.CancelBut.Size = new System.Drawing.Size(76, 23);
+            this.CancelBut.TabIndex = 90;
             this.CancelBut.Text = "Cancel";
             this.CancelBut.UseVisualStyleBackColor = true;
             this.CancelBut.Click += new System.EventHandler(this.CancelBut_Click);
             // 
             // IdentTB
             // 
-            this.IdentTB.Enabled = false;
-            this.IdentTB.ForeColor = System.Drawing.Color.Red;
             this.IdentTB.Location = new System.Drawing.Point(64, 13);
             this.IdentTB.Name = "IdentTB";
+            this.IdentTB.ReadOnly = true;
             this.IdentTB.Size = new System.Drawing.Size(49, 20);
             this.IdentTB.TabIndex = 5;
-            this.IdentTB.TabStop = false;
             this.IdentTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
@@ -142,7 +133,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 175);
+            this.ClientSize = new System.Drawing.Size(294, 178);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -161,7 +152,7 @@
             this.Name = "Editmobo";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Edit Console Type";
+            this.Text = "Edit Entry";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Editmobo_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();

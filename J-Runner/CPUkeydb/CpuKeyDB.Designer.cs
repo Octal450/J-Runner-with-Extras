@@ -75,7 +75,7 @@
             this.txtSearch.MaxLength = 32;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(210, 20);
-            this.txtSearch.TabIndex = 1;
+            this.txtSearch.TabIndex = 5;
             this.txtSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // dataGridView1
@@ -208,7 +208,7 @@
             this.btnExport.Location = new System.Drawing.Point(611, 126);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(98, 23);
-            this.btnExport.TabIndex = 11;
+            this.btnExport.TabIndex = 13;
             this.btnExport.Text = "Export Table";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
@@ -219,7 +219,7 @@
             this.btnClose.Location = new System.Drawing.Point(611, 228);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(98, 23);
-            this.btnClose.TabIndex = 12;
+            this.btnClose.TabIndex = 15;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -228,30 +228,30 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem,
-            this.deleteToolStripMenuItem,
-            this.EditMobotoolStripMenuItem1});
+            this.EditMobotoolStripMenuItem1,
+            this.deleteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 70);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.copyToolStripMenuItem.Text = "Copy to Clipboard";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // EditMobotoolStripMenuItem1
             // 
             this.EditMobotoolStripMenuItem1.Name = "EditMobotoolStripMenuItem1";
-            this.EditMobotoolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
-            this.EditMobotoolStripMenuItem1.Text = "Edit Mobo Entry";
+            this.EditMobotoolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.EditMobotoolStripMenuItem1.Text = "Edit";
             this.EditMobotoolStripMenuItem1.Click += new System.EventHandler(this.EditMobotoolStripMenuItem1_Click);
             // 
             // rbtnSerial
@@ -260,7 +260,7 @@
             this.rbtnSerial.Location = new System.Drawing.Point(362, 13);
             this.rbtnSerial.Name = "rbtnSerial";
             this.rbtnSerial.Size = new System.Drawing.Size(51, 17);
-            this.rbtnSerial.TabIndex = 13;
+            this.rbtnSerial.TabIndex = 7;
             this.rbtnSerial.Text = "Serial";
             this.rbtnSerial.UseVisualStyleBackColor = true;
             this.rbtnSerial.CheckedChanged += new System.EventHandler(this.rbtnSerial_CheckedChanged);
@@ -272,7 +272,7 @@
             this.rbtnCPU.Location = new System.Drawing.Point(294, 13);
             this.rbtnCPU.Name = "rbtnCPU";
             this.rbtnCPU.Size = new System.Drawing.Size(68, 17);
-            this.rbtnCPU.TabIndex = 14;
+            this.rbtnCPU.TabIndex = 6;
             this.rbtnCPU.TabStop = true;
             this.rbtnCPU.Text = "CPU Key";
             this.rbtnCPU.UseVisualStyleBackColor = true;
@@ -283,7 +283,7 @@
             this.btnScan.Location = new System.Drawing.Point(611, 39);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(98, 23);
-            this.btnScan.TabIndex = 16;
+            this.btnScan.TabIndex = 10;
             this.btnScan.Text = "Scan Folders";
             this.btnScan.UseVisualStyleBackColor = true;
             this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
@@ -293,7 +293,7 @@
             this.btnreverse.Location = new System.Drawing.Point(611, 68);
             this.btnreverse.Name = "btnreverse";
             this.btnreverse.Size = new System.Drawing.Size(98, 23);
-            this.btnreverse.TabIndex = 17;
+            this.btnreverse.TabIndex = 11;
             this.btnreverse.Text = "Reverse Scan";
             this.btnreverse.UseVisualStyleBackColor = true;
             this.btnreverse.Click += new System.EventHandler(this.btnreverse_Click);
@@ -303,7 +303,7 @@
             this.btnImport.Location = new System.Drawing.Point(611, 97);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(98, 23);
-            this.btnImport.TabIndex = 18;
+            this.btnImport.TabIndex = 12;
             this.btnImport.Text = "Import Table";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);

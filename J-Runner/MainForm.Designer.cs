@@ -191,7 +191,7 @@ namespace JRunner
             this.btnCompare.Location = new System.Drawing.Point(390, 42);
             this.btnCompare.Name = "btnCompare";
             this.btnCompare.Size = new System.Drawing.Size(65, 22);
-            this.btnCompare.TabIndex = 24;
+            this.btnCompare.TabIndex = 25;
             this.btnCompare.Text = "Compare";
             this.toolTip1.SetToolTip(this.btnCompare, "Compares the source and extra nands");
             this.btnCompare.UseVisualStyleBackColor = true;
@@ -202,7 +202,7 @@ namespace JRunner
             this.btnLoadExtra.Location = new System.Drawing.Point(7, 42);
             this.btnLoadExtra.Name = "btnLoadExtra";
             this.btnLoadExtra.Size = new System.Drawing.Size(76, 22);
-            this.btnLoadExtra.TabIndex = 22;
+            this.btnLoadExtra.TabIndex = 23;
             this.btnLoadExtra.Text = "Load Extra";
             this.toolTip1.SetToolTip(this.btnLoadExtra, "Load an extra nand for comparison");
             this.btnLoadExtra.UseVisualStyleBackColor = true;
@@ -228,7 +228,7 @@ namespace JRunner
             this.txtFileExtra.Name = "txtFileExtra";
             this.txtFileExtra.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtFileExtra.Size = new System.Drawing.Size(295, 20);
-            this.txtFileExtra.TabIndex = 23;
+            this.txtFileExtra.TabIndex = 24;
             this.toolTip1.SetToolTip(this.txtFileExtra, "The file listed in this box is used to compare against file loaded in \"Source fil" +
         "e\" box\r\n");
             this.txtFileExtra.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtFileExtra_DragDrop);
@@ -273,7 +273,7 @@ namespace JRunner
             this.txtCPUKey.MaxLength = 32;
             this.txtCPUKey.Name = "txtCPUKey";
             this.txtCPUKey.Size = new System.Drawing.Size(295, 20);
-            this.txtCPUKey.TabIndex = 25;
+            this.txtCPUKey.TabIndex = 26;
             this.toolTip1.SetToolTip(this.txtCPUKey, "This is where your CPU key should be entered. You can drag and drop previously sa" +
         "ved cpukey.txt or paste in your CPU Key details.");
             this.txtCPUKey.TextChanged += new System.EventHandler(this.txtCPUKey_TextChanged);
@@ -390,7 +390,7 @@ namespace JRunner
             this.btnReload.Location = new System.Drawing.Point(390, 71);
             this.btnReload.Name = "btnReload";
             this.btnReload.Size = new System.Drawing.Size(65, 22);
-            this.btnReload.TabIndex = 26;
+            this.btnReload.TabIndex = 27;
             this.btnReload.Text = "Reload";
             this.toolTip1.SetToolTip(this.btnReload, "Reloads and initializes the nand in source box");
             this.btnReload.UseVisualStyleBackColor = true;
@@ -478,7 +478,7 @@ namespace JRunner
             this.btnBackup.Location = new System.Drawing.Point(390, 13);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(65, 22);
-            this.btnBackup.TabIndex = 28;
+            this.btnBackup.TabIndex = 22;
             this.btnBackup.Text = "Backup";
             this.btnBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip1.SetToolTip(this.btnBackup, "Displays a menu of backup options");
@@ -530,7 +530,7 @@ namespace JRunner
             this.btnScanDevices.Location = new System.Drawing.Point(567, 519);
             this.btnScanDevices.Name = "btnScanDevices";
             this.btnScanDevices.Size = new System.Drawing.Size(85, 26);
-            this.btnScanDevices.TabIndex = 301;
+            this.btnScanDevices.TabIndex = 296;
             this.btnScanDevices.Text = "Scan Devices";
             this.toolTip1.SetToolTip(this.btnScanDevices, "Scans USB ports for programmers and other devices");
             this.btnScanDevices.UseVisualStyleBackColor = true;

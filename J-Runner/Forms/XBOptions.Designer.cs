@@ -290,7 +290,6 @@
             this.rbtnBlank.TabIndex = 8;
             this.rbtnBlank.Text = "Blank - Disabled";
             this.rbtnBlank.UseVisualStyleBackColor = true;
-            this.rbtnBlank.Visible = false;
             this.rbtnBlank.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
             // 
             // rbtnKiosk

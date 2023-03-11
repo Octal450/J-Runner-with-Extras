@@ -57,7 +57,7 @@
             this.btnPatchKv.Location = new System.Drawing.Point(208, 106);
             this.btnPatchKv.Name = "btnPatchKv";
             this.btnPatchKv.Size = new System.Drawing.Size(65, 51);
-            this.btnPatchKv.TabIndex = 29;
+            this.btnPatchKv.TabIndex = 30;
             this.btnPatchKv.Text = "Patch\r\nKeyvault";
             this.toolTip1.SetToolTip(this.btnPatchKv, "Launches the KV Patcher");
             this.btnPatchKv.UseVisualStyleBackColor = true;
@@ -201,7 +201,7 @@
             this.btnExtractFiles.Location = new System.Drawing.Point(136, 106);
             this.btnExtractFiles.Name = "btnExtractFiles";
             this.btnExtractFiles.Size = new System.Drawing.Size(65, 51);
-            this.btnExtractFiles.TabIndex = 28;
+            this.btnExtractFiles.TabIndex = 29;
             this.btnExtractFiles.Text = "Extract\r\nFiles";
             this.toolTip1.SetToolTip(this.btnExtractFiles, "Extracts the files from the source nand");
             this.btnExtractFiles.UseVisualStyleBackColor = true;
@@ -212,7 +212,7 @@
             this.btnCreateDonor.Location = new System.Drawing.Point(64, 106);
             this.btnCreateDonor.Name = "btnCreateDonor";
             this.btnCreateDonor.Size = new System.Drawing.Size(65, 51);
-            this.btnCreateDonor.TabIndex = 30;
+            this.btnCreateDonor.TabIndex = 28;
             this.btnCreateDonor.Text = "Create\r\nDonor";
             this.toolTip1.SetToolTip(this.btnCreateDonor, "Launches the Create Donor Nand Wizard");
             this.btnCreateDonor.UseVisualStyleBackColor = true;

@@ -201,7 +201,7 @@
             this.Rgh3Mhz.Location = new System.Drawing.Point(284, 61);
             this.Rgh3Mhz.Name = "Rgh3Mhz";
             this.Rgh3Mhz.Size = new System.Drawing.Size(36, 21);
-            this.Rgh3Mhz.TabIndex = 98;
+            this.Rgh3Mhz.TabIndex = 20;
             this.Rgh3Mhz.Text = "27";
             this.toolTip1.SetToolTip(this.Rgh3Mhz, "Sets the I2C slowdown type");
             // 
@@ -227,7 +227,6 @@
             this.chkWB.Name = "chkWB";
             this.chkWB.Size = new System.Drawing.Size(60, 17);
             this.chkWB.TabIndex = 14;
-            this.chkWB.TabStop = false;
             this.chkWB.Text = "WB 2K";
             this.toolTip1.SetToolTip(this.chkWB, "Check to use 13182 CBB for Winbond 2K consoles");
             this.chkWB.UseVisualStyleBackColor = false;
@@ -252,7 +251,7 @@
             this.chkCleanSMC.Location = new System.Drawing.Point(229, 90);
             this.chkCleanSMC.Name = "chkCleanSMC";
             this.chkCleanSMC.Size = new System.Drawing.Size(79, 17);
-            this.chkCleanSMC.TabIndex = 23;
+            this.chkCleanSMC.TabIndex = 24;
             this.chkCleanSMC.Text = "Clean SMC";
             this.toolTip1.SetToolTip(this.chkCleanSMC, "Use a clean retail SMC");
             this.chkCleanSMC.UseVisualStyleBackColor = true;
@@ -381,8 +380,7 @@
             this.chkAudClamp.Location = new System.Drawing.Point(229, 65);
             this.chkAudClamp.Name = "chkAudClamp";
             this.chkAudClamp.Size = new System.Drawing.Size(80, 17);
-            this.chkAudClamp.TabIndex = 20;
-            this.chkAudClamp.TabStop = false;
+            this.chkAudClamp.TabIndex = 21;
             this.chkAudClamp.Text = "Aud_Clamp";
             this.toolTip1.SetToolTip(this.chkAudClamp, "Check if using Aud_Clamp wiring on HDMI Phats");
             this.chkAudClamp.UseVisualStyleBackColor = false;
@@ -419,7 +417,7 @@
             this.chkRJtag.Location = new System.Drawing.Point(229, 81);
             this.chkRJtag.Name = "chkRJtag";
             this.chkRJtag.Size = new System.Drawing.Size(64, 17);
-            this.chkRJtag.TabIndex = 73;
+            this.chkRJtag.TabIndex = 23;
             this.chkRJtag.Text = "R-JTAG";
             this.toolTip1.SetToolTip(this.chkRJtag, "Check if using R-JTAG/R-JTOP methods");
             this.chkRJtag.UseVisualStyleBackColor = true;
@@ -513,7 +511,7 @@
             this.groupBox2.Location = new System.Drawing.Point(210, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(104, 56);
-            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Other Patches";
             // 
@@ -645,7 +643,7 @@
             this.chkBigffs.Location = new System.Drawing.Point(4, 61);
             this.chkBigffs.Name = "chkBigffs";
             this.chkBigffs.Size = new System.Drawing.Size(83, 17);
-            this.chkBigffs.TabIndex = 12;
+            this.chkBigffs.TabIndex = 13;
             this.chkBigffs.Text = "bigffs Image";
             this.toolTip1.SetToolTip(this.chkBigffs, "Only for 64MB and large NAND sizes");
             this.chkBigffs.UseVisualStyleBackColor = true;
@@ -671,7 +669,7 @@
             this.btnLaunch.Location = new System.Drawing.Point(188, 3);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(132, 26);
-            this.btnLaunch.TabIndex = 13;
+            this.btnLaunch.TabIndex = 11;
             this.btnLaunch.Text = "Launch.ini Options";
             this.toolTip1.SetToolTip(this.btnLaunch, "Advanced Users Only\r\nAllows you to create a launch.ini\r\n");
             this.btnLaunch.UseVisualStyleBackColor = true;
@@ -683,7 +681,7 @@
             this.chkXeSettings.Location = new System.Drawing.Point(4, 37);
             this.chkXeSettings.Name = "chkXeSettings";
             this.chkXeSettings.Size = new System.Drawing.Size(117, 17);
-            this.chkXeSettings.TabIndex = 11;
+            this.chkXeSettings.TabIndex = 12;
             this.chkXeSettings.Text = "Use Edited Options";
             this.chkXeSettings.UseVisualStyleBackColor = true;
             this.chkXeSettings.CheckedChanged += new System.EventHandler(this.chkxesettings_CheckedChanged);
