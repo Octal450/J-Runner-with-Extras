@@ -1878,7 +1878,8 @@ namespace JRunner
             try
             {
                 updateProgress(progressBar.Minimum);
-                if (Path.GetExtension(variables.filename1) != ".bin") return;
+                string extn = Path.GetExtension(variables.filename1);
+                if (extn != ".bin" && extn != ".ecc") return;
                 variables.gotvalues = true;
 
                 bool sts = objAlphaPattern.IsMatch(variables.cpukey);
@@ -1965,7 +1966,7 @@ namespace JRunner
                                 extractFilesFromNand();
 
                             }
-                            if (reg) nandInfo.show_cpukey_tab();
+
                             txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
                             if ((!variables.filename1.Contains(nand.ki.serial)) && (variables.filename1.Contains(variables.outfolder)))
                             {

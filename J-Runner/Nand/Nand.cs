@@ -20,6 +20,10 @@ namespace JRunner.Nand
         public int CF_1;
         public int CG_1;
     }
+    public struct SMCInfo
+    {
+        public string smcver;
+    }
     public struct KVInfo
     {
         public string osig;
@@ -147,6 +151,7 @@ namespace JRunner.Nand
     {
         public bool ok = false;
         public Bootloaders bl;
+        public SMCInfo si;
         public KVInfo ki;
         public Useful uf;
         public string _cpukey = "", _filename;
@@ -167,6 +172,7 @@ namespace JRunner.Nand
             Files = new List<FSFile>();
             bl.CB_A = 0;
             bl.CB_B = 0;
+            si.smcver = "";
             ki.osig = "";
             ki.serial = "";
             ki.region = "";
@@ -199,7 +205,7 @@ namespace JRunner.Nand
             if (!ascii.GetString(temp).Contains("Microsoft"))
             {
                 if (variables.debugMode) Console.WriteLine(ascii.GetString(temp));
-                if (temp[0] == 0x46 && temp[1] == 0x57 && temp[2] == 0x41 && temp[3] == 0x00) Console.WriteLine("DemoN FW");
+                if (temp[0] == 0x46 && temp[1] == 0x57 && temp[2] == 0x41 && temp[3] == 0x00) Console.WriteLine("DemoN Firmware");
                 else if (s1 != 0x40000) Console.WriteLine("Header is wrong");
             }
             //
@@ -247,6 +253,7 @@ namespace JRunner.Nand
                 if (variables.extractfiles) Oper.savefile(SMC, "output\\SMC_en.bin");
                 SMC = Nand.decrypt_SMC(SMC);
                 if (variables.extractfiles) Oper.savefile(SMC, "output\\SMC_dec.bin");
+                si.smcver = SMC[0x101] + "." + SMC[0x102].ToString("D2");
                 variables.smcmbtype = SMC[0x100] >> 4 & 15;
                 _smc = SMC;
                 SMC = null;

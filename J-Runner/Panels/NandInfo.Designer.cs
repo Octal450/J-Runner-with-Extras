@@ -31,6 +31,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageNand = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxSmcVer = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBoxCbType = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxConsole = new System.Windows.Forms.TextBox();
@@ -118,12 +120,14 @@
             this.tabPageNand.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageNand.Size = new System.Drawing.Size(335, 273);
             this.tabPageNand.TabIndex = 0;
-            this.tabPageNand.Text = "Bootloaders";
+            this.tabPageNand.Text = "General";
             // 
             // groupBox1
             // 
             this.groupBox1.AllowDrop = true;
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.groupBox1.Controls.Add(this.textBoxSmcVer);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBoxCbType);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBoxConsole);
@@ -165,9 +169,28 @@
             this.groupBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragDrop);
             this.groupBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.NandInfo_DragEnter);
             // 
+            // textBoxSmcVer
+            // 
+            this.textBoxSmcVer.Location = new System.Drawing.Point(254, 15);
+            this.textBoxSmcVer.Name = "textBoxSmcVer";
+            this.textBoxSmcVer.ReadOnly = true;
+            this.textBoxSmcVer.Size = new System.Drawing.Size(62, 20);
+            this.textBoxSmcVer.TabIndex = 71;
+            this.textBoxSmcVer.TabStop = false;
+            this.textBoxSmcVer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(200, 82);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 70;
+            this.label4.Text = "CB Type";
+            // 
             // textBoxCbType
             // 
-            this.textBoxCbType.Location = new System.Drawing.Point(254, 15);
+            this.textBoxCbType.Location = new System.Drawing.Point(254, 79);
             this.textBoxCbType.Name = "textBoxCbType";
             this.textBoxCbType.ReadOnly = true;
             this.textBoxCbType.Size = new System.Drawing.Size(62, 20);
@@ -178,11 +201,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(167, 18);
+            this.label3.Location = new System.Drawing.Point(180, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 13);
+            this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 68;
-            this.label3.Text = "Bootloader Type";
+            this.label3.Text = "SMC Version";
             // 
             // textBoxConsole
             // 
@@ -795,5 +818,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnConsoleId;
         private System.Windows.Forms.Label lblhashed;
+        private System.Windows.Forms.TextBox textBoxSmcVer;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -1358,7 +1358,7 @@ namespace JRunner
                     if (sendXSVF(protected_id, MyUsbDevice, writer) == 1)
                     {
                         //Console.WriteLine("Protection check");
-                        if (DialogResult.No == MessageBox.Show("Factory fw sign detected, writing this device is a one way process, and cant be reversed.\n Do you wish to proceed?", "Protected", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                        if (DialogResult.No == MessageBox.Show("Factory firmware detected!\n\nAre you sure you want to overwrite it?", "Steep Hill Ahead", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                         {
                             return Errors.GeneralError;
                         };

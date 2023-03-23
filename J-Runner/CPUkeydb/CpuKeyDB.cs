@@ -856,15 +856,16 @@ namespace JRunner
             long crc = 0;
             if (string.IsNullOrWhiteSpace(txtSearch.Text))
             {
-                if (MessageBox.Show("No cpukey in searchbox. Use a dump?", "Search", MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes) return;
+                if (MessageBox.Show("No CPU Key has been entered in the search box\n\nDo you want to use a nand dump?", "Search", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
                 kv = true;
             }
 
             if (kv)
             {
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                openFileDialog1.Title = "Select a File";
-                if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                openFileDialog1.Filter = "Nand files (*.bin;*.ecc)|*.bin;*.ecc|HEX files (*.hex)|*.hex|All files (*.*)|*.*";
+                openFileDialog1.Title = "Select Nand File";
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     string filename1 = openFileDialog1.FileName;
                     crc = Nand.Nand.kvcrc(filename1);

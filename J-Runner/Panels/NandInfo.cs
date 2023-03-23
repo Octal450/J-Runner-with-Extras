@@ -42,6 +42,7 @@ namespace JRunner.Panels
             textBoxpd_cb.Text = "";
             textBoxCbType.Text = "";
             textBoxConsole.Text = "";
+            textBoxSmcVer.Text = "";
             textBox2BLb.Enabled = true;
             label2blb.Visible = true;
             label2bla.Visible = true;
@@ -99,8 +100,8 @@ namespace JRunner.Panels
                     if (nand.bl.CB_B != 0)
                     {
                         textBox2BLb.Text = nand.bl.CB_B.ToString();
-                        if (textBox2BLb.Text == "15432") textBoxCbType.Text = "RGH3 CB";
-                        else textBoxCbType.Text = "Split CB";
+                        if (textBox2BLb.Text == "15432") textBoxCbType.Text = "RGH3";
+                        else textBoxCbType.Text = "Split";
                         textBox2BLb.Enabled = true;
                         label2blb.Visible = true;
                         label2bla.Visible = true;
@@ -109,7 +110,7 @@ namespace JRunner.Panels
                     else
                     {
                         textBox2BLb.Enabled = false;
-                        textBoxCbType.Text = "Single CB";
+                        textBoxCbType.Text = "Single";
                         label2blb.Visible = false;
                         label2bla.Visible = false;
                         label2bl.Visible = true;
@@ -130,6 +131,9 @@ namespace JRunner.Panels
 
                     string name = Nand.Nand.getConsoleName(nand, variables.flashconfig);
                     textBoxConsole.Text = name;
+
+                    if (nand.si.smcver.Length > 0) textBoxSmcVer.Text = nand.si.smcver;
+                    else textBoxSmcVer.Text = "";
 
                     // KV Info
                     txtconsole.Text = name;
@@ -237,20 +241,6 @@ namespace JRunner.Panels
         {
             this.nand = Nand;
             populateInfo();
-        }
-
-        delegate void ShowCpuKeyTab();
-        public void show_cpukey_tab()
-        {
-            if (tabControl1.InvokeRequired)
-            {
-                ShowCpuKeyTab s = new ShowCpuKeyTab(show_cpukey_tab);
-                this.Invoke(s);
-            }
-            else
-            {
-                this.tabControl1.SelectedTab = this.tabPageKV;
-            }
         }
 
         public void change_tab()
