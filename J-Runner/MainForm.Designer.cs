@@ -84,7 +84,6 @@ namespace JRunner
             this.FWVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.FlashStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.FlashVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.btnCheckBadBlocks = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.pnlInfo = new System.Windows.Forms.Panel();
@@ -635,7 +634,7 @@ namespace JRunner
             this.ModeStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.ModeStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.ModeStatus.Name = "ModeStatus";
-            this.ModeStatus.Size = new System.Drawing.Size(268, 17);
+            this.ModeStatus.Size = new System.Drawing.Size(418, 17);
             this.ModeStatus.Spring = true;
             this.ModeStatus.Text = "MODE: ";
             this.ModeStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -684,16 +683,6 @@ namespace JRunner
             this.FlashVersion.Size = new System.Drawing.Size(50, 17);
             this.FlashVersion.Text = "NOFLASH";
             this.FlashVersion.Visible = false;
-            // 
-            // splitter1
-            // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Enabled = false;
-            this.splitter1.Location = new System.Drawing.Point(0, 575);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(832, 3);
-            this.splitter1.TabIndex = 78;
-            this.splitter1.TabStop = false;
             // 
             // btnCheckBadBlocks
             // 
@@ -1361,7 +1350,6 @@ namespace JRunner
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.txtBlocks);
             this.Controls.Add(this.pnlInfo);
-            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox4);
@@ -1423,7 +1411,6 @@ namespace JRunner
         private ToolStripStatusLabel FWVersion;
         private ToolStripStatusLabel FlashStatus;
         private ToolStripStatusLabel FlashVersion;
-        private Splitter splitter1;
         private Button btnScanner;
         private Button btnCheckBadBlocks;
         private FolderBrowserDialog folderBrowserDialog1;
