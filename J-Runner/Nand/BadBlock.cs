@@ -254,7 +254,7 @@ namespace JRunner.Nand
             { }
             else
             {
-                Console.WriteLine("Can't check for bad blocks. No Spare data. Possibly Corona 4GB");
+                if (variables.debugMode) Console.WriteLine("Can't check for bad blocks, no spare data, possibly Corona 4GB");
                 return filename;
             }
 
@@ -344,7 +344,7 @@ namespace JRunner.Nand
 
             if (!Nand.hasecc_v2(ref image))
             {
-                Console.WriteLine("Can't check for bad blocks. No Spare data. Possibly Corona 4GB");
+                if (variables.debugMode) Console.WriteLine("Can't check for bad blocks, no spare data, possibly Corona 4GB");
                 return image;
             }
 
@@ -404,105 +404,6 @@ namespace JRunner.Nand
             if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("");
             if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("Bad Blocks Remapped");
             return image;
-        }
-
-        public static string report_bad_blocks(string filename)
-        {
-            string text = "";
-            Console.WriteLine("Checking for bad blocks...");
-            long imgsize = 0;
-            FileInfo file = new FileInfo(filename);
-            byte[] image;
-            int blocksize, reservedoffset;
-            bool bigblock = false;
-
-            if (file.Length >= 0x4200000)
-            {
-                bigblock = true;
-                image = Oper.openfile(filename, ref imgsize, 0x4200000);
-                blocksize = 0x21000;
-                reservedoffset = 0x1E0;
-            }
-            else
-            {
-                image = Oper.openfile(filename, ref imgsize, 0);
-                blocksize = 0x4200;
-                reservedoffset = 0x3E0;
-            }
-
-            if (image[0x205] != 0xFF && image[0x415] != 0xFF && image[0x200] != 0xFF)
-            {
-                Console.WriteLine("Can't check for bad blocks. No Spare data. Possibly Corona 4GB");
-                return "Can't check for bad blocks. No Spare data. Possibly Corona 4GB";
-            }
-
-            List<int> badblocks = new List<int>();
-            List<int> remappedblocks = new List<int>();
-
-
-            if (variables.debugMode) Console.WriteLine("-R-Image Size: 0x{0:X} | imagesize: 0x{1:X} | File Size: 0x{0:X}", image.Length, blocksize, file.Length);
-
-            int counter;
-            for (counter = 0; counter < image.Length / blocksize; counter++)
-            {
-                byte[] block = new byte[blocksize];
-                Buffer.BlockCopy(image, counter * blocksize, block, 0, blocksize);
-                if (checkifbadblock(block, counter, bigblock, true))
-                {
-                    badblocks.Add(counter);
-                    text += ("• Bad Block ID @ 0x" + counter.ToString("X") + " [Offset: 0x" + ((counter) * blocksize).ToString("X") + "]");
-                    text += Environment.NewLine;
-                }
-                if (badblocks.Count >= 0x20)
-                {
-                    Console.WriteLine("Done");
-                    return ("Too Many Bad Blocks");
-                }
-            }
-
-
-            if (badblocks.Count == 0)
-            {
-                Console.WriteLine("Done");
-                return "No bad blocks were found";
-            }
-            //find if remapped
-            text += Environment.NewLine;
-            text += Environment.NewLine;
-
-            int reserveblockpos;
-            if (blocksize == 0x4200) reserveblockpos = 0x3FF;
-            else reserveblockpos = 0x1FF;
-
-            int reservestartpos = reserveblockpos - 0x20;
-            bool found = false;
-            byte[] reserved = Oper.returnportion(image, reservedoffset * blocksize, 0x20 * blocksize);
-            if (variables.debugMode) Oper.savefile(reserved, "reservedarea.bin");
-            image = null;
-
-            remappedblocks = checkifremapped(reserved, badblocks, bigblock, true);
-
-            int i = 0;
-            foreach (int blockoffset in remappedblocks)
-            {
-                if (blockoffset != -1)
-                {
-                    found = true;
-                    text += ("• Bad Block ID @ 0x" + badblocks[i].ToString("X") + " Found @ 0x" + (reservestartpos + blockoffset + 1).ToString("X") + "[Offset: 0x" + (blocksize * (reservestartpos + blockoffset + 1)).ToString("X") + "]");
-                    text += Environment.NewLine;
-                }
-                i++;
-            }
-
-            if (!found)
-            {
-                text += ("Remapped Blocks don't exist.");
-                Console.WriteLine("Done");
-                return text;
-            }
-
-            Console.WriteLine("Done");
-            return text;
         }
 
         /// <summary>
