@@ -1912,9 +1912,7 @@ namespace JRunner
                 else txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
-                xPanel.change_tab();
                 if (listInfo.Contains(xsvfChoice)) xsvfChoice_CloseCRClick();
-                nandInfo.change_tab();
                 updateProgress(progressBar.Maximum / 2);
                 nand = new Nand.PrivateN(variables.filename1, variables.cpukey);
                 if (!nand.ok)
@@ -2701,6 +2699,25 @@ namespace JRunner
         public ProgressBarStyle getProgressBarStyle()
         {
             return progressBar.Style;
+        }
+
+        public void copyToClipboard(string txt)
+        {
+            if (txt.Length > 0)
+            {
+                Clipboard.SetText(txt);
+
+                Thread copiedThread = new Thread(() =>
+                {
+                    if (!CopiedToClipboard.Visible)
+                    {
+                        this.BeginInvoke((Action)(() => CopiedToClipboard.Visible = true));
+                        Thread.Sleep(2000);
+                        this.BeginInvoke((Action)(() => CopiedToClipboard.Visible = false));
+                    }
+                });
+                copiedThread.Start();
+            }
         }
 
         #region Menu Bar
@@ -3795,12 +3812,32 @@ namespace JRunner
 
         #region Clicks
 
+        private void txtFileSource_DoubleClick(object sender, EventArgs e)
+        {
+            copyToClipboard(txtFileSource.Text);
+        }
+
+        private void txtFileExtra_DoubleClick(object sender, EventArgs e)
+        {
+            copyToClipboard(txtFileExtra.Text);
+        }
+
+        private void txtCPUKey_DoubleClick(object sender, EventArgs e)
+        {
+            copyToClipboard(txtCPUKey.Text);
+        }
+
         private void txtConsole_DoubleClick(object sender, EventArgs e)
         {
             File.AppendAllText(Path.Combine(variables.rootfolder, "temp.log"), txtConsole.Text);
             Process.Start(Path.Combine(variables.rootfolder, "temp.log"));
             Thread.Sleep(1000);
             File.Delete(Path.Combine(variables.rootfolder, "temp.log"));
+        }
+
+        private void txtIP_DoubleClick(object sender, EventArgs e)
+        {
+            copyToClipboard(txtIP.Text);
         }
 
         #endregion

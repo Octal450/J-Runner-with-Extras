@@ -76,6 +76,8 @@ namespace JRunner
             this.VersionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.BlankSpace1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.BackupLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.BlankSpace2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.CopiedToClipboard = new System.Windows.Forms.ToolStripStatusLabel();
             this.ModeStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.ModeVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.FWStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -233,6 +235,7 @@ namespace JRunner
         "e\" box\r\n");
             this.txtFileExtra.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtFileExtra_DragDrop);
             this.txtFileExtra.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtFileExtra_DragEnter);
+            this.txtFileExtra.DoubleClick += new System.EventHandler(this.txtFileExtra_DoubleClick);
             // 
             // txtFileSource
             // 
@@ -248,6 +251,7 @@ namespace JRunner
         "ox first.");
             this.txtFileSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtFileSource_DragDrop);
             this.txtFileSource.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtFileSource_DragEnter);
+            this.txtFileSource.DoubleClick += new System.EventHandler(this.txtFileSource_DoubleClick);
             // 
             // txtConsole
             // 
@@ -279,6 +283,7 @@ namespace JRunner
             this.txtCPUKey.TextChanged += new System.EventHandler(this.txtCPUKey_TextChanged);
             this.txtCPUKey.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtCPUKey_DragDrop);
             this.txtCPUKey.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtCPUKey_DragEnter);
+            this.txtCPUKey.DoubleClick += new System.EventHandler(this.txtCPUKey_DoubleClick);
             // 
             // lblCpuKey
             // 
@@ -371,6 +376,7 @@ namespace JRunner
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(128, 20);
             this.txtIP.TabIndex = 10;
+            this.txtIP.DoubleClick += new System.EventHandler(this.txtIP_DoubleClick);
             this.txtIP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtIP_KeyUp);
             // 
             // btnScanner
@@ -568,6 +574,8 @@ namespace JRunner
             this.VersionLabel,
             this.BlankSpace1,
             this.BackupLabel,
+            this.BlankSpace2,
+            this.CopiedToClipboard,
             this.ModeStatus,
             this.ModeVersion,
             this.FWStatus,
@@ -607,13 +615,27 @@ namespace JRunner
             this.BackupLabel.Text = "Auto Backup: Off";
             this.BackupLabel.Click += new System.EventHandler(this.configureBackupToolStripMenuItem_Click);
             // 
+            // BlankSpace2
+            // 
+            this.BlankSpace2.Name = "BlankSpace2";
+            this.BlankSpace2.Size = new System.Drawing.Size(10, 17);
+            this.BlankSpace2.Text = " ";
+            // 
+            // CopiedToClipboard
+            // 
+            this.CopiedToClipboard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CopiedToClipboard.Name = "CopiedToClipboard";
+            this.CopiedToClipboard.Size = new System.Drawing.Size(119, 17);
+            this.CopiedToClipboard.Text = "Copied to Clipboard!";
+            this.CopiedToClipboard.Visible = false;
+            // 
             // ModeStatus
             // 
             this.ModeStatus.AutoSize = false;
             this.ModeStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.ModeStatus.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
             this.ModeStatus.Name = "ModeStatus";
-            this.ModeStatus.Size = new System.Drawing.Size(428, 17);
+            this.ModeStatus.Size = new System.Drawing.Size(268, 17);
             this.ModeStatus.Spring = true;
             this.ModeStatus.Text = "MODE: ";
             this.ModeStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1505,5 +1527,7 @@ namespace JRunner
         private ToolStripMenuItem rescanDevicesToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem12;
         private ToolStripMenuItem flashOpenXeniumToolStripMenuItem;
+        private ToolStripStatusLabel BlankSpace2;
+        private ToolStripStatusLabel CopiedToClipboard;
     }
 }

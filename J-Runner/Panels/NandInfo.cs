@@ -51,13 +51,13 @@ namespace JRunner.Panels
             // KV Info
             btnConsoleId.Text = "View: Native";
             txtconsole.Text = "";
-            textBoxconsoleid.Text = "";
-            txtdvdkey.Text = "";
-            txtosig.Text = "";
+            textBoxConsoleId.Text = "";
+            txtDvdKey.Text = "";
+            txtOsig.Text = "";
             txtSerial.Text = "";
             txtkvtype.Text = "";
-            txtregion.Text = "";
-            textMFRdate.Text = "";
+            txtRegion.Text = "";
+            textMfrDate.Text = "";
             lblfcrt.Visible = false;
             lblhashed.Visible = false;
 
@@ -144,46 +144,46 @@ namespace JRunner.Panels
                         try
                         {
                             DateTime.TryParseExact(mfrraw, "MM-dd-yy", null, DateTimeStyles.None, out mfr);
-                            textMFRdate.Text = mfr.Date.ToString("MM/dd/yyyy");
+                            textMfrDate.Text = mfr.Date.ToString("MM/dd/yyyy");
                         }
                         catch
                         {
-                            textMFRdate.Text = mfrraw;
+                            textMfrDate.Text = mfrraw;
                         }
                         try
                         {
-                            if (btnConsoleId.Text == "View: Native") textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
-                            else textBoxconsoleid.Text = nand.ki.consoleid;
+                            if (btnConsoleId.Text == "View: Native") textBoxConsoleId.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
+                            else textBoxConsoleId.Text = nand.ki.consoleid;
                         }
                         catch
                         {
-                            textBoxconsoleid.Text = "";
+                            textBoxConsoleId.Text = "";
                         }
-                        txtdvdkey.Text = nand.ki.dvdkey;
-                        txtosig.Text = nand.ki.osig;
+                        txtDvdKey.Text = nand.ki.dvdkey;
+                        txtOsig.Text = nand.ki.osig;
                         txtSerial.Text = nand.ki.serial;
                         txtkvtype.Text = nand.ki.kvtype.Replace("0", " ");
                         lblhashed.Visible = txtkvtype.Text == "2";
-                        txtregion.Text = "0x" + nand.ki.region + "   |   ";
-                        if (nand.ki.region == "02FE") txtregion.Text += "PAL/EU";
-                        else if (nand.ki.region == "00FF") txtregion.Text += "NTSC/US";
-                        else if (nand.ki.region == "01FE") txtregion.Text += "NTSC/JAP";
-                        else if (nand.ki.region == "01FF") txtregion.Text += "NTSC/JAP";
-                        else if (nand.ki.region == "01FC") txtregion.Text += "NTSC/KOR";
-                        else if (nand.ki.region == "0101") txtregion.Text += "NTSC/HK";
-                        else if (nand.ki.region == "0201") txtregion.Text += "PAL/AUS";
-                        else if (nand.ki.region == "7FFF") txtregion.Text += "DEVKIT";
+                        txtRegion.Text = "0x" + nand.ki.region + "   |   ";
+                        if (nand.ki.region == "02FE") txtRegion.Text += "PAL/EU";
+                        else if (nand.ki.region == "00FF") txtRegion.Text += "NTSC/US";
+                        else if (nand.ki.region == "01FE") txtRegion.Text += "NTSC/JAP";
+                        else if (nand.ki.region == "01FF") txtRegion.Text += "NTSC/JAP";
+                        else if (nand.ki.region == "01FC") txtRegion.Text += "NTSC/KOR";
+                        else if (nand.ki.region == "0101") txtRegion.Text += "NTSC/HK";
+                        else if (nand.ki.region == "0201") txtRegion.Text += "PAL/AUS";
+                        else if (nand.ki.region == "7FFF") txtRegion.Text += "DEVKIT";
                         lblfcrt.Visible = nand.ki.fcrtflag;
                     }
                     else
                     {
-                        textBoxconsoleid.Text = "";
-                        txtdvdkey.Text = "";
-                        txtosig.Text = "";
+                        textBoxConsoleId.Text = "";
+                        txtDvdKey.Text = "";
+                        txtOsig.Text = "";
                         txtSerial.Text = "";
                         txtkvtype.Text = "";
-                        txtregion.Text = "";
-                        textMFRdate.Text = "";
+                        txtRegion.Text = "";
+                        textMfrDate.Text = "";
                         lblfcrt.Visible = false;
                         lblhashed.Visible = false;
                     }
@@ -243,12 +243,6 @@ namespace JRunner.Panels
             populateInfo();
         }
 
-        public void change_tab()
-        {
-            this.tabControl1.BeginInvoke((Action)(() => tabControl1.SelectedTab = tabPageNand));
-            this.tabControl1.BeginInvoke((Action)(() => tabControl1.Refresh()));
-        }
-
         private void NandInfo_Load(object sender, EventArgs e)
         {
             lblfcrt.Visible = false;
@@ -275,13 +269,112 @@ namespace JRunner.Panels
             if (btnConsoleId.Text != "View: Native")
             {
                 btnConsoleId.Text = "View: Native";
-                if (textBoxconsoleid.Text != "") textBoxconsoleid.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
+                if (textBoxConsoleId.Text != "") textBoxConsoleId.Text = Nand.Nand.consoleID_KV_to_friendly(nand.ki.consoleid);
             }
             else
             {
                 btnConsoleId.Text = "View: Raw";
-                if (textBoxconsoleid.Text != "") textBoxconsoleid.Text = nand.ki.consoleid;
+                if (textBoxConsoleId.Text != "") textBoxConsoleId.Text = nand.ki.consoleid;
             }
         }
+
+        #region Double Clicks
+
+        private void textBox2BLa_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBox2BLa.Text);
+        }
+
+        private void textBox2BLb_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBox2BLb.Text);
+        }
+
+        private void textBox4BL_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBox4BL.Text);
+        }
+
+        private void textBox5BL_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBox5BL.Text);
+        }
+
+        private void textBox6BL_p0_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBox6BL_p0.Text);
+        }
+
+        private void textBox7BL_p0_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBox7BL_p0.Text);
+        }
+
+        private void textBoxpd_0_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxpd_0.Text);
+        }
+
+        private void textBoxSmcVer_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxSmcVer.Text);
+        }
+
+        private void textBoxpd_cb_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxpd_cb.Text);
+        }
+
+        private void textBox6BL_p1_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBox6BL_p1.Text);
+        }
+
+        private void textBox7BL_p1_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBox7BL_p1.Text);
+        }
+
+        private void textBoxpd_1_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxpd_1.Text);
+        }
+
+        private void txtMfrDate_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textMfrDate.Text);
+        }
+
+        private void textBoxConsoleId_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxConsoleId.Text);
+        }
+
+        private void txtSerial_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(txtSerial.Text);
+        }
+
+        private void txtRegion_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(txtRegion.Text);
+        }
+
+        private void txtOsig_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(txtOsig.Text);
+        }
+
+        private void txtDvdKey_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(txtDvdKey.Text);
+        }
+
+        private void txtBadBlocks_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(txtBadBlocks.Text);
+        }
+
+        #endregion
     }
 }
