@@ -945,14 +945,14 @@
             // 
             this.x1DefaultTemp.Name = "x1DefaultTemp";
             this.x1DefaultTemp.Size = new System.Drawing.Size(180, 22);
-            this.x1DefaultTemp.Text = "Xenon (Early)";
+            this.x1DefaultTemp.Text = "Xenon";
             this.x1DefaultTemp.Click += new System.EventHandler(this.x1DefaultTemp_Click);
             // 
             // x2DefaultTemp
             // 
             this.x2DefaultTemp.Name = "x2DefaultTemp";
             this.x2DefaultTemp.Size = new System.Drawing.Size(180, 22);
-            this.x2DefaultTemp.Text = "Xenon (Late)";
+            this.x2DefaultTemp.Text = "Xenon (Refurb)";
             this.x2DefaultTemp.Click += new System.EventHandler(this.x2DefaultTemp_Click);
             // 
             // zDefaultTemp

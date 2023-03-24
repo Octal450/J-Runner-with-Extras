@@ -163,8 +163,8 @@ namespace JRunner.Nand
 
         public static _temptable[] defaultTempTable = new _temptable[]
         {
-            new _temptable("XenonEarly", 80, 83, 85, 100, 110, 117),
-            new _temptable("XenonLate", 80, 75, 78, 100, 100, 102),
+            new _temptable("Xenon", 80, 83, 85, 100, 110, 117),
+            new _temptable("XenonRefurb", 80, 75, 78, 100, 100, 102),
             new _temptable("Zephyr", 80, 75, 78, 100, 100, 102),
             new _temptable("Falcon", 80, 75, 78, 100, 100, 102),
             new _temptable("Jasper", 80, 71, 73, 95, 90, 92),
