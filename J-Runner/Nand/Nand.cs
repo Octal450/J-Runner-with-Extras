@@ -2569,14 +2569,25 @@ namespace JRunner.Nand
             }
             return ecd;
         }
+
+        public static byte[] keyZero = {
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+        };
+
         public static bool VerifyKey(byte[] key)
         {
             if (key == null || key.Length != 0x10) return false;
+
+            if (variables.allowZeroPaired)
+            {
+                if (key.SequenceEqual(keyZero)) return true; // Allow 0 paired key
+            }
 
             int hamming = 0;
             byte[] hammingArray = new byte[13];
             Buffer.BlockCopy(key, 0, hammingArray, 0, 13);
             BitArray bitArray = new BitArray(hammingArray);
+
             foreach (bool s in bitArray) if (s) hamming++;
             if (key[13].getBit(0)) hamming++;
             if (key[13].getBit(1)) hamming++;

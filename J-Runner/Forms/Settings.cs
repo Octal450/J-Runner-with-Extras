@@ -45,6 +45,8 @@ namespace JRunner.Forms
             chkAutoDelXeLL.Checked = variables.autoDelXeLL;
             chkNoPatchWarnings.Checked = variables.noPatchWarnings;
             chkAllMove.Checked = !variables.allmove;
+            chkAllowZeroPaired.Checked = variables.allowZeroPaired;
+
             if (variables.LPTtiming) rbtnTimingLpt.Checked = true;
             txtTimingLptPort.Text = variables.LPTport;
 
@@ -124,6 +126,7 @@ namespace JRunner.Forms
                 variables.allmove = !chkAllMove.Checked;
                 variables.autoDelXeLL = chkAutoDelXeLL.Checked;
                 variables.LPTtiming = rbtnTimingLpt.Checked;
+                variables.allowZeroPaired = chkAllowZeroPaired.Checked;
 
                 if (!string.IsNullOrWhiteSpace(txtTimingLptPort.Text)) variables.LPTport = txtTimingLptPort.Text;
                 else variables.LPTport = "378";

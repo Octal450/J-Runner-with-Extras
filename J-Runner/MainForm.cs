@@ -4402,6 +4402,9 @@ namespace JRunner
                         case "NandTimingAlwaysOnTop":
                             x.write(name, variables.nandTimingAlwaysOnTop.ToString());
                             break;
+                        case "AllowZeroPaired":
+                            x.write(name, variables.allowZeroPaired.ToString());
+                            break;
                         default:
                             break;
                     }
@@ -4596,6 +4599,11 @@ namespace JRunner
                             bvalue = false;
                             if (!bool.TryParse(val, out bvalue)) bvalue = false;
                             variables.nandTimingAlwaysOnTop = bvalue;
+                            break;
+                        case "AllowZeroPaired":
+                            bvalue = false;
+                            if (!bool.TryParse(val, out bvalue)) bvalue = false;
+                            variables.allowZeroPaired = bvalue;
                             break;
                         default:
                             break;
