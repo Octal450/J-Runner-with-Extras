@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatchKV));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtMfrDate = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtConsoleID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSerial = new System.Windows.Forms.TextBox();
@@ -45,6 +48,7 @@
             this.regionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.chkSaveBackup = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.osigBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionBindingSource)).BeginInit();
@@ -52,6 +56,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.txtMfrDate);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txtConsoleID);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txtSerial);
@@ -64,10 +73,36 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(13, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(353, 158);
+            this.groupBox2.Size = new System.Drawing.Size(353, 184);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Keyvault";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(174, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "MM-DD-YY";
+            // 
+            // txtMfrDate
+            // 
+            this.txtMfrDate.Location = new System.Drawing.Point(76, 70);
+            this.txtMfrDate.MaxLength = 8;
+            this.txtMfrDate.Name = "txtMfrDate";
+            this.txtMfrDate.Size = new System.Drawing.Size(92, 20);
+            this.txtMfrDate.TabIndex = 16;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "MFR Date:";
             // 
             // txtConsoleID
             // 
@@ -139,7 +174,7 @@
             "HL-DT-ST  DL10N   0500",
             "HL-DT-ST  DL10N   0502",
             "No Drive Info/Unspoofed"});
-            this.comboOsig.Location = new System.Drawing.Point(76, 123);
+            this.comboOsig.Location = new System.Drawing.Point(76, 149);
             this.comboOsig.Name = "comboOsig";
             this.comboOsig.Size = new System.Drawing.Size(264, 21);
             this.comboOsig.TabIndex = 14;
@@ -158,7 +193,7 @@
             "0x0101   |   NTSC/HK",
             "0x0201   |   PAL/AUS",
             "0x7FFF   |   DEVKIT"});
-            this.comboRegion.Location = new System.Drawing.Point(76, 70);
+            this.comboRegion.Location = new System.Drawing.Point(76, 96);
             this.comboRegion.Name = "comboRegion";
             this.comboRegion.Size = new System.Drawing.Size(145, 21);
             this.comboRegion.TabIndex = 12;
@@ -166,7 +201,7 @@
             // 
             // txtDVDkey
             // 
-            this.txtDVDkey.Location = new System.Drawing.Point(76, 97);
+            this.txtDVDkey.Location = new System.Drawing.Point(76, 123);
             this.txtDVDkey.MaxLength = 32;
             this.txtDVDkey.Name = "txtDVDkey";
             this.txtDVDkey.Size = new System.Drawing.Size(264, 20);
@@ -177,7 +212,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 126);
+            this.label8.Location = new System.Drawing.Point(11, 152);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 13);
             this.label8.TabIndex = 3;
@@ -186,7 +221,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 100);
+            this.label7.Location = new System.Drawing.Point(11, 126);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 2;
@@ -195,7 +230,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 73);
+            this.label6.Location = new System.Drawing.Point(11, 99);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 1;
@@ -212,7 +247,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOK.Location = new System.Drawing.Point(111, 176);
+            this.btnOK.Location = new System.Drawing.Point(111, 202);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 8;
@@ -223,7 +258,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(192, 176);
+            this.btnCancel.Location = new System.Drawing.Point(192, 202);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 70;
@@ -231,12 +266,25 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // chkSaveBackup
+            // 
+            this.chkSaveBackup.AutoSize = true;
+            this.chkSaveBackup.Checked = true;
+            this.chkSaveBackup.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveBackup.Location = new System.Drawing.Point(282, 206);
+            this.chkSaveBackup.Name = "chkSaveBackup";
+            this.chkSaveBackup.Size = new System.Drawing.Size(91, 17);
+            this.chkSaveBackup.TabIndex = 71;
+            this.chkSaveBackup.Text = "Save Backup";
+            this.chkSaveBackup.UseVisualStyleBackColor = true;
+            // 
             // PatchKV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(379, 211);
+            this.ClientSize = new System.Drawing.Size(379, 237);
+            this.Controls.Add(this.chkSaveBackup);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox2);
@@ -254,6 +302,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.osigBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -273,5 +322,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtSerial;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtMfrDate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkSaveBackup;
     }
 }

@@ -140,6 +140,7 @@
             this.txtTempCriticalCPU = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.chkSaveBackup = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackGPU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackCPU)).BeginInit();
@@ -939,68 +940,68 @@
             this.cDefaultTemp,
             this.wDefaultTemp});
             this.defaultTempContextMenu.Name = "defaultTempContextMenu";
-            this.defaultTempContextMenu.Size = new System.Drawing.Size(181, 224);
+            this.defaultTempContextMenu.Size = new System.Drawing.Size(156, 202);
             // 
             // x1DefaultTemp
             // 
             this.x1DefaultTemp.Name = "x1DefaultTemp";
-            this.x1DefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.x1DefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.x1DefaultTemp.Text = "Xenon";
             this.x1DefaultTemp.Click += new System.EventHandler(this.x1DefaultTemp_Click);
             // 
             // x2DefaultTemp
             // 
             this.x2DefaultTemp.Name = "x2DefaultTemp";
-            this.x2DefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.x2DefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.x2DefaultTemp.Text = "Xenon (Refurb)";
             this.x2DefaultTemp.Click += new System.EventHandler(this.x2DefaultTemp_Click);
             // 
             // zDefaultTemp
             // 
             this.zDefaultTemp.Name = "zDefaultTemp";
-            this.zDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.zDefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.zDefaultTemp.Text = "Zephyr";
             this.zDefaultTemp.Click += new System.EventHandler(this.zDefaultTemp_Click);
             // 
             // fDefaultTemp
             // 
             this.fDefaultTemp.Name = "fDefaultTemp";
-            this.fDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.fDefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.fDefaultTemp.Text = "Falcon";
             this.fDefaultTemp.Click += new System.EventHandler(this.fDefaultTemp_Click);
             // 
             // jDefaultTemp
             // 
             this.jDefaultTemp.Name = "jDefaultTemp";
-            this.jDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.jDefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.jDefaultTemp.Text = "Jasper";
             this.jDefaultTemp.Click += new System.EventHandler(this.jDefaultTemp_Click);
             // 
             // jtDefaultTemp
             // 
             this.jtDefaultTemp.Name = "jtDefaultTemp";
-            this.jtDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.jtDefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.jtDefaultTemp.Text = "Jasper Tonasket";
             this.jtDefaultTemp.Click += new System.EventHandler(this.jtDefaultTemp_Click);
             // 
             // tDefaultTemp
             // 
             this.tDefaultTemp.Name = "tDefaultTemp";
-            this.tDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.tDefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.tDefaultTemp.Text = "Trinity";
             this.tDefaultTemp.Click += new System.EventHandler(this.tDefaultTemp_Click);
             // 
             // cDefaultTemp
             // 
             this.cDefaultTemp.Name = "cDefaultTemp";
-            this.cDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.cDefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.cDefaultTemp.Text = "Corona";
             this.cDefaultTemp.Click += new System.EventHandler(this.cDefaultTemp_Click);
             // 
             // wDefaultTemp
             // 
             this.wDefaultTemp.Name = "wDefaultTemp";
-            this.wDefaultTemp.Size = new System.Drawing.Size(180, 22);
+            this.wDefaultTemp.Size = new System.Drawing.Size(155, 22);
             this.wDefaultTemp.Text = "Winchester";
             this.wDefaultTemp.Click += new System.EventHandler(this.wDefaultTemp_Click);
             // 
@@ -1289,12 +1290,25 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // chkSaveBackup
+            // 
+            this.chkSaveBackup.AutoSize = true;
+            this.chkSaveBackup.Checked = true;
+            this.chkSaveBackup.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveBackup.Location = new System.Drawing.Point(627, 467);
+            this.chkSaveBackup.Name = "chkSaveBackup";
+            this.chkSaveBackup.Size = new System.Drawing.Size(91, 17);
+            this.chkSaveBackup.TabIndex = 52;
+            this.chkSaveBackup.Text = "Save Backup";
+            this.chkSaveBackup.UseVisualStyleBackColor = true;
+            // 
             // SMCConfigEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(723, 495);
+            this.Controls.Add(this.chkSaveBackup);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
@@ -1342,6 +1356,7 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1457,5 +1472,6 @@
         private System.Windows.Forms.ToolStripMenuItem wDefaultTemp;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.CheckBox chkSaveBackup;
     }
 }

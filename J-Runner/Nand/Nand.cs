@@ -2439,6 +2439,7 @@ namespace JRunner.Nand
             byte[] osig_b = Oper.StringToByteArray_v2(k.osig);
             byte[] cid_b = Oper.StringToByteArray_v2(k.consoleid);
             byte[] serial_b = Encoding.ASCII.GetBytes(k.serial);
+            byte[] mfdate_b = Encoding.ASCII.GetBytes(k.mfdate);
 
             keyvault.Replace(dvdkey_b, 0x100, 0x10);
             keyvault[0xC8] = region_b[0];
@@ -2446,6 +2447,7 @@ namespace JRunner.Nand
             keyvault.Replace(osig_b, 0xC8A, 40);
             keyvault.Replace(cid_b, 0x9CA, 5);
             keyvault.Replace(serial_b, 0xB0, 12);
+            keyvault.Replace(mfdate_b, 0x9E4, 8);
         }
 
         public static void decrypt_fcrt(byte[] fcrt, byte[] cpukey)

@@ -24,21 +24,27 @@ namespace JRunner
             {
                 if (MainForm.nand.ki.region != "" || MainForm.nand.ki.osig != "")
                 {
+                    string osigInput = MainForm.nand.ki.osig.Substring(MainForm.nand.ki.osig.Length - 4);
+                    if (osigInput == "0442") osigInput = "421C"; // Fix BenQ 0442/421C
+
                     foreach (string region in comboRegion.Items)
                     {
                         if (region.Contains(MainForm.nand.ki.region)) comboRegion.Text = region;
                     }
+
                     foreach (string osig in comboOsig.Items)
                     {
-                        if (osig.EndsWith(MainForm.nand.ki.osig.Substring(MainForm.nand.ki.osig.Length - 4))) comboOsig.Text = osig;
+                        if (osig.EndsWith(osigInput)) comboOsig.Text = osig;
                     }
+
+                    if (comboOsig.Text.Length == 0) comboOsig.Text = "No Drive Info/Unspoofed";
                 }
                 txtDVDkey.Text = MainForm.nand.ki.dvdkey;
                 txtSerial.Text = MainForm.nand.ki.serial;
                 txtConsoleID.Text = MainForm.nand.ki.consoleid;
+                txtMfrDate.Text = MainForm.nand.ki.mfdate;
             }
-            catch (System.ArgumentNullException) { return; }
-
+            catch (ArgumentNullException) { return; }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -60,9 +66,9 @@ namespace JRunner
 
                     data = patchKV(ref data, layout);
 
-                    if (File.Exists(variables.filename1))
+                    if (File.Exists(variables.filename1) && chkSaveBackup.Checked)
                     {
-                        string outpath = Path.Combine(Path.GetDirectoryName(variables.filename1), Path.GetFileNameWithoutExtension(variables.filename1) + "_old" + Path.GetExtension(variables.filename1));
+                        string outpath = Path.Combine(Path.GetDirectoryName(variables.filename1), Path.GetFileNameWithoutExtension(variables.filename1).Replace("_old", "") + "_old" + Path.GetExtension(variables.filename1));
                         if (File.Exists(outpath)) File.Delete(outpath);
                         File.Move(variables.filename1, outpath);
                     }
@@ -97,6 +103,7 @@ namespace JRunner
             kinfo.dvdkey = txtDVDkey.Text;
             kinfo.osig = getosig(comboOsig.SelectedIndex);
             kinfo.serial = txtSerial.Text;
+            kinfo.mfdate = txtMfrDate.Text;
 
             Nand.Nand.patch_kv(ref keyvault, kinfo);
             keyvault = Nand.Nand.encryptkv_hmac(keyvault, Oper.StringToByteArray(variables.cpukey));

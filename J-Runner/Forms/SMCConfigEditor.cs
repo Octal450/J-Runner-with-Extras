@@ -235,9 +235,9 @@ namespace JRunner.Forms
         {
             try
             {
-                if (File.Exists(variables.filename1))
+                if (File.Exists(variables.filename1) && chkSaveBackup.Checked)
                 {
-                    string outpath = Path.Combine(Path.GetDirectoryName(variables.filename1), Path.GetFileNameWithoutExtension(variables.filename1) + "_old" + Path.GetExtension(variables.filename1));
+                    string outpath = Path.Combine(Path.GetDirectoryName(variables.filename1), Path.GetFileNameWithoutExtension(variables.filename1).Replace("_old", "") + "_old" + Path.GetExtension(variables.filename1));
                     if (File.Exists(outpath)) File.Delete(outpath);
                     File.Copy(variables.filename1, outpath);
                 }

@@ -676,7 +676,7 @@ namespace JRunner
                         {
                             if (size != 16)
                             {
-                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 16MB Flash Config.\n\nAre you sure that you want to do that?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB nand to a board with a 16MB flash config.\n\nAre you sure that you want to do that?", "Steep Hill Ahead", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                                 {
                                     Console.WriteLine("xFlasher: Cancelled");
                                     Console.WriteLine("");
@@ -688,7 +688,7 @@ namespace JRunner
                         {
                             if (size != 64)
                             {
-                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64MB Flash Config.\n\nAre you sure that you want to do that?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB nand to a board with a 64MB flash config.\n\nAre you sure that you want to do that?", "Steep Hill Ahead", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                                 {
                                     Console.WriteLine("xFlasher: Cancelled");
                                     Console.WriteLine("");
@@ -700,7 +700,7 @@ namespace JRunner
                         {
                             if (size == 16 || size == 512)
                             {
-                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64/256MB Flash Config.\n\nAre you sure that you want to do that?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB nand to a board with a 64/256MB flash config.\n\nAre you sure that you want to do that?", "Steep Hill Ahead", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                                 {
                                     Console.WriteLine("xFlasher: Cancelled");
                                     Console.WriteLine("");
@@ -712,7 +712,7 @@ namespace JRunner
                         {
                             if (size == 16 || size == 256)
                             {
-                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB Nand to a board with a 64/512MB Flash Config.\n\nAre you sure that you want to do that?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                                if (DialogResult.No == MessageBox.Show("You are attempting to write a " + size + "MB nand to a board with a 64/512MB flash config.\n\nAre you sure that you want to do that?", "Steep Hill Ahead", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                                 {
                                     Console.WriteLine("xFlasher: Cancelled");
                                     Console.WriteLine("");
