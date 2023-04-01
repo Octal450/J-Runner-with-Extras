@@ -81,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(174, 73);
+            this.label2.Location = new System.Drawing.Point(144, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 17;
@@ -89,16 +89,16 @@
             // 
             // txtMfrDate
             // 
-            this.txtMfrDate.Location = new System.Drawing.Point(76, 70);
+            this.txtMfrDate.Location = new System.Drawing.Point(76, 18);
             this.txtMfrDate.MaxLength = 8;
             this.txtMfrDate.Name = "txtMfrDate";
-            this.txtMfrDate.Size = new System.Drawing.Size(92, 20);
+            this.txtMfrDate.Size = new System.Drawing.Size(62, 20);
             this.txtMfrDate.TabIndex = 16;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 73);
+            this.label1.Location = new System.Drawing.Point(11, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 15;
@@ -106,7 +106,7 @@
             // 
             // txtConsoleID
             // 
-            this.txtConsoleID.Location = new System.Drawing.Point(76, 18);
+            this.txtConsoleID.Location = new System.Drawing.Point(76, 44);
             this.txtConsoleID.MaxLength = 10;
             this.txtConsoleID.Name = "txtConsoleID";
             this.txtConsoleID.Size = new System.Drawing.Size(92, 20);
@@ -117,7 +117,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 21);
+            this.label10.Location = new System.Drawing.Point(11, 47);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 13);
             this.label10.TabIndex = 9;
@@ -125,7 +125,7 @@
             // 
             // txtSerial
             // 
-            this.txtSerial.Location = new System.Drawing.Point(76, 44);
+            this.txtSerial.Location = new System.Drawing.Point(76, 70);
             this.txtSerial.MaxLength = 12;
             this.txtSerial.Name = "txtSerial";
             this.txtSerial.Size = new System.Drawing.Size(92, 20);
@@ -136,7 +136,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 47);
+            this.label9.Location = new System.Drawing.Point(11, 73);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 7;
