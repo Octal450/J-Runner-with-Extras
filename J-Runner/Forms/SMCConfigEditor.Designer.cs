@@ -750,7 +750,7 @@
             this.groupBox3.Location = new System.Drawing.Point(351, 165);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(360, 71);
-            this.groupBox3.TabIndex = 20;
+            this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Backup Data/Values";
             // 
@@ -801,7 +801,7 @@
             this.groupBox4.Location = new System.Drawing.Point(351, 242);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(360, 73);
-            this.groupBox4.TabIndex = 21;
+            this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Reserved/Unused";
             // 
@@ -866,7 +866,7 @@
             this.btnEdit.Location = new System.Drawing.Point(283, 463);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 50;
+            this.btnEdit.TabIndex = 0;
             this.btnEdit.Text = "Edit Config";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -1022,7 +1022,7 @@
             this.groupBox5.Location = new System.Drawing.Point(12, 369);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(699, 86);
-            this.groupBox5.TabIndex = 23;
+            this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Reset Code - Full Sequence";
             // 
@@ -1133,7 +1133,7 @@
             this.groupBox6.Location = new System.Drawing.Point(12, 317);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(258, 50);
-            this.groupBox6.TabIndex = 12;
+            this.groupBox6.TabIndex = 14;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Fan Temperature Targets (Celcius)";
             // 
@@ -1206,7 +1206,7 @@
             this.groupBox7.Location = new System.Drawing.Point(276, 317);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(258, 50);
-            this.groupBox7.TabIndex = 13;
+            this.groupBox7.TabIndex = 15;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Critical Temperatures (Celcius)";
             // 
@@ -1274,7 +1274,7 @@
             this.groupBox8.Location = new System.Drawing.Point(540, 317);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(171, 50);
-            this.groupBox8.TabIndex = 14;
+            this.groupBox8.TabIndex = 16;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Temperature Profiles";
             // 
@@ -1285,7 +1285,7 @@
             this.btnClose.Location = new System.Drawing.Point(364, 463);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 51;
+            this.btnClose.TabIndex = 90;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -1298,7 +1298,7 @@
             this.chkSaveBackup.Location = new System.Drawing.Point(627, 467);
             this.chkSaveBackup.Name = "chkSaveBackup";
             this.chkSaveBackup.Size = new System.Drawing.Size(91, 17);
-            this.chkSaveBackup.TabIndex = 52;
+            this.chkSaveBackup.TabIndex = 89;
             this.chkSaveBackup.Text = "Save Backup";
             this.chkSaveBackup.UseVisualStyleBackColor = true;
             // 

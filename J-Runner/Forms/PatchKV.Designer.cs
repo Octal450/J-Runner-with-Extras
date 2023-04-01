@@ -93,7 +93,7 @@
             this.txtMfrDate.MaxLength = 8;
             this.txtMfrDate.Name = "txtMfrDate";
             this.txtMfrDate.Size = new System.Drawing.Size(62, 20);
-            this.txtMfrDate.TabIndex = 16;
+            this.txtMfrDate.TabIndex = 10;
             // 
             // label1
             // 
@@ -110,7 +110,7 @@
             this.txtConsoleID.MaxLength = 10;
             this.txtConsoleID.Name = "txtConsoleID";
             this.txtConsoleID.Size = new System.Drawing.Size(92, 20);
-            this.txtConsoleID.TabIndex = 10;
+            this.txtConsoleID.TabIndex = 11;
             this.txtConsoleID.TextChanged += new System.EventHandler(this.txtConsoleID_TextChanged);
             this.txtConsoleID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConsoleID_KeyPress);
             // 
@@ -129,7 +129,7 @@
             this.txtSerial.MaxLength = 12;
             this.txtSerial.Name = "txtSerial";
             this.txtSerial.Size = new System.Drawing.Size(92, 20);
-            this.txtSerial.TabIndex = 11;
+            this.txtSerial.TabIndex = 12;
             this.txtSerial.TextChanged += new System.EventHandler(this.txtSerial_TextChanged);
             this.txtSerial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerial_KeyPress);
             // 
@@ -177,7 +177,7 @@
             this.comboOsig.Location = new System.Drawing.Point(76, 149);
             this.comboOsig.Name = "comboOsig";
             this.comboOsig.Size = new System.Drawing.Size(264, 21);
-            this.comboOsig.TabIndex = 14;
+            this.comboOsig.TabIndex = 15;
             this.comboOsig.SelectedIndexChanged += new System.EventHandler(this.comboOsig_SelectedIndexChanged);
             // 
             // comboRegion
@@ -196,7 +196,7 @@
             this.comboRegion.Location = new System.Drawing.Point(76, 96);
             this.comboRegion.Name = "comboRegion";
             this.comboRegion.Size = new System.Drawing.Size(145, 21);
-            this.comboRegion.TabIndex = 12;
+            this.comboRegion.TabIndex = 13;
             this.comboRegion.SelectedIndexChanged += new System.EventHandler(this.comboRegion_SelectedIndexChanged);
             // 
             // txtDVDkey
@@ -205,7 +205,7 @@
             this.txtDVDkey.MaxLength = 32;
             this.txtDVDkey.Name = "txtDVDkey";
             this.txtDVDkey.Size = new System.Drawing.Size(264, 20);
-            this.txtDVDkey.TabIndex = 13;
+            this.txtDVDkey.TabIndex = 14;
             this.txtDVDkey.TextChanged += new System.EventHandler(this.txtDVDkey_TextChanged);
             this.txtDVDkey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDVDkey_KeyPress);
             // 
@@ -250,7 +250,7 @@
             this.btnOK.Location = new System.Drawing.Point(111, 202);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 8;
+            this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -274,7 +274,7 @@
             this.chkSaveBackup.Location = new System.Drawing.Point(282, 206);
             this.chkSaveBackup.Name = "chkSaveBackup";
             this.chkSaveBackup.Size = new System.Drawing.Size(91, 17);
-            this.chkSaveBackup.TabIndex = 71;
+            this.chkSaveBackup.TabIndex = 69;
             this.chkSaveBackup.Text = "Save Backup";
             this.chkSaveBackup.UseVisualStyleBackColor = true;
             // 
