@@ -192,7 +192,7 @@ namespace JRunner
             this.btnJasperXsb.Name = "btnJasperXsb";
             this.btnJasperXsb.Size = new System.Drawing.Size(210, 23);
             this.btnJasperXsb.TabIndex = 0;
-            this.btnJasperXsb.Text = "Jasper 16MB (XSB)";
+            this.btnJasperXsb.Text = "Jasper XSB";
             this.btnJasperXsb.UseVisualStyleBackColor = true;
             this.btnJasperXsb.Click += new System.EventHandler(this.btnJasperXsb_Click);
             // 

@@ -170,7 +170,7 @@ namespace JRunner
             new consoles(2, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0),
             new consoles(3, "zephyr", "zephyr", "Zephyr", 16, Nandsize.S16, 0),
             new consoles(4, "jasper", "jasper", "Jasper 16MB", 16, Nandsize.S16, 1),
-            new consoles(5, "jaspersb", "jasper", "Jasper 16MB (XSB)", 16, Nandsize.S16, 0),
+            new consoles(5, "jaspersb", "jasper", "Jasper XSB", 16, Nandsize.S16, 0),
             new consoles(6, "jasperbb", "jasper", "Jasper BB", 64, Nandsize.S64, 2),
             new consoles(7, "", "", "", -1, Nandsize.S0, -1),
             new consoles(8, "xenon", "xenon", "Xenon", 16, Nandsize.S16, 0),
