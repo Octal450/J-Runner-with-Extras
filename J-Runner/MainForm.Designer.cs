@@ -1183,67 +1183,67 @@ namespace JRunner
             // extractFilesToolStripMenuItem
             // 
             this.extractFilesToolStripMenuItem.Name = "extractFilesToolStripMenuItem";
-            this.extractFilesToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.extractFilesToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.extractFilesToolStripMenuItem.Text = "Extract Files";
             this.extractFilesToolStripMenuItem.Click += new System.EventHandler(this.extractFilesToolStripMenuItem_Click);
             // 
             // createDonorToolStripMenuItem
             // 
             this.createDonorToolStripMenuItem.Name = "createDonorToolStripMenuItem";
-            this.createDonorToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.createDonorToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.createDonorToolStripMenuItem.Text = "Create Donor…";
             this.createDonorToolStripMenuItem.Click += new System.EventHandler(this.createDonorToolStripMenuItem_Click);
             // 
             // decryptKeyvaultToolStripMenuItem
             // 
             this.decryptKeyvaultToolStripMenuItem.Name = "decryptKeyvaultToolStripMenuItem";
-            this.decryptKeyvaultToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.decryptKeyvaultToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.decryptKeyvaultToolStripMenuItem.Text = "Decrypt Keyvault...";
             this.decryptKeyvaultToolStripMenuItem.Click += new System.EventHandler(this.decryptKeyvaultToolStripMenuItem_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(214, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(210, 6);
             // 
             // loadGlitch2XeLLToolStripMenuItem
             // 
             this.loadGlitch2XeLLToolStripMenuItem.Name = "loadGlitch2XeLLToolStripMenuItem";
-            this.loadGlitch2XeLLToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.loadGlitch2XeLLToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.loadGlitch2XeLLToolStripMenuItem.Text = "Load Glitch2 XeLL...";
             this.loadGlitch2XeLLToolStripMenuItem.Click += new System.EventHandler(this.loadGlitch2XeLLToolStripMenuItem_Click);
             // 
             // loadJTAGXeLLToolStripMenuItem
             // 
             this.loadJTAGXeLLToolStripMenuItem.Name = "loadJTAGXeLLToolStripMenuItem";
-            this.loadJTAGXeLLToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.loadJTAGXeLLToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.loadJTAGXeLLToolStripMenuItem.Text = "Load JTAG XeLL...";
             this.loadJTAGXeLLToolStripMenuItem.Click += new System.EventHandler(this.loadJTAGXeLLToolStripMenuItem_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(214, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(210, 6);
             // 
             // sMCConfigViewerToolStripMenuItem1
             // 
             this.sMCConfigViewerToolStripMenuItem1.Name = "sMCConfigViewerToolStripMenuItem1";
-            this.sMCConfigViewerToolStripMenuItem1.Size = new System.Drawing.Size(217, 22);
+            this.sMCConfigViewerToolStripMenuItem1.Size = new System.Drawing.Size(213, 22);
             this.sMCConfigViewerToolStripMenuItem1.Text = "SMC Config Editor";
             this.sMCConfigViewerToolStripMenuItem1.Click += new System.EventHandler(this.sMCConfigViewerToolStripMenuItem1_Click);
             // 
             // patchKVToolStripMenuItem
             // 
             this.patchKVToolStripMenuItem.Name = "patchKVToolStripMenuItem";
-            this.patchKVToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.patchKVToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.patchKVToolStripMenuItem.Text = "Patch Keyvault…";
             this.patchKVToolStripMenuItem.Click += new System.EventHandler(this.patchKVToolStripMenuItem_Click);
             // 
             // changeLDVToolStripMenuItem
             // 
             this.changeLDVToolStripMenuItem.Name = "changeLDVToolStripMenuItem";
-            this.changeLDVToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.changeLDVToolStripMenuItem.Text = "Change Lock Down Value…";
+            this.changeLDVToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.changeLDVToolStripMenuItem.Text = "Change Lockdown Value…";
             this.changeLDVToolStripMenuItem.Click += new System.EventHandler(this.changeLDVToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem

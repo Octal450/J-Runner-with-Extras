@@ -386,7 +386,7 @@ namespace JRunner.Forms
             this.LdvSmcConfPage.Name = "LdvSmcConfPage";
             this.LdvSmcConfPage.Size = new System.Drawing.Size(507, 247);
             this.LdvSmcConfPage.TabIndex = 5;
-            this.LdvSmcConfPage.Text = "Lock Down Value and SMC Config";
+            this.LdvSmcConfPage.Text = "Lockdown Value and SMC Config";
             // 
             // SmcConfigGroup
             // 
