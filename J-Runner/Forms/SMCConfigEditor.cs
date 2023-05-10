@@ -130,14 +130,14 @@ namespace JRunner.Forms
                             switch (smc_config.videoregion[0])
                             {
                                 case 0x01:
-                                    comboVideo.SelectedIndex = (int)GameRegion.HK;
+                                    comboGame.SelectedIndex = (int)GameRegion.HK;
                                     break;
                                 case 0xFC:
-                                    comboVideo.SelectedIndex = (int)GameRegion.KOR;
+                                    comboGame.SelectedIndex = (int)GameRegion.KOR;
                                     break;
                                 case 0xFE:
                                 case 0xFF:
-                                    comboVideo.SelectedIndex = (int)GameRegion.JAP;
+                                    comboGame.SelectedIndex = (int)GameRegion.JAP;
                                     break;
                             }
                             break;
