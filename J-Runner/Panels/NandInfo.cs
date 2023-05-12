@@ -280,6 +280,11 @@ namespace JRunner.Panels
 
         #region Double Clicks
 
+        private void textBoxConsole_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxConsole.Text);
+        }
+
         private void textBox2BLa_DoubleClick(object sender, EventArgs e)
         {
             MainForm.mainForm.copyToClipboard(textBox2BLa.Text);
@@ -310,6 +315,11 @@ namespace JRunner.Panels
             MainForm.mainForm.copyToClipboard(textBox7BL_p0.Text);
         }
 
+        private void textBoxldv_0_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxldv_0.Text);
+        }
+
         private void textBoxpd_0_DoubleClick(object sender, EventArgs e)
         {
             MainForm.mainForm.copyToClipboard(textBoxpd_0.Text);
@@ -320,9 +330,19 @@ namespace JRunner.Panels
             MainForm.mainForm.copyToClipboard(textBoxSmcVer.Text);
         }
 
+        private void textBoxldv_cb_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxldv_cb.Text);
+        }
+
         private void textBoxpd_cb_DoubleClick(object sender, EventArgs e)
         {
             MainForm.mainForm.copyToClipboard(textBoxpd_cb.Text);
+        }
+
+        private void textBoxldv_1_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(textBoxldv_1.Text);
         }
 
         private void textBox6BL_p1_DoubleClick(object sender, EventArgs e)
@@ -338,6 +358,10 @@ namespace JRunner.Panels
         private void textBoxpd_1_DoubleClick(object sender, EventArgs e)
         {
             MainForm.mainForm.copyToClipboard(textBoxpd_1.Text);
+        }
+        private void txtkvtype_DoubleClick(object sender, EventArgs e)
+        {
+            MainForm.mainForm.copyToClipboard(txtkvtype.Text);
         }
 
         private void txtMfrDate_DoubleClick(object sender, EventArgs e)

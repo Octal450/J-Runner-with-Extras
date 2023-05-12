@@ -64,6 +64,7 @@
             this.chkAutoDelXeLL = new System.Windows.Forms.CheckBox();
             this.tabCSettings = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.chkAllowZeroPaired = new System.Windows.Forms.CheckBox();
             this.tabBackup = new System.Windows.Forms.TabPage();
             this.groupBackupNaming = new System.Windows.Forms.GroupBox();
             this.rbtnCtypeSnDate = new System.Windows.Forms.RadioButton();
@@ -75,7 +76,6 @@
             this.groupBackupType = new System.Windows.Forms.GroupBox();
             this.rbtnFolder = new System.Windows.Forms.RadioButton();
             this.rbtnZip = new System.Windows.Forms.RadioButton();
-            this.chkAllowZeroPaired = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabCSettings.SuspendLayout();
@@ -463,6 +463,16 @@
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
+            // chkAllowZeroPaired
+            // 
+            this.chkAllowZeroPaired.AutoSize = true;
+            this.chkAllowZeroPaired.Location = new System.Drawing.Point(6, 192);
+            this.chkAllowZeroPaired.Name = "chkAllowZeroPaired";
+            this.chkAllowZeroPaired.Size = new System.Drawing.Size(200, 17);
+            this.chkAllowZeroPaired.TabIndex = 43;
+            this.chkAllowZeroPaired.Text = "Allow zero-paired images (Advanced)";
+            this.chkAllowZeroPaired.UseVisualStyleBackColor = true;
+            // 
             // tabBackup
             // 
             this.tabBackup.Controls.Add(this.groupBackupNaming);
@@ -584,16 +594,6 @@
             this.rbtnZip.TabStop = true;
             this.rbtnZip.Text = "ZIP Archive - Compresses all files and folders to a ZIP file";
             this.rbtnZip.UseVisualStyleBackColor = true;
-            // 
-            // chkAllowZeroPaired
-            // 
-            this.chkAllowZeroPaired.AutoSize = true;
-            this.chkAllowZeroPaired.Location = new System.Drawing.Point(6, 192);
-            this.chkAllowZeroPaired.Name = "chkAllowZeroPaired";
-            this.chkAllowZeroPaired.Size = new System.Drawing.Size(204, 17);
-            this.chkAllowZeroPaired.TabIndex = 43;
-            this.chkAllowZeroPaired.Text = "Allow Zero Paired Images (Advanced)";
-            this.chkAllowZeroPaired.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 

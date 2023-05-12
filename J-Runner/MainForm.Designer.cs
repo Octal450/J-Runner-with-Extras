@@ -372,6 +372,7 @@ namespace JRunner
             // txtIP
             // 
             this.txtIP.Location = new System.Drawing.Point(29, 12);
+            this.txtIP.MaxLength = 15;
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(128, 20);
             this.txtIP.TabIndex = 10;

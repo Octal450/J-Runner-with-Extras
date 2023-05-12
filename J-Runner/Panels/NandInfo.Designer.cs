@@ -218,6 +218,7 @@
             this.textBoxConsole.TabIndex = 67;
             this.textBoxConsole.TabStop = false;
             this.textBoxConsole.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxConsole.DoubleClick += new System.EventHandler(this.textBoxConsole_DoubleClick);
             // 
             // labelcon
             // 
@@ -258,6 +259,7 @@
             this.textBoxldv_cb.TabIndex = 63;
             this.textBoxldv_cb.TabStop = false;
             this.textBoxldv_cb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxldv_cb.DoubleClick += new System.EventHandler(this.textBoxldv_cb_DoubleClick);
             // 
             // labelldv_cb
             // 
@@ -320,6 +322,7 @@
             this.textBoxldv_1.TabIndex = 57;
             this.textBoxldv_1.TabStop = false;
             this.textBoxldv_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxldv_1.DoubleClick += new System.EventHandler(this.textBoxldv_1_DoubleClick);
             // 
             // labelldv_1
             // 
@@ -340,6 +343,7 @@
             this.textBoxldv_0.TabIndex = 54;
             this.textBoxldv_0.TabStop = false;
             this.textBoxldv_0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxldv_0.DoubleClick += new System.EventHandler(this.textBoxldv_0_DoubleClick);
             // 
             // labelldv_0
             // 
@@ -562,7 +566,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(218, 83);
+            this.label5.Location = new System.Drawing.Point(218, 82);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 13);
             this.label5.TabIndex = 73;
@@ -580,7 +584,7 @@
             // 
             // btnConsoleId
             // 
-            this.btnConsoleId.Location = new System.Drawing.Point(215, 110);
+            this.btnConsoleId.Location = new System.Drawing.Point(215, 142);
             this.btnConsoleId.Name = "btnConsoleId";
             this.btnConsoleId.Size = new System.Drawing.Size(95, 22);
             this.btnConsoleId.TabIndex = 26;
@@ -597,6 +601,7 @@
             this.txtconsole.TabIndex = 71;
             this.txtconsole.TabStop = false;
             this.txtconsole.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtconsole.DoubleClick += new System.EventHandler(this.textBoxConsole_DoubleClick);
             // 
             // label2
             // 
@@ -610,7 +615,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 83);
+            this.label1.Location = new System.Drawing.Point(16, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 69;
@@ -618,7 +623,7 @@
             // 
             // textMfrDate
             // 
-            this.textMfrDate.Location = new System.Drawing.Point(74, 80);
+            this.textMfrDate.Location = new System.Drawing.Point(74, 79);
             this.textMfrDate.Name = "textMfrDate";
             this.textMfrDate.ReadOnly = true;
             this.textMfrDate.Size = new System.Drawing.Size(135, 20);
@@ -646,6 +651,7 @@
             this.txtkvtype.TabIndex = 42;
             this.txtkvtype.TabStop = false;
             this.txtkvtype.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtkvtype.DoubleClick += new System.EventHandler(this.txtkvtype_DoubleClick);
             // 
             // labelkv
             // 
@@ -678,7 +684,7 @@
             // 
             // textBoxConsoleId
             // 
-            this.textBoxConsoleId.Location = new System.Drawing.Point(74, 111);
+            this.textBoxConsoleId.Location = new System.Drawing.Point(74, 143);
             this.textBoxConsoleId.Name = "textBoxConsoleId";
             this.textBoxConsoleId.ReadOnly = true;
             this.textBoxConsoleId.Size = new System.Drawing.Size(135, 20);
@@ -690,7 +696,7 @@
             // labelconsole
             // 
             this.labelconsole.AutoSize = true;
-            this.labelconsole.Location = new System.Drawing.Point(13, 114);
+            this.labelconsole.Location = new System.Drawing.Point(13, 146);
             this.labelconsole.Name = "labelconsole";
             this.labelconsole.Size = new System.Drawing.Size(59, 13);
             this.labelconsole.TabIndex = 37;
@@ -719,7 +725,7 @@
             // labelserial
             // 
             this.labelserial.AutoSize = true;
-            this.labelserial.Location = new System.Drawing.Point(39, 146);
+            this.labelserial.Location = new System.Drawing.Point(39, 114);
             this.labelserial.Name = "labelserial";
             this.labelserial.Size = new System.Drawing.Size(33, 13);
             this.labelserial.TabIndex = 30;
@@ -727,7 +733,7 @@
             // 
             // txtSerial
             // 
-            this.txtSerial.Location = new System.Drawing.Point(74, 143);
+            this.txtSerial.Location = new System.Drawing.Point(74, 111);
             this.txtSerial.Name = "txtSerial";
             this.txtSerial.ReadOnly = true;
             this.txtSerial.Size = new System.Drawing.Size(135, 20);

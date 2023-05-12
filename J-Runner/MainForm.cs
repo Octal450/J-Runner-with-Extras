@@ -1305,14 +1305,7 @@ namespace JRunner
                 demon.write(variables.filename1);
                 if (Path.GetExtension(variables.filename1) == ".ecc")
                 {
-                    if (variables.tempfile != "")
-                    {
-                        string eccFile = variables.filename1;
-                        variables.filename1 = variables.tempfile;
-                        txtFileSource.Text = variables.tempfile;
-                        variables.tempfile = "";
-                        deleteEcc(eccFile);
-                    }
+                    afterWriteXeLLCleanup();
                 }
             }
             else
@@ -1337,13 +1330,9 @@ namespace JRunner
                     result = nandx.write(variables.filename1, variables.nandsizex, 0, 0x50, true, true);
 
                     Thread.Sleep(500);
-                    if (variables.tempfile != "" && result == NandX.Errors.None)
+                    if (result == NandX.Errors.None)
                     {
-                        string eccFile = variables.filename1;
-                        variables.filename1 = variables.tempfile;
-                        txtFileSource.Text = variables.tempfile;
-                        variables.tempfile = "";
-                        deleteEcc(eccFile);
+                        afterWriteXeLLCleanup();
                     }
                 }
                 else if (Path.GetExtension(variables.filename1) == ".bin")
@@ -1425,14 +1414,7 @@ namespace JRunner
                 {
                     variables.filename1 = "";
                     txtFileSource.Text = "";
-                    if (variables.tempfile != "")
-                    {
-                        string eccFile = variables.filename1;
-                        variables.filename1 = variables.tempfile;
-                        txtFileSource.Text = variables.tempfile;
-                        variables.tempfile = "";
-                        deleteEcc(eccFile);
-                    }
+                    afterWriteXeLLCleanup();
                 }
             }
             else
@@ -1443,13 +1425,9 @@ namespace JRunner
                 NandX.Errors result = NandX.Errors.None;
                 result = nandx.write(variables.filename1, Nandsize.S16, 0, 0x50);
 
-                if (variables.tempfile != "" && result == NandX.Errors.None)
+                if (result == NandX.Errors.None)
                 {
-                    string eccFile = variables.filename1;
-                    variables.filename1 = variables.tempfile;
-                    txtFileSource.Text = variables.tempfile;
-                    variables.tempfile = "";
-                    deleteEcc(eccFile);
+                    afterWriteXeLLCleanup();
                 }
             }
         }
@@ -4724,6 +4702,8 @@ namespace JRunner
                 variables.filename1 = variables.tempfile;
                 txtFileSource.Text = variables.tempfile;
                 variables.tempfile = "";
+                txtIP.Focus();
+                txtIP.SelectionStart = txtIP.TextLength;
                 deleteEcc(eccFile);
             }
         }
