@@ -4702,9 +4702,12 @@ namespace JRunner
                 variables.filename1 = variables.tempfile;
                 txtFileSource.Text = variables.tempfile;
                 variables.tempfile = "";
-                txtIP.Focus();
-                txtIP.SelectionStart = txtIP.TextLength;
                 deleteEcc(eccFile);
+                mainForm.BeginInvoke((Action)(() =>
+                {
+                    txtIP.Focus();
+                    txtIP.SelectionStart = txtIP.TextLength;
+                }));
             }
         }
 
