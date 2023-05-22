@@ -167,20 +167,22 @@ namespace JRunner
         public static consoles[] ctypes = { // Check getConsole() and identifyConsole() in Nand.cs if modifying!
             new consoles(-1, "", "", "", -1, Nandsize.S0, -1),
             new consoles(1, "trinity", "trinity", "Trinity 16MB", 16, Nandsize.S16, 1),
-            new consoles(2, "falcon", "falcon", "Falcon", 16, Nandsize.S16, 0),
-            new consoles(3, "zephyr", "zephyr", "Zephyr", 16, Nandsize.S16, 0),
+            new consoles(2, "falcon", "falcon", "Falcon 16MB", 16, Nandsize.S16, 0),
+            new consoles(3, "zephyr", "zephyr", "Zephyr 16MB", 16, Nandsize.S16, 0),
             new consoles(4, "jasper", "jasper", "Jasper 16MB", 16, Nandsize.S16, 1),
             new consoles(5, "jaspersb", "jasper", "Jasper XSB", 16, Nandsize.S16, 0),
             new consoles(6, "jasperbb", "jasper", "Jasper BB", 64, Nandsize.S64, 2),
-            new consoles(7, "", "", "", -1, Nandsize.S0, -1),
-            new consoles(8, "xenon", "xenon", "Xenon", 16, Nandsize.S16, 0),
+            new consoles(7, "xenon", "xenon", "Xenon 64MB", 64, Nandsize.S64, 0),
+            new consoles(8, "xenon", "xenon", "Xenon 16MB", 16, Nandsize.S16, 0),
             new consoles(9, "coronabb", "corona", "Corona BB", 64, Nandsize.S64, 2),
             new consoles(10, "corona", "corona", "Corona 16MB", 16, Nandsize.S16, 0),
             new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
             new consoles(12, "trinitybb", "trinity", "Trinity BB", 64, Nandsize.S64, 2),
+            new consoles(13, "zephyr", "zephyr", "Zephyr 64MB", 64, Nandsize.S64, 0),
+            new consoles(14, "falcon", "falcon", "Falcon 64MB", 64, Nandsize.S64, 0),
         };
 
-        public static string[] sortedConsoleNames = { "Xenon", "Xenon Elpis", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
+        public static string[] sortedConsoleNames = { "Xenon", "Elpis", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
 
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
         {

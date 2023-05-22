@@ -225,99 +225,6 @@ namespace JRunner.Nand
             return image;
         }
 
-        public static string find_bad_blocks(string filename, bool stealth)
-        {
-
-            if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("");
-            long imgsize = 0;
-            FileInfo file = new FileInfo(filename);
-            byte[] image;
-            int blocksize, reservedoffset;
-            bool bigblock;
-
-            if (file.Length >= 0x4200000)
-            {
-                image = Oper.openfile(filename, ref imgsize, 0x4200000);
-                blocksize = 0x21000;
-                bigblock = true;
-                reservedoffset = 0x1E0;
-            }
-            else
-            {
-                image = Oper.openfile(filename, ref imgsize, 0);
-                blocksize = 0x4200;
-                bigblock = false;
-                reservedoffset = 0x3E0;
-            }
-
-            if (image[0x205] == 0xFF || image[0x415] == 0xFF || image[0x200] == 0xFF)
-            { }
-            else
-            {
-                if (variables.debugMode) Console.WriteLine("Can't check for bad blocks, no spare data, possibly Corona 4GB");
-                return filename;
-            }
-
-            List<int> badblocks = new List<int>();
-            List<int> remappedblocks = new List<int>();
-
-
-            if (variables.debugMode) Console.WriteLine("-F-Image Size: 0x{0:X} | imagesize: 0x{1:X} | File Size: 0x{0:X}", image.Length, blocksize, file.Length);
-
-            int counter;
-            for (counter = 0; counter < image.Length / blocksize; counter++)
-            {
-                if (checkifbadblock(Oper.returnportion(image, counter * blocksize, blocksize), counter, bigblock))
-                {
-                    badblocks.Add(counter);
-                }
-                if (badblocks.Count >= 0x20)
-                {
-                    Console.WriteLine("Too Many Bad Blocks");
-                    return filename;
-                }
-            }
-
-            if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("");
-
-            if (badblocks.Count == 0)
-            {
-                if ((stealth && variables.debugMode) || !stealth) if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("Bad Blocks Don't Exist");
-                return filename;
-            }
-            //find if remapped
-
-            remappedblocks = checkifremapped(Oper.returnportion(image, reservedoffset * blocksize, 0x20 * blocksize), badblocks, bigblock);
-
-
-            bool found = false;
-            foreach (int blockoffset in remappedblocks)
-            {
-                if (blockoffset != -1)
-                {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-            {
-                if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("Can't fix it. Remapped Blocks don't exist.");
-                return filename;
-            }
-
-            if (!stealth) if (MessageBox.Show("Bad Blocks have been found.\nRemap?", "Remap", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1)
-                == DialogResult.No) return filename;
-
-            image = remapbadblocks(image, badblocks, remappedblocks, bigblock);
-
-            string filename1 = Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename) + "_nobadblocks.bin");
-            if (variables.debugMode) Console.WriteLine(filename1);
-            Oper.savefile(image, filename1);
-            if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("");
-            if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("Fixed Image saved to {0}", filename1);
-            return filename1;
-        }
-
         public static byte[] find_bad_blocks_b(string filename, bool stealth)
         {
             if ((stealth && variables.debugMode) || !stealth) Console.WriteLine("");
@@ -330,9 +237,18 @@ namespace JRunner.Nand
             if (file.Length >= 0x4200000)
             {
                 image = Oper.openfile(filename, ref imgsize, 0x4200000);
-                blocksize = 0x21000;
-                bigblock = true;
-                reservedoffset = 0x1E0;
+                if (image[0x205] == 0xFF)
+                {
+                    blocksize = 0x4200;
+                    bigblock = false;
+                    reservedoffset = 0xF80;
+                }
+                else
+                {
+                    blocksize = 0x21000;
+                    bigblock = true;
+                    reservedoffset = 0x1E0;
+                }
             }
             else
             {
@@ -419,12 +335,22 @@ namespace JRunner.Nand
             byte[] image;
             int blocksize, reservedoffset;
             bool bigblock;
+            image = Oper.openfile(filename, ref imgsize, 0x220);
 
             if (file.Length >= 0x4200000)
             {
-                blocksize = 0x21000;
-                bigblock = true;
-                reservedoffset = 0x1E0;
+                if (image[0x205] == 0xFF)
+                {
+                    blocksize = 0x4200;
+                    bigblock = false;
+                    reservedoffset = 0xF80;
+                }
+                else
+                {
+                    blocksize = 0x21000;
+                    bigblock = true;
+                    reservedoffset = 0x1E0;
+                }
             }
             else
             {
@@ -504,9 +430,18 @@ namespace JRunner.Nand
             if (image.Length >= 0x4200000)
             {
                 image = Oper.returnportion(image, 0, 0x4200000);
-                blocksize = 0x21000;
-                bigblock = true;
-                reservedoffset = 0x1E0;
+                if (image[0x205] == 0xFF)
+                {
+                    blocksize = 0x4200;
+                    bigblock = false;
+                    reservedoffset = 0xF80;
+                }
+                else
+                {
+                    blocksize = 0x21000;
+                    bigblock = true;
+                    reservedoffset = 0x1E0;
+                }
             }
             else
             {

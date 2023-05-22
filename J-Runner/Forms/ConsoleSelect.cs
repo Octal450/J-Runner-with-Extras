@@ -22,8 +22,11 @@ namespace JRunner
             InitializeComponent();
 
             btnXenon.DialogResult = DialogResult.OK;
+            btnXenon64.DialogResult = DialogResult.OK;
             btnZephyr.DialogResult = DialogResult.OK;
+            btnZephyr64.DialogResult = DialogResult.OK;
             btnFalcon.DialogResult = DialogResult.OK;
+            btnFalcon64.DialogResult = DialogResult.OK;
             btnJasper.DialogResult = DialogResult.OK;
             btnJasperXsb.DialogResult = DialogResult.OK;
             btnJasperBb.DialogResult = DialogResult.OK;
@@ -96,6 +99,10 @@ namespace JRunner
             {
                 hresult = variables.ctypes[6];
             }
+            else if (type == "xenon64")
+            {
+                hresult = variables.ctypes[7];
+            }
             else if (type == "xenon")
             {
                 hresult = variables.ctypes[8];
@@ -116,6 +123,14 @@ namespace JRunner
             {
                 hresult = variables.ctypes[12];
             }
+            else if (type == "zephyr64")
+            {
+                hresult = variables.ctypes[13];
+            }
+            else if (type == "falcon64")
+            {
+                hresult = variables.ctypes[14];
+            }
             else hresult = variables.ctypes[0];
 
             return hresult;
@@ -135,15 +150,33 @@ namespace JRunner
             setType();
         }
 
+        private void btnXenon64_Click(object sender, EventArgs e)
+        {
+            type = "xenon64";
+            setType();
+        }
+
         private void btnZephyr_Click(object sender, EventArgs e)
         {
             type = "zephyr";
             setType();
         }
 
+        private void btnZephyr64_Click(object sender, EventArgs e)
+        {
+            type = "zephyr64";
+            setType();
+        }
+
         private void btnFalcon_Click(object sender, EventArgs e)
         {
             type = "falcon";
+            setType();
+        }
+
+        private void btnFalcon64_Click(object sender, EventArgs e)
+        {
+            type = "falcon64";
             setType();
         }
 
@@ -200,12 +233,12 @@ namespace JRunner
             float dpi = Program.getScalingFactor();
             if (advancedChk.Checked)
             {
-                this.Height += Convert.ToInt32(82 * dpi);
+                this.Height += Convert.ToInt32(163 * dpi);
                 AdvancedBox.Visible = true;
             }
             else
             {
-                this.Height -= Convert.ToInt32(82 * dpi);
+                this.Height -= Convert.ToInt32(163 * dpi);
                 AdvancedBox.Visible = false;
             }
         }

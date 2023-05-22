@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 namespace JRunner
 {
@@ -52,6 +53,14 @@ namespace JRunner
             if (!changed) this.Close();
             else
             {
+                DateTime mfrTest;
+                if (!DateTime.TryParseExact(txtMfrDate.Text, "MM-dd-yy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out mfrTest))
+                {
+                    MessageBox.Show("MFR Date is not in MM-DD-YY format", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.DialogResult = DialogResult.None;
+                    return;
+                }
+
                 if (variables.filename1 == null || variables.cpukey == "") this.Close();
                 byte[] data = Nand.BadBlock.find_bad_blocks_b(variables.filename1, true);
 

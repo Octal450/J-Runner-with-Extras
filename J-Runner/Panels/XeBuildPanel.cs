@@ -1229,6 +1229,14 @@ namespace JRunner.Panels
 
             string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_" + variables.ttyp + ".ini");
 
+            if (variables.ctype.ID == 7 || variables.ctype.ID == 13 || variables.ctype.ID == 14)
+            {
+                if (MessageBox.Show("XeBuild does not support building 64MB images for Xenon, Zephyr, or Falcon\n\nContinuing will cause a 16MB image to be built\n\nDo you want to continue?", "Steep Hill Ahead", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             if (!custom)
             {
                 if (string.IsNullOrWhiteSpace(variables.filename1))
@@ -1247,7 +1255,7 @@ namespace JRunner.Panels
                 }
                 if (Path.GetExtension(variables.filename1) != ".bin")
                 {
-                    MessageBox.Show("You must select a .bin file", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("You must select a .bin file", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     return;
                 }
                 try

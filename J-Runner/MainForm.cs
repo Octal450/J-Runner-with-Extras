@@ -1012,14 +1012,22 @@ namespace JRunner
                             xPanel.setMBname(variables.ctype.Text);
                         }
                     }
-                    else if (temp >= 4558 && temp <= 4580)
+                    else if (temp >= 4558 && temp <= 4580) 
                     {
-                        variables.ctype = variables.ctypes[3];
-                        xPanel.setMBname(variables.ctype.Text);
+                        if (flashconfig == "01198030")
+                        {
+                            variables.ctype = variables.ctypes[13];
+                            xPanel.setMBname(variables.ctype.Text);
+                        }
+                        else if (flashconfig == "01198010")
+                        {
+                            variables.ctype = variables.ctypes[3];
+                            xPanel.setMBname(variables.ctype.Text);
+                        }
                     }
                     else if (temp >= 6712 && temp <= 6780)
                     {
-                        if (flashconfig == "01198010")
+                        if (flashconfig == "01198010" || flashconfig == "01198030")
                         {
                             variables.ctype = variables.ctypes[5];
                             xPanel.setMBname(variables.ctype.Text);
@@ -1050,18 +1058,30 @@ namespace JRunner
                     }
                     else if ((temp >= 1888 && temp <= 1960) || (temp >= 7373 && temp <= 7378) || temp == 8192)
                     {
-                        variables.ctype = variables.ctypes[8];
-                        xPanel.setMBname(variables.ctype.Text);
+                        if (flashconfig == "01198030")
+                        {
+                            variables.ctype = variables.ctypes[7];
+                            xPanel.setMBname(variables.ctype.Text);
+                        }
+                        else if (flashconfig == "01198010")
+                        {
+                            variables.ctype = variables.ctypes[8];
+                            xPanel.setMBname(variables.ctype.Text);
+                        }
                     }
                     else if (temp >= 5761 && temp <= 5780)
                     {
-                        variables.ctype = variables.ctypes[2];
-                        xPanel.setMBname(variables.ctype.Text);
+                        if (flashconfig == "01198030")
+                        {
+                            variables.ctype = variables.ctypes[14];
+                            xPanel.setMBname(variables.ctype.Text);
+                        }
+                        else if (flashconfig == "01198010")
+                        {
+                            variables.ctype = variables.ctypes[2];
+                            xPanel.setMBname(variables.ctype.Text);
+                        }
                     }
-                    //else
-                    //{
-                    //    if (variables.smcmbtype < variables.console_types.Length && variables.smcmbtype >= 0) consolebox.Text = variables.console_types[variables.smcmbtype];
-                    //}
                     Console.WriteLine("CB Version: {0}", temp);
                 }
                 else
@@ -1531,9 +1551,7 @@ namespace JRunner
             else
             {
                 FileInfo inf = new FileInfo(variables.filename1);
-                string time = "";
-                if (inf.Length > 64 * 1024 * 1024) time = "Takes a while on big nands";
-                Console.WriteLine("Comparing...{0}", time);
+                Console.WriteLine("Comparing, please wait...");
                 try
                 {
                     byte[] temp1 = Nand.BadBlock.find_bad_blocks_b(variables.filename1, true);
@@ -2910,6 +2928,15 @@ namespace JRunner
 
             if (variables.ctype.ID == -1) variables.ctype = callConsoleSelect(ConsoleSelect.Selected.All);
             if (variables.ctype.ID == -1) return;
+
+            if (variables.ctype.ID == 7 || variables.ctype.ID == 13 || variables.ctype.ID == 14)
+            {
+                if (MessageBox.Show("XeBuild does not support building 64MB images for Xenon, Zephyr, or Falcon\n\nContinuing will cause a 16MB image to be built\n\nDo you want to continue?", "Steep Hill Ahead", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             if (Application.OpenForms.OfType<CreateDonorNand>().Any())
             {
                 cdonor.WindowState = FormWindowState.Normal;

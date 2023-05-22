@@ -41,6 +41,9 @@ namespace JRunner
             this.btnCorona = new System.Windows.Forms.Button();
             this.btnTrinity = new System.Windows.Forms.Button();
             this.AdvancedBox = new System.Windows.Forms.GroupBox();
+            this.btnFalcon64 = new System.Windows.Forms.Button();
+            this.btnZephyr64 = new System.Windows.Forms.Button();
+            this.btnXenon64 = new System.Windows.Forms.Button();
             this.btnCoronaBb = new System.Windows.Forms.Button();
             this.btnTrinityBb = new System.Windows.Forms.Button();
             this.btnJasperXsb = new System.Windows.Forms.Button();
@@ -56,7 +59,7 @@ namespace JRunner
             this.btnXenon.Name = "btnXenon";
             this.btnXenon.Size = new System.Drawing.Size(210, 23);
             this.btnXenon.TabIndex = 0;
-            this.btnXenon.Text = "Xenon";
+            this.btnXenon.Text = "Xenon 16MB";
             this.btnXenon.UseVisualStyleBackColor = true;
             this.btnXenon.Click += new System.EventHandler(this.btnXenon_Click);
             // 
@@ -99,7 +102,7 @@ namespace JRunner
             this.btnFalcon.Name = "btnFalcon";
             this.btnFalcon.Size = new System.Drawing.Size(210, 23);
             this.btnFalcon.TabIndex = 2;
-            this.btnFalcon.Text = "Falcon";
+            this.btnFalcon.Text = "Falcon 16MB";
             this.btnFalcon.UseVisualStyleBackColor = true;
             this.btnFalcon.Click += new System.EventHandler(this.btnFalcon_Click);
             // 
@@ -109,7 +112,7 @@ namespace JRunner
             this.btnZephyr.Name = "btnZephyr";
             this.btnZephyr.Size = new System.Drawing.Size(210, 23);
             this.btnZephyr.TabIndex = 1;
-            this.btnZephyr.Text = "Zephyr";
+            this.btnZephyr.Text = "Zephyr 16MB";
             this.btnZephyr.UseVisualStyleBackColor = true;
             this.btnZephyr.Click += new System.EventHandler(this.btnZephyr_Click);
             // 
@@ -156,19 +159,52 @@ namespace JRunner
             // 
             // AdvancedBox
             // 
+            this.AdvancedBox.Controls.Add(this.btnFalcon64);
+            this.AdvancedBox.Controls.Add(this.btnZephyr64);
+            this.AdvancedBox.Controls.Add(this.btnXenon64);
             this.AdvancedBox.Controls.Add(this.btnCoronaBb);
             this.AdvancedBox.Controls.Add(this.btnTrinityBb);
             this.AdvancedBox.Controls.Add(this.btnJasperXsb);
             this.AdvancedBox.Location = new System.Drawing.Point(13, 259);
             this.AdvancedBox.Name = "AdvancedBox";
-            this.AdvancedBox.Size = new System.Drawing.Size(222, 102);
+            this.AdvancedBox.Size = new System.Drawing.Size(222, 183);
             this.AdvancedBox.TabIndex = 7;
             this.AdvancedBox.TabStop = false;
             this.AdvancedBox.Visible = false;
             // 
+            // btnFalcon64
+            // 
+            this.btnFalcon64.Location = new System.Drawing.Point(6, 72);
+            this.btnFalcon64.Name = "btnFalcon64";
+            this.btnFalcon64.Size = new System.Drawing.Size(210, 23);
+            this.btnFalcon64.TabIndex = 5;
+            this.btnFalcon64.Text = "Falcon 64MB";
+            this.btnFalcon64.UseVisualStyleBackColor = true;
+            this.btnFalcon64.Click += new System.EventHandler(this.btnFalcon64_Click);
+            // 
+            // btnZephyr64
+            // 
+            this.btnZephyr64.Location = new System.Drawing.Point(6, 45);
+            this.btnZephyr64.Name = "btnZephyr64";
+            this.btnZephyr64.Size = new System.Drawing.Size(210, 23);
+            this.btnZephyr64.TabIndex = 4;
+            this.btnZephyr64.Text = "Zephyr 64MB";
+            this.btnZephyr64.UseVisualStyleBackColor = true;
+            this.btnZephyr64.Click += new System.EventHandler(this.btnZephyr64_Click);
+            // 
+            // btnXenon64
+            // 
+            this.btnXenon64.Location = new System.Drawing.Point(6, 18);
+            this.btnXenon64.Name = "btnXenon64";
+            this.btnXenon64.Size = new System.Drawing.Size(210, 23);
+            this.btnXenon64.TabIndex = 3;
+            this.btnXenon64.Text = "Xenon 64MB";
+            this.btnXenon64.UseVisualStyleBackColor = true;
+            this.btnXenon64.Click += new System.EventHandler(this.btnXenon64_Click);
+            // 
             // btnCoronaBb
             // 
-            this.btnCoronaBb.Location = new System.Drawing.Point(6, 72);
+            this.btnCoronaBb.Location = new System.Drawing.Point(6, 153);
             this.btnCoronaBb.Name = "btnCoronaBb";
             this.btnCoronaBb.Size = new System.Drawing.Size(210, 23);
             this.btnCoronaBb.TabIndex = 2;
@@ -178,7 +214,7 @@ namespace JRunner
             // 
             // btnTrinityBb
             // 
-            this.btnTrinityBb.Location = new System.Drawing.Point(6, 45);
+            this.btnTrinityBb.Location = new System.Drawing.Point(6, 126);
             this.btnTrinityBb.Name = "btnTrinityBb";
             this.btnTrinityBb.Size = new System.Drawing.Size(210, 23);
             this.btnTrinityBb.TabIndex = 1;
@@ -188,7 +224,7 @@ namespace JRunner
             // 
             // btnJasperXsb
             // 
-            this.btnJasperXsb.Location = new System.Drawing.Point(6, 18);
+            this.btnJasperXsb.Location = new System.Drawing.Point(6, 99);
             this.btnJasperXsb.Name = "btnJasperXsb";
             this.btnJasperXsb.Size = new System.Drawing.Size(210, 23);
             this.btnJasperXsb.TabIndex = 0;
@@ -249,5 +285,8 @@ namespace JRunner
         private System.Windows.Forms.Button btnJasperXsb;
         private System.Windows.Forms.CheckBox advancedChk;
         private System.Windows.Forms.Button btnCoronaBb;
+        private System.Windows.Forms.Button btnFalcon64;
+        private System.Windows.Forms.Button btnZephyr64;
+        private System.Windows.Forms.Button btnXenon64;
     }
 }

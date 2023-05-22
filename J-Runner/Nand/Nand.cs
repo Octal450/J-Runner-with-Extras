@@ -156,7 +156,7 @@ namespace JRunner.Nand
         public Useful uf;
         public string _cpukey = "", _filename;
         private int _currentFS = 0;
-        public bool noecc = false, bigblock = false;
+        public bool noecc = false, bigblock = false, bigflash = false;
         public byte[] _rawkv, _smc, _smc_config;
         public List<int> bad_blocks = new List<int>(), remapped_blocks = new List<int>();
         private List<FSFile> Files = new List<FSFile>();
@@ -166,7 +166,7 @@ namespace JRunner.Nand
             _cpukey = "";
             _filename = "";
             _currentFS = 0;
-            ok = noecc = bigblock = false;
+            ok = noecc = bigblock = bigflash = false;
             bad_blocks = new List<int>();
             remapped_blocks = new List<int>();
             Files = new List<FSFile>();
@@ -197,8 +197,12 @@ namespace JRunner.Nand
             if (s1 == 0x40000) return;
             byte[] data = BadBlock.find_bad_blocks_X(filename, 0x50);
             //
-            if (s1 >= 0x4200000 && s1 <= 0x21000000) bigblock = true;
-            else bigblock = false;
+            if (s1 >= 0x4200000 && s1 <= 0x21000000)
+            {
+                bigflash = true;
+                if (data[0x205] == 0xFF) bigblock = false;
+                else bigblock = true;
+            }
             //
             byte[] temp = new byte[0x210];
             Buffer.BlockCopy(data, 0, temp, 0, data.Length > temp.Length ? temp.Length : data.Length);
@@ -613,7 +617,8 @@ namespace JRunner.Nand
             int smc_config_offset, smc_config_length;
             if (!bigblock)
             {
-                smc_config_offset = 0xFEB800;
+                if (bigflash) smc_config_offset = 0x3FDF800;
+                else smc_config_offset = 0xFEB800;
                 smc_config_length = 0x4200 * 4;
                 _smc_config = new byte[smc_config_length];
             }
@@ -1817,15 +1822,22 @@ namespace JRunner.Nand
 
         public static void injectSMC(string filename, byte[] SMCdec)
         {
-            bool bigblock, corona;
+            bool bigblock, corona4g, bigflash;
             int layout;
             if (filename == null) return;
             if (!File.Exists(filename)) return;
             FileInfo f = new FileInfo(filename);
             long s1 = f.Length;
-            if (s1 >= 0x4200000) bigblock = true;
-            else bigblock = false;
-            corona = true;
+            long imgsize = 0;
+            byte[] image = Oper.openfile(filename, ref imgsize, 0x4200000);
+            if (s1 >= 0x4200000)
+            {
+                bigflash = true;
+                if (image[0x205] == 0xFF) bigblock = false;
+                else bigblock = true;
+            }
+            else bigblock = bigflash = false;
+            corona4g = true;
 
             FileStream infile = new FileStream(filename, FileMode.Open, FileAccess.ReadWrite);
             BinaryReader file = new BinaryReader(infile);
@@ -1840,8 +1852,8 @@ namespace JRunner.Nand
             //file.Close();
             layout = identifylayout(sparedata);
 
-            if (hasecc(temp)) corona = false;
-            if (variables.debugMode) Console.WriteLine("bigblock:{0} - corona: {1} - layout: {2}", bigblock, corona, layout);
+            if (hasecc(temp)) corona4g = false;
+            if (variables.debugMode) Console.WriteLine("bigblock: {0} - corona4g: {1} - bigflash: {2} - layout: {3}", bigblock, corona4g, bigflash, layout);
 
             int smc_offset, smc_length;
             byte[] smc_len = new byte[4], smc_start = new byte[4];
@@ -1851,7 +1863,7 @@ namespace JRunner.Nand
             smc_offset = Oper.ByteArrayToInt(smc_start);
 
             SMCdec = encrypt_SMC(SMCdec);
-            if (!corona)
+            if (!corona4g)
             {
                 SMCdec = addecc_v2(SMCdec, true, 0, layout);
                 smc_offset = (smc_offset / 0x200) * 0x210;
@@ -1867,17 +1879,24 @@ namespace JRunner.Nand
 
         public static void injectSMCConf(string filename, byte[] data)
         {
-            bool bigblock, corona;
+            bool bigblock, corona4g, bigflash;
             int layout;
             if (filename == null) return;
             if (!File.Exists(filename)) return;
             FileInfo f = new FileInfo(filename);
             long s1 = f.Length;
-            if (s1 >= 0x4200000) bigblock = true;
-            else bigblock = false;
-            corona = true;
+            long imgsize = 0;
+            byte[] image = Oper.openfile(filename, ref imgsize, 0x4200000);
+            if (s1 >= 0x4200000)
+            {
+                bigflash = true;
+                if (image[0x205] == 0xFF) bigblock = false;
+                else bigblock = true;
+            }
+            else bigblock = bigflash = false;
+            corona4g = true;
             byte[] smc_config = null;
-            byte[] temp = (BadBlock.find_bad_blocks_X(filename, 0x50));
+            byte[] temp = BadBlock.find_bad_blocks_X(filename, 0x50);
             FileStream infile = new FileStream(filename, FileMode.Open, FileAccess.ReadWrite);
             BinaryReader file = new BinaryReader(infile);
             BinaryWriter fileb = new BinaryWriter(infile);
@@ -1890,13 +1909,14 @@ namespace JRunner.Nand
             file.Read(sparedata, 0, 0x10);
             layout = identifylayout(sparedata);
 
-            if (hasecc(temp)) corona = false;
-            if (variables.debugMode) Console.WriteLine("bigblock:{0} - corona: {1} - layout: {2}", bigblock, corona, layout);
+            if (hasecc(temp)) corona4g = false;
+            if (variables.debugMode) Console.WriteLine("bigblock:{0} - corona4g: {1} - bigflash {2} - layout: {3}", bigblock, corona4g, bigflash, layout);
 
             int smc_config_offset, smc_config_length;
             if (!bigblock)
             {
-                smc_config_offset = 0xFEB800;
+                if (bigflash) smc_config_offset = 0x3FDF800;
+                else smc_config_offset = 0xFEB800;
                 smc_config_length = 0x4200 * 4;
                 smc_config = new byte[smc_config_length];
             }
@@ -1906,7 +1926,7 @@ namespace JRunner.Nand
                 smc_config_length = 0x21000 * 4;
                 smc_config = new byte[smc_config_length];
             }
-            if (corona)
+            if (corona4g)
             {
                 smc_config_offset = 0x2ff0000;
                 smc_config_length = 0x4000 * 4;
@@ -1914,7 +1934,7 @@ namespace JRunner.Nand
             }
 
             fileb.BaseStream.Seek(smc_config_offset, SeekOrigin.Begin);
-            if (!corona)
+            if (!corona4g)
             {
                 data = addecc_v2(data, true, smc_config_offset, layout);
             }
@@ -1927,30 +1947,38 @@ namespace JRunner.Nand
 
         public static byte[] getsmcconfig(string filename, out int block_offset)
         {
-            bool bigblock, corona;
+            bool bigblock, corona4g, bigflash;
             block_offset = 0;
             if (filename == null) return null;
             if (!File.Exists(filename)) return null;
             FileInfo f = new FileInfo(filename);
             long s1 = f.Length;
-            if (s1 >= 0x4200000) bigblock = true;
-            else bigblock = false;
-            corona = true;
+            long imgsize = 0;
+            byte[] image = Oper.openfile(filename, ref imgsize, 0x4200000);
+            if (s1 >= 0x4200000)
+            {
+                bigflash = true;
+                if (image[0x205] == 0xFF) bigblock = false;
+                else bigblock = true;
+            }
+            else bigblock = bigflash = false;
+            corona4g = true;
             byte[] smc_config = null;
 
             FileStream infile = new FileStream(filename, FileMode.Open, FileAccess.Read);
             BinaryReader file = new BinaryReader(infile);
 
-            byte[] temp = (BadBlock.find_bad_blocks_X(filename, 0x50));
-            if (hasecc(temp)) corona = false;
+            byte[] temp = BadBlock.find_bad_blocks_X(filename, 0x50);
+            if (hasecc(temp)) corona4g = false;
 
-            if (variables.debugMode) Console.WriteLine("bigblock:{0} - corona: {1}", bigblock, corona);
+            if (variables.debugMode) Console.WriteLine("bigblock:{0} - corona4g: {1} - bigflash: {2}", bigblock, corona4g, bigflash);
 
             int smc_config_offset, smc_config_length;
             if (!bigblock)
             {
                 block_offset = 0xC000;
-                smc_config_offset = 0xFEB800;
+                if (bigflash) smc_config_offset = 0x3FDF800;
+                else smc_config_offset = 0xFEB800;
                 smc_config_length = 0x4200 * 4;
                 smc_config = new byte[smc_config_length];
             }
@@ -1961,7 +1989,7 @@ namespace JRunner.Nand
                 smc_config_length = 0x21000 * 4;
                 smc_config = new byte[smc_config_length];
             }
-            if (corona)
+            if (corona4g)
             {
                 block_offset = 0xC000;
                 smc_config_offset = 0x2ff0000;
@@ -1977,7 +2005,7 @@ namespace JRunner.Nand
 
             if (variables.debugMode) Console.WriteLine("length: {0:X} - offset {1:X}", smc_config_length, smc_config_offset);
 
-            if (!corona)
+            if (!corona4g)
             {
                 unecc(ref smc_config);
             }
@@ -2012,13 +2040,13 @@ namespace JRunner.Nand
         }
         public static consoles getConsole(PrivateN nand, string flashconfig = "")
         {
-            if (variables.debugMode) Console.WriteLine("Getting cunts");
+            if (variables.debugMode) Console.WriteLine("Getting consoles...");
             int[] cons = identifyConsole(nand, flashconfig);
             // do Stuff
             int max = -1;
             int howmany = 0;
             int consl = 0;
-            for (int i = 0; i < 13; i++)
+            for (int i = 0; i < 15; i++)
             {
                 if (max < cons[i])
                 {
@@ -2029,14 +2057,13 @@ namespace JRunner.Nand
             }
             
             if (cons[2] == cons[9] && consl == 2) return variables.ctypes[2];
-            if (cons[6] == cons[7] && consl == 6) return variables.ctypes[6];
-            if (cons[4] == cons[5] && cons[4] == cons[6] && cons[4] == cons[7] && consl == 4) return variables.ctypes[0];
+            if (cons[4] == cons[5] && cons[4] == cons[6] && consl == 4) return variables.ctypes[0];
             
             return variables.ctypes[consl];
         }
         public static int[] identifyConsole(PrivateN nand, string flashconfig = "")
         {
-            int[] cons = new int[13];
+            int[] cons = new int[15];
 
             // CB check
             if (nand.bl.CB_A >= 9188 && nand.bl.CB_A <= 9250)
@@ -2059,22 +2086,40 @@ namespace JRunner.Nand
                 cons[5] += 3;
                 cons[6] += 3;
             }
-            else if (nand.bl.CB_A >= 4558 && nand.bl.CB_A <= 4590) cons[3] += 3;
-            else if ((nand.bl.CB_A >= 1888 && nand.bl.CB_A <= 1960) || (nand.bl.CB_A >= 7373 && nand.bl.CB_A <= 7378) || nand.bl.CB_A == 8192) cons[8] += 3;
+            else if (nand.bl.CB_A >= 4558 && nand.bl.CB_A <= 4590)
+            {
+                cons[3] += 3;
+                cons[13] += 3;
+            }
+            else if ((nand.bl.CB_A >= 1888 && nand.bl.CB_A <= 1960) || (nand.bl.CB_A >= 7373 && nand.bl.CB_A <= 7378) || nand.bl.CB_A == 8192)
+            {
+                cons[7] += 3;
+                cons[8] += 3;
+            }
             else if (nand.bl.CB_A >= 5761 && nand.bl.CB_A <= 5780)
             {
                 cons[2] += 3;
+                cons[14] += 3;
             }
 
             // smc check
             int smctype = nand._smc[0x100] >> 4 & 15;
             if (smctype < variables.console_types.Length && smctype >= 0)
             {
-                if (smctype == 1) cons[8] += 2;
-                else if (smctype == 2) cons[3] += 2;
+                if (smctype == 1)
+                {
+                    cons[7] += 2;
+                    cons[8] += 2;
+                }
+                else if (smctype == 2)
+                {
+                    cons[3] += 2;
+                    cons[13] += 2;
+                }
                 else if (smctype == 3)
                 {
                     cons[2] += 2;
+                    cons[14] += 2;
                 }
                 else if (smctype == 4)
                 {
@@ -2104,12 +2149,18 @@ namespace JRunner.Nand
                 }
                 else if (flashconfig == "008C3020" || flashconfig == "00AC3020") cons[9]++;
                 else if (flashconfig == "C0462002") cons[11]++;
-                else if (flashconfig == "01198010" || flashconfig == "01198030")
+                else if (flashconfig == "01198010")
                 {
                     cons[2]++;
                     cons[3]++;
                     cons[5]++;
                     cons[8]++;
+                }
+                else if (flashconfig == "01198030")
+                {
+                    cons[7]++;
+                    cons[13]++;
+                    cons[14]++;
                 }
                 else if (flashconfig == "00023010")
                 {
@@ -2140,8 +2191,11 @@ namespace JRunner.Nand
                 else if (length == 69206016 || length == 276824064 || length == 553648128)
                 {
                     cons[6] += 2;
+                    cons[7] += 2;
                     cons[9] += 2;
                     cons[12] += 2;
+                    cons[13] += 2;
+                    cons[14] += 2;
                 }
                 else cons[11]++;
             }
@@ -2170,7 +2224,10 @@ namespace JRunner.Nand
                     cons[2]++;
                     cons[3]++;
                     cons[5]++;
+                    cons[7]++;
                     cons[8]++;
+                    cons[13]++;
+                    cons[14]++;
                 }
                 else if (layout == 1)
                 {
@@ -2237,12 +2294,17 @@ namespace JRunner.Nand
             long size = 0;
             byte[] image = Oper.openfile(filename, ref size, 1024 * 1024);
             //
-            bool bigblock;
+            bool bigblock = false;
             bool corona = false;
+            bool bigflash = false;
             FileInfo f = new FileInfo(filename);
             long s1 = f.Length;
-            if (s1 >= 0x4200000) bigblock = true;
-            else bigblock = false;
+            if (s1 >= 0x4200000)
+            {
+                bigflash = true;
+                if (image[0x205] == 0xFF) bigblock = false;
+                else bigblock = true;
+            }
             if (image[0] == 0xFF && image[1] == 0x4F)
             {
                 byte[] SMC = null, Keyvault = null, smc_config = null;
@@ -2334,7 +2396,8 @@ namespace JRunner.Nand
                 int smc_config_offset, smc_config_length;
                 if (!bigblock)
                 {
-                    smc_config_offset = 0xFEB800;
+                    if (bigflash) smc_config_offset = 0x3FDF800;
+                    else smc_config_offset = 0xFEB800;
                     smc_config_length = 0x4200 * 4;
                     smc_config = new byte[smc_config_length];
                 }
