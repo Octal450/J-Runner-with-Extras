@@ -44,12 +44,10 @@ namespace JRunner.Forms
             if (on)
             {
                 MainForm.mainForm.Enabled = false;
-                //this.TopMost = true;
             }
             else
             {
                 MainForm.mainForm.Enabled = true;
-                //this.TopMost = false;
             }
         }
 

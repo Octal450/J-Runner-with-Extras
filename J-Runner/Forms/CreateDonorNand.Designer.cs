@@ -614,7 +614,6 @@ namespace JRunner.Forms
             this.Name = "CreateDonorNand";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create Donor Nand";
-            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.DonorWizard)).EndInit();
             this.PrereqPage.ResumeLayout(false);
             this.PrereqPage.PerformLayout();

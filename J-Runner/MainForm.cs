@@ -2918,7 +2918,7 @@ namespace JRunner
             else
             {
                 cdonor = new CreateDonorNand();
-                cdonor.Show();
+                cdonor.Show(this); // Keeps cdonor on top of MainForm
                 cdonor.Location = new Point(Location.X + 14, Location.Y + (Height - cdonor.Height) - 14);
             }
         }
