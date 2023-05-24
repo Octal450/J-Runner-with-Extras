@@ -3076,24 +3076,23 @@ namespace JRunner
                 CX.Show(this); // Keeps CX on top of MainForm
                 CX.Location = new Point(Location.X + (Width - CX.Width) / 2, Location.Y + 45);
             }
+        }
 
-            if (CX.DialogResult == DialogResult.Cancel) return;
-            else if (CX.DialogResult == DialogResult.OK)
+        public void CustomXeBuildStart(string buildStr)
+        {
+            if (File.Exists(variables.filename1) && nand.ok)
             {
-                if (File.Exists(variables.filename1) && nand.ok)
-                {
-                    xPanel.copyfiles();
-                    variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
-                    if (!Directory.Exists(variables.xefolder)) Directory.CreateDirectory(variables.xefolder);
-                }
-
-                Classes.xebuild xe = new Classes.xebuild();
-                xe.xeExit += xPanel.xe_xeExit;
-                ThreadStart starter = delegate { xe.build(CX.getString()); };
-                Thread thr = new Thread(starter);
-                thr.IsBackground = true;
-                thr.Start();
+                xPanel.copyfiles();
+                variables.xefolder = Path.Combine(Directory.GetParent(variables.outfolder).FullName, nand.ki.serial);
+                if (!Directory.Exists(variables.xefolder)) Directory.CreateDirectory(variables.xefolder);
             }
+
+            Classes.xebuild xe = new Classes.xebuild();
+            xe.xeExit += xPanel.xe_xeExit;
+            ThreadStart starter = delegate { xe.build(buildStr); };
+            Thread thr = new Thread(starter);
+            thr.IsBackground = true;
+            thr.Start();
         }
 
         HexEdit.HexViewer hv;

@@ -13,13 +13,9 @@ namespace JRunner.Forms
 
         private void btnRun_Click(object sender, EventArgs e)
         {
+            MainForm.mainForm.CustomXeBuildStart(txtCommand.Text);
             this.DialogResult = DialogResult.OK;
             this.Close();
-        }
-
-        public string getString()
-        {
-            return txtCommand.Text;
         }
 
         private void txtCommand_TextChanged(object sender, EventArgs e)

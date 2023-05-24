@@ -577,6 +577,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OpenXenium.resx">
       <DependentUpon>OpenXenium.cs</DependentUpon>
@@ -596,6 +597,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateDonorNand.resx">
       <DependentUpon>CreateDonorNand.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomXeBuild.resx">
       <DependentUpon>CustomXeBuild.cs</DependentUpon>
@@ -694,6 +696,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Nand\CB_Fuse.resx">
       <DependentUpon>CB_Fuse.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\LDrivesInfo.resx">
       <DependentUpon>LDrivesInfo.cs</DependentUpon>

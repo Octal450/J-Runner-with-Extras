@@ -115,7 +115,7 @@ namespace JRunner
                     if (variables.debugMode) Console.WriteLine("Cpukey after edit: {0}", cpukeytag);
                     if (variables.debugMode) Console.WriteLine("dvdkey after edit: {0}", dvdkeytag);
 
-                    Console.WriteLine("CF Lockdown Value: {0}", ldvvalue);
+                    Console.WriteLine("6BL Lockdown Value: {0}", ldvvalue);
 
                     SW.WriteLine("");
                     SW.WriteLine(cpukeytag);
@@ -144,7 +144,7 @@ namespace JRunner
                         if (c == 'f') ldvvalue++;
                     }
 
-                    Console.WriteLine("CF Lockdown Value: {0}", ldvvalue); 
+                    Console.WriteLine("6BL Lockdown Value: {0}", ldvvalue); 
 
                     StreamWriter SW = File.AppendText(Path.Combine(folder, "Fuses.txt"));
                     for (int i = 1; i < fuseArr.Count(); i++)
@@ -211,7 +211,7 @@ namespace JRunner
                     if (variables.debugMode) Console.WriteLine("Cpukey after edit: {0}", cpukeytag);
                     if (variables.debugMode) Console.WriteLine("dvdkey after edit: {0}", dvdkeytag);
 
-                    Console.WriteLine("CF Lockdown Value: {0}", ldvvalue);
+                    Console.WriteLine("6BL Lockdown Value: {0}", ldvvalue);
 
                     SW.WriteLine("");
                     SW.WriteLine(cpukeytag);
@@ -243,7 +243,7 @@ namespace JRunner
                         if (c == 'f') ldvvalue++;
                     }
 
-                    Console.WriteLine("CF Lockdown Value: {0}", ldvvalue);
+                    Console.WriteLine("6BL Lockdown Value: {0}", ldvvalue);
 
                     StreamWriter SW = File.AppendText(Path.Combine(folder, "Fuses.txt"));
                     for (int i = 1; i < fuseArr.Count(); i++)
