@@ -3062,10 +3062,21 @@ namespace JRunner
             else Console.WriteLine("Bad CPU Key");
         }
 
+        CustomXeBuild CX;
         private void CustomXeBuildMenuItem_Click(object sender, EventArgs e)
         {
-            CustomXeBuild CX = new CustomXeBuild();
-            CX.ShowDialog();
+            if (Application.OpenForms.OfType<CpuKeyDB>().Any())
+            {
+                CX.WindowState = FormWindowState.Normal;
+                CX.Activate();
+            }
+            else
+            {
+                CX = new CustomXeBuild();
+                CX.Show(this); // Keeps CX on top of MainForm
+                CX.Location = new Point(Location.X + (Width - CX.Width) / 2, Location.Y + 45);
+            }
+
             if (CX.DialogResult == DialogResult.Cancel) return;
             else if (CX.DialogResult == DialogResult.OK)
             {
