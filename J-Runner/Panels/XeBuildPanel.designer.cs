@@ -290,7 +290,7 @@
             this.rbtnDevGL.AutoSize = true;
             this.rbtnDevGL.BackColor = System.Drawing.Color.Transparent;
             this.rbtnDevGL.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnDevGL.Location = new System.Drawing.Point(151, 89);
+            this.rbtnDevGL.Location = new System.Drawing.Point(154, 89);
             this.rbtnDevGL.Name = "rbtnDevGL";
             this.rbtnDevGL.Size = new System.Drawing.Size(61, 17);
             this.rbtnDevGL.TabIndex = 13;
@@ -335,7 +335,7 @@
             this.rbtnGlitch2m.AutoSize = true;
             this.rbtnGlitch2m.BackColor = System.Drawing.Color.Transparent;
             this.rbtnGlitch2m.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnGlitch2m.Location = new System.Drawing.Point(151, 55);
+            this.rbtnGlitch2m.Location = new System.Drawing.Point(154, 55);
             this.rbtnGlitch2m.Name = "rbtnGlitch2m";
             this.rbtnGlitch2m.Size = new System.Drawing.Size(66, 17);
             this.rbtnGlitch2m.TabIndex = 11;
@@ -345,7 +345,7 @@
             // 
             // btnGetMB
             // 
-            this.btnGetMB.Location = new System.Drawing.Point(106, 72);
+            this.btnGetMB.Location = new System.Drawing.Point(115, 73);
             this.btnGetMB.Name = "btnGetMB";
             this.btnGetMB.Size = new System.Drawing.Size(25, 22);
             this.btnGetMB.TabIndex = 7;
@@ -357,7 +357,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 58);
+            this.label2.Location = new System.Drawing.Point(13, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 72;
@@ -366,7 +366,7 @@
             // lblDashVersion
             // 
             this.lblDashVersion.AutoSize = true;
-            this.lblDashVersion.Location = new System.Drawing.Point(14, 14);
+            this.lblDashVersion.Location = new System.Drawing.Point(13, 13);
             this.lblDashVersion.Name = "lblDashVersion";
             this.lblDashVersion.Size = new System.Drawing.Size(75, 13);
             this.lblDashVersion.TabIndex = 64;
@@ -392,7 +392,7 @@
             this.comboDash.DisplayMember = "Dash";
             this.comboDash.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboDash.FormattingEnabled = true;
-            this.comboDash.Location = new System.Drawing.Point(17, 29);
+            this.comboDash.Location = new System.Drawing.Point(16, 28);
             this.comboDash.Name = "comboDash";
             this.comboDash.Size = new System.Drawing.Size(71, 21);
             this.comboDash.TabIndex = 5;
@@ -426,10 +426,10 @@
             // txtMBname
             // 
             this.txtMBname.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMBname.Location = new System.Drawing.Point(17, 73);
+            this.txtMBname.Location = new System.Drawing.Point(16, 74);
             this.txtMBname.Name = "txtMBname";
             this.txtMBname.ReadOnly = true;
-            this.txtMBname.Size = new System.Drawing.Size(86, 20);
+            this.txtMBname.Size = new System.Drawing.Size(96, 20);
             this.txtMBname.TabIndex = 6;
             this.txtMBname.Text = "None Selected";
             this.txtMBname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -443,7 +443,7 @@
             this.rbtnRetail.BackColor = System.Drawing.Color.Transparent;
             this.rbtnRetail.Checked = true;
             this.rbtnRetail.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnRetail.Location = new System.Drawing.Point(151, 4);
+            this.rbtnRetail.Location = new System.Drawing.Point(154, 4);
             this.rbtnRetail.Name = "rbtnRetail";
             this.rbtnRetail.Size = new System.Drawing.Size(52, 17);
             this.rbtnRetail.TabIndex = 8;
@@ -457,7 +457,7 @@
             this.rbtnJtag.AutoSize = true;
             this.rbtnJtag.BackColor = System.Drawing.Color.Transparent;
             this.rbtnJtag.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnJtag.Location = new System.Drawing.Point(151, 72);
+            this.rbtnJtag.Location = new System.Drawing.Point(154, 72);
             this.rbtnJtag.Name = "rbtnJtag";
             this.rbtnJtag.Size = new System.Drawing.Size(52, 17);
             this.rbtnJtag.TabIndex = 12;
@@ -470,7 +470,7 @@
             this.rbtnGlitch2.AutoSize = true;
             this.rbtnGlitch2.BackColor = System.Drawing.Color.Transparent;
             this.rbtnGlitch2.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnGlitch2.Location = new System.Drawing.Point(151, 38);
+            this.rbtnGlitch2.Location = new System.Drawing.Point(154, 38);
             this.rbtnGlitch2.Name = "rbtnGlitch2";
             this.rbtnGlitch2.Size = new System.Drawing.Size(58, 17);
             this.rbtnGlitch2.TabIndex = 10;
@@ -483,7 +483,7 @@
             this.rbtnGlitch.AutoSize = true;
             this.rbtnGlitch.BackColor = System.Drawing.Color.Transparent;
             this.rbtnGlitch.ForeColor = System.Drawing.Color.Blue;
-            this.rbtnGlitch.Location = new System.Drawing.Point(151, 21);
+            this.rbtnGlitch.Location = new System.Drawing.Point(154, 21);
             this.rbtnGlitch.Name = "rbtnGlitch";
             this.rbtnGlitch.Size = new System.Drawing.Size(52, 17);
             this.rbtnGlitch.TabIndex = 9;

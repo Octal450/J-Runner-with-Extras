@@ -2022,7 +2022,7 @@ namespace JRunner.Nand
             int max = -1;
             int howmany = 0;
             int consl = 0;
-            for (int i = 0; i < 13; i++)
+            for (int i = 0; i < 18; i++)
             {
                 if (max < cons[i])
                 {
@@ -2031,10 +2031,6 @@ namespace JRunner.Nand
                 }
                 else if (max == cons[i]) howmany++;
             }
-
-            if (cons[2] == cons[9] && consl == 2) return "Falcon";
-            if (cons[6] == cons[7] && consl == 6) return "Jasper BB";
-            if (cons[4] == cons[6] && cons[4] == cons[7] && consl == 4) return "Jasper";
 
             return variables.ctypes[consl].Text;
         }
@@ -2046,7 +2042,7 @@ namespace JRunner.Nand
             int max = -1;
             int howmany = 0;
             int consl = 0;
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 18; i++)
             {
                 if (max < cons[i])
                 {
@@ -2056,14 +2052,11 @@ namespace JRunner.Nand
                 else if (max == cons[i]) howmany++;
             }
             
-            if (cons[2] == cons[9] && consl == 2) return variables.ctypes[2];
-            if (cons[4] == cons[5] && cons[4] == cons[6] && consl == 4) return variables.ctypes[0];
-            
             return variables.ctypes[consl];
         }
         public static int[] identifyConsole(PrivateN nand, string flashconfig = "")
         {
-            int[] cons = new int[15];
+            int[] cons = new int[18];
 
             // CB check
             if (nand.bl.CB_A >= 9188 && nand.bl.CB_A <= 9250)
@@ -2071,13 +2064,22 @@ namespace JRunner.Nand
                 cons[1] += 3;
                 cons[12] += 3;
             }
+            else if (nand.bl.CB_A >= 16000)
+            {
+                if (nand.noecc) cons[16] += 3;
+                else
+                {
+                    cons[15] += 3;
+                    cons[17] += 3;
+                }
+            }
             else if (nand.bl.CB_A >= 13121 && nand.bl.CB_A <= 13200)
             {
                 if (nand.noecc) cons[11] += 3;
                 else
                 {
-                    cons[10] += 3;
                     cons[9] += 3;
+                    cons[10] += 3;
                 }
             }
             else if (nand.bl.CB_A >= 6712 && nand.bl.CB_A <= 6780)
@@ -2138,6 +2140,12 @@ namespace JRunner.Nand
                     cons[10] += 2;
                     cons[11] += 2;
                 }
+                else if (smctype == 7)
+                {
+                    cons[15] += 2;
+                    cons[16] += 2;
+                    cons[17] += 2;
+                }
             }
             //flashconfig check
             if (!string.IsNullOrWhiteSpace(flashconfig))
@@ -2147,8 +2155,16 @@ namespace JRunner.Nand
                     cons[6]++;
                     cons[12]++;
                 }
-                else if (flashconfig == "008C3020" || flashconfig == "00AC3020") cons[9]++;
-                else if (flashconfig == "C0462002") cons[11]++;
+                else if (flashconfig == "008C3020" || flashconfig == "00AC3020")
+                {
+                    cons[9]++;
+                    cons[17]++;
+                }
+                else if (flashconfig == "C0462002")
+                {
+                    cons[11]++;
+                    cons[16]++;
+                }
                 else if (flashconfig == "01198010")
                 {
                     cons[2]++;
@@ -2170,6 +2186,7 @@ namespace JRunner.Nand
                 else if (flashconfig == "00043000")
                 {
                     cons[10]++;
+                    cons[15]++;
                 }
             }
             //file length
@@ -2187,6 +2204,7 @@ namespace JRunner.Nand
                     cons[5]++;
                     cons[8]++;
                     cons[10]++;
+                    cons[15]++;
                 }
                 else if (length == 69206016 || length == 276824064 || length == 553648128)
                 {
@@ -2196,13 +2214,20 @@ namespace JRunner.Nand
                     cons[12] += 2;
                     cons[13] += 2;
                     cons[14] += 2;
+                    cons[17] += 2;
                 }
-                else cons[11]++;
+                else
+                {
+                    cons[11]++;
+                    cons[16]++;
+                }
             }
+
             //spare data check
             if (nand.noecc)
             {
                 cons[11]++;
+                cons[16]++;
             }
             else
             {
@@ -2234,12 +2259,14 @@ namespace JRunner.Nand
                     cons[1]++;
                     cons[4]++;
                     cons[10]++;
+                    cons[15]++;
                 }
                 else if (layout == 2)
                 {
                     cons[6]++;
                     cons[9]++;
                     cons[12]++;
+                    cons[17]++;
                 }
             }
 

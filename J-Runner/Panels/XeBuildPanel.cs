@@ -23,7 +23,7 @@ namespace JRunner.Panels
         public XeBuildPanel()
         {
             InitializeComponent();
-            checkDevGL("None");
+            checkDevGL();
         }
 
         #region delegates
@@ -225,21 +225,25 @@ namespace JRunner.Panels
                 checkWB(txt);
                 checkBigffs(txt);
 
-                if (txt.Contains("Xenon"))
+                if (txt.Contains("Xenon") || txt.Contains("Winchester"))
                 {
                     chkCR4.Checked = false;
                     chkCR4.Enabled = false;
                     chkSMCP.Checked = false;
                     chkSMCP.Enabled = false;
-                    chkAudClamp.Checked = false;
-                    chkAudClamp.Enabled = false;
                 }
                 else
                 {
                     chkCR4.Enabled = true;
                     chkSMCP.Enabled = true;
-                    chkAudClamp.Enabled = true;
                 }
+
+                if (txt.Contains("Xenon"))
+                {
+                    chkAudClamp.Checked = false;
+                    chkAudClamp.Enabled = false;
+                }
+                else chkAudClamp.Enabled = true;
 
                 checkRgh3(txt);
             }));
@@ -421,14 +425,14 @@ namespace JRunner.Panels
             }
             else
             {
-                checkDevGL(variables.boardtype);
+                checkDevGL();
             }
         }
 
         private void checkJtag(string board)
         {
             if (board == null) board = "None";
-            if (board.Contains("Corona") || board.Contains("Trinity")) rbtnJtag.Enabled = rbtnJtag.Checked = false;
+            if (board.Contains("Winchester") || board.Contains("Corona") || board.Contains("Trinity")) rbtnJtag.Enabled = rbtnJtag.Checked = false;
             else rbtnJtag.Enabled = true;
         }
 
@@ -437,7 +441,7 @@ namespace JRunner.Panels
             if (board == null) board = "None";
             if (variables.rghable)
             {
-                if (board.Contains("Corona") || board.Contains("Trinity") || board.Contains("Xenon")) rbtnGlitch.Enabled = rbtnGlitch.Checked = false;
+                if (board.Contains("Winchester") || board.Contains("Corona") || board.Contains("Trinity") || board.Contains("Xenon")) rbtnGlitch.Enabled = rbtnGlitch.Checked = false;
                 else if (!variables.rgh1able) rbtnGlitch.Enabled = rbtnGlitch.Checked = false;
                 else rbtnGlitch.Enabled = true;
             }
@@ -455,31 +459,26 @@ namespace JRunner.Panels
         private void checkGlitch2m(string board)
         {
             if (board == null) board = "None";
-            if (variables.dashversion == 17489)
+            if (variables.dashversion == 17489 && File.Exists(variables.rootfolder + @"\xeBuild\17489\!XDKbuild Only!.txt"))
             {
                 rbtnGlitch2m.Enabled = true;
             }
             else
             {
-                if (board.Contains("Corona") || board.Contains("Trinity") || board.Contains("None")) rbtnGlitch2m.Enabled = true;
+                if (board.Contains("Winchester") || board.Contains("Corona") || board.Contains("Trinity") || board.Contains("None")) rbtnGlitch2m.Enabled = true;
                 else rbtnGlitch2m.Enabled = rbtnGlitch2m.Checked = false;
             }
         }
 
-        private void checkDevGL(string board)
+        private void checkDevGL()
         {
-            if (canDevGL(board)) rbtnDevGL.Enabled = true;
+            if (canDevGL()) rbtnDevGL.Enabled = true;
             else rbtnDevGL.Enabled = rbtnDevGL.Checked = false;
         }
 
-        public bool canDevGL(string board)
+        public bool canDevGL()
         {
-            if (board == null) board = "None";
-            if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\common\" + "sb_priv.bin")))
-            {
-                if (board.Contains("Jasper") || board.Contains("Corona") || board.Contains("Trinity") || board.Contains("None")) return true;
-                else return false;
-            }
+            if (File.Exists(Path.Combine(variables.rootfolder, @"xebuild\common\" + "sb_priv.bin"))) return true;
             else return false;
         }
 
@@ -488,8 +487,9 @@ namespace JRunner.Panels
             if ((rbtnGlitch.Checked || rbtnGlitch2.Checked || rbtnGlitch2m.Checked || rbtnJtag.Checked || rbtnDevGL.Checked) && !chkXdkBuild.Checked)
             {
                 if (board == null) board = "None";
-                if (board.Contains("Trinity BB")) chkBigffs.Enabled = true;
-                else if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Falcon") || board.Contains("Jasper 16MB") || board.Contains("Jasper SB") || board.Contains("Trinity") || board.Contains("Corona"))
+                else if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Falcon") || board.Contains("Jasper 16MB") || board.Contains("Jasper SB") ||
+                    board.Contains("Trinity 16MB") || board.Contains("Corona 16MB") || board.Contains("Corona 4GB") || board.Contains("Winchester 16MB") ||
+                    board.Contains("Winchester 4GB"))
                 {
                     chkBigffs.Checked = false;
                     chkBigffs.Enabled = false;
@@ -787,7 +787,7 @@ namespace JRunner.Panels
                 Rgh3Label.Visible = Rgh3Label2.Visible = Rgh3Mhz.Visible = false;
             }
 
-            if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Jasper SB") || board.Contains("Trinity BB"))
+            if (board.Contains("Xenon") || board.Contains("Zephyr") || board.Contains("Winchester"))
             {
                 chkRgh3.Checked = false;
                 chkRgh3.Enabled = false;

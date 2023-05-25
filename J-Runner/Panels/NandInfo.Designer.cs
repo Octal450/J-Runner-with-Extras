@@ -214,7 +214,7 @@
             this.textBoxConsole.Location = new System.Drawing.Point(74, 15);
             this.textBoxConsole.Name = "textBoxConsole";
             this.textBoxConsole.ReadOnly = true;
-            this.textBoxConsole.Size = new System.Drawing.Size(79, 20);
+            this.textBoxConsole.Size = new System.Drawing.Size(96, 20);
             this.textBoxConsole.TabIndex = 67;
             this.textBoxConsole.TabStop = false;
             this.textBoxConsole.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -597,7 +597,7 @@
             this.txtconsole.Location = new System.Drawing.Point(74, 15);
             this.txtconsole.Name = "txtconsole";
             this.txtconsole.ReadOnly = true;
-            this.txtconsole.Size = new System.Drawing.Size(79, 20);
+            this.txtconsole.Size = new System.Drawing.Size(96, 20);
             this.txtconsole.TabIndex = 71;
             this.txtconsole.TabStop = false;
             this.txtconsole.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

@@ -164,7 +164,7 @@ namespace JRunner
         /// <summary>
         /// Console Types
         /// </summary>
-        public static consoles[] ctypes = { // Check getConsole() and identifyConsole() in Nand.cs if modifying!
+        public static consoles[] ctypes = { // Check getConsole() and identifyConsole() in Nand.cs, and also copySMC() in xebuild.cs if modifying!
             new consoles(-1, "", "", "", -1, Nandsize.S0, -1),
             new consoles(1, "trinity", "trinity", "Trinity 16MB", 16, Nandsize.S16, 1),
             new consoles(2, "falcon", "falcon", "Falcon 16MB", 16, Nandsize.S16, 0),
@@ -175,14 +175,17 @@ namespace JRunner
             new consoles(7, "xenon", "xenon", "Xenon 64MB", 64, Nandsize.S64, 0),
             new consoles(8, "xenon", "xenon", "Xenon 16MB", 16, Nandsize.S16, 0),
             new consoles(9, "coronabb", "corona", "Corona BB", 64, Nandsize.S64, 2),
-            new consoles(10, "corona", "corona", "Corona 16MB", 16, Nandsize.S16, 0),
+            new consoles(10, "corona", "corona", "Corona 16MB", 16, Nandsize.S16, 1),
             new consoles(11, "corona4g", "corona", "Corona 4GB", 0, Nandsize.S0, -1),
             new consoles(12, "trinitybb", "trinity", "Trinity BB", 64, Nandsize.S64, 2),
             new consoles(13, "zephyr", "zephyr", "Zephyr 64MB", 64, Nandsize.S64, 0),
             new consoles(14, "falcon", "falcon", "Falcon 64MB", 64, Nandsize.S64, 0),
+            new consoles(15, "winchester", "winchester", "Winchester 16MB", 64, Nandsize.S16, 1),
+            new consoles(16, "winchester4g", "winchester", "Winchester 4GB", 64, Nandsize.S0, -1),
+            new consoles(17, "winchesterbb", "winchester", "Winchester BB", 64, Nandsize.S64, 2),
         };
 
-        public static string[] sortedConsoleNames = { "Xenon", "Elpis", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
+        public static string[] sortedConsoleNames = { "Xenon", "Elpis", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona", "Winchester" };
 
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
         {
@@ -245,7 +248,7 @@ namespace JRunner
             "ZE_96_L_0.9_T_62.5", "ZE_96_L_1.0_T_62.5", "ZE_192_L_0.9_T_62.5", "ZE_192_L_1.0_T_62.5"
         };
 
-        public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona" };
+        public static string[] console_types = { "none/unk", "Xenon", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona", "Winchester" };
         public static string[] flashconfigs = new string[] { "00023010", "00043000", "01198010", "01198030", "008A3020", "00AA3020", "008C3020", "00AC3020", "C0462002" };
         public static bool fulldump = false, read1p28mb = false, nandabort = false;
         public static int smcmbtype = 0x0;

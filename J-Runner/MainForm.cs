@@ -2010,7 +2010,7 @@ namespace JRunner
                             xPanel.BeginInvoke(new Action(() => xPanel.setRbtnJtagChecked(true)));
                             break;
                         case variables.hacktypes.devgl:
-                            if (xPanel.canDevGL(variables.boardtype))
+                            if (xPanel.canDevGL())
                                 xPanel.BeginInvoke(new Action(() => xPanel.setRbtnDevGLChecked(true)));
                             else
                                 xPanel.BeginInvoke(new Action(() => xPanel.setRbtnRetailChecked(true)));
@@ -3522,6 +3522,11 @@ namespace JRunner
             {
                 Thread thr = new Thread(createGlitch2XeLL);
                 thr.Start();
+            }
+            else if (xPanel.getRbtnDevGLChecked())
+            {
+                MessageBox.Show("This function does not operate in DEVGL mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else
             {

@@ -138,20 +138,22 @@ namespace JRunner.Nand
             new _nand(9231, "Trinity", 15572, variables.latest_dashboard, 4, variables.hacktypes.glitch2, variables.ctypes[1]),
             new _nand(13181, "Corona", 15572, variables.latest_dashboard, 4, variables.hacktypes.glitch2, variables.ctypes[10]),
             new _nand(13182, "Corona", 15572, variables.latest_dashboard, 4, variables.hacktypes.glitch2, variables.ctypes[10]),
+            new _nand(16128, "Winchester", 15572, variables.latest_dashboard, 5, variables.hacktypes.glitch2, variables.ctypes[15]),
 
             // SBs
-            new _nand(10375, "Xenon", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[8]),
-            new _nand(14352, "Xenon", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[8]),
-            new _nand(10375, "Zephyr", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[3]),
-            new _nand(14352, "Zephyr", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[3]),
-            new _nand(10375, "Falcon", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[2]),
-            new _nand(14352, "Falcon", 4532, variables.latest_dashboard, 0, variables.hacktypes.nothing, variables.ctypes[2]),
+            new _nand(10375, "Xenon", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[8]),
+            new _nand(14352, "Xenon", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[8]),
+            new _nand(10375, "Zephyr", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[3]),
+            new _nand(14352, "Zephyr", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[3]),
+            new _nand(10375, "Falcon", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[2]),
+            new _nand(14352, "Falcon", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[2]),
             new _nand(10375, "Jasper", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[4]),
             new _nand(14352, "Jasper", 4532, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[4]),
             new _nand(10375, "Trinity", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[1]),
             new _nand(14352, "Trinity", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[1]),
             new _nand(10352, "Corona", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[10]),
-            new _nand(14352, "Corona", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[10])
+            new _nand(14352, "Corona", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[10]),
+            new _nand(14352, "Winchester", 8498, variables.latest_dashboard, 0, variables.hacktypes.devgl, variables.ctypes[15])
         };
 
         public static _patch[] patchTable = new _patch[]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace JRunner
 {
@@ -109,15 +110,18 @@ namespace JRunner
             }
             else if (type == "coronabb")
             {
-                hresult = variables.ctypes[9];
+                if ((ModifierKeys & Keys.Control) == Keys.Control && (ModifierKeys & Keys.Shift) == Keys.Shift) hresult = variables.ctypes[17];
+                else hresult = variables.ctypes[9];
             }
             else if (type == "corona")
             {
-                hresult = variables.ctypes[10];
+                if ((ModifierKeys & Keys.Control) == Keys.Control && (ModifierKeys & Keys.Shift) == Keys.Shift) hresult = variables.ctypes[15];
+                else hresult = variables.ctypes[10];
             }
             else if (type == "corona4g")
             {
-                hresult = variables.ctypes[11];
+                if ((ModifierKeys & Keys.Control) == Keys.Control && (ModifierKeys & Keys.Shift) == Keys.Shift) hresult = variables.ctypes[16];
+                else hresult = variables.ctypes[11];
             }
             else if (type == "trinitybb")
             {

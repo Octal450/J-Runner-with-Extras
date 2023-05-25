@@ -512,7 +512,7 @@ namespace JRunner.Forms
             this.RevLdv.Location = new System.Drawing.Point(70, 183);
             this.RevLdv.Name = "RevLdv";
             this.RevLdv.ReadOnly = true;
-            this.RevLdv.Size = new System.Drawing.Size(80, 23);
+            this.RevLdv.Size = new System.Drawing.Size(96, 23);
             this.RevLdv.TabIndex = 10;
             // 
             // label15
@@ -529,7 +529,7 @@ namespace JRunner.Forms
             this.RevKernel.Location = new System.Drawing.Point(70, 154);
             this.RevKernel.Name = "RevKernel";
             this.RevKernel.ReadOnly = true;
-            this.RevKernel.Size = new System.Drawing.Size(80, 23);
+            this.RevKernel.Size = new System.Drawing.Size(96, 23);
             this.RevKernel.TabIndex = 8;
             // 
             // label12
@@ -546,7 +546,7 @@ namespace JRunner.Forms
             this.RevSmc.Location = new System.Drawing.Point(70, 125);
             this.RevSmc.Name = "RevSmc";
             this.RevSmc.ReadOnly = true;
-            this.RevSmc.Size = new System.Drawing.Size(80, 23);
+            this.RevSmc.Size = new System.Drawing.Size(96, 23);
             this.RevSmc.TabIndex = 6;
             // 
             // label11
@@ -563,7 +563,7 @@ namespace JRunner.Forms
             this.RevHack.Location = new System.Drawing.Point(70, 96);
             this.RevHack.Name = "RevHack";
             this.RevHack.ReadOnly = true;
-            this.RevHack.Size = new System.Drawing.Size(80, 23);
+            this.RevHack.Size = new System.Drawing.Size(96, 23);
             this.RevHack.TabIndex = 4;
             // 
             // label10
@@ -580,7 +580,7 @@ namespace JRunner.Forms
             this.RevConsole.Location = new System.Drawing.Point(70, 67);
             this.RevConsole.Name = "RevConsole";
             this.RevConsole.ReadOnly = true;
-            this.RevConsole.Size = new System.Drawing.Size(80, 23);
+            this.RevConsole.Size = new System.Drawing.Size(96, 23);
             this.RevConsole.TabIndex = 2;
             // 
             // label9

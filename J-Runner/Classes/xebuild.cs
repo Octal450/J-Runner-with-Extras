@@ -101,18 +101,7 @@ namespace JRunner.Classes
         {
             if (_ttype == variables.hacktypes.jtag && !File.Exists(Path.Combine(variables.xepath, "SMC.bin")))
             {
-                if (_ctype.ID == 2)
-                {
-                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
-                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
-
-                }
-                else if (_ctype.ID == 3)
-                {
-                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
-                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
-                }
-                else if (_ctype.ID == 8)
+                if (_ctype.ID == 7 || _ctype.ID == 8)
                 {
                     File.Copy(variables.xepath + "SMCx.bin", variables.xepath + "SMC.bin", true);
                 }
@@ -134,25 +123,29 @@ namespace JRunner.Classes
                 {
                     File.Copy(variables.xepath + "TRINITY_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 2 || _ctype.ID == 9)
+                else if (_ctype.ID == 2 || _ctype.ID == 14)
                 {
                     File.Copy(variables.xepath + "FALCON_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 3)
+                else if (_ctype.ID == 3 || _ctype.ID == 13)
                 {
                     File.Copy(variables.xepath + "ZEPHYR_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
+                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6)
                 {
                     File.Copy(variables.xepath + "JASPER_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 8)
+                else if (_ctype.ID == 7 || _ctype.ID == 8)
                 {
                     File.Copy(variables.xepath + "XENON_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 10 || _ctype.ID == 11)
+                else if (_ctype.ID == 9 ||_ctype.ID == 10 || _ctype.ID == 11)
                 {
                     File.Copy(variables.xepath + "CORONA_CLEAN.bin", variables.xepath + "SMC.bin", true);
+                }
+                else if (_ctype.ID == 15 ||_ctype.ID == 16 || _ctype.ID == 17)
+                {
+                    File.Copy(variables.xepath + "WINCHESTER_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 variables.copiedSMC = true;
             }
@@ -162,15 +155,15 @@ namespace JRunner.Classes
                 {
                     File.Copy(variables.xepath + "TRINITY_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 9)
+                else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 13 || _ctype.ID == 14)
                 {
                     File.Copy(variables.xepath + "FALCON_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
+                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6)
                 {
                     File.Copy(variables.xepath + "JASPER_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 10 || _ctype.ID == 11)
+                else if (_ctype.ID == 9 || _ctype.ID == 10 || _ctype.ID == 11)
                 {
                     File.Copy(variables.xepath + "CORONA_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
@@ -182,15 +175,15 @@ namespace JRunner.Classes
                 {
                     File.Copy(variables.xepath + "TRINITY_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 9)
+                else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 13 || _ctype.ID == 14)
                 {
                     File.Copy(variables.xepath + "FALCON_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
+                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6)
                 {
                     File.Copy(variables.xepath + "JASPER_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 10 || _ctype.ID == 11)
+                else if (_ctype.ID == 9 || _ctype.ID == 10 || _ctype.ID == 11)
                 {
                     File.Copy(variables.xepath + "CORONA_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
@@ -205,18 +198,7 @@ namespace JRunner.Classes
         {
             if (_ttype == variables.hacktypes.jtag)
             {
-                if (_ctype.ID == 2)
-                {
-                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
-                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
-
-                }
-                else if (_ctype.ID == 3)
-                {
-                    if (_audclamp) File.Copy(variables.xepath + "SMCaud.bin", variables.xepath + "SMC.bin", true);
-                    else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
-                }
-                else if (_ctype.ID == 8)
+                if (_ctype.ID == 7 || _ctype.ID == 8)
                 {
                     File.Copy(variables.xepath + "SMCx.bin", variables.xepath + "SMC.bin", true);
                 }
@@ -226,7 +208,7 @@ namespace JRunner.Classes
                     else File.Copy(variables.xepath + "SMCfzj.bin", variables.xepath + "SMC.bin", true);
                 }
 
-                if (_rjtag && _ctype.ID != 8)
+                if (_rjtag)
                 {
                     File.WriteAllBytes(variables.xepath + "SMC.bin", Nand.Nand.patch_SMC((File.ReadAllBytes(variables.xepath + "SMC.bin"))));
                 }
@@ -238,25 +220,29 @@ namespace JRunner.Classes
                 {
                     File.Copy(variables.xepath + "TRINITY_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 2 || _ctype.ID == 9)
+                else if (_ctype.ID == 2 || _ctype.ID == 14)
                 {
                     File.Copy(variables.xepath + "FALCON_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 3)
+                else if (_ctype.ID == 3 || _ctype.ID == 13)
                 {
                     File.Copy(variables.xepath + "ZEPHYR_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
+                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6)
                 {
                     File.Copy(variables.xepath + "JASPER_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 8)
+                else if (_ctype.ID == 7 || _ctype.ID == 8)
                 {
                     File.Copy(variables.xepath + "XENON_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 10 || _ctype.ID == 11)
+                else if (_ctype.ID == 9 || _ctype.ID == 10 || _ctype.ID == 11)
                 {
                     File.Copy(variables.xepath + "CORONA_CLEAN.bin", variables.xepath + "SMC.bin", true);
+                }
+                else if (_ctype.ID == 15 || _ctype.ID == 16 || _ctype.ID == 17)
+                {
+                    File.Copy(variables.xepath + "WINCHESTER_CLEAN.bin", variables.xepath + "SMC.bin", true);
                 }
                 variables.copiedSMC = true;
             }
@@ -266,15 +252,15 @@ namespace JRunner.Classes
                 {
                     File.Copy(variables.xepath + "TRINITY_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 9)
+                else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 13 || _ctype.ID == 14)
                 {
                     File.Copy(variables.xepath + "FALCON_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
+                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6)
                 {
                     File.Copy(variables.xepath + "JASPER_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 10 || _ctype.ID == 11)
+                else if (_ctype.ID == 9 || _ctype.ID == 10 || _ctype.ID == 11)
                 {
                     File.Copy(variables.xepath + "CORONA_CR4.bin", variables.xepath + "SMC.bin", true);
                 }
@@ -286,15 +272,15 @@ namespace JRunner.Classes
                 {
                     File.Copy(variables.xepath + "TRINITY_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 9)
+                else if (_ctype.ID == 2 || _ctype.ID == 3 || _ctype.ID == 13 || _ctype.ID == 14)
                 {
                     File.Copy(variables.xepath + "FALCON_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6 || _ctype.ID == 7)
+                else if (_ctype.ID == 4 || _ctype.ID == 5 || _ctype.ID == 6)
                 {
                     File.Copy(variables.xepath + "JASPER_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
-                else if (_ctype.ID == 10 || _ctype.ID == 11)
+                else if (_ctype.ID == 9 || _ctype.ID == 10 || _ctype.ID == 11)
                 {
                     File.Copy(variables.xepath + "CORONA_SMC+.bin", variables.xepath + "SMC.bin", true);
                 }
@@ -458,8 +444,37 @@ namespace JRunner.Classes
             if (_ctype.ID == -1) return XebuildError.noconsole;
             if (_dash == 0) return XebuildError.nodash;
             string ini = (variables.launchpath + @"\" + _dash + @"\_" + _ttype + ".ini");
-            string ctypebtldr = _ctype.Ini + "bl";
-            if (ctypebtldr == "xenonbl" || ctypebtldr == "zephyrbl") ctypebtldr = "falconbl";
+
+            // Type overrides, check doSomeChecks() if changing
+            string boardtype = _ctype.Ini;
+            if (_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m)
+            {
+                if (boardtype == "xenon")
+                {
+                    boardtype = "falcon";
+                }
+                else if (boardtype == "zephyr")
+                {
+                    boardtype = "falcon";
+                }
+            }
+            else if (_ttype == variables.hacktypes.devgl)
+            {
+                if (boardtype == "xenon")
+                {
+                    boardtype = "jasper";
+                }
+                else if (boardtype == "zephyr")
+                {
+                    boardtype = "jasper";
+                }
+                else if (boardtype == "falcon")
+                {
+                    boardtype = "jasper";
+                }
+            }
+
+            string ctypebtldr = boardtype + "bl";
             if (!File.Exists(ini)) return XebuildError.noinis;
             if (!parse_ini.getlabels(ini).Contains(ctypebtldr)) return XebuildError.nobootloaders;
 
@@ -532,6 +547,7 @@ namespace JRunner.Classes
             string boardtype = _ctype.XeBuild;
             arguments = "-t " + _ttype;
 
+            // Type overrides, check doSomeChecks() if changing
             if (_ttype == variables.hacktypes.glitch2 || _ttype == variables.hacktypes.glitch2m)
             {
                 if (boardtype == "xenon")
@@ -545,6 +561,24 @@ namespace JRunner.Classes
                     Console.WriteLine("Using Falcon type for Zephyr");
                 }
             }
+            else if (_ttype == variables.hacktypes.devgl)
+            {
+                if (boardtype == "xenon")
+                {
+                    boardtype = "jaspersb";
+                    Console.WriteLine("Using Jasper XSB type for Xenon");
+                }
+                else if (boardtype == "zephyr")
+                {
+                    boardtype = "jaspersb";
+                    Console.WriteLine("Using Jasper XSB type for Zephyr");
+                }
+                else if (boardtype == "falcon")
+                {
+                    boardtype = "jaspersb";
+                    Console.WriteLine("Using Jasper XSB type for Falcon");
+                }
+            }
 
             if (_xdkbuild)
             {
@@ -556,7 +590,19 @@ namespace JRunner.Classes
                 {
                     arguments += " -c " + "trinitybigffs -i flash";
                 }
+                else if (boardtype == "coronabb") // requires bigffs
+                {
+                    arguments += " -c " + "coronabigffs -i flash";
+                }
                 else if (boardtype == "corona4g")
+                {
+                    arguments += " -c " + boardtype + " -i flash";
+                }
+                else if (boardtype == "winchesterbb") // requires bigffs
+                {
+                    arguments += " -c " + "winchesterbigffs -i flash";
+                }
+                else if (boardtype == "winchester4g")
                 {
                     arguments += " -c " + boardtype + " -i flash";
                 }
@@ -571,9 +617,17 @@ namespace JRunner.Classes
                 {
                     arguments += " -c " + "jasperbigffs";
                 }
-                else if (boardtype == "trinitybb") // requires bigffs
+                else if (boardtype == "trinitybb")
                 {
                     arguments += " -c " + "trinitybigffs";
+                }
+                else if (boardtype == "coronabb")
+                {
+                    arguments += " -c " + "coronabigffs";
+                }
+                else if (boardtype == "winchesterbb")
+                {
+                    arguments += " -c " + "winchesterbigffs";
                 }
                 else
                 {
