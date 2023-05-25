@@ -37,9 +37,13 @@ namespace JRunner
         {
             string board = "";
             if (!string.IsNullOrWhiteSpace(variables.boardtype)) board = variables.boardtype;
+            if (board.Contains("Winchester")) board = "Winchester";
             if (board.Contains("Corona")) board = "Corona";
             if (board.Contains("Trinity")) board = "Trinity";
             if (board.Contains("Jasper")) board = "Jasper";
+            if (board.Contains("Falcon")) board = "Falcon";
+            if (board.Contains("Zephyr")) board = "Zephyr";
+            if (board.Contains("Xenon")) board = "Xenon";
 
             string serial = MainForm.mainForm.getNand().ki.serial;
 
