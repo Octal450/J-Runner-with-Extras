@@ -185,7 +185,7 @@ namespace JRunner
             new consoles(17, "winchesterbb", "winchester", "Winchester BB", 64, Nandsize.S64, 2),
         };
 
-        public static string[] sortedConsoleNames = { "Xenon", "Elpis", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona", "Winchester" };
+        public static string[] sortedConsoleNames = { "Xenon", "Xenon Elpis", "Zephyr", "Falcon", "Jasper", "Trinity", "Corona", "Winchester" };
 
         public static Dictionary<string, string> xebuilds = new Dictionary<string, string>()
         {

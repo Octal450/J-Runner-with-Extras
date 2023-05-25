@@ -103,7 +103,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnDefaultTemp = new UI.MenuButton();
             this.defaultTempContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.x1DefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
+            this.xDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.x2DefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.zDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
             this.fDefaultTemp = new System.Windows.Forms.ToolStripMenuItem();
@@ -930,7 +930,7 @@
             // defaultTempContextMenu
             // 
             this.defaultTempContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.x1DefaultTemp,
+            this.xDefaultTemp,
             this.x2DefaultTemp,
             this.zDefaultTemp,
             this.fDefaultTemp,
@@ -942,12 +942,12 @@
             this.defaultTempContextMenu.Name = "defaultTempContextMenu";
             this.defaultTempContextMenu.Size = new System.Drawing.Size(156, 202);
             // 
-            // x1DefaultTemp
+            // xDefaultTemp
             // 
-            this.x1DefaultTemp.Name = "x1DefaultTemp";
-            this.x1DefaultTemp.Size = new System.Drawing.Size(155, 22);
-            this.x1DefaultTemp.Text = "Xenon";
-            this.x1DefaultTemp.Click += new System.EventHandler(this.x1DefaultTemp_Click);
+            this.xDefaultTemp.Name = "xDefaultTemp";
+            this.xDefaultTemp.Size = new System.Drawing.Size(155, 22);
+            this.xDefaultTemp.Text = "Xenon";
+            this.xDefaultTemp.Click += new System.EventHandler(this.x1DefaultTemp_Click);
             // 
             // x2DefaultTemp
             // 
@@ -1461,7 +1461,7 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private UI.MenuButton btnDefaultTemp;
         private System.Windows.Forms.ContextMenuStrip defaultTempContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem x1DefaultTemp;
+        private System.Windows.Forms.ToolStripMenuItem xDefaultTemp;
         private System.Windows.Forms.ToolStripMenuItem x2DefaultTemp;
         private System.Windows.Forms.ToolStripMenuItem zDefaultTemp;
         private System.Windows.Forms.ToolStripMenuItem fDefaultTemp;
