@@ -565,18 +565,18 @@ namespace JRunner.Classes
             {
                 if (boardtype == "xenon")
                 {
-                    boardtype = "jaspersb";
-                    Console.WriteLine("Using Jasper XSB type for Xenon");
+                    boardtype = "jasper";
+                    Console.WriteLine("Using Jasper type for Xenon");
                 }
                 else if (boardtype == "zephyr")
                 {
-                    boardtype = "jaspersb";
-                    Console.WriteLine("Using Jasper XSB type for Zephyr");
+                    boardtype = "jasper";
+                    Console.WriteLine("Using Jasper type for Zephyr");
                 }
                 else if (boardtype == "falcon")
                 {
-                    boardtype = "jaspersb";
-                    Console.WriteLine("Using Jasper XSB type for Falcon");
+                    boardtype = "jasper";
+                    Console.WriteLine("Using Jasper type for Falcon");
                 }
             }
 
