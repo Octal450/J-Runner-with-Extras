@@ -142,7 +142,17 @@ namespace JRunner.Forms
 
         private void CpuKvNext(object sender, AeroWizard.WizardPageConfirmEventArgs e)
         {
-            if (!Nand.Nand.VerifyKey(Oper.StringToByteArray(CpuKeyBox.Text)))
+            bool keyOk = false;
+            try
+            {
+                keyOk = Nand.Nand.VerifyKey(Oper.StringToByteArray(CpuKeyBox.Text));
+            }
+            catch
+            {
+                keyOk = false;
+            }
+
+            if (!keyOk)
             {
                 e.Cancel = true;
                 MessageBox.Show("CPU Key is wrong", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
