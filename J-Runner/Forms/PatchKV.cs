@@ -25,7 +25,8 @@ namespace JRunner
             {
                 if (MainForm.nand.ki.region != "" || MainForm.nand.ki.osig != "")
                 {
-                    string osigInput = MainForm.nand.ki.osig.Substring(MainForm.nand.ki.osig.Length - 4);
+                    string osigTrim = MainForm.nand.ki.osig.TrimEnd();
+                    string osigInput = osigTrim.Substring(osigTrim.Length - 4);
                     if (osigInput == "0442") osigInput = "421C"; // Fix BenQ 0442/421C
 
                     foreach (string region in comboRegion.Items)

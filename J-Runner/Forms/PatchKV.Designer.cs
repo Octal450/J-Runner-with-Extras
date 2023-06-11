@@ -148,7 +148,7 @@
             this.comboOsig.FormattingEnabled = true;
             this.comboOsig.Items.AddRange(new object[] {
             "PBDS    VAD6038         04421C",
-            "PBDS    VAD6038         64930C      ",
+            "PBDS    VAD6038         64930C",
             "PLDS    DG-16D2S        0251",
             "PLDS    DG-16D2S        7485",
             "PLDS    DG-16D2S        8385",
@@ -157,7 +157,7 @@
             "PLDS    DG-16D4S        0272",
             "PLDS    DG-16D4S        0401",
             "PLDS    DG-16D4S        1071",
-            "PLDS    DG-16D4S        9504   ",
+            "PLDS    DG-16D4S        9504",
             "PLDS    DG-16D5S        1175",
             "PLDS    DG-16D5S        1532",
             "TSSTcorp TS-H943A   ms25",
