@@ -173,10 +173,6 @@ namespace JRunner
 
         public static void exit()
         {
-            foreach (var process in Process.GetProcessesByName("jtag"))
-            {
-                process.Kill();
-            }
             try
             {
                 mutex.ReleaseMutex();
