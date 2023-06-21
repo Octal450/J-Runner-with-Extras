@@ -237,7 +237,7 @@ namespace JRunner.Nand
             bl.CB_A = 0; bl.CB_B = 0; bl.CD = 0; bl.CE = 0; bl.CF_0 = 0; bl.CG_0 = 0; bl.CF_1 = 0; bl.CG_1 = 0;
             uf.ldv_p0 = 0; uf.ldv_p1 = 0; uf.ldv_cb = 0; uf.pd_cb = ""; uf.pd_0 = ""; uf.pd_1 = "";
 
-            if (Nand.rawecc(image)) Console.WriteLine("Image is raw. F11 to convert");
+            if (Nand.rawecc(image)) Console.WriteLine("Image is raw");
             if (Nand.hasecc_v2(ref image)) Nand.unecc(ref image, false);
             else noecc = true;
 
@@ -2147,7 +2147,8 @@ namespace JRunner.Nand
                     cons[17] += 2;
                 }
             }
-            //flashconfig check
+
+            // Flash config check
             if (!string.IsNullOrWhiteSpace(flashconfig))
             {
                 if (flashconfig == "008A3020" || flashconfig == "00AA3020")
@@ -2189,7 +2190,8 @@ namespace JRunner.Nand
                     cons[15]++;
                 }
             }
-            //file length
+
+            // File length
             if (File.Exists(nand._filename))
             {
                 FileInfo fl = new FileInfo(nand._filename);
@@ -2223,7 +2225,7 @@ namespace JRunner.Nand
                 }
             }
 
-            //spare data check
+            // Spare data check
             if (nand.noecc)
             {
                 cons[11]++;
@@ -3654,14 +3656,15 @@ namespace JRunner.Nand
             if (data.Length < block_offset_b + 2) return hasecc(ref data);
             else
             {
-                if (data[block_offset_b] == 0x43 && data[block_offset_b + 1] == 0x42)
+                if ((data[block_offset_b] == 0x43 && data[block_offset_b + 1] == 0x42) || (data[block_offset_b] == 0x53 && data[block_offset_b + 1] == 0x42)) // Check for text 'CB' or 'SB'
                 {
                     int length = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(data, block_offset_b + 0xC, 4)), 16);
                     if (data.Length < block_offset_b + length || length < 0) return hasecc(ref data);
                     else
                     {
                         block_offset_b = block_offset_b + length;
-                        if (data[block_offset_b] == 0x43 && (data[block_offset_b + 1] == 0x42 || data[block_offset_b + 1] == 0x44)) return false;
+                        if (data[block_offset_b] == 0x43 && (data[block_offset_b + 1] == 0x42 || data[block_offset_b + 1] == 0x44)) return false; // Retail: Cx
+                        else if (data[block_offset_b] == 0x53 && (data[block_offset_b + 1] == 0x42 || data[block_offset_b + 1] == 0x43 || data[block_offset_b + 1] == 0x44)) return false; // Dev: Sx
                         else return true;
                     }
                 }
