@@ -41,10 +41,19 @@ namespace JRunner
 
                     if (comboOsig.Text.Length == 0) comboOsig.Text = "No Drive Info/Unspoofed";
                 }
+
                 txtDVDkey.Text = MainForm.nand.ki.dvdkey;
                 txtSerial.Text = MainForm.nand.ki.serial;
                 txtConsoleID.Text = MainForm.nand.ki.consoleid;
                 txtMfrDate.Text = MainForm.nand.ki.mfdate;
+
+                if (txtSerial.TextLength == 0)
+                {
+                    MessageBox.Show("Could not open KV for editing\n\nMake sure the correct CPU Key is entered", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.DialogResult = DialogResult.None;
+                    this.Close();
+                    return;
+                }
             }
             catch (ArgumentNullException) { return; }
         }

@@ -3003,9 +3003,13 @@ namespace JRunner
                 return;
             }
 
-            variables.cpukey = txtCPUKey.Text;
-            PatchKV patchform = new PatchKV();
-            patchform.ShowDialog();
+            if (nand.cpukeyverification(variables.cpukey))
+            {
+                variables.cpukey = txtCPUKey.Text;
+                PatchKV patchform = new PatchKV();
+                patchform.ShowDialog();
+            }
+            else MessageBox.Show("Could not open KV for editing\n\nMake sure the correct CPU Key is entered", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void changeLDVToolStripMenuItem_Click(object sender, EventArgs e)
