@@ -2513,7 +2513,7 @@ namespace JRunner
                     if (kvPath == "donor")
                     {
                         string kv;
-                        if (con.Contains("Trinity") || con.Contains("Corona")) kv = "slim_nofcrt";
+                        if (con.Contains("Trinity") || con.Contains("Corona") || con.Contains("Winchester")) kv = "slim_nofcrt";
                         else if (con.Contains("Xenon")) kv = "phat_t1";
                         else kv = "phat_t2";
                         File.Copy(Path.Combine(variables.donorPath, kv + ".bin"), variables.xepath + "KV.bin", true);
@@ -2538,12 +2538,13 @@ namespace JRunner
                     // Copy SMC - only needed for RGH3
                     if ((hack == "Glitch2" || hack == "Glitch2m") && smc == "RGH3")
                     {
-                        if (con.Contains("Corona")) File.Copy(variables.xepath + "CORONA_CLEAN.bin", variables.xepath + "SMC.bin", true);
+                        if (con.Contains("Winchester")) File.Copy(variables.xepath + "WINCHESTER_CLEAN.bin", variables.xepath + "SMC.bin", true);
+                        else if (con.Contains("Corona")) File.Copy(variables.xepath + "CORONA_CLEAN.bin", variables.xepath + "SMC.bin", true);
                         else if (con.Contains("Trinity")) File.Copy(variables.xepath + "TRINITY_CLEAN.bin", variables.xepath + "SMC.bin", true);
                         else if (con.Contains("Jasper")) File.Copy(variables.xepath + "JASPER_CLEAN.bin", variables.xepath + "SMC.bin", true);
                         else if (con.Contains("Falcon")) File.Copy(variables.xepath + "FALCON_CLEAN.bin", variables.xepath + "SMC.bin", true);
-                        else if (con.Contains("Zephyr")) File.Copy(variables.xepath + "ZEPHYR_CLEAN.bin", variables.xepath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
-                        else if (con.Contains("Xenon")) File.Copy(variables.xepath + "XENON_CLEAN.bin", variables.xepath + "SMC.bin", true); // Just in case we ever re-use this code for non RGH3
+                        else if (con.Contains("Zephyr")) File.Copy(variables.xepath + "ZEPHYR_CLEAN.bin", variables.xepath + "SMC.bin", true); // Just in case we ever re-use this code
+                        else if (con.Contains("Xenon")) File.Copy(variables.xepath + "XENON_CLEAN.bin", variables.xepath + "SMC.bin", true); // Just in case we ever re-use this code
                         Console.WriteLine("Copied SMC.bin");
                     }
 
@@ -2553,9 +2554,13 @@ namespace JRunner
                         string smcConfig;
 
                         // Catch all types
-                        if (con.Contains("Corona")) smcConfig = "Corona";
-                        else if (con.Contains("Jasper")) smcConfig = "Jasper";
+                        if (con.Contains("Winchester")) smcConfig = "Winchester";
+                        else if (con.Contains("Corona")) smcConfig = "Corona";
                         else if (con.Contains("Trinity")) smcConfig = "Trinity";
+                        else if (con.Contains("Jasper")) smcConfig = "Jasper";
+                        else if (con.Contains("Falcon")) smcConfig = "Falcon";
+                        else if (con.Contains("Zephyr")) smcConfig = "Zephyr";
+                        else if (con.Contains("Xenon")) smcConfig = "Xenon";
                         else smcConfig = con;
 
                         File.Copy(Path.Combine(variables.donorPath, "smc_config", smcConfig + ".bin"), variables.xepath + "smc_config.bin", true);
@@ -2575,9 +2580,11 @@ namespace JRunner
                     }
                     xPanel.createxebuild_v2(true, nand, true);
                 }
-                catch
+                catch (Exception ex)
                 {
                     Console.WriteLine("Donor Nand Creation Failed");
+                    if (variables.debugMode) Console.WriteLine(ex.ToString());
+                    else Console.WriteLine(ex.GetType());
                     Console.WriteLine("");
                     return;
                 }
