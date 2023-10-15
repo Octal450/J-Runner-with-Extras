@@ -113,11 +113,32 @@ namespace JRunner
                     else process.StartInfo.Arguments = "usb: -w" + size + " \"" + filename + "\"" + slArg;
                     process.StartInfo.UseShellExecute = false;
                     process.StartInfo.WorkingDirectory = Path.Combine(variables.rootfolder, "common/mtx-tools");
-                    process.StartInfo.CreateNoWindow = false;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.CreateNoWindow = true;
+
+                    AutoResetEvent outputWaitHandle = new AutoResetEvent(false);
+                    process.OutputDataReceived += (sender, e) =>
+                    {
+                        if (e.Data == null)
+                        {
+                            outputWaitHandle.Set();
+                        }
+                        else
+                        {
+                            Console.WriteLine(e.Data);
+                        }
+                    };
 
                     NandX.InUse = true;
                     process.Start();
+                    process.BeginOutputReadLine();
                     process.WaitForExit();
+
+                    
+                    if (process.HasExited)
+                    {
+                        process.CancelOutputRead();
+                    }
 
                     inUseTimer.Enabled = false;
                     inUseCount = 0;
@@ -166,14 +187,35 @@ namespace JRunner
                     process.StartInfo.Arguments = "\"" + filename + "\"";
                     process.StartInfo.UseShellExecute = false;
                     process.StartInfo.WorkingDirectory = variables.rootfolder;
-                    process.StartInfo.CreateNoWindow = false;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.CreateNoWindow = true;
+
+                    AutoResetEvent outputWaitHandle = new AutoResetEvent(false);
+                    process.OutputDataReceived += (sender, e) =>
+                    {
+                        if (e.Data == null)
+                        {
+                            outputWaitHandle.Set();
+                        }
+                        else
+                        {
+                            Console.WriteLine(e.Data.Replace("\b\b\b\b\b"," ["));
+                        }
+                    };
 
                     NandX.InUse = true;
                     process.Start();
+                    process.BeginOutputReadLine();
                     process.WaitForExit();
+
+                    if (process.HasExited)
+                    {
+                        process.CancelOutputRead();
+                    }
 
                     NandX.InUse = false;
                     Console.WriteLine("Xsvf: Completed!");
+                    Console.WriteLine("");
                 }
                 catch (Exception ex)
                 {
