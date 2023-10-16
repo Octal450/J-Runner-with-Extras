@@ -38,6 +38,7 @@ namespace JRunner
             XFLASHER_SPI = 3,
             XFLASHER_EMMC = 4,
             PICOFLASHER = 5,
+            DIRTYPICO = 6,
         }
 		
         public static TextWriter _writer = null;
@@ -47,6 +48,7 @@ namespace JRunner
         IP myIP = new IP();
         public static Nand.PrivateN nand = new Nand.PrivateN();
         public xFlasher xflasher = new xFlasher();
+        public DirtyPico dirtypico  = new DirtyPico();
         public PicoFlasher picoflasher = new PicoFlasher();
         public Mtx_Usb mtx_usb = new Mtx_Usb();
         public xdkbuild XDKbuild = new xdkbuild();
@@ -255,6 +257,11 @@ namespace JRunner
                     nTools.setImage(Properties.Resources.picoflasher);
                     //PicoFlasherToolStripMenuItem.Visible = true;
                     device = DEVICE.PICOFLASHER;
+                }
+                else if (IsUsbDeviceConnected("C0CA", "1209")) // DirtyPico
+                {
+                    nTools.setImage(Properties.Resources.dirtypico);
+                    device = DEVICE.DIRTYPICO;
                 }
                 else if (IsUsbDeviceConnected("6010", "0403")) // xFlasher SPI
                 {
@@ -876,6 +883,8 @@ namespace JRunner
             if (filex == "") return;
             if (device == DEVICE.XFLASHER_SPI)
                 file = variables.rootfolder + @"\common\svf\" + filex + ".svf";
+            else if (device == DEVICE.DIRTYPICO)
+                file = variables.rootfolder + @"\common\svf\" + filex + ".svf";
             else
                 file = variables.rootfolder + @"\common\xsvf\" + filex + ".xsvf";
 
@@ -897,6 +906,10 @@ namespace JRunner
                     else if(device == DEVICE.XFLASHER_SPI)
                     {
                         xflasher.flashSvf(file);
+                    }
+                    else if (device == DEVICE.DIRTYPICO)
+                    {
+                        dirtypico.flashSvf(file);
                     }
                     else if (device == DEVICE.XFLASHER_EMMC)
                     {
