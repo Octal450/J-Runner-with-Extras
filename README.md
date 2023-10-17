@@ -1,6 +1,8 @@
 # J-Runner with Extras + DirtyPico360
 The Ultimate RGH/JTAG App
 
+DOwnload here: https://github.com/ThisIsCheez/J-Runner-with-Extras-DirtyPico360/releases
+
 System Requirements:
 - x86 based Windows PC (i386 or amd64)
 - Windows Vista SP2 or later
