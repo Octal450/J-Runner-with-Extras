@@ -1,4 +1,4 @@
-# J-Runner with Extras
+# J-Runner with Extras + DirtyPico360
 The Ultimate RGH/JTAG App
 
 System Requirements:
