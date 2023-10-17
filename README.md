@@ -12,7 +12,9 @@ System Requirements:
 This is a fork of Octal450's J-Runner with Extras that adds support for programming glitch chips with a Raspberry Pi Pico.
 This should be treated as a proof of concept, has had limited testing, and nothing about it is perfect. 
 I do not plan to offer any future support for this project. With the limitations of the Pico and DirtyJtag there's not much more that can be improved upon (at least with my limited knowledge).
-If you need fully tested and stable glitch chip programming please purchase a xFlash360 from a trusted reseller: https://themodshop.co/shop/xflasher
+
+
+It is still HIGHLY suggested to use a stable, tested, and trusted programmer like the xFlasher360. Visit here to purchase one from a trusted reseller: https://themodshop.co/shop/xflasher
 
 ## USE AT YOUR OWN RISK
 ## I AM NOT RESPONSIBLE FOR ANY DAMAGE TO YOUR GLITCH CHIP OR CONSOLE
