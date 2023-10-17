@@ -176,6 +176,7 @@ namespace JRunner
             try
             {
                 if (File.Exists(xflasher.svfPath)) File.Delete(xflasher.svfPath);
+                else if (File.Exists(dirtypico.svfPath)) File.Delete(dirtypico.svfPath);
             }
             catch { }
         }
@@ -329,7 +330,7 @@ namespace JRunner
         {
             if (Program.getScalingFactor() >= 1.375) Console.WriteLine("================================================================="); // Don't overflow, weird scaling
             else Console.WriteLine("=========================================================================");
-            Console.WriteLine("J-Runner with Extras");
+            Console.WriteLine("J-Runner with Extras + DirtyPico360");
             Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("MM/dd/yyyy H:mm:ss"));
             if (variables.version.Contains("Alpha") || variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
             else Console.WriteLine("Version: {0}", variables.version);
