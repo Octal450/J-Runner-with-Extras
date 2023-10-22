@@ -698,6 +698,7 @@ namespace JRunner
             this.pnlInfo.Name = "pnlInfo";
             this.pnlInfo.Size = new System.Drawing.Size(342, 298);
             this.pnlInfo.TabIndex = 23;
+            this.pnlInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlInfo_Paint);
             // 
             // txtBlocks
             // 

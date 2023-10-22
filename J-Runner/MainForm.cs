@@ -534,7 +534,7 @@ namespace JRunner
             {
                 return 1;
             }
-            else if (device == DEVICE.XFLASHER_SPI || device == DEVICE.XFLASHER_EMMC)
+            else if (device == DEVICE.XFLASHER_SPI || device == DEVICE.XFLASHER_EMMC || device == DEVICE.DIRTYPICO)
             {
                 return 2;
             }
@@ -774,6 +774,10 @@ namespace JRunner
                         else if (device == DEVICE.XFLASHER_SPI)
                         {
                             xflasher.flashSvf(filename);
+                        }
+                        else if (device == DEVICE.DIRTYPICO)
+                        {
+                            dirtypico.flashSvf(filename);
                         }
                         else if (device == DEVICE.XFLASHER_EMMC)
                         {
@@ -4994,5 +4998,10 @@ namespace JRunner
         }
 
         #endregion
+
+        private void pnlInfo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
