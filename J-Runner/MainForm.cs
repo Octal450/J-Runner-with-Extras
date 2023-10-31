@@ -432,7 +432,7 @@ namespace JRunner
 
         #region LDrivesPanel
 
-        public void ldInfo_CloseLDClick()
+        public void ldInfo_CloseClick()
         {
             listInfo.Remove(ldInfo);
             pnlInfo.Controls.Remove(ldInfo);
@@ -447,7 +447,7 @@ namespace JRunner
 
         #endregion
 
-        #region xebuild Panel
+        #region XeBuild Panel
 
         public void xPanel_HackChanged()
         {
@@ -521,7 +521,7 @@ namespace JRunner
 
         }
 
-        public void xsvfChoice_CloseCRClick()
+        public void xsvfChoice_CloseClick()
         {
             listInfo.Remove(xsvfChoice);
             pnlInfo.Controls.Remove(xsvfChoice);
@@ -1854,6 +1854,15 @@ namespace JRunner
                 xPanel.clear();
                 variables.ctype = variables.ctypes[0];
                 txtIP.Text = txtIP.Text.Remove(txtIP.Text.LastIndexOf('.')) + ".";
+
+                if (listInfo.Contains(xsvfChoice))
+                {
+                    xsvfChoice_CloseClick();
+                }
+                if (listInfo.Contains(ldInfo))
+                {
+                    ldInfo_CloseClick();
+                }
             }
 
             progressBar.Value = progressBar.Minimum;
@@ -1926,7 +1935,7 @@ namespace JRunner
                 else txtCPUKey.BeginInvoke(new Action(() => txtCPUKey.Text = variables.cpukey));
 
                 Console.WriteLine("Initializing {0}, please wait...", Path.GetFileName(variables.filename1));
-                if (listInfo.Contains(xsvfChoice)) xsvfChoice_CloseCRClick();
+                if (listInfo.Contains(xsvfChoice)) xsvfChoice_CloseClick();
                 updateProgress(progressBar.Maximum / 2);
                 nand = new Nand.PrivateN(variables.filename1, variables.cpukey);
                 if (!nand.ok)
@@ -3658,7 +3667,7 @@ namespace JRunner
         {
             if (listInfo.Contains(xsvfChoice))
             {
-                xsvfChoice_CloseCRClick();
+                xsvfChoice_CloseClick();
             }
             else
             {
