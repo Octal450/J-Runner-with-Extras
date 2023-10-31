@@ -180,12 +180,12 @@
             this.programMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectFileToolStripMenuItem});
             this.programMenu.Name = "programMenu";
-            this.programMenu.Size = new System.Drawing.Size(136, 26);
+            this.programMenu.Size = new System.Drawing.Size(181, 48);
             // 
             // selectFileToolStripMenuItem
             // 
             this.selectFileToolStripMenuItem.Name = "selectFileToolStripMenuItem";
-            this.selectFileToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.selectFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.selectFileToolStripMenuItem.Text = "Select File…";
             this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
             // 
