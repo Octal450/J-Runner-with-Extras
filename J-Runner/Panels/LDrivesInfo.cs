@@ -60,7 +60,7 @@ namespace JRunner.Panels
         {
             try
             {
-                MainForm.mainForm.ldInfo_CloseLDClick();
+                MainForm.mainForm.ldInfo_CloseClick();
             }
             catch (Exception) { }
         }

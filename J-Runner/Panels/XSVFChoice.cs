@@ -545,7 +545,7 @@ namespace JRunner.Panels
         {
             try
             {
-                MainForm.mainForm.xsvfChoice_CloseCRClick();
+                MainForm.mainForm.xsvfChoice_CloseClick();
             }
             catch (Exception) { }
         }
