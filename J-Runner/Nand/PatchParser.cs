@@ -114,15 +114,23 @@ namespace JRunner.Nand
                                 {
                                     MessageBox.Show(patch.messageBox, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                                    if (patch.name == "XLHDD")
+                                    if (patch.name == "XLBoth")
+                                    {
+                                        variables.xlbothchk = true;
+                                        variables.xlhddchk = false;
+                                        variables.xlusbchk = false;
+                                    }
+                                    else if (patch.name == "XLHDD")
                                     {
                                         variables.xlhddchk = true;
                                         variables.xlusbchk = false;
+                                        variables.xlbothchk = false;
                                     }
                                     else if(patch.name == "XLUSB")
                                     {
-                                        variables.xlhddchk = false;
                                         variables.xlusbchk = true;
+                                        variables.xlhddchk = false;
+                                        variables.xlbothchk = false;
                                     }
                                 }
                             }

@@ -2033,8 +2033,9 @@ namespace JRunner
                 GC.Collect();
 
                 // Reset Patch Parser found variables
-                variables.xlhddchk = false;
                 variables.xlusbchk = false;
+                variables.xlhddchk = false;
+                variables.xlbothchk = false;
 
                 FileStream fs = new FileStream(variables.filename1, FileMode.Open);
                 try
@@ -2098,8 +2099,9 @@ namespace JRunner
 
                 // Set xPanel
                 if (nand.bl.CB_B == 15432) xPanel.setRgh3Checked(true);
-                xPanel.setXLHDDChecked(variables.xlhddchk);
                 xPanel.setXLUSBChecked(variables.xlusbchk);
+                xPanel.setXLHDDChecked(variables.xlhddchk);
+                xPanel.setXLBothChecked(variables.xlbothchk);
 
                 variables.gotvalues = !string.IsNullOrEmpty(variables.cpukey);
 

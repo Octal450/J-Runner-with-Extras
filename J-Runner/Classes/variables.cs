@@ -80,9 +80,9 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.3.0 r2";
-        public static string build = "3301." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
-        public const string staticversion = "3.3.0.1";
+        public static string version = "3.3.0 r3 Beta";
+        public static string build = "3302." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
+        public const string staticversion = "3.3.0.2";
         public static int revision = 36;
         public static Windows currentOS = Windows.Unknown;
         public static bool isWinXP = false;
@@ -300,7 +300,7 @@ namespace JRunner
         public static int dashversion = 0;
         public static bool copiedSMC = false;
         public static bool copiedXLDrive = false;
-        public static bool xlhddchk = false, xlusbchk = false;
+        public static bool xlusbchk = false, xlhddchk = false, xlbothchk = false;
         public static bool fullDataClean = false;
 
         /// <summary>

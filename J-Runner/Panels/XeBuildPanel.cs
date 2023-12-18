@@ -165,15 +165,20 @@ namespace JRunner.Panels
             if (check && (!chkRgh3.Enabled || !chkRgh3.Visible)) return;
             chkRgh3.Checked = check;
         }
+        public void setXLUSBChecked(bool check)
+        {
+            if (check && !chkXLUsb.Enabled) return;
+            chkXLUsb.Checked = check;
+        }
         public void setXLHDDChecked(bool check)
         {
             if (check && !chkXLHdd.Enabled) return;
             chkXLHdd.Checked = check;
         }
-        public void setXLUSBChecked(bool check)
+        public void setXLBothChecked(bool check)
         {
-            if (check && !chkXLUsb.Enabled) return;
-            chkXLUsb.Checked = check;
+            if (check && !chkXLBoth.Enabled) return;
+            chkXLBoth.Checked = check;
         }
         public void setNoFcrtChecked(bool check)
         {
@@ -521,6 +526,13 @@ namespace JRunner.Panels
                 else chkXLHdd.Enabled = true;
             }
             else chkXLHdd.Checked = chkXLHdd.Enabled = false;
+
+            if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\xl_both.bin")))
+            {
+                if (rbtnRetail.Checked) chkXLBoth.Checked = chkXLBoth.Enabled = false;
+                else chkXLBoth.Enabled = true;
+            }
+            else chkXLBoth.Checked = chkXLBoth.Enabled = false;
 
             if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\usbdsec.bin")))
             {
@@ -884,8 +896,9 @@ namespace JRunner.Panels
             {
                 Console.WriteLine("XL USB Selected");
                 chkXLHdd.Checked = false;
+                chkXLBoth.Checked = false;
             }
-            else if (!chkXLHdd.Checked) // Don't uselessly spam the console
+            else if (!chkXLHdd.Checked && !chkXLBoth.Checked) // Don't uselessly spam the console
             {
                 Console.WriteLine("XL USB Deselected");
             }
@@ -897,10 +910,25 @@ namespace JRunner.Panels
             {
                 Console.WriteLine("XL HDD Selected");
                 chkXLUsb.Checked = false;
+                chkXLBoth.Checked = false;
             }
-            else if (!chkXLUsb.Checked) // Don't uselessly spam the console
+            else if (!chkXLUsb.Checked && !chkXLBoth.Checked) // Don't uselessly spam the console
             {
                 Console.WriteLine("XL HDD Deselected");
+            }
+        }
+
+        private void chkXLBoth_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkXLBoth.Checked)
+            {
+                Console.WriteLine("Both XL Selected");
+                chkXLUsb.Checked = false;
+                chkXLHdd.Checked = false;
+            }
+            else if (!chkXLUsb.Checked && !chkXLHdd.Checked) // Don't uselessly spam the console
+            {
+                Console.WriteLine("Both XL Deselected");
             }
         }
 
@@ -1225,7 +1253,7 @@ namespace JRunner.Panels
             Classes.xebuild xe = new Classes.xebuild();
             xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                              variables.ctype, patches, nand, chkXeSettings.Checked, checkDLPatches.Checked,
-                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkUsbdSec.Checked, fullDataClean);
+                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkXLBoth.Checked, chkUsbdSec.Checked, fullDataClean);
 
             string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_" + variables.ttyp + ".ini");
 
@@ -1364,7 +1392,9 @@ namespace JRunner.Panels
                         xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                             variables.ctype, patches, nand, chkXeSettings.Checked, checkDLPatches.Checked,
                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked,
-                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkUsbdSec.Checked, fullDataClean);
+                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked,
+                            chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkXLBoth.Checked, chkUsbdSec.Checked,
+                            fullDataClean);
                         goto Start;
                     }
                 case Classes.xebuild.XebuildError.none:

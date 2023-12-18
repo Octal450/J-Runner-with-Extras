@@ -63,6 +63,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkUsbdSec = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkXLBoth = new System.Windows.Forms.CheckBox();
             this.chkXLHdd = new System.Windows.Forms.CheckBox();
             this.chkXLUsb = new System.Windows.Forms.CheckBox();
             this.chkWB4G = new System.Windows.Forms.CheckBox();
@@ -530,6 +531,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkXLBoth);
             this.groupBox1.Controls.Add(this.chkXLHdd);
             this.groupBox1.Controls.Add(this.chkXLUsb);
             this.groupBox1.Location = new System.Drawing.Point(97, 3);
@@ -539,11 +541,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Drive Patches";
             // 
+            // chkXLBoth
+            // 
+            this.chkXLBoth.AutoSize = true;
+            this.chkXLBoth.Enabled = false;
+            this.chkXLBoth.Location = new System.Drawing.Point(24, 56);
+            this.chkXLBoth.Name = "chkXLBoth";
+            this.chkXLBoth.Size = new System.Drawing.Size(64, 17);
+            this.chkXLBoth.TabIndex = 2;
+            this.chkXLBoth.Text = "Both XL";
+            this.toolTip1.SetToolTip(this.chkXLBoth, "Patches Freeboot to allow use of both USB and internal hard drives over 2TB in si" +
+        "ze \r\n");
+            this.chkXLBoth.UseVisualStyleBackColor = true;
+            this.chkXLBoth.CheckedChanged += new System.EventHandler(this.chkXLBoth_CheckedChanged);
+            // 
             // chkXLHdd
             // 
             this.chkXLHdd.AutoSize = true;
             this.chkXLHdd.Enabled = false;
-            this.chkXLHdd.Location = new System.Drawing.Point(24, 49);
+            this.chkXLHdd.Location = new System.Drawing.Point(24, 37);
             this.chkXLHdd.Name = "chkXLHdd";
             this.chkXLHdd.Size = new System.Drawing.Size(66, 17);
             this.chkXLHdd.TabIndex = 1;
@@ -556,7 +572,7 @@
             // 
             this.chkXLUsb.AutoSize = true;
             this.chkXLUsb.Enabled = false;
-            this.chkXLUsb.Location = new System.Drawing.Point(24, 25);
+            this.chkXLUsb.Location = new System.Drawing.Point(24, 18);
             this.chkXLUsb.Name = "chkXLUsb";
             this.chkXLUsb.Size = new System.Drawing.Size(64, 17);
             this.chkXLUsb.TabIndex = 0;
@@ -1086,5 +1102,6 @@
         private System.Windows.Forms.CheckBox chkNoAva;
         private System.Windows.Forms.CheckBox chkNoWrite;
         private System.Windows.Forms.Button btnXEUpdate;
+        private System.Windows.Forms.CheckBox chkXLBoth;
     }
 }

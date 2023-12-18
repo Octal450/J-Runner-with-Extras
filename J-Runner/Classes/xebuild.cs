@@ -47,11 +47,12 @@ namespace JRunner.Classes
         private bool _noreeb;
         private bool _xlusb;
         private bool _xlhdd;
+        private bool _xlboth;
         private bool _usbdsec;
         private Nand.PrivateN _nand;
         private List<string> _patches;
 
-        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<string> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool xlusb, bool xlhdd, bool usbdsec, bool fullDataClean)
+        public void loadvariables(string cpukey, variables.hacktypes ttype, int dash, consoles ctype, List<string> patches, Nand.PrivateN nand, bool altoptions, bool DLpatches, bool includeLaunch, bool audclamp, bool rjtag, bool cleansmc, bool cr4, bool smcp, bool rgh3, bool bigffs, bool zfuse, bool xdkbuild, bool xlusb, bool xlhdd, bool xlboth, bool usbdsec, bool fullDataClean)
         {
             this._cpukey = cpukey;
             this._ttype = ttype;
@@ -73,6 +74,7 @@ namespace JRunner.Classes
             this._xdkbuild = xdkbuild;
             this._xlusb = xlusb;
             this._xlhdd = xlhdd;
+            this._xlboth = xlboth;
             this._usbdsec = usbdsec;
             this._fullDataClean = fullDataClean;
         }
@@ -354,6 +356,37 @@ namespace JRunner.Classes
             }
         }
 
+        private void copyXLBoth()
+        {
+            if (File.Exists(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xl_both\xam.xex")))
+            {
+                if (File.Exists(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xam.xex")))
+                {
+                    File.Move(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xam.xex"), Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xam.xex.tmp"));
+                }
+
+                File.Copy(Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xl_both\xam.xex"), Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xam.xex"), true);
+
+                string buildIni = Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\_" + variables.ttyp.ToString() + ".ini");
+                string xlBothIni = Path.Combine(variables.rootfolder, @"xeBuild\" + _dash + @"\xl_both\_" + variables.ttyp.ToString() + ".ini");
+                if (File.Exists(xlBothIni))
+                {
+                    if (File.Exists(buildIni))
+                    {
+                        File.Move(buildIni, buildIni + ".tmp");
+                    }
+
+                    File.Copy(xlBothIni, buildIni, true);
+                }
+
+                variables.copiedXLDrive = true;
+            }
+            else
+            {
+                variables.copiedXLDrive = false;
+            }
+        }
+
         void checkDashLaunch()
         {
             if (_DLpatches && _includeLaunch)
@@ -513,6 +546,7 @@ namespace JRunner.Classes
 
             if (_xlusb) copyXLUsb();
             else if (_xlhdd) copyXLHdd();
+            else if (_xlboth) copyXLBoth();
 
             variables.fullDataClean = _fullDataClean;
 
@@ -646,6 +680,7 @@ namespace JRunner.Classes
 
             if (_xlusb) arguments += " -a xl_usb";
             else if (_xlhdd) arguments += " -a xl_hdd";
+            else if (_xlboth) arguments += " -a xl_both";
 
             if (_usbdsec) arguments += " -a usbdsec";
 
