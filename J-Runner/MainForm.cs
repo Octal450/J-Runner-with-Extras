@@ -3647,11 +3647,11 @@ namespace JRunner
             }
         }
 
-        public void openXsvfChoice(bool boardcheck = false)
+        public void openXsvfChoice(bool boardCheck = false, bool toggle = false)
         {
             if (listInfo.Contains(xsvfChoice))
             {
-                xsvfChoice_CloseClick();
+                if (toggle) xsvfChoice_CloseClick();
             }
             else
             {
@@ -3659,7 +3659,7 @@ namespace JRunner
                 pnlInfo.Controls.Add(xsvfChoice);
                 if (listInfo.Contains(xsvfChoice)) listInfo.Remove(xsvfChoice);
                 listInfo.Add(xsvfChoice);
-                if (boardcheck) xsvfChoice.boardCheck(variables.boardtype);
+                if (boardCheck) xsvfChoice.boardCheck(variables.boardtype);
             }
         }
 
@@ -4029,7 +4029,7 @@ namespace JRunner
             }
             else if (e.KeyCode == Keys.F3)
             {
-                openXsvfChoice(true);
+                openXsvfChoice(true, true);
             }
             //else if (e.KeyCode == Keys.F4) // Handled from WinForms Menubar
             //{
