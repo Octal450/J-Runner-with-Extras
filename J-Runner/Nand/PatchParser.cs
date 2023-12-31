@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Windows;
 
-// Patch Parser by Mena Azer, 2022
-
 namespace JRunner.Nand
 {
-    public class PatchParser
+    public class PatchParser // Patch Parser by Mena Azer, 2022
     {
         public UInt32 address;
         public UInt32 patchCount;
@@ -109,29 +107,30 @@ namespace JRunner.Nand
                             {
                                 foundAPatch = true;
                                 foundPatches.Add(patch);
-                                if (patch.consoleMsg != null) Console.WriteLine(patch.consoleMsg);
+
+                                if (patch.consoleMsg != null)
+                                {
+                                    if (patch.name != "XLHDD" && patch.name != "XLUSB")
+                                    {
+                                        Console.WriteLine(patch.consoleMsg);
+                                    }
+                                }
+
                                 if (!variables.noPatchWarnings && patch.messageBox != null)
                                 {
-                                    MessageBox.Show(patch.messageBox, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    if (patch.name != "XLHDD" && patch.name != "XLUSB")
+                                    {
+                                        MessageBox.Show(patch.messageBox, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    }
+                                }
 
-                                    if (patch.name == "XLBoth")
-                                    {
-                                        variables.xlbothchk = true;
-                                        variables.xlhddchk = false;
-                                        variables.xlusbchk = false;
-                                    }
-                                    else if (patch.name == "XLHDD")
-                                    {
-                                        variables.xlhddchk = true;
-                                        variables.xlusbchk = false;
-                                        variables.xlbothchk = false;
-                                    }
-                                    else if(patch.name == "XLUSB")
-                                    {
-                                        variables.xlusbchk = true;
-                                        variables.xlhddchk = false;
-                                        variables.xlbothchk = false;
-                                    }
+                                if (patch.name == "XLHDD")
+                                {
+                                    variables.foundXlHdd = true;
+                                }
+                                else if (patch.name == "XLUSB")
+                                {
+                                    variables.foundXlUsb = true;
                                 }
                             }
                         }
@@ -164,6 +163,49 @@ namespace JRunner.Nand
         public void resetIndex()
         {
             index = 0;
+        }
+    }
+
+    public class Patches
+    {
+        public static void patchParseFinal()
+        {
+            if (variables.foundXlHdd && variables.foundXlUsb)
+            {
+                variables.foundXlBoth = true;
+                variables.foundXlHdd = false;
+                variables.foundXlUsb = false;
+
+                Console.WriteLine("Nand includes Both XL patches");
+                if (!variables.noPatchWarnings) MessageBox.Show("This NAND has Both XL patches applied\n\nUSBs not formatted via FATXplorer, and all USB memory units, will no longer work\n\nIf you don't want this, generate an image without the Both XL checked under \"Patches/Drive Patches\"", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (variables.foundXlHdd)
+            {
+                variables.foundXlBoth = false;
+                variables.foundXlUsb = false;
+                showPatchMsg("XLHDD");
+            }
+            else if (variables.foundXlUsb)
+            {
+                variables.foundXlBoth = false;
+                variables.foundXlHdd = false;
+                showPatchMsg("XLUSB");
+            }
+        }
+
+        public static void showPatchMsg(string patchName) // Thx DrTrinity!
+        {
+            int index = Array.FindIndex(ntable.patchTable, patchtable => patchtable.name == patchName);
+
+            if (ntable.patchTable[index].name == patchName)
+            {
+                Console.WriteLine(ntable.patchTable[index].consoleMsg);
+            }
+
+            if (ntable.patchTable[index].name == patchName)
+            {
+                if (!variables.noPatchWarnings) MessageBox.Show(ntable.patchTable[index].messageBox, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

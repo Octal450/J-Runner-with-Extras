@@ -1,4 +1,5 @@
 ﻿using JRunner.Forms;
+using JRunner.Nand;
 using LibUsbDotNet.DeviceNotify;
 using Microsoft.Win32;
 using RenameRegistryKey;
@@ -2033,14 +2034,15 @@ namespace JRunner
                 GC.Collect();
 
                 // Reset Patch Parser found variables
-                variables.xlusbchk = false;
-                variables.xlhddchk = false;
-                variables.xlbothchk = false;
+                variables.foundXlUsb = false;
+                variables.foundXlHdd = false;
+                variables.foundXlBoth = false;
 
                 FileStream fs = new FileStream(variables.filename1, FileMode.Open);
+                byte[] patchesByte = new byte[0x5B230];
+
                 try
                 {
-                    byte[] patchesByte = new byte[0x5B230];
                     if (nand.noecc)
                     {
                         fs.Position = 0x8BA00;
@@ -2069,9 +2071,9 @@ namespace JRunner
                             patches[i] = patchesByte[0x34600 + 0x10 + i]; // 16MB, 0xC0000
                         }
                     }
-                    
+
                     // Needs to be run twice for JTAG checking, no reliable way to check which it is
-                    Nand.PatchParser patchParser = new Nand.PatchParser(patches);
+                    PatchParser patchParser = new PatchParser(patches);
                     bool patchResult = patchParser.parseAll();
                 
                     if (!patchResult)
@@ -2087,21 +2089,23 @@ namespace JRunner
                         patchParser.parseAll();
                     }
                     
-                    patchesByte = null;
                 }
                 catch
                 {
                     if (variables.debugMode) Console.WriteLine("Could not check for patches");
                 }
-                
+
+                patchesByte = null;
+                Patches.patchParseFinal(); // Handles XL logic
+
                 fs.Close();
                 fs.Dispose();
 
                 // Set xPanel
                 if (nand.bl.CB_B == 15432) xPanel.setRgh3Checked(true);
-                xPanel.setXLUSBChecked(variables.xlusbchk);
-                xPanel.setXLHDDChecked(variables.xlhddchk);
-                xPanel.setXLBothChecked(variables.xlbothchk);
+                xPanel.setXLUSBChecked(variables.foundXlUsb);
+                xPanel.setXLHDDChecked(variables.foundXlHdd);
+                xPanel.setXLBothChecked(variables.foundXlBoth);
 
                 variables.gotvalues = !string.IsNullOrEmpty(variables.cpukey);
 

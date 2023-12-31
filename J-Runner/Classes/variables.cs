@@ -300,7 +300,7 @@ namespace JRunner
         public static int dashversion = 0;
         public static bool copiedSMC = false;
         public static bool copiedXLDrive = false;
-        public static bool xlusbchk = false, xlhddchk = false, xlbothchk = false;
+        public static bool foundXlUsb = false, foundXlHdd = false, foundXlBoth = false;
         public static bool fullDataClean = false;
 
         /// <summary>
