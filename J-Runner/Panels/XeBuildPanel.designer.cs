@@ -61,6 +61,7 @@
             this.rbtnGlitch = new System.Windows.Forms.RadioButton();
             this.tabPatches = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkCoronaKeyFix = new System.Windows.Forms.CheckBox();
             this.chkUsbdSec = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkXLBoth = new System.Windows.Forms.CheckBox();
@@ -508,19 +509,33 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkCoronaKeyFix);
             this.groupBox2.Controls.Add(this.chkUsbdSec);
             this.groupBox2.Location = new System.Drawing.Point(210, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(104, 56);
+            this.groupBox2.Size = new System.Drawing.Size(104, 61);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Other Patches";
+            // 
+            // chkCoronaKeyFix
+            // 
+            this.chkCoronaKeyFix.AutoSize = true;
+            this.chkCoronaKeyFix.Enabled = false;
+            this.chkCoronaKeyFix.Location = new System.Drawing.Point(21, 37);
+            this.chkCoronaKeyFix.Name = "chkCoronaKeyFix";
+            this.chkCoronaKeyFix.Size = new System.Drawing.Size(60, 17);
+            this.chkCoronaKeyFix.TabIndex = 1;
+            this.chkCoronaKeyFix.Text = "Key Fix";
+            this.toolTip1.SetToolTip(this.chkCoronaKeyFix, "Patches Freeboot to allow use of custom USB peripherals, like controllers");
+            this.chkCoronaKeyFix.UseVisualStyleBackColor = true;
+            this.chkCoronaKeyFix.CheckedChanged += new System.EventHandler(this.chkCoronaKeyFix_CheckedChanged);
             // 
             // chkUsbdSec
             // 
             this.chkUsbdSec.AutoSize = true;
             this.chkUsbdSec.Enabled = false;
-            this.chkUsbdSec.Location = new System.Drawing.Point(21, 25);
+            this.chkUsbdSec.Location = new System.Drawing.Point(21, 18);
             this.chkUsbdSec.Name = "chkUsbdSec";
             this.chkUsbdSec.Size = new System.Drawing.Size(70, 17);
             this.chkUsbdSec.TabIndex = 0;
@@ -1103,5 +1118,6 @@
         private System.Windows.Forms.CheckBox chkNoWrite;
         private System.Windows.Forms.Button btnXEUpdate;
         private System.Windows.Forms.CheckBox chkXLBoth;
+        private System.Windows.Forms.CheckBox chkCoronaKeyFix;
     }
 }

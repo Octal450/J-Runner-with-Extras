@@ -22,7 +22,7 @@ using WinUsb;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
-// Copyright (c) 2020-2023 J-Runner with Extras Development Team
+// Copyright (c) 2020-2024 J-Runner with Extras Development Team
 
 namespace JRunner
 {
@@ -2037,6 +2037,8 @@ namespace JRunner
                 variables.foundXlUsb = false;
                 variables.foundXlHdd = false;
                 variables.foundXlBoth = false;
+                variables.foundUsbdSec = false;
+                variables.foundCoronaKeyFix = false;
 
                 FileStream fs = new FileStream(variables.filename1, FileMode.Open);
                 byte[] patchesByte = new byte[0x5B230];
@@ -2101,11 +2103,24 @@ namespace JRunner
                 fs.Close();
                 fs.Dispose();
 
-                // Set xPanel
+                // XPanel Setters
+                Thread.Sleep(100); // Fixes a weird issue that might occur in some situations
+
+                // RGH3
                 if (nand.bl.CB_B == 15432) xPanel.setRgh3Checked(true);
+
+                // Winbond
+                if ((nand.bl.CB_A == 13121 && nand.bl.CB_B == 13182) || (nand.bl.CB_A == 13182 && nand.bl.CB_B == 15432))
+                {
+                    xPanel.setWBChecked(true);
+                }
+
+                // Patches
                 xPanel.setXLUSBChecked(variables.foundXlUsb);
                 xPanel.setXLHDDChecked(variables.foundXlHdd);
                 xPanel.setXLBothChecked(variables.foundXlBoth);
+                xPanel.setUsbdSecChecked(variables.foundUsbdSec);
+                xPanel.setCoronaKeyFixChecked(variables.foundCoronaKeyFix);
 
                 variables.gotvalues = !string.IsNullOrEmpty(variables.cpukey);
 

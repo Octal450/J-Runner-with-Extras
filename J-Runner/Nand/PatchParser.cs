@@ -108,7 +108,7 @@ namespace JRunner.Nand
                                 foundAPatch = true;
                                 foundPatches.Add(patch);
 
-                                if (patch.consoleMsg != null)
+                                if (patch.consoleMsg != "")
                                 {
                                     if (patch.name != "XLHDD" && patch.name != "XLUSB")
                                     {
@@ -116,7 +116,7 @@ namespace JRunner.Nand
                                     }
                                 }
 
-                                if (!variables.noPatchWarnings && patch.messageBox != null)
+                                if (!variables.noPatchWarnings && patch.messageBox != "")
                                 {
                                     if (patch.name != "XLHDD" && patch.name != "XLUSB")
                                     {
@@ -131,6 +131,14 @@ namespace JRunner.Nand
                                 else if (patch.name == "XLUSB")
                                 {
                                     variables.foundXlUsb = true;
+                                }
+                                else if (patch.name == "UsbdSec")
+                                {
+                                    variables.foundUsbdSec = true;
+                                }
+                                else if (patch.name == "CoronaKeyFix")
+                                {
+                                    variables.foundCoronaKeyFix = true;
                                 }
                             }
                         }
