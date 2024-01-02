@@ -3173,20 +3173,10 @@ namespace JRunner
             }
         }
 
-        CPUKeyGen cpu;
-        private void cPUKeyToolsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void generateCpuKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Application.OpenForms.OfType<CPUKeyGen>().Any())
-            {
-                cpu.WindowState = FormWindowState.Normal;
-                cpu.Activate();
-            }
-            else
-            {
-                cpu = new CPUKeyGen();
-                cpu.Show();
-                cpu.Location = new Point(Location.X + (Width - cpu.Width) / 2, Location.Y + 155);
-            }
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) txtCPUKey.Text = variables.superDevKey;
+            else txtCPUKey.Text = CpuKeyGen.GenerateKey();
         }
 
         private void checkSecdataToolStripMenuItem_Click(object sender, EventArgs e)

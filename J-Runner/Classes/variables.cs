@@ -155,6 +155,7 @@ namespace JRunner
         public static bool rghable = true;
         public static int changeldv = 0, highldv;
         public static List<string> dashes_all = new List<string>();
+        public static string superDevKey = "55555555555555555555555555D9AEE2";
 
         /// <summary>
         /// Filenames
