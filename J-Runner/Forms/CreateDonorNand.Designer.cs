@@ -183,9 +183,9 @@ namespace JRunner.Forms
             // 
             // GenerateKey
             // 
-            this.GenerateKey.Location = new System.Drawing.Point(401, 14);
+            this.GenerateKey.Location = new System.Drawing.Point(396, 14);
             this.GenerateKey.Name = "GenerateKey";
-            this.GenerateKey.Size = new System.Drawing.Size(63, 25);
+            this.GenerateKey.Size = new System.Drawing.Size(68, 25);
             this.GenerateKey.TabIndex = 3;
             this.GenerateKey.Text = "Generate";
             this.GenerateKey.UseVisualStyleBackColor = true;
@@ -207,7 +207,7 @@ namespace JRunner.Forms
             this.CpuKeyBox.Location = new System.Drawing.Point(67, 15);
             this.CpuKeyBox.MaxLength = 32;
             this.CpuKeyBox.Name = "CpuKeyBox";
-            this.CpuKeyBox.Size = new System.Drawing.Size(328, 23);
+            this.CpuKeyBox.Size = new System.Drawing.Size(323, 23);
             this.CpuKeyBox.TabIndex = 0;
             this.CpuKeyBox.TextChanged += new System.EventHandler(this.CpuKeyBox_TextChanged);
             this.CpuKeyBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.CpuKeyBox_DragDrop);
