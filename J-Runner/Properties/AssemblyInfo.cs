@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("J-Runner with Extras")]
 [assembly: AssemblyProduct("J-Runner with Extras")]
-[assembly: AssemblyCopyright("Copyright © J-Runner with Extras Developers 2012-2023")]
+[assembly: AssemblyCopyright("Copyright © J-Runner with Extras Developers 2012-2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
