@@ -1881,6 +1881,15 @@ namespace JRunner
                 MessageBox.Show("No file was selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Nested dump in output is illegal, causes problems
+            string dirName = Path.GetFileName(Path.GetDirectoryName(variables.filename1));
+            if (Path.GetDirectoryName(variables.filename1).Contains(variables.outfolder) && dirName.ToLower() != "output")
+            {
+                MessageBox.Show("Nand dump can't be in a nested folder inside output\n\nPlease move it to output, or another location", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 updateProgress(progressBar.Minimum);
