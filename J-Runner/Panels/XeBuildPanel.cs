@@ -563,7 +563,7 @@ namespace JRunner.Panels
                 if (rbtnRetail.Checked) chkCoronaKeyFix.Checked = chkCoronaKeyFix.Enabled = false;
                 else
                 {
-                    if (board.Contains("Corona") || board.Contains("Winchester")) chkCoronaKeyFix.Enabled = true;
+                    if (board.Contains("Corona") || board.Contains("Winchester") || board.Contains("None")) chkCoronaKeyFix.Enabled = true;
                     else chkCoronaKeyFix.Checked = chkCoronaKeyFix.Enabled = false;
                 }
             }

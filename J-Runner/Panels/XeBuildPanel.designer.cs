@@ -230,7 +230,7 @@
             this.chkWB.Size = new System.Drawing.Size(60, 17);
             this.chkWB.TabIndex = 14;
             this.chkWB.Text = "WB 2K";
-            this.toolTip1.SetToolTip(this.chkWB, "Check to use 13182 CBB for Winbond 2K consoles");
+            this.toolTip1.SetToolTip(this.chkWB, "Corona only, use 13182 CBB for Winbond 2K consoles");
             this.chkWB.UseVisualStyleBackColor = false;
             this.chkWB.CheckedChanged += new System.EventHandler(this.chkWB_CheckedChanged);
             // 
@@ -527,7 +527,7 @@
             this.chkCoronaKeyFix.Size = new System.Drawing.Size(60, 17);
             this.chkCoronaKeyFix.TabIndex = 1;
             this.chkCoronaKeyFix.Text = "Key Fix";
-            this.toolTip1.SetToolTip(this.chkCoronaKeyFix, "Patches Freeboot to allow use of custom USB peripherals, like controllers");
+            this.toolTip1.SetToolTip(this.chkCoronaKeyFix, "Patch Freeboot to fix an issue on Corona that may affect certain games");
             this.chkCoronaKeyFix.UseVisualStyleBackColor = true;
             this.chkCoronaKeyFix.CheckedChanged += new System.EventHandler(this.chkCoronaKeyFix_CheckedChanged);
             // 
@@ -540,7 +540,7 @@
             this.chkUsbdSec.Size = new System.Drawing.Size(70, 17);
             this.chkUsbdSec.TabIndex = 0;
             this.chkUsbdSec.Text = "UsbdSec";
-            this.toolTip1.SetToolTip(this.chkUsbdSec, "Patches Freeboot to allow use of custom USB peripherals, like controllers");
+            this.toolTip1.SetToolTip(this.chkUsbdSec, "Patch Freeboot to allow use of custom USB peripherals, like controllers");
             this.chkUsbdSec.UseVisualStyleBackColor = true;
             this.chkUsbdSec.CheckedChanged += new System.EventHandler(this.chkUsbdSec_CheckedChanged);
             // 
@@ -565,8 +565,8 @@
             this.chkXLBoth.Size = new System.Drawing.Size(64, 17);
             this.chkXLBoth.TabIndex = 2;
             this.chkXLBoth.Text = "Both XL";
-            this.toolTip1.SetToolTip(this.chkXLBoth, "Patches Freeboot to allow use of both USB and internal hard drives over 2TB in si" +
-        "ze \r\n");
+            this.toolTip1.SetToolTip(this.chkXLBoth, "Patch Freeboot to allow use of both USB and internal hard drives over 2TB in size" +
+        " \r\n");
             this.chkXLBoth.UseVisualStyleBackColor = true;
             this.chkXLBoth.CheckedChanged += new System.EventHandler(this.chkXLBoth_CheckedChanged);
             // 
@@ -579,7 +579,7 @@
             this.chkXLHdd.Size = new System.Drawing.Size(66, 17);
             this.chkXLHdd.TabIndex = 1;
             this.chkXLHdd.Text = "XL HDD";
-            this.toolTip1.SetToolTip(this.chkXLHdd, "Patches Freeboot to allow use of internal hard drives over 2TB in size \r\n");
+            this.toolTip1.SetToolTip(this.chkXLHdd, "Patch Freeboot to allow use of internal hard drives over 2TB in size \r\n");
             this.chkXLHdd.UseVisualStyleBackColor = true;
             this.chkXLHdd.CheckedChanged += new System.EventHandler(this.chkXLHdd_CheckedChanged);
             // 
@@ -592,7 +592,7 @@
             this.chkXLUsb.Size = new System.Drawing.Size(64, 17);
             this.chkXLUsb.TabIndex = 0;
             this.chkXLUsb.Text = "XL USB";
-            this.toolTip1.SetToolTip(this.chkXLUsb, "Patches Freeboot to allow use of USB hard drives over 2TB in size ");
+            this.toolTip1.SetToolTip(this.chkXLUsb, "Patch Freeboot to allow use of USB hard drives over 2TB in size ");
             this.chkXLUsb.UseVisualStyleBackColor = true;
             this.chkXLUsb.CheckedChanged += new System.EventHandler(this.chkXLUsb_CheckedChanged);
             // 
@@ -605,8 +605,8 @@
             this.chkWB4G.Size = new System.Drawing.Size(114, 17);
             this.chkWB4G.TabIndex = 7;
             this.chkWB4G.Text = "WB 2K Buffer (4G)";
-            this.toolTip1.SetToolTip(this.chkWB4G, "Check to use 13182 CBB with a buffer for Winbond 2K consoles\r\nLegacy option that " +
-        "should not be used except in rare cases");
+            this.toolTip1.SetToolTip(this.chkWB4G, "Corona only, use 13182 CBB with a buffer for Winbond 2K consoles\r\nLegacy option t" +
+        "hat should not be used except in rare cases");
             this.chkWB4G.UseVisualStyleBackColor = true;
             this.chkWB4G.CheckedChanged += new System.EventHandler(this.chkWB4G_CheckedChanged);
             // 
