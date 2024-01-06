@@ -19,6 +19,7 @@ namespace JRunner.Forms
                                     "Orpheus: Updates to KV Info/Bugfixes",
                                     "SGCSam: 6717/9199 XeBuild Patches",
                                     "Xvistaman2005: XDKbuild",
+                                    "Cheez: DirtyPico",
         };
         static int contribloc = 0;
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]

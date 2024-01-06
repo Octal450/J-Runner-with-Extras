@@ -81,7 +81,12 @@ namespace JRunner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12-11-2022 22:08:37.
+        ///   Looks up a localized string similar to DirtyPico360-3.3.0-r2
+        ///10-31-2023 00:42:46
+        ///=======
+        ///10-22-2023 14:00:13
+        ///DirtyPico-3.3.0
+        ///.
         /// </summary>
         internal static string Build {
             get {
@@ -104,6 +109,16 @@ namespace JRunner.Properties {
         internal static System.Drawing.Bitmap demon {
             get {
                 object obj = ResourceManager.GetObject("demon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dirtypico {
+            get {
+                object obj = ResourceManager.GetObject("dirtypico", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

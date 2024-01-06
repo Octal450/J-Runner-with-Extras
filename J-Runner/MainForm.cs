@@ -39,6 +39,7 @@ namespace JRunner
             XFLASHER_SPI = 3,
             XFLASHER_EMMC = 4,
             PICOFLASHER = 5,
+            DIRTYPICO = 6,
         }
 		
         public static TextWriter _writer = null;
@@ -48,6 +49,7 @@ namespace JRunner
         IP myIP = new IP();
         public static Nand.PrivateN nand = new Nand.PrivateN();
         public xFlasher xflasher = new xFlasher();
+        public DirtyPico dirtypico  = new DirtyPico();
         public PicoFlasher picoflasher = new PicoFlasher();
         public Mtx_Usb mtx_usb = new Mtx_Usb();
         public xdkbuild XDKbuild = new xdkbuild();
@@ -175,6 +177,7 @@ namespace JRunner
             try
             {
                 if (File.Exists(xflasher.svfPath)) File.Delete(xflasher.svfPath);
+                else if (File.Exists(dirtypico.svfPath)) File.Delete(dirtypico.svfPath);
             }
             catch { }
         }
@@ -257,6 +260,11 @@ namespace JRunner
                     //PicoFlasherToolStripMenuItem.Visible = true;
                     device = DEVICE.PICOFLASHER;
                 }
+                else if (IsUsbDeviceConnected("C0CA", "1209")) // DirtyPico
+                {
+                    nTools.setImage(Properties.Resources.dirtypico);
+                    device = DEVICE.DIRTYPICO;
+                }
                 else if (IsUsbDeviceConnected("6010", "0403")) // xFlasher SPI
                 {
                     nTools.setImage(Properties.Resources.xflash_spi);
@@ -323,7 +331,7 @@ namespace JRunner
         {
             if (Program.getScalingFactor() >= 1.375) Console.WriteLine("================================================================="); // Don't overflow, weird scaling
             else Console.WriteLine("=========================================================================");
-            Console.WriteLine("J-Runner with Extras");
+            Console.WriteLine("J-Runner with Extras + DirtyPico360");
             Console.WriteLine("Session: {0:F}", DateTime.Now.ToString("MM/dd/yyyy H:mm:ss"));
             if (variables.version.Contains("Alpha") || variables.version.Contains("Beta")) Console.WriteLine("Version: {0}", variables.build);
             else Console.WriteLine("Version: {0}", variables.version);
@@ -527,7 +535,7 @@ namespace JRunner
             {
                 return 1;
             }
-            else if (device == DEVICE.XFLASHER_SPI || device == DEVICE.XFLASHER_EMMC)
+            else if (device == DEVICE.XFLASHER_SPI || device == DEVICE.XFLASHER_EMMC || device == DEVICE.DIRTYPICO)
             {
                 return 2;
             }
@@ -768,6 +776,10 @@ namespace JRunner
                         {
                             xflasher.flashSvf(filename);
                         }
+                        else if (device == DEVICE.DIRTYPICO)
+                        {
+                            dirtypico.flashSvf(filename);
+                        }
                         else if (device == DEVICE.XFLASHER_EMMC)
                         {
                             MessageBox.Show("Unable to program timing in eMMC mode\n\nPlease switch to SPI mode", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -877,6 +889,8 @@ namespace JRunner
             if (filex == "") return;
             if (device == DEVICE.XFLASHER_SPI)
                 file = variables.rootfolder + @"\common\svf\" + filex + ".svf";
+            else if (device == DEVICE.DIRTYPICO)
+                file = variables.rootfolder + @"\common\svf\" + filex + ".svf";
             else
                 file = variables.rootfolder + @"\common\xsvf\" + filex + ".xsvf";
 
@@ -898,6 +912,10 @@ namespace JRunner
                     else if(device == DEVICE.XFLASHER_SPI)
                     {
                         xflasher.flashSvf(file);
+                    }
+                    else if (device == DEVICE.DIRTYPICO)
+                    {
+                        dirtypico.flashSvf(file);
                     }
                     else if (device == DEVICE.XFLASHER_EMMC)
                     {
@@ -5009,5 +5027,10 @@ namespace JRunner
         }
 
         #endregion
+
+        private void pnlInfo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
