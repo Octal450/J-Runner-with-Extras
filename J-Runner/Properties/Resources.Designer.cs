@@ -81,7 +81,12 @@ namespace JRunner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10-14-2023 19:56:44.
+        ///   Looks up a localized string similar to DirtyPico360-3.3.0-r2
+        ///10-31-2023 00:42:46
+        ///=======
+        ///10-22-2023 14:00:13
+        ///DirtyPico-3.3.0
+        ///.
         /// </summary>
         internal static string Build {
             get {
