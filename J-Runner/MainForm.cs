@@ -1,4 +1,5 @@
 ﻿using JRunner.Forms;
+using JRunner.Nand;
 using LibUsbDotNet.DeviceNotify;
 using Microsoft.Win32;
 using RenameRegistryKey;
@@ -21,7 +22,7 @@ using WinUsb;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 
-// Copyright (c) 2020-2023 J-Runner with Extras Development Team
+// Copyright (c) 2020-2024 J-Runner with Extras Development Team
 
 namespace JRunner
 {
@@ -1898,6 +1899,15 @@ namespace JRunner
                 MessageBox.Show("No file was selected", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Nested dump in output is illegal, causes problems
+            string dirName = Path.GetFileName(Path.GetDirectoryName(variables.filename1));
+            if (Path.GetDirectoryName(variables.filename1).Contains(variables.outfolder) && dirName.ToLower() != "output")
+            {
+                MessageBox.Show("Nand dump can't be in a nested folder inside output\n\nPlease move it to output, or another location", "Can't", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 updateProgress(progressBar.Minimum);
@@ -2051,13 +2061,17 @@ namespace JRunner
                 GC.Collect();
 
                 // Reset Patch Parser found variables
-                variables.xlhddchk = false;
-                variables.xlusbchk = false;
+                variables.foundXlUsb = false;
+                variables.foundXlHdd = false;
+                variables.foundXlBoth = false;
+                variables.foundUsbdSec = false;
+                variables.foundCoronaKeyFix = false;
 
                 FileStream fs = new FileStream(variables.filename1, FileMode.Open);
+                byte[] patchesByte = new byte[0x5B230];
+
                 try
                 {
-                    byte[] patchesByte = new byte[0x5B230];
                     if (nand.noecc)
                     {
                         fs.Position = 0x8BA00;
@@ -2086,9 +2100,9 @@ namespace JRunner
                             patches[i] = patchesByte[0x34600 + 0x10 + i]; // 16MB, 0xC0000
                         }
                     }
-                    
+
                     // Needs to be run twice for JTAG checking, no reliable way to check which it is
-                    Nand.PatchParser patchParser = new Nand.PatchParser(patches);
+                    PatchParser patchParser = new PatchParser(patches);
                     bool patchResult = patchParser.parseAll();
                 
                     if (!patchResult)
@@ -2104,20 +2118,36 @@ namespace JRunner
                         patchParser.parseAll();
                     }
                     
-                    patchesByte = null;
                 }
                 catch
                 {
                     if (variables.debugMode) Console.WriteLine("Could not check for patches");
                 }
-                
+
+                patchesByte = null;
+                Patches.patchParseFinal(); // Handles XL logic
+
                 fs.Close();
                 fs.Dispose();
 
-                // Set xPanel
+                // XPanel Setters
+                Thread.Sleep(100); // Fixes a weird issue that might occur in some situations
+
+                // RGH3
                 if (nand.bl.CB_B == 15432) xPanel.setRgh3Checked(true);
-                xPanel.setXLHDDChecked(variables.xlhddchk);
-                xPanel.setXLUSBChecked(variables.xlusbchk);
+
+                // Winbond
+                if ((nand.bl.CB_A == 13121 && nand.bl.CB_B == 13182) || (nand.bl.CB_A == 13182 && nand.bl.CB_B == 15432))
+                {
+                    xPanel.setWBChecked(true);
+                }
+
+                // Patches
+                xPanel.setXLUSBChecked(variables.foundXlUsb);
+                xPanel.setXLHDDChecked(variables.foundXlHdd);
+                xPanel.setXLBothChecked(variables.foundXlBoth);
+                xPanel.setUsbdSecChecked(variables.foundUsbdSec);
+                xPanel.setCoronaKeyFixChecked(variables.foundCoronaKeyFix);
 
                 variables.gotvalues = !string.IsNullOrEmpty(variables.cpukey);
 
@@ -3185,20 +3215,10 @@ namespace JRunner
             }
         }
 
-        CPUKeyGen cpu;
-        private void cPUKeyToolsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void generateCpuKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Application.OpenForms.OfType<CPUKeyGen>().Any())
-            {
-                cpu.WindowState = FormWindowState.Normal;
-                cpu.Activate();
-            }
-            else
-            {
-                cpu = new CPUKeyGen();
-                cpu.Show();
-                cpu.Location = new Point(Location.X + (Width - cpu.Width) / 2, Location.Y + 155);
-            }
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) txtCPUKey.Text = variables.superDevKey;
+            else txtCPUKey.Text = CpuKeyGen.GenerateKey();
         }
 
         private void checkSecdataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3663,11 +3683,11 @@ namespace JRunner
             }
         }
 
-        public void openXsvfChoice(bool boardcheck = false)
+        public void openXsvfChoice(bool boardCheck = false, bool toggle = false)
         {
             if (listInfo.Contains(xsvfChoice))
             {
-                xsvfChoice_CloseClick();
+                if (toggle) xsvfChoice_CloseClick();
             }
             else
             {
@@ -3675,7 +3695,7 @@ namespace JRunner
                 pnlInfo.Controls.Add(xsvfChoice);
                 if (listInfo.Contains(xsvfChoice)) listInfo.Remove(xsvfChoice);
                 listInfo.Add(xsvfChoice);
-                if (boardcheck) xsvfChoice.boardCheck(variables.boardtype);
+                if (boardCheck) xsvfChoice.boardCheck(variables.boardtype);
             }
         }
 
@@ -4045,7 +4065,7 @@ namespace JRunner
             }
             else if (e.KeyCode == Keys.F3)
             {
-                openXsvfChoice(true);
+                openXsvfChoice(true, true);
             }
             //else if (e.KeyCode == Keys.F4) // Handled from WinForms Menubar
             //{

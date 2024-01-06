@@ -230,6 +230,12 @@ namespace JRunner.Forms
                 e.Effect = DragDropEffects.None;
         }
 
+        private void GenerateKey_Click(object sender, EventArgs e)
+        {
+            if ((ModifierKeys & Keys.Shift) == Keys.Shift) CpuKeyBox.Text = variables.superDevKey;
+            else CpuKeyBox.Text = CpuKeyGen.GenerateKey();
+        }
+
         private void DonorKv_CheckedChanged(object sender, EventArgs e)
         {
             if (DonorKv.Checked)

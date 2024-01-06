@@ -47,9 +47,10 @@ namespace JRunner.Forms
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(27, 153);
+            this.label1.Location = new System.Drawing.Point(36, 188);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(247, 24);
+            this.label1.Size = new System.Drawing.Size(329, 30);
             this.label1.TabIndex = 1;
             this.label1.Text = "J-Runner with Extras";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -58,10 +59,11 @@ namespace JRunner.Forms
             // 
             this.lblCredits.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCredits.ForeColor = System.Drawing.Color.White;
-            this.lblCredits.Location = new System.Drawing.Point(27, 201);
+            this.lblCredits.Location = new System.Drawing.Point(36, 247);
+            this.lblCredits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCredits.Name = "lblCredits";
             this.lblCredits.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblCredits.Size = new System.Drawing.Size(247, 50);
+            this.lblCredits.Size = new System.Drawing.Size(329, 62);
             this.lblCredits.TabIndex = 2;
             this.lblCredits.Text = "T\r\nT\r\nT";
             this.lblCredits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -70,9 +72,10 @@ namespace JRunner.Forms
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(27, 179);
+            this.label2.Location = new System.Drawing.Point(36, 220);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(247, 18);
+            this.label2.Size = new System.Drawing.Size(329, 22);
             this.label2.TabIndex = 4;
             this.label2.Text = "The Ultimate RGH/JTAG App\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -88,9 +91,11 @@ namespace JRunner.Forms
             // logo
             // 
             this.logo.Image = global::JRunner.Properties.Resources.JR;
-            this.logo.Location = new System.Drawing.Point(31, 15);
+            this.logo.Location = new System.Drawing.Point(41, 18);
+            this.logo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(239, 131);
+            this.logo.Size = new System.Drawing.Size(298, 163);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.logo.TabIndex = 0;
             this.logo.TabStop = false;
             // 
@@ -98,9 +103,10 @@ namespace JRunner.Forms
             // 
             this.ver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ver.ForeColor = System.Drawing.Color.White;
-            this.ver.Location = new System.Drawing.Point(100, 252);
+            this.ver.Location = new System.Drawing.Point(133, 310);
+            this.ver.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ver.Name = "ver";
-            this.ver.Size = new System.Drawing.Size(101, 18);
+            this.ver.Size = new System.Drawing.Size(135, 22);
             this.ver.TabIndex = 5;
             this.ver.Text = "version";
             this.ver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,9 +115,10 @@ namespace JRunner.Forms
             // 
             this.build.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.build.ForeColor = System.Drawing.Color.White;
-            this.build.Location = new System.Drawing.Point(99, 270);
+            this.build.Location = new System.Drawing.Point(132, 332);
+            this.build.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.build.Name = "build";
-            this.build.Size = new System.Drawing.Size(103, 18);
+            this.build.Size = new System.Drawing.Size(137, 22);
             this.build.TabIndex = 6;
             this.build.Text = "build";
             this.build.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -122,19 +129,20 @@ namespace JRunner.Forms
             this.close.AutoSize = true;
             this.close.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.close.ForeColor = System.Drawing.Color.White;
-            this.close.Location = new System.Drawing.Point(276, 8);
+            this.close.Location = new System.Drawing.Point(368, 10);
+            this.close.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(16, 15);
+            this.close.Size = new System.Drawing.Size(17, 18);
             this.close.TabIndex = 7;
             this.close.Text = "X";
             this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // About
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(300, 300);
+            this.ClientSize = new System.Drawing.Size(400, 369);
             this.Controls.Add(this.close);
             this.Controls.Add(this.build);
             this.Controls.Add(this.ver);
@@ -144,6 +152,7 @@ namespace JRunner.Forms
             this.Controls.Add(this.logo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "About";

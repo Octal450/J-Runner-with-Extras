@@ -54,7 +54,7 @@ namespace JRunner.Panels
 
         private void btnProgramCR_Click(object sender, EventArgs e)
         {
-            MainForm.mainForm.openXsvfChoice(true);
+            MainForm.mainForm.openXsvfChoice(true, true);
         }
 
         private void numericIterations_ValueChanged(object sender, EventArgs e)

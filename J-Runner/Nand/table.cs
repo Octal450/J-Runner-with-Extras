@@ -158,8 +158,10 @@ namespace JRunner.Nand
         public static _patch[] patchTable = new _patch[]
         {
             new _patch("FuseBlow", 0x0000C000, 0x00000000, 0x38800000, "WARNING: Nand includes fuse blowing patches!!!", "IMPORTANT:\n\nThis nand has patches that will cause fuses to be BLOWN if you run a malicious xex"),
-            new _patch("XLUSB", 0x000E3A7C, 0x00000001, 0x3CE02000, "Nand includes XL USB patches", "This NAND has XL USB patches applied, which only allows FATXplorer formatted storage devices to work\n\nUSBs not formatted via FATXplorer, and all USB memory units, will no longer work\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Dashlaunch\""),
-            new _patch("XLHDD", 0x0015D8EC, 0x00000001, 0x39401000, "Nand includes XL HDD patches", "This NAND has XL HDD patches applied, which only allows FATXplorer formatted storage devices to work\n\nYou must format your HDD at least once using FATXplorer, or you will get E69 on boot\n\nIf you don't want this, generate an image without the XL HDD checked under \"Patches/Dashlaunch\"")
+            new _patch("XLUSB", 0x000E3A7C, 0x00000001, 0x3CE02000, "XL USB patches detected", "This NAND has XL USB patches applied\n\nUSBs not formatted via FATXplorer, and all USB memory units, will no longer work\n\nIf you don't want this, generate an image without the XL USB checked under \"Patches/Drive Patches\""),
+            new _patch("XLHDD", 0x0015D8EC, 0x00000001, 0x39401000, "XL HDD patches detected", "This NAND has XL HDD patches applied\n\nIf you don't want this, generate an image without the XL HDD checked under \"Patches/Drive Patches\""),
+            new _patch("UsbdSec", 0x000D8748, 0x00000002, 0x38600001, "UsbdSec patch detected", ""),
+            new _patch("CoronaKeyFix", 0x00003B8C, 0x00000001, 0x389F0010, "Corona key fix detected", "")
         };
 
         public static _temptable[] defaultTempTable = new _temptable[]

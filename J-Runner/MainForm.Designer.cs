@@ -115,7 +115,7 @@ namespace JRunner
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.hexEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kVViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cPUKeyToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateCpuKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jRPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.powerOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -340,6 +340,7 @@ namespace JRunner
             // 
             // getCpuKeyMenu
             // 
+            this.getCpuKeyMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.getCpuKeyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.getAndSaveToWorkingFolderToolStripMenuItem,
             this.saveToDesktopToolStripMenuItem});
@@ -433,6 +434,7 @@ namespace JRunner
             // 
             // showWorkingFolderMenu
             // 
+            this.showWorkingFolderMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.showWorkingFolderMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showDataFolderToolStripMenuItem,
             this.showOutputFolderToolStripMenuItem,
@@ -492,6 +494,7 @@ namespace JRunner
             // 
             // backupContextMenu
             // 
+            this.backupContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.backupContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backupToZIPToolStripMenuItem,
             this.autoBackupNowToolStripMenuItem,
@@ -843,7 +846,7 @@ namespace JRunner
             this.toolStripMenuItem5,
             this.hexEditorToolStripMenuItem,
             this.kVViewerToolStripMenuItem,
-            this.cPUKeyToolsToolStripMenuItem});
+            this.generateCpuKeyToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             this.advancedToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.advancedToolStripMenuItem.Text = "Advanced";
@@ -917,12 +920,13 @@ namespace JRunner
             this.kVViewerToolStripMenuItem.Text = "KV Viewer";
             this.kVViewerToolStripMenuItem.Click += new System.EventHandler(this.kVViewerToolStripMenuItem_Click);
             // 
-            // cPUKeyToolsToolStripMenuItem
+            // generateCpuKeyToolStripMenuItem
             // 
-            this.cPUKeyToolsToolStripMenuItem.Name = "cPUKeyToolsToolStripMenuItem";
-            this.cPUKeyToolsToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.cPUKeyToolsToolStripMenuItem.Text = "CPU Key Tools";
-            this.cPUKeyToolsToolStripMenuItem.Click += new System.EventHandler(this.cPUKeyToolsToolStripMenuItem_Click);
+            this.generateCpuKeyToolStripMenuItem.Name = "generateCpuKeyToolStripMenuItem";
+            this.generateCpuKeyToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.generateCpuKeyToolStripMenuItem.Text = "Generate CPU Key";
+            this.generateCpuKeyToolStripMenuItem.ToolTipText = "Generates a valid CPU Key in the CPU Key box";
+            this.generateCpuKeyToolStripMenuItem.Click += new System.EventHandler(this.generateCpuKeyToolStripMenuItem_Click);
             // 
             // jRPToolStripMenuItem
             // 
@@ -1444,7 +1448,7 @@ namespace JRunner
         private ToolStripMenuItem updateAvailableToolStripMenuItem;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem xFlasherToolStripMenuItem;
-        private ToolStripMenuItem cPUKeyToolsToolStripMenuItem;
+        private ToolStripMenuItem generateCpuKeyToolStripMenuItem;
         private ToolStripMenuItem cBFuseToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripMenuItem logPostToolStripMenuItem;

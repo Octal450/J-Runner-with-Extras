@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Security.Cryptography;
-using System.Windows.Forms;
 
-namespace JRunner.Forms
+namespace JRunner
 {
-    public partial class CPUKeyGen : Form
+    public static class CpuKeyGen
     {
         static int hamming = 0;
         static byte[] bytes = new byte[16];
-        public CPUKeyGen()
-        {
-            InitializeComponent();
-        }
+        static byte[] generatedKey;
 
-        private void btnGenKey_Click(object sender, EventArgs e)
+        public static string GenerateKey()
         {
             var csprng = new RNGCryptoServiceProvider();
             csprng.GetNonZeroBytes(bytes);
@@ -22,12 +18,11 @@ namespace JRunner.Forms
             {
                 csprng.GetNonZeroBytes(bytes);
             }
+            return BitConverter.ToString(generatedKey).Replace("-", string.Empty);
         }
 
-        private bool VerifyKey(byte[] key)
+        private static bool VerifyKey(byte[] key)
         {
-
-
             byte[] hammingArray = new byte[13];
 
             //CB 74 FC A5 5F 12 64 01 F6 B2 5B 84 2D 
@@ -64,15 +59,13 @@ namespace JRunner.Forms
                 return false;
             }
 
+            generatedKey = CalculateCPUKeyECD(key);
 
-
-            byte[] key2 = CalculateCPUKeyECD(key);
-
-            txtGenKey.Text = BitConverter.ToString(key2).Replace("-", string.Empty);
-            Array.Copy(key2, key, 16);
-            if (!ByteArrayCompare(key, key2)) return false;
+            Array.Copy(generatedKey, key, 16);
+            if (!ByteArrayCompare(key, generatedKey)) return false;
             else return true;
         }
+
         public static bool ByteArrayCompare(byte[] a1, byte[] a2, int size = 0)
         {
             if (a1 == null || a2 == null) return false;
@@ -89,6 +82,7 @@ namespace JRunner.Forms
 
             return true;
         }
+
         private static byte[] CalculateCPUKeyECD(byte[] key)
         {
             byte[] ecd = new byte[0x10];
@@ -119,70 +113,6 @@ namespace JRunner.Forms
             }
 
             return ecd;
-        }
-
-        public bool checkOpenedForms(string formName)
-        {
-            FormCollection openedForms = Application.OpenForms;
-            foreach (Form testForm in openedForms)
-            {
-                if (testForm.Name == formName)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-    public static partial class Extensions
-    {
-        public static void Endianess(this byte[] src)
-        {
-            Array.Reverse(src);
-        }
-
-        public static bool getBit(this byte src, int bitNumber)
-        {
-            return (src & (1 << bitNumber)) != 0;
-        }
-
-        public static uint toUint(this byte[] src, int offset = 0)
-        {
-            if (src.Length - offset < 4) return 0;
-            byte[] temp = new byte[4];
-            Buffer.BlockCopy(src, offset, temp, 0, 4);
-            if (BitConverter.IsLittleEndian)
-            {
-                Array.Reverse(temp);
-            }
-            return BitConverter.ToUInt32(temp, 0);
-        }
-
-        public static bool getBit(this byte[] src, int bitNumber)
-        {
-            return (src.toUint() & (1 << bitNumber)) != 0;
-        }
-
-        public static void Replace(this byte[] src, byte[] data, int offset, int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                src[offset + i] = data[i];
-            }
-        }
-
-        public static void Fill(this byte[] src, byte fill)
-        {
-            for (int i = 0; i < src.Length; i++) src[i] = fill;
-        }
-
-        public static bool Contains(this byte[] src, byte check)
-        {
-            for (int i = 0; i < src.Length; i++)
-            {
-                if (check == src[i]) return true;
-            }
-            return false;
         }
     }
 }

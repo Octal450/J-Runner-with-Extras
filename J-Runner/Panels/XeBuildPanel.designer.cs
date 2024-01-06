@@ -61,8 +61,10 @@
             this.rbtnGlitch = new System.Windows.Forms.RadioButton();
             this.tabPatches = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkCoronaKeyFix = new System.Windows.Forms.CheckBox();
             this.chkUsbdSec = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkXLBoth = new System.Windows.Forms.CheckBox();
             this.chkXLHdd = new System.Windows.Forms.CheckBox();
             this.chkXLUsb = new System.Windows.Forms.CheckBox();
             this.chkWB4G = new System.Windows.Forms.CheckBox();
@@ -228,7 +230,7 @@
             this.chkWB.Size = new System.Drawing.Size(60, 17);
             this.chkWB.TabIndex = 14;
             this.chkWB.Text = "WB 2K";
-            this.toolTip1.SetToolTip(this.chkWB, "Check to use 13182 CBB for Winbond 2K consoles");
+            this.toolTip1.SetToolTip(this.chkWB, "Corona only, use 13182 CBB for Winbond 2K consoles");
             this.chkWB.UseVisualStyleBackColor = false;
             this.chkWB.CheckedChanged += new System.EventHandler(this.chkWB_CheckedChanged);
             // 
@@ -507,29 +509,44 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkCoronaKeyFix);
             this.groupBox2.Controls.Add(this.chkUsbdSec);
             this.groupBox2.Location = new System.Drawing.Point(210, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(104, 56);
+            this.groupBox2.Size = new System.Drawing.Size(104, 61);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Other Patches";
+            // 
+            // chkCoronaKeyFix
+            // 
+            this.chkCoronaKeyFix.AutoSize = true;
+            this.chkCoronaKeyFix.Enabled = false;
+            this.chkCoronaKeyFix.Location = new System.Drawing.Point(21, 37);
+            this.chkCoronaKeyFix.Name = "chkCoronaKeyFix";
+            this.chkCoronaKeyFix.Size = new System.Drawing.Size(60, 17);
+            this.chkCoronaKeyFix.TabIndex = 1;
+            this.chkCoronaKeyFix.Text = "Key Fix";
+            this.toolTip1.SetToolTip(this.chkCoronaKeyFix, "Patch Freeboot to fix an issue on Corona that may affect certain games");
+            this.chkCoronaKeyFix.UseVisualStyleBackColor = true;
+            this.chkCoronaKeyFix.CheckedChanged += new System.EventHandler(this.chkCoronaKeyFix_CheckedChanged);
             // 
             // chkUsbdSec
             // 
             this.chkUsbdSec.AutoSize = true;
             this.chkUsbdSec.Enabled = false;
-            this.chkUsbdSec.Location = new System.Drawing.Point(21, 25);
+            this.chkUsbdSec.Location = new System.Drawing.Point(21, 18);
             this.chkUsbdSec.Name = "chkUsbdSec";
             this.chkUsbdSec.Size = new System.Drawing.Size(70, 17);
             this.chkUsbdSec.TabIndex = 0;
             this.chkUsbdSec.Text = "UsbdSec";
-            this.toolTip1.SetToolTip(this.chkUsbdSec, "Patches Freeboot to allow use of custom USB peripherals, like controllers");
+            this.toolTip1.SetToolTip(this.chkUsbdSec, "Patch Freeboot to allow use of custom USB peripherals, like controllers");
             this.chkUsbdSec.UseVisualStyleBackColor = true;
             this.chkUsbdSec.CheckedChanged += new System.EventHandler(this.chkUsbdSec_CheckedChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkXLBoth);
             this.groupBox1.Controls.Add(this.chkXLHdd);
             this.groupBox1.Controls.Add(this.chkXLUsb);
             this.groupBox1.Location = new System.Drawing.Point(97, 3);
@@ -539,16 +556,30 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Drive Patches";
             // 
+            // chkXLBoth
+            // 
+            this.chkXLBoth.AutoSize = true;
+            this.chkXLBoth.Enabled = false;
+            this.chkXLBoth.Location = new System.Drawing.Point(24, 56);
+            this.chkXLBoth.Name = "chkXLBoth";
+            this.chkXLBoth.Size = new System.Drawing.Size(64, 17);
+            this.chkXLBoth.TabIndex = 2;
+            this.chkXLBoth.Text = "Both XL";
+            this.toolTip1.SetToolTip(this.chkXLBoth, "Patch Freeboot to allow use of both USB and internal hard drives over 2TB in size" +
+        " \r\n");
+            this.chkXLBoth.UseVisualStyleBackColor = true;
+            this.chkXLBoth.CheckedChanged += new System.EventHandler(this.chkXLBoth_CheckedChanged);
+            // 
             // chkXLHdd
             // 
             this.chkXLHdd.AutoSize = true;
             this.chkXLHdd.Enabled = false;
-            this.chkXLHdd.Location = new System.Drawing.Point(24, 49);
+            this.chkXLHdd.Location = new System.Drawing.Point(24, 37);
             this.chkXLHdd.Name = "chkXLHdd";
             this.chkXLHdd.Size = new System.Drawing.Size(66, 17);
             this.chkXLHdd.TabIndex = 1;
             this.chkXLHdd.Text = "XL HDD";
-            this.toolTip1.SetToolTip(this.chkXLHdd, "Patches Freeboot to allow use of internal hard drives over 2TB in size \r\n");
+            this.toolTip1.SetToolTip(this.chkXLHdd, "Patch Freeboot to allow use of internal hard drives over 2TB in size \r\n");
             this.chkXLHdd.UseVisualStyleBackColor = true;
             this.chkXLHdd.CheckedChanged += new System.EventHandler(this.chkXLHdd_CheckedChanged);
             // 
@@ -556,12 +587,12 @@
             // 
             this.chkXLUsb.AutoSize = true;
             this.chkXLUsb.Enabled = false;
-            this.chkXLUsb.Location = new System.Drawing.Point(24, 25);
+            this.chkXLUsb.Location = new System.Drawing.Point(24, 18);
             this.chkXLUsb.Name = "chkXLUsb";
             this.chkXLUsb.Size = new System.Drawing.Size(64, 17);
             this.chkXLUsb.TabIndex = 0;
             this.chkXLUsb.Text = "XL USB";
-            this.toolTip1.SetToolTip(this.chkXLUsb, "Patches Freeboot to allow use of USB hard drives over 2TB in size ");
+            this.toolTip1.SetToolTip(this.chkXLUsb, "Patch Freeboot to allow use of USB hard drives over 2TB in size ");
             this.chkXLUsb.UseVisualStyleBackColor = true;
             this.chkXLUsb.CheckedChanged += new System.EventHandler(this.chkXLUsb_CheckedChanged);
             // 
@@ -574,8 +605,8 @@
             this.chkWB4G.Size = new System.Drawing.Size(114, 17);
             this.chkWB4G.TabIndex = 7;
             this.chkWB4G.Text = "WB 2K Buffer (4G)";
-            this.toolTip1.SetToolTip(this.chkWB4G, "Check to use 13182 CBB with a buffer for Winbond 2K consoles\r\nLegacy option that " +
-        "should not be used except in rare cases");
+            this.toolTip1.SetToolTip(this.chkWB4G, "Corona only, use 13182 CBB with a buffer for Winbond 2K consoles\r\nLegacy option t" +
+        "hat should not be used except in rare cases");
             this.chkWB4G.UseVisualStyleBackColor = true;
             this.chkWB4G.CheckedChanged += new System.EventHandler(this.chkWB4G_CheckedChanged);
             // 
@@ -1086,5 +1117,7 @@
         private System.Windows.Forms.CheckBox chkNoAva;
         private System.Windows.Forms.CheckBox chkNoWrite;
         private System.Windows.Forms.Button btnXEUpdate;
+        private System.Windows.Forms.CheckBox chkXLBoth;
+        private System.Windows.Forms.CheckBox chkCoronaKeyFix;
     }
 }

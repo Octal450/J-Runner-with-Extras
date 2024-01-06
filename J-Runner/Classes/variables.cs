@@ -80,10 +80,10 @@ namespace JRunner
             W10_11
         }
 
-        public static string version = "3.3.0 r2";
-        public static string build = "3301." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
-        public const string staticversion = "3.3.0.1";
-        public static int revision = 36;
+        public static string version = "3.3.0 r3";
+        public static string build = "3302." + DateTime.ParseExact(Properties.Resources.Build.Trim(), "MM-dd-yyyy HH:mm:ss", null).ToString("yyMMdd.HHmm");
+        public const string staticversion = "3.3.0.2";
+        public static int revision = 37;
         public static Windows currentOS = Windows.Unknown;
         public static bool isWinXP = false;
         public static bool isscanningip = false;
@@ -155,6 +155,7 @@ namespace JRunner
         public static bool rghable = true;
         public static int changeldv = 0, highldv;
         public static List<string> dashes_all = new List<string>();
+        public static string superDevKey = "55555555555555555555555555D9AEE2";
 
         /// <summary>
         /// Filenames
@@ -300,7 +301,7 @@ namespace JRunner
         public static int dashversion = 0;
         public static bool copiedSMC = false;
         public static bool copiedXLDrive = false;
-        public static bool xlhddchk = false, xlusbchk = false;
+        public static bool foundXlUsb = false, foundXlHdd = false, foundXlBoth = false, foundUsbdSec = false, foundCoronaKeyFix = false;
         public static bool fullDataClean = false;
 
         /// <summary>

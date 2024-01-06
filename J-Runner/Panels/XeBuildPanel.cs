@@ -155,6 +155,11 @@ namespace JRunner.Panels
         }
 
         // Checkbox Setters
+        public void setWBChecked(bool check)
+        {
+            if (check && (!chkWB.Enabled || !chkWB.Visible)) return;
+            chkWB.Checked = check;
+        }
         public void setCleanSMCChecked(bool check)
         {
             if (check && (!chkCleanSMC.Enabled || !chkCleanSMC.Visible)) return;
@@ -165,24 +170,34 @@ namespace JRunner.Panels
             if (check && (!chkRgh3.Enabled || !chkRgh3.Visible)) return;
             chkRgh3.Checked = check;
         }
-        public void setXLHDDChecked(bool check)
-        {
-            if (check && !chkXLHdd.Enabled) return;
-            chkXLHdd.Checked = check;
-        }
         public void setXLUSBChecked(bool check)
         {
             if (check && !chkXLUsb.Enabled) return;
             chkXLUsb.Checked = check;
         }
+        public void setXLHDDChecked(bool check)
+        {
+            if (check && !chkXLHdd.Enabled) return;
+            chkXLHdd.Checked = check;
+        }
+        public void setXLBothChecked(bool check)
+        {
+            if (check && !chkXLBoth.Enabled) return;
+            chkXLBoth.Checked = check;
+        }
+        public void setUsbdSecChecked(bool check)
+        {
+            if (check && !chkUsbdSec.Enabled) return;
+            chkUsbdSec.Checked = check;
+        }
+        public void setCoronaKeyFixChecked(bool check)
+        {
+            if (check && !chkCoronaKeyFix.Enabled) return;
+            chkCoronaKeyFix.Checked = check;
+        }
         public void setNoFcrtChecked(bool check)
         {
             chkListBoxPatches.SetItemChecked(0, check);
-        }
-
-        public void change_tab()
-        {
-            MainTabs.SelectedTab = tabXeBuild;
         }
 
         public void initTabs() // Only call once after settings load
@@ -224,6 +239,7 @@ namespace JRunner.Panels
                 checkAvailableHackTypes();
                 checkWB(txt);
                 checkBigffs(txt);
+                checkDashAndConsoleSpecificPatches(txt);
 
                 if (txt.Contains("Xenon") || txt.Contains("Winchester"))
                 {
@@ -258,28 +274,28 @@ namespace JRunner.Panels
             {
                 if (checkDLPatches.Checked) variables.DashlaunchE = checkDLPatches.Checked;
                 checkDLPatches.Enabled = chkLaunch.Enabled = false;
-                if (sender.Equals(rbtnRetail)) Console.WriteLine("Retail Selected");
+                if (sender.Equals(rbtnRetail)) Console.WriteLine("Retail selected");
             }
             else if (rbtnJtag.Checked)
             {
                 checkDLPatches.Enabled = true;
                 checkDLPatches.Checked = chkLaunch.Enabled = variables.DashlaunchE;
-                if (sender.Equals(rbtnJtag)) Console.WriteLine("JTAG Selected");
+                if (sender.Equals(rbtnJtag)) Console.WriteLine("JTAG selected");
 
             }
             else if (rbtnGlitch.Checked || rbtnGlitch2.Checked || rbtnGlitch2m.Checked)
             {
                 checkDLPatches.Enabled = true;
                 checkDLPatches.Checked = chkLaunch.Enabled = variables.DashlaunchE;
-                if (rbtnGlitch.Checked && sender.Equals(rbtnGlitch)) Console.WriteLine("Glitch Selected");
-                else if (rbtnGlitch2.Checked && sender.Equals(rbtnGlitch2)) Console.WriteLine("Glitch2 Selected");
-                else if (rbtnGlitch2m.Checked && sender.Equals(rbtnGlitch2m)) Console.WriteLine("Glitch2m Selected");
+                if (rbtnGlitch.Checked && sender.Equals(rbtnGlitch)) Console.WriteLine("Glitch selected");
+                else if (rbtnGlitch2.Checked && sender.Equals(rbtnGlitch2)) Console.WriteLine("Glitch2 selected");
+                else if (rbtnGlitch2m.Checked && sender.Equals(rbtnGlitch2m)) Console.WriteLine("Glitch2m selected");
             }
             else if (rbtnDevGL.Checked)
             {
                 checkDLPatches.Enabled = true;
                 checkDLPatches.Checked = chkLaunch.Enabled = variables.DashlaunchE;
-                if (sender.Equals(rbtnDevGL)) Console.WriteLine("DEVGL Selected");
+                if (sender.Equals(rbtnDevGL)) Console.WriteLine("DEVGL selected");
             }
 
             labelCB.Visible = comboCB.Visible = rbtnRetail.Checked;
@@ -522,12 +538,36 @@ namespace JRunner.Panels
             }
             else chkXLHdd.Checked = chkXLHdd.Enabled = false;
 
+            if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\xl_both.bin")))
+            {
+                if (rbtnRetail.Checked) chkXLBoth.Checked = chkXLBoth.Enabled = false;
+                else chkXLBoth.Enabled = true;
+            }
+            else chkXLBoth.Checked = chkXLBoth.Enabled = false;
+
             if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\usbdsec.bin")))
             {
                 if (rbtnRetail.Checked) chkUsbdSec.Checked = chkUsbdSec.Enabled = false;
                 else chkUsbdSec.Enabled = true;
             }
             else chkUsbdSec.Checked = chkUsbdSec.Enabled = false;
+
+            checkDashAndConsoleSpecificPatches(variables.boardtype);
+        }
+
+        private void checkDashAndConsoleSpecificPatches(string board)
+        {
+            if (board == null) board = "None";
+            if (File.Exists(Path.Combine(variables.updatepath, comboDash.SelectedValue + @"\bin\corona_key_fix.bin")))
+            {
+                if (rbtnRetail.Checked) chkCoronaKeyFix.Checked = chkCoronaKeyFix.Enabled = false;
+                else
+                {
+                    if (board.Contains("Corona") || board.Contains("Winchester") || board.Contains("None")) chkCoronaKeyFix.Enabled = true;
+                    else chkCoronaKeyFix.Checked = chkCoronaKeyFix.Enabled = false;
+                }
+            }
+            else chkCoronaKeyFix.Checked = chkCoronaKeyFix.Enabled = false;
         }
 
         bool chkWB4GVis = false;
@@ -630,7 +670,7 @@ namespace JRunner.Panels
             {
                 if (chkListBoxPatches.GetItemChecked(selected))
                 {
-                    Console.WriteLine(chkListBoxPatches.Items[selected].ToString() + " Selected");
+                    Console.WriteLine(chkListBoxPatches.Items[selected].ToString() + " selected");
                     if (selected == 0) patches[selected + 1] = "-a nofcrt";
                     else if (selected == 1) patches[selected + 1] = "-a noSShdd";
                     else if (selected == 2) patches[selected + 1] = "-a nointmu";
@@ -640,7 +680,7 @@ namespace JRunner.Panels
                 }
                 else
                 {
-                    Console.WriteLine(chkListBoxPatches.Items[selected].ToString() + " Deselected");
+                    Console.WriteLine(chkListBoxPatches.Items[selected].ToString() + " deselected");
                     patches[selected + 1] = "";
                 }
             }
@@ -650,8 +690,8 @@ namespace JRunner.Panels
 
         private void chkRJtag_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkRJtag.Checked) Console.WriteLine("R-JTAG Selected");
-            else Console.WriteLine("R-JTAG Deselected");
+            if (chkRJtag.Checked) Console.WriteLine("R-JTAG selected");
+            else Console.WriteLine("R-JTAG deselected");
         }
 
         // Handling checkboxes allows us to only have one selected at time without extra stuff happening
@@ -659,14 +699,14 @@ namespace JRunner.Panels
         {
             if (chkCleanSMC.Checked)
             {
-                Console.WriteLine("Clean SMC Selected");
+                Console.WriteLine("Clean SMC selected");
                 chkCR4.Checked = false;
                 chkSMCP.Checked = false;
                 chkRgh3.Checked = false;
             }
             else if (!chkCR4.Checked && !chkSMCP.Checked && !chkRgh3.Checked) // Don't uselessly spam the console
             {
-                Console.WriteLine("Clean SMC Deselected");
+                Console.WriteLine("Clean SMC deselected");
             }
 
             if (chkCleanSMC.Checked)
@@ -685,14 +725,14 @@ namespace JRunner.Panels
         {
             if (chkCR4.Checked)
             {
-                Console.WriteLine("CR4 Selected");
+                Console.WriteLine("CR4 selected");
                 chkCleanSMC.Checked = false;
                 chkSMCP.Checked = false;
                 chkRgh3.Checked = false;
             }
             else if (!chkCleanSMC.Checked && !chkSMCP.Checked && !chkRgh3.Checked) // Don't uselessly spam the console
             {
-                Console.WriteLine("CR4 Deselected");
+                Console.WriteLine("CR4 deselected");
             }
 
             if (chkCR4.Checked)
@@ -711,14 +751,14 @@ namespace JRunner.Panels
         {
             if (chkSMCP.Checked)
             {
-                Console.WriteLine("SMC+ Selected");
+                Console.WriteLine("SMC+ selected");
                 chkCleanSMC.Checked = false;
                 chkCR4.Checked = false;
                 chkRgh3.Checked = false;
             }
             else if (!chkCleanSMC.Checked && !chkCR4.Checked && !chkRgh3.Checked) // Don't uselessly spam the console
             {
-                Console.WriteLine("SMC+ Deselected");
+                Console.WriteLine("SMC+ deselected");
             }
 
             if (chkSMCP.Checked)
@@ -737,14 +777,14 @@ namespace JRunner.Panels
         {
             if (chkRgh3.Checked)
             {
-                Console.WriteLine("RGH3 Selected");
+                Console.WriteLine("RGH3 selected");
                 chkCleanSMC.Checked = false;
                 chkCR4.Checked = false;
                 chkSMCP.Checked = false;
             }
             else if (!chkCleanSMC.Checked && !chkCR4.Checked && !chkSMCP.Checked) // Don't uselessly spam the console
             {
-                Console.WriteLine("RGH3 Deselected");
+                Console.WriteLine("RGH3 deselected");
             }
 
             if (chkRgh3.Checked)
@@ -799,12 +839,12 @@ namespace JRunner.Panels
         {
             if (chkWB.Checked)
             {
-                Console.WriteLine("Winbond 2K Selected");
+                Console.WriteLine("Winbond 2K selected");
                 chkWB4G.Checked = false;
             }
             else if (!chkWB4G.Checked) // Don't uselessly spam the console
             {
-                Console.WriteLine("Winbond 2K Deselected");
+                Console.WriteLine("Winbond 2K deselected");
             }
 
             // Don't do it twice
@@ -823,12 +863,12 @@ namespace JRunner.Panels
             if (chkWB4G.Checked)
             {
                 MessageBox.Show("Warning: This function is for advanced users only\n\nIf you don't understand what this is for, use WB 2K on the XeBuild tab instead", "Steep Hill Ahead", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Console.WriteLine("Winbond 2K Buffer Selected");
+                Console.WriteLine("Winbond 2K Buffer selected");
                 chkWB.Checked = false;
             }
             else if (!chkWB.Checked) // Don't uselessly spam the console
             {
-                Console.WriteLine("Winbond 2K Buffer Deselected");
+                Console.WriteLine("Winbond 2K Buffer deselected");
             }
 
             // Don't do it twice
@@ -853,41 +893,42 @@ namespace JRunner.Panels
 
         private void chkBigffs_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkBigffs.Checked) Console.WriteLine("bigffs Selected");
-            else Console.WriteLine("bigffs Deselected");
+            if (chkBigffs.Checked) Console.WriteLine("bigffs selected");
+            else Console.WriteLine("bigffs deselected");
         }
 
         private void chkXdkBuild_CheckedChanged(object sender, EventArgs e)
         {
             checkWB(variables.boardtype);
             checkBigffs(variables.boardtype);
-            if (chkXdkBuild.Checked) Console.WriteLine("XDKbuild Selected");
-            else Console.WriteLine("XDKbuild Deselected");
+            if (chkXdkBuild.Checked) Console.WriteLine("XDKbuild selected");
+            else Console.WriteLine("XDKbuild deselected");
             checkRgh3(variables.boardtype);
         }
 
         private void chkAudClamp_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkAudClamp.Checked) Console.WriteLine("Aud_Clamp Selected");
-            else Console.WriteLine("Aud_Clamp Deselected");
+            if (chkAudClamp.Checked) Console.WriteLine("Aud_Clamp selected");
+            else Console.WriteLine("Aud_Clamp deselected");
         }
 
         private void chk0Fuse_CheckedChanged(object sender, EventArgs e)
         {
-            if (chk0Fuse.Checked) Console.WriteLine("0 Fuse Selected");
-            else Console.WriteLine("0 Fuse Deselected");
+            if (chk0Fuse.Checked) Console.WriteLine("0 Fuse selected");
+            else Console.WriteLine("0 Fuse deselected");
         }
 
         private void chkXLUsb_CheckedChanged(object sender, EventArgs e)
         {
             if (chkXLUsb.Checked)
             {
-                Console.WriteLine("XL USB Selected");
+                Console.WriteLine("XL USB selected");
                 chkXLHdd.Checked = false;
+                chkXLBoth.Checked = false;
             }
-            else if (!chkXLHdd.Checked) // Don't uselessly spam the console
+            else if (!chkXLHdd.Checked && !chkXLBoth.Checked) // Don't uselessly spam the console
             {
-                Console.WriteLine("XL USB Deselected");
+                Console.WriteLine("XL USB deselected");
             }
         }
 
@@ -895,23 +936,40 @@ namespace JRunner.Panels
         {
             if (chkXLHdd.Checked)
             {
-                Console.WriteLine("XL HDD Selected");
+                Console.WriteLine("XL HDD selected");
                 chkXLUsb.Checked = false;
+                chkXLBoth.Checked = false;
             }
-            else if (!chkXLUsb.Checked) // Don't uselessly spam the console
+            else if (!chkXLUsb.Checked && !chkXLBoth.Checked) // Don't uselessly spam the console
             {
-                Console.WriteLine("XL HDD Deselected");
+                Console.WriteLine("XL HDD deselected");
+            }
+        }
+
+        private void chkXLBoth_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkXLBoth.Checked)
+            {
+                Console.WriteLine("Both XL selected");
+                chkXLUsb.Checked = false;
+                chkXLHdd.Checked = false;
+            }
+            else if (!chkXLUsb.Checked && !chkXLHdd.Checked) // Don't uselessly spam the console
+            {
+                Console.WriteLine("Both XL deselected");
             }
         }
 
         private void chkUsbdSec_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkUsbdSec.Checked)
-            {
-                Console.WriteLine("UsbdSec Selected");
-                chkXLHdd.Checked = false;
-            }
-            else Console.WriteLine("UsbdSec Deselected");
+            if (chkUsbdSec.Checked) Console.WriteLine("UsbdSec selected");
+            else Console.WriteLine("UsbdSec deselected");
+        }
+
+        private void chkCoronaKeyFix_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkCoronaKeyFix.Checked) Console.WriteLine("Corona Key Fix selected");
+            else Console.WriteLine("Corona Key Fix deselected");
         }
 
         private void btnGetMB_Click(object sender, EventArgs e)
@@ -1047,14 +1105,14 @@ namespace JRunner.Panels
             {
                 txtIP.Enabled = txtIP2.Enabled = chkForceIP2.Checked = true;
                 txtIP.Text = txtIP2.Text = "";
-                Console.WriteLine("ForceIP Selected");
+                Console.WriteLine("ForceIP selected");
 
             }
             else
             {
                 txtIP.Enabled = txtIP2.Enabled = chkForceIP2.Checked = false;
                 txtIP.Text = txtIP2.Text = "Autoscan LAN";
-                Console.WriteLine("ForceIP Deselected");
+                Console.WriteLine("ForceIP deselected");
             }
         }
 
@@ -1101,44 +1159,44 @@ namespace JRunner.Panels
 
         private void chkNoWrite_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkNoWrite.Checked) Console.WriteLine("nowrite Selected");
-            else Console.WriteLine("nowrite Deselected");
+            if (chkNoWrite.Checked) Console.WriteLine("nowrite selected");
+            else Console.WriteLine("nowrite deselected");
         }
 
         private void chkNoAva_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkNoAva.Checked) Console.WriteLine("noava Selected");
-            else Console.WriteLine("noava Deselected");
+            if (chkNoAva.Checked) Console.WriteLine("noava selected");
+            else Console.WriteLine("noava deselected");
         }
 
         private void chkClean_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkClean.Checked) Console.WriteLine("clean Selected");
-            else Console.WriteLine("clean Deselected");
+            if (chkClean.Checked) Console.WriteLine("clean selected");
+            else Console.WriteLine("clean deselected");
         }
 
         private void chkNoReeb_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkNoReeb.Checked) Console.WriteLine("noreeb Selected");
-            else Console.WriteLine("noreeb Deselected");
+            if (chkNoReeb.Checked) Console.WriteLine("noreeb selected");
+            else Console.WriteLine("noreeb deselected");
         }
 
         private void chkShutdown_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkShutdown.Checked) Console.WriteLine("shutdown Selected");
-            else Console.WriteLine("shutdown Deselected");
+            if (chkShutdown.Checked) Console.WriteLine("shutdown selected");
+            else Console.WriteLine("shutdown deselected");
         }
 
         private void chkReboot_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkReboot.Checked) Console.WriteLine("reboot Selected");
-            else Console.WriteLine("reboot Deselected");
+            if (chkReboot.Checked) Console.WriteLine("reboot selected");
+            else Console.WriteLine("reboot deselected");
         }
 
         private void chkxesettings_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkXeSettings.Checked) Console.WriteLine("Use Edited Options Selected");
-            else Console.WriteLine("Use Edited Options Deselected");
+            if (chkXeSettings.Checked) Console.WriteLine("Use Edited Options selected");
+            else Console.WriteLine("Use Edited Options deselected");
         }
 
         private void btnShowAdvanced_Click(object sender, EventArgs e)
@@ -1166,7 +1224,7 @@ namespace JRunner.Panels
         void xe_update()
         {
             Classes.xebuild xe = new Classes.xebuild();
-            xe.Uloadvariables(variables.dashversion, (variables.hacktypes)variables.ttyp, patches, chkXeSettings.Checked, chkNoWrite.Checked, chkNoAva.Checked, chkClean.Checked, chkNoReeb.Checked, checkDLPatches.Checked,
+            xe.Uloadvariables(variables.dashversion, (variables.hacktypes)variables.ttyp, patches, chkXeSettings.Checked, chkNoWrite.Checked, chkNoAva.Checked, chkClean.Checked,chkNoReeb.Checked, checkDLPatches.Checked,
                 chkLaunch.Checked);
             File.Delete(Path.Combine(variables.rootfolder, @"xebuild\data\" + "smc.bin"));
             try
@@ -1193,7 +1251,7 @@ namespace JRunner.Panels
             }
             else if (er == Classes.xebuild.XebuildError.nodash)
             {
-                MessageBox.Show("No Kernel Selected");
+                MessageBox.Show("No Kernel selected");
                 return;
             }
             else
@@ -1225,7 +1283,8 @@ namespace JRunner.Panels
             Classes.xebuild xe = new Classes.xebuild();
             xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                              variables.ctype, patches, nand, chkXeSettings.Checked, checkDLPatches.Checked,
-                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkUsbdSec.Checked, fullDataClean);
+                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked, chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked,
+                             chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkXLBoth.Checked, chkUsbdSec.Checked, chkCoronaKeyFix.Checked, fullDataClean);
 
             string ini = (variables.launchpath + @"\" + variables.dashversion + @"\_" + variables.ttyp + ".ini");
 
@@ -1364,7 +1423,9 @@ namespace JRunner.Panels
                         xe.loadvariables(nand._cpukey, (variables.hacktypes)variables.ttyp, variables.dashversion,
                             variables.ctype, patches, nand, chkXeSettings.Checked, checkDLPatches.Checked,
                             chkLaunch.Checked, chkAudClamp.Checked, chkRJtag.Checked, chkCleanSMC.Checked,
-                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked, chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkUsbdSec.Checked, fullDataClean);
+                            chkCR4.Checked, chkSMCP.Checked, chkRgh3.Checked, chkBigffs.Checked, chk0Fuse.Checked,
+                            chkXdkBuild.Checked, chkXLUsb.Checked, chkXLHdd.Checked, chkXLBoth.Checked, chkUsbdSec.Checked,
+                            chkCoronaKeyFix.Checked, fullDataClean);
                         goto Start;
                     }
                 case Classes.xebuild.XebuildError.none:
@@ -1663,7 +1724,7 @@ namespace JRunner.Panels
                         }
                     }
 
-                    //cbList.Sort((a, b) => Convert.ToInt32(a.Version) - Convert.ToInt32(b.Version));
+                    cbList.Sort((a, b) => Convert.ToInt32(a.Version) - Convert.ToInt32(b.Version));
 
                     int defaultIndex = 0; // Fallback
                     foreach (CB cb in cbList)
@@ -1678,7 +1739,7 @@ namespace JRunner.Panels
                     }
                 }
             }
-            catch (InvalidOperationException) { }
+            catch { }
         }
 
         private void comboCB_SelectedIndexChanged(object sender, EventArgs e)
