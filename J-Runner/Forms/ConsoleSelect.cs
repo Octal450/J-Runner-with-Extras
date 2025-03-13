@@ -246,5 +246,31 @@ namespace JRunner
                 AdvancedBox.Visible = false;
             }
         }
+
+        private void renameCoronaButtons()
+        {
+            if ((ModifierKeys & Keys.Control) == Keys.Control && (ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                btnCorona.Text = "Winchester 16MB";
+                btnCorona4g.Text = "Winchester 4GB";
+                btnCoronaBb.Text = "Winchester BB";
+            }
+            else
+            {
+                btnCorona.Text = "Corona 16MB";
+                btnCorona4g.Text = "Corona 4GB";
+                btnCoronaBb.Text = "Corona BB";
+            }
+        }
+
+        private void ConsoleSelect_KeyDown(object sender, KeyEventArgs e)
+        {
+            renameCoronaButtons();
+        }
+
+        private void ConsoleSelect_KeyUp(object sender, KeyEventArgs e)
+        {
+            renameCoronaButtons();
+        }
     }
 }
