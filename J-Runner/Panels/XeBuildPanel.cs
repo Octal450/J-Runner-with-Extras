@@ -480,7 +480,7 @@ namespace JRunner.Panels
             }
             else
             {
-                if (board.Contains("Winchester") || board.Contains("Corona") || board.Contains("Trinity") || board.Contains("None")) rbtnGlitch2m.Enabled = true;
+                if (board.Contains("Corona") || board.Contains("Trinity") || board.Contains("None")) rbtnGlitch2m.Enabled = true;
                 else rbtnGlitch2m.Enabled = rbtnGlitch2m.Checked = false;
             }
         }
