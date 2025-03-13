@@ -467,9 +467,8 @@ namespace JRunner.Panels
         private void checkGlitch2(string board)
         {
             if (board == null) board = "None";
-            //if (board.Contains("Xenon")) rbtnGlitch2.Enabled = rbtnGlitch2.Checked = false;
-            //else
-            rbtnGlitch2.Enabled = true;
+            if (board.Contains("Winchester")) rbtnGlitch2.Enabled = rbtnGlitch2.Checked = false;
+            else rbtnGlitch2.Enabled = true;
         }
 
         private void checkGlitch2m(string board)
