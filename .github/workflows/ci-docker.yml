@@ -1,0 +1,128 @@
+name: Docker build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-jrunner:
+    runs-on: windows-2025
+
+    outputs:
+      extras_version: ${{ steps.version.outputs.version }}
+
+    env:
+      projName: JRunner.sln
+      buildCfg: Release
+      net45SdkUrl: 'https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.3'
+      sdkSystemPath: 'C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework'
+
+    steps:
+      - name: Install .net framework 4.5 SDK
+        shell: pwsh
+        run: |
+          echo "download ${env:net45SdkUrl}"
+          Invoke-WebRequest -Uri "${env:net45SdkUrl}" -OutFile "${env:temp}\net45sdk.zip"
+          echo "unzip net45sdk.zip"
+          Expand-Archive -Force -LiteralPath "${env:temp}\net45sdk.zip" -DestinationPath "${env:temp}\net45sdk"
+          echo "delete ${env:sdkSystemPath}\v4.5"
+          [IO.Directory]::Delete("${env:sdkSystemPath}\v4.5", $True)
+          echo "move SDK to ${env:sdkSystemPath}\v4.5"
+          Move-Item -Force -LiteralPath "${env:temp}\net45sdk\build\.NETFramework\v4.5" -Destination "${env:sdkSystemPath}"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add msbuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup VSTest
+        uses: darenm/Setup-VSTest@v1.2
+
+      - name: Restore packages
+        run: nuget restore ${env:projName}.sln
+
+      - name: Build
+        run: msbuild ${env:projName}.sln -p:Configuration=${env:buildCfg}
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: J-Runner-Release
+          path: |
+            J-Runner/bin/Release/**
+
+      - name: Resolve extras version
+        id: version
+        shell: pwsh
+        run: |
+          $repo = "Octal450/J-Runner-with-Extras"
+          $release = Invoke-RestMethod `
+            -Uri "https://api.github.com/repos/$repo/releases/latest" `
+            -Headers @{ "User-Agent" = "GitHubActions" }
+            $version = $release.tag_name
+          Write-Host "Using version: $version"
+          "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Download official J-Runner release
+        shell: pwsh
+        run: |
+          $url = "https://github.com/Octal450/J-Runner-with-Extras/releases/download/${{ steps.version.outputs.version }}/J-Runner-with-Extras.zip"
+          $zip = "jr_official.zip"
+          Invoke-WebRequest -Uri $url -OutFile $zip
+
+      - name: Extract official J-Runner release
+        shell: pwsh
+        run: |
+          Expand-Archive `
+            -Path "jr_official.zip" `
+            -DestinationPath "jr_release" `
+            -Force
+
+      - name: Replace J-Runner in extras
+        shell: pwsh
+        run: |
+          Copy-Item `
+            -Force `
+            -Path "J-Runner\bin\Release\JRunner.exe" `
+            -Destination "jr_release\JRunner.exe"
+
+      - name: Upload release artifact with extras
+        uses: actions/upload-artifact@v4
+        with:
+          name: J-Runner-with-Extras-${{ steps.version.outputs.version }}
+          path: jr_release
+
+  build-docker:
+    needs: build-jrunner
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download jrunner artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: J-Runner-with-Extras-${{ needs.build-jrunner.outputs.extras_version }}
+          path: jr_release
+
+      - name: Login to ghcr
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build docker image
+        run: |
+          docker build \
+            -t ghcr.io/${{ github.repository_owner }}/j-runner:${{ needs.build-jrunner.outputs.extras_version }} \
+            .
+
+      - name: Push docker image
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/j-runner:${{ needs.build-jrunner.outputs.extras_version }}

@@ -307,6 +307,13 @@ namespace JRunner
                         nTools.setImage(Properties.Resources.xflash_emmc);
                         xFlasherToolStripMenuItem.Visible = true;
                         device = DEVICE.XFLASHER_EMMC;
+                    } else {
+                        string winePrefix = Environment.GetEnvironmentVariable("WINEHOMEDIR");
+                        if (!string.IsNullOrEmpty(winePrefix)) {
+                            Console.WriteLine("Wine detected: Failback to PicoFlasher!");
+                            nTools.setImage(Properties.Resources.picoflasher);
+                            device = DEVICE.PICOFLASHER;
+                        }
                     }
                 }
             }
