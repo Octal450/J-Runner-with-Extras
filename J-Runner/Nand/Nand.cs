@@ -4929,19 +4929,36 @@ namespace JRunner.Nand
             if (data.Length < block_offset_b + 2) return hasecc(ref data);
             else
             {
-                if ((data[block_offset_b] == 0x43 && data[block_offset_b + 1] == 0x42) || (data[block_offset_b] == 0x53 && data[block_offset_b + 1] == 0x42)) // Check for text 'CB' or 'SB'
+                // I do not know why, but with my viper dual nand v2 on a trinity, when on NAND 1 (flash 1), readin the nands and comparing them leads to a "Index is out of bounds". Exception RIGHT here.
+                // block_offset_b is negative.
+                /* HOW TO REPLICATE: 
+                 * Get Viper V2
+                 * Dont solder in properly
+                 * Read Nand and let them compare
+                 * IndexOutOfBoundsException
+                 */
+
+                try
                 {
-                    int length = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(data, block_offset_b + 0xC, 4)), 16);
-                    if (data.Length < block_offset_b + length || length < 0) return hasecc(ref data);
-                    else
+                    if ((data[block_offset_b] == 0x43 && data[block_offset_b + 1] == 0x42) || (data[block_offset_b] == 0x53 && data[block_offset_b + 1] == 0x42)) // Check for text 'CB' or 'SB'
                     {
-                        block_offset_b = block_offset_b + length;
-                        if (data[block_offset_b] == 0x43 && (data[block_offset_b + 1] == 0x42 || data[block_offset_b + 1] == 0x44)) return false; // Retail: Cx
-                        else if (data[block_offset_b] == 0x53 && (data[block_offset_b + 1] == 0x42 || data[block_offset_b + 1] == 0x43 || data[block_offset_b + 1] == 0x44)) return false; // Dev: Sx
-                        else return true;
+                        int length = Convert.ToInt32(Oper.ByteArrayToString(Oper.returnportion(data, block_offset_b + 0xC, 4)), 16);
+                        if (data.Length < block_offset_b + length || length < 0) return hasecc(ref data);
+                        else
+                        {
+                            block_offset_b = block_offset_b + length;
+                            if (data[block_offset_b] == 0x43 && (data[block_offset_b + 1] == 0x42 || data[block_offset_b + 1] == 0x44)) return false; // Retail: Cx
+                            else if (data[block_offset_b] == 0x53 && (data[block_offset_b + 1] == 0x42 || data[block_offset_b + 1] == 0x43 || data[block_offset_b + 1] == 0x44)) return false; // Dev: Sx
+                            else return true;
+                        }
                     }
+                    else return true;
                 }
-                else return true;
+                catch(IndexOutOfRangeException ex)
+                {
+                    // Throw again.
+                    throw new Exception("There was a critical error analyzing a NAND. This is likely due to a highly corrupted NAND. Please check your NAND dumps.");
+                }
             }
         }
 

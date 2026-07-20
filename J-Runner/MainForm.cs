@@ -1720,7 +1720,12 @@ namespace JRunner
                         variables.filename2 = "";
                     }
                 }
-                catch (Exception ex) { Console.WriteLine(ex.InnerException.ToString()); }
+                // InnerException might be empty, therefore check ex properly and print all information.
+                // If InnerException is empty here, it throws another exception -> crashing J-Runner.
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.GetBaseException().ToString());
+                }
             }
         }
 
