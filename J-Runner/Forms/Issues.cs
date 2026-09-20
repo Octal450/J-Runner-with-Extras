@@ -25,12 +25,12 @@ namespace JRunner
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/Octal450/J-Runner-with-Extras/issues");
+            Process.Start("https://github.com/J-Runner-With-Extras/J-Runner-with-Extras/issues");
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/Octal450/J-Runner-with-Extras/issues/new/choose");
+            Process.Start("https://github.com/J-Runner-With-Extras/J-Runner-with-Extras/issues/new/choose");
         }
     }
 }
